@@ -1,0 +1,10 @@
+<gcard>
+	<option name="DBHOST" value="clasdb.jlab.org"/>
+	<option name="DATABASE" value="clas12_simulation"/>
+	
+	<detector name="beamline" factory="TEXT" variation="noft"/>
+	<detector name="beamline" factory="TEXT" variation="noft"/>
+	
+	<option name="BEAM_P" value="e-, 2.0*GeV, 3*deg, 10*deg"/>
+	<option name="OUTPUT" value="evio, out.ev"/>
+</gcard>

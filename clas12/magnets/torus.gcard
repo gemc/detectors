@@ -1,0 +1,9 @@
+<gcard>
+	<option name="DBHOST"   value="clasdb.jlab.org"/>
+	<option name="DATABASE" value="clas12_simulation"/>
+	
+	<detector name="torus" factory="TEXT" variation="original"/>
+	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<option name="geometry" value="1400x1200"/>
+	
+</gcard>

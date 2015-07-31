@@ -1,0 +1,16 @@
+<gcard>
+	<option name="DBHOST" value="clasdb.jlab.org"/>
+	<option name="DATABASE" value="clas12_simulation"/>
+
+
+	<detector name="forwardCarriage"      factory="TEXT" variation="original"/>
+	<detector name="../dc/dc"             factory="TEXT" variation="original"/>
+	<detector name="../htcc/htcc"         factory="TEXT" variation="original"/>
+
+	<option name="SCALE_FIELD" value="clas12-torus-big, -1"/>
+	<option name="HALL_FIELD" value="clas12-solenoid"/>
+
+	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
+	<option name="OUTPUT" value="evio, out.ev"/>
+</gcard>
+

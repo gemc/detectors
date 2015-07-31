@@ -1,0 +1,18 @@
+<gcard>
+
+	<detector name="dc" factory="TEXT" variation="original"/>
+	<option name="geometry" value="800x600"/>
+	
+	<option name="BEAM_P"   value="e-, 3.0*GeV, 20*deg, 70*deg"/>
+	<option name="INTEGRATEDRAW" value="dc"/>
+	
+	<option name="SIGNALVT" value="dc"/>
+	<option name="OUTPUT" value="evio, out.ev"/>
+
+
+	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
+	<option name="SCALE_FIELD" value="clas12-torus, -1"/>
+	<option name="HALL_FIELD" value="clas12-torus"/>
+
+</gcard>

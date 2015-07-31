@@ -1,0 +1,23 @@
+# Configuration file for LTCC
+
+# Detector name and variation
+detector_name: ltcc
+variation:     original
+
+# Factory can be MYQL or TEXT
+factory:       TEXT
+
+# run ranges and variation will apply to geometry, materials and parameters
+rmin:       1
+rmax:       10000
+
+# MYSQL server and databse if MYSQL factory is selected
+dbhost: localhost
+
+# Comments/Description
+comment:       This is the original LTCC detector
+
+# Verbosity controls the perl script output
+verbosity: 0
+
+

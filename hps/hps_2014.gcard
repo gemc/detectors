@@ -1,0 +1,46 @@
+<gcard>	
+  <detector name="hps" factory="TEXT" variation="original"/> 
+  
+<!--  <detector name="hps_muon"   factory="TEXT" variation="original" />  -->
+  <option name="SCALE_FIELD" value="hps_frascati_magnet_field1_394A, 1.0"/>
+  <option name="SCALE_FIELD" value="hps_frascati_magnet_field2_394A, 1.0"/>
+
+  <option name="HIT_PROCESS_LIST" value="HPS" />
+  <option name="INTEGRATEDRAW" value="flux, ECAL, muon_hodo"/>
+
+
+  <option name="OUTPUT" value="evio, gemc_output.evio"/>
+  <option name="HALL_MATERIAL" value="Vacuum"/>
+
+
+<!--
+   <option name="BEAM_P"        value="e-,2200*MeV,31.*mrad,0*mrad" />
+   <option name="SPREAD_P"      value="0*MeV,0.001*mrad,0*mrad" />
+   <option name="BEAM_V"        value="(69.2,0.,-1)mm" />
+   <option name="SPREAD_V"      value="(0.01,0.01)mm" />
+-->
+<!-- 200 nA in 4 ns = 200E-9*8E-9/(e:1.602 176 487E-19) = 4993  in 8 ns = 9986  -->
+<!--
+   <option name="LUMI_EVENT"    value="4993, 4*ns, 2*ns" />
+   <option name="LUMI_P"        value="e-, 2200*MeV, 29.6*mrad, 0*mrad" />
+   <option name="LUMI_V"        value="(69.2.,0,-1)mm" />
+   <option name="LUMI_SPREAD_V" value="(0.01, 0.01)mm" />
+-->
+
+   <!--option name="STEER_BEAM"    value="1" />-->
+   <option name="BEAM_P"        value="e-,2200*MeV,29.6*mrad,0*mrad" />
+   <option name="SPREAD_P"      value="0*MeV,0.0*mrad,0*mrad" />
+   <option name="BEAM_V"        value="(67.2,0.,0.)mm" />
+   <option name="SPREAD_V"      value="(0.01,0.01)mm" />
+
+<!--   <option name="LUMI_EVENT"    value="10, 4*ns, 2*ns" />
+   <option name="LUMI_P"        value="e-, 2200*MeV, 0.*mrad, 0*mrad" />
+   <option name="LUMI_V"        value="(0.,0.,-2000.)mm" />
+   <option name="LUMI_SPREAD_V" value="(0.01, 0.01)mm" /> -->
+
+   <option name="PRINT_EVENT"   value="1000" />
+
+
+
+</gcard>
+

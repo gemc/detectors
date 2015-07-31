@@ -1,0 +1,13 @@
+<gcard>
+	
+   <detector name="ltcc" factory="TEXT" variation="original"/>
+
+
+  <option name="BEAM_P"        value="opticalphoton, 2.5*eV, 90*deg, 90*deg"/>
+  <option name="SPREAD_P"      value="0, 0, 5*deg"/>
+  <option name="geometry"      value="1200x800"/>
+  <option name="OUTPUT"        value="txt, out.txt"/>
+
+
+</gcard>
+

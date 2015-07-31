@@ -1,0 +1,23 @@
+
+CLAS12 micromegas README
+
+--------------------------------------------------
+
+The geometry consists of...
+
+In MYSQL mode, before building the geometry one must
+upload the parameters onto the DB.
+
+The commands to build the geometry, banks, hit defs
+and materials are:
+
+upload_parameters.pl config.dat   < only for MYSQL factory
+./micromegas.pl config.dat
+
+
+--------------------------------------------------
+
+To remove the created text files:
+
+rm -f micromegas__bank_*.txt micromegas__geometry_*.txt micromegas__hit_*.txt micromegas__bank_*.txt micromegas__materials_*.txt out.ev out.txt
+

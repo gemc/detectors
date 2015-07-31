@@ -1,0 +1,12 @@
+Layer1Top | root | Layer 1 Top | 0*cm 19.92*mm 10*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 60 
+Layer1Bottom | root | Layer 1 Bottom | 0*cm -19.92*mm 10*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 61 
+Layer2Top | root | Layer 2 Top | 0*cm 20.67*mm 20*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 62 
+Layer2Bottom | root | Layer 2 Bottom | 0*cm -20.67*mm 20*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 63 
+Layer3Top | root | Layer 3 Top | 0*cm 21.42*mm 30*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 64 
+Layer3Bottom | root | Layer 3 Bottom | 0*cm -21.42*mm 30*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 65 
+Layer4Top | root | Layer 4 Top | 0*cm 22.92*mm 50*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 66 
+Layer4Bottom | root | Layer 4 Bottom | 0*cm -22.92*mm 50*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 67 
+Layer5Top | root | Layer 5 Top | 0*cm 24.42*mm 70*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 68 
+Layer5Bottom | root | Layer 5 Bottom | 0*cm -24.42*mm 70*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 69 
+Layer6Top | root | Layer 6 Top | 0*cm 25.92*mm 90*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 70 
+Layer6Bottom | root | Layer 6 Bottom | 0*cm -25.92*mm 90*cm  | 0.0*deg 0.0*deg 0.0*deg  | ffbbcc | Box | 49.165*mm 19.17*mm 0.16*mm  | Vacuum | no | 1 | 1 | 1 | 1 | 1 | flux | flux | id manual 71 

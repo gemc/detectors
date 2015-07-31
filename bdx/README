@@ -1,0 +1,29 @@
+
+Beam Dump eXperiment README
+
+--------------------------------------------------
+
+The geometry consists of:
+Hall D dump geometry
+Cormorino detector
+Veto and lead shield surrounding the detector
+
+In MYSQL mode, before building the geometry one must
+upload the parameters onto the DB.
+
+The commands to build the geometry, banks, hit defs
+and materials are:
+
+upload_parameters.pl config.dat   < only for MYSQL factory
+./geometry.pl config.dat
+./banks.pl config.dat
+./hit.pl config.dat
+./materials.pl config.dat
+
+
+--------------------------------------------------
+
+To remove the created text files:
+
+rm -f bdx__bank*.txt bdx__geometry*.txt bdx__hit*.txt bdx__materials*.txt out.ev out.txt
+

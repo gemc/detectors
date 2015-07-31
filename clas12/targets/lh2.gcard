@@ -1,0 +1,9 @@
+<gcard>
+	<option name="DBHOST"   value="clasdb.jlab.org"/>
+	<option name="DATABASE" value="clas12_simulation"/>
+	
+	<detector name="target" factory="TEXT" variation="lh2"/>
+	<option name="geometry" value="1400x1200"/>
+	
+	<option name="BEAM_P" value="e-, 11.0*GeV, 0*deg, 0*deg"/>
+</gcard>

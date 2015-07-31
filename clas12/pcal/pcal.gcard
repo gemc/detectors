@@ -1,0 +1,14 @@
+<gcard>
+	<option name="DBHOST"   value="clasdb.jlab.org"/>
+	<option name="DATABASE" value="clas12_simulation"/>
+
+	<detector name="pcal" factory="TEXT" variation="original"/>
+	<option name="geometry" value="1000x800"/>
+	
+	<option name="BEAM_P" value="e-, 4.0*GeV, 20*deg, 10*deg"/>
+	<option name="SIGNALVT" value="pcal"/>
+	<option name="INTEGRATEDRAW" value="pcal"/>
+	<option name="OUTPUT" value="evio, out.ev"/>
+
+ 	<option name="DEFAULT_MATERIAL" value="G4_AIR"/>
+</gcard>

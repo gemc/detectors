@@ -365,7 +365,7 @@ sub define_scintlayers
 
 sub build_scintlayers
 {
-
+    my $i = 1;
     my $sector = shift;
 
     my $xscint = &sxcenter($i);

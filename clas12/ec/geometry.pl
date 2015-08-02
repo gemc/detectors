@@ -382,7 +382,20 @@ sub build_scintlayers
 	
 	$description ="Forward Calorimeter scintillator layer ${i}";
     $pos = "$xscint*mm $yscint*mm $zscint*mm";
+# a scintillator layer first. set the G4Trap parameters.
 
+    my $pDx1   = 0.001;  # should be zero, but that makes gemc crash.
+    my $pDx2   = &spDx2(1);
+    my $pDz    = $dscint/2.0;  #<-------------------------------------
+    my $pTheta = 0;
+    my $pPhi   = $pTheta;
+    my $pDy1   = &spDy(1);
+    my $pDy2   = $pDy1;
+    my $pDx3   = $pDx1;
+    my $pDx4   = $pDx2;
+    my $pAlp1  = $pTheta;
+    my $pAlp2  = $pTheta;
+    
     my %detector = init_det();
     $detector{"name"}        = $subname;
     $detector{"mother"}      = "ec_s".$sector;
@@ -400,19 +413,7 @@ sub build_scintlayers
     print_det(\%configuration, \%detector);
 
 	# loop over layers and generates Geant4 parameters for each scint and lead layer.
-# a scintillator layer first. set the G4Trap parameters.
-#
-    my $pDx1   = 0.001;  # should be zero, but that makes gemc crash.
-    my $pDx2   = &spDx2(1);
-    my $pDz    = $dscint/2.0;  #<-------------------------------------
-    my $pTheta = 0;
-    my $pPhi   = $pTheta;
-    my $pDy1   = &spDy(1);
-    my $pDy2   = $pDy1;
-    my $pDx3   = $pDx1;
-    my $pDx4   = $pDx2;
-    my $pAlp1  = $pTheta;
-    my $pAlp2  = $pTheta;
+
 
     for ($i = 2; $i <= $nlayers; $i++)
 	{

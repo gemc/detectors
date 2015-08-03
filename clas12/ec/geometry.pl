@@ -588,8 +588,8 @@ sub ECstack($)
     my $layer = $_[0];
 
     my $stack = 3;
-    if ($i <= 15) {$stack = 1;}
-    if ($i >  15) {$stack = 2;}
+    if ($layer <= 15) {$stack = 1;}
+    if ($layer >  15) {$stack = 2;}
     if ($stack == 3) {print "**** WARNING: No Stack assignment made. ****\n";
     }
 

@@ -76,6 +76,11 @@ double qtzPmt_qe[NP];
 double ltcc_refl[NP];
 double ecis_witn[NP];
 double ecis_samp[NP];
+double wc_bad[NP];
+double wc_soso[NP];
+double wc_good[NP];
+
+
 
 // function dimension
 const int NF  = 20;      // points on the function

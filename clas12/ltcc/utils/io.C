@@ -164,6 +164,20 @@ void init_parameters()
   }
 	in.close();
 
+	// read WC reflectivities
+	double tmpL;
+	in.open("parameters/wc_refl.txt");
+	for(int i=0; i<NP; i++)
+	{
+		in >> tmpL >> ltcc_refl[i] >> ecis_witn[i] >> ecis_samp[i];
+		
+		ltcc_refl[i] -= 0.1;
+		ecis_samp[i] -= 0.1;
+		if(lambda[i] != tmpL)
+		cout << " Error: lambda from file is " << tmpL << " but should be " << lambda[i] << endl;
+	}
+	in.close();
+
 
 
  	dndxdlFpion = new TF2("dndxdlFpion", dndxdl, 180, 660, min_m, max_m, 4);

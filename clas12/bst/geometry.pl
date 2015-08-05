@@ -8,7 +8,7 @@
 # Eventually remove all hardcoded parameters
 
 use strict;
-use lib ("$ENV{GEMC}/io");
+use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;

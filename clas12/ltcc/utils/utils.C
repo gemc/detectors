@@ -77,6 +77,7 @@ double dndxdl(double *x, double *par)
 	
 	
 	double refl   = 0;
+	double wrefl  = 0;
 	double qe     = 0;
 	double transp = 0;
 	
@@ -126,19 +127,25 @@ double interpolate(double x, string what)
 	if(what == "n")
 	data = c4f10n;
 	else if(what == "stdPMT")
-	data = stdPmt_qe;
+		data = stdPmt_qe;
 	else if(what == "uvgPMT")
-	data = uvgPmt_qe;
+		data = uvgPmt_qe;
 	else if(what == "qtzPMT")
-	data = qtzPmt_qe;
+		data = qtzPmt_qe;
 	else if(what == "c4f10t")
-	data = c4f10t;
+		data = c4f10t;
 	else if(what == "ltcc_refl")
-	data = ltcc_refl;
+		data = ltcc_refl;
 	else if(what == "eciw_witn")
-	data = eciw_witn;
+		data = eciw_witn;
 	else if(what == "ecis_samp")
-	data = ecis_samp;
+		data = ecis_samp;
+	else if(what == "wc_bad")
+		data = wc_bad;
+	else if(what == "wc_soso")
+		data = wc_soso;
+	else if(what == "wc_good")
+		data = wc_good;
 	else
 	cout << " No data selected in interpolation routine. This will crash the macro" << endl;
 	

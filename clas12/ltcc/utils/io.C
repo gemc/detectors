@@ -169,10 +169,8 @@ void init_parameters()
 	in.open("parameters/wc_refl.txt");
 	for(int i=0; i<NP; i++)
 	{
-		in >> tmpL >> ltcc_refl[i] >> ecis_witn[i] >> ecis_samp[i];
+		in >> tmpL >> wc_good[i] >> wc_soso[i] >> wc_bad[i];
 		
-		ltcc_refl[i] -= 0.1;
-		ecis_samp[i] -= 0.1;
 		if(lambda[i] != tmpL)
 		cout << " Error: lambda from file is " << tmpL << " but should be " << lambda[i] << endl;
 	}

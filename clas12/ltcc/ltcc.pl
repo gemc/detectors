@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use lib ("$ENV{GEMC}/io");
+use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;

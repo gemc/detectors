@@ -34,6 +34,8 @@
 	
 	write_parameters();
 	
+	simulateResponse();
+	
 	bar = new TControlBar("vertical", "LTCC Segments  by Maurizio Ungaro");
 	bar->AddButton("","");
 	bar->AddButton("Show Photon Yield",              "draw_W()");
@@ -53,6 +55,8 @@
 	bar->AddButton("Change gas",       "change_gas()");
 	bar->AddButton("Change pmt",       "change_pmt()");
 	bar->AddButton("Change WC",        "change_WC()");
+	bar->AddButton("","");
+	bar->AddButton("Simulate Response", "simulateResponse()");
 	bar->AddButton("","");
 	bar->AddButton("Write Parameters", "write_parameters()");
 	bar->AddButton("","");

@@ -198,3 +198,71 @@ double windowy(double *x, double *par)
 	}
 }
 
+
+
+
+simulateResponse()
+{
+	int NEVT = 10000;
+	double mean = 9;
+
+	TH1F *pois = new TH1F("pois", "pois", 20, 0, 20);
+	TH1F *unif = new TH1F("unif", "unif", 100, -1, 2);
+	
+	
+	for(int i=0; i<NEVT; i++)
+	{
+		double r = gRandom->Poisson(mean);
+		pois->Fill(r);
+		
+		
+		r = gRandom->Uniform(0, 1);
+		unif->Fill(r);
+	}
+
+	pois->Draw("");
+	
+	
+}
+
+
+calculateNReflection(double r)
+{
+	double r1 = 0.3;
+	double r2 = 0.7;
+	double r3 = 1.0;
+
+	
+	if(r<r1)               return 2;
+	else if(r>=r1 && r<r2) return 3;
+	else if(r>=r2 && r<r3) return 4;
+	else                   return 0;
+}
+
+
+
+calculateWCgroup(double r)
+{
+	double NTOT = 216.0;
+	double g1 = 11.0/NTOT;
+	double g2 = (64.0 + g1)/NTOT;
+	double g2 = (64.0 + g1 + g2)/NTOT;
+	
+	
+	if(r<g1)               return 1;  // good
+	else if(r>=g1 && r<g2) return 2;  // so-so
+	else if(r>=g2 && r<g3) return 3;  // bad
+	else                   return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

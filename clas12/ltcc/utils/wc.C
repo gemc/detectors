@@ -21,8 +21,8 @@
 	double threshold = 0.7;
 	
 	double bad   = effi->Integral(0, 50);
-	double soso  = effi->Integral(50, threshold*100);
-	double good  = effi->Integral(threshold*100, 100);
+	double soso  = effi->Integral(51, threshold*100);
+	double good  = effi->Integral(threshold*100+1, 100);
 	double total = effi->Integral(0, 100);
 	
 	double maxH = effi->GetMaximum()/100;

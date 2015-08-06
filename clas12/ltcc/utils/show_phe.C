@@ -220,7 +220,7 @@ void normalized_yields_mirrors()
 	TGraph *pi5 = new TGraph(MNP, pion_m, pion_ratio_5);
 
 	
-	pi1->SetMarkerStyle(33);
+	pi1->SetMarkerStyle(8);
 	pi2->SetMarkerStyle(21);
 	pi3->SetMarkerStyle(8);
 	pi4->SetMarkerStyle(26);
@@ -231,8 +231,8 @@ void normalized_yields_mirrors()
 	pi1->SetMarkerColor(kBlack);
 	pi2->SetMarkerColor(kBlue);
 	pi3->SetMarkerColor(kRed);
-	pi4->SetMarkerColor(kGreen-3);
-	pi4->SetMarkerColor(kRed-4);
+	pi4->SetMarkerColor(kGreen);
+	pi5->SetMarkerColor(kRed-4);
 	
 	pi1->SetMinimum(0);
 	pi1->SetMaximum(1.8);
@@ -242,10 +242,10 @@ void normalized_yields_mirrors()
 	pi4->Draw("Psame");
 	pi5->Draw("Psame");
 	
-	TLegend *lstudy  = new TLegend(0.1, 0.65, 0.55, 0.88);
-	lstudy->AddEntry(pi1, "Same Mirror, Same PMT, same WC", "P");
-	lstudy->AddEntry(pi2, "Coat Mirror, Same PMT, same WC", "P");
-	lstudy->AddEntry(pi3, "Coat Mirror, Coat PMT, same WC", "P");
+	TLegend *lstudy  = new TLegend(0.1, 0.65, 0.6, 0.88);
+	lstudy->AddEntry(pi1, "Same Mirror, Same PMT, Same WC", "P");
+	lstudy->AddEntry(pi2, "Coat Mirror, Same PMT, Same WC", "P");
+	lstudy->AddEntry(pi3, "Coat Mirror, Coat PMT, Same WC", "P");
 	lstudy->AddEntry(pi4, "Coat Mirror, Coat PMT, Coat WC", "P");
 	lstudy->AddEntry(pi5, "Coat Mirror, Coat PMT, Bad  WC", "P");
 	lstudy->SetBorderSize(0);

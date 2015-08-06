@@ -1,30 +1,3 @@
-void draw_c4f10n()
-{
-	TLatex lab;
-	lab.SetTextFont(102);
-	lab.SetTextColor(kBlue+2);
-	lab.SetNDC();
-	
-	TCanvas *NN = new TCanvas("NN","Refraction index", 800, 600);
-	
-	TGraph *ri = new TGraph(NP, lambda, c4f10n);
-	ri->SetMarkerSize(0.8);
-	ri->SetMarkerStyle(20);
-	ri->Draw("AP");
-	
-	lab.SetTextSize(0.04);
-	lab.DrawLatex(.28,.95, "Refraction index of C4F10 ");
-	
-	lab.SetTextColor(kBlack);
-	lab.DrawLatex(.85,.03, "nm") ;
-	
-	
-	if(PRINT != "no")
-	NN->Print(Form("refraction_index%s", PRINT.c_str()));
-}
-
-
-
 // number of photons as a function of energy and particle
 void draw_W()
 {
@@ -56,7 +29,7 @@ void draw_W()
 	momF->SetParameter(1, MIRROR);
 	momF->SetParameter(2, PMT);
 	momF->SetParameter(3, GAS);
-	
+	momF->SetParameter(4, WC);
 	
 	momF->Draw("surfFB");
 	
@@ -74,6 +47,7 @@ void draw_W()
 	lab.DrawLatex(.6, .73, Form("%s mirror", mirname[MIRROR].c_str()));
 	lab.DrawLatex(.6, .68, Form("%s pmt", pmtname[PMT].c_str()));
 	lab.DrawLatex(.6, .63, Form("%s gas", gasname[GAS].c_str()));
+	lab.DrawLatex(.6, .58, Form("%s wc", wcname[WC].c_str()));
 	
 	
 	lab.SetTextAlign(11);
@@ -86,111 +60,6 @@ void draw_W()
 	NN->Print(Form("photon_yield_spectrum_%s_gas%s_mirror%s_pmt%s%s",
 						pname[PART].c_str(), gasname[GAS].c_str(), mirname[MIRROR].c_str(), pmtname[PMT].c_str(),  PRINT.c_str()));
 }
-
-
-
-
-
-// draw quantum efficiencies
-void draw_qes()
-{
-	TLatex lab;
-	lab.SetTextFont(102);
-	lab.SetTextColor(kBlue+2);
-	lab.SetNDC();
-	
-	TCanvas *QE = new TCanvas("QE","Quantum Efficiencies", 800, 600);
-	
-	TGraph *stdg = new TGraph(NP, lambda, stdPmt_qe);
-	TGraph *uvgg = new TGraph(NP, lambda, uvgPmt_qe);
-	TGraph *qtzg = new TGraph(NP, lambda, qtzPmt_qe);
-	
-	stdg->SetMarkerSize(1.6);
-	
-	stdg->SetMarkerStyle(33);
-	uvgg->SetMarkerStyle(21);
-	qtzg->SetMarkerStyle(8);
-	
-	stdg->SetMarkerColor(kBlack);
-	uvgg->SetMarkerColor(kBlue);
-	qtzg->SetMarkerColor(kRed);
-	
-	stdg->Draw("AP");
-	uvgg->Draw("Psame");
-	qtzg->Draw("Psame");
-	
-	lab.SetTextSize(0.04);
-	lab.DrawLatex(.1,.95, "Quantum Efficiencies of Std, UV glass and Quartz");
-	
-	lab.SetTextColor(kBlack);
-	lab.DrawLatex(.85,.03, "nm") ;
-	
-	
-	TLegend *lpmts  = new TLegend(0.64, 0.65, 0.90, 0.8);
-	lpmts->AddEntry(stdg, "Standard PMT", "P");
-	lpmts->AddEntry(uvgg, "UV glass PMT", "P");
-	lpmts->AddEntry(qtzg, "Quartz PMT", "P");
-	lpmts->SetBorderSize(0);
-	lpmts->SetFillColor(0);
-	lpmts->Draw();
-	
-	if(PRINT != "no")
-	QE->Print(Form("quantum_efficiency%s", PRINT.c_str()));
-	
-	
-}
-
-// draw quantum efficiencies
-void draw_reflectivities()
-{
-	TLatex lab;
-	lab.SetTextFont(102);
-	lab.SetTextColor(kBlue+2);
-	lab.SetNDC();
-	
-	TCanvas *RF = new TCanvas("RF","Reflectivities", 800, 600);
-	
-	TGraph *ltcc = new TGraph(NP, lambda, ltcc_refl);
-	TGraph *eciw = new TGraph(NP, lambda, ecis_witn);
-	TGraph *ecis = new TGraph(NP, lambda, ecis_samp);
-	
-	ltcc->SetMarkerSize(1.6);
-	
-	ltcc->SetMarkerStyle(33);
-	eciw->SetMarkerStyle(21);
-	ecis->SetMarkerStyle(8);
-	
-	ltcc->SetMarkerColor(kBlack);
-	eciw->SetMarkerColor(kBlue);
-	ecis->SetMarkerColor(kRed);
-	
-	ecis->SetMinimum(0.4);
-	
-	//  eciw->Draw("AP");
-	ecis->Draw("AP");
-	ltcc->Draw("Psame");
-	//  ecis->Draw("Psame");
-	
-	lab.SetTextSize(0.04);
-	lab.DrawLatex(.13,.95, "Reflectivities of LTCC Mirrors and ECI re-coats");
-	
-	lab.SetTextColor(kBlack);
-	lab.DrawLatex(.85,.03, "nm") ;
-	
-	
-	TLegend *lmirs  = new TLegend(0.6, 0.55, 0.88, 0.75);
-	lmirs->AddEntry(ltcc, "LTCC Mirror", "P");
-	//	lmirs->AddEntry(eciw, "ECI Witness", "P");
-	lmirs->AddEntry(ecis, "ECI Mirror Re-coated", "P");
-	lmirs->SetBorderSize(0);
-	lmirs->SetFillColor(0);
-	lmirs->Draw();
-	
-	if(PRINT != "no")
-	RF->Print(Form("reflectivity%s", PRINT.c_str()));
-}
-
-
 
 
 
@@ -265,88 +134,120 @@ void normalized_yields_mirrors()
 	
 	TCanvas *YR = new TCanvas("YR", "Photon Yields Ratios", 800, 600);
 	
-	PART = 0;
-	GAS  = 1;
-	MIRROR = 1;
-	PMT    = 2;
+	
+	// reference
+	PART   = 0; // electron
+	GAS    = 1; // c4f10
+	MIRROR = 1; // ltcc mirror
+	PMT    = 2; // uv glass pmt
+	WC     = 1; // ltcc wc (good)
 	integrate_yield();
 	
 	
-	double unfocusing = 1.5;
+	double unfocusing = 1.3;
 	
-	double pion_ratio_1[MNP];  // same mirror, same PMT
-	PART = 1;
-	GAS  = 1;
-	MIRROR = 1;
-	PMT    = 2;
-	integrate_yield();
-	for(int i=0; i<MNP; i++)
-	{
-		pion_ratio_1[i] = pion_n[i] / electron_n[i]/ unfocusing;
-	}
-	
-	double pion_ratio_2[MNP];  // improved mirror, same PMT
-	PART = 1;
-	GAS  = 1;
-	MIRROR = 3;
-	PMT    = 2;
+	// No changes: same mirror, same PMT, same wc (so-so)
+	// this will show ratio if we don't change anything
+	double pion_ratio_1[MNP];
+	PART   = 1; // pion
+	GAS    = 1; // c4f10
+	MIRROR = 1; // ltcc mirror
+	PMT    = 2; // uv glass pmt
+	WC     = 2; // ltcc wc (so/so)
 	integrate_yield();
 	for(int i=0; i<MNP; i++)
 	{
-		pion_ratio_2[i] = pion_n[i] / electron_n[i]/ unfocusing;
+		pion_ratio_1[i] = pion_n[i] / electron_n[i] / unfocusing;
 	}
 	
-	double pion_ratio_3[MNP];  // same mirror, improved PMT
-	PART = 1;
-	GAS  = 1;
-	MIRROR = 1;
-	PMT    = 3;
+	// recoated mirror, same PMT, same wc (so-so)
+	double pion_ratio_2[MNP];
+	PART   = 1; // pion
+	GAS    = 1; // c4f10
+	MIRROR = 3; // ltcc mirror
+	PMT    = 2; // uv glass pmt
+	WC     = 2; // ltcc wc (so/so)
 	integrate_yield();
 	for(int i=0; i<MNP; i++)
 	{
-		pion_ratio_3[i] = pion_n[i] / electron_n[i]/ unfocusing;
+		pion_ratio_2[i] = pion_n[i] / electron_n[i] / unfocusing;
 	}
 	
-	double pion_ratio_4[MNP];  // improved mirror, improved PMT
-	PART = 1;
-	GAS  = 1;
-	MIRROR = 3;
-	PMT    = 3;
+	// recoated mirror, improved PMT, same wc (so-so)
+	double pion_ratio_3[MNP];
+	PART   = 1; // pion
+	GAS    = 1; // c4f10
+	MIRROR = 3; // ltcc mirror
+	PMT    = 3; // uv glass pmt
+	WC     = 2; // ltcc wc (so/so)
 	integrate_yield();
 	for(int i=0; i<MNP; i++)
 	{
-		pion_ratio_4[i] = pion_n[i] / electron_n[i]/ unfocusing;
+		pion_ratio_3[i] = pion_n[i] / electron_n[i] / unfocusing;
 	}
 	
+	// recoated mirror, improved PMT, coated wc (good)
+	double pion_ratio_4[MNP];
+	PART   = 1; // electron
+	GAS    = 1; // c4f10
+	MIRROR = 3; // ltcc mirror
+	PMT    = 3; // uv glass pmt
+	WC     = 1; // ltcc wc (good)
+	integrate_yield();
+	for(int i=0; i<MNP; i++)
+	{
+		pion_ratio_4[i] = pion_n[i] / electron_n[i] / unfocusing;
+	}
+	
+	// recoated mirror, improved PMT, bad wc
+	double pion_ratio_5[MNP];
+	PART   = 1; // electron
+	GAS    = 1; // c4f10
+	MIRROR = 3; // ltcc mirror
+	PMT    = 3; // uv glass pmt
+	WC     = 3; // ltcc wc (bad)
+	integrate_yield();
+	for(int i=0; i<MNP; i++)
+	{
+		pion_ratio_5[i] = pion_n[i] / electron_n[i] / unfocusing;
+	}
+	
+
 	TGraph *pi1 = new TGraph(MNP, pion_m, pion_ratio_1);
 	TGraph *pi2 = new TGraph(MNP, pion_m, pion_ratio_2);
 	TGraph *pi3 = new TGraph(MNP, pion_m, pion_ratio_3);
 	TGraph *pi4 = new TGraph(MNP, pion_m, pion_ratio_4);
+	TGraph *pi5 = new TGraph(MNP, pion_m, pion_ratio_5);
+
 	
 	pi1->SetMarkerStyle(33);
 	pi2->SetMarkerStyle(21);
 	pi3->SetMarkerStyle(8);
-	pi4->SetMarkerStyle(29);
+	pi4->SetMarkerStyle(26);
+	pi5->SetMarkerStyle(32);
 	
 	pi1->SetMarkerSize(1.6);
 	pi4->SetMarkerSize(1.6);
 	pi1->SetMarkerColor(kBlack);
 	pi2->SetMarkerColor(kBlue);
 	pi3->SetMarkerColor(kRed);
-	pi4->SetMarkerColor(kGreen);
+	pi4->SetMarkerColor(kGreen-3);
+	pi4->SetMarkerColor(kRed-4);
 	
 	pi1->SetMinimum(0);
 	pi1->SetMaximum(1.8);
 	pi1->Draw("AP");
-	//  pi2->Draw("Psame");
- //  pi3->Draw("Psame");
- // pi4->Draw("Psame");
+	pi2->Draw("Psame");
+   pi3->Draw("Psame");
+	pi4->Draw("Psame");
+	pi5->Draw("Psame");
 	
-	TLegend *lstudy  = new TLegend(0.12, 0.65, 0.42, 0.85);
-	lstudy->AddEntry(pi1, "Same Mirror, Same PMT", "P");
-	//	lstudy->AddEntry(pi2, "Re-coated Mirror, Same PMT", "P");
-	//	lstudy->AddEntry(pi3, "Same Mirror, Coated PMT", "P");
-	//	lstudy->AddEntry(pi4, "Re-coated Mirror, Coated PMT", "P");
+	TLegend *lstudy  = new TLegend(0.1, 0.65, 0.55, 0.88);
+	lstudy->AddEntry(pi1, "Same Mirror, Same PMT, same WC", "P");
+	lstudy->AddEntry(pi2, "Coat Mirror, Same PMT, same WC", "P");
+	lstudy->AddEntry(pi3, "Coat Mirror, Coat PMT, same WC", "P");
+	lstudy->AddEntry(pi4, "Coat Mirror, Coat PMT, Coat WC", "P");
+	lstudy->AddEntry(pi5, "Coat Mirror, Coat PMT, Bad  WC", "P");
 	lstudy->SetBorderSize(0);
 	lstudy->SetFillColor(0);
 	lstudy->Draw();
@@ -367,52 +268,6 @@ void normalized_yields_mirrors()
 }
 
 
-
-
-void draw_window_gain()
-{
-	TLatex lab;
-	lab.SetTextFont(102);
-	lab.SetTextColor(kBlue+2);
-	lab.SetNDC();
-	
-	TCanvas *WG = new TCanvas("WG","Window gain", 800, 600);
-	
-	
-	
-	
-	//	windowMore_nocut_nose->Draw();
-	//	windowMore_nocut_nonose->Draw("same");
-	windowMore_cut_nose->Draw("");
-	windowMore_cut_nonose->Draw("same");
-	
-	
-	
-	TLegend *lwindow  = new TLegend(0.65, 0.78, 0.9, 0.88);
-	//	lwindow->AddEntry(windowMore_nocut_nonose, "No Cut, No Nose", "L");
-	//	lwindow->AddEntry(windowMore_nocut_nose, "No Cut, Nose", "L");
-	lwindow->AddEntry(windowMore_cut_nonose, "No Nose", "L");
-	lwindow->AddEntry(windowMore_cut_nose, "Nose", "L");
-	lwindow->SetBorderSize(0);
-	lwindow->SetFillColor(0);
-	lwindow->Draw();
-	
-	
-	
-	lab.SetTextSize(0.05);
-	lab.DrawLatex(.18,.95, "C4F10 gas gain (middle of LTCC)");
-	
-	lab.SetTextColor(kBlack);
-	lab.DrawLatex(.85,.03, "cm") ;
-	
-	lab.SetTextAngle(90);
-	lab.DrawLatex(.05,.63, "% gas gain") ;
-	
-	
-	
-	if(PRINT != "no")
-	WG->Print(Form("window_addition_gain%s", PRINT.c_str()));
-}
 
 
 

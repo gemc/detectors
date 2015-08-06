@@ -17,7 +17,6 @@ string stringify(int x)
 }
 
 
-
 void init_parameters()
 {
 	ifstream in("parameters/ccngeom.dat");
@@ -157,8 +156,8 @@ void init_parameters()
 	{
   	in >> tmpL >> ltcc_refl[i] >> ecis_witn[i] >> ecis_samp[i];
 		
-		ltcc_refl[i] -= 0.1;
-		ecis_samp[i] -= 0.1;
+//		ltcc_refl[i] -= 0.1;
+//		ecis_samp[i] -= 0.1;
 		if(lambda[i] != tmpL)
     	cout << " Error: lambda from file is " << tmpL << " but should be " << lambda[i] << endl;
   }
@@ -178,7 +177,7 @@ void init_parameters()
 
 
 
- 	dndxdlFpion = new TF2("dndxdlFpion", dndxdl, 180, 660, min_m, max_m, 4);
+ 	dndxdlFpion = new TF2("dndxdlFpion", dndxdl, 180, 660, min_m, max_m, 5);
 	dndxdlFpion->SetNpx(NF);
 	dndxdlFpion->SetNpy(NF);
 	dndxdlFpion->SetParameter(0, piMass);
@@ -186,7 +185,7 @@ void init_parameters()
 	dndxdlFpion->SetParameter(2, 0);
 	dndxdlFpion->SetParameter(3, 0);
 
- 	dndxdlFelectron = new TF2("dndxdlFelectron", dndxdl, 180, 660, min_m, max_m, 4);
+ 	dndxdlFelectron = new TF2("dndxdlFelectron", dndxdl, 180, 660, min_m, max_m, 5);
 	dndxdlFelectron->SetNpx(NF);
 	dndxdlFelectron->SetNpy(NF);
 	dndxdlFelectron->SetParameter(0, eMass);
@@ -194,7 +193,7 @@ void init_parameters()
 	dndxdlFelectron->SetParameter(2, 0);
 	dndxdlFelectron->SetParameter(3, 0);
 
- 	dndxdlFkaon = new TF2("dndxdlFkaon", dndxdl, 180, 660, min_m, max_m, 4);
+ 	dndxdlFkaon = new TF2("dndxdlFkaon", dndxdl, 180, 660, min_m, max_m, 5);
 	dndxdlFkaon->SetNpx(NF);
 	dndxdlFkaon->SetNpy(NF);
 	dndxdlFkaon->SetParameter(0, kMass);

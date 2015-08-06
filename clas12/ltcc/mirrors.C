@@ -16,13 +16,17 @@
 	string pmtname[3] = {"perfect", "std", "uvg", "qtz"};
 	int PMT = 0;
 	
-	
+	string wcname[3] = {"perfect", "wc_good", "wc_soso", "wc_bad"};
+	int WC = 0;
+
 	
 	
 	gROOT->LoadMacro("utils/utils.C");
 	gROOT->LoadMacro("utils/show_segment.C");
 	gROOT->LoadMacro("utils/show_phe.C");
 	gROOT->LoadMacro("utils/io.C");
+	gROOT->LoadMacro("utils/showMeasurements.C");
+	gROOT->LoadMacro("utils/calculations.C");
 	
 	
 	setStyle();
@@ -32,13 +36,15 @@
 	
 	bar = new TControlBar("vertical", "LTCC Segments  by Maurizio Ungaro");
 	bar->AddButton("","");
-	bar->AddButton("Show refractive index of C4F10", "draw_c4f10n()");
 	bar->AddButton("Show Photon Yield",              "draw_W()");
+	bar->AddButton("","");
+	bar->AddButton("Show refractive index of C4F10", "draw_c4f10n()");
 	bar->AddButton("Show quantum efficiencies",      "draw_qes()");
 	bar->AddButton("Show reflectivities",            "draw_reflectivities()");
+	bar->AddButton("Show wc reflectivities",         "draw_wcreflectivities()");
 	bar->AddButton("Show Window Gains",            	 "draw_window_gain()");
 	bar->AddButton("","");
-	bar->AddButton("Inetgrate Yield", "integrate_yield()");
+	bar->AddButton("Inetgrate Yield",   "integrate_yield()");
 	bar->AddButton("Plot Yields",			"plot_yields()");
 	bar->AddButton("Plot Ratios",			"normalized_yields_mirrors()");
 	bar->AddButton("","");
@@ -46,12 +52,11 @@
 	bar->AddButton("Change mirror",    "change_mirror()");
 	bar->AddButton("Change gas",       "change_gas()");
 	bar->AddButton("Change pmt",       "change_pmt()");
+	bar->AddButton("Change WC",        "change_WC()");
 	bar->AddButton("","");
 	bar->AddButton("Write Parameters", "write_parameters()");
 	bar->AddButton("","");
 	bar->Show();
-	
-	
 	
 }
 

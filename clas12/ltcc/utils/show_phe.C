@@ -131,95 +131,134 @@ void plot_yields()
 // calculate the effect of re-coating the mirrors and using different PMTs
 void normalized_yields_mirrors()
 {
-	
 	TCanvas *YR = new TCanvas("YR", "Photon Yields Ratios", 800, 600);
-	
-	
-	// reference
-	PART   = 0; // electron
-	GAS    = 1; // c4f10
-	MIRROR = 1; // ltcc mirror
-	PMT    = 2; // uv glass pmt
-	WC     = 1; // ltcc wc (good)
-	integrate_yield();
-	
 	
 	double unfocusing = 1.3;
 	
-	// No changes: same mirror, same PMT, same wc (so-so)
-	// this will show ratio if we don't change anything
-	double pion_ratio_1[MNP];
-	PART   = 1; // pion
-	GAS    = 1; // c4f10
-	MIRROR = 1; // ltcc mirror
-	PMT    = 2; // uv glass pmt
-	WC     = 2; // ltcc wc (so/so)
-	integrate_yield();
-	for(int i=0; i<MNP; i++)
+	double pion_ratio_1[MNP]; // no changes: same mirror, same PMT, same wc (so-so)
+	double pion_ratio_2[MNP]; // recoated mirror, same PMT, same wc (so-so)
+	double pion_ratio_3[MNP]; // recoated mirror, improved PMT, same wc (so-so)
+	double pion_ratio_4[MNP]; // recoated mirror, improved PMT, coated wc (good)
+	double pion_ratio_5[MNP]; // recoated mirror, improved PMT, bad wc
+	double pion_ratio_6[MNP]; // recoated mirror, improved PMT, perfect wc (2 reflections only)
+
+	// getting data from file
+	if(RECALC==0)
 	{
-		pion_ratio_1[i] = pion_n[i] / electron_n[i] / unfocusing;
-	}
+		ifstream in("pionYield.txt");
+
+		for(int i=0; i<MNP; i++)
+			in >> pion_ratio_1[i] >> pion_ratio_2[i] >> pion_ratio_3[i] >> pion_ratio_4[i] >> pion_ratio_5[i] >> pion_ratio_6[i] ;
 	
-	// recoated mirror, same PMT, same wc (so-so)
-	double pion_ratio_2[MNP];
-	PART   = 1; // pion
-	GAS    = 1; // c4f10
-	MIRROR = 3; // ltcc mirror
-	PMT    = 2; // uv glass pmt
-	WC     = 2; // ltcc wc (so/so)
-	integrate_yield();
-	for(int i=0; i<MNP; i++)
+		in.close();
+	}
+	else if(RECALC==1)
 	{
-		pion_ratio_2[i] = pion_n[i] / electron_n[i] / unfocusing;
+		
+		// reference
+		PART   = 0; // electron
+		GAS    = 1; // c4f10
+		MIRROR = 1; // ltcc mirror
+		PMT    = 2; // uv glass pmt
+		WC     = 1; // ltcc wc (good)
+		integrate_yield();
+		
+		
+		// No changes: same mirror, same PMT, same wc (so-so)
+		// this will show ratio if we don't change anything
+		PART   = 1; // pion
+		GAS    = 1; // c4f10
+		MIRROR = 1; // ltcc mirror
+		PMT    = 2; // uv glass pmt
+		WC     = 2; // ltcc wc (so/so)
+		integrate_yield();
+		for(int i=0; i<MNP; i++)
+		{
+			pion_ratio_1[i] = pion_n[i] / electron_n[i] / unfocusing;
+		}
+		
+		// recoated mirror, same PMT, same wc (so-so)
+		PART   = 1; // pion
+		GAS    = 1; // c4f10
+		MIRROR = 3; // ltcc mirror
+		PMT    = 2; // uv glass pmt
+		WC     = 2; // ltcc wc (so/so)
+		integrate_yield();
+		for(int i=0; i<MNP; i++)
+		{
+			pion_ratio_2[i] = pion_n[i] / electron_n[i] / unfocusing;
+		}
+		
+		// recoated mirror, improved PMT, same wc (so-so)
+		PART   = 1; // pion
+		GAS    = 1; // c4f10
+		MIRROR = 3; // ltcc mirror
+		PMT    = 3; // uv glass pmt
+		WC     = 2; // ltcc wc (so/so)
+		integrate_yield();
+		for(int i=0; i<MNP; i++)
+		{
+			pion_ratio_3[i] = pion_n[i] / electron_n[i] / unfocusing;
+		}
+		
+		// recoated mirror, improved PMT, coated wc (good)
+		PART   = 1; // electron
+		GAS    = 1; // c4f10
+		MIRROR = 3; // ltcc mirror
+		PMT    = 3; // uv glass pmt
+		WC     = 1; // ltcc wc (good)
+		integrate_yield();
+		for(int i=0; i<MNP; i++)
+		{
+			pion_ratio_4[i] = pion_n[i] / electron_n[i] / unfocusing;
+		}
+		
+		// recoated mirror, improved PMT, bad wc
+		PART   = 1; // electron
+		GAS    = 1; // c4f10
+		MIRROR = 3; // ltcc mirror
+		PMT    = 3; // uv glass pmt
+		WC     = 3; // ltcc wc (bad)
+		integrate_yield();
+		for(int i=0; i<MNP; i++)
+		{
+			pion_ratio_5[i] = pion_n[i] / electron_n[i] / unfocusing;
+		}
+		
+		// recoated mirror, improved PMT, perfect wc (2 reflections only)
+		PART   = 1; // electron
+		GAS    = 1; // c4f10
+		MIRROR = 3; // ltcc mirror
+		PMT    = 3; // uv glass pmt
+		WC     = 0; // ltcc wc (bad)
+		integrate_yield();
+		for(int i=0; i<MNP; i++)
+		{
+			pion_ratio_6[i] = pion_n[i] / electron_n[i] / unfocusing;
+		}
+		
+		// saving graph to files
+		ofstream out("pionYield.txt");
+		
+		for(int i=0; i<MNP; i++)
+		{
+			out << pion_ratio_1[i] << " "
+				 << pion_ratio_2[i] << " "
+				 << pion_ratio_3[i] << " "
+				 << pion_ratio_4[i] << " "
+				 << pion_ratio_5[i] << " "
+				 << pion_ratio_6[i] << endl;
+		}
+		out.close();
 	}
-	
-	// recoated mirror, improved PMT, same wc (so-so)
-	double pion_ratio_3[MNP];
-	PART   = 1; // pion
-	GAS    = 1; // c4f10
-	MIRROR = 3; // ltcc mirror
-	PMT    = 3; // uv glass pmt
-	WC     = 2; // ltcc wc (so/so)
-	integrate_yield();
-	for(int i=0; i<MNP; i++)
-	{
-		pion_ratio_3[i] = pion_n[i] / electron_n[i] / unfocusing;
-	}
-	
-	// recoated mirror, improved PMT, coated wc (good)
-	double pion_ratio_4[MNP];
-	PART   = 1; // electron
-	GAS    = 1; // c4f10
-	MIRROR = 3; // ltcc mirror
-	PMT    = 3; // uv glass pmt
-	WC     = 1; // ltcc wc (good)
-	integrate_yield();
-	for(int i=0; i<MNP; i++)
-	{
-		pion_ratio_4[i] = pion_n[i] / electron_n[i] / unfocusing;
-	}
-	
-	// recoated mirror, improved PMT, bad wc
-	double pion_ratio_5[MNP];
-	PART   = 1; // electron
-	GAS    = 1; // c4f10
-	MIRROR = 3; // ltcc mirror
-	PMT    = 3; // uv glass pmt
-	WC     = 3; // ltcc wc (bad)
-	integrate_yield();
-	for(int i=0; i<MNP; i++)
-	{
-		pion_ratio_5[i] = pion_n[i] / electron_n[i] / unfocusing;
-	}
-	
 
 	TGraph *pi1 = new TGraph(MNP, pion_m, pion_ratio_1);
 	TGraph *pi2 = new TGraph(MNP, pion_m, pion_ratio_2);
 	TGraph *pi3 = new TGraph(MNP, pion_m, pion_ratio_3);
 	TGraph *pi4 = new TGraph(MNP, pion_m, pion_ratio_4);
 	TGraph *pi5 = new TGraph(MNP, pion_m, pion_ratio_5);
+	TGraph *pi6 = new TGraph(MNP, pion_m, pion_ratio_6);
 
-	
 	pi1->SetMarkerStyle(8);
 	pi2->SetMarkerStyle(21);
 	pi3->SetMarkerStyle(8);
@@ -263,7 +302,6 @@ void normalized_yields_mirrors()
 	if(PRINT != "no")
 	YR->Print(Form("photon_yield_ratios_%s_gas%s_mirror%s_pmt%s%s",
 						pname[PART].c_str(), gasname[GAS].c_str(), mirname[MIRROR].c_str(), pmtname[PMT].c_str(), PRINT.c_str()));
-	
 	
 }
 

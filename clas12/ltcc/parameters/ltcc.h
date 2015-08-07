@@ -86,7 +86,7 @@ double wc_good[NP];
 const int NF  = 20;      // points on the function
 const int MNP = 12;      // momentum points
 const double min_m = 2;  // min momentum
-const double max_m = 8; // max momentum
+const double max_m = 8;  // max momentum
 // absolute yields
 double electron_m[MNP];
 double electron_n[MNP];

@@ -1,6 +1,7 @@
 {
 	string variation = "original";
 	string PRINT     = ".png";
+	int RECALC       = 0;  // 0 will read from file
 	
 #include "parameters/ltcc.h";
 	
@@ -20,7 +21,6 @@
 	int WC = 0;
 
 	
-	
 	gROOT->LoadMacro("utils/utils.C");
 	gROOT->LoadMacro("utils/show_segment.C");
 	gROOT->LoadMacro("utils/show_phe.C");
@@ -31,10 +31,8 @@
 	
 	setStyle();
 	init_parameters();
-	
 	write_parameters();
 	
-	simulateResponse();
 	
 	bar = new TControlBar("vertical", "LTCC Segments  by Maurizio Ungaro");
 	bar->AddButton("","");

@@ -203,25 +203,55 @@ double windowy(double *x, double *par)
 
 simulateResponse()
 {
-	int NEVT = 10000;
-	double mean = 9;
-
-	TH1F *pois = new TH1F("pois", "pois", 20, 0, 20);
-	TH1F *unif = new TH1F("unif", "unif", 100, -1, 2);
+	int NEVT = 100;
 	
+	// the mean number of photons from clas6
+	// was 9.
+	// For pions however, depending on momemntum,
+	// this number will change.
+	// Taking 9 as the number of photons for pions at 7.5 GeV
+	// and calculating the ratio of pi3 for each momentum
+	double mean7 = 9;
+	double means[MNP];
 	
-	for(int i=0; i<NEVT; i++)
+	TH1F *perfec[MNP];
+	TH1F *doNoth[MNP];
+	TH1F *fixBad[MNP];
+	TH1F *fixAll[MNP];
+	for(int i=0; i<MNP; i++)
 	{
-		double r = gRandom->Poisson(mean);
-		pois->Fill(r);
-		
-		
-		r = gRandom->Uniform(0, 1);
-		unif->Fill(r);
+		perfec[i]	= new TH1F(Form("perfec%d", i), Form("perfec%d", i), 20, 0, 20);
+		doNoth[i]	= new TH1F(Form("doNoth%d", i), Form("doNoth%d", i), 20, 0, 20);
+		fixBad[i]	= new TH1F(Form("fixBad%d", i), Form("fixBad%d", i), 20, 0, 20);
+		fixAll[i]	= new TH1F(Form("fixAll%d", i), Form("fixAll%d", i), 20, 0, 20);
+	
+		means[i] = mean7*pi2data[i]/pi2data[11];
+	}
+	
+	
+	for(int i=2; i<MNP; i++)
+	{
+		for(int e=0; e<NEVT; e++)
+		{
+			
+			
+			double r = gRandom->Poisson(means[i]);
+			perfec[i]->Fill(r);
+			
+			
+			int nr = calculateNReflection(gRandom->Uniform(0, 1));
+			int gr = calculateWCgroup(gRandom->Uniform(0, 1));
+			
+			// only 2 reflections
+			if(nr==2)
+			{
+				
+			}
+			
+			
+		}
 	}
 
-	pois->Draw("");
-	
 	
 }
 

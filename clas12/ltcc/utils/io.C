@@ -512,8 +512,6 @@ void write_parameters()
 	OUT << endl;
 	
 	
-	
-	
 
 }
 

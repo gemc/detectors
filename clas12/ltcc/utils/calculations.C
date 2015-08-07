@@ -219,13 +219,14 @@ int calculateNReflection(double r)
 int calculateWCgroup(double r)
 {
 	double NTOT = 216.0;
+    
 	double g1 = 11.0/NTOT;
-	double g2 = (64.0 + g1)/NTOT;
-	double g3 = (64.0 + g1 + g2)/NTOT;
+	double g2 = (64.0 + 11.0)/NTOT;
+	double g3 = (64.0 + 11.0 + 141.0)/NTOT;
 	
-	if(r<g1)                return 1;  // good
+	if(r<g1)                return 1;  // bad
 	else if(r>=g1 && r<g2)  return 2;  // so-so
-	else if(r>=g2 && r<=g3) return 3;  // bad
+	else if(r>=g2 && r<=g3) return 3;  // good
 
 	return 0;
 }
@@ -296,9 +297,9 @@ void simulateResponse()
 			// wc are "perfect"
 			if(nr==2)
 			{
-				doNoth[i]->Fill(r*pion_ratio_6[i]);
-				fixBad[i]->Fill(r*pion_ratio_6[i]);
-				fixAll[i]->Fill(r*pion_ratio_6[i]);
+				doNoth[i]->Fill(r*pion_ratio_4[i]);
+				fixBad[i]->Fill(r*pion_ratio_4[i]);
+				fixAll[i]->Fill(r*pion_ratio_4[i]);
 			}
 			if(nr==3)
 			{
@@ -325,7 +326,7 @@ void simulateResponse()
 				}
 
 			}
-			if(nr==4)
+			if(nr==5)
 			{
 				r = r*0.8;
 				// bad
@@ -356,12 +357,14 @@ void simulateResponse()
 	TCanvas *res = new TCanvas("res", "Photon Yields", 800, 600);
 	
 	TPad *pres = new TPad("pres", "pres", 0.01, 0.01, 0.98, 0.9);
-	pres->Divide(2,5);
+	pres->Divide(2,2);
+    pres->Draw();
 	
-	for(int i=2; i<MNP; i++)
+	for(int i=6; i<10; i++)
 	{
-		pres->cd(i-1);
-		fixAll[i]->Draw();
+		pres->cd(i-5);
+        perfec[i]->Draw();
+        fixAll[i]->Draw("same");
 		doNoth[i]->Draw("same");
 		fixBad[i]->Draw("same");
 	}

@@ -200,10 +200,39 @@ double windowy(double *x, double *par)
 
 
 
-
-simulateResponse()
+int calculateNReflection(double r)
 {
-	int NEVT = 100;
+	double r1 = 0.3;
+	double r2 = 0.7;
+	double r3 = 1.0;
+	
+	
+	if(r<r1)                return 2;
+	else if(r>=r1 && r<r2)  return 3;
+	else if(r>=r2 && r<=r3) return 4;
+	
+	return 0;
+}
+
+
+
+int calculateWCgroup(double r)
+{
+	double NTOT = 216.0;
+	double g1 = 11.0/NTOT;
+	double g2 = (64.0 + g1)/NTOT;
+	double g3 = (64.0 + g1 + g2)/NTOT;
+	
+	if(r<g1)                return 1;  // good
+	else if(r>=g1 && r<g2)  return 2;  // so-so
+	else if(r>=g2 && r<=g3) return 3;  // bad
+
+	return 0;
+}
+
+void simulateResponse()
+{
+	int NEVT = 10000;
 	
 	// the mean number of photons from clas6
 	// was 9.
@@ -214,6 +243,24 @@ simulateResponse()
 	double mean7 = 9;
 	double means[MNP];
 	
+	double pion_ratio_1[MNP]; // no changes: same mirror, same PMT, same wc (so-so)
+	double pion_ratio_2[MNP]; // recoated mirror, same PMT, same wc (so-so)
+	double pion_ratio_3[MNP]; // recoated mirror, improved PMT, same wc (so-so)
+	double pion_ratio_4[MNP]; // recoated mirror, improved PMT, coated wc (good)
+	double pion_ratio_5[MNP]; // recoated mirror, improved PMT, bad wc
+	double pion_ratio_6[MNP]; // recoated mirror, improved PMT, perfect wc (2 reflections only)
+	
+	// getting data from file
+	if(RECALC==0)
+	{
+		ifstream in("pionYield.txt");
+		
+		for(int i=0; i<MNP; i++)
+			in >> pion_ratio_1[i] >> pion_ratio_2[i] >> pion_ratio_3[i] >> pion_ratio_4[i] >> pion_ratio_5[i] >> pion_ratio_6[i] ;
+		
+		in.close();
+	}
+
 	TH1F *perfec[MNP];
 	TH1F *doNoth[MNP];
 	TH1F *fixBad[MNP];
@@ -225,65 +272,102 @@ simulateResponse()
 		fixBad[i]	= new TH1F(Form("fixBad%d", i), Form("fixBad%d", i), 20, 0, 20);
 		fixAll[i]	= new TH1F(Form("fixAll%d", i), Form("fixAll%d", i), 20, 0, 20);
 	
-		means[i] = mean7*pi2data[i]/pi2data[11];
+		
+		doNoth[i]->SetLineColor(kRed);
+		fixBad[i]->SetLineColor(kBlue);
+		fixAll[i]->SetLineColor(kGreen);
+		
+		means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
 	}
-	
+
 	
 	for(int i=2; i<MNP; i++)
 	{
 		for(int e=0; e<NEVT; e++)
 		{
 			
-			
 			double r = gRandom->Poisson(means[i]);
 			perfec[i]->Fill(r);
-			
 			
 			int nr = calculateNReflection(gRandom->Uniform(0, 1));
 			int gr = calculateWCgroup(gRandom->Uniform(0, 1));
 			
 			// only 2 reflections
+			// wc are "perfect"
 			if(nr==2)
 			{
+				doNoth[i]->Fill(r*pion_ratio_6[i]);
+				fixBad[i]->Fill(r*pion_ratio_6[i]);
+				fixAll[i]->Fill(r*pion_ratio_6[i]);
+			}
+			if(nr==3)
+			{
+				// bad
+				if(gr==1)
+				{
+					doNoth[i]->Fill(r*pion_ratio_5[i]);
+					fixBad[i]->Fill(r*pion_ratio_4[i]);
+					fixAll[i]->Fill(r*pion_ratio_4[i]);
+				}
+				// so-so
+				if(gr==2)
+				{
+					doNoth[i]->Fill(r*pion_ratio_3[i]);
+					fixBad[i]->Fill(r*pion_ratio_3[i]);
+					fixAll[i]->Fill(r*pion_ratio_4[i]);
+				}
+				// good
+				if(gr==3)
+				{
+					doNoth[i]->Fill(r*pion_ratio_4[i]);
+					fixBad[i]->Fill(r*pion_ratio_4[i]);
+					fixAll[i]->Fill(r*pion_ratio_4[i]);
+				}
+
+			}
+			if(nr==4)
+			{
+				r = r*0.8;
+				// bad
+				if(gr==1)
+				{
+					doNoth[i]->Fill(r*pion_ratio_5[i]);
+					fixBad[i]->Fill(r*pion_ratio_4[i]);
+					fixAll[i]->Fill(r*pion_ratio_4[i]);
+				}
+				// so-so
+				if(gr==2)
+				{
+					doNoth[i]->Fill(r*pion_ratio_3[i]);
+					fixBad[i]->Fill(r*pion_ratio_3[i]);
+					fixAll[i]->Fill(r*pion_ratio_4[i]);
+				}
+				// good
+				if(gr==3)
+				{
+					doNoth[i]->Fill(r*pion_ratio_4[i]);
+					fixBad[i]->Fill(r*pion_ratio_4[i]);
+					fixAll[i]->Fill(r*pion_ratio_4[i]);
+				}
 				
 			}
-			
-			
 		}
 	}
-
+	TCanvas *res = new TCanvas("res", "Photon Yields", 800, 600);
 	
+	TPad *pres = new TPad("pres", "pres", 0.01, 0.01, 0.98, 0.9);
+	pres->Divide(2,5);
+	
+	for(int i=2; i<MNP; i++)
+	{
+		pres->cd(i-1);
+		fixAll[i]->Draw();
+		doNoth[i]->Draw("same");
+		fixBad[i]->Draw("same");
+	}
 }
 
 
-calculateNReflection(double r)
-{
-	double r1 = 0.3;
-	double r2 = 0.7;
-	double r3 = 1.0;
-
-	
-	if(r<r1)               return 2;
-	else if(r>=r1 && r<r2) return 3;
-	else if(r>=r2 && r<r3) return 4;
-	else                   return 0;
-}
-
-
-
-calculateWCgroup(double r)
-{
-	double NTOT = 216.0;
-	double g1 = 11.0/NTOT;
-	double g2 = (64.0 + g1)/NTOT;
-	double g2 = (64.0 + g1 + g2)/NTOT;
-	
-	
-	if(r<g1)               return 1;  // good
-	else if(r>=g1 && r<g2) return 2;  // so-so
-	else if(r>=g2 && r<g3) return 3;  // bad
-	else                   return 0;
-}
 
 
 

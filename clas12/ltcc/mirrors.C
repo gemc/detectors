@@ -33,6 +33,7 @@
 	init_parameters();
 	write_parameters();
 	
+	simulateResponse();
 	
 	bar = new TControlBar("vertical", "LTCC Segments  by Maurizio Ungaro");
 	bar->AddButton("","");

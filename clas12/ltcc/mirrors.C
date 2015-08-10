@@ -1,7 +1,8 @@
 {
 	string variation = "original";
 	string PRINT     = ".png";
-	int RECALC       = 0;  // 0 will read from file
+	int RECALC       = 0;  // 0 will read pars from file
+    int RECALC2      = 0;  // 0 will read histos from file
 	
 #include "parameters/ltcc.h";
 	

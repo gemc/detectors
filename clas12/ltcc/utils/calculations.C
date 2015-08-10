@@ -237,8 +237,7 @@ void simulateResponse()
 	gStyle->SetPadLeftMargin(0.15);
 	gStyle->SetPadRightMargin(0.05);
 
-	
-	int NEVT = 1000;
+	int NEVT = 100;
 	
 	// the mean number of photons from clas6
 	// was 9.
@@ -256,7 +255,12 @@ void simulateResponse()
 	double pion_ratio_5[MNP]; // recoated mirror, improved PMT, bad wc
 	double pion_ratio_6[MNP]; // recoated mirror, improved PMT, perfect wc (2 reflections only)
 	
-	// getting data from file
+    TH1D *perfec[MNP];
+    TH1D *doNoth[MNP];
+    TH1D *fixBad[MNP];
+    TH1D *fixAll[MNP];
+
+    // getting data from file
 	if(RECALC==0)
 	{
 		ifstream in("pionYield.txt");
@@ -265,21 +269,129 @@ void simulateResponse()
 			in >> pion_ratio_1[i] >> pion_ratio_2[i] >> pion_ratio_3[i] >> pion_ratio_4[i] >> pion_ratio_5[i] >> pion_ratio_6[i] ;
 		
 		in.close();
+    }
+    if(RECALC2==0)
+    {
+
+        TFile f("dist.root");
+        
+        for(int i=0; i<MNP; i++)
+        {
+            perfec[i]	= (TH1D*) f.Get(Form("perfec%d", i));
+            doNoth[i]	= (TH1D*) f.Get(Form("doNoth%d", i));
+            fixBad[i]	= (TH1D*) f.Get(Form("fixBad%d", i));
+            fixAll[i]	= (TH1D*) f.Get(Form("fixAll%d", i));
+            
+            perfec[i]->SetDirectory(0);
+            doNoth[i]->SetDirectory(0);
+            fixBad[i]->SetDirectory(0);
+            fixAll[i]->SetDirectory(0);
+        }
+        f.Close();
 	}
+    else
+    {
+        for(int i=0; i<MNP; i++)
+        {
+            perfec[i]	= new TH1D(Form("perfec%d", i), Form("perfec%d", i), 200, 0, 20);
+            doNoth[i]	= new TH1D(Form("doNoth%d", i), Form("doNoth%d", i), 200, 0, 20);
+            fixBad[i]	= new TH1D(Form("fixBad%d", i), Form("fixBad%d", i), 200, 0, 20);
+            fixAll[i]	= new TH1D(Form("fixAll%d", i), Form("fixAll%d", i), 200, 0, 20);
+        }
+        for(int i=2; i<MNP; i++)
+        {
+            means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
 
-	TH1D *perfec[MNP];
-	TH1F *doNoth[MNP];
-	TH1F *fixBad[MNP];
-	TH1F *fixAll[MNP];
+            for(int e=0; e<NEVT; e++)
+            {
+                MyPoisson.SetParameter(0, means[i]);
+                
+                double r = MyPoisson.GetRandom();
+                perfec[i]->Fill(r);
+                
+                int nr = calculateNReflection(gRandom->Uniform(0, 1));
+                int gr = calculateWCgroup(gRandom->Uniform(0, 1));
+                
+                // only 2 reflections
+                // wc are "perfect"
+                if(nr==2)
+                {
+                    doNoth[i]->Fill(r*pion_ratio_4[i]);
+                    fixBad[i]->Fill(r*pion_ratio_4[i]);
+                    fixAll[i]->Fill(r*pion_ratio_4[i]);
+                }
+                if(nr==3)
+                {
+                    // bad
+                    if(gr==1)
+                    {
+                        doNoth[i]->Fill(r*pion_ratio_5[i]);
+                        fixBad[i]->Fill(r*pion_ratio_4[i]);
+                        fixAll[i]->Fill(r*pion_ratio_4[i]);
+                    }
+                    // so-so
+                    if(gr==2)
+                    {
+                        doNoth[i]->Fill(r*pion_ratio_3[i]);
+                        fixBad[i]->Fill(r*pion_ratio_3[i]);
+                        fixAll[i]->Fill(r*pion_ratio_4[i]);
+                    }
+                    // good
+                    if(gr==3)
+                    {
+                        doNoth[i]->Fill(r*pion_ratio_4[i]);
+                        fixBad[i]->Fill(r*pion_ratio_4[i]);
+                        fixAll[i]->Fill(r*pion_ratio_4[i]);
+                    }
+                    
+                }
+                if(nr==4)
+                {
+                    r = r*0.8;
+                    // bad
+                    if(gr==1)
+                    {
+                        doNoth[i]->Fill(r*pion_ratio_5[i]);
+                        fixBad[i]->Fill(r*pion_ratio_4[i]);
+                        fixAll[i]->Fill(r*pion_ratio_4[i]);
+                    }
+                    // so-so
+                    if(gr==2)
+                    {
+                        doNoth[i]->Fill(r*pion_ratio_3[i]);
+                        fixBad[i]->Fill(r*pion_ratio_3[i]);
+                        fixAll[i]->Fill(r*pion_ratio_4[i]);
+                    }
+                    // good
+                    if(gr==3)
+                    {
+                        doNoth[i]->Fill(r*pion_ratio_4[i]);
+                        fixBad[i]->Fill(r*pion_ratio_4[i]);
+                        fixAll[i]->Fill(r*pion_ratio_4[i]);
+                    }
+                    
+                }
+            }
+        }
+
+        // saving histos
+        TFile f("dist.root", "RECREATE");
+        for(int i=0; i<MNP; i++)
+        {
+            perfec[i]->Write();
+            doNoth[i]->Write();
+            fixBad[i]->Write();
+            fixAll[i]->Write();
+
+        }
+        f.Close();
+        
+    }
 	
+    
+    // histos loaded, now plotting
 	for(int i=0; i<MNP; i++)
-	{
-		perfec[i]	= new TH1D(Form("perfec%d", i), Form("perfec%d", i), 200, 0, 20);
-		doNoth[i]	= new TH1F(Form("doNoth%d", i), Form("doNoth%d", i), 200, 0, 20);
-		fixBad[i]	= new TH1F(Form("fixBad%d", i), Form("fixBad%d", i), 200, 0, 20);
-		fixAll[i]	= new TH1F(Form("fixAll%d", i), Form("fixAll%d", i), 200, 0, 20);
-
-		
+	{		
 		doNoth[i]->SetLineColor(kRed);
 		fixBad[i]->SetLineColor(kBlue);
 		fixAll[i]->SetLineColor(kGreen);
@@ -288,84 +400,9 @@ void simulateResponse()
 		perfec[i]->GetYaxis()->SetLabelSize(0.1);
 		perfec[i]->GetXaxis()->SetLabelOffset(-0.02);
 		perfec[i]->GetYaxis()->SetLabelOffset(0.02);
-
-		means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
 	}
 
 	
-	for(int i=2; i<MNP; i++)
-	{
-		for(int e=0; e<NEVT; e++)
-		{
-			MyPoisson.SetParameter(0, means[i]);
-
-			double r = MyPoisson.GetRandom();
-			perfec[i]->Fill(r);
-
-			int nr = calculateNReflection(gRandom->Uniform(0, 1));
-			int gr = calculateWCgroup(gRandom->Uniform(0, 1));
-			
-			// only 2 reflections
-			// wc are "perfect"
-			if(nr==2)
-			{
-				doNoth[i]->Fill(r*pion_ratio_4[i]);
-				fixBad[i]->Fill(r*pion_ratio_4[i]);
-				fixAll[i]->Fill(r*pion_ratio_4[i]);
-			}
-			if(nr==3)
-			{
-				// bad
-				if(gr==1)
-				{
-					doNoth[i]->Fill(r*pion_ratio_5[i]);
-					fixBad[i]->Fill(r*pion_ratio_4[i]);
-					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				}
-				// so-so
-				if(gr==2)
-				{
-					doNoth[i]->Fill(r*pion_ratio_3[i]);
-					fixBad[i]->Fill(r*pion_ratio_3[i]);
-					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				}
-				// good
-				if(gr==3)
-				{
-					doNoth[i]->Fill(r*pion_ratio_4[i]);
-					fixBad[i]->Fill(r*pion_ratio_4[i]);
-					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				}
-
-			}
-			if(nr==4)
-			{
-				r = r*0.8;
-				// bad
-				if(gr==1)
-				{
-					doNoth[i]->Fill(r*pion_ratio_5[i]);
-					fixBad[i]->Fill(r*pion_ratio_4[i]);
-					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				}
-				// so-so
-				if(gr==2)
-				{
-					doNoth[i]->Fill(r*pion_ratio_3[i]);
-					fixBad[i]->Fill(r*pion_ratio_3[i]);
-					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				}
-				// good
-				if(gr==3)
-				{
-					doNoth[i]->Fill(r*pion_ratio_4[i]);
-					fixBad[i]->Fill(r*pion_ratio_4[i]);
-					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				}
-				
-			}
-		}
-	}
 	TCanvas *res = new TCanvas("res", "Photon Yields", 1300, 1000);
 	
 	TPad *pres = new TPad("pres", "pres", 0.01, 0.01, 0.98, 0.9);

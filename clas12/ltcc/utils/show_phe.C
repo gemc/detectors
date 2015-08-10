@@ -277,7 +277,7 @@ void normalized_yields_mirrors()
 	pi1->SetMaximum(1.8);
 	pi1->Draw("AP");
 	pi2->Draw("Psame");
-   pi3->Draw("Psame");
+    pi3->Draw("Psame");
 	pi4->Draw("Psame");
 	pi5->Draw("Psame");
 	

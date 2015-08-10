@@ -78,7 +78,10 @@ void print_all_yields()
 	}
 }
 
-
+double PoissonReal(const Double_t *k, const Double_t *lambda)
+{
+	return TMath::Exp(k[0]*TMath::Log(lambda[0])-lambda[0]) / TMath::Gamma(k[0]+1.);
+}
 
 
 

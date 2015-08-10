@@ -233,7 +233,12 @@ int calculateWCgroup(double r)
 
 void simulateResponse()
 {
-	int NEVT = 10000;
+	TF1 MyPoisson("MyPoisson", PoissonReal, 0., 20, 1);
+	gStyle->SetPadLeftMargin(0.15);
+	gStyle->SetPadRightMargin(0.05);
+
+	
+	int NEVT = 1000;
 	
 	// the mean number of photons from clas6
 	// was 9.
@@ -262,32 +267,28 @@ void simulateResponse()
 		in.close();
 	}
 
-	TH1F *perfec[MNP];
+	TH1D *perfec[MNP];
 	TH1F *doNoth[MNP];
 	TH1F *fixBad[MNP];
 	TH1F *fixAll[MNP];
 	
-	TH1D *histos[MNP][4];
-
-	
 	for(int i=0; i<MNP; i++)
 	{
-		perfec[i]	= new TH1F(Form("perfec%d", i), Form("perfec%d", i), 20, 0, 20);
-		doNoth[i]	= new TH1F(Form("doNoth%d", i), Form("doNoth%d", i), 20, 0, 20);
-		fixBad[i]	= new TH1F(Form("fixBad%d", i), Form("fixBad%d", i), 20, 0, 20);
-		fixAll[i]	= new TH1F(Form("fixAll%d", i), Form("fixAll%d", i), 20, 0, 20);
-	
+		perfec[i]	= new TH1D(Form("perfec%d", i), Form("perfec%d", i), 200, 0, 20);
+		doNoth[i]	= new TH1F(Form("doNoth%d", i), Form("doNoth%d", i), 200, 0, 20);
+		fixBad[i]	= new TH1F(Form("fixBad%d", i), Form("fixBad%d", i), 200, 0, 20);
+		fixAll[i]	= new TH1F(Form("fixAll%d", i), Form("fixAll%d", i), 200, 0, 20);
+
 		
 		doNoth[i]->SetLineColor(kRed);
 		fixBad[i]->SetLineColor(kBlue);
 		fixAll[i]->SetLineColor(kGreen);
 
-		
-		for(int h=0; h<4; h++)
-			histos[i][h]	= new TH1D(Form("fixAll%d_%d", i, h), Form("fixAll%d_%d", i, h), 20, 0, 20);
+		perfec[i]->GetXaxis()->SetLabelSize(0.1);
+		perfec[i]->GetYaxis()->SetLabelSize(0.1);
+		perfec[i]->GetXaxis()->SetLabelOffset(-0.02);
+		perfec[i]->GetYaxis()->SetLabelOffset(0.02);
 
-		
-		
 		means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
 	}
 
@@ -296,10 +297,10 @@ void simulateResponse()
 	{
 		for(int e=0; e<NEVT; e++)
 		{
-			
-			double r = gRandom->Poisson(means[i]);
+			MyPoisson.SetParameter(0, means[i]);
+
+			double r = MyPoisson.GetRandom();
 			perfec[i]->Fill(r);
-			histos[i][0]->Fill(r);
 
 			int nr = calculateNReflection(gRandom->Uniform(0, 1));
 			int gr = calculateWCgroup(gRandom->Uniform(0, 1));
@@ -311,11 +312,6 @@ void simulateResponse()
 				doNoth[i]->Fill(r*pion_ratio_4[i]);
 				fixBad[i]->Fill(r*pion_ratio_4[i]);
 				fixAll[i]->Fill(r*pion_ratio_4[i]);
-				
-				histos[i][1]->Fill(r*pion_ratio_6[i]);
-				histos[i][2]->Fill(r*pion_ratio_6[i]);
-				histos[i][3]->Fill(r*pion_ratio_6[i]);
-				
 			}
 			if(nr==3)
 			{
@@ -325,11 +321,6 @@ void simulateResponse()
 					doNoth[i]->Fill(r*pion_ratio_5[i]);
 					fixBad[i]->Fill(r*pion_ratio_4[i]);
 					fixAll[i]->Fill(r*pion_ratio_4[i]);
-					
-					histos[i][1]->Fill(r*pion_ratio_5[i]);
-					histos[i][2]->Fill(r*pion_ratio_4[i]);
-					histos[i][3]->Fill(r*pion_ratio_4[i]);
-
 				}
 				// so-so
 				if(gr==2)
@@ -337,10 +328,6 @@ void simulateResponse()
 					doNoth[i]->Fill(r*pion_ratio_3[i]);
 					fixBad[i]->Fill(r*pion_ratio_3[i]);
 					fixAll[i]->Fill(r*pion_ratio_4[i]);
-				
-					histos[i][1]->Fill(r*pion_ratio_3[i]);
-					histos[i][2]->Fill(r*pion_ratio_3[i]);
-					histos[i][3]->Fill(r*pion_ratio_4[i]);
 				}
 				// good
 				if(gr==3)
@@ -348,11 +335,6 @@ void simulateResponse()
 					doNoth[i]->Fill(r*pion_ratio_4[i]);
 					fixBad[i]->Fill(r*pion_ratio_4[i]);
 					fixAll[i]->Fill(r*pion_ratio_4[i]);
-					
-					histos[i][1]->Fill(r*pion_ratio_4[i]);
-					histos[i][2]->Fill(r*pion_ratio_4[i]);
-					histos[i][3]->Fill(r*pion_ratio_4[i]);
-
 				}
 
 			}
@@ -384,7 +366,7 @@ void simulateResponse()
 			}
 		}
 	}
-	TCanvas *res = new TCanvas("res", "Photon Yields", 1000, 700);
+	TCanvas *res = new TCanvas("res", "Photon Yields", 1300, 1000);
 	
 	TPad *pres = new TPad("pres", "pres", 0.01, 0.01, 0.98, 0.9);
 	pres->Divide(5, 2);
@@ -393,21 +375,6 @@ void simulateResponse()
 	for(int i=2; i<12; i++)
 	{
 		pres->cd(i-1);
-		
-		gPad->SetRightMargin(0);
-		gPad->SetLeftMargin(0);
-		gPad->SetTopMargin(0.0);
-
-		if(i-2==4 || i-2==9)gPad->SetRightMargin(.01);
-
-		if(i-2<5)
-		{
-			gPad->SetBottomMargin(0.2);
-		}
-		if(i-2>=5)
-		{
-			gPad->SetTopMargin(0.0);
-		}
 		
 		perfec[i]->Draw();
 		fixAll[i]->Draw("same");

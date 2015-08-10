@@ -237,7 +237,7 @@ void simulateResponse()
 	gStyle->SetPadLeftMargin(0.15);
 	gStyle->SetPadRightMargin(0.05);
 
-	int NEVT = 100;
+	int NEVT = 10000;
 	
 	// the mean number of photons from clas6
 	// was 9.
@@ -293,14 +293,15 @@ void simulateResponse()
     {
         for(int i=0; i<MNP; i++)
         {
-            perfec[i]	= new TH1D(Form("perfec%d", i), Form("perfec%d", i), 200, 0, 20);
-            doNoth[i]	= new TH1D(Form("doNoth%d", i), Form("doNoth%d", i), 200, 0, 20);
-            fixBad[i]	= new TH1D(Form("fixBad%d", i), Form("fixBad%d", i), 200, 0, 20);
-            fixAll[i]	= new TH1D(Form("fixAll%d", i), Form("fixAll%d", i), 200, 0, 20);
+            perfec[i]	= new TH1D(Form("perfec%d", i), Form("perfec%d", i), 250, 0, 25);
+            doNoth[i]	= new TH1D(Form("doNoth%d", i), Form("doNoth%d", i), 250, 0, 25);
+            fixBad[i]	= new TH1D(Form("fixBad%d", i), Form("fixBad%d", i), 250, 0, 25);
+            fixAll[i]	= new TH1D(Form("fixAll%d", i), Form("fixAll%d", i), 250, 0, 25);
         }
         for(int i=2; i<MNP; i++)
         {
-            means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
+			  //means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
+				means[i] = mean7*pion_ratio_3[i]/pion_ratio_3[11];
 
             for(int e=0; e<NEVT; e++)
             {
@@ -387,7 +388,7 @@ void simulateResponse()
         f.Close();
         
     }
-	
+
     
     // histos loaded, now plotting
 	for(int i=0; i<MNP; i++)
@@ -403,12 +404,18 @@ void simulateResponse()
 	}
 
 	
-	TCanvas *res = new TCanvas("res", "Photon Yields", 1300, 1000);
+	TCanvas *res = new TCanvas("res", "Photon Yields", 1500, 1200);
 	
 	TPad *pres = new TPad("pres", "pres", 0.01, 0.01, 0.98, 0.9);
 	pres->Divide(5, 2);
 	pres->Draw();
 	
+	TLatex lab;
+	lab.SetTextFont(102);
+	lab.SetTextColor(kBlue+2);
+	lab.SetTextSize(0.06);
+	lab.SetNDC();
+
 	for(int i=2; i<12; i++)
 	{
 		pres->cd(i-1);
@@ -417,6 +424,22 @@ void simulateResponse()
 		fixAll[i]->Draw("same");
 		doNoth[i]->Draw("same");
 		fixBad[i]->Draw("same");
+		
+		double perfectCounts = perfec[i]->Integral(25, 250);
+		double donothCounts  = doNoth[i]->Integral(25, 250);
+		double fixBadCounts  = fixBad[i]->Integral(25, 250);
+		double fixAllCounts  = fixAll[i]->Integral(25, 250);
+		
+		double dmom  = (max_m - min_m)/MNP;
+		double mom  = min_m + i*dmom;
+
+		cout << " momentum: " << mom << " perfect: " << perfectCounts <<  "   nothing: " << donothCounts << "    fix bad: " << fixBadCounts << "   fix all " << fixAllCounts << endl;
+		
+		lab.DrawLatex(.5,.82, Form(" mom: %2.1f GeV", mom ));
+		lab.DrawLatex(.5,.75, Form(" do nothing: %3.1f%%", 100*donothCounts/perfectCounts ));
+		lab.DrawLatex(.5,.68, Form(" fix bad: %3.1f%%",    100*fixBadCounts/perfectCounts ));
+		lab.DrawLatex(.5,.60, Form(" fix all: %3.1f%%",    100*fixAllCounts/perfectCounts ));
+
 	}
 
 

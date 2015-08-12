@@ -222,7 +222,7 @@ int calculateWCgroup(double r)
 	
 	double g1 = 11.0/NTOT;
 	double g2 = (52.0 + 11.0)/NTOT;
-	double g3 = (52.0 + 11.0 + 29.0)/NTOT;
+	double g3 = (52.0 + 11.0 + 129.0)/NTOT;
 	
 	if(r<g1)                return 1;  // bad
 	else if(r>=g1 && r<g2)  return 2;  // so-so
@@ -237,7 +237,7 @@ void simulateResponse()
 	gStyle->SetPadLeftMargin(0.15);
 	gStyle->SetPadRightMargin(0.05);
 	
-	int NEVT = 100;
+	int NEVT = 10000;
 	
 	// the mean number of photons from clas6
 	// was 9.
@@ -260,6 +260,15 @@ void simulateResponse()
 	TH1D *fixBad[MNP];
 	TH1D *fixAll[MNP];
 	
+	
+	// assuming show_ration has been run (need to re-run if RECALC is 1)
+	ifstream in("pionYield.txt");
+	
+	for(int i=0; i<MNP; i++)
+		in >> pion_ratio_1[i] >> pion_ratio_2[i] >> pion_ratio_3[i] >> pion_ratio_4[i] >> pion_ratio_5[i] >> pion_ratio_6[i] ;
+	
+	in.close();
+
 	if(RECALC2==0)
 	{
 		
@@ -288,25 +297,14 @@ void simulateResponse()
 			fixBad[i]	= new TH1D(Form("fixBad%d", i), Form("fixBad%d", i), 250, 0, 25);
 			fixAll[i]	= new TH1D(Form("fixAll%d", i), Form("fixAll%d", i), 250, 0, 25);
 		}
-	}
-	// getting data from file
-	if(RECALC==0)
-	{
-		ifstream in("pionYield.txt");
 		
-		for(int i=0; i<MNP; i++)
-			in >> pion_ratio_1[i] >> pion_ratio_2[i] >> pion_ratio_3[i] >> pion_ratio_4[i] >> pion_ratio_5[i] >> pion_ratio_6[i] ;
 		
-		in.close();
-	}
-	else
-	{
 		for(int i=2; i<MNP; i++)
 		{
 			//means[i] = mean7*pion_ratio_2[i]/pion_ratio_2[11];
 			means[i] = mean7*pion_ratio_3[i]/pion_ratio_3[11];
 			
-			for(int e=0; e<NEVT; e++)
+			for(int e=1; e<NEVT; e++)
 			{
 				if(e%1000 == 0)
 					cout << " Event number " << e << " for momentum: " << i << endl;

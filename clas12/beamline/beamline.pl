@@ -50,14 +50,16 @@ our $SteelFrameLength = 94.*$inches/2.0;                 # 1/2 length
 require "./noft_moller_shield.pl";
 require "./downstream.pl";
 require "./ft_moller_shield.pl";
+require "./tagger.pl";
 
 $configuration{"variation"} = "noft" ;
-make_moller_shield();
-make_downstream_shielding();
+#make_moller_shield();
+#make_downstream_shielding();
+make_tagger();
 
 $configuration{"variation"} = "ft" ;
 #make_moller_shield_ft();
-make_downstream_shielding();
+#make_downstream_shielding();
 
 
 

@@ -6,5 +6,5 @@
 	<detector name="beamline" factory="TEXT" variation="noft"/>
 	
 	<option name="BEAM_P" value="e-, 2.0*GeV, 3*deg, 10*deg"/>
-	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="EXEC_MACRO" value="vis.macro"/>
 </gcard>

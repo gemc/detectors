@@ -496,6 +496,14 @@ void simulateResponse()
 	lstudy->Draw();
 	
 	
+	
+	
+	// calculate impact on physics
+	double pdist[8] = {2886, 1620, 908, 449, 229, 107, 57, 17};
+	
+	
+	
+	
 }
 
 

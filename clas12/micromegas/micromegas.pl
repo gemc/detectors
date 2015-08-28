@@ -43,8 +43,8 @@ require "./hit.pl";
 require "./bank.pl";
 require "./FMT.pl";
 define_fmt();
-#require "./BMT.pl";
-#define_bmt();
+require "./BMT.pl";
+define_bmt();
 #require "./FTM.pl";
 #define_ftm();
 

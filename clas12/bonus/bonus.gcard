@@ -1,5 +1,5 @@
 <gcard>
-]	<detector name="bonus" factory="TEXT" variation="original"/>
+	<detector name="bonus" factory="TEXT" variation="original"/>
 	<option name="geometry" value="1400x1200"/>
 
 	<option name="INTEGRATEDRAW" value="bonus"/>

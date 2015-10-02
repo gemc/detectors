@@ -290,8 +290,8 @@ sub make_sensitive_he
 	$detector{"material"}    = "G4_He";
 	$detector{"style"}       = 1;
 
-	$detector{"sensitivity"}  = "flux";
-	$detector{"hit_type"}     = "flux";
+	$detector{"sensitivity"}  = "bonus";
+	$detector{"hit_type"}     = "bonus";
 	$detector{"identifiers"}  = "id manual $which";
 	print_det(\%configuration, \%detector);
 }

@@ -36,13 +36,13 @@ sub define_hit
 {
 	# uploading the hit definition
 	my %hit = init_hit();
-	$hit{"name"}            = "ctof";
-	$hit{"description"}     = "ctof hit definitions";
+	$hit{"name"}            = "bonus";
+	$hit{"description"}     = "bonus hit definitions";
 	$hit{"identifiers"}     = "paddle";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "5*ns";
-	$hit{"prodThreshold"}   = "1*mm";
-	$hit{"maxStep"}         = "1*cm";
+	$hit{"timeWindow"}      = "100*ns";
+	$hit{"prodThreshold"}   = "10*mm";
+	$hit{"maxStep"}         = "1*mm";
 	$hit{"delay"}           = "50*ns";
 	$hit{"riseTime"}        = "1*ns";
 	$hit{"fallTime"}        = "2*ns";

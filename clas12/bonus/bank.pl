@@ -43,19 +43,18 @@ our %configuration = load_configuration($ARGV[0]);
 # i for integers
 # d for doubles
 
-my $bankId   = 400;
-my $bankname = "ctof";
+my $bankId   = 1700;
+my $bankname = "bonus";
 
 sub define_bank
 {
 	
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "paddle",       1, "Di", "paddle number");
-	insert_bank_variable(\%configuration, $bankname, "ADCL",         2, "Di", "ADC Left");
-	insert_bank_variable(\%configuration, $bankname, "ADCR",         3, "Di", "ADC Right");
-	insert_bank_variable(\%configuration, $bankname, "TDCL",         4, "Di", "TDC Left");
-	insert_bank_variable(\%configuration, $bankname, "TDCR",         5, "Di", "TDC Right");
+	insert_bank_variable(\%configuration, $bankname, "ADCL",         1, "Di", "ADC Left");
+	insert_bank_variable(\%configuration, $bankname, "ADCR",         2, "Di", "ADC Right");
+	insert_bank_variable(\%configuration, $bankname, "TDCL",         3, "Di", "TDC Left");
+	insert_bank_variable(\%configuration, $bankname, "TDCR",         4, "Di", "TDC Right");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
 

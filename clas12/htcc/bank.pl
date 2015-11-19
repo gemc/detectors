@@ -55,6 +55,7 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "ring",         2, "Di", "theta index");
 	insert_bank_variable(\%configuration, $bankname, "half",         3, "Di", "half-sector");
 	insert_bank_variable(\%configuration, $bankname, "nphe",         4, "Di", "number of photoelectrons");
+	insert_bank_variable(\%configuration, $bankname, "time",         5, "Dd", "Time of hit");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
 

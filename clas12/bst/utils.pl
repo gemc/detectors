@@ -22,7 +22,7 @@ my @radius   = ( $parameters{"radius_r1"},
                  $parameters{"radius_r3"},
                  $parameters{"radius_r4"} );
 
-my @starting_theta     = (0        , 0         , 0         , 0      );   # Starting angle of the first segment
+my @starting_theta     = (180        , 180         , 180         , 180      );   # Starting angle of the first segment
 my @dtheta             = (0        , 0         , 0         , 0      );   # Delta theta
 
 

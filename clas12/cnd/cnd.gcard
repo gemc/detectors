@@ -12,4 +12,10 @@
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
 
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
+
+
+
+	<option name="COSMICRAYS" value="default, 1, 5"/>
+	<option name="COSMICAREA" value="0*cm, 0*cm, 0*cm, 40*cm"/>
+
 </gcard>

@@ -1,5 +1,7 @@
 <gcard>
-]	<detector name="htcc" factory="TEXT" variation="original"/>
+	<detector name="htcc" factory="TEXT" variation="original"/>
+	<detector name="../beamline/beamline" factory="TEXT" variation="noft"/>
+
 	<option name="geometry" value="1400x1200"/>
 
 	<option name="INTEGRATEDRAW" value="htcc"/>

@@ -3,6 +3,22 @@
 	<detector name="micromegas" factory="TEXT" variation="original"/>
 	<option name="geometry" value="1400x1200"/>
 	
-	<option name="BEAM_P" value="proton, 1.0*GeV, 20*deg, 10*deg"/>
+	<option name="BEAM_P" value="proton, 1.0*GeV, 90*deg, 10*deg"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
+
+	<detector name="SL2_1">
+		<existence exist="no"/>
+	</detector>
+
+       <detector name="SL2_2">
+                <existence exist="no"/>
+        </detector>
+
+       <detector name="SL2_3">
+                <existence exist="no"/>
+        </detector>
+
+       <detector name="SL2_4">
+                <existence exist="no"/>
+        </detector>
 </gcard>

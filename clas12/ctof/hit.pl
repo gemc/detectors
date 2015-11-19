@@ -44,8 +44,8 @@ sub define_hit
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";
-	$hit{"riseTime"}        = "1*ns";
-	$hit{"fallTime"}        = "2*ns";
+	$hit{"riseTime"}        = "5*ns";
+	$hit{"fallTime"}        = "8*ns";
 	$hit{"mvToMeV"}         = 100;
 	$hit{"pedestal"}        = -20;
 	print_hit(\%configuration, \%hit);

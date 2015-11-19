@@ -1,10 +1,10 @@
 <gcard>
 
-	<detector name="ddvcs" factory="TEXT" variation="original"/>
+	<detector name="ddvcs" factory="TEXT" variation="60cm"/>
    <detector name="../beamline/beamline" factory="TEXT" variation="noft"/>
 	<detector name="../ftof/ftof"         factory="TEXT" variation="original"/>
 	<detector name="../dc/dc"             factory="TEXT" variation="original"/>
-	<detector name="../ec/ec"             factory="TEXT" variation="original"/>
+	<detector name="../fc/forwardCarriage"             factory="TEXT" variation="original"/>
 
 	<option name="geometry" value="800x600"/>
 	

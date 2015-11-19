@@ -41,8 +41,8 @@ our %parameters    = get_parameters(%configuration);
 # Loading micromegas specific subroutines
 require "./hit.pl";
 require "./bank.pl";
-require "./FMT.pl";
-define_fmt();
+#require "./FMT.pl";
+#define_fmt();
 require "./BMT.pl";
 define_bmt();
 #require "./FTM.pl";

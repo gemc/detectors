@@ -40,7 +40,7 @@ sub define_BMT_hit
 	$hit{"identifiers"}     = "layer sector strip";
 	$hit{"signalThreshold"} = "2.0*KeV";
 	$hit{"timeWindow"}      = "132*ns";
-	$hit{"prodThreshold"}   = "300*um";
+	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "270*um";
 	$hit{"delay"}           = "50*ns";
 	$hit{"riseTime"}        = "1*ns";

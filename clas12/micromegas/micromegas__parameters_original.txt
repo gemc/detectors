@@ -1,5 +1,5 @@
 mm_radius_layer1   		|  145.00  | mm  |  center radii of barrel MM 					| Sebastien Procureur   | sebastien.procureur@cea.fr | link to pdf drawing | variable name on the drawing | David Kashy | 12/12/12
-BMT_mothervol_InnerRadius 	|  140.000 | mm	 | Mother volume inner radius					| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_mothervol_InnerRadius 	|  200.000 | mm	 | Mother volume inner radius					| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
 BMT_mothervol_OutRadius 	|  235.000 | mm  | Mother volume outer radius 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_mothervol_HalfLength 	|  295.000 | mm  | Mother volume half length (in z) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_nlayer		 	|    6	   | na  | Number of layers     					| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
@@ -22,12 +22,12 @@ BMT_zlength_layer3		|  423.990 | mm  | Length of the 3rd layer (in z) 				| Fred
 BMT_zlength_layer4		|  423.990 | mm  | Length of the 4th layer (in z) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_zlength_layer5		|  444.960 | mm  | Length of the 5th layer (in z) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_zlength_layer6		|  444.960 | mm  | Length of the 6th layer (in z) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
-BMT_theta_layer1		| -180.000 | deg | Starting angle of the 1st tile of 1st layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
-BMT_theta_layer2		| -180.000 | deg | Starting angle of the 1st tile of 2nd layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
-BMT_theta_layer3		| -180.000 | deg | Starting angle of the 1st tile of 3rd layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
-BMT_theta_layer4		| -180.000 | deg | Starting angle of the 1st tile of 4th layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
-BMT_theta_layer5		| -180.000 | deg | Starting angle of the 1st tile of 5th layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
-BMT_theta_layer6		| -180.000 | deg | Starting angle of the 1st tile of 6th layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_theta_layer1		| 90.000 | deg | Starting angle of the 1st tile of 1st layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_theta_layer2		| 90.000 | deg | Starting angle of the 1st tile of 2nd layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_theta_layer3		| 90.000 | deg | Starting angle of the 1st tile of 3rd layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_theta_layer4		| 90.000 | deg | Starting angle of the 1st tile of 4th layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_theta_layer5		| 90.000 | deg | Starting angle of the 1st tile of 5th layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
+BMT_theta_layer6		| 90.000 | deg | Starting angle of the 1st tile of 6th layer 			| Sebastien Procureur	| sebastien.procureur@cea.fr     | - | - | - | 07/06/12
 BMT_Coverlay_width			|    0.050 | mm  | Coverlay width (radially) 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_CuGround_width			|    0.012 | mm  | Copper (ground) width (radially) 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_PCBGround_width			|    0.100 | mm  | PCB width (radially) 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015

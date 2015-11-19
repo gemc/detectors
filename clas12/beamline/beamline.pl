@@ -53,13 +53,16 @@ require "./ft_moller_shield.pl";
 require "./tagger.pl";
 
 $configuration{"variation"} = "noft" ;
-#make_moller_shield();
-#make_downstream_shielding();
-make_tagger();
+make_moller_shield();
+make_downstream_shielding();
+
+
+
 
 $configuration{"variation"} = "ft" ;
 #make_moller_shield_ft();
 #make_downstream_shielding();
+#make_tagger();
 
 
 

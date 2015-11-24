@@ -17,7 +17,15 @@ need correct values and geometry here, plus position in world file
 
 *********************************************************/
 -->
+
+
+<!--
+ /***********************************************************
+Mauri Notice: this was added. pipevol_z was never used anywhere
  
+ *********************************************************/
+ -->
+
  
  <define>
 

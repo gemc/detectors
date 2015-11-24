@@ -36,7 +36,12 @@ our %configuration = load_configuration($ARGV[0]);
 our %parameters    = get_parameters(%configuration);
 
 require "./beamline.pl";
+require "./radiator.pl";
+require "./collimator.pl";
+require "./bubbleChamber.pl";
 
-makeBeamline();
-
+#makeBeamline();
+makeRadiator();
+makeCollimator();
+makeBubbleChamber();
 

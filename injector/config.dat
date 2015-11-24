@@ -1,7 +1,7 @@
-# Configuration file for ctof
+# Configuration file for bubble
 
 # Detector name and variation
-detector_name: ctof
+detector_name: bubble
 variation:     original
 
 # Factory can be MYQL or TEXT

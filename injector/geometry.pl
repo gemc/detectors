@@ -1,7 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
+#use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use parameters;
 use geometry;
@@ -35,13 +36,15 @@ our %configuration = load_configuration($ARGV[0]);
 # To get the parameters proper authentication is needed.
 our %parameters    = get_parameters(%configuration);
 
-require "./beamline.pl";
-require "./radiator.pl";
-require "./collimator.pl";
-require "./bubbleChamber.pl";
+require "./Radiator.pl";
+require "./Collimator.pl";
+require "./GammaBeamWindow.pl";
+require "./BubbleChamberCell.pl";
+require "./PhotonDump.pl";
 
-#makeBeamline();
 makeRadiator();
 makeCollimator();
-makeBubbleChamber();
+makeGammaBeamWindow();
+makeBubbleChamberCell();
+makePhotonDump();
 

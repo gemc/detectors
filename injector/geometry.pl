@@ -15,7 +15,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the bubble geometry using the variation specified in the configuration file\n";
+ 	print "   Will create the bubble chamber geometry using the variation specified in the configuration file\n";
 	exit;
 }
 

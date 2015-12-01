@@ -38,12 +38,14 @@ our %parameters    = get_parameters(%configuration);
 
 require "./Radiator.pl";
 require "./Collimator.pl";
+require "./GammaPort.pl";
 require "./GammaBeamWindow.pl";
 require "./BubbleChamberCell.pl";
 require "./PhotonDump.pl";
 
 makeRadiator();
 makeCollimator();
+makeGammaPort();
 makeGammaBeamWindow();
 makeBubbleChamberCell();
 makePhotonDump();

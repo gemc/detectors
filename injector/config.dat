@@ -1,4 +1,4 @@
-# Configuration file for bubble
+# Configuration file for Bubble Chamber Experiment
 
 # Detector name and variation
 detector_name: bubble
@@ -15,7 +15,7 @@ rmax:       10000
 dbhost: clasdb.jlab.org
 
 # Comments/Description
-comment:       This is the first implementation of the ctof
+comment:       Bubble Chamber Experiment: September 2015 Test Setup
 
 # Verbosity controls the perl script output
 verbosity: 0

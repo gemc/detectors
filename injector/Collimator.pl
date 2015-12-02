@@ -8,13 +8,10 @@ our %parameters;
 
 my $inches = 2.54;
 
-
-# still need to define pipe position in respect to center
-
 my $collimatorRadiatorGap = 0.3;
-my $collimatorLength      = 3*$inches;  # this is semilength
-my $collimatorIR          = 0.5;        # this is Inner Radius
-my $collimatorOR          = 3*$inches;  # this is Outer Radius
+my $collimatorLength      = 6.0/2.0*$inches;   # this is semilength
+my $collimatorIR          = 0.315/2.0*$inches; # this is Inner Radius
+my $collimatorOR          = 4.0/2.0*$inches;   # this is Outer Radius
 
 
 sub makeCollimator()
@@ -26,7 +23,7 @@ sub makeCollimator()
 	$detector{"name"}        = "collimator";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Bubble Collimator";
-	$detector{"color"}       = "ffff44";
+	$detector{"color"}       = "ffcc44";
 	$detector{"pos"}         = "0*cm 0*cm $zpos*cm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$collimatorIR*cm $collimatorOR*cm $collimatorLength*cm 0*deg 360*deg";

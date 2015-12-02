@@ -10,7 +10,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   materials.pl <configuration filename>\n";
- 	print "   Will create the bubble materials\n";
+ 	print "   Will create the bubble chamber materials\n";
  	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
 	exit;
 }
@@ -31,13 +31,13 @@ sub print_materials
 {
 	# uploading the mat definition
 	
-	# Scintillator
+	# Nitrous Oxide
 	my %mat = init_mat();
-	$mat{"name"}          = "scintillator";
-	$mat{"description"}   = "ctof scintillator material";
-	$mat{"density"}       = "1.032";
+	$mat{"name"}          = "N2O";
+	$mat{"description"}   = "Chamber active fluid material";
+	$mat{"density"}       = "0.846";
 	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "C 9 H 10";	
+	$mat{"components"}    = "N 2 O 1";	
 	print_mat(\%configuration, \%mat);
 	
 }

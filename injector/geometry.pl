@@ -1,7 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
+#use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use parameters;
 use geometry;
@@ -14,7 +15,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the bubble geometry using the variation specified in the configuration file\n";
+ 	print "   Will create the bubble chamber geometry using the variation specified in the configuration file\n";
 	exit;
 }
 
@@ -35,13 +36,19 @@ our %configuration = load_configuration($ARGV[0]);
 # To get the parameters proper authentication is needed.
 our %parameters    = get_parameters(%configuration);
 
-require "./beamline.pl";
-require "./radiator.pl";
-require "./collimator.pl";
-require "./bubbleChamber.pl";
+require "./BeamPipe.pl";
+require "./Radiator.pl";
+require "./Collimator.pl";
+require "./GammaPort.pl";
+require "./GammaBeamWindow.pl";
+require "./BubbleChamberCell.pl";
+require "./PhotonDump.pl";
 
-#makeBeamline();
+makeBeamPipe();
 makeRadiator();
 makeCollimator();
-makeBubbleChamber();
+makeGammaPort();
+makeGammaBeamWindow();
+makeBubbleChamberCell();
+makePhotonDump();
 

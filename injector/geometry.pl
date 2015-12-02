@@ -36,6 +36,7 @@ our %configuration = load_configuration($ARGV[0]);
 # To get the parameters proper authentication is needed.
 our %parameters    = get_parameters(%configuration);
 
+require "./BeamPipe.pl";
 require "./Radiator.pl";
 require "./Collimator.pl";
 require "./GammaPort.pl";
@@ -43,6 +44,7 @@ require "./GammaBeamWindow.pl";
 require "./BubbleChamberCell.pl";
 require "./PhotonDump.pl";
 
+makeBeamPipe();
 makeRadiator();
 makeCollimator();
 makeGammaPort();

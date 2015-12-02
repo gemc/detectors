@@ -16,7 +16,7 @@ sub makeRadiator()
     
     my @radiatorIR = ( 0                   , $radiatorIRInside                  , $radiatorIRInside);
     my @radiatorOR = ( $radiatorORInside   , $radiatorORInside                  , $radiatorORInside);
-    my @radiatorZ  = ( 0                   , $parameters{"copperPlugThickness"} , 3*$inches );
+    my @radiatorZ  = ( 0                   , $parameters{"copperPlugThickness"} , 3.0*$inches      ); # Radiator front is zero Z
     
     
     my $radNplanes = 3;

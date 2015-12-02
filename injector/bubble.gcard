@@ -7,6 +7,14 @@
 	<option name="BEAM_V" value="(0, 0, -5)cm"/>
 
 	<option name="OUTPUT" value="evio, out.ev"/>
-	
+
+	<option name="INTEGRATEDRAW" value="flux"/>
+
+
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
+
+	<option name="HALL_MATERIAL"    value="G4_AIR"/>
+	<option name="RECORD_PASSBY"    value="1"/>
+	<option name="SAVE_ALL_MOTHERS" value="1"/>
+
 </gcard>

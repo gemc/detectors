@@ -32,5 +32,7 @@ sub makeCollimator()
 	print_det(\%configuration, \%detector);
 
 
+	
+	
 
 }

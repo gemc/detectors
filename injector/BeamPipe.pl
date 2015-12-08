@@ -12,22 +12,20 @@ sub makeBeamPipe()
 {
     
     my $pipeIR = 1.37/2.0*$inches;
-
+    
     my $ir1 = $pipeIR;
 
     my $or1 = 2.7/2.0*$inches;    
     my $or2 = 1.5/2.0*$inches;
 
-    
     my $z1 = 0.44*$inches;
     my $z2 = 2.16*$inches;
 
     my @pipeIR = ( $ir1, $ir1, $ir1 , $ir1 );
     my @pipeOR = ( $or1, $or1, $or2 , $or2 );
     my @pipeZ  = ( 0   , $z1 , $z1  , $z2  );
-    
-    
-    my $pipeZpos = -(3.0*$inches + $z2); # From front of radiator
+        
+    my $pipeZpos = -($parameters{"RadiatorLength"}*$inches + $z2); # From front of radiator
     
     my $radNplanes = 4;
     my $dimen = "0.0*deg 360*deg $radNplanes*counts";
@@ -44,7 +42,6 @@ sub makeBeamPipe()
     {
 	$dimen = $dimen ." $ pipeZ[$i]*cm";
     }
-    
     
     my %detector = init_det();
     $detector{"name"}        = "beampipe";

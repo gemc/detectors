@@ -32,14 +32,11 @@ sub makeGammaBeamWindow()
     my $z4 = 4.00*$inches;
     my $z5 = 4.125*$inches;
     
-    
     my @GammaWindowIR = ( $ir1, $ir1, $ir1 , $ir1 , $ir1,  $ir1 , $ir1 , $ir1 , 0    );
     my @GammaWindowOR = ( $or1, $or1, $or2 , $or2 , $or3,  $or1 , $or1 , $or1 , $or4 );
-    my @GammaWindowZ  =   ( 0   , $z1 , $z1  , $z2  , $z2 ,  $z3  , $z4  , $z4  , $z5  );
+    my @GammaWindowZ  = ( 0   , $z1 , $z1  , $z2  , $z2 ,  $z3  , $z4  , $z4  , $z5  );
     
-    
-    my $CollZpos = 25.0; # From center of radiator
-    
+    my $CollZpos = 25.0; # From front of radiator
     
     my $radNplanes = 9;
     my $dimen = "0.0*deg 360*deg $radNplanes*counts";

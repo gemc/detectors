@@ -30,25 +30,22 @@ sub makeBubbleChamberCell()
     
     my $z1 = $glassCellBaseLength;
     my $z2 = $glassCellBaseLength + $glassCellNeckLength;
-    my $z3 = $glassCellBaseLength + $glassCellNeckLength + $glassCellLength;
+    my $z3 = $glassCellBaseLength + $glassCellNeckLength + $glassCellLength + $glassThickness;
+		
+    my @n2oCellOR   = ( $ir1, $ir2  , $ir3   , $ir3  );
+    my @glassCellOR = ( $or1, $or2  , $or3   , $or3  );
+    my @n20CellZ    = ( 0+$glassThickness   , $z1   , $z2    , $z3 - $glassThickness  );
+    my @glassCellZ  = ( 0   , $z1   , $z2    , $z3   );
+    my @zeroRadii   = ( 0   , 0     ,  0     ,  0    );
+    	
+    my $glassCellZpos = $parameters{"GlassCellzpos"} + 2.0 ; # From front of radiator
     
-    
-    
-    
-    my @glassCellIR = ( $ir1, $ir2  , $ir3   , $ir3   , 0                    );
-    my @glassCellOR = ( $or1, $or2  , $or3   , $or3   , $or3                 );
-    my @glassCellZ  = ( 0   , $z1   , $z2,   , $z3    , $z3 + $glassThickness);
-    
-    
-    my $glassCellZpos = 42.0; # From center of radiator
-    
-    
-    my $radNplanes = 5;
+    my $radNplanes = 4;
     my $dimen = "0.0*deg 360*deg $radNplanes*counts";
     
     for(my $i = 0; $i <$radNplanes ; $i++)
     {
-	$dimen = $dimen ." $glassCellIR[$i]*cm";
+	$dimen = $dimen ." $zeroRadii[$i]*cm";
     }
     for(my $i = 0; $i <$radNplanes ; $i++)
     {
@@ -59,7 +56,7 @@ sub makeBubbleChamberCell()
 	$dimen = $dimen ." $glassCellZ[$i]*cm";
     }
     
-    my $yshift = $glassCellLength / 2 + $glassCellNeckLength + $glassCellNeckLength;
+    my $yshift = -($glassCellLength / 2 + $glassCellNeckLength + $glassCellNeckLength);
     
     my %detector = init_det();
     $detector{"name"}        = "glassCell";
@@ -69,9 +66,54 @@ sub makeBubbleChamberCell()
     $detector{"type"}        = "Polycone";
     $detector{"dimensions"}  = $dimen;
     $detector{"material"}    = "G4_GLASS_PLATE";
-    $detector{"rotation"}    = "-90*deg 0*deg 0*deg";
+    $detector{"rotation"}    = "90*deg 0*deg 0*deg";
     $detector{"pos"}         = "0*cm $yshift*cm $glassCellZpos*cm";
     $detector{"style"}       = 1;
     print_det(\%configuration, \%detector);
-
+    
+    
+    $dimen = "0.0*deg 360*deg $radNplanes*counts";
+    
+    for(my $i = 0; $i <$radNplanes ; $i++)
+    {
+	$dimen = $dimen ." $zeroRadii[$i]*cm";
+    }
+    for(my $i = 0; $i <$radNplanes ; $i++)
+    {
+	$dimen = $dimen ." $n2oCellOR[$i]*cm";
+    }
+    for(my $i = 0; $i <$radNplanes ; $i++)
+    {
+	$dimen = $dimen ." $n20CellZ[$i]*cm";
+    }
+    
+    %detector = init_det();
+    $detector{"name"}        = "n20Cell";
+    $detector{"mother"}      = "glassCell";
+    $detector{"description"} = "Bubble Chamber Gas";
+    $detector{"color"}       = "44ffff4";
+    $detector{"type"}        = "Polycone";
+    $detector{"dimensions"}  = $dimen;
+    $detector{"material"}    = "G4_GLASS_PLATE";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"pos"}         = "0*cm 0*cm 0*cm";
+    $detector{"style"}       = 1;
+    $detector{"sensitivity"} = "flux";
+    $detector{"hit_type"}    = "flux";
+    $detector{"identifiers"} = "id manual 2";
+   
+    print_det(\%configuration, \%detector);   
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

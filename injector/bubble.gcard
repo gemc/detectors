@@ -9,7 +9,7 @@
 	<!--  Will print message every 10 events -->
 	<option name="PRINT_EVENT"    value="10000" />
 
-	<option name="OUTPUT" value="evio, /group/inj_group/suleiman/Bubble_Chamber/gemc/out.ev"/>
+	<option name="OUTPUT" value="evio, /scratch/suleiman/out.ev"/>
 
 	<option name="INTEGRATEDRAW" value="flux"/>
 

@@ -40,7 +40,7 @@ static ecConstants initializeECConstants(int runno)
 	sprintf(ecc.database,"/calibration/ec/attenuation:%d",ecc.runNo);
 	vector<vector<double> > data; calib->GetCalib(data,ecc.database);
 	
-	for(int row = 0; row < data.size(); row++)
+	for(unsigned row = 0; row < data.size(); row++)
 	{
 		isec   = data[row][0];
 		isla   = data[row][1];
@@ -105,9 +105,9 @@ map<string, double> ec_HitProcess :: integrateDgt(MHit* aHit, int hitn)
 	
 	double att;
 	
-	double A = ecc.attlen[0][sector-1][stack-1][view-1][strip-1];
-	double B = ecc.attlen[1][sector-1][stack-1][view-1][strip-1];
-	double C = ecc.attlen[2][sector-1][stack-1][view-1][strip-1];
+	double A = ecc.attlen[0][strip-1][stack-1][view-1][sector-1];
+	double B = ecc.attlen[1][strip-1][stack-1][view-1][sector-1];
+	double C = ecc.attlen[2][strip-1][stack-1][view-1][sector-1];
 	
 	for(unsigned int s=0; s<tInfos.nsteps; s++)
 	{

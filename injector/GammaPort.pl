@@ -10,26 +10,21 @@ my $inches = 2.54;
 
 sub makeGammaPort()
 {
-    
-    
     my $gPortIR = 0.800/2.0*$inches;
-
+    
     my $ir1 = $gPortIR;
-
+    
     my $or1 = 10.0/2.0*$inches;    
     my $or2 =  5.4/2.0*$inches;
-
     
     my $z1 = 1.0*$inches;
     my $z2 = 3.0*$inches;
-
+    
     my @gPortIR = ( $ir1, $ir1, $ir1 , $ir1 );
     my @gPortOR = ( $or1, $or1, $or2 , $or2 );
     my @gPortZ  = ( 0   , $z1 , $z1  , $z2  );
     
-    
-    my $gPortZpos = 19.75; # From center of radiator
-    
+    my $gPortZpos = 19.75; # From front of radiator
     
     my $radNplanes = 4;
     my $dimen = "0.0*deg 360*deg $radNplanes*counts";

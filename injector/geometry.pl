@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-#use lib ("$ENV{GEMC}/io");
+#use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use parameters;
 use geometry;
@@ -13,18 +13,18 @@ use Math::Trig;
 # Help Message
 sub help()
 {
-	print "\n Usage: \n";
-	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the bubble chamber geometry using the variation specified in the configuration file\n";
-	exit;
+    print "\n Usage: \n";
+    print "   geometry.pl <configuration filename>\n";
+    print "   Will create the bubble chamber geometry using the variation specified in the configuration file\n";
+    exit;
 }
 
 # Make sure the argument list is correct
 # If not pring the help
 if( scalar @ARGV != 1)
 {
-	help();
-	exit;
+    help();
+    exit;
 }
 
 # Loading configuration file from argument

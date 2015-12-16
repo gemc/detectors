@@ -2,16 +2,24 @@
 	<detector name="bubble" factory="TEXT" variation="original"/>
 	<option name="geometry" value="1400x1200"/>
 		
-	<option name="BEAM_P" value="e-, 8.5*MeV, 0*deg, 0*deg"/>
-	<option name="SPREAD_P"  value="0.0*GeV, 0*deg, 0*deg"/>
-	<option name="BEAM_V" value="(0, 0, -5)cm"/>
+	<option name="BEAM_P"	      value="e-, 8.5*MeV, 0.*deg, 0.*deg"/>
+	<option name="SPREAD_P"       value="0.0*MeV, 0*deg, 0*deg"/>
+	<option name="BEAM_V" 	      value="(0., 0., -5.)cm"/>
 
-	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="LUMI_EVENT"     value="1000, 250*ns, 2*ns" />
+	<option name="LUMI_P"         value="e-, 8.5*MeV, 0.*deg, 0.*deg" />
+	<option name="LUMI_V"         value="(0.,0.,-5.)cm" />
+	<option name="LUMI_SPREAD_V"  value="(0.1, 0.)cm" />
+
+	<!--  Will print message every 10 events -->
+	<option name="PRINT_EVENT"    value="10000" />
+
+	<option name="OUTPUT" value="evio, /scratch/suleiman/out.ev"/>
 
 	<option name="INTEGRATEDRAW" value="flux"/>
 
-
-	<option name="PHYSICS" value="STD + FTFP_BERT"/>
+	<!-- PhysListEmLivermore -->
+	<option name="PHYSICS" value="LIV"/>
 
 	<option name="HALL_MATERIAL"    value="G4_AIR"/>
 	<option name="RECORD_PASSBY"    value="1"/>

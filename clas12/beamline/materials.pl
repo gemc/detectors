@@ -52,6 +52,12 @@ sub print_materials
 $configuration{"variation"} = "noft" ;
 print_materials();
 
+$configuration{"variation"} = "baseline" ;
+print_materials();
+
+$configuration{"variation"} = "noft-l254-r195.4" ;
+print_materials();
+
 $configuration{"variation"} = "ft" ;
 print_materials();
 

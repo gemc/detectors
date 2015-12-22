@@ -98,9 +98,9 @@ sub makeBubbleChamberCell()
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"pos"}         = "0*cm 0*cm 0*cm";
     $detector{"style"}       = 1;
-    $detector{"sensitivity"} = "flux";
-    $detector{"hit_type"}    = "flux";
-    $detector{"identifiers"} = "id manual 2";
+    $detector{"sensitivity"} = "bubble";
+    $detector{"hit_type"}    = "bubble";
+    $detector{"identifiers"} = "detId manual 2";
    
     print_det(\%configuration, \%detector);   
     

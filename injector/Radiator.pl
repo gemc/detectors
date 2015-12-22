@@ -77,9 +77,9 @@ sub makeRadiator()
     $detector{"material"}    = "G4_AIR";
     $detector{"pos"}         = "0*cm 0*cm 0.2*mm";
     $detector{"visible"}     = 0; # 1
-    $detector{"sensitivity"} = "flux";
-    $detector{"hit_type"}    = "flux";
-    $detector{"identifiers"} = "id manual 1";
+    $detector{"sensitivity"} = "bubble";
+    $detector{"hit_type"}    = "bubble";
+    $detector{"identifiers"} = "detId manual 1";
     
     print_det(\%configuration, \%detector);	
 	

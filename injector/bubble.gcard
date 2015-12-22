@@ -6,7 +6,7 @@
 	<option name="SPREAD_P"       value="0.0*MeV, 0*deg, 0*deg"/>
 	<option name="BEAM_V" 	      value="(0., 0., -5.)cm"/>
 
-	<option name="LUMI_EVENT"     value="1000, 250*ns, 2*ns" />
+	<option name="LUMI_EVENT"     value="10000, 250*ns, 2*ns" />
 	<option name="LUMI_P"         value="e-, 8.5*MeV, 0.*deg, 0.*deg" />
 	<option name="LUMI_V"         value="(0.,0.,-5.)cm" />
 	<option name="LUMI_SPREAD_V"  value="(0.1, 0.)cm" />

@@ -52,6 +52,10 @@ sub define_hit
     print_hit(\%configuration, \%hit);
 }
 
+# timeWindow: 0 means “every track”. Anything other than 0 will integrate over time window to define a hit
+# prodThreshold: this is minimum distance that secondaries have to travel in order to be created
+# maxStep: max step of particles
+
 define_hit();
 
 1;

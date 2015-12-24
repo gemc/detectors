@@ -105,15 +105,3 @@ sub makeBubbleChamberCell()
     print_det(\%configuration, \%detector);   
     
 }
-
-
-
-
-
-
-
-
-
-
-
-

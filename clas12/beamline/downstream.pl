@@ -7,12 +7,11 @@ our $inches;
 our $TorusZpos;
 our $SteelFrameLength;
 
-
-###########################################################################################
-# Define the relevant parameters for the downstream part of the beamline
+################################################################
 #
 # all dimensions are in mm
 #
+################################################################
 
 # Downstream beamline is a 4cm thick pipe of lead, with OD = 350 mm
 my $bp_zpos          = $TorusZpos + $SteelFrameLength ; # back plate z position
@@ -24,20 +23,21 @@ my $face_plate_LE    = 1.0*$inches/2.0;
 my $thickness = 40.0;
 my $dpipe_OR  = 350.0/2.0;
 my $dpipe_IR  = $dpipe_OR - $thickness;
-my $dpipe_le  = 1000.0;    # 2 meters total length
-my $dpipe_sp  = 60.0;      # 3 cm space between pipe and torus
-my $lead_shield_thickness = 25.0;
-my $pipe_zpos =  $bp_zpos + $dpipe_le + $dpipe_sp + $lead_shield_thickness;
+my $dpipe_le  = 1000.0;    # total length
+my $dpipe_sp  = 0.0001;    # space between pipe and torus
+my $lead_shield_thickness = 10.65*$inches; # max 17.65
+#my $pipe_zpos =  $bp_zpos + $dpipe_le + $dpipe_sp + $lead_shield_thickness;
+my $pipe_zpos =  $bp_zpos + $dpipe_le + $dpipe_sp + 17.65*$inches;
 
 ################################
 # W SHIELD - after Torus Ring
 ################################
-my $nplanes = 4;
+my $nplanes    = 4;
 my $ColdHubIR  =  62.0 ;     # Warm bore tube ID is 124 as from DK drawing
 # Numbers coming from ROOT macro
 # Corner:            1              2            3             4
 my @zplane   = (     0.0    ,     $lead_shield_thickness   ,    $lead_shield_thickness + 0.1     ,   300.0     );
-my @oradius  = (   170.0    ,     170.0   ,     110.0    ,   110.0     );
+my @oradius  = (   170.0    ,     170.0   ,     134.99    ,   134.99   );
 my @iradius  = ( $ColdHubIR ,  $ColdHubIR ,   $ColdHubIR ,  $ColdHubIR );
 my $zstart   = $bp_zpos + 1.0;
 
@@ -56,35 +56,11 @@ my $vpipe_OR = 60.;    #  OR of shielding
 my $vpipe_MR = 40;     #  OR of vacuum pipe
 my $vpipe_IR = 37;     #  OR of vacuum
 
-sub make_downstream_shielding
+# this makes beamline that runs through torus
+# as well as the shielding that surrounds it.
+sub make_beamline_torus()
 {
-# shield pipe
 	my %detector = init_det();
-	$detector{"name"}        = "pipe_after_torus_ring";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "Pipe after Torus Ring";
-	$detector{"color"}       = "993333";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0.0*mm $pipe_zpos*mm";
-	$detector{"dimensions"}  = "$dpipe_IR*mm $dpipe_OR*mm $dpipe_le*mm 0.0*deg 360*deg";
-	$detector{"material"}    = "beamline_W";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-# lead pipe
-	$detector{"name"}        = "pipe_after_torus_ring_shield";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "Shielding after Torus Ring";
-	$detector{"pos"}         = "0*mm 0.0*mm $zstart*mm";
-	$detector{"color"}       = "0000ff";
-	$detector{"type"}        = "Polycone";
-	my $dimen = "0.0*deg 360*deg $nplanes*counts";
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius[$i]*mm";}
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $zplane[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "beamline_W";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 # beamline shielding
 	$detector{"name"}        = "beamline_pipe_shielding";
 	$detector{"mother"}      = "root";
@@ -118,8 +94,59 @@ sub make_downstream_shielding
 	$detector{"material"}    = "Vacuum";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
 }
 
+sub make_downstream_shielding
+{
+
+my($nose_l,$nose_or,$nose_material) = @_;
+
+# we need to recalculate some parameters 
+my @zplane   = (0.0, $lead_shield_thickness, $lead_shield_thickness +0.1,$nose_l+17.65*$inches);
+my @oradius  = ($nose_or   ,$nose_or,     134.99    ,   134.99   );
 
 
+# shield pipe
+	my %detector = init_det();
+	$detector{"name"}        = "pipe_after_torus_ring";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Pipe after Torus Ring";
+	$detector{"color"}       = "993333";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0.0*mm $pipe_zpos*mm";
+	$detector{"dimensions"}  = "$dpipe_IR*mm $dpipe_OR*mm $dpipe_le*mm 0.0*deg 360*deg";
+	$detector{"material"}    = "beamline_W";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+# nose after torus (17.66 in room to work with)
+	$detector{"name"}        = "pipe_after_torus_ring_shield";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Shielding after Torus Ring";
+	$detector{"pos"}         = "0*mm 0.0*mm $zstart*mm";
+	$detector{"color"}       = "0000ff";
+	$detector{"type"}        = "Polycone";
+	my $dimen = "0.0*deg 360*deg $nplanes*counts";
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius[$i]*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $zplane[$i]*mm";}
+	$detector{"dimensions"}  = $dimen;
+	$detector{"material"}    = $nose_material;
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+}
+
+sub make_orig
+{
+# shield pipe
+	my %detector = init_det();
+	$detector{"name"}        = "pipe_after_torus_ring";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Pipe after Torus Ring";
+	$detector{"color"}       = "993333";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0.0*mm $pipe_zpos*mm";
+	$detector{"dimensions"}  = "$dpipe_IR*mm $dpipe_OR*mm $dpipe_le*mm 0.0*deg 360*deg";
+	$detector{"material"}    = "beamline_W";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+}

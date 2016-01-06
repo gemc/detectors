@@ -44,7 +44,7 @@ sub afterTorusShielding()
 	
 	
 	
-	# Nose right after the torus
+	# nose after torus ($gapTorusShield in room to work with for the first part)
 	my $ColdHubIR =  62.0 ;     # Warm bore tube ID is 124 as from DK drawing
 	my $nplanes   = 4;
 	my @zplane    = ( 0.0        , $nose_l1   , $nose_l1 + $microgap            , $nose_l2                        );
@@ -53,7 +53,6 @@ sub afterTorusShielding()
 	
 	my $noseZStart   = $torusZend + $microgap;
 	
-	# nose after torus ($gapTorusShield in room to work with for the first part)
 	%detector = init_det();
 	$detector{"name"}        = "downstreamNose";
 	$detector{"mother"}      = "root";

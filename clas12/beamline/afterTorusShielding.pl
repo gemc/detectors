@@ -22,15 +22,14 @@ sub afterTorusShielding()
 	if($nose_l1 > $gapTorusShield) {$nose_l1 = $gapTorusShield}
 	$nose_l2 = $nose_l2 + $nose_l1;
 	
-	# downstream Shield Thickness
-	
+	# downstream shield
+	# Actually there is lead inside SST
 	my $downstreamShieldRThickness = 40;
 	my $downstreamShieldOR         = 350.0/2.0;
 	my $downstreamShieldIR         = $downstreamShieldOR - $downstreamShieldRThickness;
 	my $downstreamShieldLength     = 1000;
 	my $downstreamShieldZpos       = $torusZend + $downstreamShieldLength + $microgap + $gapTorusShield;
 
-	# Downstream shield
 	my %detector = init_det();
 	$detector{"name"}        = "downstreamShield";
 	$detector{"mother"}      = "root";
@@ -46,9 +45,6 @@ sub afterTorusShielding()
 	
 	
 	# Nose right after the torus
-	# Actually there is lead inside SST
-	my $noseZThickness = 10.65*$inches; # max 17.65
-
 	my $ColdHubIR =  62.0 ;     # Warm bore tube ID is 124 as from DK drawing
 	my $nplanes   = 4;
 	my @zplane    = ( 0.0        , $nose_l1   , $nose_l1 + $microgap            , $nose_l2                        );
@@ -57,7 +53,7 @@ sub afterTorusShielding()
 	
 	my $noseZStart   = $torusZend + $microgap;
 	
-	# nose after torus (17.66 in room to work with)
+	# nose after torus ($gapTorusShield in room to work with for the first part)
 	%detector = init_det();
 	$detector{"name"}        = "downstreamNose";
 	$detector{"mother"}      = "root";

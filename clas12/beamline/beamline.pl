@@ -6,9 +6,8 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
-use hit;
-use bank;
 use math;
+use materials;
 
 use Math::Trig;
 
@@ -17,7 +16,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   beamline.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 moller_shields with two variations: noft and ft\n";
+ 	print "   Will create the CLAS12 beamline and materials\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
@@ -31,43 +30,111 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
+
+# Loading parameters
 #my %parameters    = get_parameters(%configuration);
 
 
 # Global parameters
-# Downstream beamline is a 4cm thick pipe of lead, with OD = 350 mm
 
 # General:
 our $inches    = 25.4;
 our $degrad    = 57.27;
 
-# Torus numbers:
-our $TorusZpos        = 151.855*$inches;                 # center of the torus position
-our $SteelFrameLength = 94.*$inches/2.0;                 # 1/2 length
+# Torus
+our $TorusZpos            = 151.855*$inches;     # center of the torus position
+our $SteelFrameLength     = 94.*$inches/2.0;     # 1/2 length of torus
+our $torusFrontNoseLength = 365.6;               # nose 
+
+# materials
+require "./materials.pl";
 
 
-require "./downstream.pl";
-require "./noft_moller_shield.pl";
-require "./ft_moller_shield.pl";
-require "./tagger.pl";
+# vacuum line throughout the shields, torus and downstream
+require "./vacuumLine.pl";
+
+# moeller shield
+require "./tungstenCone.pl";
+
+# connection of moeller shield to torus
+# require "./torusFrontNose.pl";
+
+# shielding around the torus beamline
+require "./torusBeamShield.pl";
+
+# shielding downstream of the torus
+require "./afterTorusShielding.pl";
+
+# shielding blocks on the torus
+# require "./torusShielding.pl";
+
+
+# all the scripts must be run for every configuration
+my @allConfs = ("physicistsBaselineNoFT", "physicistsBaselineWithFT", "realityNoFT", "realityWithFT");
+
+
+
+foreach my $conf ( @allConfs )
+{
+	$configuration{"variation"} = $conf ;
+	
+	# materials
+	materials();
+	
+	# vacuum line throughout the shields, torus and downstream
+	vacuumLine();
+	
+	# moeller shield
+	tungstenCone();
+	
+	# shielding around the torus beamline
+	torusBeamShield();
+
+	# shielding downstream of the torus
+	# parameters: length of first part, length of second part, outer radius (mm), material
+	afterTorusShielding(350, 300.0, 195.4, "beamline_W");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+# OLD STUFF
+
+#require "./downstream.pl";
+#require "./noft_moller_shield.pl";
+#require "./ft_moller_shield.pl";
+#require "./tagger.pl";
 
 # these are nominal values
-$configuration{"variation"} = "noft" ;
-make_moller_shield();
-make_downstream_shielding(300.0,170.0,"beamline_W");
-make_beamline_torus();
+#$configuration{"variation"} = "noft" ;
+#make_moller_shield();
+#make_downstream_shielding(300.0,170.0, "beamline_W");
+#make_beamline_torus();
 
-$configuration{"variation"} = "ft" ;
+#$configuration{"variation"} = "ft" ;
 #make_tagger();
 
 # 10" depth, extra thick
-$configuration{"variation"} = "noft-l254-r195.4";
-make_moller_shield();
-make_beamline_torus();
-make_downstream_shielding(254.0,195.4,"beamline_W");
+#$configuration{"variation"} = "noft-l254-r195.4";
+#make_moller_shield();
+#make_beamline_torus();
+#make_downstream_shielding(254.0,195.4, "beamline_W");
 
 # without nose
-$configuration{"variation"} = "baseline";
-make_moller_shield();
-make_beamline_torus();
-make_orig();
+#$configuration{"variation"} = "baseline";
+#make_moller_shield();
+#make_beamline_torus();
+#make_orig();
+
+
+
+

@@ -1,10 +1,7 @@
 <gcard>
-	<option name="DBHOST" value="clasdb.jlab.org"/>
-	<option name="DATABASE" value="clas12_simulation"/>
 	
-	<detector name="beamline" factory="TEXT" variation="noft"/>
-	<detector name="beamline" factory="TEXT" variation="noft"/>
-	
-	<option name="BEAM_P" value="e-, 2.0*GeV, 3*deg, 10*deg"/>
-	<option name="EXEC_MACRO" value="vis.macro"/>
+	<detector name="beamline" factory="TEXT" variation="physicistsBaselineNoFT"/>
+	<option name="geometry" value="1400x1200"/>
+
+<!--	<option name="EXEC_MACRO" value="vis.macro"/>-->
 </gcard>

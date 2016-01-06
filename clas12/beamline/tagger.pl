@@ -4,7 +4,6 @@ use warnings;
 our %configuration;
 
 
-
 sub make_tagger
 {
 	my %detector = init_det();
@@ -20,6 +19,7 @@ sub make_tagger
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	
 	%detector = init_det();
 	$detector{"name"}        = "tag_mag_box1";
 	$detector{"mother"}      = "root";
@@ -33,7 +33,6 @@ sub make_tagger
 	$detector{"material"}    = "Component";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-	
 	
 	
 	%detector = init_det();
@@ -62,8 +61,6 @@ sub make_tagger
 	print_det(\%configuration, \%detector);
 	
 	
-
-	
 	%detector = init_det();
 	$detector{"name"}        = "tag_mag_iron2";
 	$detector{"mother"}      = "root";
@@ -73,9 +70,6 @@ sub make_tagger
 	$detector{"material"}    = "G4_Fe";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-	
-
-	
 	
 }
 

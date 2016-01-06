@@ -31,9 +31,11 @@ my $torus_z   = $TorusZpos - $SteelFrameLength; # position of the front face of 
 
 my $ATube_IR         =  30.0;
 my $ATube_OR         =  41.0;
+
 my $TTube_OR         =  60.0;
 my $FTube_OR         =  80.0;
 my $FTube_FR         =  90.0;
+
 
 my $Tube_LT         = 365.6;
 my $flange_TN       =  15.0;
@@ -41,8 +43,12 @@ my $flange_TN       =  15.0;
 # define positions based on z of torus inner ring front face
 my $Tube_end  = $torus_z-0.5;    # leave 0.5 mm to avoid overlaps
 my $Tube_z1   = $Tube_end - $flange_TN;
+
 my $Tube_z2   = $Tube_z1 - $Tube_LT;
+
 my $Tube_beg  = $Tube_z2 - $flange_TN;
+
+
 my $Tube_Z    =($Tube_end+$Tube_beg)/2.;
 my $Tube_LZ   =($Tube_end-$Tube_beg)/2.;
 
@@ -127,60 +133,6 @@ sub make_tube
 	print_det(\%configuration, \%detector);
 }
 
-sub make_moller_cone
-{
-# Tungsten Cone
-	my %detector = init_det();
-	$detector{"name"}        = "moller_shield_cone";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "tungsten moller cone";
-	$detector{"color"}       = "ffff9b";
-	$detector{"type"}        = "Polycone";
-	my $dimen = "0.0*deg 360*deg $nplanes_Cone*counts";
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." 0.0*mm";}
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." $oradius_Cone_T[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." $z_plane_Cone[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "beamline_W";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
-# Aluminum  Cone
-	%detector = init_det();
-	$detector{"name"}        = "moller_shield_cone_a";
-	$detector{"mother"}      = "moller_shield_cone";
-	$detector{"description"} = "aluminum moller cone";
-	$detector{"color"}       = "ffffff";
-	$detector{"type"}        = "Polycone";
-	$dimen = "0.0*deg 360*deg $nplanes_Cone*counts";
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." 0.0*mm";}
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." $oradius_Cone_A[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." $z_plane_Cone[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_Al";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
-# Vacuum  Cone
-	%detector = init_det();
-	$detector{"name"}        = "moller_shield_cone_v";
-	$detector{"mother"}      = "moller_shield_cone_a";
-	$detector{"description"} = "vacuum moller cone";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Polycone";
-	$dimen = "0.0*deg 360*deg $nplanes_Cone*counts";
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." 0.0*mm";}
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." $oradius_Cone_V[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_Cone; $i++) {$dimen = $dimen ." $z_plane_Cone[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_Galactic";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-}
 
-sub make_moller_shield
-{
-	make_tube;
-	make_moller_cone;
-
-}

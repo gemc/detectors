@@ -8,6 +8,10 @@ use math;
 
 our %configuration;
 
+# this script builds shielding blocks 
+# that parallel the beamline in the
+# space below drift chambers 
+
 # torus center z-position
 our $inches = 2.54;
 my $zPos   = 151.855*$inches;
@@ -17,6 +21,7 @@ my $le_z   = 94.0*$inches/2.0;
 my $bottom = 2;
 my $top    = 10;
 my $height = 10;
+
 
 sub torusShield
 {

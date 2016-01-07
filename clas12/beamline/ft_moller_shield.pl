@@ -32,8 +32,7 @@ my $torus_z   = $TorusZpos - $SteelFrameLength; # position of the front face of 
 my $nplanes_cone = 4;
 my @zplane_cone   = (  750.0, 1750.0, 1750.0, 1809.2);
 my @oradius_cone  = (   32.0,   76.0,   59.0,   59.0);
-my @mradius_cone  = (   31.0,   40.0,   40.0,   40.0); 
-my @iradius_cone  = (   30.0,   30.0,   30.0,   30.0); 
+my @iradius_cone  = (   30.0,   30.0,   30.0,   30.0);
 
 
 # Aluminum Beam Pipe
@@ -174,42 +173,3 @@ sub make_moller_cone_ft
 	print_det(\%configuration, \%detector);
 
 }
-
-sub make_moller_cup_ft
-{
-#############################
-# Carbon Fiber Moller Cup
-#############################
-	my %detector = init_det();
-	$detector{"name"}        = "htcc_moller_cup";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "htcc moller cup";
-	$detector{"color"}       = "575757";
-	$detector{"type"}        = "Polycone";
-
-	my $dimen = "0.0*deg 360*deg $nplanes_cup*counts";
-	for(my $i = 0; $i <$nplanes_cup ; $i++)
-	{
-		$dimen = $dimen ." $iradius_cup[$i]*mm";
-	}
-	for(my $i = 0; $i <$nplanes_cup ; $i++)
-	{
-		$dimen = $dimen ." $oradius_cup[$i]*mm";
-	}
-	for(my $i = 0; $i <$nplanes_cup ; $i++)
-	{
-		$dimen = $dimen ." $zplane_cup[$i]*mm";
-	}
-	$detector{"dimensions"} = $dimen;
-	$detector{"material"}   = "CarbonFiber";
-	$detector{"style"}       = 1;
-	
-	print_det(\%configuration, \%detector);
-}
-
-sub make_moller_shield_ft
-{
-	make_moller_cup_ft;
-	make_moller_cone_ft;
-}
-

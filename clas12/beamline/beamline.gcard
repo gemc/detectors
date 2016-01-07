@@ -1,6 +1,6 @@
 <gcard>
 	
-	<detector name="beamline" factory="TEXT" variation="physicistsBaselineNoFT"/>
+	<detector name="beamline" factory="TEXT" variation="physicistsBaselineWithFT"/>
 	<option name="geometry" value="1400x1200"/>
 
 <!--	<option name="EXEC_MACRO" value="vis.macro"/>-->

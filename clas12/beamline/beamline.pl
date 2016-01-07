@@ -44,7 +44,7 @@ our $degrad    = 57.27;
 # Torus
 our $TorusZpos            = 151.855*$inches;     # center of the torus position
 our $SteelFrameLength     = 94.*$inches/2.0;     # 1/2 length of torus
-our $torusFrontNoseLength = 365.6;               # nose 
+our $torusFrontNoseLength = 365.6;               # nose
 
 # materials
 require "./materials.pl";
@@ -56,8 +56,8 @@ require "./vacuumLine.pl";
 # moeller shield
 require "./tungstenCone.pl";
 
-# connection of moeller shield to torus
-# require "./torusFrontNose.pl";
+# connection of moeller shield / FT to torus
+require "./torusFrontMount.pl";
 
 # shielding around the torus beamline
 require "./torusBeamShield.pl";
@@ -72,8 +72,6 @@ require "./afterTorusShielding.pl";
 # all the scripts must be run for every configuration
 my @allConfs = ("physicistsBaselineNoFT", "physicistsBaselineWithFT", "realityNoFT", "realityWithFT");
 
-
-
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
@@ -86,6 +84,9 @@ foreach my $conf ( @allConfs )
 	
 	# moeller shield
 	tungstenCone();
+	
+	# connection of moeller shield / FT to torus
+	torusFrontMount();
 	
 	# shielding around the torus beamline
 	torusBeamShield();

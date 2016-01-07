@@ -1,3 +1,7 @@
+1/7/15
+- added mount nose to torus - both phys and eng. design
+- draft of physicist design for shielding with and w/o FT finalized
+
 1/6/15
 - beamline is splitted into relevant files and volumes are renamed to make more sense
 - starting template for engineering mods to the beamline

@@ -69,9 +69,6 @@ sub afterTorusShielding()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	
-	
-	
 }
 
 

@@ -15,7 +15,7 @@ sub tungstenCone()
 
 		my $microgap = 0.1;
 		
-		# tapered aluminum pipe
+		# shield is a tapered pipe (G4 polycone)
 		my @oradius_vbeam  = ( 24.0, 41.0,  41.0 );
 		my @oradius_tcone  = ( 30.0, 90.0,  90.0 );
 		
@@ -31,9 +31,9 @@ sub tungstenCone()
 		
 		# Tungsten Cone
 		my %detector = init_det();
-		$detector{"name"}        = "tungstenCone";
+		$detector{"name"}        = "tungstenConeNoFT";
 		$detector{"mother"}      = "root";
-		$detector{"description"} = "tungsten moller shield";
+		$detector{"description"} = "tungsten moller shield - no FT configuration";
 		$detector{"color"}       = "ffff9b";
 		$detector{"type"}        = "Polycone";
 		my $dimen = "0.0*deg 360*deg $nplanes_tcone*counts";
@@ -45,6 +45,41 @@ sub tungstenCone()
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 	}
+
+	if($configuration{"variation"} eq "physicistsBaselineWithFT")
+	{
+		my $nplanes_tcone = 4;
+		
+		my $microgap = 0.1;
+		
+		# shield is a tapered pipe (G4 polycone)
+		
+		my @z_plane_tcone  = (  750.0, 1750.0, 1750.0, 1809.2);
+		my @oradius_tcone  = (   32.0,   76.0,   59.0,   59.0);
+		
+		# to contain the vacuum pipe.
+		# adding the microgap
+		my @iradius_cone  = (   30.0,   30.0,   30.0,   30.0);
+		my @iradius_tcone;
+		for(my $i = 0; $i <$nplanes_tcone; $i++) {$iradius_tcone[$i] = $iradius_cone[$i] + $microgap;}
+		
+		# Tungsten Cone
+		my %detector = init_det();
+		$detector{"name"}        = "tungstenConeWithFT";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "tungsten moller shield with FT";
+		$detector{"color"}       = "ffff9b";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes_tcone*counts";
+		for(my $i = 0; $i <$nplanes_tcone; $i++) {$dimen = $dimen ." $iradius_tcone[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_tcone; $i++) {$dimen = $dimen ." $oradius_tcone[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_tcone; $i++) {$dimen = $dimen ." $z_plane_tcone[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "beamline_W";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+	}
+
 	
 }
 

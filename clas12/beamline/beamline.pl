@@ -66,7 +66,7 @@ require "./torusBeamShield.pl";
 require "./afterTorusShielding.pl";
 
 # shielding blocks on the torus
-# require "./torusShielding.pl";
+require "./torusShielding.pl";
 
 
 # all the scripts must be run for every configuration
@@ -89,6 +89,9 @@ foreach my $conf ( @allConfs )
 	
 	# shielding around the torus beamline
 	torusBeamShield();
+
+	# shielding blocks 
+	# torusShield();
 
 	# shielding downstream of the torus
 	# parameters: length of first part, length of second part, outer radius (mm), material

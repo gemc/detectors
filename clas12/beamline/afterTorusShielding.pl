@@ -28,7 +28,7 @@ sub afterTorusShielding()
 	my $downstreamShieldOR         = 350.0/2.0;
 	my $downstreamShieldIR         = $downstreamShieldOR - $downstreamShieldRThickness;
 	my $downstreamShieldLength     = 1000;
-	my $downstreamShieldZpos       = $torusZend + $downstreamShieldLength + $microgap + $gapTorusShield;
+	my $downstreamShieldZpos       = $torusZend + $downstreamShieldLength + $microgap + $gapTorusShield + $nose_l2;
 
 	my %detector = init_det();
 	$detector{"name"}        = "downstreamShield";

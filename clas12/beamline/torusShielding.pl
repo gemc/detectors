@@ -33,8 +33,8 @@ sub torusShield
 	$detector{"name"}        = "torusShieldingBlock_$i";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Torus shielding block";
-	$detector{"pos"}         = region_pos($i);
-	$detector{"rotation"}    = region_rot($i);
+	$detector{"pos"}         = pos($i);
+	$detector{"rotation"}    = rot($i);
 	$detector{"color"}       = "993333";
 	$detector{"type"}        = "G4Trap";
 	$detector{"dimensions"}  = "$le_z*cm 0*deg 0*deg $height*cm $bottom*cm $top*cm 0*deg $height*cm $bottom*cm $top*cm 0*deg";
@@ -47,7 +47,7 @@ sub torusShield
 }
 
 
-sub region_pos
+sub pos
 {
     my $sector = shift;
     my $phi    =  $sector*60;
@@ -60,7 +60,7 @@ sub region_pos
     return "$x*cm $y*cm $z*cm";
 }
 
-sub region_rot
+sub rot
 {
     my $sector = shift;
     my $zrot  = 90 - $sector*60;

@@ -31,15 +31,11 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-# Loading parameters
-#my %parameters    = get_parameters(%configuration);
 
-
-# Global parameters
+# Global pars - these should be read by the load_parameters from file or DB
 
 # General:
 our $inches    = 25.4;
-our $degrad    = 57.27;
 
 # Torus
 our $TorusZpos            = 151.855*$inches;     # center of the torus position

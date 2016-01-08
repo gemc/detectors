@@ -15,11 +15,11 @@ sub torusBeamShield()
 	# common to all configurations
 	
 	
-	my $microgap = 0.1;
+	my $microgap = 0.2;
 	my $totalLength  = 4000.0;   # total beamline semi-length
 	my $bpipeTorusZ  = $torusZstart + $totalLength ;  # z position - to place the pipe inside torus
 	my $pipeIR       = 40 + $microgap;
-	my $pipeOR       = 60;
+	my $pipeOR       = 60 - $microgap;
 	
 	
 	# Tungsten Cone

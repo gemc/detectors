@@ -4,6 +4,7 @@
 	
 	<detector name="torus" factory="TEXT" variation="original"/>
 	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="../beamline/beamline" factory="TEXT" variation="physicistsBaselineNoFT"/>
 
 
 	<option name="geometry" value="1400x1200"/>

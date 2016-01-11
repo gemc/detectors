@@ -30,7 +30,7 @@ sub torusHub()
 	# main hub
 	my %detector = init_det();
 	$detector{"name"}        = "torusColdHub";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "torusVacuumFrame";
 	$detector{"description"} = "Torus Cold Hub";
 	$detector{"color"}       = "ee66ee";
 	$detector{"type"}        = "Tube";
@@ -42,7 +42,7 @@ sub torusHub()
 	# warm bore
 	%detector = init_det();
 	$detector{"name"}        = "torusWarmBore";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "torusVacuumFrame";
 	$detector{"description"} = "Torus Warm Bore";
 	$detector{"color"}       = "eeee22";
 	$detector{"type"}        = "Tube";
@@ -54,7 +54,7 @@ sub torusHub()
 	# warm bore shield
 	%detector = init_det();
 	$detector{"name"}        = "torusWarmBoreShield";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "torusVacuumFrame";
 	$detector{"description"} = "Torus Warm Bore";
 	$detector{"color"}       = "ee66ee";
 	$detector{"type"}        = "Tube";

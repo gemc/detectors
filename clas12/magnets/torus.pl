@@ -49,7 +49,7 @@ require "./torusCoils.pl";
 
 
 # building the torus
-#torusHub();
+torusHub();
 #torusPlates();
 torusCoils();
 

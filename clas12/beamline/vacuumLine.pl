@@ -63,6 +63,47 @@ sub vacuumLine()
 		print_det(\%configuration, \%detector);
 	}
 	
+	# corrected physicists design vacuum line
+	# straight aluminum pipe with vacucum inside
+	if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT")
+	{
+		# up to the torus the beampipe is 11mm thick.
+		# inside the torus is 3mm thick
+		my $nplanes_vbeam = 5;
+		
+		my $iradius_vbeam  =  27.0;
+		my $oradius_vbeam  =  29.5;
+		
+		my $pipeZstart    = 420.0;    # start of cone
+		
+		my $totalLength  = 10000.0;   # start of cone + total beamline semi-length
+		
+		
+		# aluminum pipe
+		my %detector = init_det();
+		$detector{"name"}        = "aluminumBeamPipe";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "aluminum beampipe";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$iradius_vbeam*mm $oradius_vbeam*mm $totalLength*mm 0.0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+		
+		# vacuum pipe
+		%detector = init_det();
+		$detector{"name"}        = "vacuumBeamPipe";
+		$detector{"mother"}      = "aluminumBeamPipe";
+		$detector{"description"} = "vacuum inside aluminum beampipe";
+		$detector{"color"}       = "000000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0.0*mm $oradius_vbeam*mm $totalLength*mm 0.0*deg 360*deg";
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+	}
+
 	if($configuration{"variation"} eq "physicistsBaselineWithFT")
 	{
 		# Aluminum Beam Pipe

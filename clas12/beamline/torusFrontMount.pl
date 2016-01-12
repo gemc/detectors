@@ -67,10 +67,10 @@ sub torusFrontMount()
 		print_det(\%configuration, \%detector);
 	}
 	
+	
+	
 	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT")
 	{
-		
-		
 		# engineering design of the mounts to connect
 		# both FT and noFT configurations to the torus
 		# One nose plate connects to the torus
@@ -128,6 +128,27 @@ sub torusFrontMount()
 		$detector{"material"}    = "G4_STAINLESS-STEEL";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
+		
+		
+		
+		# inner shield made of tungsten
+		my $noseShieldIR       = 30.0;
+		my $noseShieldOR       = 40.0;
+		my $noseShieldLength   = 450.0/2.0;  # empirical
+		my $noseShield_z_start = $torusZstart - $noseShieldLength;
+
+		%detector = init_det();
+		$detector{"name"}        = "mountInnerShielding";
+		$detector{"mother"}      = "root";
+		$detector{"pos"}         = "0*mm 0.0*mm $noseShield_z_start*mm";
+		$detector{"description"} = "beamline mount to torus beamline shield";
+		$detector{"color"}       = "ff0000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$noseShieldIR*mm $noseShieldOR*mm $noseShieldLength*mm 0.*deg 360.*deg";
+		$detector{"material"}    = "beamline_W";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+
 	}
 	
 	

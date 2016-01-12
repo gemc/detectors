@@ -1,7 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
+#use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use bank;
 
@@ -11,18 +12,18 @@ use warnings;
 # Help Message
 sub help()
 {
-	print "\n Usage: \n";
-	print "   bank.pl <configuration filename>\n";
- 	print "   Will create the bubble bank\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
+    print "\n Usage: \n";
+    print "   bank.pl <configuration filename>\n";
+    print "   Will create the bubble bank\n";
+    print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
+    exit;
 }
 
 # Make sure the argument list is correct
 if( scalar @ARGV != 1)
 {
-	help();
-	exit;
+    help();
+    exit;
 }
 
 # Loading configuration file and paramters
@@ -46,12 +47,12 @@ my $bankname = "bubble";
 
 sub define_bank
 {	
-	# uploading the hit definition
-	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "detId",       1,  "Di", "paddle number");
-	insert_bank_variable(\%configuration, $bankname, "kinE",        2,  "Dd", "Kinetic Energy");
-	insert_bank_variable(\%configuration, $bankname, "pid",         3,  "Di", "particle id");
-	insert_bank_variable(\%configuration, $bankname, "hitn",       99,  "Di", "hit number");
+    # uploading the hit definition
+    insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
+    insert_bank_variable(\%configuration, $bankname, "detId",       1,  "Di", "paddle number");
+    insert_bank_variable(\%configuration, $bankname, "kinE",        2,  "Dd", "Kinetic Energy");
+    insert_bank_variable(\%configuration, $bankname, "pid",         3,  "Di", "particle id");
+    insert_bank_variable(\%configuration, $bankname, "hitn",       99,  "Di", "hit number");
 }
 
 define_bank();

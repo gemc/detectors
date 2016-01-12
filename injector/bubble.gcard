@@ -6,16 +6,10 @@
 	<option name="SPREAD_P"       value="0.0*MeV, 0*deg, 0*deg"/>
 	<option name="BEAM_V" 	      value="(0., 0., -5.)cm"/>
 
-	<option name="LUMI_EVENT"     value="10000, 250*ns, 2*ns" />
-	<option name="LUMI_P"         value="e-, 8.5*MeV, 0.*deg, 0.*deg" />
-	<option name="LUMI_V"         value="(0.,0.,-5.)cm" />
-	<option name="LUMI_SPREAD_V"  value="(0.1, 0.)cm" />
-
-
 	<!--  Will print message every 10 events -->
 	<option name="PRINT_EVENT"    value="1" />
 
-	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="OUTPUT" value="evio, /scratch/suleiman/out.ev"/>
 
 
 	<!-- PhysListEmLivermore -->

@@ -7,7 +7,7 @@ our $TorusLength;
 our $TorusZpos;
 
 my $microgap = 0.1;
-my $vacuumJacketThickness = 15.9;
+my $vacuumJacketThickness = 12.7;   # M. Zarecky email. The walls are 12.7, the top iss 15.9.
 
 
 # The torus model is:
@@ -84,7 +84,7 @@ sub makeParallelepipeds
 	# vacuum jacket fgrame
 	my $vjacketCase_dx    = $TorusLength - 30;    # empirical
 	my $vjacketCase_dy    = 122.6/2.0;            # M. Zarecky, 1/11/16
-	my $vjacketCase_dz    = 800.0;                # length from beampipe
+	my $vjacketCase_dz    = 1400.0;                # length from beampipe
 	
 	
 	# SST Vacuum Jacket cases

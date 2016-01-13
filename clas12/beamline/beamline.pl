@@ -35,7 +35,7 @@ our %configuration = load_configuration($ARGV[0]);
 # Global pars - these should be read by the load_parameters from file or DB
 
 # General:
-our $inches    = 25.4;
+our $inches = 25.4;
 
 # Torus
 our $TorusZpos            = 151.855*$inches;     # center of the torus position
@@ -62,11 +62,11 @@ require "./torusBeamShield.pl";
 require "./afterTorusShielding.pl";
 
 # shielding blocks on the torus
-require "./torusShielding.pl";
+# require "./torusShielding.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("physicistsBaselineNoFT", "physicistsBaselineWithFT", "realityNoFT", "realityWithFT");
+my @allConfs = ("physicistsBaselineNoFT", "physicistsBaselineWithFT", "physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT");
 
 foreach my $conf ( @allConfs )
 {
@@ -92,7 +92,7 @@ foreach my $conf ( @allConfs )
 
 	# shielding downstream of the torus
 	# parameters: length of first part, length of second part, outer radius (mm), material
-	afterTorusShielding(350, 300.0, 195.4, "beamline_W");
+	afterTorusShielding(350.0, 300.0, 195.4, "beamline_W");
 }
 
 

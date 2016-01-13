@@ -12,10 +12,8 @@ our %configuration;
 # that parallel the beamline in the
 # space below drift chambers 
 
-# torus center z-position
-our $inches = 2.54;
-my $zPos   = 151.855*$inches;
-my $le_z   = 94.0*$inches/2.0;
+my $zPos   = 15.1855*$inches;
+my $le_z   = 9.40*$inches/2.0;
 
 # block params in cm
 my $bottom = 2;

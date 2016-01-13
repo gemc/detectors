@@ -8,9 +8,12 @@ sub tungstenCone()
 {
 	my $microgap = 0.1;
 
-	# original physicists design of the moeller shield
+	# original physicists design of the moeller shield:
 	# tapered tungsten with tapered aluminum vacuum pipe inside
-	if($configuration{"variation"} eq "physicistsBaselineNoFT")
+	# corrected physicists design of the moeller shield:
+	# tapered tungsten with straight aluminum beam inside
+
+	if($configuration{"variation"} eq "physicistsBaselineNoFT" || $configuration{"variation"} eq "physicistsCorrectedBaselineNoFT")
 	{
 		my $nplanes_tcone = 3;
 
@@ -22,6 +25,11 @@ sub tungstenCone()
 		my @iradius_tcone;
 		for(my $i = 0; $i <$nplanes_tcone; $i++) {$iradius_tcone[$i] = $oradius_vbeam[$i] + $microgap;}
 
+		if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT")
+		{
+			@iradius_tcone  = (        29.6,           29.6,         29.6 );
+			@oradius_tcone  = (        33.0,           90.0,         90.0 );
+		}
 	
 		my $pipeZstart    = 420.0;    # start of cone
 		my $taperedLength = 1390.0;   # length of tapered part
@@ -45,45 +53,6 @@ sub tungstenCone()
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 	}
-
-	
-	# corrected physicists design of the moeller shield
-	# tapered tungsten with straight aluminum beam inside
-	if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT")
-	{
-		my $nplanes_tcone = 3;
-		
-		# shield is a tapered pipe (G4 polycone)
-		my @iradius_tcone  = ( 29.4, 29.4,  29.4 );
-		my @oradius_tcone  = ( 33.0, 90.0,  90.0 );
-		
-		my @iradius_tcone;
-		for(my $i = 0; $i <$nplanes_tcone; $i++) {$iradius_tcone[$i] = $oradius_vbeam[$i] + $microgap;}
-		
-		
-		my $pipeZstart    = 420.0;    # start of cone
-		my $taperedLength = 1390.0;   # length of tapered part
-		my $totalLength   = 2267.1;   # total cone length
-		
-		my @z_plane_tcone  = ( $pipeZstart, $taperedLength, $totalLength );
-		
-		# Tungsten Cone
-		my %detector = init_det();
-		$detector{"name"}        = "tungstenConeNoFT";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "tungsten moller shield - no FT configuration";
-		$detector{"color"}       = "ffff9b";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes_tcone*counts";
-		for(my $i = 0; $i <$nplanes_tcone; $i++) {$dimen = $dimen ." $iradius_tcone[$i]*mm";}
-		for(my $i = 0; $i <$nplanes_tcone; $i++) {$dimen = $dimen ." $oradius_tcone[$i]*mm";}
-		for(my $i = 0; $i <$nplanes_tcone; $i++) {$dimen = $dimen ." $z_plane_tcone[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "beamline_W";
-		$detector{"style"}       = 1;
-		print_det(\%configuration, \%detector);
-	}
-	
 
 	
 	if($configuration{"variation"} eq "physicistsBaselineWithFT")
@@ -118,7 +87,7 @@ sub tungstenCone()
 		print_det(\%configuration, \%detector);
 	}
 
-	if($configuration{"variation"} eq "realityNoFT")
+	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" )
 	{
 		my $zConeStart           = 339.0;  # empirical so there are no overlaps
 		
@@ -154,10 +123,16 @@ sub tungstenCone()
 		$detector{"material"}    = "beamline_W";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
+
 		
 		
 		# Shield after cone - LEAD
 		my $coneTubeShieldLength = 801.8 / 2.0;
+		if($configuration{"variation"} eq "realityWithFT" )
+		{
+			$coneTubeShieldLength = 333.0 / 2.0;
+		}
+		
 		my $coneTubeIR           = 88.4/2;
 		my $coneTubeOR           = 241.1/2;
 		
@@ -210,14 +185,8 @@ sub tungstenCone()
 		$detector{"material"}    = "G4_STAINLESS-STEEL";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-		
 	}
 	
-	if($configuration{"variation"} eq "realityWithFT")
-	{
-	}
-
 	
 }
 

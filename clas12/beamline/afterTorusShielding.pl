@@ -15,6 +15,7 @@ sub afterTorusShielding()
 	# the length, thickness and material of the nose are parameters
 	
 	my($nose_l1, $nose_l2, $nose_or, $nose_material) = @_;
+	
 	my $microgap = 0.1;
 
 	my $gapTorusShield = 17.65*$inches;
@@ -28,7 +29,7 @@ sub afterTorusShielding()
 	my $downstreamShieldOR         = 350.0/2.0;
 	my $downstreamShieldIR         = $downstreamShieldOR - $downstreamShieldRThickness;
 	my $downstreamShieldLength     = 1000;
-	my $downstreamShieldZpos       = $torusZend + $downstreamShieldLength + $microgap + $gapTorusShield + $nose_l2;
+	my $downstreamShieldZpos       = $torusZend + $downstreamShieldLength + 2*$microgap + $nose_l1;
 
 	my %detector = init_det();
 	$detector{"name"}        = "downstreamShield";

@@ -100,7 +100,7 @@ sub torusFrontMount()
 		$detector{"mother"}      = "root";
 		$detector{"pos"}         = "0*mm 0.0*mm $nose2_z_start*mm";
 		$detector{"description"} = "mount to torus";
-		$detector{"color"}       = "55aabb";
+		$detector{"color"}       = "55ff55";
 		$detector{"type"}        = "Polycone";
 		my $dimen = "0.0*deg 360*deg $nplanes*counts";
 		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius_nose2[$i]*mm";}
@@ -118,7 +118,7 @@ sub torusFrontMount()
 		$detector{"mother"}      = "root";
 		$detector{"pos"}         = "0*mm 0.0*mm $nose1_z_start*mm";
 		$detector{"description"} = "beamline mount to torus mount";
-		$detector{"color"}       = "aaaaaa";
+		$detector{"color"}       = "ffff55";
 		$detector{"type"}        = "Polycone";
 		$dimen = "0.0*deg 360*deg $nplanes*counts";
 		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius_nose1[$i]*mm";}

@@ -46,7 +46,7 @@ require "./geometry.pl";
 define_ft_hits();
 define_banks();
 
-make_ft_shield();
+#make_ft_shield();
 make_ft_cal();
 make_ft_hodo();
 make_ft_trk();

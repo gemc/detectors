@@ -98,7 +98,7 @@ sub tungstenCone()
 		my $shieldIR1            = 59.5/2.0;
 		my $shieldIR2            = 79.5/2.0;
 		my $tgTheta              = $shieldIR2 / $totalShieldLength;
-		my $shieldOR1            = 65.2;
+		my $shieldOR1            = 65.2/2.0;
 		my $shieldOR3            = 180.9/2.0;
 		my $shieldOR2            = $shieldOR3 - $partialShieldLength*$tgTheta;
 		

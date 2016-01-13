@@ -32,7 +32,7 @@ my $torus_z   = 2663.; # position of the front face of the Torus ring (set the l
 # Define the number, dimensions and position of the crystals
 my $Nx = 22;                          # Number of crystals in horizontal directions
 my $Ny = 22;                          # Number of crystals in horizontal directions
-my $Cfront  =  1898.0;                # Position of the front face of the crystals
+my $Cfront  =  1897.8;                # Position of the front face of the crystals
 my $Cwidth  =    15.0;                # Crystal width in mm (side of the squared front face)
 my $Clength =   200.0;                # Crystal length in mm
 my $VM2000  =   0.130;                # Thickness of the VM2000 wrapping
@@ -88,7 +88,7 @@ my $Bmtb_hear_D0 = 0.;                                       # displacement of t
 my @Bmtb_angle = ( 30., 150., 210., 330.);                   # angles of the motherboard extensions
 
 # Define LED plate geometry parameters
-my $LED_TN =   5.;                                           # half thickness of the pcb and pastic plate hosting the LEDs
+my $LED_TN =   5.6;                                          # half thickness of the pcb and pastic plate hosting the LEDs
 my $LED_IR = $Fdisk_IR;                                      # inner radius of the pcb and pastic plate hosting the LEDs
 my $LED_OR = $Fdisk_OR;                                      # outer radius of the pcb and pastic plate hosting the LEDs
 my $LED_Z  = $Fdisk_Z - $Fdisk_TN - $LED_TN - 0.1;           # z position of the pcb and pastic plate hosting the LEDs
@@ -103,7 +103,7 @@ my $BLine_BG = 1810.;                                        # z location of the
 # back tungsten cup
 my $BCup_tang = 0.0962;                                      # tangent of 5.5 degrees
 my $BCup_TN = 5.;                                            # thickness of the flat part of the cup
-my $BCup_ZM = $Bmtb_Z+$Bmtb_TN+0.1+42.2;                     # z of the downstream face of the cup
+my $BCup_ZM = $Bmtb_Z+$Bmtb_TN+0.1+43.4;                     # z of the downstream face of the cup
 my $BCup_Z1 = $Bmtb_Z+$Bmtb_TN+0.1+1;                        # z of the side close to the motherboard (downstream)
 my $BCup_Z2 = $Bmtb_Z-$Bmtb_TN-0.1-1;                        # z of the side close to the motherboard (upstream)
 my $BCup_ZE = $BCup_ZM+$BCup_TN;                             # z of the downstream face of the cup
@@ -120,41 +120,49 @@ my @BCup_dangle = ((90.-$BCup_iangle[0])*2., (180.-$BCup_iangle[1])*2., (90.-$BC
 
 my $BL_IR=30;
 my $BL_TN=10;
+my $TPlate_TN= 20.; # thickness of the tungsten plate on the back of the FT-Cal
 
 
 
 ###########################################################################################
 # OUTER INSULATION
-my $O_Ins_TN = 20.;
-my $O_Ins_Z1 = $Fdisk_Z - $Fdisk_TN - 22.3 - $O_Ins_TN;
-my $O_Ins_Z2 = $O_Ins_Z1 + $O_Ins_TN;
-my $O_Ins_Z3 = $BCup_ZB;
-my $O_Ins_Z4 = $BCup_Z2;
-my $O_Ins_Z5 = $BCup_Z1;
-my $O_Ins_Z6 = $BCup_ZM;
-my $O_Ins_Z7 = $BCup_ZE;
-my $O_Ins_Z8 = $BCup_ZE + 0.1;
-my $O_Ins_Z9 = $O_Ins_Z8 + $O_Ins_TN;
+my $O_Ins_TN  = 15.-0.01;
+my $O_Ins_Z1  = $Fdisk_Z - $Fdisk_TN - $LED_TN*2 - 10.8 - $O_Ins_TN;  #1849.6
+my $O_Ins_Z2  = $O_Ins_Z1 + $O_Ins_TN;
+my $O_Ins_Z3  = $BCup_ZB;
+my $O_Ins_Z4  = $BCup_Z2;
+my $O_Ins_Z5  = $BCup_Z1;
+my $O_Ins_Z6  = $BCup_ZM;
+my $O_Ins_Z7  = $BCup_ZE;
+my $O_Ins_Z8  = $BCup_ZE + 0.01;
+my $O_Ins_Z9  = $O_Ins_Z8 + $O_Ins_TN;
+my $O_Ins_Z10 = $O_Ins_Z9;
+my $O_Ins_Z11 = $O_Ins_Z10 + $TPlate_TN;
 
-my $O_Ins_I1 = $BL_IR + $BL_TN + 0.1;
-my $O_Ins_I2 = $O_Ins_Z2*$BCup_tang +0.1;
-my $O_Ins_I3 = $O_Ins_Z3*$BCup_tang +0.1;
-my $O_Ins_I4 = $O_Ins_Z4*$BCup_tang +0.1;
-my $O_Ins_I5 = $O_Ins_Z5*$BCup_tang +0.1;
-my $O_Ins_I6 = $O_Ins_Z6*$BCup_tang +0.1;
-my $O_Ins_I7 = $O_Ins_Z7*$BCup_tang +0.1;
-my $O_Ins_I8 = $O_Ins_Z8*$BCup_tang +0.1;
-my $O_Ins_I9 = $O_Ins_I1;
 
-my $O_Ins_O1 = $O_Ins_Z1*$BCup_tang +0.1 + $O_Ins_TN;
-my $O_Ins_O2 = $O_Ins_I2 + $O_Ins_TN; 
-my $O_Ins_O3 = $O_Ins_I3 + $O_Ins_TN; 
-my $O_Ins_O4 = $O_Ins_I4 + $O_Ins_TN; 
-my $O_Ins_O5 = $O_Ins_I5 + $O_Ins_TN; 
-my $O_Ins_O6 = $O_Ins_I6 + $O_Ins_TN; 
-my $O_Ins_O7 = $O_Ins_I7 + $O_Ins_TN; 
-my $O_Ins_O8 = $O_Ins_I8 + $O_Ins_TN; 
-my $O_Ins_O9 = $O_Ins_Z9*$BCup_tang +0.1 + $O_Ins_TN; 
+my $O_Ins_I1  = $BL_IR + $BL_TN + 0.01;
+my $O_Ins_I2  = $O_Ins_Z2*$BCup_tang +0.01;
+my $O_Ins_I3  = $O_Ins_Z3*$BCup_tang +0.01;
+my $O_Ins_I4  = $O_Ins_Z4*$BCup_tang +0.01;
+my $O_Ins_I5  = $O_Ins_Z5*$BCup_tang +0.01;
+my $O_Ins_I6  = $O_Ins_Z6*$BCup_tang +0.01;
+my $O_Ins_I7  = $O_Ins_Z7*$BCup_tang +0.01;
+my $O_Ins_I8  = $O_Ins_Z8*$BCup_tang +0.01;
+my $O_Ins_I9  = $O_Ins_I1;
+my $O_Ins_I10 = $O_Ins_Z10*$BCup_tang +0.01;
+my $O_Ins_I11 = $O_Ins_I10;
+
+my $O_Ins_O1  = $O_Ins_Z1*$BCup_tang +0.01 + $O_Ins_TN;
+my $O_Ins_O2  = $O_Ins_I2 + $O_Ins_TN;
+my $O_Ins_O3  = $O_Ins_I3 + $O_Ins_TN;
+my $O_Ins_O4  = $O_Ins_I4 + $O_Ins_TN;
+my $O_Ins_O5  = $O_Ins_I5 + $O_Ins_TN;
+my $O_Ins_O6  = $O_Ins_I6 + $O_Ins_TN;
+my $O_Ins_O7  = $O_Ins_I7 + $O_Ins_TN;
+my $O_Ins_O8  = $O_Ins_I8 + $O_Ins_TN;
+my $O_Ins_O9  = $O_Ins_Z9*$BCup_tang +0.01 + $O_Ins_TN;
+my $O_Ins_O10 = $O_Ins_I10 + $O_Ins_TN;
+my $O_Ins_O11 = $O_Ins_I11 + $O_Ins_TN;
 
 $O_Ins_I4 = $O_Ins_Z4*$BCup_tang +0.5;
 $O_Ins_I5 = $O_Ins_Z5*$BCup_tang +0.5;
@@ -168,8 +176,8 @@ my $I_Ins_Z  = ($BCup_ZE + $O_Ins_Z2)/2.;
 
 ###########################################################################################
 # OUTER SHELL
-my $O_Shell_TN = 1.;
-my $O_Shell_Z1 = $O_Ins_Z1-$O_Shell_TN-0.1;
+my $O_Shell_TN = 2.-0.01;
+my $O_Shell_Z1 = $O_Ins_Z1-$O_Shell_TN-0.01;
 my $O_Shell_Z2 = $O_Shell_Z1+$O_Shell_TN;
 my $O_Shell_Z3 = $O_Ins_Z3;
 my $O_Shell_Z4 = $BCup_Z2;
@@ -178,22 +186,26 @@ my $O_Shell_Z6 = $O_Ins_Z6 ;
 my $O_Shell_Z7 = $O_Ins_Z7 ;
 my $O_Shell_Z8 = $O_Ins_Z8 ;
 my $O_Shell_Z9 = $O_Ins_Z9 ;
-my $O_Shell_Z10 = $O_Ins_Z9 + 0.1;
-my $O_Shell_Z11= $O_Shell_Z9+$O_Shell_TN;
+my $O_Shell_Z10 = $O_Ins_Z10;
+my $O_Shell_Z11 = $O_Ins_Z11 + 0.01;
+my $O_Shell_Z12 = $O_Shell_Z11;
+my $O_Shell_Z13 = $O_Shell_Z12 + $O_Shell_TN;
 
 my $O_Shell_I1 = $O_Ins_I1;
-my $O_Shell_I2 = $O_Shell_Z2*$BCup_tang + $O_Ins_TN + 0.1;
-my $O_Shell_I3 = $O_Shell_Z3*$BCup_tang + $O_Ins_TN + 0.1;
-my $O_Shell_I4 = $O_Shell_Z4*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I5 = $O_Shell_Z5*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I6 = $O_Shell_Z6*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I7 = $O_Shell_Z7*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I8 = $O_Shell_Z8*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I9 = $O_Shell_Z9*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I10 = $O_Shell_Z10*$BCup_tang + $O_Ins_TN + 0.1; 
-my $O_Shell_I11 = $O_Ins_I1; 
+my $O_Shell_I2 = $O_Shell_Z2*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I3 = $O_Shell_Z3*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I4 = $O_Shell_Z4*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I5 = $O_Shell_Z5*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I6 = $O_Shell_Z6*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I7 = $O_Shell_Z7*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I8 = $O_Shell_Z8*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I9 = $O_Shell_Z9*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I10 = $O_Shell_Z10*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I11 = $O_Shell_Z11*$BCup_tang + $O_Ins_TN + 0.01;
+my $O_Shell_I12 = $O_Shell_I11 - $O_Ins_TN -5.;
+my $O_Shell_I13 = $O_Shell_I12;
 
-my $O_Shell_O1 = $O_Shell_Z1*$BCup_tang + $O_Ins_TN + 0.1 + $O_Shell_TN;
+my $O_Shell_O1 = $O_Shell_Z1*$BCup_tang + $O_Ins_TN + 0.01 + $O_Shell_TN;
 my $O_Shell_O2 = $O_Shell_I2 + $O_Shell_TN; 
 my $O_Shell_O3 = $O_Shell_I3 + $O_Shell_TN; 
 my $O_Shell_O4 = $O_Shell_I4 + $O_Shell_TN; 
@@ -203,7 +215,9 @@ my $O_Shell_O7 = $O_Shell_I7 + $O_Shell_TN;
 my $O_Shell_O8 = $O_Shell_I8 + $O_Shell_TN; 
 my $O_Shell_O9 = $O_Shell_I9 + $O_Shell_TN; 
 my $O_Shell_O10 = $O_Shell_I10 + $O_Shell_TN; 
-my $O_Shell_O11 = $O_Shell_Z11*$BCup_tang + $O_Ins_TN + 0.1 + $O_Shell_TN; 
+my $O_Shell_O11 = $O_Shell_I11 + $O_Shell_TN;
+my $O_Shell_O12 = $O_Shell_O11;
+my $O_Shell_O13 = $O_Shell_O12;
 
 $O_Shell_I4 = $O_Shell_Z4*$BCup_tang + $O_Ins_TN + 0.7; 
 $O_Shell_I5 = $O_Shell_Z5*$BCup_tang + $O_Ins_TN + 0.7; 
@@ -216,16 +230,16 @@ my $Tube_OR         =  75.0;
 my $back_flange_OR  = 126.0;
 my $front_flange_OR = 148.0;
 my $flange_TN       =  15.0;
-my $TPlate_TN= 20.; # thickness of the tungsten plate on the back of the FT-Cal
 
-	my $TPlate_Z1  = $O_Shell_Z11 + 0.1;
-	my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN;
 
-        my $BLine_MR  = $BLine_IR + $BLine_TN;    # outer radius in the calorimeter section
+my $TPlate_Z1  = $O_Ins_Z9 + 0.01;
+my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN-0.01;
+
+    my $BLine_MR  = $BLine_IR + $BLine_TN;    # outer radius in the calorimeter section
 	my $BLine_Z1  = $BLine_BG;
-	my $BLine_Z2  = $O_Shell_Z1 - 0.1;
-	my $BLine_Z3  = $TPlate_Z2  + 0.1;
-	my $BLine_Z4  = $BLine_Z3   + 18.;
+	my $BLine_Z2  = $O_Shell_Z1 - 0.01;
+	my $BLine_Z3  = $TPlate_Z2  + 0.01;
+	my $BLine_Z4  = $BLine_Z3   - 0.01 + 17.9;
 
 
 ###########################################################################################
@@ -305,7 +319,7 @@ my $ftm_starting = ($starting_point[1] + $starting_point[0])/2.0;
 #  FTM FEE Boxes
 my $FEE_Disk_OR = 200.;
 my $FEE_Disk_LN = 2.;
-my $FEE_ARM_LN  = 530./2.;
+my $FEE_ARM_LN  = 530./2.-80;
 my $FEE_ARM_WD  = 90./2.;
 
 # size of crate
@@ -336,10 +350,14 @@ my @oradius_FT_CRY = (          $Odisk_OR,          $Odisk_OR);
 
 ###########################################################################################
 # Define FTCAL Mother Volume
-my $nplanes_FT = 7;
-my @z_plane_FT = ($BLine_BG, $O_Shell_Z1, $O_Shell_Z1, 2098., 2276., 2276., $torus_z);
-my @oradius_FT = ($BLine_FR,   $BLine_FR,        700.,  700.,  238.,  149., $back_flange_OR);
-my @iradius_FT = (       0.,          0.,          0.,     0.,    0.,   0.,       0.);
+#my $nplanes_FT = 7;
+#my @z_plane_FT = ($BLine_BG, $O_Shell_Z1, $O_Shell_Z1, 2098., 2276., 2276., $torus_z);
+#my @oradius_FT = ($BLine_FR,   $BLine_FR,        700.,  700.,  238.,  149., $back_flange_OR);
+#my @iradius_FT = (       0.,          0.,          0.,     0.,    0.,   0.,       0.);
+my $nplanes_FT = 5;
+my @z_plane_FT = ($BLine_BG, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z4);
+my @oradius_FT = ($BLine_FR,   $BLine_FR,        700.,      700.,      238.);
+my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
 ###########################################################################################
 
 
@@ -442,7 +460,7 @@ sub make_ft_cal_crystals
 				$dY=$Swidth/2.0;
 				$dZ=$Slength/2.0;
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
-				$detector{"material"}    = "peek";
+				$detector{"material"}    = "ft_peek";
 				$detector{"style"}       = "1" ;
 				print_det(\%configuration, \%detector);
 				
@@ -502,7 +520,7 @@ sub make_ft_cal_crystals
 				$dY=$Fwidth/2.0;
 				$dZ=$Flength/2.0;
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
-				$detector{"material"}    = "peek";
+				$detector{"material"}    = "ft_peek";
 				$detector{"style"}       = "1" ;
 				print_det(\%configuration, \%detector);
 			}
@@ -681,7 +699,7 @@ sub make_ft_cal_led
 	$detector{"color"}       = "333333";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$LED_IR*mm $LED_OR*mm $LED_TN*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "G4_TEFLON";
+	$detector{"material"}    = "ft_peek";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 }
@@ -692,10 +710,10 @@ sub make_ft_cal_led
 
 sub make_ft_cal_tcup
 {
-	my $nplanes_TCup = 4;
-	my @z_plane_TCup = ( $BCup_Z1, $BCup_ZM, $BCup_ZM, $BCup_ZE);
-	my @oradius_TCup = ( $BCup_OR1, $BCup_ORM, $BCup_ORM, $BCup_ORE,);
-	my @iradius_TCup = ( $BCup_IRM, $BCup_IRM, $I_Ins_OR, $I_Ins_OR);
+	my $nplanes_TCup = 2;
+	my @z_plane_TCup = ( $BCup_Z1, $BCup_ZM);
+	my @oradius_TCup = ( $BCup_OR1, $BCup_ORM);
+	my @iradius_TCup = ( $BCup_IRM, $BCup_IRM);
 	my %detector = init_det();
 	$detector{"name"}        = "ft_cal_tcup_back";
 	$detector{"mother"}      = "ft_cal";
@@ -707,9 +725,28 @@ sub make_ft_cal_tcup
 	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $oradius_TCup[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $z_plane_TCup[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "ft_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
+    
+    $nplanes_TCup = 2;
+    @z_plane_TCup = ( $BCup_ZM, $BCup_ZE);
+    @oradius_TCup = ( $BCup_ORM, $BCup_ORE,);
+    @iradius_TCup = ( $I_Ins_OR, $I_Ins_OR);
+    %detector = init_det();
+    $detector{"name"}        = "ft_cal_tcup_plate";
+    $detector{"mother"}      = "ft_cal";
+    $detector{"description"} = "stainless steel plate at the back of the ft";
+    $detector{"color"}       = "ccff00";
+    $detector{"type"}        = "Polycone";
+    my $dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
+    for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
+    for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $oradius_TCup[$i]*mm";}
+    for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $z_plane_TCup[$i]*mm";}
+    $detector{"dimensions"}  = $dimen;
+    $detector{"material"}    = "G4_STAINLESS-STEEL";
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 
 	$nplanes_TCup = 2;
 	@z_plane_TCup = ( $BCup_ZB,  $BCup_Z2 );
@@ -726,7 +763,7 @@ sub make_ft_cal_tcup
 	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $oradius_TCup[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $z_plane_TCup[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "ft_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
  
@@ -750,7 +787,7 @@ sub make_ft_cal_tcup
 		for(my $i = 0; $i <$nplanes_TCup; $i++) { $dimen = $dimen ." $oradius_TCup[$i]*mm";}
 		for(my $i = 0; $i <$nplanes_TCup; $i++) { $dimen = $dimen ." $z_plane_TCup[$i]*mm";}
 		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "G4_W";
+		$detector{"material"}    = "ft_W";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 	}
@@ -794,10 +831,10 @@ sub make_ft_cal_insulation
 	print_det(\%configuration, \%detector);
 
 	# outer b
-	$nplanes_O_Ins = 6;
-	@z_plane_O_Ins = ($O_Ins_Z5, $O_Ins_Z6, $O_Ins_Z7, $O_Ins_Z8, $O_Ins_Z8, $O_Ins_Z9);
-	@iradius_O_Ins = ($O_Ins_I5, $O_Ins_I6, $O_Ins_I7, $O_Ins_I8, $O_Ins_I9, $O_Ins_I9);
-	@oradius_O_Ins = ($O_Ins_O5, $O_Ins_O6, $O_Ins_O7, $O_Ins_O8, $O_Ins_O8, $O_Ins_O9);
+	$nplanes_O_Ins = 8;
+	@z_plane_O_Ins = ($O_Ins_Z5, $O_Ins_Z6, $O_Ins_Z7, $O_Ins_Z8, $O_Ins_Z8, $O_Ins_Z9, $O_Ins_Z10, $O_Ins_Z11);
+	@iradius_O_Ins = ($O_Ins_I5, $O_Ins_I6, $O_Ins_I7, $O_Ins_I8, $O_Ins_I9, $O_Ins_I9, $O_Ins_I10, $O_Ins_I11);
+	@oradius_O_Ins = ($O_Ins_O5, $O_Ins_O6, $O_Ins_O7, $O_Ins_O8, $O_Ins_O8, $O_Ins_O9, $O_Ins_O10, $O_Ins_O11);
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_outer_ins_b";
 	$detector{"mother"}      = "ft_cal";
@@ -865,10 +902,10 @@ sub make_ft_cal_shell
 	print_det(\%configuration, \%detector);
 
 	# outer back
-	$nplanes_O_Shell = 8;
-	@z_plane_O_Shell = ($O_Shell_Z5, $O_Shell_Z6, $O_Shell_Z7, $O_Shell_Z8, $O_Shell_Z9, $O_Shell_Z10, $O_Shell_Z10, $O_Shell_Z11);
-	@iradius_O_Shell = ($O_Shell_I5, $O_Shell_I6, $O_Shell_I7, $O_Shell_I8, $O_Shell_I9, $O_Shell_I10, $O_Shell_I11, $O_Shell_I11);
-	@oradius_O_Shell = ($O_Shell_O5, $O_Shell_O6, $O_Shell_O7, $O_Shell_O8, $O_Shell_O9, $O_Shell_O10, $O_Shell_O10, $O_Shell_O11);
+	$nplanes_O_Shell = 9;
+	@z_plane_O_Shell = ($O_Shell_Z5, $O_Shell_Z6, $O_Shell_Z7, $O_Shell_Z8, $O_Shell_Z9, $O_Shell_Z10, $O_Shell_Z11, $O_Shell_Z12, $O_Shell_Z13);
+	@iradius_O_Shell = ($O_Shell_I5, $O_Shell_I6, $O_Shell_I7, $O_Shell_I8, $O_Shell_I9, $O_Shell_I10, $O_Shell_I11, $O_Shell_I12, $O_Shell_I13);
+	@oradius_O_Shell = ($O_Shell_O5, $O_Shell_O6, $O_Shell_O7, $O_Shell_O8, $O_Shell_O9, $O_Shell_O10, $O_Shell_O11, $O_Shell_O12, $O_Shell_O13);
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_outer_shell_b";
 	$detector{"mother"}      = "ft_cal";
@@ -881,8 +918,8 @@ sub make_ft_cal_shell
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $z_plane_O_Shell[$i]*mm";}
 	$detector{"dimensions"}  = $dimen; 
 	$detector{"material"}    = "carbonFiber";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 
 	# outer medium
 	$nplanes_O_Shell = 2;
@@ -931,14 +968,14 @@ sub make_ft_cal_beamline
 	for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "ft_W";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    print_det(\%configuration, \%detector);
 
 
 
-my $TPlate_IR= $BLine_IR + $BLine_TN;
-my $TPlate_OR= $BCup_ORE;
+    my $TPlate_IR= $BLine_IR + $BLine_TN;
+    my $TPlate_OR= $TPlate_Z1*$BCup_tang;
 
 	my $nplanes_TPlate = 2;
 	my @z_plane_TPlate = ($TPlate_Z1, $TPlate_Z2);  
@@ -957,7 +994,7 @@ my $TPlate_OR= $BCup_ORE;
 	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $oradius_TPlate[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $z_plane_TPlate[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "ft_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -969,8 +1006,8 @@ my $TPlate_OR= $BCup_ORE;
 	my $nplanes_TCollar = 2;
 	my @z_plane_TCollar = ($BLine_Z1, $BLine_Z2);  
 	my @oradius_TCollar = ($BLine_FR, $BLine_FR);  
-	my @iradius_TCollar = ($BLine_MR, $BLine_MR);  
-	%detector = init_det();
+    my @iradius_TCollar = ($BLine_MR, $BLine_MR);
+    %detector = init_det();
 	$detector{"name"}        = "ft_cal_collar";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft beam collar";
@@ -983,7 +1020,7 @@ my $TPlate_OR= $BCup_ORE;
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    print_det(\%configuration, \%detector);
 
 	# Define the tube between Calorimeter and Torus Inner Ring
 	my $Tube_IR         =  $BLine_IR;
@@ -1011,7 +1048,7 @@ my $TPlate_OR= $BCup_ORE;
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    #	print_det(\%configuration, \%detector);
 
 	
 	# Define Aluminum Beam Pipe and Vacuum
@@ -1031,7 +1068,7 @@ my $TPlate_OR= $BCup_ORE;
 	$detector{"dimensions"}  = "$AL_BLine_IR*mm $AL_BLine_OR*mm $AL_BLine_LT*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    #	print_det(\%configuration, \%detector);
 	
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_al_bline_vacuum";
@@ -1043,7 +1080,7 @@ my $TPlate_OR= $BCup_ORE;
 	$detector{"dimensions"}  = "0.0*mm $AL_BLine_IR*mm $AL_BLine_LT*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "G4_Galactic";
 	$detector{"visible"}     = 0;
-	print_det(\%configuration, \%detector);
+    #	print_det(\%configuration, \%detector);
 }
 
 
@@ -1059,8 +1096,8 @@ sub make_ft_cal
 	make_ft_cal_tcup();
 	make_ft_cal_insulation();
 	make_ft_cal_shell();
-	make_ft_cal_beamline();
-	make_ft_moellerdisk();
+    make_ft_cal_beamline();
+    make_ft_moellerdisk();
 }
 
 
@@ -1276,7 +1313,7 @@ sub place_pcboard
 	if($type == 2) 
 	{
 	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz;
-		$vname       = "ft_trok_pcboard_Y_L";
+		$vname       = "ft_trk_pcboard_Y_L";
 		$descriptio  = "pc board Y, layer $layer_no";
         }
     
@@ -1543,7 +1580,7 @@ sub make_ft_trk_fee_boxes
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    #	print_det(\%configuration, \%detector);
 
         # create arms
 	for ( my $i = 0; $i < 3; $i++ ) {
@@ -1561,13 +1598,13 @@ sub make_ft_trk_fee_boxes
 		$detector{"dimensions"}  = "$FEE_ARM_LN*mm $FEE_ARM_WD*mm $FEE_Disk_LN*mm";
 		$detector{"material"}    = "G4_Al";
 		$detector{"style"}       = 1;
-		print_det(\%configuration, \%detector);
+        #		print_det(\%configuration, \%detector);
 
 
 		my $FEE_R = ($FEE_ARM_LN - $FEE_PVT_HT)*cos($FEE_polar_angle/$degrad) + ($FEE_PVT_LN+$FEE_Disk_LN+0.2)*sin($FEE_polar_angle/$degrad);
 		my $FEE_X = $FEE_ARM_X + $FEE_R*cos($FEE_azimuthal_angle[$i]/$degrad);
 		my $FEE_Y = $FEE_ARM_Y - $FEE_R*sin($FEE_azimuthal_angle[$i]/$degrad);
-		my $FEE_Z=  $FEE_ARM_Z + ($FEE_ARM_LN - $FEE_PVT_HT)*sin($FEE_polar_angle/$degrad) - ($FEE_PVT_LN+$FEE_Disk_LN+0.2)*cos($FEE_polar_angle/$degrad);
+        my $FEE_Z=  $FEE_ARM_Z + ($FEE_ARM_LN - $FEE_PVT_HT)*sin($FEE_polar_angle/$degrad) - ($FEE_PVT_LN+$FEE_Disk_LN+0.2)*cos($FEE_polar_angle/$degrad);
 		%detector = init_det();
 		$detector{"name"}        = "ft_trk_fee_pvt_box_$i";
 		$detector{"mother"}      = "ft_cal";
@@ -1585,7 +1622,7 @@ sub make_ft_trk_fee_boxes
 		$FEE_R = ($FEE_ARM_LN - $FEE_HT)*cos($FEE_polar_angle/$degrad) + ($FEE_LN+$FEE_Disk_LN+0.2)*sin($FEE_polar_angle/$degrad);
 		$FEE_X = $FEE_ARM_X + $FEE_R*cos($FEE_azimuthal_angle[$i]/$degrad);
 		$FEE_Y = $FEE_ARM_Y - $FEE_R*sin($FEE_azimuthal_angle[$i]/$degrad);
-		$FEE_Z=  $FEE_ARM_Z + ($FEE_ARM_LN - $FEE_HT)*sin($FEE_polar_angle/$degrad) - ($FEE_LN+$FEE_Disk_LN+0.2)*cos($FEE_polar_angle/$degrad);
+		$FEE_Z=  $FEE_ARM_Z + ($FEE_ARM_LN - $FEE_HT)*sin($FEE_polar_angle/$degrad) - ($FEE_LN+$FEE_Disk_LN+0.2)*cos($FEE_polar_angle/$degrad)-50.;
 		my %detector = init_det();
 		$detector{"name"}        = "ft_trk_fee_box_$i";
 		#    $detector{"mother"}      = "ft_trk_fee_pvt_box_$i";
@@ -1595,7 +1632,8 @@ sub make_ft_trk_fee_boxes
 		$detector{"type"}        = "Box";
 		$detector{"pos"}         = "$FEE_X*mm $FEE_Y*mm $FEE_Z*mm";
 		#    $detector{"pos"}         = "0.0*mm 0.0*mm 0.0*mm";
-		$detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg $FEE_polar_angle*deg 0*deg ";
+        #		$detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg $FEE_polar_angle*deg 0*deg ";
+        $detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg 0*deg 0*deg ";
 		#    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
 		$detector{"dimensions"}  = "$FEE_HT*mm $FEE_WD*mm $FEE_LN*mm";
 		$detector{"material"}    = "G4_Al";

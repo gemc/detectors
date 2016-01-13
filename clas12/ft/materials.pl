@@ -42,7 +42,7 @@ sub print_materials
 	
 	# peek
 	my %mat = init_mat();
-	$mat{"name"}          = "peek";
+	$mat{"name"}          = "ft_peek";
 	$mat{"description"}   = "ft peek plastic 1.31 g/cm3";
 	$mat{"density"}       = "1.31";
 	$mat{"ncomponents"}   = "3";
@@ -50,7 +50,17 @@ sub print_materials
 	print_mat(\%configuration, \%mat);
 
 	
-	# epoxy
+    # ft_Tungsten
+    %mat = init_mat();
+    $mat{"name"}          = "ft_W";
+    $mat{"description"}   = "ft tungsten alloy 17.6 g/cm3";
+    $mat{"density"}       = "17.6";
+    $mat{"ncomponents"}   = "2";
+    $mat{"components"}    = "G4_Fe 0.08 G4_W 0.92";
+    print_mat(\%configuration, \%mat);
+
+    
+    # epoxy
 	%mat = init_mat();
 	$mat{"name"}          = "epoxy";
 	$mat{"description"}   = "epoxy glue 1.16 g/cm3";

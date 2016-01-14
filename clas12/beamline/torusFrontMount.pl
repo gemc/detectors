@@ -70,7 +70,7 @@ sub torusFrontMount()
 	
 	
 	
-	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT")
+	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed")
 	{
 		# engineering design of the mounts to connect
 		# both FT and noFT configurations to the torus
@@ -81,6 +81,12 @@ sub torusFrontMount()
 		my $nplanes = 4;
 		
 		# These measurements come from STP file
+        my $noseShieldIR       = 30.0;
+        my $noseShieldOR       = 40.0;
+        my $noseShieldLength   = $mountTotalLength/2.;  # empirical
+        my $noseShield_z_start = $torusZstart - $noseShieldLength;
+        
+
 		my @iradius_nose1  = (  55.8,  55.8,  55.8,  55.8 );
 		my @oradius_nose1  = ( 100.0, 100.0,  63.5,  63.5 );
 		my @nose1_z        = (   0.0,  25.0,  25.0, 433.0 );
@@ -90,9 +96,10 @@ sub torusFrontMount()
 		my @nose2_z        = (   0.0, 382.3, 382.3, 395.0 );
 		
 		
-		my $nose1_nose2_gap = 95.4;
+        #		my $nose1_nose2_gap = 95.4;
+        my $nose1_z_start   = $torusZstart - $mountTotalLength;
 		my $nose2_z_start   = $torusZstart - $nose2_z[3];
-		my $nose1_z_start   = $nose2_z_start - $nose1_nose2_gap;
+		
 		
 		
 		# First mount, to torus
@@ -133,11 +140,6 @@ sub torusFrontMount()
 		
 		
 		# inner shield made of tungsten
-		my $noseShieldIR       = 30.0;
-		my $noseShieldOR       = 40.0;
-		my $noseShieldLength   = 450.0/2.0;  # empirical
-		my $noseShield_z_start = $torusZstart - $noseShieldLength;
-
 		%detector = init_det();
 		$detector{"name"}        = "mountInnerShielding";
 		$detector{"mother"}      = "root";

@@ -742,7 +742,7 @@ sub make_ft_cal_tcup
     $detector{"description"} = "stainless steel plate at the back of the ft";
     $detector{"color"}       = "ccff00";
     $detector{"type"}        = "Polycone";
-    my $dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
+    $dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
     for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
     for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $oradius_TCup[$i]*mm";}
     for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $z_plane_TCup[$i]*mm";}

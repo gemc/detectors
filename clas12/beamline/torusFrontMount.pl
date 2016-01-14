@@ -151,6 +151,13 @@ sub torusFrontMount()
 
 	}
 	
+	if($configuration{"variation"} eq "realityWithFT")
+	{
+	}
+
+	if($configuration{"variation"} eq "realityWithFTNotUsed")
+	{
+	}
 	
 	
 }

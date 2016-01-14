@@ -66,7 +66,7 @@ require "./afterTorusShielding.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("physicistsBaselineNoFT", "physicistsBaselineWithFT", "physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT");
+my @allConfs = ("physicistsBaselineNoFT", "physicistsBaselineWithFT", "physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTNotUsed");
 
 foreach my $conf ( @allConfs )
 {

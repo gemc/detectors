@@ -5,9 +5,11 @@ our %configuration;
 
 our $TorusZpos;
 our $SteelFrameLength;
+our $mountTotalLength;            # total length of the torus Mount
 
 my $torusZstart = $TorusZpos - $SteelFrameLength;
 
+my $microgap = 0.1;
 
 sub vacuumLine()
 {
@@ -17,17 +19,18 @@ sub vacuumLine()
 	{
 		# up to the torus the beampipe is 11mm thick.
 		# inside the torus is 3mm thick
-		my $nplanes_vbeam = 5;
+		my $nplanes_vbeam = 6;
 	
-		my @iradius_vbeam  = ( 23.0, 30.0, 30.0, 37.0, 37.0 );
-		my @oradius_vbeam  = ( 24.0, 41.0, 41.0, 40.0, 40.0 );
+		my @iradius_vbeam  = ( 23.0, 30.0, 27.4, 27.4, 27.4, 27.4 );
+		my @oradius_vbeam  = ( 24.0, 41.0, 29.4, 29.4, 29.4, 29.4 );
+		
 		
 		my $pipeZstart    = 420.0;    # start of cone
-		my $taperedLength = 1390.0;   # start of cone + length of tapered part
-		
 		my $totalLength  = 10000.0;   # start of cone + total beamline semi-length
 		
-		my @z_plane_vbeam  = ( $pipeZstart, $taperedLength, $torusZstart, $torusZstart, $totalLength );
+		my $totalLengthTapered   = $TorusZpos - $SteelFrameLength - $mountTotalLength - $microgap;   # total tapered length
+
+		my @z_plane_vbeam  = ( $pipeZstart, $totalLengthTapered, $totalLengthTapered, $torusZstart, $torusZstart, $totalLength );
 		
 		
 		# aluminum pipe
@@ -65,7 +68,7 @@ sub vacuumLine()
 	
 	# corrected physicists design vacuum line
 	# straight aluminum pipe with vacucum inside
-	if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT" || $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT")
+	if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT" || $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed")
 	{
 		# up to the torus the beampipe is 11mm thick.
 		# inside the torus is 3mm thick
@@ -74,11 +77,12 @@ sub vacuumLine()
 		my $oradius_vbeam  =  29.4;
 		
 		my $totalLength  = 5000.0;                   # total beamline semi-length
-		my $pipeZstart    = 420.0 + $totalLength;    # start of cone
-        
-        if( $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT")
+		my $pipeZstart    = 420.0 + $totalLength;    # start of pipe
+
+		
+        if( $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed")
         {
-             $pipeZstart    = 339.0 + $totalLength;
+			  $pipeZstart  = 433.9 + $totalLength;     # htcc starts at 384 with ID 60.96
         }
         
 		

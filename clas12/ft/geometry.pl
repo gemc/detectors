@@ -98,7 +98,9 @@ my $BLine_IR = 30.;                                          # pipe inner radius
 my $BLine_TN = 10.;                                          # pipe thickness
 my $BLine_FR = 59.;                                          # radius in the front part, connecting to moller shield
 my $BLine_OR = 100.;                                         # radius of the back flange
-my $BLine_BG = 1810.;                                        # z location of the beginning of the beamline (to be matched to moller shield)
+my $BLine_BG = 1644.7;                                       # z location of the beginning of the beamline (to be matched to moller shield)
+my $BLine_ML = 1760.0;                                       # z location of the end of the Moller shield
+
 
 # back tungsten cup
 my $BCup_tang = 0.0962;                                      # tangent of 5.5 degrees
@@ -237,9 +239,10 @@ my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN-0.01;
 
     my $BLine_MR  = $BLine_IR + $BLine_TN;    # outer radius in the calorimeter section
 	my $BLine_Z1  = $BLine_BG;
-	my $BLine_Z2  = $O_Shell_Z1 - 0.01;
-	my $BLine_Z3  = $TPlate_Z2  + 0.01;
-	my $BLine_Z4  = $BLine_Z3   - 0.01 + 17.9;
+    my $BLine_Z2  = $BLine_ML   + 0.2;
+	my $BLine_Z3  = $O_Shell_Z1 - 0.01;
+	my $BLine_Z4  = $TPlate_Z2  + 0.01;
+	my $BLine_Z5  = $BLine_Z4   - 0.01 + 17.9;
 
 
 ###########################################################################################
@@ -283,8 +286,8 @@ my @starting_point =();
 my $ftm_ir 		= 64.0;
 my $ftm_or 		= 161.0;
 my $nlayer		= 2;
-$starting_point[0] 	= 1763.0;
-$starting_point[1] 	= 1783.0;
+$starting_point[0] 	= 1773.0;
+$starting_point[1] 	= 1793.0;
 my $InnerRadius 	= 65.0;
 my $OuterRadius 	= 142.0;
 my $Epoxy_Dz 		= 0.5*0.3;
@@ -354,10 +357,10 @@ my @oradius_FT_CRY = (          $Odisk_OR,          $Odisk_OR);
 #my @z_plane_FT = ($BLine_BG, $O_Shell_Z1, $O_Shell_Z1, 2098., 2276., 2276., $torus_z);
 #my @oradius_FT = ($BLine_FR,   $BLine_FR,        700.,  700.,  238.,  149., $back_flange_OR);
 #my @iradius_FT = (       0.,          0.,          0.,     0.,    0.,   0.,       0.);
-my $nplanes_FT = 5;
-my @z_plane_FT = ($BLine_BG, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z4);
-my @oradius_FT = ($BLine_FR,   $BLine_FR,        700.,      700.,      238.);
-my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
+my $nplanes_FT = 7;
+my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
+my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
+my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
 ###########################################################################################
 
 
@@ -558,7 +561,7 @@ sub make_ft_cal_flux
 sub make_ft_moellerdisk
 {
     # flux in front of tagger
-    my @disk_zpos   = ( 281.0 , 1809.6 );
+    my @disk_zpos   = ( 281.0 , 1760.1 );
     my @disk_iradius = (   2.0 ,   56.0 );
     my @disk_oradius = ( 150.0 ,  150.0 );
 
@@ -573,7 +576,7 @@ sub make_ft_moellerdisk
 	$detector{"rotation"}     = "0*deg 0*deg 0*deg";
 	$detector{"color"}        = "aa0088";
 	$detector{"type"}         = "Tube";
-	$detector{"dimensions"}   = "$disk_iradius[$n]*mm $disk_oradius[$n]*mm 0.4*mm 0.0*deg 360*deg";
+	$detector{"dimensions"}   = "$disk_iradius[$n]*mm $disk_oradius[$n]*mm 0.05*mm 0.0*deg 360*deg";
 	$detector{"material"}     = "G4_Galactic";
 	$detector{"visible"}      = 0;
 	$detector{"sensitivity"}  = "flux";
@@ -954,7 +957,7 @@ sub make_ft_cal_beamline
 {
 	# forward tagger tungsten beamline
 	my $nplanes_BLine = 6;
-	my @z_plane_BLine = ($BLine_Z1, $BLine_Z2, $BLine_Z2, $BLine_Z3, $BLine_Z3, $BLine_Z4);  
+	my @z_plane_BLine = ($BLine_Z1, $BLine_Z2, $BLine_Z3, $BLine_Z4, $BLine_Z4, $BLine_Z5);
 	my @oradius_BLine = ($BLine_MR, $BLine_MR, $BLine_MR, $BLine_MR, $BLine_OR, $BLine_OR);  
 	my @iradius_BLine = ($BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR);  
 	my %detector = init_det();
@@ -1004,7 +1007,7 @@ sub make_ft_cal_beamline
 
 	# steel collar on the front
 	my $nplanes_TCollar = 2;
-	my @z_plane_TCollar = ($BLine_Z1, $BLine_Z2);  
+	my @z_plane_TCollar = ($BLine_Z2, $BLine_Z3);
 	my @oradius_TCollar = ($BLine_FR, $BLine_FR);  
     my @iradius_TCollar = ($BLine_MR, $BLine_MR);
     %detector = init_det();
@@ -1026,7 +1029,7 @@ sub make_ft_cal_beamline
 	my $Tube_IR         =  $BLine_IR;
 	# define positions based on z of torus inner ring front face
 	my $Tube_end  = $torus_z  - 0.1;    # leave 0.1 mm to avoid overlaps
-	my $Tube_beg  = $BLine_Z4 + 0.1 + $FEE_Disk_LN + 0.1;
+	my $Tube_beg  = $BLine_Z5 + 0.1 + $FEE_Disk_LN + 0.1;
 	my $Tube_z1   = $Tube_end - $flange_TN;
 	my $Tube_z2   = $Tube_beg + $flange_TN;
 	
@@ -1564,7 +1567,7 @@ sub make_ft_trk_fee_boxes
 {
         # create disk
         my $nplanes_FEE_Disk = 2;
-	my @z_FEE_Disk = ($BLine_Z4 + 0.1, $BLine_Z4 + 0.1 + $FEE_Disk_LN);
+	my @z_FEE_Disk = ($BLine_Z5 + 0.1, $BLine_Z5 + 0.1 + $FEE_Disk_LN);
 	my @oradius_FEE_Disk = ($FEE_Disk_OR   , $FEE_Disk_OR);
 	my @iradius_FEE_Disk = ($BLine_OR + 0.1, $BLine_OR + 0.1);
 	my %detector = init_det();

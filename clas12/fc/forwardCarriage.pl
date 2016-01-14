@@ -32,17 +32,10 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-
-#my $nplanes_Cone = 4;
-# dimension empirical based on inner shielding and DC sizes
-#my @z_plane_Cone = ( 1556.0,  2406.0, 5300.0, 8500.0 );
-#my @iradius_Cone = ( 2000.0,   176.0,  176.0,  300.0 );
-#my @oradius_Cone = ( 2400.0,  4800.0, 5000.0, 5000.0 );
-
 my $nplanes_Cone = 8;
-# modified to avoid overlps with torus magnet:
-# volume extended in upstream region (first z plane) to remove overlap with coils
-# volume extended in the beamline region (z planes # 4,5,6,7) to remove overlap with torsu coldhub and inner shields
+
+# Notice:
+# The FC coordinates are the same as CLAS12 target center
 my @z_plane_Cone = ( 1206.0,  1556.0, 2406.0, 2664.0, 2664.0, 5051.0, 5051.0, 8500.0 );
 my @iradius_Cone = ( 2575.0,  2000.0,  132.0,  132.0,   61.5,   61.5,  197.0,  197.0 );
 my @oradius_Cone = ( 2575.0,  3500.0, 4800.0, 5000.0, 5000.0, 5000.0, 5000.0, 5000.0 );

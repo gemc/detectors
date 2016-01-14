@@ -5,6 +5,7 @@ our %configuration;
 
 our $TorusZpos;
 our $SteelFrameLength;
+our $mountTotalLength;            # total length of the torus Mount
 
 my $torusZstart = $TorusZpos - $SteelFrameLength;
 

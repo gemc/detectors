@@ -87,9 +87,9 @@ sub tungstenCone()
 		print_det(\%configuration, \%detector);
 	}
 
-	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" )
+	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed" )
 	{
-		my $zConeStart           = 339.0;  # empirical so there are no overlaps
+		my $zConeStart           = 430.0;  # htcc starts at 384 with ID 60.96
 		
 		# Tungsten Cone
 		my $totalShieldLength    = 1012;

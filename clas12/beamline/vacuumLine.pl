@@ -65,7 +65,7 @@ sub vacuumLine()
 	
 	# corrected physicists design vacuum line
 	# straight aluminum pipe with vacucum inside
-	if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT")
+	if($configuration{"variation"} eq "physicistsCorrectedBaselineNoFT" || $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT")
 	{
 		# up to the torus the beampipe is 11mm thick.
 		# inside the torus is 3mm thick
@@ -75,6 +75,12 @@ sub vacuumLine()
 		
 		my $totalLength  = 5000.0;                   # total beamline semi-length
 		my $pipeZstart    = 420.0 + $totalLength;    # start of cone
+        
+        if( $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT")
+        {
+             $pipeZstart    = 339.0 + $totalLength;
+        }
+        
 		
 		# aluminum pipe
 		my %detector = init_det();

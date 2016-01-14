@@ -3,6 +3,9 @@ use warnings;
 
 our %configuration;
 
+our $TorusZpos;
+our $SteelFrameLength;
+our $mountTotalLength;            # total length of the torus Mount
 
 sub tungstenCone()
 {
@@ -16,6 +19,7 @@ sub tungstenCone()
 	if($configuration{"variation"} eq "physicistsBaselineNoFT" || $configuration{"variation"} eq "physicistsCorrectedBaselineNoFT")
 	{
 		my $nplanes_tcone = 3;
+		my $Tube_LT = 400;  # length of original mount, different from $mountTotalLength
 
 		
 		# shield is a tapered pipe (G4 polycone)
@@ -33,7 +37,7 @@ sub tungstenCone()
 	
 		my $pipeZstart    = 420.0;    # start of cone
 		my $taperedLength = 1390.0;   # length of tapered part
-		my $totalLength   = 2267.1;   # total cone length
+		my $totalLength   = $TorusZpos - $SteelFrameLength - $Tube_LT - $microgap;   # total cone length
 	
 		my @z_plane_tcone  = ( $pipeZstart, $taperedLength, $totalLength );
 		

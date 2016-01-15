@@ -80,11 +80,15 @@ sub vacuumLine()
 		my $pipeZstart    = 420.0 + $totalLength;    # start of pipe
 
 		
-        if( $configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed")
-        {
-			  $pipeZstart  = 433.9 + $totalLength;     # htcc starts at 384 with ID 60.96
-        }
-        
+		if( $configuration{"variation"} eq "realityNoFT" ||  $configuration{"variation"} eq "realityWithFTNotUsed")
+		{
+			$pipeZstart  = 433.9 + $totalLength;     # htcc starts at 384 with ID 60.96
+		}
+		if( $configuration{"variation"} eq "realityWithFT" )
+		{
+			$pipeZstart  = 750.0  + $totalLength;     # htcc starts at 750 w
+		}
+		
 		
 		# aluminum pipe
 		my %detector = init_det();

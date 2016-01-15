@@ -242,7 +242,7 @@ my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN-0.01;
     my $BLine_Z2  = $BLine_ML   + 0.2;
 	my $BLine_Z3  = $O_Shell_Z1 - 0.01;
 	my $BLine_Z4  = $TPlate_Z2  + 0.01;
-	my $BLine_Z5  = $BLine_Z4   - 0.01 + 17.9;
+	my $BLine_Z5  = $BLine_Z4   - 0.01 + 20;
 
 
 ###########################################################################################

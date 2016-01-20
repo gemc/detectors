@@ -56,9 +56,6 @@ sub plate_pos
 
     my $dc_height    = $mother_dy[$region];
 
-# microgap -0.01 tries to ensure no overlap between the baseplate and the layers and -1 for the gap
-# included in the code above  (enlarging mothers)
-
     my $y   = -0.5*$pl_thick - $dc_height - 0.01;
     my $x   = 0;
     my $z   = 0;

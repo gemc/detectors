@@ -162,7 +162,7 @@ sub tungstenCone()
             
             if($configuration{"variation"} eq "realityWithFTNotUsed" )
             {
-                $coneTubeShieldLength = 316.1 / 2.0;
+                $coneTubeShieldLength = (316.1 + 49.61) / 2.0;
                 $nplanes_ssts = 6;
                 $sstsIR4      = $sstsIR3;
                 $sstsOR4      = $sstsOR3;
@@ -170,7 +170,7 @@ sub tungstenCone()
                 $sstsOR5      = $coneTubeIR - $microgap;
                 $sstsIR6      = $sstsIR5;
                 $sstsOR6      = $sstsOR5;
-                $sstsz4       = $sstsz3 + $coneTubeShieldLength*2 - $partialShieldLength;
+                $sstsz4       = $sstsz3 + $coneTubeShieldLength*2 -49.61 - $partialShieldLength ;
                 $sstsz5       = $sstsz4;
                 $sstsz6       = $sstsz3 + $coneTubeShieldLength*2;
                 

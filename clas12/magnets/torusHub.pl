@@ -10,19 +10,20 @@ our $TorusLength;
 
 my $microgap = 0.1;
 
-# Torus Hub - it's aluminum
-my $ColdHubLength = 82.68*$inches/2.0;   # 1/2 length
+# Torus Hub - it's aluminum. Measurements from https://userweb.jlab.org/~zarecky/Hub%20Assembly/B000000401-1130%20Rev%20A%20Hub%20Assembly.pdf
+my $ColdHubLength = 1948.1/2.0;
 my $ColdHubIR     = 175.0/2.0 ;    # taken from new drawing by D. Kashy - 87.5mm
 my $ColdHubOR     = 240.0/2.0 ;    # 32 mm thicknes according to the drawing
 
-# Warm Bore Tube: it's the innermost part of the torus. Stainless Steel
-my $WarmBoreLength = $TorusLength - $microgap;
-my $WarmBoreIR      = 123.8/2.0 ;        # taken from new drawing by D. Kashy
+# Warm Bore Tube: it's the innermost part of the torus. Stainless Steel. Measurements from https://userweb.jlab.org/~zarecky/Hub%20Assembly/B000000401-1132%20Rev%20A%20Warm%20Bore%20Tube%20-%20Hub.pdf
+my $WarmBoreLength = 2146.38/2;
+my $WarmBoreIR      = 125.35/2.0 ;
 my $WarmBoreOR      = 127.0/2.0 ;
 
 # Warm Bore Tube Shield: heat shield torus from the inner part. Copper
-my $BoreShieldLength = 2201.8/2.0;  # 1/2 length
-my $BoreShieldIR     = 146.06/2.0 ;       # taken from new drawing by D. Kashy
+# Measurements taken from https://userweb.jlab.org/~zarecky/Hub%20Assembly/B00000-04-01-1133%20Center%20Tube%20-%20Shield%20-%20Hub.pdf
+my $BoreShieldLength = 1988.4/2.0;
+my $BoreShieldIR     = 148.9/2.0 ;  
 my $BoreShieldOR     = 152.4/2.0 ;
 
 sub torusHub()

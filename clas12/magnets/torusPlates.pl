@@ -17,12 +17,11 @@ my $plate_LE  = 1.0*$inches/2.0;             # based on information from D. Kash
 sub torusPlates()
 {
 	# Upstream plate
-	#	my $fp_zpos   = $TorusZpos - $TorusLength + $plate_LE - $microgap;
-	my $up_zpos   = - $TorusLength + $plate_LE - $microgap;
+	my $up_zpos   = - $TorusLength + $plate_LE + $microgap;
 
 	my %detector = init_det();
 	$detector{"name"}        = "torusUpstreamPlate";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "torusVacuumFrame";
 	$detector{"description"} = "Torus Upstream Plate";
 	$detector{"pos"}         = "0.0*cm 0.0*cm $up_zpos*mm";
 	$detector{"color"}       = "99ccff";
@@ -33,12 +32,11 @@ sub torusPlates()
 	print_det(\%configuration, \%detector);
 
 	# Downstream plate
-	# my $dp_zpos   = $TorusZpos + $TorusLength - $plate_LE + $microgap;
-	my $dp_zpos   = $TorusLength - $plate_LE + $microgap;
+	my $dp_zpos   = $TorusLength - $plate_LE - $microgap;
 
 	%detector = init_det();
 	$detector{"name"}        = "torusDownstreamPlate";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "torusVacuumFrame";
 	$detector{"description"} = "Torus Downstream Plate";
 	$detector{"pos"}         = "0.0*cm 0.0*cm $dp_zpos*mm";
 	$detector{"color"}       = "99ccff";

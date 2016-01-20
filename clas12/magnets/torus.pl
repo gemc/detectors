@@ -34,8 +34,8 @@ our %configuration = load_configuration($ARGV[0]);
 
 # General:
 our $inches      = 25.4;
-our $TorusLength = 94.*$inches/2.0;  # 1/2 length. 1193.8mm
-our $TorusZpos   = 3947.6;           # center of the torus position (include its semilengt). Value from M. Zarecky, R. Miller PDF file on 1/13/16
+our $TorusLength = 2158.4/2.0;  # 1/2 length of torus
+our $TorusZpos   = 3833;        # center of the torus position (include its semilengt). Value from M. Zarecky, R. Miller PDF file on 1/13/16
 
 
 # hub
@@ -50,7 +50,7 @@ require "./torusCoils.pl";
 
 # building the torus
 torusHub();
-#torusPlates();
+torusPlates();
 torusCoils();
 
 

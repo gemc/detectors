@@ -39,7 +39,6 @@ our %parameters    = get_parameters(%configuration);
 require "./utils.pl";
 calculate_dc_parameters();
 
-
 our @mother_dx1;
 our @mother_dx2;
 our @mother_dy;
@@ -64,15 +63,21 @@ our @daughter_tilt;
 sub make_region
 {
 	my $iregion = shift;
-   
+
+	# enlargement of the mother volumes (cm) to accomodate DC base plates from basePlates.pl (y)
+	# and prevent torus clipping (z), dx_shift preserves dc opening angle in case of y-enlargement
+	my $y_enlargement =  3.69;
+	my $z_enlargement = -2.75;
+	my $dx_shift      = fstr( $y_enlargement * tan(rad(29.5)));
+
 	# placement parameters for the mother region volume
-	my $mpDX1   = $mother_dx1[$iregion];
-	my $mpDX2   = $mother_dx2[$iregion];
+	my $mpDX1   = $mother_dx1[$iregion] - $dx_shift;
+	my $mpDX2   = $mother_dx2[$iregion] + $dx_shift;
 	my $mpDX3   = $mpDX1;
 	my $mpDX4   = $mpDX2;
-	my $mpDY1   = $mother_dy[$iregion];
+	my $mpDY1   = $mother_dy[$iregion]  + $y_enlargement;
 	my $mpDY2   = $mpDY1;
-	my $mpDZ    = $mother_dz[$iregion];
+	my $mpDZ    = $mother_dz[$iregion]  + $z_enlargement;
 	my $mpALP1  = 0.0;
 	my $mpALP2  = $mpALP1;
 	my $mtheta  = -25.0;
@@ -165,13 +170,6 @@ sub make_layers
 
 
 
-
-
-
-
-
-
-
 sub make_dc
 {
 	make_region(0);
@@ -183,9 +181,9 @@ sub make_dc
 	make_layers(2);
 }
 
-
-
+$configuration{"variation"} = "original";
 make_dc();
+
 
 
 

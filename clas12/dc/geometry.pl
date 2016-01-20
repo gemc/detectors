@@ -39,6 +39,8 @@ our %parameters    = get_parameters(%configuration);
 require "./utils.pl";
 calculate_dc_parameters();
 
+require "./basePlates.pl";
+
 our @mother_dx1;
 our @mother_dx2;
 our @mother_dy;
@@ -71,7 +73,7 @@ sub make_region
 	my $dx_shift      = fstr( $y_enlargement * tan(rad(29.5)));
 
 	# placement parameters for the mother region volume
-	my $mpDX1   = $mother_dx1[$iregion] - $dx_shift;
+	my $mpDX1   = $mother_dx1[$iregion] - $dx_shift - 2.5;
 	my $mpDX2   = $mother_dx2[$iregion] + $dx_shift;
 	my $mpDX3   = $mpDX1;
 	my $mpDX4   = $mpDX2;
@@ -182,7 +184,7 @@ sub make_dc
 }
 
 make_dc();
-
+make_plates();
 
 
 

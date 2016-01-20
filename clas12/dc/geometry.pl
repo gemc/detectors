@@ -39,6 +39,8 @@ our %parameters    = get_parameters(%configuration);
 require "./utils.pl";
 calculate_dc_parameters();
 
+require "./basePlates.pl";
+
 our @mother_dx1;
 our @mother_dx2;
 our @mother_dy;
@@ -183,7 +185,7 @@ sub make_dc
 
 $configuration{"variation"} = "original";
 make_dc();
-
+make_plates();
 
 
 

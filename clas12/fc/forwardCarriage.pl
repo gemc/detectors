@@ -14,8 +14,9 @@ use Math::Trig;
 
 my $microgap = 0.1;
 
-my $TorusLength = 1193.8;    # 1/2 length. 1193.8mm
-my $TorusZpos   = 3947.6;    # center of the torus position (include its semilengt). Value from M. Zarecky, R. Miller PDF file on 1/13/16
+my $TorusLength = 2158.4/2.0;  # 1/2 length of torus
+my $TorusZpos   = 3833;        # center of the torus position (include its semilengt). Value from M. Zarecky, R. Miller PDF file on 1/13/16
+
 my $torusZstart = $TorusZpos - $TorusLength - $microgap;
 my $torusZEnd   = $TorusZpos + $TorusLength + $microgap;
 

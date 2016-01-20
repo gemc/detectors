@@ -88,7 +88,7 @@ my $Bmtb_hear_D0 = 0.;                                       # displacement of t
 my @Bmtb_angle = ( 30., 150., 210., 330.);                   # angles of the motherboard extensions
 
 # Define LED plate geometry parameters
-my $LED_TN =   5.6;                                          # half thickness of the pcb and pastic plate hosting the LEDs
+my $LED_TN =   6.1;                                          # half thickness of the pcb and pastic plate hosting the LEDs
 my $LED_IR = $Fdisk_IR;                                      # inner radius of the pcb and pastic plate hosting the LEDs
 my $LED_OR = $Fdisk_OR;                                      # outer radius of the pcb and pastic plate hosting the LEDs
 my $LED_Z  = $Fdisk_Z - $Fdisk_TN - $LED_TN - 0.1;           # z position of the pcb and pastic plate hosting the LEDs
@@ -96,7 +96,7 @@ my $LED_Z  = $Fdisk_Z - $Fdisk_TN - $LED_TN - 0.1;           # z position of the
 # bline: tungsten pipe inside the ft_cal
 my $BLine_IR = 30.;                                          # pipe inner radius;
 my $BLine_TN = 10.;                                          # pipe thickness
-my $BLine_FR = 59.;                                          # radius in the front part, connecting to moller shield
+my $BLine_FR = $BLine_IR + $BLine_TN;                        # radius in the front part, connecting to moller shield
 my $BLine_OR = 100.;                                         # radius of the back flange
 my $BLine_BG = 1644.7;                                       # z location of the beginning of the beamline (to be matched to moller shield)
 my $BLine_ML = 1760.0;                                       # z location of the end of the Moller shield
@@ -247,10 +247,13 @@ my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN-0.01;
 
 ###########################################################################################
 # Hodoscope Dimension and Parameters
-my $VETO_TN = 33./2.; # thickness of the hodoscope volume
+my $VETO_TN = 38./2.; # thickness of the hodoscope volume
 my $VETO_OR = 178.5;  # outer radius
-my $VETO_IR = 60.;    # inner radius
+my $VETO_IR = 40.;    # inner radius
 my $VETO_Z  = $O_Shell_Z1 - $VETO_TN - 0.1; # position along z
+
+my $VETO_RING_IR = $VETO_IR;
+my $VETO_RING_OR = 105/2.;;
 
 my $LS_TN=5./2.;
 
@@ -561,7 +564,7 @@ sub make_ft_cal_flux
 sub make_ft_moellerdisk
 {
     # flux in front of tagger
-    my @disk_zpos   = ( 281.0 , 1760.1 );
+    my @disk_zpos   = ( 281.0 , $O_Shell_Z1 - 0.05 );
     my @disk_iradius = (   2.0 ,   56.0 );
     my @disk_oradius = ( 150.0 ,  150.0 );
 
@@ -721,7 +724,7 @@ sub make_ft_cal_tcup
 	$detector{"name"}        = "ft_cal_tcup_back";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "tungsten cup and cone at the back of the ft, back part";
-	$detector{"color"}       = "ccff00";
+	$detector{"color"}       = "ff0000";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
 	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
@@ -740,7 +743,7 @@ sub make_ft_cal_tcup
     $detector{"name"}        = "ft_cal_tcup_plate";
     $detector{"mother"}      = "ft_cal";
     $detector{"description"} = "stainless steel plate at the back of the ft";
-    $detector{"color"}       = "ccff00";
+    $detector{"color"}       = "cccccc";
     $detector{"type"}        = "Polycone";
     $dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
     for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
@@ -759,7 +762,7 @@ sub make_ft_cal_tcup
 	$detector{"name"}        = "ft_cal_tcup_front";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "tungsten cup and cone at the back of the ft, front part";
-	$detector{"color"}       = "ccff00";
+	$detector{"color"}       = "ff0000";
 	$detector{"type"}        = "Polycone";
 	$dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
 	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
@@ -781,7 +784,7 @@ sub make_ft_cal_tcup
 		$detector{"name"}        = "ft_cal_tcup_m$s";
 		$detector{"mother"}      = "ft_cal";
 		$detector{"description"} = "tungsten cup and cone at the back of the ft, medium part $s";
-		$detector{"color"}       = "ccff00";
+		$detector{"color"}       = "ff0000";
 		$detector{"type"}        = "Polycone";
 		my $biangle=$BCup_iangle[$i];
 		my $bdangle=$BCup_dangle[$i];
@@ -964,7 +967,7 @@ sub make_ft_cal_beamline
 	$detector{"name"}        = "ft_cal_bline";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft beam line";
-	$detector{"color"}       = "ccff00";
+	$detector{"color"}       = "ff0000";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
 	for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $iradius_BLine[$i]*mm";}
@@ -990,7 +993,7 @@ sub make_ft_cal_beamline
 	$detector{"name"}        = "ft_cal_tplate";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft tungsten plate";
-	$detector{"color"}       = "ccff00";
+	$detector{"color"}       = "ff0000";
 	$detector{"type"}        = "Polycone";
 	$dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
 	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $iradius_TPlate[$i]*mm";}
@@ -1023,7 +1026,7 @@ sub make_ft_cal_beamline
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
+    #    print_det(\%configuration, \%detector);
 
 	# Define the tube between Calorimeter and Torus Inner Ring
 	my $Tube_IR         =  $BLine_IR;
@@ -1120,6 +1123,18 @@ sub make_ft_hodo
 	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
+    
+    %detector = init_det();
+    $detector{"name"}        = "ft_hodo_ring";
+    $detector{"mother"}      = "ft_hodo";
+    $detector{"description"} = "ft hodoscope support ring";
+    $detector{"pos"}         = "0.0*cm 0.0*cm 0.0*mm";
+    $detector{"color"}       = "cccccc";
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$VETO_RING_IR*mm $VETO_RING_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
+    $detector{"material"}    = "ft_peek";
+    $detector{"style"}     = 1;
+    print_det(\%configuration, \%detector);
 	
 	for ( my $l = 0; $l < 2; $l++ ) { # loop over layers
  
@@ -1132,7 +1147,7 @@ sub make_ft_hodo
 		$detector{"pos"}         = "0.0*cm 0.0*cm $LS_Z*mm";
 		$detector{"color"}       = "EFEFFB";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$VETO_IR*mm $VETO_OR*mm $LS_TN*mm 0.*deg 360.*deg";
+		$detector{"dimensions"}  = "$VETO_RING_OR*mm $VETO_OR*mm $LS_TN*mm 0.*deg 360.*deg";
 		$detector{"material"}    = "insfoam";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -1263,6 +1278,22 @@ sub make_ft_trk_mother
 	$detector{"material"}    = "Air";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
+    
+    my $ftm_ring_z = ( $BLine_ML + $VETO_Z -$VETO_TN)/2.;
+    my $ftm_ring_dz= (-$BLine_ML + $VETO_Z -$VETO_TN)/2.;
+    %detector = init_det();
+    $detector{"name"}        = "ft_trk_ring";
+    $detector{"mother"}      = "root";
+    $detector{"description"} = "ft tracker support ring";
+    $detector{"pos"}         = "0*mm 0*mm $ftm_ring_z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = "aaaaff";
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$BLine_FR*mm $ftm_ir*mm $ftm_ring_dz*mm 0*deg 360*deg";
+    $detector{"material"}    = "G4_Al";
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
+    
 }
 
 
@@ -1864,7 +1895,7 @@ sub make_ft_shield
 	$detector{"name"}        = "ft_w_cone";
 	$detector{"mother"}      = "ft_shield";
 	$detector{"description"} = "ft tungsten cone";
-	$detector{"color"}       = "F88017";
+	$detector{"color"}       = "ff0000";
 	$detector{"type"}        = "Polycone";
 	$dimen = "0.0*deg 360*deg $nplanes_cone*counts";
 	for(my $i = 0; $i <$nplanes_cone ; $i++)
@@ -1880,7 +1911,7 @@ sub make_ft_shield
 		$dimen = $dimen ." $zplane_cone[$i]*mm";
 	}
 	$detector{"dimensions"} = $dimen;
-	$detector{"material"}   = "Tungsten";
+	$detector{"material"}   = "ft_W";
 	$detector{"style"}       = 1;
 	
 	print_det(\%configuration, \%detector);

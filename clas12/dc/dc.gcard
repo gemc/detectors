@@ -1,7 +1,9 @@
 <gcard>
 
 	<detector name="dc" factory="TEXT" variation="original"/>
-	<option name="geometry" value="800x600"/>
+	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	
+   <option name="geometry" value="1400x1000"/>
 	
 	<option name="BEAM_P"   value="e-, 3.0*GeV, 20*deg, 70*deg"/>
 	<option name="INTEGRATEDRAW" value="dc"/>

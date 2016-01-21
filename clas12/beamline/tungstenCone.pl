@@ -6,6 +6,8 @@ our %configuration;
 our $TorusZpos;
 our $SteelFrameLength;
 our $mountTotalLength;            # total length of the torus Mount
+our $tungstenColor;
+
 
 sub tungstenCone()
 {

@@ -5,6 +5,7 @@ our %configuration;
 
 our $TorusZpos;
 our $SteelFrameLength;
+our $tungstenColor;
 
 my $torusZstart = $TorusZpos - $SteelFrameLength;
 
@@ -27,7 +28,7 @@ sub torusBeamShield()
 	$detector{"name"}        = "tungstenTorusBeamShield";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "tungsten beampipe shield inside torus";
-	$detector{"color"}       = "999999";
+	$detector{"color"}       = $tungstenColor;
 	$detector{"pos"}         = "0*mm 0.0*mm $bpipeTorusZ*mm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$pipeIR*mm $pipeOR*mm $totalLength*mm 0.0*deg 360*deg";

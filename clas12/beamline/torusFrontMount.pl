@@ -6,6 +6,7 @@ our %configuration;
 our $TorusZpos;
 our $SteelFrameLength;
 our $mountTotalLength;            # total length of the torus Mount
+our $tungstenColor;
 
 my $torusZstart = $TorusZpos - $SteelFrameLength;
 
@@ -25,12 +26,11 @@ sub torusFrontMount()
 	
 	# These measurements come from STP file
 	my $noseShieldIR       = 30.0;
-	my $noseShieldOR       = 40.0;
+	my $noseShieldOR       = 49.0;
 	my $noseShieldLength   = $mountTotalLength/2.;  # empirical
 	my $noseShield_z_start = $torusZstart - $noseShieldLength;
 	
-	
-	my @iradius_nose1  = (  55.8,  55.8,  55.8,  55.8 );
+	my @iradius_nose1  = (  50.0,  50.0,  50.0,  50.0 );
 	my @oradius_nose1  = ( 100.0, 100.0,  63.5,  63.5 );
 	my @nose1_z        = (   0.0,  25.0,  25.0, 433.0 );
 	
@@ -88,7 +88,7 @@ sub torusFrontMount()
 	$detector{"mother"}      = "root";
 	$detector{"pos"}         = "0*mm 0.0*mm $noseShield_z_start*mm";
 	$detector{"description"} = "beamline mount to torus beamline shield";
-	$detector{"color"}       = "ff0000";
+	$detector{"color"}       = $tungstenColor;
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$noseShieldIR*mm $noseShieldOR*mm $noseShieldLength*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "beamline_W";

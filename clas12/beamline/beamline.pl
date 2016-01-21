@@ -43,6 +43,7 @@ our $TorusZpos            = 3833;        # center of the torus position (include
 our $torusFrontNoseLength = 365.6;            # nose
 our $mountTotalLength     = 484.2;            # total length of the torus Mount
 
+our $tungstenColor        = "ff0000";
 
 # materials
 require "./materials.pl";

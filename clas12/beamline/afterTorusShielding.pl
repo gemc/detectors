@@ -5,6 +5,7 @@ our %configuration;
 
 our $TorusZpos;
 our $SteelFrameLength;
+our $tungstenColor;
 
 my $torusZend = $TorusZpos + $SteelFrameLength;
 
@@ -60,6 +61,11 @@ sub afterTorusShielding()
 	$detector{"description"} = "Shielding nose after the torus";
 	$detector{"pos"}         = "0*mm 0.0*mm $noseZStart*mm";
 	$detector{"color"}       = "0000ff";
+	if($nose_material eq "beamline_W")
+	{
+		$detector{"color"}       = $tungstenColor;
+	}
+	
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes*counts";
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius[$i]*mm";}

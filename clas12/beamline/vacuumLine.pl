@@ -32,7 +32,7 @@ sub vacuumLine()
 	
 	if( $configuration{"variation"} eq "realityWithFT" )
 	{
-		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 5000 );
+		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 8000 );
 	}
 	
 	

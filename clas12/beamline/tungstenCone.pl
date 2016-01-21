@@ -51,6 +51,7 @@ sub tungstenCone()
 	
 	
 	
+	
 	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed" )
 	{
 		my $zConeStart           = 433.9;  # htcc starts at 384 with ID 60.96
@@ -139,7 +140,6 @@ sub tungstenCone()
 			
 			
 			my $coneTubeZpos         = $zConeStart + $totalShieldLength + $coneTubeShieldLength;
-			
 			%detector = init_det();
 			$detector{"name"}        = "leadShieldAfterCone";
 			$detector{"mother"}      = "root";
@@ -153,6 +153,8 @@ sub tungstenCone()
 			print_det(\%configuration, \%detector);
 			
 			
+			
+			# Stainless steel support of the FT cone (if FT is not used0
 			my $sstsPos         = $zConeStart + $totalShieldLength - $sstsz2;
 			
 			my @iradius_ssts  = ( $sstsIR1, $sstsIR2, $sstsIR3, $sstsIR4, $sstsIR5, $sstsIR6 );
@@ -175,6 +177,41 @@ sub tungstenCone()
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
+			
+			
+			
+			
+			# Additional Cone on top of the FT cone
+			
+			my $addLength = 300;
+			my $addY      = $shieldOR3*tan(2.5/180*3.141592);
+			my $addThickStart = 2;
+			
+			my $nplanes_addCone = 2;
+			
+			my @iradius_addCone  = ( $shieldOR3 - $addY + $microgap     ,  $shieldOR3 + $microgap );
+			my @oradius_addCone  = ( $shieldOR3 - $addY + $addThickStart,  $coneTubeOR );
+			my @z_plane_addCone  = (          0,  $addLength );
+
+			my $zAddConeStart  = $coneTubeZpos - $addLength - $microgap - $coneTubeShieldLength;
+			
+			%detector = init_det();
+			$detector{"name"}        = "additionalCone";
+			$detector{"mother"}      = "root";
+			$detector{"description"} = "Tungsten additional cone";
+			$detector{"pos"}         = "0*mm 0.0*mm $zAddConeStart*mm";
+			$detector{"color"}       = $tungstenColor;
+			$detector{"type"}        = "Polycone";
+			$dimen = "0.0*deg 360*deg $nplanes_addCone*counts";
+			for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $iradius_addCone[$i]*mm";}
+			for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $oradius_addCone[$i]*mm";}
+			for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $z_plane_addCone[$i]*mm";}
+			$detector{"dimensions"}  = $dimen;
+			$detector{"material"}    = "beamline_W";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+
+			
 		}
 	}
 	

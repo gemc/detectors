@@ -24,9 +24,9 @@ sub torusFrontMount()
 	
 	my $nplanes = 4;
 	
-	# These measurements come from STP file
+	# These measurements come from STP file / Bob
 	my $noseShieldIR       = 30.0;
-	my $noseShieldOR       = 49.0;
+	my $noseShieldOR       = 49.5;
 	my $noseShieldLength   = $mountTotalLength/2.;  # empirical
 	my $noseShield_z_start = $torusZstart - $noseShieldLength;
 	
@@ -42,7 +42,6 @@ sub torusFrontMount()
 	#		my $nose1_nose2_gap = 95.4;
 	my $nose1_z_start   = $torusZstart - $mountTotalLength;
 	my $nose2_z_start   = $torusZstart - $nose2_z[3] - $microgap;
-	
 	
 	
 	# First mount, to torus

@@ -33,9 +33,6 @@ our %configuration = load_configuration($ARGV[0]);
 # One can change the "variation" here if one is desired different from the config.dat
 # $configuration{"variation"} = "myvar";
 
-# Load the parameters
-our %parameters    = get_parameters(%configuration);
-
 require "./utils.pl";
 calculate_dc_parameters();
 

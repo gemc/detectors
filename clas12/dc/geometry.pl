@@ -66,7 +66,7 @@ sub make_region
 	# enlargement of the mother volumes (cm) to accomodate DC base plates from basePlates.pl (y)
 	# and prevent torus clipping (z), dx_shift preserves dc opening angle in case of y-enlargement
 	my $y_enlargement =  3.69;
-	my $z_enlargement = -2.75;
+	my $z_enlargement = -2.8;
 	my $dx_shift      = fstr( $y_enlargement * tan(rad(29.5)));
 
 	# placement parameters for the mother region volume

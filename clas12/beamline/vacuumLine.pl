@@ -17,16 +17,15 @@ sub vacuumLine()
 	# corrected physicists design vacuum line
 	# straight aluminum pipe with vacucum inside
 	
-	# up to the torus the beampipe is 2.0mm thick.
-	# inside the torus is 3mm
+	# the beampipe is 0.125" (3mm) thick up to the torus downstream nose end, then 5mm thick
 	
 	my $nplanes = 6;
 	my $tzs     = $torusZstart + $microgap;
 	my $tze     = $torusZEnd   + 655;
 	
-	my @iradius_vbeam  =  (  27.4, 27.4, 37.4, 37.4, 130,  130);
-	my @oradius_vbeam  =  (  29.4, 29.4, 39.4, 39.4, 132,  132);
-	my @z_plane_vbeam  =  ( 433.9, $tzs, $tzs, $tze, $tze, 8000 );
+	my @iradius_vbeam  =  ( 26.68, 26.68, 36.68, 36.68, 126,  126);
+	my @oradius_vbeam  =  (  29.8,  29.8,  39.8,  39.8, 132,  132);
+	my @z_plane_vbeam  =  ( 433.9,  $tzs, $tzs, $tze, $tze, 8000 );
 	
 	
 	

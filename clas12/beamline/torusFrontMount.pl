@@ -26,17 +26,24 @@ sub torusFrontMount()
 	
 	# These measurements come from STP file / Bob
 	my $noseShieldIR       = 30.0;
-	my $noseShieldOR       = 49.5;
-	my $noseShieldLength   = $mountTotalLength/2.;  # empirical
+	my $noseShieldOR       = 44.0;
+	my $noseShieldLength   = 480/2.0;  # empirical
 	my $noseShield_z_start = $torusZstart - $noseShieldLength;
-	
-	my @iradius_nose1  = (  50.0,  50.0,  50.0,  50.0 );
+
+	# These measurements come from STP file / Bob
+	my $noseShieldIR2       = 191.0/2.0;
+	my $noseShieldOR2       = 231.0/2.0;
+	my $noseShieldLength2   = 380/2.0;  # empirical
+	my $noseShield_z_start2 = $torusZstart - $noseShieldLength2 - 20;
+
+	# measurements coming from Bob's email on 1/21/16
+	my @iradius_nose1  = (  44.45, 44.45, 44.45, 44.45 );
 	my @oradius_nose1  = ( 100.0, 100.0,  63.5,  63.5 );
 	my @nose1_z        = (   0.0,  25.0,  25.0, 433.0 );
 	
-	my @iradius_nose2  = (  76.1,  76.1,  76.1,  76.1 );
-	my @oradius_nose2  = (  88.8,  88.8, 126.9, 126.9 );
-	my @nose2_z        = (   0.0, 382.3, 382.3, 395.0 );
+	my @iradius_nose2  = (  76.2,  76.2,   76.2,  76.2 );
+	my @oradius_nose2  = (  95.25, 95.25, 126.9, 126.9 );
+	my @nose2_z        = (   0.0, 382.3,  382.3, 395.0 );
 	
 	
 	#		my $nose1_nose2_gap = 95.4;
@@ -86,10 +93,23 @@ sub torusFrontMount()
 	$detector{"name"}        = "mountInnerShielding";
 	$detector{"mother"}      = "root";
 	$detector{"pos"}         = "0*mm 0.0*mm $noseShield_z_start*mm";
-	$detector{"description"} = "beamline mount to torus beamline shield";
+	$detector{"description"} = "beamline mount to torus beamline inner shield";
 	$detector{"color"}       = $tungstenColor;
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$noseShieldIR*mm $noseShieldOR*mm $noseShieldLength*mm 0.*deg 360.*deg";
+	$detector{"material"}    = "beamline_W";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
+	# outer shield made of tungsten
+	%detector = init_det();
+	$detector{"name"}        = "mountOuterShielding";
+	$detector{"mother"}      = "root";
+	$detector{"pos"}         = "0*mm 0.0*mm $noseShield_z_start2*mm";
+	$detector{"description"} = "beamline mount to torus beamline outer shield";
+	$detector{"color"}       = $tungstenColor;
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "$noseShieldIR2*mm $noseShieldOR2*mm $noseShieldLength2*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);

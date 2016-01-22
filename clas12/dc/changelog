@@ -1,0 +1,7 @@
+- 1/21/16
+Added SConstruct to compile the script
+Added dc.pl to run all scripts
+Fixed dc12geom warnings, made code more readable
+dc12geom now producing two variations: original and ccdb
+Preparing dc12geom to read from ccdb
+

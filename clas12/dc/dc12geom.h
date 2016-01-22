@@ -9,6 +9,7 @@ double anglepoint(double x1[],double x2[],double x3[]);
 int wiretowire(double x1[],double x2[],double cwire[], double *par);
 int lineplaneint(double xwire[],double cwire[],double xplates[],double cplate[],double *par);
 void read_param(string filename);
+void read_param_ccdb();
 void get_thickness (int ireg);
 void calc_cosines_etc (int isup);
 void calc_midpoints (int ilayer, int isup);

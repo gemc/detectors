@@ -3,33 +3,18 @@ CLAS12 DC README
 
 --------------------------------------------------
 
-program dc12geom.cc + dc12geom.h 
- - to execute: 
-	g++ dc12geom.cc
-	./a.out
+program: dc12geom.cc + dc12geom.h
+
+to compile and execute type scons
+
+
  - reads parameters from geometry.parm
  - produces mother-geometry.dat and layer-geometry.dat
 
 
-
-
-In MYSQL mode, before building the geometry one must
-upload the parameters onto the DB.
-
 The commands to build the geometry, banks, hit defs
-and materials are:
+and materials:
 
-upload_parameters.pl config.dat   < only for MYSQL factory
-./geometry.pl config.dat
-./bank.pl config.dat
-./hit.pl config.dat
-./materials.pl config.dat
+./dc.pl config.dat
 
-
-
---------------------------------------------------
-
-To remove the created text files:
-
-rm -f dc__bank*.txt dc__geometry*.txt dc__hit*.txt dc__materials*.txt out.ev out.txt a.out layers-geom.dat mother-geom.dat
 

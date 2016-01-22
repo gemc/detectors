@@ -14,7 +14,6 @@
 
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 
-	<option name="SCALE_FIELD" value="clas12-torus, -1"/>
-	<option name="HALL_FIELD" value="clas12-torus"/>
+	<option name="SCALE_FIELD" value="clas12-torus-big, -1"/>
 
 </gcard>

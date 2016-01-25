@@ -1,6 +1,7 @@
 // c++
 #include <fstream>
 #include <cmath>
+#include <memory>
 using namespace std;
 
 #include "dc12geom.h"

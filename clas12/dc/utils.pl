@@ -27,7 +27,7 @@ our @daughter_tilt;
 sub calculate_dc_parameters
 {
 	# read parameters of the mother volume for 3 regions
-	my $ifile = 'mother-geom.dat';
+	my $ifile = "mother-geom-$configuration{\"variation\"}.dat";
 	open(FILE, $ifile);
 	my @lines = <FILE>;
 	close(FILE);
@@ -52,7 +52,7 @@ sub calculate_dc_parameters
 	
 	
 	# read parameters of the daughter volumes for 3 regions, 6 superlayers
-	$ifile = 'layers-geom.dat';
+	$ifile = "layers-geom-$configuration{\"variation\"}.dat";
 	open(FILE, $ifile);
 	@lines = <FILE>;
 	close(FILE);

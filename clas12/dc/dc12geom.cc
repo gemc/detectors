@@ -197,7 +197,6 @@ void read_param_ccdb()
 	cout << " Reading core pars from CCDB..." << endl;
 	string connection = "mysql://clas12reader@clasdb.jlab.org/clas12";
 	auto_ptr<Calibration> calib(CalibrationGenerator::CreateCalibration(connection));
-
 	string database   = "/calibration/drift_chamber/distance_dependent_inefficiency";
 
 

@@ -35,7 +35,6 @@ const int nreg      = 3;   // number of DC regions
 const int nwires    = 114; // total number of wires in each layer
 const int totnlyr   = 21;  // total number of layers in a superlayer - 1 
 const int avethick  = 3;   // average thickness of hexagonal layer in units of d (an essential parameter)
-const int staggerflag = 1; // order of layer stagger (0 or 1)
 
 
 double rlyr[nslayers];    //distance from the target to the first guard wire plane in each superlayer

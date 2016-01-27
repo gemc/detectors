@@ -280,23 +280,18 @@ void calc_midpoints(int ilayer, int isup)
 	int l1,l2,l3,l4;
 	//first, calculate the distance to the layer in question from the first layer
 	r     = (ilayer)*avethick*d[isup];
-	//now, calculate the midpoint posn. of the 1st wire in the layer where "mid-point" is the intersection of the first wire w/ the mid-plane
+	// now, calculate the midpoint posn. of the 1st wire in the layer where "mid-point" 
+	// is the intersection of the first wire w/ the mid-plane
 	x1mid = x0mid+stilt*r;
 	y1mid = 0.;
 	z1mid = z0mid+ctilt*r;
-	//now, put in the "brick-wall" stagger: layer-to-layer
-	if     (staggerflag==1){
-		l1=1; l2=3; l3=5; l4=7;
-	}
-	else if(staggerflag==0){
-		l1=0; l2=2; l3=4; l4=6;
-	}
-	else
-  cout<< "stagger error"<<endl;
-	if(ilayer==l1||ilayer==l2||ilayer==l3||ilayer==l4){
-		x1mid=x1mid-0.5*dw2*ctilt;
+	// now, put in the "brick-wall" stagger: layer-to-layer
+	// changed on 1/26/16: M. Mestayer. Fixed staggering. The first layer of sense wires (ilayer=1) 
+	// is staggered outward from the beamline relative to the first guard wire (ilayer=0)
+	if(ilayer==1||ilayer==3||ilayer==5||ilayer==7){
+		x1mid=x1mid+0.5*dw2*ctilt;
 		y1mid=0.;
-		z1mid=z1mid+0.5*dw2*stilt;
+		z1mid=z1mid-0.5*dw2*stilt;
 	}
 	
 }
@@ -549,20 +544,12 @@ double wiremidx(int iwir, int ilayer, int isup)
 	x1mid      = x0mid+stilt*r;
 	
 	//now, put in the "brick-wall" stagger: layer-to-layer
-	if(staggerflag==1)
+
+	// Changed on 1/26/16: M. Mestayer. 
+	// See comment above on staggering.
+	if(ilayer==1||ilayer==3||ilayer==5||ilayer==7)
 	{
-		l1=1; l2=3; l3=5; l4=7;
-	}
-	else if(staggerflag==0)
-	{
-		l1=0; l2=2; l3=4; l4=6;
-	}
-	else
-  cout<< "stagger error"<<endl;
-	
-	if(ilayer==l1||ilayer==l2||ilayer==l3||ilayer==l4)
-	{
-		x1mid=x1mid-0.5*dw2*ctilt;
+		x1mid=x1mid+0.5*dw2*ctilt;
 	}
 	
 	xmid = x1mid+(iwir)*dw2*ctilt;

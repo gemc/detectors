@@ -1,3 +1,21 @@
+// these numbers now come from the database
+// the variable names changed:
+// See geometry.parm for the original table
+
+// rlyr = dist2tgt in region
+// thopen = thopen in region
+// thtilt = thtilt in region
+// thster = thster in superlayers
+// thmin = thmin in superlayers
+// d =  wpdist in superlayer
+// xe = xdist in region
+
+
+// frontgap = frontgap in region
+// midgap = midgap in region
+// backgap = backgap in region
+
+
 double cwirex(int isup);
 double cwirey(int isup);
 double cwirez(int isup);
@@ -22,7 +40,7 @@ void write_output_g4layers(string filename);
 void write_output_g4mother(string filename);
 void getWirePositions(int isup,int ilayer,double xc[],double yc[],double zc[],double xcos[],double ycos[],double zcos[]);
 
-double pi          = 3.14159;
+double pi          = 3.141592654;
 double d2r         = pi/180.0; // degrees to radians
 double r2d         = 1.0/d2r;  // radians to degrees
 double expand      = 1.0000;   // expand mother volume

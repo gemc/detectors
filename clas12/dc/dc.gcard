@@ -5,14 +5,14 @@
 	
    <option name="geometry" value="1400x1000"/>
 	
-	<option name="BEAM_P"   value="e-, 3.0*GeV, 20*deg, 70*deg"/>
+	<option name="BEAM_P"   value="e-, 5.0*GeV, 20*deg, 10*deg"/>
 	<option name="INTEGRATEDRAW" value="dc"/>
 	
 	<option name="SIGNALVT" value="dc"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
 
 
-	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+	<option name="PHYSICS" value="FTFP_BERT + STD"/>
 
 	<option name="SCALE_FIELD" value="clas12-torus-big, -1"/>
 

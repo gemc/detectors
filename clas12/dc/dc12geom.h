@@ -2,6 +2,7 @@
 // the variable names changed:
 // See geometry.parm for the original table
 
+
 // rlyr = dist2tgt in region
 // thopen = thopen in region
 // thtilt = thtilt in region
@@ -15,6 +16,12 @@
 // midgap = midgap in region
 // backgap = backgap in region
 
+
+// to check the parameters from ccdb:
+// setenv CCDB_CONNECTION mysql://clas12reader@clasdb.jlab.org/clas12
+// ccdb -i
+// cat /geometry/dc/region
+// cat /geometry/dc/superlayer
 
 double cwirex(int isup);
 double cwirey(int isup);

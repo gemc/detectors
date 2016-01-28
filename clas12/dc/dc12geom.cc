@@ -199,8 +199,21 @@ void read_param_ccdb()
 	string connection = "mysql://clas12reader@clasdb.jlab.org/clas12";
 	auto_ptr<Calibration> calib(CalibrationGenerator::CreateCalibration(connection));
 
-	string database   = "/calibration/drift_chamber/distance_dependent_inefficiency";
+    
+    // reading region parameters
+    auto_ptr<Assignment> dcCoreSLPars(calib->GetAssignment("/gemoetry/dc/region"));
+    
+    
+    for(size_t rowI = 0; rowI < dcCoreSLPars->GetRowsCount(); rowI++)
+    {
+        double rlyrT = dcCoreSLPars->GetValueDouble(rowI, 2) << endl;
+        
+        cout<<" sl: " << rowI << " rlyr: "<< rlyrT << endl;
+        
+        
+    }
 
+    
 
 }
 

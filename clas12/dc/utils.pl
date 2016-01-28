@@ -28,6 +28,9 @@ sub calculate_dc_parameters
 {
 	# read parameters of the mother volume for 3 regions
 	my $ifile = "mother-geom-$configuration{\"variation\"}.dat";
+	print "Open file ".$ifile."\n";
+	
+	
 	open(FILE, $ifile);
 	my @lines = <FILE>;
 	close(FILE);

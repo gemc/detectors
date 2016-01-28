@@ -1,3 +1,12 @@
+- 1/26/16
+- added core pars reading from CCDB
+
+
+- 1/25/16
+M. Mestayer: Fixed staggering. The first layer of sense wires (ilayer=1)
+is staggered outward from the beamline relative to the first guard wire (ilayer=0)
+
+
 - 1/21/16
 Added SConstruct to compile the script
 Added dc.pl to run all scripts

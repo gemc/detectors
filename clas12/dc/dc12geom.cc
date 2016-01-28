@@ -191,6 +191,31 @@ void read_param(string filename)
 	}
 	else
 		cout << " Error: File " << filename << "  cannot not opened " << endl;
+
+
+
+	for(int i=0; i<6; i++)
+		cout<< " sl: " << i
+		<< " rlyr: "   << rlyr[i]
+		<< " thopen: " << thopen[i]
+		<< " thtilt: " << thtilt[i]
+		<< " thster: " << thster[i]
+		<< " thmin: "  << thmin[i]
+		<< " d: "      << d[i]
+		<< " xe: "     << xe[i] << endl ;
+	cout << endl;
+
+	for(int i=0; i<3; i++)
+		cout<< " reg: " << i
+		<< " frontgap: "   << frontgap[i]
+		<< " midgap: " << midgap[i]
+		<< " backgap: " << backgap[i]  << endl;
+	cout << endl;
+
+
+	
+	
+	
 }
 
 void read_param_ccdb()
@@ -201,21 +226,92 @@ void read_param_ccdb()
 
     
     // reading region parameters
-    auto_ptr<Assignment> dcCoreSLPars(calib->GetAssignment("/gemoetry/dc/region"));
-    
-    
-    for(size_t rowI = 0; rowI < dcCoreSLPars->GetRowsCount(); rowI++)
-    {
-        double rlyrT = dcCoreSLPars->GetValueDouble(rowI, 2) << endl;
-        
-        cout<<" sl: " << rowI << " rlyr: "<< rlyrT << endl;
-        
-        
-    }
+    auto_ptr<Assignment> dcCoreRPars(calib->GetAssignment("/geometry/dc/region"));
+	
+	
+	for(size_t rowI = 0; rowI < dcCoreRPars->GetRowsCount(); rowI++)
+	{
 
-    
+		// dist2tgt in ccdb region
+		// setting 0, 2, 4. The next SL in the same region will be setup by code
+		double rlyrT = dcCoreRPars->GetValueDouble(rowI, 2);
+		rlyr[rowI*2]   = rlyrT;
+		rlyr[rowI*2+1] = 0;
+
+		// thopen in ccdb region
+		double thopenT     = dcCoreRPars->GetValueDouble(rowI, 6);
+		thopen[rowI*2]     = thopenT;
+		thopen[rowI*2 + 1] = thopenT;
+		
+		// thtilt in ccdb region
+		double thtiltT     = dcCoreRPars->GetValueDouble(rowI, 7);
+		thtilt[rowI*2]     = thtiltT;
+		thtilt[rowI*2 + 1] = thtiltT;
+
+		// xdist in ccdb region
+		double xeT     = dcCoreRPars->GetValueDouble(rowI, 8);
+		xe[rowI*2]     = xeT;
+		xe[rowI*2 + 1] = xeT;
+
+		// frontgap in ccdb region
+		double frontgapT = dcCoreRPars->GetValueDouble(rowI, 3);
+		frontgap[rowI]   = frontgapT;
+
+		// midgap in ccdb region
+		double midgapT = dcCoreRPars->GetValueDouble(rowI, 4);
+		midgap[rowI]   = midgapT;
+
+		// backgap in ccdb region
+		double backgapT  = dcCoreRPars->GetValueDouble(rowI, 5);
+		backgap[rowI]    = backgapT;
+
+	}
+
+	
+	// reading superlayer parameters
+	auto_ptr<Assignment> dcCoreSLPars(calib->GetAssignment("/geometry/dc/superlayer"));
+	for(size_t rowI = 0; rowI < dcCoreSLPars->GetRowsCount(); rowI++)
+	{
+		// thster in ccdb superlayers
+		double thsterT = dcCoreSLPars->GetValueDouble(rowI, 4);
+		thster[rowI]   = thsterT;
+		
+		// thster in ccdb superlayers
+		double thminT = dcCoreSLPars->GetValueDouble(rowI, 5);
+		thmin[rowI]   = thminT;
+		
+		// wpdist in ccdb superlayers
+		double dT   = dcCoreSLPars->GetValueDouble(rowI, 6);
+		d[rowI] = dT;
+	}
+
+	
+	for(int i=0; i<6; i++)
+		cout<< " sl: " << i
+		<< " rlyr: "   << rlyr[i]
+		<< " thopen: " << thopen[i]
+		<< " thtilt: " << thtilt[i]
+		<< " thster: " << thster[i]
+		<< " thmin: "  << thmin[i]
+		<< " d: "      << d[i]
+		<< " xe: "     << xe[i] << endl ;
+	cout << endl;
+	
+	for(int i=0; i<3; i++)
+		cout<< " reg: " << i
+		<< " frontgap: "   << frontgap[i]
+		<< " midgap: " << midgap[i]
+		<< " backgap: " << backgap[i]  << endl;
+	cout << endl;
+	
 
 }
+
+
+
+
+
+
 
 
 void get_thickness(int ireg)

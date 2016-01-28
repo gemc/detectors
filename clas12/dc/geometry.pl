@@ -3,8 +3,6 @@ use warnings;
 
 our %configuration;
 
-require "./utils.pl";
-calculate_dc_parameters();
 
 
 our @mother_dx1;

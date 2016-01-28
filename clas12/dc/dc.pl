@@ -52,8 +52,12 @@ require "./geometry.pl";
 # dc plates
 require "./basePlates.pl";
 
+# calculate the parameters
+require "./utils.pl";
+
+
 # all the scripts must be run for every configuration
-my @allConfs = ("original", "ccdbpars");
+my @allConfs = ("original", "ccdb");
 
 foreach my $conf ( @allConfs )
 {
@@ -68,6 +72,9 @@ foreach my $conf ( @allConfs )
 	# bank definitions
 	define_bank();
 	
+	# calculate pars
+	calculate_dc_parameters();
+
 	# sensitive geometry
 	make_dc();
 	

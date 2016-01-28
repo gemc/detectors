@@ -95,6 +95,8 @@ my $LED_Z  = $Fdisk_Z - $Fdisk_TN - $LED_TN - 0.1;           # z position of the
 
 # bline: tungsten pipe inside the ft_cal
 my $BLine_IR = 30.;                                          # pipe inner radius;
+my $BLine_SR = 33.5;                                         # pipe inner radius in steel case;
+my $BLine_DR = 25.1;                                         # shield inner radius in steel case;
 my $BLine_TN = 10.;                                          # pipe thickness
 my $BLine_FR = $BLine_IR + $BLine_TN;                        # radius in the front part, connecting to moller shield
 my $BLine_OR = 100.;                                         # radius of the back flange
@@ -120,8 +122,6 @@ my $BCup_angle = int(atan($Bmtb_hear_WD/$Bmtb_OR)*$degrad*10)/10+0.5;
 my @BCup_iangle = (30.+$BCup_angle, 150.+$BCup_angle, 210.+$BCup_angle, 330.+$BCup_angle);
 my @BCup_dangle = ((90.-$BCup_iangle[0])*2., (180.-$BCup_iangle[1])*2., (90.-$BCup_iangle[0])*2.,(180.-$BCup_iangle[1])*2.);
 
-my $BL_IR=30;
-my $BL_TN=10;
 my $TPlate_TN= 20.; # thickness of the tungsten plate on the back of the FT-Cal
 
 
@@ -142,7 +142,7 @@ my $O_Ins_Z10 = $O_Ins_Z9;
 my $O_Ins_Z11 = $O_Ins_Z10 + $TPlate_TN;
 
 
-my $O_Ins_I1  = $BL_IR + $BL_TN + 0.01;
+my $O_Ins_I1  = $BLine_IR + $BLine_TN + 0.01;
 my $O_Ins_I2  = $O_Ins_Z2*$BCup_tang +0.01;
 my $O_Ins_I3  = $O_Ins_Z3*$BCup_tang +0.01;
 my $O_Ins_I4  = $O_Ins_Z4*$BCup_tang +0.01;
@@ -354,17 +354,6 @@ my @iradius_FT_CRY = (          $Idisk_IR,          $Idisk_IR);
 my @oradius_FT_CRY = (          $Odisk_OR,          $Odisk_OR);
 
 
-###########################################################################################
-# Define FTCAL Mother Volume
-#my $nplanes_FT = 7;
-#my @z_plane_FT = ($BLine_BG, $O_Shell_Z1, $O_Shell_Z1, 2098., 2276., 2276., $torus_z);
-#my @oradius_FT = ($BLine_FR,   $BLine_FR,        700.,  700.,  238.,  149., $back_flange_OR);
-#my @iradius_FT = (       0.,          0.,          0.,     0.,    0.,   0.,       0.);
-my $nplanes_FT = 7;
-my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
-my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
-my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
-###########################################################################################
 
 
 ###########################################################################################
@@ -373,7 +362,14 @@ my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,
 
 sub make_ft_cal_mother_volume
 {
-	my %detector = init_det();
+    my $nplanes_FT = 7;
+    my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
+    my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
+    my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
+    if($configuration{"variation"} eq "NotUsedWithInnerShield") {
+        @iradius_FT = ($BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR, $BLine_DR, $BLine_DR);
+    }
+    my %detector = init_det();
 	$detector{"name"}        = "ft_cal";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "ft calorimeter";
@@ -385,7 +381,7 @@ sub make_ft_cal_mother_volume
 	for(my $i = 0; $i <$nplanes_FT; $i++) {$dimen = $dimen ." $z_plane_FT[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "Air";
-	$detector{"style"}       = 0;
+	$detector{"visible"}       = 0;
 	print_det(\%configuration, \%detector);
 
 
@@ -967,16 +963,62 @@ sub make_ft_cal_beamline
 	$detector{"name"}        = "ft_cal_bline";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft beam line";
-	$detector{"color"}       = "ff0000";
-	$detector{"type"}        = "Polycone";
-	my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
-	for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $iradius_BLine[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "ft_W";
-	$detector{"style"}       = 1;
+    $detector{"style"}       = 1;
+    if($configuration{"variation"} eq "NotUsedWithInnerShield") {
+        $detector{"color"}       = "cccccc";
+        $detector{"type"}        = "Polycone";
+        my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $BLine_SR*mm";}
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
+        $detector{"dimensions"}  = $dimen;
+        $detector{"material"}    = "G4_STAINLESS-STEEL";
+    }
+    elsif($configuration{"variation"} eq "NotUsed") {
+        $detector{"color"}       = "cccccc";
+        $detector{"type"}        = "Polycone";
+        my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $BLine_IR*mm";}
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
+        $detector{"dimensions"}  = $dimen;
+        $detector{"material"}    = "G4_STAINLESS-STEEL";
+    }
+    else {
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Polycone";
+        my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $iradius_BLine[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
+        $detector{"dimensions"}  = $dimen;
+        $detector{"material"}    = "ft_W";
+    }
     print_det(\%configuration, \%detector);
+    
+    
+    if($configuration{"variation"} eq "NotUsedWithInnerShield") {
+        my $nplanes_BLine_shield = 2;
+        my @z_plane_BLine_shield = ($BLine_Z1, $BLine_Z5);
+        my @oradius_BLine_shield = ($BLine_SR, $BLine_SR);
+        my @iradius_BLine_shield = ($BLine_DR, $BLine_DR);
+        %detector = init_det();
+        $detector{"name"}        = "ft_cal_bline_shield";
+        $detector{"mother"}      = "ft_cal";
+        $detector{"description"} = "ft beam line_shield";
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Polycone";
+        my $dimen = "0.0*deg 360*deg $nplanes_BLine_shield*counts";
+        for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $iradius_BLine_shield[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $oradius_BLine_shield[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $z_plane_BLine_shield[$i]*mm";}
+        $detector{"dimensions"}  = $dimen;
+        $detector{"material"}    = "ft_W";
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
+    
+
 
 
 
@@ -995,7 +1037,7 @@ sub make_ft_cal_beamline
 	$detector{"description"} = "ft tungsten plate";
 	$detector{"color"}       = "ff0000";
 	$detector{"type"}        = "Polycone";
-	$dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
+	my $dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
 	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $iradius_TPlate[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $oradius_TPlate[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $z_plane_TPlate[$i]*mm";}

@@ -8,6 +8,7 @@ use geometry;
 use hit;
 use bank;
 use math;
+use materials;
 
 use Math::Trig;
 
@@ -42,11 +43,24 @@ our %configuration = load_configuration($ARGV[0]);
 require "./hit.pl";
 require "./bank.pl";
 require "./geometry.pl";
+require "./materials.pl";
 
-define_ft_hits();
-define_banks();
+# all the scripts must be run for every configuration
+my @allConfs = ("original", "NotUsed", "NotUsedWithInnerShield");
 
-#make_ft_shield();
-make_ft_cal();
-make_ft_hodo();
-make_ft_trk();
+foreach my $conf ( @allConfs )
+{
+    $configuration{"variation"} = $conf ;
+
+    # materials
+    materials();
+    
+    define_ft_hits();
+    define_banks();
+    
+    #make_ft_shield();
+    make_ft_cal();
+    make_ft_hodo();
+    make_ft_trk();
+    
+}

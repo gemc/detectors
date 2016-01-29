@@ -28,12 +28,7 @@ if( scalar @ARGV != 1)
 
 
 # Loading configuration file and paramters
-my $config_file   = $ARGV[0];
-our %configuration = load_configuration($config_file);
-
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
+our %configuration = load_configuration($ARGV[0]);
 
 # To get the parameters proper authentication is needed.
 our %parameters    = get_parameters(%configuration);
@@ -41,8 +36,10 @@ our %parameters    = get_parameters(%configuration);
 # Loading micromegas specific subroutines
 require "./hit.pl";
 require "./bank.pl";
-require "./FMT.pl";
-define_fmt();
+require "./materials.pl";
+#require "./FMT.pl";
+#define_fmt();
+
 require "./BMT.pl";
 define_bmt();
 #require "./FTM.pl";
@@ -50,3 +47,4 @@ define_bmt();
 
 define_micromegas_hits();
 define_micromegas_banks();
+print_materials();

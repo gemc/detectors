@@ -46,7 +46,7 @@ require "./geometry.pl";
 require "./materials.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original", "NotUsed", "NotUsedWithInnerShield");
+my @allConfs = ("original", "NotUsed", "NotUsedWithInnerSST", "NotUsedWithInnerShield");
 
 foreach my $conf ( @allConfs )
 {
@@ -61,6 +61,7 @@ foreach my $conf ( @allConfs )
     #make_ft_shield();
     make_ft_cal();
     make_ft_hodo();
-    make_ft_trk();
-    
+    if($configuration{"variation"} eq "original") {
+        make_ft_trk();
+    }
 }

@@ -52,7 +52,7 @@ sub tungstenCone()
 	
 	
 	
-	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed" )
+	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed"  || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" )
 	{
 		my $zConeStart           = 433.9;  # htcc starts at 384 with ID 60.96
 		if($configuration{"variation"} eq "realityWithFT" ) {
@@ -95,7 +95,7 @@ sub tungstenCone()
 		
 		
 		# Shield after cone - LEAD
-		if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFTNotUsed" )
+		if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFTNotUsed" || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield")
 		{
 			
 			my $coneTubeShieldLength = (2269.6 - $zConeStart - $totalShieldLength -20.)/2.;
@@ -122,7 +122,7 @@ sub tungstenCone()
 			my $sstsz5       = $sstsz4;
 			my $sstsz6       = $sstsz5 + 20;
 			
-			if($configuration{"variation"} eq "realityWithFTNotUsed" )
+			if($configuration{"variation"} eq "realityWithFTNotUsed" || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield")
 			{
 				$coneTubeShieldLength = (316.1 + 49.61) / 2.0;
 				$nplanes_ssts = 6;

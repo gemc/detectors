@@ -974,7 +974,7 @@ sub make_ft_cal_beamline
         $detector{"dimensions"}  = $dimen;
         $detector{"material"}    = "G4_STAINLESS-STEEL";
     }
-    elsif($configuration{"variation"} eq "NotUsed") {
+    elsif($configuration{"variation"} eq "NotUsedWithInnerSST") {
         $detector{"color"}       = "cccccc";
         $detector{"type"}        = "Polycone";
         my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";

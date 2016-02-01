@@ -25,13 +25,13 @@ sub vacuumLine()
 	
 	my @iradius_vbeam  =  ( 26.68, 26.68, 36.68, 36.68, 126,  126);
 	my @oradius_vbeam  =  (  29.8,  29.8,  39.8,  39.8, 132,  132);
-	my @z_plane_vbeam  =  ( 433.9,  $tzs, $tzs, $tze, $tze, 8000 );
+	my @z_plane_vbeam  =  ( 433.9,  $tzs, $tzs, $tze, $tze, 11000 );
 	
 	
 	
 	if( $configuration{"variation"} eq "realityWithFT" )
 	{
-		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 8000 );
+		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
 	}
     if( $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" )
     {

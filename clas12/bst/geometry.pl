@@ -6,42 +6,11 @@
 # TODO:
 # Still some hardcoded ugly numbers (carbon fiber and copper position)
 # Eventually remove all hardcoded parameters
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use parameters;
-use geometry;
-use math;
+use warnings;
 
-use Math::Trig;
-
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Barrel Silicon Tracker (bst) using the variation specified in the configuration file\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file from argument
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
-# To get the parameters proper authentication is needed.
-our %parameters    = get_parameters(%configuration);
+our %configuration;
+our %parameters;
 
 # General description
 # The BST is not symmetric around z=0
@@ -51,14 +20,14 @@ my $zshift = 50;
 
 
 our @nsegments = ( $parameters{"nsegments_r1"},
-				   $parameters{"nsegments_r2"},
-				   $parameters{"nsegments_r3"},
-				   $parameters{"nsegments_r4"} );   # Number of segments in each layer
+$parameters{"nsegments_r2"},
+$parameters{"nsegments_r3"},
+$parameters{"nsegments_r4"} );   # Number of segments in each layer
 
 my @starting_point = ( $parameters{"starting_z_r1"} + $zshift,
-					   $parameters{"starting_z_r2"} + $zshift,
-					   $parameters{"starting_z_r3"} + $zshift,
-					   $parameters{"starting_z_r4"} + $zshift);   # Z starting_point of the sensor in each region
+$parameters{"starting_z_r2"} + $zshift,
+$parameters{"starting_z_r3"} + $zshift,
+$parameters{"starting_z_r4"} + $zshift);   # Z starting_point of the sensor in each region
 
 our $nregions = $parameters{"nregions"} ;
 
@@ -187,50 +156,50 @@ my @shell_z   = (307.7, 331.0, 171.5, 345.3) ;
 
 
 # BST is a Tube. SLs are Tubes inside BST
-for(my $l = 0; $l < $nregions; $l++)
+sub make_bst
 {
-	make_sl($l+1);
-
-	# sensitive sandwich
-	place_wirebond($l, 1);      # -- wirebond
-	place_silicon($l, 1);       # ---- silicon
-	place_epoxy($l, 1, 1);      # ------ epoxy
-	place_epoxy($l, 1, 2);      # ------ epoxy
-	place_rail($l, 1);          # -------- rail
-	place_bus_cable($l, 1);     # ---------- bus cable
-	place_carbon_fiber($l, 1);  # ------------ carbon fiber
-	place_rohacell($l);         # -------------- rohacell
-	place_carbon_fiber($l, 2);  # ------------ carbon fiber
-	place_bus_cable($l, 2);     # ---------- bus cable
-	place_rail($l, 2);          # -------- rail
-	place_epoxy($l, 2, 1);      # ------ epoxy
-	place_epoxy($l, 2, 2);      # ------ epoxy
-	place_silicon($l, 2);       # ---- silicon
-	place_wirebond($l, 2);      # -- wirebond
 	
-	
-	# electronics
-	place_chip($l, 1, 1);       # ---- readout chip
-	place_chip($l, 1, 2);       # ---- readout chip
-	place_pcboard($l, 1);       # ------ pc board
-	place_pitch_adapter($l, 1); # -------- pitch adapther from module to pc board
-	place_pitch_adapter($l, 2); # -------- pitch adapther from module to pc board
-	place_pcboard($l, 2);       # ------ pc board
-	place_chip($l, 2, 1);       # ---- readout chip
-	place_chip($l, 2, 2);       # ---- readout chip
-	
-	
-	# support
-	place_copper_support($l);
-	place_downstream_support($l);
-	
-	
-	# Aluminized Mylar shells
-	# To act as faraday cage
-	make_shells($l+1);
-	
+	for(my $l = 0; $l < $nregions; $l++)
+	{
+		make_sl($l+1);
+		
+		# sensitive sandwich
+		place_wirebond($l, 1);      # -- wirebond
+		place_silicon($l, 1);       # ---- silicon
+		place_epoxy($l, 1, 1);      # ------ epoxy
+		place_epoxy($l, 1, 2);      # ------ epoxy
+		place_rail($l, 1);          # -------- rail
+		place_bus_cable($l, 1);     # ---------- bus cable
+		place_carbon_fiber($l, 1);  # ------------ carbon fiber
+		place_rohacell($l);         # -------------- rohacell
+		place_carbon_fiber($l, 2);  # ------------ carbon fiber
+		place_bus_cable($l, 2);     # ---------- bus cable
+		place_rail($l, 2);          # -------- rail
+		place_epoxy($l, 2, 1);      # ------ epoxy
+		place_epoxy($l, 2, 2);      # ------ epoxy
+		place_silicon($l, 2);       # ---- silicon
+		place_wirebond($l, 2);      # -- wirebond
+		
+		
+		# electronics
+		place_chip($l, 1, 1);       # ---- readout chip
+		place_chip($l, 1, 2);       # ---- readout chip
+		place_pcboard($l, 1);       # ------ pc board
+		place_pitch_adapter($l, 1); # -------- pitch adapther from module to pc board
+		place_pitch_adapter($l, 2); # -------- pitch adapther from module to pc board
+		place_pcboard($l, 2);       # ------ pc board
+		place_chip($l, 2, 1);       # ---- readout chip
+		place_chip($l, 2, 2);       # ---- readout chip
+		
+		# support
+		place_copper_support($l);
+		place_downstream_support($l);
+		
+		# Aluminized Mylar shells
+		# To act as faraday cage
+		make_shells($l+1);
+	}
 }
-
 
 
 sub make_sl
@@ -433,7 +402,7 @@ sub place_epoxy
 		for(my $s = 0; $s < $nsegments[$l] ; $s++)
 		{
 			my $snumber   = cnumber($s, 10);
-
+			
 			my $Dx = 0;
 			if($type == 1)
 			{
@@ -1079,7 +1048,7 @@ sub place_downstream_support
 	print_det(\%configuration, \%detector);
 	
 	%detector = init_det();
- 	$detector{"name"}        = "downstreamSupport_L$SL";
+	$detector{"name"}        = "downstreamSupport_L$SL";
 	$detector{"mother"}      = "bst_sl_$SL";
 	$detector{"description"} = "Downstream support, Layer $SL";
 	$detector{"pos"}         = "0*mm 0*mm $z*mm";

@@ -1,36 +1,9 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use materials;
+use warnings;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   materials.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Barrel Silicon Vertex (bst) materials\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
+our %configuration;
 
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
-sub print_materials
+sub materials
 {
 	# TDR 1100 is 100parts Bisphenol A  and 42parts hardener (Polyamide resin)
 	# Bisphenol A is  (CH3)2C(C6H4OH)2 or 5C H14 O2
@@ -159,13 +132,6 @@ sub print_materials
 	$mat{"components"}    = "G4_Cu 0.552 G4_Ni 0.072 G4_Au 0.009 SilverEpoxy 0.367";
 	print_mat(\%configuration, \%mat);
 	
-	
-	
-	
-	
-	
-	
 }
 
-print_materials();
 

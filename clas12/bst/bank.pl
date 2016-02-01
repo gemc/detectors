@@ -1,32 +1,7 @@
-#!/usr/bin/perl -w
-
-use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use bank;
-
 use strict;
 use warnings;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   bank.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Barrel Silicon Tracker (bst)  bank\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
+our %configuration;
 
 # One can change the "variation" here if one is desired different from the config.dat
 # $configuration{"variation"} = "myvar";
@@ -60,7 +35,3 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "bco",          5, "Di", "Time information");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
-
-define_bank();
-
-1;

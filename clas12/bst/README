@@ -13,15 +13,5 @@ The commands to build the geometry, banks, hit defs
 and materials are:
 
 upload_parameters.pl config.dat   < only for MYSQL factory
-./geometry.pl config.dat
-./bank.pl config.dat
-./hit.pl config.dat
-./materials.pl config.dat
 
-
---------------------------------------------------
-
-To remove the created text files:
-
-rm -f bst__bank*.txt bst__geometry*.txt bst__hit*.txt bst__materials*.txt out.ev out.txt
-
+./bst config.dat

@@ -48,9 +48,11 @@ our $tungstenColor        = "ff0000";
 # materials
 require "./materials.pl";
 
-
 # vacuum line throughout the shields, torus and downstream
 require "./vacuumLine.pl";
+
+# vacuum line throughout the shields, torus and downstream
+require "./gapLine.pl";
 
 # moeller shield
 require "./tungstenCone.pl";

@@ -51,6 +51,7 @@ require "./geometry.pl";
 
 # dc plates
 require "./basePlates.pl";
+require "./endPlates.pl";
 
 # calculate the parameters
 require "./utils.pl";

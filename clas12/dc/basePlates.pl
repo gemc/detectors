@@ -16,6 +16,8 @@ our @mother_zcent;
 our $pl_thick  = 1.5*$inches/2;
 our $tilt      = 25;
 
+my @plateMat  = ("G4_Al", "StainlessSteel", "G4_Al");
+
 sub make_plates
 {
 	
@@ -41,7 +43,7 @@ sub make_plates
 			$detector{"color"}       = "GCE937";
 			$detector{"type"}        = "G4Trap";
 			$detector{"dimensions"}  = "$mother_dy[$iregion]*mm 0*deg 0*deg $pl_thick*cm $pl_bottom[$iregion]*cm $pl_top[$iregion]*cm 0*deg $pl_thick*cm $pl_bottom[$iregion]*cm $pl_top[$iregion]*cm 0*deg";
-			$detector{"material"}    = "G4_Al";
+			$detector{"material"}    = $plateMat[$iregion];
 			$detector{"style"}       = 1;
 			
 			print_det(\%configuration, \%detector);

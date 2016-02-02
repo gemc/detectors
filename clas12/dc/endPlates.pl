@@ -29,7 +29,7 @@ my $ep_alpha = -25.00;
 my $ep_theta = 0.00;
 my $ep_phi   = 0.01;
 
-my @endPlateMat = ("G4_Al", "StainlessSteel", "G4_Al");
+my @endPlateMat = ("G4_Al", "G4_STAINLESS-STEEL", "G4_Al");
 
 sub make_endplates
 {

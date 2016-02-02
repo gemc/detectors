@@ -16,7 +16,7 @@ our @mother_zcent;
 our $pl_thick  = 1.5*$inches/2;
 our $tilt      = 25;
 
-my @plateMat  = ("G4_Al", "StainlessSteel", "G4_Al");
+my @plateMat  = ("G4_Al", "G4_STAINLESS-STEEL", "G4_Al");
 
 sub make_plates
 {

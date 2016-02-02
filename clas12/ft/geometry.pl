@@ -1145,7 +1145,7 @@ sub make_ft_cal
 	make_ft_cal_insulation();
 	make_ft_cal_shell();
     make_ft_cal_beamline();
-    make_ft_moellerdisk();
+	# make_ft_moellerdisk();
 }
 
 

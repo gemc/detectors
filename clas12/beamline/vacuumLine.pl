@@ -33,11 +33,12 @@ sub vacuumLine()
 	{
 		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
 	}
-    if( $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" )
-    {
-        @iradius_vbeam  =  ( 21.88, 21.88, 36.68, 36.68, 126,  126);
-        @oradius_vbeam  =  ( 25.00, 25.00,  39.8,  39.8, 132,  132);
-    }
+	
+	if( $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" )
+	{
+		@iradius_vbeam  =  ( 21.88, 21.88, 36.68, 36.68, 126,  126);
+		@oradius_vbeam  =  ( 25.00, 25.00,  39.8,  39.8, 132,  132);
+	}
 	
 	
 	# aluminum pipe

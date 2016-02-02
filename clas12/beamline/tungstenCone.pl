@@ -23,9 +23,9 @@ sub tungstenCone()
 		my $nplanes_tcone = 3;
 		
 		# shield is a tapered pipe (G4 polycone)
-		my @iradius_tcone  = ( 29.6, 29.6,  29.6 );
+		my @iradius_tcone  = ( 29.8, 29.8,  29.8 );
 		my @oradius_tcone  = ( 33.0, 90.0,  90.0 );
-				
+		
 		my $pipeZstart    = 420.0;    # start of cone
 		my $taperedLength = 1390.0;   # length of tapered part
 		my $totalLength   = $TorusZpos - $SteelFrameLength - $mountTotalLength - $microgap;   # total cone length
@@ -49,13 +49,11 @@ sub tungstenCone()
 		print_det(\%configuration, \%detector);
 	}
 	
-	
-	
-	
-	if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTNotUsed"  || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" )
+	else
 	{
 		my $zConeStart           = 433.9;  # htcc starts at 384 with ID 60.96
-		if($configuration{"variation"} eq "realityWithFT" ) {
+		if($configuration{"variation"} eq "realityWithFT" )
+		{
 			$zConeStart          = 750.0;
 		}
 		
@@ -94,125 +92,120 @@ sub tungstenCone()
 		
 		
 		
-		# Shield after cone - LEAD
-		if($configuration{"variation"} eq "realityNoFT" || $configuration{"variation"} eq "realityWithFTNotUsed" || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield")
+		
+		my $coneTubeShieldLength = (2269.6 - $zConeStart - $totalShieldLength -20.)/2.;
+		my $coneTubeIR           = 88.4/2;
+		my $coneTubeOR           = 241.1/2;
+		
+		# Stainless steel pipe supporting the cone
+		my $nplanes_ssts = 6;
+		my $sstsIR1      = $shieldIR1;
+		my $sstsOR1      = $shieldIR2  - $microgap ;
+		my $sstsIR2      = $sstsIR1;
+		my $sstsOR2      = $sstsOR1;
+		my $sstsIR3      = $sstsIR1;
+		my $sstsOR3      = $coneTubeIR - $microgap;
+		my $sstsIR4      = $sstsIR1;
+		my $sstsOR4      = $sstsOR3;
+		my $sstsIR5      = $sstsIR1;
+		my $sstsOR5      = 100.0;
+		my $sstsIR6      = $sstsIR1;
+		my $sstsOR6      = $sstsOR5;
+		my $sstsz2       = $partialShieldLength - $microgap;
+		my $sstsz3       = $sstsz2;
+		my $sstsz4       = $sstsz3 + $coneTubeShieldLength*2;
+		my $sstsz5       = $sstsz4;
+		my $sstsz6       = $sstsz5 + 20;
+		
+		if($configuration{"variation"} eq "realityWithFTNotUsed" || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" ||  $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag")
 		{
-			
-			my $coneTubeShieldLength = (2269.6 - $zConeStart - $totalShieldLength -20.)/2.;
-			my $coneTubeIR           = 88.4/2;
-			my $coneTubeOR           = 241.1/2;
-			
-			# Stainless steel pipe supporting the cone
-			my $nplanes_ssts = 6;
-			my $sstsIR1      = $shieldIR1;
-			my $sstsOR1      = $shieldIR2  - $microgap ;
-			my $sstsIR2      = $sstsIR1;
-			my $sstsOR2      = $sstsOR1;
-			my $sstsIR3      = $sstsIR1;
-			my $sstsOR3      = $coneTubeIR - $microgap;
-			my $sstsIR4      = $sstsIR1;
-			my $sstsOR4      = $sstsOR3;
-			my $sstsIR5      = $sstsIR1;
-			my $sstsOR5      = 100.0;
-			my $sstsIR6      = $sstsIR1;
-			my $sstsOR6      = $sstsOR5;
-			my $sstsz2       = $partialShieldLength - $microgap;
-			my $sstsz3       = $sstsz2;
-			my $sstsz4       = $sstsz3 + $coneTubeShieldLength*2;
-			my $sstsz5       = $sstsz4;
-			my $sstsz6       = $sstsz5 + 20;
-			
-			if($configuration{"variation"} eq "realityWithFTNotUsed" || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield")
-			{
-				$coneTubeShieldLength = (316.1 + 49.61) / 2.0;
-				$nplanes_ssts = 6;
-				$sstsIR4      = $sstsIR3;
-				$sstsOR4      = $sstsOR3;
-				$sstsIR5      = 40.0;
-				$sstsOR5      = $coneTubeIR - $microgap;
-				$sstsIR6      = $sstsIR5;
-				$sstsOR6      = $sstsOR5;
-				$sstsz4       = $sstsz3 + $coneTubeShieldLength*2 -49.61 - $partialShieldLength ;
-				$sstsz5       = $sstsz4;
-				$sstsz6       = $sstsz3 + $coneTubeShieldLength*2;
-				
-			}
-			
-			
-			my $coneTubeZpos         = $zConeStart + $totalShieldLength + $coneTubeShieldLength;
-			%detector = init_det();
-			$detector{"name"}        = "leadShieldAfterCone";
-			$detector{"mother"}      = "root";
-			$detector{"description"} = "lead Tube after shield";
-			$detector{"color"}       = "999999";
-			$detector{"pos"}         = "0*mm 0.0*mm $coneTubeZpos*mm";
-			$detector{"type"}        = "Tube";
-			$detector{"dimensions"}  = "$coneTubeIR*mm $coneTubeOR*mm $coneTubeShieldLength*mm 0.0*deg 360*deg";
-			$detector{"material"}    = "G4_Pb";
-			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
-			
-			
-			
-			# Stainless steel support of the FT cone (if FT is not used0
-			my $sstsPos         = $zConeStart + $totalShieldLength - $sstsz2;
-			
-			my @iradius_ssts  = ( $sstsIR1, $sstsIR2, $sstsIR3, $sstsIR4, $sstsIR5, $sstsIR6 );
-			my @oradius_ssts  = ( $sstsOR1, $sstsOR2, $sstsOR3, $sstsOR4, $sstsOR5, $sstsOR6 );
-			my @z_plane_ssts  = (        0,  $sstsz2,  $sstsz3,  $sstsz4,  $sstsz5,  $sstsz6 );
-			
-			%detector = init_det();
-			$detector{"name"}        = "sstShieldSupport";
-			$detector{"mother"}      = "root";
-			$detector{"description"} = "Stainless Steel support for tungsten cone and shield";
-			$detector{"pos"}         = "0*mm 0.0*mm $sstsPos*mm";
-			$detector{"color"}       = "bbbbbb";
-			$detector{"type"}        = "Polycone";
-			$dimen = "0.0*deg 360*deg $nplanes_ssts*counts";
-			for(my $i = 0; $i <$nplanes_ssts; $i++) {$dimen = $dimen ." $iradius_ssts[$i]*mm";}
-			for(my $i = 0; $i <$nplanes_ssts; $i++) {$dimen = $dimen ." $oradius_ssts[$i]*mm";}
-			for(my $i = 0; $i <$nplanes_ssts; $i++) {$dimen = $dimen ." $z_plane_ssts[$i]*mm";}
-			$detector{"dimensions"}  = $dimen;
-			$detector{"color"}       = "3333ff";
-			$detector{"material"}    = "G4_STAINLESS-STEEL";
-			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
-			
-			
-			
-			
-			# Additional Cone on top of the FT cone
-			
-			my $addLength = 300;
-			my $addY      = $shieldOR3*tan(2.5/180*3.141592);
-			my $addThickStart = 2;
-			
-			my $nplanes_addCone = 2;
-			
-			my @iradius_addCone  = ( $shieldOR3 - $addY + $microgap     ,  $shieldOR3 + $microgap );
-			my @oradius_addCone  = ( $shieldOR3 - $addY + $addThickStart,  $coneTubeOR );
-			my @z_plane_addCone  = (          0,  $addLength );
-
-			my $zAddConeStart  = $coneTubeZpos - $addLength - $microgap - $coneTubeShieldLength;
-			
-			%detector = init_det();
-			$detector{"name"}        = "additionalCone";
-			$detector{"mother"}      = "root";
-			$detector{"description"} = "Tungsten additional cone";
-			$detector{"pos"}         = "0*mm 0.0*mm $zAddConeStart*mm";
-			$detector{"color"}       = $tungstenColor;
-			$detector{"type"}        = "Polycone";
-			$dimen = "0.0*deg 360*deg $nplanes_addCone*counts";
-			for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $iradius_addCone[$i]*mm";}
-			for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $oradius_addCone[$i]*mm";}
-			for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $z_plane_addCone[$i]*mm";}
-			$detector{"dimensions"}  = $dimen;
-			$detector{"material"}    = "beamline_W";
-			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
-
+			$coneTubeShieldLength = (316.1 + 49.61) / 2.0;
+			$nplanes_ssts = 6;
+			$sstsIR4      = $sstsIR3;
+			$sstsOR4      = $sstsOR3;
+			$sstsIR5      = 40.0;
+			$sstsOR5      = $coneTubeIR - $microgap;
+			$sstsIR6      = $sstsIR5;
+			$sstsOR6      = $sstsOR5;
+			$sstsz4       = $sstsz3 + $coneTubeShieldLength*2 -49.61 - $partialShieldLength ;
+			$sstsz5       = $sstsz4;
+			$sstsz6       = $sstsz3 + $coneTubeShieldLength*2;
 			
 		}
+		
+		
+		my $coneTubeZpos         = $zConeStart + $totalShieldLength + $coneTubeShieldLength;
+		%detector = init_det();
+		$detector{"name"}        = "leadShieldAfterCone";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "lead Tube after shield";
+		$detector{"color"}       = "999999";
+		$detector{"pos"}         = "0*mm 0.0*mm $coneTubeZpos*mm";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$coneTubeIR*mm $coneTubeOR*mm $coneTubeShieldLength*mm 0.0*deg 360*deg";
+		$detector{"material"}    = "G4_Pb";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+		
+		
+		
+		# Stainless steel support of the FT cone (if FT is not used0
+		my $sstsPos         = $zConeStart + $totalShieldLength - $sstsz2;
+		
+		my @iradius_ssts  = ( $sstsIR1, $sstsIR2, $sstsIR3, $sstsIR4, $sstsIR5, $sstsIR6 );
+		my @oradius_ssts  = ( $sstsOR1, $sstsOR2, $sstsOR3, $sstsOR4, $sstsOR5, $sstsOR6 );
+		my @z_plane_ssts  = (        0,  $sstsz2,  $sstsz3,  $sstsz4,  $sstsz5,  $sstsz6 );
+		
+		%detector = init_det();
+		$detector{"name"}        = "sstShieldSupport";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Stainless Steel support for tungsten cone and shield";
+		$detector{"pos"}         = "0*mm 0.0*mm $sstsPos*mm";
+		$detector{"color"}       = "bbbbbb";
+		$detector{"type"}        = "Polycone";
+		$dimen = "0.0*deg 360*deg $nplanes_ssts*counts";
+		for(my $i = 0; $i <$nplanes_ssts; $i++) {$dimen = $dimen ." $iradius_ssts[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_ssts; $i++) {$dimen = $dimen ." $oradius_ssts[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_ssts; $i++) {$dimen = $dimen ." $z_plane_ssts[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"color"}       = "3333ff";
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+		
+		
+		# Additional Cone on top of the FT cone
+		my $addLength = 300;
+		my $addY      = $shieldOR3*tan(2.5/180*3.141592);
+		my $addThickStart = 2;
+		
+		my $nplanes_addCone = 2;
+		
+		my @iradius_addCone  = ( $shieldOR3 - $addY + $microgap     ,  $shieldOR3 + $microgap );
+		my @oradius_addCone  = ( $shieldOR3 - $addY + $addThickStart,  $coneTubeOR );
+		my @z_plane_addCone  = (          0,  $addLength );
+		
+		my $zAddConeStart  = $coneTubeZpos - $addLength - $microgap - $coneTubeShieldLength;
+		
+		%detector = init_det();
+		$detector{"name"}        = "additionalCone";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Tungsten additional cone";
+		$detector{"pos"}         = "0*mm 0.0*mm $zAddConeStart*mm";
+		$detector{"color"}       = $tungstenColor;
+		$detector{"type"}        = "Polycone";
+		$dimen = "0.0*deg 360*deg $nplanes_addCone*counts";
+		for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $iradius_addCone[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $oradius_addCone[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_addCone; $i++) {$dimen = $dimen ." $z_plane_addCone[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "beamline_W";
+		$detector{"style"}       = 1;
+		if($configuration{"variation"} ne "realityWithFT" )
+		{
+			print_det(\%configuration, \%detector);
+		}
+		
 	}
 	
 	

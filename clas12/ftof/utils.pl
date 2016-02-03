@@ -68,7 +68,7 @@ sub calculate_ftof_parameters
 	# this is the distance of the middle of the panel to the target
 	$panel1a_dz = sqrt( sq($panel1a_zpos[0] - $panel1a_zpos[-1]) + sq($panel1a_xpos[-1] - $panel1a_xpos[0]) )/2.0  ;
 	
-	
+      
 	# panel 1B
 	my $p1b_x_p0 = $parameters{"ftof.panel1B.x.p0"};
 	my $p1b_x_p1 = $parameters{"ftof.panel1B.x.p1"};
@@ -104,7 +104,7 @@ sub calculate_ftof_parameters
 	}
 	
 	$tilt_p2 = 90.0 - atan( ($panel2_xpos[-1] - $panel2_xpos[0])/($panel2_zpos[0] - $panel2_zpos[-1])  )*180.0/$pi;
-	$panel2_dz = sqrt( sq($panel2_zpos[0] - $panel2_zpos[-1]) + sq($panel2_xpos[-1] - $panel2_xpos[0]) )/2.0  ;
+	$panel2_dz = sqrt( sq($panel2_zpos[0] - $panel2_zpos[-1]) + sq($panel2_xpos[-1] - $panel2_xpos[0]) )/2.0 ;
 
 }
 
@@ -232,7 +232,7 @@ sub panel_1b_dims
 {
 	my $panel1b_mother_dx1 = fstr($panel1b_leng[1]/2.0  + $mothergap);
 	my $panel1b_mother_dx2 = $panel1b_leng[-1]/2.0 + ($panel1b_leng[-1] - $panel1b_leng[-2])/2.0 + $mothergap;
-	my $panel1b_mother_dy  = fstr($panel1b_w/2.0 + $mothergap);
+	my $panel1b_mother_dy  = fstr($panel1b_w/2.0 + $mothergap) + 1.026;
 	my $panel1b_mother_dz  = fstr($panel1b_dz + $panel1b_h/2.0 + $mothergap) ;
 	
 	return "$panel1b_mother_dx1*inches $panel1b_mother_dx2*inches $panel1b_mother_dy*inches $panel1b_mother_dy*inches $panel1b_mother_dz*inches";
@@ -293,8 +293,23 @@ sub panel_2_counter_dims
 	return "$length*inches $width*inches $height*inches";
 }
 
+sub pb_dims
+{
+	my $panel1b_mother_dx1 = fstr($panel1b_leng[1]/2.0  + $mothergap);
+	my $panel1b_mother_dx2 = $panel1b_leng[-1]/2.0 + ($panel1b_leng[-1] - $panel1b_leng[-2])/2.0 + $mothergap;
+	my $panel1b_mother_dy  = 1/25.4; # 1mm
+	my $panel1b_mother_dz  = fstr($panel1b_dz + $panel1b_h/2.0 + $mothergap);
+	
+	return "$panel1b_mother_dx1*inches $panel1b_mother_dx2*inches $panel1b_mother_dy*inches $panel1b_mother_dy*inches $panel1b_mother_dz*inches";
+}
 
-
+sub pb_pos 
+{
+    # shift the lead forward wrt mother center
+    # by a distance half the thickness of the counters
+    my $ypos = -1*(0.001 + fstr($panel1b_w/2.0 + $mothergap));
+    return "0*inches $ypos*inches 0*inches";
+}
 
 
 

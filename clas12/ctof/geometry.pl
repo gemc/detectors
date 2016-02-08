@@ -1,40 +1,8 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use parameters;
-use geometry;
-use math;
+use warnings;
 
-use Math::Trig;
-
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Central Time of Flight (ctof) using the variation specified in the configuration file\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file from argument
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
-# To get the parameters proper authentication is needed.
-our %parameters    = get_parameters(%configuration);
+our %configuration;
+our %parameters;
 
 # Assign paramters to local variables
 my $NUM_BARS = $parameters{"ctof_number_of_bars"};
@@ -47,9 +15,11 @@ my $theta0 = 360./$NUM_BARS;                                  # double the angle
 # midway between R_outer and R_inner - cm
 my $R =  25.0 + $dz + 0.1;
 
-build_mother();
-build_paddles();
-
+sub makeCtof
+{
+	build_mother();
+	build_paddles();
+}
 
 sub build_mother
 {

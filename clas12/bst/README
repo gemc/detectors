@@ -14,4 +14,4 @@ and materials are:
 
 upload_parameters.pl config.dat   < only for MYSQL factory
 
-./bst config.dat
+./bst.pl config.dat

@@ -4,9 +4,7 @@ use warnings;
 our %configuration;
 
 sub materials
-{
-	# uploading the mat definition
-	
+{	
 	# Scintillator
 	my %mat = init_mat();
 	$mat{"name"}          = "scintillator";

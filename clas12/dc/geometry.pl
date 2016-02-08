@@ -136,7 +136,7 @@ sub make_layers
 
 
 
-sub make_dc
+sub makeDC
 {
 	make_region(0);
 	make_region(1);

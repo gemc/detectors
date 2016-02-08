@@ -78,7 +78,7 @@ foreach my $conf ( @allConfs )
 	calculate_dc_parameters();
 
 	# sensitive geometry
-	make_dc();
+	makeDC();
 	
 	# dc plates
 	make_plates();

@@ -15,7 +15,7 @@ my $theta0 = 360./$NUM_BARS;                                  # double the angle
 # midway between R_outer and R_inner - cm
 my $R =  25.0 + $dz + 0.1;
 
-sub makeCtof
+sub makeCTOF
 {
 	build_mother();
 	build_paddles();

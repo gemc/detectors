@@ -53,7 +53,7 @@ my $ucolor =  '3c78ff';  # u-turn color
 
 my $half_diff = 0;
 
-sub build_cnd
+sub makeCND
 {
 	make_cndMother();
 	make_paddles();

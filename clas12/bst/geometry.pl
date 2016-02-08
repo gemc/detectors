@@ -148,7 +148,7 @@ my @shell_z   = (307.7, 331.0, 171.5, 345.3) ;
 
 
 # BST is a Tube. SLs are Tubes inside BST
-sub make_bst
+sub makeBST
 {
 	
 	for(my $l = 0; $l < $nregions; $l++)

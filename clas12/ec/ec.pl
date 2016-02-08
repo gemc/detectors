@@ -17,8 +17,8 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   bst.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
+	print "   ec.pl <configuration filename>\n";
+ 	print "   Will create the CLAS12 EC geometry, materials, bank and hit definitions\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
@@ -50,9 +50,6 @@ require "./hit.pl";
 # sensitive geometry
 require "./geometry.pl";
 
-# calculate the parameters
-require "./utils.pl";
-
 
 # all the scripts must be run for every configuration
 my @allConfs = ("original");
@@ -71,7 +68,7 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	makeBST();
+	makeEC();
 	
 }
 

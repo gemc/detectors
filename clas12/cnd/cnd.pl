@@ -68,7 +68,7 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	build_cnd();
+	makeCND();
 	
 }
 

@@ -3,9 +3,6 @@ use warnings;
 
 our %configuration;
 
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
 # Variable Type is two chars.
 # The first char:
 #  R for raw integrated variables

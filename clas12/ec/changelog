@@ -1,3 +1,6 @@
+2/8/16
+- added ec.pl script to do geometry, material, banks and hits
+
 1/23/15
 - changed mother volume to fc
 - adding 1 cm to ec z position to avoid overlaps with pca.

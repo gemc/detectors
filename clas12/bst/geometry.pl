@@ -1,11 +1,3 @@
-#!/usr/bin/perl -w
-
-
-# BST geometry
-#
-# TODO:
-# Still some hardcoded ugly numbers (carbon fiber and copper position)
-# Eventually remove all hardcoded parameters
 use strict;
 use warnings;
 

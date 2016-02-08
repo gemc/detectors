@@ -13,9 +13,7 @@
 
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 
-
-
 	<option name="COSMICRAYS" value="default, 1, 5"/>
-	<option name="COSMICAREA" value="0*cm, 0*cm, 0*cm, 40*cm"/>
+	<option name="COSMICAREA" value="0*cm, 0*cm, 0*cm, 80*cm"/>
 
 </gcard>

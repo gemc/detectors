@@ -8,8 +8,8 @@ use parameters;
 use geometry;
 use hit;
 use bank;
-use math;
 use materials;
+use math;
 
 use Math::Trig;
 
@@ -17,8 +17,8 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   bst.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
+	print "   cnd.pl <configuration filename>\n";
+ 	print "   Will create the CLAS12 CND geometry, materials, bank and hit definitions\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
@@ -35,7 +35,7 @@ our %configuration = load_configuration($ARGV[0]);
 
 
 # Global pars - these should be read by the load_parameters from file or DB
-our %parameters = get_parameters(%configuration);
+our %parameters    = get_parameters(%configuration);
 
 
 # materials
@@ -49,9 +49,6 @@ require "./hit.pl";
 
 # sensitive geometry
 require "./geometry.pl";
-
-# calculate the parameters
-require "./utils.pl";
 
 
 # all the scripts must be run for every configuration
@@ -71,7 +68,7 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	make_bst();
+	build_cnd();
 	
 }
 

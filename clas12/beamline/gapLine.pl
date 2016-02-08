@@ -16,9 +16,11 @@ sub gapLine()
 	my $length = ($zEnd - $zStart) / 2.0;
 	my $zpos   = $zStart + $length;
 	
-	if( $configuration{"variation"} eq "realityWithFT" )
+	if( $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTWithInnerShield")
 	{
 		$zEnd = 750.0;
+        $length = ($zEnd - $zStart) / 2.0;
+        $zpos   = $zStart + $length;
 	}
 	
 	# air pipe

@@ -366,7 +366,7 @@ sub make_ft_cal_mother_volume
     my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
     my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
     my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
-    if($configuration{"variation"} eq "NotUsedWithInnerShield") {
+    if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
         @iradius_FT = ($BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR, $BLine_DR, $BLine_DR);
     }
     my %detector = init_det();
@@ -564,7 +564,7 @@ sub make_ft_moellerdisk
     my @disk_iradius = (   2.0 ,   56.0 );
     my @disk_oradius = ( 150.0 ,  150.0 );
 
-    for(my $n=0; $n<2; $n++)	
+    for(my $n=1; $n<2; $n++)
     {
         my $idisk = $n +1;
 	my %detector = init_det();
@@ -964,7 +964,7 @@ sub make_ft_cal_beamline
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft beam line";
     $detector{"style"}       = 1;
-    if($configuration{"variation"} eq "NotUsedWithInnerShield") {
+    if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
         $detector{"color"}       = "cccccc";
         $detector{"type"}        = "Polycone";
         my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
@@ -974,7 +974,7 @@ sub make_ft_cal_beamline
         $detector{"dimensions"}  = $dimen;
         $detector{"material"}    = "G4_STAINLESS-STEEL";
     }
-    elsif($configuration{"variation"} eq "NotUsedWithInnerSST") {
+    elsif($configuration{"variation"} eq "NotUsedWithInnerSST" || $configuration{"variation"} eq "WithInnerSST") {
         $detector{"color"}       = "cccccc";
         $detector{"type"}        = "Polycone";
         my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
@@ -997,7 +997,7 @@ sub make_ft_cal_beamline
     print_det(\%configuration, \%detector);
     
     
-    if($configuration{"variation"} eq "NotUsedWithInnerShield") {
+    if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
         my $nplanes_BLine_shield = 2;
         my @z_plane_BLine_shield = ($BLine_Z1, $BLine_Z5);
         my @oradius_BLine_shield = ($BLine_SR, $BLine_SR);
@@ -1145,7 +1145,7 @@ sub make_ft_cal
 	make_ft_cal_insulation();
 	make_ft_cal_shell();
     make_ft_cal_beamline();
-	# make_ft_moellerdisk();
+    make_ft_moellerdisk();
 }
 
 

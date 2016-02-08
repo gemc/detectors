@@ -71,7 +71,7 @@ require "./afterTorusShielding.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTNotUsed", "realityWithFTNotUsedWithInnerShield", "realityWithFTNotUsedHeliumBag");
+my @allConfs = ("physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTWithInnerShield", "realityWithFTNotUsed", "realityWithFTNotUsedWithInnerShield", "realityWithFTNotUsedHeliumBag");
 
 foreach my $conf ( @allConfs )
 {
@@ -84,7 +84,7 @@ foreach my $conf ( @allConfs )
 	vacuumLine();
 
 	# air beampipe between the target and the vacuum line
-	gapLine();
+    gapLine();
 
 	# moeller shield
 	tungstenCone();

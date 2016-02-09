@@ -68,7 +68,7 @@ my @abslength = ( "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000
                   "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",    "82.8323273*m", \
 	                 "4.6101432*m",     "0.7465970*m");
 // Quantum efficiency of HTCC PMT with quartz window:        
-my @QEHTCCMPT = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,\
+my @qehtccpmt = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,\
 		0.0105000,     0.0149000,     0.0216000,     0.0289000,     0.0376000,\
 		0.0482000,     0.0609000,     0.0753000,     0.0916000,     0.1116000,\
 		0.1265000,     0.1435000,     0.1602000,     0.1725000,     0.1892000,\
@@ -80,7 +80,7 @@ my @QEHTCCMPT = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.
 		0.1612000,     0.1305000  );
 // Index of refraction of HTCC PMT quartz window:
 		
-my @RIHTCCPMT = (1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,\
+my @rindexhtccpmt = (1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,\
 		1.5437840,  1.5441775,  1.5445893,  1.5450206,  1.5454731,\
 		1.5459484,  1.5464485,  1.5469752,  1.5475310,  1.5481182,\
 		1.5487396,  1.5493983,  1.5500977,  1.5508417,  1.5516344,\
@@ -108,20 +108,20 @@ my @Reflectivity_HTCCMirror =
 	//Array of photon energies corresponding to wavelengths from 200-650 nm
 	//This omits the point at lambda = 190 nm that is used in the other arrays above
 	//Used to define mirror reflectivity based on Andrew's measurements in Fall 2012:
-my @PhotonEnergy_HTCC_mirr =
+my @penergyHTCCmirr =
     ( "1.907449*eV",         "1.937253*eV",         "1.968003*eV",         "1.999745*eV",         "2.032528*eV",\
 	"2.066404*eV",         "2.101427*eV",         "2.137659*eV",         "2.175162*eV",         "2.214004*eV",\
-	"2.254258*eV",         "2.296004*eV",         "2.339325*eV,         "2.384312*eV,         "2.431063*eV",\
-	"2.479684*eV",          "2.53029*eV",         "2.583004*eV,         "2.637962*eV,         "2.695309*eV",\
-	"2.755205*eV",         "2.817823*eV",         "2.883354*eV,         "2.952005*eV,         "3.024005*eV",\
-	"3.099605*eV",         "3.179082*eV",         "3.262742*eV,         "3.350925*eV,         "3.444006*eV",\
-	"3.542406*eV",         "3.646594*eV",         "3.757097*eV,         "3.874507*eV,         "3.999491*eV",\
-	"4.132807*eV",         "4.275318*eV",         "4.428008*eV,         "4.592008*eV,         "4.768623*eV",\
-	"4.959368*eV",         "5.166009*eV",         "5.390618*eV,         "5.635646*eV,          "5.90401*eV",\
+	"2.254258*eV",         "2.296004*eV",         "2.339325*eV",         "2.384312*eV",         "2.431063*eV",\
+	"2.479684*eV",          "2.53029*eV",         "2.583004*eV",         "2.637962*eV",         "2.695309*eV",\
+	"2.755205*eV",         "2.817823*eV",         "2.883354*eV",         "2.952005*eV",         "3.024005*eV",\
+	"3.099605*eV",         "3.179082*eV",         "3.262742*eV",         "3.350925*eV",         "3.444006*eV",\
+	"3.542406*eV",         "3.646594*eV",         "3.757097*eV",         "3.874507*eV",         "3.999491*eV",\
+	"4.132807*eV",         "4.275318*eV",         "4.428008*eV",         "4.592008*eV",         "4.768623*eV",\
+	"4.959368*eV",         "5.166009*eV",         "5.390618*eV",         "5.635646*eV",          "5.90401*eV",\
 	"6.199211*eV");
 	
 		//Reflectivity of AlMgF2 coated on thermally shaped acrylic sheets, measured by AJRP, 10/01/2012:
-	my @Reflectivity_HTCC_AlMgF2_mirr =
+	my @reflectivityHTCCAlMgF2mirr =
     ( 0.8722925,        0.8725418,        0.8724854,        0.8719032,        0.8735628,
 		0.8733527,        0.8728732,        0.8769834,        0.8794382,        0.8790207,
 		0.8762184,        0.8800928,        0.8808256,        0.8812256,        0.8801459,
@@ -134,7 +134,7 @@ my @PhotonEnergy_HTCC_mirr =
 		0.6854251);
 	
 	//Reflectivity of AlMgF2 coated on Winston Cones, measured by AJRP on 10/04/2012:
-	my @Reflectivity_HTCC_AlMgF2_WC =
+	my @reflectivityHTCCAlMgF2WC =
     ( 0.8331038,        0.8309071,        0.8279127,        0.8280742,        0.8322623,
 		0.837572,        0.8396875,        0.8481834,        0.8660284,        0.8611336,
 		0.8566167,        0.8667431,          0.86955,        0.8722481,        0.8728122,
@@ -185,8 +185,8 @@ sub print_materials
 	$mat{"ncomponents"} = 1;
 	$mat{"components"} = "G4_SILICON_DIOXIDE 1.0";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"PMTEFFICIENCY"}  = arrayToString(@QEHTCCMPT);
-	$mat{"PMTRINDEX"} = arrayToString(@RIHTCCPMT );
+	$mat{"PMTEFFICIENCY"}  = arrayToString(@qehtccpmt);
+	$mat{"PMTRINDEX"} = arrayToString(@rindexhtccpmt );
 	print_mat(\%configuration, \%mat);
 
 	#Below we add new material definitions which include the actual measured reflectivity of thermally shaped sheets of acryl
@@ -200,8 +200,8 @@ sub print_materials
 	$mat{"ncomponents"}   = "3";
 	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
 	#New material definition with actual reflectivity measured for Al+MgF2 coated on acryl sheets, AJRP 10/08/2012:
-	$mat{"photonEnergy"}      = arrayToString(@PhotonEnergy_HTCC_mirr);
-	$mat{"REFLECTIVITY"} = arrayToString(@Reflectivity_HTCC_AlMgF2_mirr);
+	$mat{"photonEnergy"}      = arrayToString(@penergyHTCCmirr);
+	$mat{"REFLECTIVITY"} = arrayToString(@reflectivityHTCCAlMgF2mirr);
 	print_mat(\%configuration, \%mat);
 
 	
@@ -217,8 +217,8 @@ sub print_materials
 	$mat{"ncomponents"}   = "3";
 	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
 	#New material definition with actual reflectivity measured for Al+MgF2 coated on Winston Cone, AJRP 10/08/2012:
-	$mat{"photonEnergy"}      = arrayToString(@PhotonEnergy_HTCC_mirr);
-	$mat{"REFLECTIVITY"} = arrayToString(@Reflectivity_HTCC_AlMgF2_WC);
+	$mat{"photonEnergy"}      = arrayToString(@penergyHTCCmirr);
+	$mat{"REFLECTIVITY"} = arrayToString(@reflectivityHTCCAlMgF2WC);
 	print_mat(\%configuration, \%mat);
 }
 

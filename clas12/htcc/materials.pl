@@ -160,7 +160,7 @@ sub print_materials
 	$mat{"indexOfRefraction"} = arrayToString(@irefr);
 	$mat{"absorptionLength"}  = arrayToString(@abslength);
 	print_mat(\%configuration, \%mat);
-
+#rohacell
 	%mat = init_mat();
 	$mat{"name"}          = "rohacell31";
 	$mat{"description"}   = "htcc gas is 100% CO2 with optical properties";
@@ -168,7 +168,29 @@ sub print_materials
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "G4_C 0.6463 G4_H 0.0784 G4_N 0.0839 G4_O 0.1914";
 	print_mat(\%configuration, \%mat);
-
+# Quartz window of HTCC PMT:
+	# - refractive index (required for tracking of optical photons)
+	# - efficiency (for quantum efficiency of photocathode)
+	# NOTE: in principle the quantum efficiency data of the photocathode
+	# already includes the effects of reflection and transmission
+	# at the interface between the window and the surrounding environment.
+	# Therefore, it is possible that we are "double-counting" such effects
+	# on the photo-electron yield by including the refractive index here.
+	# However, only a small fraction of the light will be reflected by the
+	# window in any case so we don't need to worry too much.
+	%mat = init_mat();
+	$mat{"name"} = "HTCCPMTQuartz";
+	$mat{"desription"} = "refractive index and efficency of HTCC PMT Quartz window";
+	$mat{"density"} = 2.32;
+	$mat{"ncomponents"} = 1;
+	$mat{"components"} = "G4_SILICON_DIOXIDE 1.0";
+	$mat{"photonEnergy"}      = arrayToString(@penergy);
+	MMats["PMTEFFICIENCY"]  = HTCCPMTquartz;
+	G4MaterialPropertiesTable* HTCCPMTquartz_MPT = new G4MaterialPropertiesTable();
+	HTCCPMTquartz_MPT->AddProperty("EFFICIENCY", PhotonEnergy_HTCCGas, QuantumEfficiency_HTCCPMT, nEntries_HTCCGas );
+    // disabling this cause it causes infinite loop between pmt and htcc gas - photon bouncing around
+	HTCCPMTquartz_MPT->AddProperty("RINDEX",     PhotonEnergy_HTCCGas, Rindex_HTCCPMT,            nEntries_HTCCGas );
+	MMats["HTCCPMTquartz"]->SetMaterialPropertiesTable(HTCCPMTquartz_MPT);
 }
 
 print_materials();

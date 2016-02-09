@@ -68,7 +68,7 @@ my @abslength = ( "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000
                   "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",    "82.8323273*m", \
 	                 "4.6101432*m",     "0.7465970*m");
 // Quantum efficiency of HTCC PMT with quartz window:        
-my @QuantumEfficiency_HTCCPMT = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,\
+my @QEHTCCMPT = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,\
 		0.0105000,     0.0149000,     0.0216000,     0.0289000,     0.0376000,\
 		0.0482000,     0.0609000,     0.0753000,     0.0916000,     0.1116000,\
 		0.1265000,     0.1435000,     0.1602000,     0.1725000,     0.1892000,\
@@ -80,7 +80,7 @@ my @QuantumEfficiency_HTCCPMT = ( 0.0000000,     0.0014000,     0.0024000,     0
 		0.1612000,     0.1305000  );
 // Index of refraction of HTCC PMT quartz window:
 		
-my @Rindex_HTCCPMT = (1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,\
+my @RIHTCCPMT = (1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,\
 		1.5437840,  1.5441775,  1.5445893,  1.5450206,  1.5454731,\
 		1.5459484,  1.5464485,  1.5469752,  1.5475310,  1.5481182,\
 		1.5487396,  1.5493983,  1.5500977,  1.5508417,  1.5516344,\
@@ -185,12 +185,41 @@ sub print_materials
 	$mat{"ncomponents"} = 1;
 	$mat{"components"} = "G4_SILICON_DIOXIDE 1.0";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	MMats["PMTEFFICIENCY"]  = HTCCPMTquartz;
-	G4MaterialPropertiesTable* HTCCPMTquartz_MPT = new G4MaterialPropertiesTable();
-	HTCCPMTquartz_MPT->AddProperty("EFFICIENCY", PhotonEnergy_HTCCGas, QuantumEfficiency_HTCCPMT, nEntries_HTCCGas );
-    // disabling this cause it causes infinite loop between pmt and htcc gas - photon bouncing around
-	HTCCPMTquartz_MPT->AddProperty("RINDEX",     PhotonEnergy_HTCCGas, Rindex_HTCCPMT,            nEntries_HTCCGas );
-	MMats["HTCCPMTquartz"]->SetMaterialPropertiesTable(HTCCPMTquartz_MPT);
+	$mat{"PMTEFFICIENCY"}  = arrayToString(@QEHTCCMPT);
+	$mat{"PMTRINDEX"} = arrayToString(@RIHTCCPMT );
+	print_mat(\%configuration, \%mat);
+
+	#Below we add new material definitions which include the actual measured reflectivity of thermally shaped sheets of acryl
+	#coated with Aluminum and "MgF2" by ECI (Actually, "MgF2" is ECI's proprietary protective overcoat material, we do not know its composition.
+	# We only measured its reflectivity.).
+	# ECI = Evaporated Coatings, Inc.
+	%mat = init_mat();
+	$mat{"name"} = "HTCCECIMirr";
+	$mat{"desription"} = "Measured reflectivity for Al+MgF2 coated on acryl sheets";
+	$mat{"density"}       = "2.9007";
+	$mat{"ncomponents"}   = "3";
+	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
+	#New material definition with actual reflectivity measured for Al+MgF2 coated on acryl sheets, AJRP 10/08/2012:
+	$mat{"photonEnergy"}      = arrayToString(@PhotonEnergy_HTCC_mirr);
+	$mat{"REFLECTIVITY"} = arrayToString(@Reflectivity_HTCC_AlMgF2_mirr);
+	print_mat(\%configuration, \%mat);
+
+	
+	#Below is a new material definition which is the same as above, except this time we use the measured reflectivity of
+	#the same coating applied to a Winston cone and measured with the test beam incident parallel to the axis of the cone at a "grazing"
+	# angle-of-incidence:
+	#New material definition with actual reflectivity measured for Al+MgF2 coated on Winston cone, AJRP 10/08/2012:
+	
+	%mat = init_mat();
+	$mat{"name"} = "HTCCECIWC";
+	$mat{"desription"} = "Measured reflectivity for Al+MgF2 coated on acryl sheets";
+	$mat{"density"}       = "2.9007";
+	$mat{"ncomponents"}   = "3";
+	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
+	#New material definition with actual reflectivity measured for Al+MgF2 coated on Winston Cone, AJRP 10/08/2012:
+	$mat{"photonEnergy"}      = arrayToString(@PhotonEnergy_HTCC_mirr);
+	$mat{"REFLECTIVITY"} = arrayToString(@Reflectivity_HTCC_AlMgF2_WC);
+	print_mat(\%configuration, \%mat);
 }
 
 print_materials();

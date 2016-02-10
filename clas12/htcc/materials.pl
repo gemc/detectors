@@ -151,7 +151,7 @@ sub print_materials
 {
     # htcc gas is 100% CO2 with optical properties
 	my %mat = init_mat();
-	$mat{"name"}          = "htccGas";
+	$mat{"name"}          = "HTCCGas";
 	$mat{"description"}   = "htcc gas is 100% CO2 with optical properties";
 	$mat{"density"}       = "0.00184";
 	$mat{"ncomponents"}   = "1";
@@ -187,8 +187,8 @@ sub print_materials
 	$mat{"ncomponents"} = 1;
 	$mat{"components"} = "G4_SILICON_DIOXIDE 1.0";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"PMTEFFICIENCY"}  = arrayToString(@qeHTCCpmt);
-	$mat{"PMTRINDEX"} = arrayToString(@rindexHTCCpmt );
+	$mat{"PMTefficiency"}  = arrayToString(@qeHTCCpmt);
+	$mat{"PMTRIndex"} = arrayToString(@rindexHTCCpmt );
 	print_mat(\%configuration, \%mat);
 
 	# AlMgF2 mirror reflective coating for HTCC.
@@ -208,7 +208,7 @@ sub print_materials
 	$mat{"ncomponents"}   = "3";
 	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"REFLECTIVITY"} = arrayToString(@reflectivityHTCCAlMgF2);
+	$mat{"reflectivity"} = arrayToString(@reflectivityHTCCAlMgF2);
 	print_mat(\%configuration, \%mat);
 
 
@@ -224,7 +224,7 @@ sub print_materials
 	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
 	#New material definition with actual reflectivity measured for Al+MgF2 coated on acryl sheets, AJRP 10/08/2012:
 	$mat{"photonEnergy"}      = arrayToString(@penergyHTCCmirr);
-	$mat{"REFLECTIVITY"} = arrayToString(@reflectivityHTCCAlMgF2Mirr);
+	$mat{"reflectivity"} = arrayToString(@reflectivityHTCCAlMgF2Mirr);
 	print_mat(\%configuration, \%mat);
 
 	
@@ -240,7 +240,7 @@ sub print_materials
 	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
 	#New material definition with actual reflectivity measured for Al+MgF2 coated on Winston Cone, AJRP 10/08/2012:
 	$mat{"photonEnergy"}      = arrayToString(@penergyHTCCmirr);
-	$mat{"REFLECTIVITY"} = arrayToString(@reflectivityHTCCAlMgF2WC);
+	$mat{"reflectivity"} = arrayToString(@reflectivityHTCCAlMgF2WC);
 	print_mat(\%configuration, \%mat);
 }
 

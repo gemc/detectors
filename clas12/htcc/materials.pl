@@ -68,7 +68,7 @@ my @abslength = ( "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000
                   "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",    "82.8323273*m", \
 	                 "4.6101432*m",     "0.7465970*m");
 # Quantum efficiency of HTCC PMT with quartz window:        
-my @qehtccpmt = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,\
+my @qeHTCCpmt = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,\
 		0.0105000,     0.0149000,     0.0216000,     0.0289000,     0.0376000,\
 		0.0482000,     0.0609000,     0.0753000,     0.0916000,     0.1116000,\
 		0.1265000,     0.1435000,     0.1602000,     0.1725000,     0.1892000,\
@@ -80,7 +80,7 @@ my @qehtccpmt = ( 0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.
 		0.1612000,     0.1305000  );
 # Index of refraction of HTCC PMT quartz window:
 		
-my @rindexhtccpmt = (1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,\
+my @rindexHTCCpmt = (1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,\
 		1.5437840,  1.5441775,  1.5445893,  1.5450206,  1.5454731,\
 		1.5459484,  1.5464485,  1.5469752,  1.5475310,  1.5481182,\
 		1.5487396,  1.5493983,  1.5500977,  1.5508417,  1.5516344,\
@@ -187,8 +187,8 @@ sub print_materials
 	$mat{"ncomponents"} = 1;
 	$mat{"components"} = "G4_SILICON_DIOXIDE 1.0";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"PMTEFFICIENCY"}  = arrayToString(@qehtccpmt);
-	$mat{"PMTRINDEX"} = arrayToString(@rindexhtccpmt );
+	$mat{"PMTEFFICIENCY"}  = arrayToString(@qeHTCCpmt);
+	$mat{"PMTRINDEX"} = arrayToString(@rindexHTCCpmt );
 	print_mat(\%configuration, \%mat);
 
 	# AlMgF2 mirror reflective coating for HTCC.

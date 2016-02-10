@@ -2,7 +2,7 @@
 
 # Detector name and variation
 detector_name: htcc
-variation:     original
+variation:     original_nick
 
 # Factory can be MYQL or TEXT
 factory:       TEXT 

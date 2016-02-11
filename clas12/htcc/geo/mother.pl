@@ -105,7 +105,7 @@ sub make_GasVolumeFinal
 	$detector{"color"}       = "0000ff3"; # add a 4 or 5 at the end to make transparent (change visibility above too)
 	$detector{"type"}        = "Operation:@ htccBigGasVolume - htccEntryDishCone";
 	$detector{"dimensions"}  = "0";
-	$detector{"material"}    = "htccGas";
+	$detector{"material"}    = "HTCCgas";
     $detector{"style"}       = "1";
 	print_det(\%configuration, \%detector);
 }

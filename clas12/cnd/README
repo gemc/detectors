@@ -3,7 +3,7 @@ CLAS12 CND README
 
 --------------------------------------------------
 
-The geometry consists of 3 layers of scintillators:
+The geometry consists of 3 layers of scintillators.
 
 
 In MYSQL mode, before building the geometry one must

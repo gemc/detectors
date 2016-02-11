@@ -9,7 +9,6 @@ use geometry;
 use hit;
 use bank;
 use materials;
-use mirrors;
 use math;
 
 use Math::Trig;
@@ -18,8 +17,8 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   cnd.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 HTCC geometry, mirrors materials, bank and hit definitions\n";
+	print "   pcal.pl <configuration filename>\n";
+ 	print "   Will create the CLAS12 PCAL geometry, materials, bank and hit definitions\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
@@ -35,9 +34,6 @@ if( scalar @ARGV != 1)
 our %configuration = load_configuration($ARGV[0]);
 
 
-# Global pars - these should be read by the load_parameters from file or DB
-our %parameters    = get_parameters(%configuration);
-
 
 # materials
 require "./materials.pl";
@@ -50,9 +46,6 @@ require "./hit.pl";
 
 # sensitive geometry
 require "./geometry.pl";
-
-# mirrors surfaces
-require "./mirrors.pl";
 
 
 # all the scripts must be run for every configuration
@@ -72,10 +65,7 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	makeHTCC();
-	
-	# mirrors surfaces
-	buildMirrorsSurfaces();
+	makePCAL();
 	
 }
 

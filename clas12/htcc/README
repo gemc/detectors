@@ -8,20 +8,8 @@ The geometry consists of
 In MYSQL mode, before building the geometry one must
 upload the parameters onto the DB.
 
-The commands to build the geometry, banks, hit defs
-and materials are:
 
-upload_parameters.pl config.dat   < only for MYSQL factory
-./geometry.pl config.dat
-./bank.pl config.dat
-./hit.pl config.dat
-./materials.pl config.dat
-./mirrors.pl config.dat
-
-
---------------------------------------------------
-
-The commands to build the geometry, banks, hit defs
+The commands to build the geometry, mirrors, banks, hit defs
 and materials are:
 
 upload_parameters.pl config.dat   < only for MYSQL factory

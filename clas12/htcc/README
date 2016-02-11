@@ -21,7 +21,9 @@ upload_parameters.pl config.dat   < only for MYSQL factory
 
 --------------------------------------------------
 
-To remove the created text files:
+The commands to build the geometry, banks, hit defs
+and materials are:
 
-rm -f htcc__bank*.txt htcc__geometry*.txt htcc__hit*.txt htcc__materials*.txt htcc__mirrors*.txt out.ev out.txt
+upload_parameters.pl config.dat   < only for MYSQL factory
 
+./htcc.pl config.dat

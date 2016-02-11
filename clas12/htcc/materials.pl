@@ -1,34 +1,7 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use materials;
+use warnings;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   materials.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 High Threshold Cherenkov Counter (htcc) materials\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
+our %configuration;
 
 # Table of optical photon energies (wavelengths) from 190-650 nm:
 my @penergy = ( "1.9074494*eV",  "1.9372533*eV",  "1.9680033*eV",  "1.9997453*eV",  "2.0325280*eV",
@@ -40,7 +13,7 @@ my @penergy = ( "1.9074494*eV",  "1.9372533*eV",  "1.9680033*eV",  "1.9997453*eV
                 "3.5424060*eV",  "3.6465944*eV",  "3.7570973*eV",  "3.8745066*eV",  "3.9994907*eV",
                 "4.1328070*eV",  "4.2753176*eV",  "4.4280075*eV",  "4.5920078*eV",  "4.7686235*eV",
                 "4.9593684*eV",  "5.1660088*eV",  "5.3906179*eV",  "5.6356459*eV",  "5.9040100*eV",
-	            "6.1992105*eV",  "6.5254848*eV" );
+	             "6.1992105*eV",  "6.5254848*eV" );
 
 # Index of refraction of CO2 gas at STP:
 my @irefr = ( 1.0004473,  1.0004475,  1.0004477,  1.0004480,  1.0004483,
@@ -52,7 +25,7 @@ my @irefr = ( 1.0004473,  1.0004475,  1.0004477,  1.0004480,  1.0004483,
               1.0004652,  1.0004668,  1.0004685,  1.0004704,  1.0004724,
               1.0004748,  1.0004773,  1.0004803,  1.0004835,  1.0004873,
               1.0004915,  1.0004964,  1.0005021,  1.0005088,  1.0005167,
-	          1.0005262,  1.0005378 );
+	           1.0005262,  1.0005378 );
 
 
 # Transparency of CO2 gas at STP:
@@ -66,38 +39,39 @@ my @abslength = ( "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000
                   "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m", 
                   "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m", 
                   "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",  "1000.0000000*m",    "82.8323273*m", 
-	                 "4.6101432*m",     "0.7465970*m");
-# Quantum efficiency of HTCC PMT with quartz window:        
+						"4.6101432*m",     "0.7465970*m");
+
+# Quantum efficiency of HTCC PMT with quartz window:
 my @qeHTCCpmt = (0.0000000,     0.0014000,     0.0024000,     0.0040000,     0.0065000,
-		0.0105000,     0.0149000,     0.0216000,     0.0289000,     0.0376000,
-		0.0482000,     0.0609000,     0.0753000,     0.0916000,     0.1116000,
-		0.1265000,     0.1435000,     0.1602000,     0.1725000,     0.1892000,
-		0.2017000,     0.2122000,     0.2249000,     0.2344000,     0.2401000,
-		0.2418000,     0.2394000,     0.2372000,     0.2309000,     0.2291000,
-		0.2275000,     0.2301000,     0.2288000,     0.2236000,     0.2268000,
-		0.2240000,     0.2219000,     0.2219000,     0.2223000,     0.2189000,
-		0.2158000,     0.2093000,     0.2038000,     0.1950000,     0.1836000,
-		0.1612000,     0.1305000 );
+		           0.0105000,     0.0149000,     0.0216000,     0.0289000,     0.0376000,
+		           0.0482000,     0.0609000,     0.0753000,     0.0916000,     0.1116000,
+		           0.1265000,     0.1435000,     0.1602000,     0.1725000,     0.1892000,
+		           0.2017000,     0.2122000,     0.2249000,     0.2344000,     0.2401000,
+					  0.2418000,     0.2394000,     0.2372000,     0.2309000,     0.2291000,
+		           0.2275000,     0.2301000,     0.2288000,     0.2236000,     0.2268000,
+		           0.2240000,     0.2219000,     0.2219000,     0.2223000,     0.2189000,
+		           0.2158000,     0.2093000,     0.2038000,     0.1950000,     0.1836000,
+		           0.1612000,     0.1305000 );
 
 
 
 # Index of refraction of HTCC PMT quartz window:
 		
 my @rindexHTCCpmt = ( 1.5420481,  1.5423678,  1.5427003,  1.5430465,  1.5434074,
-		1.5437840,  1.5441775,  1.5445893,  1.5450206,  1.5454731,
-		1.5459484,  1.5464485,  1.5469752,  1.5475310,  1.5481182,
-		1.5487396,  1.5493983,  1.5500977,  1.5508417,  1.5516344,
-		1.5524807,  1.5533859,  1.5543562,  1.5553983,  1.5565202,
-		1.5577308,  1.5590402,  1.5604602,  1.5620045,  1.5636888,
-		1.5655313,  1.5675538,  1.5697816,  1.5722449,  1.5749797,
-		1.5780296,  1.5814472,  1.5852971,  1.5896593,  1.5946337,
-		1.6003470,  1.6069618,  1.6146902,  1.6238138,  1.6347145,
-		1.6479224,  1.6641955 );
+		                1.5437840,  1.5441775,  1.5445893,  1.5450206,  1.5454731,
+		                1.5459484,  1.5464485,  1.5469752,  1.5475310,  1.5481182,
+		                1.5487396,  1.5493983,  1.5500977,  1.5508417,  1.5516344,
+		                1.5524807,  1.5533859,  1.5543562,  1.5553983,  1.5565202,
+		                1.5577308,  1.5590402,  1.5604602,  1.5620045,  1.5636888,
+		                1.5655313,  1.5675538,  1.5697816,  1.5722449,  1.5749797,
+							 1.5780296,  1.5814472,  1.5852971,  1.5896593,  1.5946337,
+							 1.6003470,  1.6069618,  1.6146902,  1.6238138,  1.6347145,
+		                1.6479224,  1.6641955 );
 
 # Reflectivity of Al-MgF2 HTCC mirror coating:
 
 my @reflectivityHTCCAlMgF2 =
-	( 0.8860000,  0.8880000,  0.8890000,  0.8900000,  0.8930000,
+	(  0.8860000,  0.8880000,  0.8890000,  0.8900000,  0.8930000,
 		0.8960000,  0.8970000,  0.9000000,  0.9010000,  0.9020000,
 		0.9030000,  0.9040000,  0.9040000,  0.9040000,  0.9040000,
 		0.9040000,  0.9040000,  0.9040000,  0.9050000,  0.9050000,
@@ -113,15 +87,15 @@ my @reflectivityHTCCAlMgF2 =
 	#Used to define mirror reflectivity based on Andrew's measurements in Fall 2012:
 my @penergyHTCCmirr =
     ( "1.907449*eV",         "1.937253*eV",         "1.968003*eV",         "1.999745*eV",         "2.032528*eV",
-	"2.066404*eV",         "2.101427*eV",         "2.137659*eV",         "2.175162*eV",         "2.214004*eV",
-	"2.254258*eV",         "2.296004*eV",         "2.339325*eV",         "2.384312*eV",         "2.431063*eV",
-	"2.479684*eV",          "2.53029*eV",         "2.583004*eV",         "2.637962*eV",         "2.695309*eV",
-	"2.755205*eV",         "2.817823*eV",         "2.883354*eV",         "2.952005*eV",         "3.024005*eV",
-	"3.099605*eV",         "3.179082*eV",         "3.262742*eV",         "3.350925*eV",         "3.444006*eV",
-	"3.542406*eV",         "3.646594*eV",         "3.757097*eV",         "3.874507*eV",         "3.999491*eV",
-	"4.132807*eV",         "4.275318*eV",         "4.428008*eV",         "4.592008*eV",         "4.768623*eV",
-	"4.959368*eV",         "5.166009*eV",         "5.390618*eV",         "5.635646*eV",          "5.90401*eV",
-	"6.199211*eV");
+	   "2.066404*eV",         "2.101427*eV",         "2.137659*eV",         "2.175162*eV",         "2.214004*eV",
+	   "2.254258*eV",         "2.296004*eV",         "2.339325*eV",         "2.384312*eV",         "2.431063*eV",
+	   "2.479684*eV",          "2.53029*eV",         "2.583004*eV",         "2.637962*eV",         "2.695309*eV",
+	   "2.755205*eV",         "2.817823*eV",         "2.883354*eV",         "2.952005*eV",         "3.024005*eV",
+	   "3.099605*eV",         "3.179082*eV",         "3.262742*eV",         "3.350925*eV",         "3.444006*eV",
+	   "3.542406*eV",         "3.646594*eV",         "3.757097*eV",         "3.874507*eV",         "3.999491*eV",
+	   "4.132807*eV",         "4.275318*eV",         "4.428008*eV",         "4.592008*eV",         "4.768623*eV",
+	   "4.959368*eV",         "5.166009*eV",         "5.390618*eV",         "5.635646*eV",          "5.90401*eV",
+	   "6.199211*eV");
 	
 	#Reflectivity of AlMgF2 coated on thermally shaped acrylic sheets, measured by AJRP, 10/01/2012:
 	my @reflectivityHTCCAlMgF2Mirr =
@@ -150,7 +124,7 @@ my @penergyHTCCmirr =
 		0.9042583 );
 		
 		
-sub print_materials
+sub materials
 {
     # htcc gas is 100% CO2 with optical properties
 	my %mat = init_mat();
@@ -163,7 +137,8 @@ sub print_materials
 	$mat{"indexOfRefraction"} = arrayToString(@irefr);
 	$mat{"absorptionLength"}  = arrayToString(@abslength);
 	print_mat(\%configuration, \%mat);
-#rohacell
+	
+	# rohacell
 	%mat = init_mat();
 	$mat{"name"}          = "rohacell31";
 	$mat{"description"}   = "rohacell composite material";
@@ -173,7 +148,7 @@ sub print_materials
 	print_mat(\%configuration, \%mat);
 	
 	
-# Quartz window of HTCC PMT:
+	# Quartz window of HTCC PMT:
 	# - refractive index (required for tracking of optical photons)
 	# - efficiency (for quantum efficiency of photocathode)
 	# NOTE: in principle the quantum efficiency data of the photocathode
@@ -184,13 +159,13 @@ sub print_materials
 	# However, only a small fraction of the light will be reflected by the
 	# window in any case so we don't need to worry too much.
 	%mat = init_mat();
-	$mat{"name"} = "HTCCPMTQuartz";
-	$mat{"description"} = "refractive index and efficency of HTCC PMT Quartz window";
-	$mat{"density"} = "2.32";
-	$mat{"ncomponents"} = "1";
-	$mat{"components"} = "G4_SILICON_DIOXIDE 1.0";
-	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"efficiency"}  = arrayToString(@qeHTCCpmt);
+	$mat{"name"}         = "HTCCPMTQuartz";
+	$mat{"description"}  = "refractive index and efficency of HTCC PMT Quartz window";
+	$mat{"density"}      = "2.32";
+	$mat{"ncomponents"}  = "1";
+	$mat{"components"}   = "G4_SILICON_DIOXIDE 1.0";
+	$mat{"photonEnergy"} = arrayToString(@penergy);
+	$mat{"efficiency"}   = arrayToString(@qeHTCCpmt);
 	$mat{"indexOfRefraction"} = arrayToString(@rindexHTCCpmt);
 	print_mat(\%configuration, \%mat);
 
@@ -205,12 +180,12 @@ sub print_materials
 	# (in principle) is as the "Mirror skin" surface for the HTCC mirrors
 	# and Winston Cones (as a G4LogicalSkinSurface)	
 	%mat = init_mat();
-	$mat{"name"} = "HTCCECIAlMgF2";
+	$mat{"name"}        = "HTCCECIAlMgF2";
 	$mat{"description"} = "Measured reflectivity for Al+MgF2";
-	$mat{"density"}       = "2.9007";
-	$mat{"ncomponents"}   = "3";
-	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
-	$mat{"photonEnergy"}      = arrayToString(@penergy);
+	$mat{"density"}     = "2.9007";
+	$mat{"ncomponents"} = "3";
+	$mat{"components"}  = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
+	$mat{"photonEnergy"} = arrayToString(@penergy);
 	$mat{"reflectivity"} = arrayToString(@reflectivityHTCCAlMgF2);
 	print_mat(\%configuration, \%mat);
 
@@ -219,14 +194,14 @@ sub print_materials
 	#coated with Aluminum and "MgF2" by ECI (Actually, "MgF2" is ECI's proprietary protective overcoat material, we do not know its composition.
 	# We only measured its reflectivity.).
 	# ECI = Evaporated Coatings, Inc.
+	# New material definition with actual reflectivity measured for Al+MgF2 coated on acryl sheets, AJRP 10/08/2012:
 	%mat = init_mat();
-	$mat{"name"} = "HTCCECIMirr";
-	$mat{"description"} = "Measured reflectivity for Al+MgF2 coated on acryl sheets";
-	$mat{"density"}       = "2.9007";
-	$mat{"ncomponents"}   = "3";
-	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
-	#New material definition with actual reflectivity measured for Al+MgF2 coated on acryl sheets, AJRP 10/08/2012:
-	$mat{"photonEnergy"}      = arrayToString(@penergyHTCCmirr);
+	$mat{"name"}         = "HTCCECIMirr";
+	$mat{"description"}  = "Measured reflectivity for Al+MgF2 coated on acryl sheets";
+	$mat{"density"}      = "2.9007";
+	$mat{"ncomponents"}  = "3";
+	$mat{"components"}   = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
+	$mat{"photonEnergy"} = arrayToString(@penergyHTCCmirr);
 	$mat{"reflectivity"} = arrayToString(@reflectivityHTCCAlMgF2Mirr);
 	print_mat(\%configuration, \%mat);
 
@@ -234,18 +209,16 @@ sub print_materials
 	#Below is a new material definition which is the same as above, except this time we use the measured reflectivity of
 	#the same coating applied to a Winston cone and measured with the test beam incident parallel to the axis of the cone at a "grazing"
 	# angle-of-incidence:
-	#New material definition with actual reflectivity measured for Al+MgF2 coated on Winston cone, AJRP 10/08/2012:
+	# New material definition with actual reflectivity measured for Al+MgF2 coated on Winston cone, AJRP 10/08/2012:
 	%mat = init_mat();
-	$mat{"name"} = "HTCCECIWC";
-	$mat{"description"} = "Measured reflectivity for Al+MgF2 coated on acryl sheets";
-	$mat{"density"}       = "2.9007";
-	$mat{"ncomponents"}   = "3";
-	$mat{"components"}    = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
-	#New material definition with actual reflectivity measured for Al+MgF2 coated on Winston Cone, AJRP 10/08/2012:
-	$mat{"photonEnergy"}      = arrayToString(@penergyHTCCmirr);
+	$mat{"name"}         = "HTCCECIWC";
+	$mat{"description"}  = "Measured reflectivity for Al+MgF2 coated on acryl sheets";
+	$mat{"density"}      = "2.9007";
+	$mat{"ncomponents"}  = "3";
+	$mat{"components"}   = "G4_Al 0.331 G4_Mg 0.261 G4_F 0.408";
+	$mat{"photonEnergy"} = arrayToString(@penergyHTCCmirr);
 	$mat{"reflectivity"} = arrayToString(@reflectivityHTCCAlMgF2WC);
 	print_mat(\%configuration, \%mat);
 }
 
-print_materials();
 

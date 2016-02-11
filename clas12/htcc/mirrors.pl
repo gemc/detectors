@@ -1,34 +1,7 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use mirrors;
+use warnings;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   materials.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 High Threshold Cherenkov Counter (htcc) mirrors\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
+our %configuration;
 
 # Table of optical photon energies (wavelengths) from 190-650 nm:
 my $penergy =
@@ -57,7 +30,7 @@ my $reflectivity =
 "  0.9042583 ";
 
 
-sub print_mirror
+sub buildMirrorsSurfaces
 {
     # htcc gas is 100% CO2 with optical properties
 	my %mat = init_mir();
@@ -72,5 +45,4 @@ sub print_mirror
 	print_mir(\%configuration, \%mat);
 }
 
-print_mirror();
 

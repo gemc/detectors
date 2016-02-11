@@ -1,3 +1,4 @@
+
 use strict;
 use warnings;
 
@@ -15,7 +16,7 @@ sub define_cormo_hit
 	$hit{"signalThreshold"} = "200.0*KeV";
 	$hit{"timeWindow"}      = "4*ns";
 	$hit{"prodThreshold"}   = "2*um";
-	$hit{"maxStep"}         = "2*um";
+	$hit{"maxStep"}         = "1*mm";
 	$hit{"delay"}           = "10*ns";
 	$hit{"riseTime"}        = "1*ns";
 	$hit{"fallTime"}        = "1*ns";
@@ -37,6 +38,22 @@ sub define_cormo_hit
 	$hit{"mvToMeV"}         = 100;
 	$hit{"pedestal"}        = -20;
 	print_hit(\%configuration, \%hit);
+
+    %hit = init_hit();
+    $hit{"name"}            = "crs";
+    $hit{"description"}     = "BDX crystals";
+    $hit{"identifiers"}     = "sector layer paddle";
+    $hit{"signalThreshold"} = "200.0*KeV";
+    $hit{"timeWindow"}      = "4*ns";
+    $hit{"prodThreshold"}   = "2*um";
+    $hit{"maxStep"}         = "1*mm";
+    $hit{"delay"}           = "10*ns";
+    $hit{"riseTime"}        = "1*ns";
+    $hit{"fallTime"}        = "1*ns";
+    $hit{"mvToMeV"}         = 100;
+    $hit{"pedestal"}        = -20;
+    print_hit(\%configuration, \%hit);
+
 }
 
 

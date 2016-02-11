@@ -294,7 +294,7 @@ sub build_pmts
 			$detector{"color"}       = $colors_even[($j%2)+2];
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0*mm $PMTradius*mm $PMTdz*mm 0*deg 360*deg";
-			$detector{"material"}    = "HTCCPMTquartz";
+			$detector{"material"}    = "HTCCPMTQuartz";
 			$detector{"style"}       = "1";
 			$detector{"sensitivity"} = "htcc";
 			$detector{"hit_type"}    = "htcc";
@@ -329,7 +329,7 @@ sub build_pmts
 			$detector{"color"}       = $colors_even[($j%2)];
             $detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0*mm $PMTradius*mm $PMTdz*mm 0*deg 360*deg";
-			$detector{"material"}    = "HTCCPMTquartz";
+			$detector{"material"}    = "HTCCPMTQuartz";
 			$detector{"style"}       = "1";
 			$detector{"sensitivity"} = "htcc";
 			$detector{"hit_type"}    = "htcc";

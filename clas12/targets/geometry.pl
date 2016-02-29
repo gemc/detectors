@@ -1,49 +1,18 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use parameters;
-use geometry;
+use warnings;
+
+our %configuration;
+our %parameters;
 
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   geometry.pl <configuration filename>\n";
-	print "   Will create the CLAS12 targets using the variation specified in the configuration file\n";
-	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file from argument
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
-# To get the parameters proper authentication is needed.
-# our %parameters    = get_parameters(%configuration);
+require "./targetRev1.pl";
 
 
-build_targets("lH2");
-build_targets("lD2");
-build_targets("ND3");
 
 
 sub build_targets
 {
-	my $thisVariation = shift;
-	$configuration{"variation"} = $thisVariation ;
+	my $thisVariation = $configuration{"variation"} ;
 	
 	if($thisVariation eq "lH2" || $thisVariation eq "lD2")
 	{
@@ -219,13 +188,11 @@ sub build_targets
 		$detector{"material"}    = "solidND3";
 		print_det(\%configuration, \%detector);
 		
-		
-		
 	}
-	
-	
-	
-	
+	elsif($thisVariation eq "elaborate")
+	{
+		buildElaborate();
+	}
 }
 
 

@@ -18,4 +18,4 @@ and materials are:
 
 upload_parameters.pl config.dat   < only for MYSQL factory
 
-./ec.pl config.dat
+./ftof.pl config.dat

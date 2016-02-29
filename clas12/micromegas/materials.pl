@@ -3,10 +3,9 @@ use warnings;
 use materials;
 
 our %configuration;
-our %parameters;
 
 
-sub print_materials
+sub materials
 {
 	my %mat = init_mat();
 	$mat{"name"}          = "myEpoxy";

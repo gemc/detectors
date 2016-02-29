@@ -33,18 +33,41 @@ our %configuration = load_configuration($ARGV[0]);
 # To get the parameters proper authentication is needed.
 our %parameters    = get_parameters(%configuration);
 
-# Loading micromegas specific subroutines
-require "./hit.pl";
-require "./bank.pl";
+
+# materials
 require "./materials.pl";
-#require "./FMT.pl";
-#define_fmt();
 
-require "./BMT.pl";
-define_bmt();
-#require "./FTM.pl";
-#define_ftm();
+# banks definitions
+require "./bank.pl";
 
-define_micromegas_hits();
-define_micromegas_banks();
-print_materials();
+# hits definitions
+require "./hit.pl";
+
+# sensitive geometry
+require "./bmt.pl";
+#require "./ftm.pl";
+
+
+# all the scripts must be run for every configuration
+my @allConfs = ("original");
+
+foreach my $conf ( @allConfs )
+{
+	$configuration{"variation"} = $conf ;
+	
+	# materials
+	materials();
+	
+	# hits
+	define_hit();
+	
+	# bank definitions
+	define_bank();
+	
+	# geometry
+	build_bmt();
+	# build_fmt();
+	
+}
+
+

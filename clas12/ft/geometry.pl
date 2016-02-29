@@ -10,7 +10,7 @@ our %configuration;
 ###########################################################################################
 # Define the relevant parameters of FT Geometry
 #
-# the FT geometry will be defined starting from these parameters 
+# the FT geometry will be defined starting from these parameters
 # and the position on the torus inner ring
 #
 # all dimensions are in mm
@@ -50,28 +50,28 @@ my $Sfront  = $Vfront+$Vlength+$Sgap; # z position of the sensor front face
 
 # Define the copper thermal shield parameters
 # back disk
-my $Bdisk_TN = 4.;                                           # half thickness of the copper back disk 
-my $Bdisk_IR = 55.;                                          # inner radius of the copper back disk 
-my $Bdisk_OR = 178.5;                                        # outer radius of the copper back disk 
-my $Bdisk_Z  = $Sfront+$Slength+$Bdisk_TN+0.1;               # z position of the copper back disk 
+my $Bdisk_TN = 4.;                                           # half thickness of the copper back disk
+my $Bdisk_IR = 55.;                                          # inner radius of the copper back disk
+my $Bdisk_OR = 178.5;                                        # outer radius of the copper back disk
+my $Bdisk_Z  = $Sfront+$Slength+$Bdisk_TN+0.1;               # z position of the copper back disk
 # front disk
 my $Fdisk_TN = 1.;                                           # half thickness of the copper front disk supporting the crystal assemblies
-my $Fdisk_IR = $Bdisk_IR;                                    # inner radius of the copper front disk 
-my $Fdisk_OR = $Bdisk_OR;                                    # outer radius of the copper front disk 
-my $Fdisk_Z  = $Vfront-$Fdisk_TN-0.1;                        # z position of the copper front disk 
+my $Fdisk_IR = $Bdisk_IR;                                    # inner radius of the copper front disk
+my $Fdisk_OR = $Bdisk_OR;                                    # outer radius of the copper front disk
+my $Fdisk_Z  = $Vfront-$Fdisk_TN-0.1;                        # z position of the copper front disk
 # space for preamps
 my $BPlate_TN = 25.;                                         # half thickness of the preamps volume
 my $BPlate_IR = $Bdisk_IR;                                   # inner radius of the preamps volume
 my $BPlate_OR = $Bdisk_OR;                                   # outer radius of the preamps volume
 my $BPlate_Z  = $Bdisk_Z+$Bdisk_TN+$BPlate_TN+0.1;           # z position of the preamps volume
 # inner copper tube
-my $Idisk_LT = ($BPlate_Z+$BPlate_TN-$Fdisk_Z+$Fdisk_TN)/2.; # length of the inner copper tube 
+my $Idisk_LT = ($BPlate_Z+$BPlate_TN-$Fdisk_Z+$Fdisk_TN)/2.; # length of the inner copper tube
 my $Idisk_TN = 4;                                            # thickness of the inner copper tube
 my $Idisk_OR = $Fdisk_IR;                                    # outer radius of the inner copper tube matches inner radius of front and back disks
 my $Idisk_IR = $Fdisk_IR-$Idisk_TN;                          # inner radius of the inner copper tube
 my $Idisk_Z  = ($BPlate_Z+$BPlate_TN+$Fdisk_Z-$Fdisk_TN)/2.; # z position of inner copper tube
 # outer copper tube
-my $Odisk_LT = ($BPlate_Z+$BPlate_TN-$Fdisk_Z+$Fdisk_TN)/2.; # length of the outer copper tube 
+my $Odisk_LT = ($BPlate_Z+$BPlate_TN-$Fdisk_Z+$Fdisk_TN)/2.; # length of the outer copper tube
 my $Odisk_TN = 2;                                            # thickness of the outer copper tube
 my $Odisk_IR = $Fdisk_OR;                                    # inner radius of the outer copper tube matches outer radius of front and back disks
 my $Odisk_OR = $Fdisk_OR+$Odisk_TN;                          # outer radius of the outer copper tube
@@ -84,7 +84,7 @@ my $Bmtb_OR = $Odisk_OR;                                     # outer radius of t
 my $Bmtb_Z  = $BPlate_Z + $BPlate_TN + $Bmtb_TN + 0.1;       # z position of the motherboard
 my $Bmtb_hear_WD = 80./2.;                                   # half width of the motherboard extensions
 my $Bmtb_hear_LN = 225./2;                                   # half length of the motherboard extensions
-my $Bmtb_hear_D0 = 0.;                                       # displacement of the motherboard extensions        
+my $Bmtb_hear_D0 = 0.;                                       # displacement of the motherboard extensions
 my @Bmtb_angle = ( 30., 150., 210., 330.);                   # angles of the motherboard extensions
 
 # Define LED plate geometry parameters
@@ -208,21 +208,21 @@ my $O_Shell_I12 = $O_Shell_I11 - $O_Ins_TN -5.;
 my $O_Shell_I13 = $O_Shell_I12;
 
 my $O_Shell_O1 = $O_Shell_Z1*$BCup_tang + $O_Ins_TN + 0.01 + $O_Shell_TN;
-my $O_Shell_O2 = $O_Shell_I2 + $O_Shell_TN; 
-my $O_Shell_O3 = $O_Shell_I3 + $O_Shell_TN; 
-my $O_Shell_O4 = $O_Shell_I4 + $O_Shell_TN; 
-my $O_Shell_O5 = $O_Shell_I5 + $O_Shell_TN; 
-my $O_Shell_O6 = $O_Shell_I6 + $O_Shell_TN; 
-my $O_Shell_O7 = $O_Shell_I7 + $O_Shell_TN; 
-my $O_Shell_O8 = $O_Shell_I8 + $O_Shell_TN; 
-my $O_Shell_O9 = $O_Shell_I9 + $O_Shell_TN; 
-my $O_Shell_O10 = $O_Shell_I10 + $O_Shell_TN; 
+my $O_Shell_O2 = $O_Shell_I2 + $O_Shell_TN;
+my $O_Shell_O3 = $O_Shell_I3 + $O_Shell_TN;
+my $O_Shell_O4 = $O_Shell_I4 + $O_Shell_TN;
+my $O_Shell_O5 = $O_Shell_I5 + $O_Shell_TN;
+my $O_Shell_O6 = $O_Shell_I6 + $O_Shell_TN;
+my $O_Shell_O7 = $O_Shell_I7 + $O_Shell_TN;
+my $O_Shell_O8 = $O_Shell_I8 + $O_Shell_TN;
+my $O_Shell_O9 = $O_Shell_I9 + $O_Shell_TN;
+my $O_Shell_O10 = $O_Shell_I10 + $O_Shell_TN;
 my $O_Shell_O11 = $O_Shell_I11 + $O_Shell_TN;
 my $O_Shell_O12 = $O_Shell_O11;
 my $O_Shell_O13 = $O_Shell_O12;
 
-$O_Shell_I4 = $O_Shell_Z4*$BCup_tang + $O_Ins_TN + 0.7; 
-$O_Shell_I5 = $O_Shell_Z5*$BCup_tang + $O_Ins_TN + 0.7; 
+$O_Shell_I4 = $O_Shell_Z4*$BCup_tang + $O_Ins_TN + 0.7;
+$O_Shell_I5 = $O_Shell_Z5*$BCup_tang + $O_Ins_TN + 0.7;
 
 ###########################################################################################
 # FT BEAMLINE COMPONENTS
@@ -237,12 +237,12 @@ my $flange_TN       =  15.0;
 my $TPlate_Z1  = $O_Ins_Z9 + 0.01;
 my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN-0.01;
 
-    my $BLine_MR  = $BLine_IR + $BLine_TN;    # outer radius in the calorimeter section
-	my $BLine_Z1  = $BLine_BG;
-    my $BLine_Z2  = $BLine_ML   + 0.2;
-	my $BLine_Z3  = $O_Shell_Z1 - 0.01;
-	my $BLine_Z4  = $TPlate_Z2  + 0.01;
-	my $BLine_Z5  = $BLine_Z4   - 0.01 + 20;
+my $BLine_MR  = $BLine_IR + $BLine_TN;    # outer radius in the calorimeter section
+my $BLine_Z1  = $BLine_BG;
+my $BLine_Z2  = $BLine_ML   + 0.2;
+my $BLine_Z3  = $O_Shell_Z1 - 0.01;
+my $BLine_Z4  = $TPlate_Z2  + 0.01;
+my $BLine_Z5  = $BLine_Z4   - 0.01 + 20;
 
 
 ###########################################################################################
@@ -329,9 +329,9 @@ my $FEE_ARM_LN  = 530./2.-80;
 my $FEE_ARM_WD  = 90./2.;
 
 # size of crate
-my $FEE_WD = 91./2.; 
+my $FEE_WD = 91./2.;
 my $FEE_HT = 265.5/2.;
-my $FEE_LN = 242./2.; 
+my $FEE_LN = 242./2.;
 my $FEE_TN = 1.5;
 
 my $FEE_PVT_TN=10.;
@@ -362,14 +362,14 @@ my @oradius_FT_CRY = (          $Odisk_OR,          $Odisk_OR);
 
 sub make_ft_cal_mother_volume
 {
-    my $nplanes_FT = 7;
-    my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
-    my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
-    my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
-    if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
-        @iradius_FT = ($BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR, $BLine_DR, $BLine_DR);
-    }
-    my %detector = init_det();
+	my $nplanes_FT = 7;
+	my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
+	my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
+	my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
+	if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
+		@iradius_FT = ($BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR, $BLine_DR, $BLine_DR);
+	}
+	my %detector = init_det();
 	$detector{"name"}        = "ft_cal";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "ft calorimeter";
@@ -383,8 +383,8 @@ sub make_ft_cal_mother_volume
 	$detector{"material"}    = "Air";
 	$detector{"visible"}       = 0;
 	print_det(\%configuration, \%detector);
-
-
+	
+	
 }
 
 
@@ -409,14 +409,14 @@ sub make_ft_cal_crystals_volume
 	$detector{"material"}    = "Air";
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
-
-
+	
+	
 }
 
 # Loop over all crystals and define their positions
 sub make_ft_cal_crystals
 {
-        my $centX = ( int $Nx/2 )+0.5;
+	my $centX = ( int $Nx/2 )+0.5;
 	my $centY = ( int $Ny/2 )+0.5;
 	my $locX=0.;
 	my $locY=0.;
@@ -466,7 +466,7 @@ sub make_ft_cal_crystals
 				$detector{"style"}       = "1" ;
 				print_det(\%configuration, \%detector);
 				
-				# Wrapping Volume;				
+				# Wrapping Volume;
 				%detector = init_det();
 				$detector{"name"}        = "ft_cr_wr_" . $iX . "_" . $iY ;
 				$detector{"mother"}      = "ft_cr_volume_" . $iX . "_" . $iY ;
@@ -502,7 +502,7 @@ sub make_ft_cal_crystals
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
 				$detector{"material"}    = "G4_PbWO4";
 				$detector{"style"}       = "1" ;
-				$detector{"sensitivity"} = "ft_cal"; 
+				$detector{"sensitivity"} = "ft_cal";
 				$detector{"hit_type"}    = "ft_cal";
 				$detector{"identifiers"} = "ih manual $iX iv manual $iY";
 				print_det(\%configuration, \%detector);
@@ -535,11 +535,11 @@ sub make_ft_cal_crystals
 # Define the Flux Detector on the back of the crystals
 sub make_ft_cal_flux
 {
-        # flux on the back of the crystals
-        my $Flux_TN = $Sgap/2;         # flux detector half thickness defined as a function of the gap between sensor and crystals
+	# flux on the back of the crystals
+	my $Flux_TN = $Sgap/2;         # flux detector half thickness defined as a function of the gap between sensor and crystals
 	my $Flux_IR = $Bdisk_IR;       # inner radius is defined equal to copper back disk
 	my $Flux_OR = $Bdisk_OR;       # outer radius is defined equal to copper front disk
-	my $Flux_Z =  $Vfront+$Vlength+$Flux_TN; 
+	my $Flux_Z =  $Vfront+$Vlength+$Flux_TN;
 	my %detector = init_det();
 	$detector{"name"}        = "ft_cal_flux";
 	$detector{"mother"}      = "ft_cal_crystal_volume";
@@ -559,30 +559,30 @@ sub make_ft_cal_flux
 # Define the Flux Detectors in front of the Tagger
 sub make_ft_moellerdisk
 {
-    # flux in front of tagger
-    my @disk_zpos   = ( 281.0 , $O_Shell_Z1 - 0.05 );
-    my @disk_iradius = (   2.0 ,   56.0 );
-    my @disk_oradius = ( 150.0 ,  150.0 );
-
-    for(my $n=1; $n<2; $n++)
-    {
-        my $idisk = $n +1;
-	my %detector = init_det();
-	$detector{"name"}         = "moller_disk_$n";
-	$detector{"mother"}       = "root";
-	$detector{"description"}  = "Moller Disk $n";
-	$detector{"pos"}          = "0*mm 0.0*mm $disk_zpos[$n]*mm";
-	$detector{"rotation"}     = "0*deg 0*deg 0*deg";
-	$detector{"color"}        = "aa0088";
-	$detector{"type"}         = "Tube";
-	$detector{"dimensions"}   = "$disk_iradius[$n]*mm $disk_oradius[$n]*mm 0.05*mm 0.0*deg 360*deg";
-	$detector{"material"}     = "G4_Galactic";
-	$detector{"visible"}      = 0;
-	$detector{"sensitivity"}  = "flux";
-	$detector{"hit_type"}     = "flux";
-	$detector{"identifiers"}  = "id manual $idisk";
-	print_det(\%configuration, \%detector);
-   }
+	# flux in front of tagger
+	my @disk_zpos   = ( 281.0 , $O_Shell_Z1 - 0.05 );
+	my @disk_iradius = (   2.0 ,   56.0 );
+	my @disk_oradius = ( 150.0 ,  150.0 );
+	
+	for(my $n=1; $n<2; $n++)
+	{
+		my $idisk = $n +1;
+		my %detector = init_det();
+		$detector{"name"}         = "moller_disk_$n";
+		$detector{"mother"}       = "root";
+		$detector{"description"}  = "Moller Disk $n";
+		$detector{"pos"}          = "0*mm 0.0*mm $disk_zpos[$n]*mm";
+		$detector{"rotation"}     = "0*deg 0*deg 0*deg";
+		$detector{"color"}        = "aa0088";
+		$detector{"type"}         = "Tube";
+		$detector{"dimensions"}   = "$disk_iradius[$n]*mm $disk_oradius[$n]*mm 0.05*mm 0.0*deg 360*deg";
+		$detector{"material"}     = "G4_Galactic";
+		$detector{"visible"}      = 0;
+		$detector{"sensitivity"}  = "flux";
+		$detector{"hit_type"}     = "flux";
+		$detector{"identifiers"}  = "id manual $idisk";
+		print_det(\%configuration, \%detector);
+	}
 }
 
 ###########################################################################################
@@ -730,26 +730,26 @@ sub make_ft_cal_tcup
 	$detector{"material"}    = "ft_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-    
-    $nplanes_TCup = 2;
-    @z_plane_TCup = ( $BCup_ZM, $BCup_ZE);
-    @oradius_TCup = ( $BCup_ORM, $BCup_ORE,);
-    @iradius_TCup = ( $I_Ins_OR, $I_Ins_OR);
-    %detector = init_det();
-    $detector{"name"}        = "ft_cal_tcup_plate";
-    $detector{"mother"}      = "ft_cal";
-    $detector{"description"} = "stainless steel plate at the back of the ft";
-    $detector{"color"}       = "cccccc";
-    $detector{"type"}        = "Polycone";
-    $dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
-    for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
-    for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $oradius_TCup[$i]*mm";}
-    for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $z_plane_TCup[$i]*mm";}
-    $detector{"dimensions"}  = $dimen;
-    $detector{"material"}    = "G4_STAINLESS-STEEL";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-
+	
+	$nplanes_TCup = 2;
+	@z_plane_TCup = ( $BCup_ZM, $BCup_ZE);
+	@oradius_TCup = ( $BCup_ORM, $BCup_ORE,);
+	@iradius_TCup = ( $I_Ins_OR, $I_Ins_OR);
+	%detector = init_det();
+	$detector{"name"}        = "ft_cal_tcup_plate";
+	$detector{"mother"}      = "ft_cal";
+	$detector{"description"} = "stainless steel plate at the back of the ft";
+	$detector{"color"}       = "cccccc";
+	$detector{"type"}        = "Polycone";
+	$dimen = "0.0*deg 360*deg $nplanes_TCup*counts";
+	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $iradius_TCup[$i]*mm";}
+	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $oradius_TCup[$i]*mm";}
+	for(my $i = 0; $i <$nplanes_TCup; $i++) {$dimen = $dimen ." $z_plane_TCup[$i]*mm";}
+	$detector{"dimensions"}  = $dimen;
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
 	$nplanes_TCup = 2;
 	@z_plane_TCup = ( $BCup_ZB,  $BCup_Z2 );
 	@oradius_TCup = ( $BCup_ORB, $BCup_OR2);
@@ -827,11 +827,11 @@ sub make_ft_cal_insulation
 	for(my $i = 0; $i <$nplanes_O_Ins ; $i++) { $dimen = $dimen ." $iradius_O_Ins[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Ins; $i++)  { $dimen = $dimen ." $oradius_O_Ins[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Ins ; $i++) { $dimen = $dimen ." $z_plane_O_Ins[$i]*mm";}
-	$detector{"dimensions"}  = $dimen; 
+	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "insfoam";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
+	
 	# outer b
 	$nplanes_O_Ins = 8;
 	@z_plane_O_Ins = ($O_Ins_Z5, $O_Ins_Z6, $O_Ins_Z7, $O_Ins_Z8, $O_Ins_Z8, $O_Ins_Z9, $O_Ins_Z10, $O_Ins_Z11);
@@ -842,16 +842,16 @@ sub make_ft_cal_insulation
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft outer_ins_b";
 	$detector{"color"}       = "F5F6CE";
-	$detector{"type"}        = "Polycone";	
+	$detector{"type"}        = "Polycone";
 	$dimen = "0.0*deg 360*deg $nplanes_O_Ins*counts";
 	for(my $i = 0; $i <$nplanes_O_Ins; $i++) {$dimen = $dimen ." $iradius_O_Ins[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Ins; $i++) {$dimen = $dimen ." $oradius_O_Ins[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Ins; $i++) {$dimen = $dimen ." $z_plane_O_Ins[$i]*mm";}
-	$detector{"dimensions"}  = $dimen; 
+	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "insfoam";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
+	
 	# medium
 	$nplanes_O_Ins = 2;
 	@z_plane_O_Ins = ($O_Ins_Z5, $O_Ins_Z4);
@@ -872,7 +872,7 @@ sub make_ft_cal_insulation
 		for(my $i = 0; $i <$nplanes_O_Ins; $i++) {$dimen = $dimen ." $iradius_O_Ins[$i]*mm";}
 		for(my $i = 0; $i <$nplanes_O_Ins; $i++) {$dimen = $dimen ." $oradius_O_Ins[$i]*mm"; }
 		for(my $i = 0; $i <$nplanes_O_Ins; $i++) {$dimen = $dimen ." $z_plane_O_Ins[$i]*mm";}
-		$detector{"dimensions"}  = $dimen; 
+		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "insfoam";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -893,16 +893,16 @@ sub make_ft_cal_shell
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft outer_shell_f";
 	$detector{"color"}       = "F5DA81";
-	$detector{"type"}        = "Polycone";	
+	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes_O_Shell*counts";
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $iradius_O_Shell[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $oradius_O_Shell[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $z_plane_O_Shell[$i]*mm";}
-	$detector{"dimensions"}  = $dimen; 
+	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "carbonFiber";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
+	
 	# outer back
 	$nplanes_O_Shell = 9;
 	@z_plane_O_Shell = ($O_Shell_Z5, $O_Shell_Z6, $O_Shell_Z7, $O_Shell_Z8, $O_Shell_Z9, $O_Shell_Z10, $O_Shell_Z11, $O_Shell_Z12, $O_Shell_Z13);
@@ -913,16 +913,16 @@ sub make_ft_cal_shell
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft outer_shell_b";
 	$detector{"color"}       = "F5DA81";
-	$detector{"type"}        = "Polycone";	
+	$detector{"type"}        = "Polycone";
 	$dimen = "0.0*deg 360*deg $nplanes_O_Shell*counts";
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $iradius_O_Shell[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $oradius_O_Shell[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $z_plane_O_Shell[$i]*mm";}
-	$detector{"dimensions"}  = $dimen; 
+	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "carbonFiber";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
 	# outer medium
 	$nplanes_O_Shell = 2;
 	@z_plane_O_Shell = ($O_Shell_Z5, $O_Shell_Z4);
@@ -943,11 +943,11 @@ sub make_ft_cal_shell
 		for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $iradius_O_Shell[$i]*mm";}
 		for(my $i = 0; $i <$nplanes_O_Shell; $i++) {$dimen = $dimen ." $oradius_O_Shell[$i]*mm"; }
 		for(my $i = 0; $i <$nplanes_O_Shell; $i++){$dimen = $dimen ." $z_plane_O_Shell[$i]*mm";}
-		$detector{"dimensions"}  = $dimen; 
+		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "carbonFiber";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-	}	
+	}
 }
 
 ###########################################################################################
@@ -957,78 +957,78 @@ sub make_ft_cal_beamline
 	# forward tagger tungsten beamline
 	my $nplanes_BLine = 6;
 	my @z_plane_BLine = ($BLine_Z1, $BLine_Z2, $BLine_Z3, $BLine_Z4, $BLine_Z4, $BLine_Z5);
-	my @oradius_BLine = ($BLine_MR, $BLine_MR, $BLine_MR, $BLine_MR, $BLine_OR, $BLine_OR);  
-	my @iradius_BLine = ($BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR);  
+	my @oradius_BLine = ($BLine_MR, $BLine_MR, $BLine_MR, $BLine_MR, $BLine_OR, $BLine_OR);
+	my @iradius_BLine = ($BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR, $BLine_IR);
 	my %detector = init_det();
 	$detector{"name"}        = "ft_cal_bline";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft beam line";
-    $detector{"style"}       = 1;
-    if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
-        $detector{"color"}       = "cccccc";
-        $detector{"type"}        = "Polycone";
-        my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $BLine_SR*mm";}
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
-        $detector{"dimensions"}  = $dimen;
-        $detector{"material"}    = "G4_STAINLESS-STEEL";
-    }
-    elsif($configuration{"variation"} eq "NotUsedWithInnerSST" || $configuration{"variation"} eq "WithInnerSST") {
-        $detector{"color"}       = "cccccc";
-        $detector{"type"}        = "Polycone";
-        my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $BLine_IR*mm";}
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
-        $detector{"dimensions"}  = $dimen;
-        $detector{"material"}    = "G4_STAINLESS-STEEL";
-    }
-    else {
-        $detector{"color"}       = "ff0000";
-        $detector{"type"}        = "Polycone";
-        my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $iradius_BLine[$i]*mm";}
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
-        for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
-        $detector{"dimensions"}  = $dimen;
-        $detector{"material"}    = "ft_W";
-    }
-    print_det(\%configuration, \%detector);
-    
-    
-    if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
-        my $nplanes_BLine_shield = 2;
-        my @z_plane_BLine_shield = ($BLine_Z1, $BLine_Z5);
-        my @oradius_BLine_shield = ($BLine_SR, $BLine_SR);
-        my @iradius_BLine_shield = ($BLine_DR, $BLine_DR);
-        %detector = init_det();
-        $detector{"name"}        = "ft_cal_bline_shield";
-        $detector{"mother"}      = "ft_cal";
-        $detector{"description"} = "ft beam line_shield";
-        $detector{"color"}       = "ff0000";
-        $detector{"type"}        = "Polycone";
-        my $dimen = "0.0*deg 360*deg $nplanes_BLine_shield*counts";
-        for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $iradius_BLine_shield[$i]*mm";}
-        for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $oradius_BLine_shield[$i]*mm";}
-        for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $z_plane_BLine_shield[$i]*mm";}
-        $detector{"dimensions"}  = $dimen;
-        $detector{"material"}    = "ft_W";
-        $detector{"style"}       = 1;
-        print_det(\%configuration, \%detector);
-    }
-    
-
-
-
-
-    my $TPlate_IR= $BLine_IR + $BLine_TN;
-    my $TPlate_OR= $TPlate_Z1*$BCup_tang;
-
+	$detector{"style"}       = 1;
+	if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
+		$detector{"color"}       = "cccccc";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $BLine_SR*mm";}
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+	}
+	elsif($configuration{"variation"} eq "NotUsedWithInnerSST" || $configuration{"variation"} eq "WithInnerSST") {
+		$detector{"color"}       = "cccccc";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $BLine_IR*mm";}
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+	}
+	else {
+		$detector{"color"}       = "ff0000";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes_BLine*counts";
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $iradius_BLine[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $oradius_BLine[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "ft_W";
+	}
+	print_det(\%configuration, \%detector);
+	
+	
+	if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
+		my $nplanes_BLine_shield = 2;
+		my @z_plane_BLine_shield = ($BLine_Z1, $BLine_Z5);
+		my @oradius_BLine_shield = ($BLine_SR, $BLine_SR);
+		my @iradius_BLine_shield = ($BLine_DR, $BLine_DR);
+		%detector = init_det();
+		$detector{"name"}        = "ft_cal_bline_shield";
+		$detector{"mother"}      = "ft_cal";
+		$detector{"description"} = "ft beam line_shield";
+		$detector{"color"}       = "ff0000";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes_BLine_shield*counts";
+		for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $iradius_BLine_shield[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $oradius_BLine_shield[$i]*mm";}
+		for(my $i = 0; $i <$nplanes_BLine_shield ; $i++) {$dimen = $dimen ." $z_plane_BLine_shield[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "ft_W";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+	}
+	
+	
+	
+	
+	
+	my $TPlate_IR= $BLine_IR + $BLine_TN;
+	my $TPlate_OR= $TPlate_Z1*$BCup_tang;
+	
 	my $nplanes_TPlate = 2;
-	my @z_plane_TPlate = ($TPlate_Z1, $TPlate_Z2);  
-	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR);  
-	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR);  
+	my @z_plane_TPlate = ($TPlate_Z1, $TPlate_Z2);
+	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR);
+	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR);
 	
 	# tungsten plate on the back of the calorimeter
 	%detector = init_det();
@@ -1045,17 +1045,17 @@ sub make_ft_cal_beamline
 	$detector{"material"}    = "ft_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
-
-
-
-
+	
+	
+	
+	
+	
 	# steel collar on the front
 	my $nplanes_TCollar = 2;
 	my @z_plane_TCollar = ($BLine_Z2, $BLine_Z3);
-	my @oradius_TCollar = ($BLine_FR, $BLine_FR);  
-    my @iradius_TCollar = ($BLine_MR, $BLine_MR);
-    %detector = init_det();
+	my @oradius_TCollar = ($BLine_FR, $BLine_FR);
+	my @iradius_TCollar = ($BLine_MR, $BLine_MR);
+	%detector = init_det();
 	$detector{"name"}        = "ft_cal_collar";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft beam collar";
@@ -1068,8 +1068,8 @@ sub make_ft_cal_beamline
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
-    #    print_det(\%configuration, \%detector);
-
+	#    print_det(\%configuration, \%detector);
+	
 	# Define the tube between Calorimeter and Torus Inner Ring
 	my $Tube_IR         =  $BLine_IR;
 	# define positions based on z of torus inner ring front face
@@ -1096,8 +1096,8 @@ sub make_ft_cal_beamline
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
-    #	print_det(\%configuration, \%detector);
-
+	#	print_det(\%configuration, \%detector);
+	
 	
 	# Define Aluminum Beam Pipe and Vacuum
 	my $AL_BLine_TN=1.0;
@@ -1116,7 +1116,7 @@ sub make_ft_cal_beamline
 	$detector{"dimensions"}  = "$AL_BLine_IR*mm $AL_BLine_OR*mm $AL_BLine_LT*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
-    #	print_det(\%configuration, \%detector);
+	#	print_det(\%configuration, \%detector);
 	
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_al_bline_vacuum";
@@ -1128,7 +1128,7 @@ sub make_ft_cal_beamline
 	$detector{"dimensions"}  = "0.0*mm $AL_BLine_IR*mm $AL_BLine_LT*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "G4_Galactic";
 	$detector{"visible"}     = 0;
-    #	print_det(\%configuration, \%detector);
+	#	print_det(\%configuration, \%detector);
 }
 
 
@@ -1144,8 +1144,8 @@ sub make_ft_cal
 	make_ft_cal_tcup();
 	make_ft_cal_insulation();
 	make_ft_cal_shell();
-    make_ft_cal_beamline();
-    make_ft_moellerdisk();
+	make_ft_cal_beamline();
+	make_ft_moellerdisk();
 }
 
 
@@ -1165,21 +1165,21 @@ sub make_ft_hodo
 	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
-    
-    %detector = init_det();
-    $detector{"name"}        = "ft_hodo_ring";
-    $detector{"mother"}      = "ft_hodo";
-    $detector{"description"} = "ft hodoscope support ring";
-    $detector{"pos"}         = "0.0*cm 0.0*cm 0.0*mm";
-    $detector{"color"}       = "cccccc";
-    $detector{"type"}        = "Tube";
-    $detector{"dimensions"}  = "$VETO_RING_IR*mm $VETO_RING_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
-    $detector{"material"}    = "ft_peek";
-    $detector{"style"}     = 1;
-    print_det(\%configuration, \%detector);
+	
+	%detector = init_det();
+	$detector{"name"}        = "ft_hodo_ring";
+	$detector{"mother"}      = "ft_hodo";
+	$detector{"description"} = "ft hodoscope support ring";
+	$detector{"pos"}         = "0.0*cm 0.0*cm 0.0*mm";
+	$detector{"color"}       = "cccccc";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "$VETO_RING_IR*mm $VETO_RING_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
+	$detector{"material"}    = "ft_peek";
+	$detector{"style"}     = 1;
+	print_det(\%configuration, \%detector);
 	
 	for ( my $l = 0; $l < 2; $l++ ) { # loop over layers
- 
+		
 		my $LS_Z =$VETO_TN-$LS_TN-($LS_TN+$p15_WT)*2*$l;
 		
 		%detector = init_det();
@@ -1193,8 +1193,8 @@ sub make_ft_hodo
 		$detector{"material"}    = "insfoam";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-
+		
+		
 		my $p_X=0.;
 		my $p_Y=0.;
 		my $p_Z=$LS_Z-$LS_TN-$p15_WT;
@@ -1219,7 +1219,7 @@ sub make_ft_hodo
 					$detector{"ncopy"}       = $p_i;
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
-
+					
 					%detector = init_det();
 					$detector{"name"}        = "ft_hodo_p15_tile_$l";
 					$detector{"mother"}      = "ft_hodo_p15_$l";
@@ -1233,7 +1233,7 @@ sub make_ft_hodo
 					$detector{"hit_type"}    = "ft_hodo";
 					$detector{"identifiers"} = "ft_hodo_p15 ncopy 0 layer manual $l";
 					print_det(\%configuration, \%detector);
-
+					
 				}
 				else {
 					%detector = init_det();
@@ -1267,7 +1267,7 @@ sub make_ft_hodo
 					$detector{"ncopy"}       = $p_i;
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
-
+					
 					%detector = init_det();
 					$detector{"name"}        = "ft_hodo_p30_tile_$l";
 					$detector{"mother"}      = "ft_hodo_p30_$l";
@@ -1307,8 +1307,8 @@ sub make_ft_hodo
 # Define the FT Tracker Geometry Components
 sub make_ft_trk_mother
 {
-        my $zpos      = $ftm_starting;
-    	my %detector = init_det();
+	my $zpos      = $ftm_starting;
+	my %detector = init_det();
 	$detector{"name"}        = "ft_trk";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "ft tracker micromegas";
@@ -1320,42 +1320,42 @@ sub make_ft_trk_mother
 	$detector{"material"}    = "Air";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
-    
-    my $ftm_ring_z = ( $BLine_ML + $VETO_Z -$VETO_TN)/2.;
-    my $ftm_ring_dz= (-$BLine_ML + $VETO_Z -$VETO_TN)/2.;
-    %detector = init_det();
-    $detector{"name"}        = "ft_trk_ring";
-    $detector{"mother"}      = "root";
-    $detector{"description"} = "ft tracker support ring";
-    $detector{"pos"}         = "0*mm 0*mm $ftm_ring_z*mm";
-    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    $detector{"color"}       = "aaaaff";
-    $detector{"type"}        = "Tube";
-    $detector{"dimensions"}  = "$BLine_FR*mm $ftm_ir*mm $ftm_ring_dz*mm 0*deg 360*deg";
-    $detector{"material"}    = "G4_Al";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-    
+	
+	my $ftm_ring_z = ( $BLine_ML + $VETO_Z -$VETO_TN)/2.;
+	my $ftm_ring_dz= (-$BLine_ML + $VETO_Z -$VETO_TN)/2.;
+	%detector = init_det();
+	$detector{"name"}        = "ft_trk_ring";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "ft tracker support ring";
+	$detector{"pos"}         = "0*mm 0*mm $ftm_ring_z*mm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "aaaaff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "$BLine_FR*mm $ftm_ir*mm $ftm_ring_dz*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Al";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
 }
 
 
 
 sub place_epoxy
 {
-        my $l    = shift;
+	my $l    = shift;
 	my $layer_no       = $l + 1;
-    
+	
 	my $z          = - $ftm_starting + $starting_point[$l];
 	my $vname      = "ft_trk_epoxy";
 	my $descriptio = "epoxy, layer $layer_no";
-    
+	
 	# names
 	my $r         = 0.000;
 	my $PDz       = $Epoxy_Dz;
 	my $PSPhi     = 0.0;
 	my $PDPhi     = 360.000;
 	
-    	my %detector = init_det();
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1371,34 +1371,34 @@ sub place_epoxy
 
 sub place_pcboard
 {
-        my $l    = shift; 
+	my $l    = shift;
 	my $type = shift;
 	my $layer_no   = $l + 1;
 	my $z          = 0;
 	my $vname      = 0;
 	my $descriptio = 0;
 	my $PSPhi     = 0.0;
-
+	
 	if($type == 1)
 	{
-	        $z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz;
+		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz;
 		$vname       = "ft_trk_pcboard_X_L";
 		$descriptio  = "pc board X, layer $layer_no";
-	 }
-    
-	if($type == 2) 
+	}
+	
+	if($type == 2)
 	{
-	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz;
+		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz;
 		$vname       = "ft_trk_pcboard_Y_L";
 		$descriptio  = "pc board Y, layer $layer_no";
-        }
-    
+	}
+	
 	# names
 	my $r         = 0.000;
 	my $PDz       = $PCB_Dz;
 	my $PDPhi     = 360.000;
 	
-    	my %detector = init_det();
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1414,7 +1414,7 @@ sub place_pcboard
 
 sub place_strips
 {
-        my $l    = shift; 
+	my $l    = shift;
 	my $type = shift;
 	my $layer_no       = $l + 1;
 	my $z          = 0;
@@ -1423,25 +1423,25 @@ sub place_strips
 	my $PSPhi     = 0.0;
 	
 	if($type == 1)
-        {
-	        $z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz;
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz;
 		$vname       = "ft_trk_strips_X_L";
 		$descriptio  = "strips X, layer $layer_no";
 	}
-    
-	if($type == 2) 
-        {
-	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz;
+	
+	if($type == 2)
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz;
 		$vname       = "ft_trk_strips_Y_L";
 		$descriptio  = "strips Y, layer $layer_no";
-         }
-    
+	}
+	
 	# names
 	my $r         = 0.000;
 	my $PDz       = $Strips_Dz;
 	my $PDPhi     = 360.000;
 	
-    	my %detector = init_det();
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1457,7 +1457,7 @@ sub place_strips
 
 sub place_gas1
 {
-        my $l    = shift; 
+	my $l    = shift;
 	my $type = shift;
 	my $layer_no       = $l + 1;
 	my $z          = 0;
@@ -1466,25 +1466,25 @@ sub place_gas1
 	my $PSPhi     = 0.0;
 	
 	if($type == 1)
-        {
-	        $z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz;
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz;
 		$vname       = "ft_trk_gas1_X_L";
 		$descriptio  = "gas1 X, layer $layer_no";
-        }
-    
-	if($type == 2) 
-        {
-	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz;
+	}
+	
+	if($type == 2)
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz;
 		$vname       = "ft_trk_gas1_Y_L";
 		$descriptio  = "gas1 Y, layer $layer_no";
-        }
-    
+	}
+	
 	# names
 	my $r         = 0.000;
 	my $PDz       = $Gas1_Dz;
 	my $PDPhi     = 360.000;
 	
-    	my %detector = init_det();
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1500,7 +1500,7 @@ sub place_gas1
 
 sub place_mesh
 {
-        my $l    = shift; 
+	my $l    = shift;
 	my $type = shift;
 	my $layer_no       = $l + 1;
 	my $z          = 0;
@@ -1509,24 +1509,24 @@ sub place_mesh
 	my $PSPhi     = 0.0;
 	
 	if($type == 1)
-        {  
-	        $z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz;
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz;
 		$vname       = "ft_trk_mesh_X_L";
 		$descriptio  = "mesh X, layer $layer_no";
-        }  
-
+	}
+	
 	if($type == 2)
-        {  
-	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz;
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz;
 		$vname       = "ft_trk_mesh_Y_L";
 		$descriptio  = "mesh Y, layer $layer_no";
-        }
+	}
 	# names
 	my $r         = 0.000;
 	my $PDz       = $Mesh_Dz;
 	my $PDPhi     = 360.000;
 	
-    	my %detector = init_det();
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1543,34 +1543,34 @@ sub place_mesh
 
 sub place_gas2
 {
-        my $l    = shift; 
+	my $l    = shift;
 	my $type = shift;
 	my $layer_no       = $l + 1;
 	my $z          = 0;
 	my $vname      = 0;
 	my $descriptio = 0;
 	my $PSPhi     = 0.0;
-    
+	
 	if($type == 1)
 	{
-	        $z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz*2. - $Gas2_Dz;
+		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz*2. - $Gas2_Dz;
 		$vname       = "ft_trk_gas2_X_L";
 		$descriptio  = "gas2 X, layer $layer_no";
 	}
-    
-	if($type == 2) 
+	
+	if($type == 2)
 	{
-	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz*2. + $Gas2_Dz;
+		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz*2. + $Gas2_Dz;
 		$vname       = "ft_trk_gas2_Y_L";
 		$descriptio  = "gas2 Y, layer $layer_no";
 	}
-    
+	
 	# names
 	my $r         = 0.000;
 	my $PDz       = $Gas2_Dz;
 	my $PDPhi     = 360.000;
-
-    	my %detector = init_det();
+	
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1590,7 +1590,7 @@ sub place_gas2
 
 sub place_drift
 {
-        my $l    = shift; 
+	my $l    = shift;
 	my $type = shift;
 	my $layer_no       = $l + 1;
 	my $z          = 0;
@@ -1598,27 +1598,27 @@ sub place_drift
 	my $descriptio = 0;
 	my $PSPhi     = 0.0;
 	
-    
+	
 	if($type == 1)
-        {
-	        $z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz*2. - $Gas2_Dz*2. - $Drift_Dz;
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz*2. - $Gas2_Dz*2. - $Drift_Dz;
 		$vname       = "ft_trk_drift_X_L";
 		$descriptio  = "drift X, layer $layer_no";
-        }
-
+	}
+	
 	if($type == 2)
-        {
-	        $z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz*2. + $Gas2_Dz*2. + $Drift_Dz;
+	{
+		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz*2. + $Gas2_Dz*2. + $Drift_Dz;
 		$vname       = "ft_trk_drift_Y_L";
 		$descriptio  = "drift Y, layer $layer_no";
-        }
-
+	}
+	
 	# names
 	my $r         = 0.000;
 	my $PDz       = $Drift_Dz;
 	my $PDPhi     = 360.000;
 	
-    	my %detector = init_det();
+	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
 	$detector{"mother"}      = "ft_trk";
 	$detector{"description"} = "$descriptio";
@@ -1638,8 +1638,8 @@ sub place_drift
 # Define the FTM Electronic Boxes and Support Structure
 sub make_ft_trk_fee_boxes
 {
-        # create disk
-        my $nplanes_FEE_Disk = 2;
+	# create disk
+	my $nplanes_FEE_Disk = 2;
 	my @z_FEE_Disk = ($BLine_Z5 + 0.1, $BLine_Z5 + 0.1 + $FEE_Disk_LN);
 	my @oradius_FEE_Disk = ($FEE_Disk_OR   , $FEE_Disk_OR);
 	my @iradius_FEE_Disk = ($BLine_OR + 0.1, $BLine_OR + 0.1);
@@ -1656,9 +1656,9 @@ sub make_ft_trk_fee_boxes
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
-    #	print_det(\%configuration, \%detector);
-
-        # create arms
+	#	print_det(\%configuration, \%detector);
+	
+	# create arms
 	for ( my $i = 0; $i < 3; $i++ ) {
 		my $FEE_ARM_X =   ($FEE_Disk_OR+ 2.+ $FEE_ARM_LN*cos($FEE_polar_angle/$degrad))*cos($FEE_azimuthal_angle[$i]/$degrad);
 		my $FEE_ARM_Y = - ($FEE_Disk_OR+ 2.+ $FEE_ARM_LN*cos($FEE_polar_angle/$degrad))*sin($FEE_azimuthal_angle[$i]/$degrad);
@@ -1674,13 +1674,13 @@ sub make_ft_trk_fee_boxes
 		$detector{"dimensions"}  = "$FEE_ARM_LN*mm $FEE_ARM_WD*mm $FEE_Disk_LN*mm";
 		$detector{"material"}    = "G4_Al";
 		$detector{"style"}       = 1;
-        #		print_det(\%configuration, \%detector);
-
-
+		#		print_det(\%configuration, \%detector);
+		
+		
 		my $FEE_R = ($FEE_ARM_LN - $FEE_PVT_HT)*cos($FEE_polar_angle/$degrad) + ($FEE_PVT_LN+$FEE_Disk_LN+0.2)*sin($FEE_polar_angle/$degrad);
 		my $FEE_X = $FEE_ARM_X + $FEE_R*cos($FEE_azimuthal_angle[$i]/$degrad);
 		my $FEE_Y = $FEE_ARM_Y - $FEE_R*sin($FEE_azimuthal_angle[$i]/$degrad);
-        my $FEE_Z=  $FEE_ARM_Z + ($FEE_ARM_LN - $FEE_PVT_HT)*sin($FEE_polar_angle/$degrad) - ($FEE_PVT_LN+$FEE_Disk_LN+0.2)*cos($FEE_polar_angle/$degrad);
+		my $FEE_Z=  $FEE_ARM_Z + ($FEE_ARM_LN - $FEE_PVT_HT)*sin($FEE_polar_angle/$degrad) - ($FEE_PVT_LN+$FEE_Disk_LN+0.2)*cos($FEE_polar_angle/$degrad);
 		%detector = init_det();
 		$detector{"name"}        = "ft_trk_fee_pvt_box_$i";
 		$detector{"mother"}      = "ft_cal";
@@ -1692,9 +1692,9 @@ sub make_ft_trk_fee_boxes
 		$detector{"dimensions"}  = "$FEE_PVT_HT*mm $FEE_PVT_WD*mm $FEE_PVT_LN*mm";
 		$detector{"material"}    = "G4_WATER";
 		$detector{"style"}       = 1;
-#		print_det(\%configuration, \%detector);
-
-
+		#		print_det(\%configuration, \%detector);
+		
+		
 		$FEE_R = ($FEE_ARM_LN - $FEE_HT)*cos($FEE_polar_angle/$degrad) + ($FEE_LN+$FEE_Disk_LN+0.2)*sin($FEE_polar_angle/$degrad);
 		$FEE_X = $FEE_ARM_X + $FEE_R*cos($FEE_azimuthal_angle[$i]/$degrad);
 		$FEE_Y = $FEE_ARM_Y - $FEE_R*sin($FEE_azimuthal_angle[$i]/$degrad);
@@ -1708,15 +1708,15 @@ sub make_ft_trk_fee_boxes
 		$detector{"type"}        = "Box";
 		$detector{"pos"}         = "$FEE_X*mm $FEE_Y*mm $FEE_Z*mm";
 		#    $detector{"pos"}         = "0.0*mm 0.0*mm 0.0*mm";
-        #		$detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg $FEE_polar_angle*deg 0*deg ";
-        $detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg 0*deg 0*deg ";
+		#		$detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg $FEE_polar_angle*deg 0*deg ";
+		$detector{"rotation"}    = "ordered: zyx $FEE_azimuthal_angle[$i]*deg 0*deg 0*deg ";
 		#    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
 		$detector{"dimensions"}  = "$FEE_HT*mm $FEE_WD*mm $FEE_LN*mm";
 		$detector{"material"}    = "G4_Al";
 		#    $detector{"material"}    = "Gadolinium";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
+		
 		%detector = init_det();
 		$detector{"name"}        = "ft_trk_fee_air_$i";
 		$detector{"mother"}      = "ft_trk_fee_box_$i";
@@ -1729,8 +1729,8 @@ sub make_ft_trk_fee_boxes
 		$detector{"material"}    = "G4_AIR";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-
+		
+		
 		my $flux_FEE_TN = 0.5;
 		my $flux_FEE_HT = $FEE_A_HT - 2.*$flux_FEE_TN;
 		my $flux_FEE_WD = $FEE_A_WD - 2.*$flux_FEE_TN;
@@ -1751,7 +1751,7 @@ sub make_ft_trk_fee_boxes
 		$detector{"hit_type"}    = "flux";
 		$detector{"identifiers"} = "id manual 4";
 		print_det(\%configuration, \%detector);
-
+		
 		$flux_FEE_HT = $FEE_A_HT - 2.*$flux_FEE_TN;
 		$flux_FEE_WD = $flux_FEE_TN;
 		$flux_FEE_LN = $FEE_A_LN - 2.*$flux_FEE_TN;
@@ -1771,7 +1771,7 @@ sub make_ft_trk_fee_boxes
 		$detector{"hit_type"}    = "flux";
 		$detector{"identifiers"} = "id manual 5";
 		print_det(\%configuration, \%detector);
-
+		
 		my $dose_FEE_TN=5.;
 		my $dose_FEE_HT = $FEE_A_HT - $dose_FEE_TN;
 		my $dose_FEE_WD = $dose_FEE_TN;
@@ -1793,7 +1793,7 @@ sub make_ft_trk_fee_boxes
 		$detector{"hit_type"}    = "ft_hodo";
 		$detector{"identifiers"} = "id manual 5000";
 		print_det(\%configuration, \%detector);
-
+		
 	}
 }
 
@@ -1802,8 +1802,8 @@ sub make_ft_trk_fee_boxes
 
 sub make_ft_trk
 {
-        make_ft_trk_mother();
-        for(my $l = 0; $l < $nlayer; $l++) 
+	make_ft_trk_mother();
+	for(my $l = 0; $l < $nlayer; $l++)
 	{
 		my $layer_no       = $l + 1;
 		place_epoxy($l);
@@ -1815,7 +1815,7 @@ sub make_ft_trk
 		place_mesh($l,1);
 		place_gas2($l,1);
 		place_drift($l,1);
-			
+		
 		# Y layer type
 		place_pcboard($l,2);
 		place_strips($l,2);
@@ -1823,7 +1823,7 @@ sub make_ft_trk
 		place_mesh($l,2);
 		place_gas2($l,2);
 		place_drift($l,2);
-        }
+	}
 	make_ft_trk_fee_boxes();
 }
 
@@ -1833,8 +1833,8 @@ sub make_ft_trk
 my $nplanes_cone = 4;
 my @zplane_cone   = (  750.0, 1750.0, 1750.0, 1809.2);
 my @oradius_cone  = (   32.0,   76.0,   59.0,   59.0);
-my @mradius_cone  = (   31.0,   40.0,   40.0,   40.0); 
-my @iradius_cone  = (   30.0,   30.0,   30.0,   30.0); 
+my @mradius_cone  = (   31.0,   40.0,   40.0,   40.0);
+my @iradius_cone  = (   30.0,   30.0,   30.0,   30.0);
 
 
 # Aluminum Beam Pipe
@@ -1869,9 +1869,9 @@ my @iradius_mv  = (            0.0,             0.0,             0.0,           
 
 sub make_ft_shield
 {
-#############################
-#       Mother Volume
-#############################
+	#############################
+	#       Mother Volume
+	#############################
 	my %detector = init_det();
 	$detector{"name"}         = "ft_shield";
 	$detector{"mother"}       = "root";
@@ -1892,24 +1892,24 @@ sub make_ft_shield
 	{
 		$dimen = $dimen ." $zplane_mv[$i]*mm";
 	}
-
+	
 	$detector{"dimensions"}   = $dimen;
 	$detector{"material"}     = "Air";
 	$detector{"visible"}     = 0;
-
+	
 	print_det(\%configuration, \%detector);
-
-
-#############################
-# Carbon Fiber Moller Cup
-#############################
+	
+	
+	#############################
+	# Carbon Fiber Moller Cup
+	#############################
 	%detector = init_det();
 	$detector{"name"}        = "htcc_moeller_cup";
 	$detector{"mother"}      = "ft_shield";
 	$detector{"description"} = "htcc moeller cup";
 	$detector{"color"}       = "575757";
 	$detector{"type"}        = "Polycone";
-
+	
 	$dimen = "0.0*deg 360*deg $nplanes_cup*counts";
 	for(my $i = 0; $i <$nplanes_cup ; $i++)
 	{
@@ -1927,12 +1927,12 @@ sub make_ft_shield
 	$detector{"material"}   = "CarbonFiber";
 	$detector{"style"}       = 1;
 	
-#	print_det(\%configuration, \%detector);
-
-
-#############################
-# Tungsten Cone
-#############################
+	#	print_det(\%configuration, \%detector);
+	
+	
+	#############################
+	# Tungsten Cone
+	#############################
 	%detector = init_det();
 	$detector{"name"}        = "ft_w_cone";
 	$detector{"mother"}      = "ft_shield";
@@ -1957,11 +1957,11 @@ sub make_ft_shield
 	$detector{"style"}       = 1;
 	
 	print_det(\%configuration, \%detector);
-
-
-#############################
-#       Aluminum Tube
-#############################
+	
+	
+	#############################
+	#       Aluminum Tube
+	#############################
 	%detector = init_det();
 	$detector{"name"}        = "ft_al_tube";
 	$detector{"mother"}      = "ft_shield";
@@ -1970,14 +1970,14 @@ sub make_ft_shield
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$al_tube_IR*mm $al_tube_OR*mm $al_tube_LT*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "Aluminum";	
+	$detector{"material"}    = "Aluminum";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
-
-#############################
-# Aluminum Window
-#############################
+	
+	
+	#############################
+	# Aluminum Window
+	#############################
 	%detector = init_det();
 	$detector{"name"}        = "ft_al_window";
 	$detector{"mother"}      = "ft_shield";
@@ -1990,11 +1990,11 @@ sub make_ft_shield
 	$detector{"material"}    = "Aluminum";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
-
-#############################
-# Vacuum inside the cone
-#############################
+	
+	
+	#############################
+	# Vacuum inside the cone
+	#############################
 	%detector = init_det();
 	$detector{"name"}        = "ft_albpipe_vacuum";
 	$detector{"mother"}      = "ft_shield";
@@ -2007,5 +2007,5 @@ sub make_ft_shield
 	$detector{"material"}    = "Vacuum";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
-
+	
 }

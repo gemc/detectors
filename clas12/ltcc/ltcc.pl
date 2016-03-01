@@ -45,7 +45,7 @@ require "./bank.pl";
 require "./hit.pl";
 
 # Loading LTCC specific subroutines
-require "./ltccBox.pl";      # mother volume
+require "./ltcc_box.pl";      # mother volume
 require "./ell_mirrors.pl";   # ell mirrors
 #require "./hyp_mirrors.pl";   # hyp mirrors
 #require "./pmts.pl";          # pmts

@@ -51,9 +51,32 @@ sub define_bdx_bank
 	insert_bank_variable(\%configuration, $bankname, "channel",      3, "Di", "channel number");
 	insert_bank_variable(\%configuration, $bankname, "adc1",         4, "Di", "adc1");
 	insert_bank_variable(\%configuration, $bankname, "adc2",         5, "Di", "adc2");
-	insert_bank_variable(\%configuration, $bankname, "tdc1",         6, "Di", "tdc1");
-	insert_bank_variable(\%configuration, $bankname, "tdc2",         7, "Di", "tdc2");
+    insert_bank_variable(\%configuration, $bankname, "adc3",         6, "Di", "adc3");
+    insert_bank_variable(\%configuration, $bankname, "adc4",         7, "Di", "adc4");
+	insert_bank_variable(\%configuration, $bankname, "tdc1",         8, "Di", "tdc1");
+	insert_bank_variable(\%configuration, $bankname, "tdc2",         9, "Di", "tdc2");
+    insert_bank_variable(\%configuration, $bankname, "tdc3",        10, "Di", "tdc3");
+    insert_bank_variable(\%configuration, $bankname, "tdc4",        11, "Di", "tdc4");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
+
+    $bankId   = 300;
+    $bankname = "crs";
+    
+    insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
+    insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector number");
+    insert_bank_variable(\%configuration, $bankname, "xch",          2, "Di", "xch number");
+    insert_bank_variable(\%configuration, $bankname, "ych",          3, "Di", "ych number");
+    insert_bank_variable(\%configuration, $bankname, "adcl",         4, "Di", "adcl");
+    insert_bank_variable(\%configuration, $bankname, "adcr",         5, "Di", "adcr");
+    insert_bank_variable(\%configuration, $bankname, "tdcl",         6, "Di", "tdcl");
+    insert_bank_variable(\%configuration, $bankname, "tdcr",         7, "Di", "tdcr");
+    insert_bank_variable(\%configuration, $bankname, "adcb",         8, "Di", "adcb");
+    insert_bank_variable(\%configuration, $bankname, "adcf",         9, "Di", "adcf");
+    insert_bank_variable(\%configuration, $bankname, "tdcb",        10, "Di", "tdcb");
+    insert_bank_variable(\%configuration, $bankname, "tdcf",        11, "Di", "tdcf");
+    insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number"); 
+
+
 }
 
 

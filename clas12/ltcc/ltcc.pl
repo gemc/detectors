@@ -22,61 +22,90 @@ sub help()
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1) 
+if( scalar @ARGV != 1)
 {
 	help();
 	exit;
 }
 
+# Loading configuration file and paramters
+our %configuration = load_configuration($ARGV[0]);
 
-# Loading configuration file and parameters
-# Make sure you created them
-my $config_file   = $ARGV[0];
+# Global pars - these should be read by the load_parameters from file or DB
+our %parameters = get_parameters(%configuration);
 
-# configuration and parameters are global variables 
-our %configuration = load_configuration($config_file);
-our %parameters    = get_parameters(%configuration);
+
+# materials
+# require "./materials.pl";
+
+# banks definitions
+require "./bank.pl";
+
+# hits definitions
+require "./hit.pl";
 
 # Loading LTCC specific subroutines
-require "./ltcc_box.pl";      # mother volume
-#require "./ell_mirrors.pl";   # ell mirrors
+require "./ltccBox.pl";      # mother volume
+require "./ell_mirrors.pl";   # ell mirrors
 #require "./hyp_mirrors.pl";   # hyp mirrors
 #require "./pmts.pl";          # pmts
 #require "./spot_finder.pl";   # spot finder #nate
+
+# all the scripts must be run for every configuration
+my @allConfs = ("original");
+
+foreach my $conf ( @allConfs )
+{
+	$configuration{"variation"} = $conf ;
+	
+	# materials
+	#materials();
+	
+	# hits
+	#define_hit();
+	
+	
+	# bank definitions
+	#define_banks();
+	
+	# Building LTCC Box
+	build_ltcc_box();
+	
+	# Elliptical mirrors
+	buildEllMirrors();
+}
+
 
 
 
 # detector build subroutine
 sub build_detector
 {
-	# Building LTCC Box
-	build_ltcc_box();
 	
 	
 	# Building Elliptical mirrors
-#	build_ell_mirrors();
-#	#build_check_ell_cheeseform();
+	#	build_ell_mirrors();
+	#	#build_check_ell_cheeseform();
 	
 	
 	# Building Hyperbolic mirrors
-#	build_hyp_mirrors();
+	#	build_hyp_mirrors();
 	
 	# Build PMTs
 	#build_pmts();
-
+	
 	#spot finder #nate
-#	build_spot_finder();
-
+	#	build_spot_finder();
+	
 }
 
-build_detector();
 
 # Hit definition
 # Execute only when there are changes
-require "./hit.pl";
+#require "./hit.pl";
 #quartz_pmt_hit();
 #mirrors_hit();
 
 # banks
-require "./bank.pl";
+#require "./bank.pl";
 #define_ltcc_bank();

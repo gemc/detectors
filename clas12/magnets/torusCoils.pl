@@ -1,10 +1,12 @@
 use strict;
 use warnings;
+use math;
 
 our %configuration;
 
 our $TorusLength;
 our $TorusZpos;
+our $inches;
 
 my $microgap = 0.1;
 my $vacuumJacketThickness = 12.7;   # M. Zarecky email. The walls are 12.7, the top iss 15.9.
@@ -259,8 +261,6 @@ sub torusCoils()
 	sumVacuumJacket();
 	sumVacuum();
 }
-
-
 
 
 

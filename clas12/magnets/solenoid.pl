@@ -1,33 +1,10 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use geometry;
-use math;
+use warnings;
 
-use Math::Trig;
-
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   solenoid.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Solenoid using the variation specified in the configuration file\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
 
 # Loading configuration file from argument
-our %configuration = load_configuration($ARGV[0]);
+my %configuration = load_configuration("config_solenoid.dat");
+
 
 my $nplanes = 14;
 
@@ -61,9 +38,11 @@ $zplane[13] = 425.00  + 6*$bolt_shift + 3*$bolt_length + 2*$bolt_dist + $bolt_di
 my $zstart    = -898.093 ;             # z coordinate of border
 
 
-sub make_solenoid
+sub makeSolenoid
 {
+	$configuration{"variation"} = shift ;
 
+	
 	my $dimensions = "0.0*deg 360.0*deg $nplanes*counts";
 	for(my $i = 0; $i <$nplanes ; $i++)
 	{
@@ -93,7 +72,6 @@ sub make_solenoid
 	print_det(\%configuration, \%detector);
 }
 
-make_solenoid();
 
 
 

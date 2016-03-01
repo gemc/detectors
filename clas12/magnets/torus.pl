@@ -1,36 +1,8 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use geometry;
-use math;
-
-use Math::Trig;
-
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   torus.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Torus using the variation specified in the configuration file\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
+use warnings;
 
 # Loading configuration file from argument
-our %configuration = load_configuration($ARGV[0]);
-
-
-# Global pars - these should be read by the load_parameters from file or DB
+our %configuration = load_configuration("config_torus.dat");
 
 # General:
 our $inches      = 25.4;
@@ -47,12 +19,15 @@ require "./torusPlates.pl";
 # coils
 require "./torusCoils.pl";
 
-
 # building the torus
-torusHub();
-torusPlates();
-torusCoils();
+sub makeTorus
+{
+	$configuration{"variation"} = shift ;
 
+	torusHub();
+	torusPlates();
+	torusCoils();
+}
 
 
 

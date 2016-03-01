@@ -31,7 +31,7 @@ sub define_cormo_hit
 	$hit{"signalThreshold"} = "200.0*KeV";
 	$hit{"timeWindow"}      = "4*ns";
 	$hit{"prodThreshold"}   = "2*um";
-	$hit{"maxStep"}         = "2*um";
+	$hit{"maxStep"}         = "500*um";
 	$hit{"delay"}           = "10*ns";
 	$hit{"riseTime"}        = "1*ns";
 	$hit{"fallTime"}        = "1*ns";

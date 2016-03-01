@@ -1,5 +1,6 @@
 3/1/16
 - added magnets.pl to build both solenoid and torus geometry
+- removed obsolete ftm as now it's inside FT
 
 1/11/16
 - torus is greatly simplified

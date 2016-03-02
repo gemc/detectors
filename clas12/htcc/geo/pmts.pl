@@ -327,7 +327,7 @@ sub build_pmts
 			$detector{"pos"}         = $spos;
 			$detector{"rotation"}    = $srot;
 			$detector{"color"}       = $colors_even[($j%2)];
-            $detector{"type"}        = "Tube";
+			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0*mm $PMTradius*mm $PMTdz*mm 0*deg 360*deg";
 			$detector{"material"}    = "HTCCPMTQuartz";
 			$detector{"style"}       = "1";

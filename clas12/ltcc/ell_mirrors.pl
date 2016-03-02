@@ -44,7 +44,7 @@ my $start_n = 1;  # 1 - 18
 my $end_n   = 19; # 2 - 19, greater than start_n
 
 
-sub calculatePars
+sub calculateEllPars
 {
 	for(my $n=0; $n<$nmirrors ; $n++)
 	{
@@ -203,7 +203,7 @@ sub build_ell_mirrors_containers
 		$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
 		$detector{"type"}        = "Operation: segment_ell_box_$n - segment_ell_subtract_box_$n";
 		$detector{"material"}    = "C4F10";
-		$detector{"visible"}     = 1;
+		$detector{"visible"}     = 0;
 		print_det(\%configuration, \%detector);
 		
 	}
@@ -394,7 +394,7 @@ sub build_ell_mirrors
 		$detector{"visible"}     = 1; #nate
 		$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 		$detector{"hit_type"}       = "mirror";
-		$detector{"identifiers"}    = "sector manual 1 LR manual 1 segment manual $n";
+		$detector{"identifiers"}    = "sector manual 1 type manual 1 side manual 1 segment manual $n";
 		print_det(\%configuration, \%detector);
 		
 		# mirror LEFT
@@ -413,7 +413,7 @@ sub build_ell_mirrors
 		$detector{"visible"}     = 1; #nate
 		$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 		$detector{"hit_type"}       = "mirror";
-		$detector{"identifiers"}    = "sector manual 1 LR manual 2 segment manual $n";
+		$detector{"identifiers"}    = "sector manual 1 type manual 1 side manual 2 segment manual $n";
 		print_det(\%configuration, \%detector);
 		
 	}
@@ -424,7 +424,7 @@ sub build_ell_mirrors
 
 sub buildEllMirrors
 {
-	calculatePars();
+	calculateEllPars();
 	build_ell_mirrors_containers();
 	
 	build_ell_shells();
@@ -437,8 +437,7 @@ sub buildEllMirrors
 	# with the cheese forms
 	build_ell_mirrors();
 	
-	
-	
+	# focal point spheres
 }
 
 

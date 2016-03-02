@@ -1,10 +1,12 @@
 
 CLAS12 LTCC README
+------------------
 
---------------------------------------------------
+TODO: Add focal point spheres for debugging purposes
+
 
 The geometry consists of 36 elliptical mirrors, 36 hyperbolic mirrors
-36 PMTs, and 36 WC.
+and 36 PMTs.
 
 The parameters are created by the mirrors.C macro.
 

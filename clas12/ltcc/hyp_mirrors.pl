@@ -7,11 +7,6 @@ our %parameters;
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
-# All dimensions in cm
-# The ellipse equation is
-# p1*x**2 + p2*y**2 + p3*x*y + p4*x + p5*y + 1 = 0
-
-
 # hyperbola center
 my @centerx = ();
 my @centery = ();
@@ -32,56 +27,55 @@ my @mirror_width = ();
 
 my @segtheta  = ();
 
-
-for(my $n=0; $n<$nmirrors ; $n++)
+sub calculateHypPars
 {
-	my $s = $n + 1;
-	
-	# hyperbola parameter
-	my $a = $parameters{"ltcc.hypars.s$s.p0"};
-	my $b = $parameters{"ltcc.hypars.s$s.p1"};
-	my $c = $parameters{"ltcc.hypars.s$s.p2"};
-	my $d = $parameters{"ltcc.hypars.s$s.p3"};
-	my $f = $parameters{"ltcc.hypars.s$s.p4"};
-	my $g = 1.0;
-	
-	
-	# hyperbola center
-	my $ddd = $c*$c - 4*$a*$b;
-	$centerx[$n] = (2.0*$b*$d - $c*$f)/$ddd;
-	$centery[$n] = (2.0*$a*$f - $c*$d)/$ddd;
-	
-	# hyperbola tilt
-	$alpha[$n] = deg(0.5*$pi + 0.5*atan($c/($a - $b)));
-	
-	
-	# edge point for all CC section
-	$x21[$n] = $parameters{"ltcc.hy.s$s"."_x21"};
-	$y21[$n] = $parameters{"ltcc.hy.s$s"."_y21"};
-	
-	# hyperbola x minimum
-	$hp_min[$n] = $parameters{"ltcc.hy.s$s"."_xmin"};
-	
-	# hyperbola width
-	$mirror_width[$n] = $parameters{"ltcc.hy.s$s"."_width"};
-	
-	# 90 - theta of center of hyp. segment
-	$segtheta[$n] = 90 - $parameters{"ltcc.s$s"."_theta"};
-	
-	
-	#print $y21[$n],  "\n";
+	for(my $n=0; $n<$nmirrors ; $n++)
+	{
+		my $s = $n + 1;
+		
+		# hyperbola parameter
+		my $a = $parameters{"ltcc.hypars.s$s.p0"};
+		my $b = $parameters{"ltcc.hypars.s$s.p1"};
+		my $c = $parameters{"ltcc.hypars.s$s.p2"};
+		my $d = $parameters{"ltcc.hypars.s$s.p3"};
+		my $f = $parameters{"ltcc.hypars.s$s.p4"};
+		my $g = 1.0;
+		
+		
+		# hyperbola center
+		my $ddd = $c*$c - 4*$a*$b;
+		$centerx[$n] = (2.0*$b*$d - $c*$f)/$ddd;
+		$centery[$n] = (2.0*$a*$f - $c*$d)/$ddd;
+		
+		# hyperbola tilt
+		$alpha[$n] = deg(0.5*$pi + 0.5*atan($c/($a - $b)));
+		
+		
+		# edge point for all CC section
+		$x21[$n] = $parameters{"ltcc.hy.s$s"."_x21"};
+		$y21[$n] = $parameters{"ltcc.hy.s$s"."_y21"};
+		
+		# hyperbola x minimum
+		$hp_min[$n] = $parameters{"ltcc.hy.s$s"."_xmin"};
+		
+		# hyperbola width
+		$mirror_width[$n] = $parameters{"ltcc.hy.s$s"."_width"};
+		
+		# 90 - theta of center of hyp. segment
+		$segtheta[$n] = 90 - $parameters{"ltcc.s$s"."_theta"};
+		
+		
+		#print $y21[$n],  "\n";
+	}
 }
 
-
-
-
-
-# mirrors are 1 cm thick
-my $mirrors_thickness = 1;
 
 my $start_n = 1;
 my $end_n   = 19;
 
+
+# the hyperbolic mirrors are pgon with a number
+# of sides dependent on their dimensions
 sub build_hyp_mirrors
 {
 	
@@ -127,7 +121,7 @@ sub build_hyp_mirrors
 		}
 		
 		
-		my $dimensions = "45*deg 90*deg 1 $nsides";
+		my $dimensions = "45*deg 90*deg 1*counts $nsides*counts";
 		for(my $s=0; $s<$nsides; $s++)
 		{
 			$dimensions = $dimensions ." $YPOS1[$s]*cm";
@@ -150,7 +144,6 @@ sub build_hyp_mirrors
 		$detector{"description"} = "LTCC Hyperbolic full shape $n";
 		$detector{"type"}        = "Pgon";
 		$detector{"dimensions"}  = "$dimensions";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
@@ -164,7 +157,6 @@ sub build_hyp_mirrors
 		$detector{"pos"}         = "$xpos*cm 0*mm 0*cm";
 		$detector{"type"}        = "Box";
 		$detector{"dimensions"}  = "$box_d*cm $box_d*cm $box_d*cm";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
@@ -177,7 +169,6 @@ sub build_hyp_mirrors
 		$detector{"pos"}         = "$xpos*cm 0*mm 0*cm";
 		$detector{"type"}        = "Box";
 		$detector{"dimensions"}  = "$box_d*cm $box_d*cm $box_d*cm";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
@@ -187,9 +178,8 @@ sub build_hyp_mirrors
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "LTCC Hyperbolic mirror right minus right box $n";
 		$detector{"type"}        = "Operation: hyperbolic_$n - left_sbox_$n";
-		$detector{"dimensions"}  = "$dimensions";
 		$detector{"material"}    = "Air";
- 		$detector{"material"}    = "Component";
+		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
 		# Subtracting right box - RIGHT MIRROR
@@ -201,18 +191,15 @@ sub build_hyp_mirrors
 		$detector{"rotation"}    = "0*deg -90*deg 0*deg";
 		$detector{"color"}       = "aaffff";
 		$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-		$detector{"dimensions"}  = "$dimensions";
 		$detector{"material"}    = "Air";
-		$detector{"mfield"}      = "no";
-		$detector{"visible"}     = 0; #nate
 		$detector{"style"}       = 1;
-		$detector{"sensitivity"} = "ltcc_mirrors";
-		$detector{"hit_type"}    = "flux";
-		$detector{"identifiers"} = "Mirror WithSurface: 0    With Finish: 0   Refraction Index: 1108000  With Reflectivity  1000000   With Efficiency 1000000   WithBorderVolume: MirrorSkin";
+		$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+		$detector{"hit_type"}       = "mirror";
+		$detector{"identifiers"}    = "sector manual 1 type manual 2 side manual 1 segment manual $n";
 		print_det(\%configuration, \%detector);
 		
 		# Subtracting right box - LEFT MIRROR
- 		%detector = init_det();
+		%detector = init_det();
 		$detector{"name"}        = "hyp_mirror_left_$n";
 		$detector{"mother"}      = "segment_hyp_$n";
 		$detector{"description"} = "LTCC Hyperbolic mirror right $n";
@@ -220,22 +207,16 @@ sub build_hyp_mirrors
 		$detector{"rotation"}    = "0*deg 90*deg 0*deg";
 		$detector{"color"}       = "aaffff";
 		$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-		$detector{"dimensions"}  = "$dimensions";
 		$detector{"material"}    = "Air";
-		$detector{"mfield"}      = "no";
-		$detector{"ncopy"}       = 1;
-		$detector{"pMany"}       = 1;
-		$detector{"exist"}       = 1;
-		$detector{"visible"}     = 0; #nate
 		$detector{"style"}       = 1;
-		$detector{"sensitivity"} = "ltcc_mirrors";
-		$detector{"hit_type"}    = "flux";
-		$detector{"identifiers"} = "Mirror WithSurface: 0    With Finish: 0   Refraction Index: 1108000  With Reflectivity  1000000   With Efficiency 1000000   WithBorderVolume: MirrorSkin";
+		$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+		$detector{"hit_type"}       = "mirror";
+		$detector{"identifiers"}    = "sector manual 1 type manual 2 side manual 2 segment manual $n";
 		print_det(\%configuration, \%detector);
 		
 		
 		
- 		# Building the box that contains the mirrors (left and right)
+		# Building the box that contains the mirrors (left and right)
 		# Starts 1mm above x11
 		my $segment_box_length    = $x21[$n-1] + 0.1;
 		my $segment_box_thickness = $m_width + 0.1;
@@ -248,11 +229,10 @@ sub build_hyp_mirrors
 		$detector{"color"}       = "880011";
 		$detector{"type"}        = "Box";
 		$detector{"dimensions"}  = "$segment_box_length*cm $segment_box_height*cm $segment_box_thickness*cm";
-		$detector{"material"}    = "Air_Opt";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
- 		# Box to subract from  segment box
+		# Box to subract from  segment box
 		# Starts at YPOS0
 		my $s_segment_box_length    = $segment_box_length    + 0.2;
 		my $s_segment_box_thickness = $segment_box_thickness + 0.2;
@@ -265,24 +245,21 @@ sub build_hyp_mirrors
 		$detector{"color"}       = "1100ff";
 		$detector{"type"}        = "Box";
 		$detector{"dimensions"}  = "$s_segment_box_length*cm $s_segment_box_height*cm $s_segment_box_thickness*cm";
-		$detector{"material"}    = "Air_Opt";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
 		
 		%detector = init_det();
 		$detector{"name"}        = "segment_hyp_$n";;
-		$detector{"mother"}      = "LTCC";
+		$detector{"mother"}      = "ltcc";
 		$detector{"description"} = "Light Threshold Cerenkov Counter HYP segment $n";
 		#$detector{"mother"}      = "root";
 		$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
 		$detector{"color"}       = "00ff11";
 		$detector{"type"}        = "Operation: segment_hyp_box_$n - segment_hyp_subtract_box_$n";
-		$detector{"dimensions"}  = "0";
 		$detector{"material"}    = "C4F10";
 		$detector{"visible"}     = 0;
 		print_det(\%configuration, \%detector);
-		
 		
 	}
 }
@@ -312,7 +289,14 @@ sub calc_yp()
 
 
 
-1;
+
+sub buildHypMirrors
+{
+	calculateHypPars();
+	build_hyp_mirrors();
+}
+
+
 
 
 

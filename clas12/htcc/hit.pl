@@ -7,6 +7,8 @@ our %configuration;
 sub define_hit
 {
 	# uploading the hit definition
+	# the last identifier is needed by gemc if nphe so the hit info
+	# can be displayed accordingly
 	my %hit = init_hit();
 	$hit{"name"}            = "htcc";
 	$hit{"description"}     = "htcc hit definitions";

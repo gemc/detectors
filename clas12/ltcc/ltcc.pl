@@ -7,6 +7,7 @@ use utils;
 use parameters;
 use geometry;
 use hit;
+use bank;
 use math;
 use Math::Trig;
 use materials;
@@ -49,10 +50,8 @@ require "./hit.pl";
 # Loading LTCC specific subroutines
 require "./ltcc_box.pl";      # mother volume
 require "./ell_mirrors.pl";   # ell mirrors
-#require "./hyp_mirrors.pl";   # hyp mirrors
-#require "./pmts.pl";          # pmts
-#require "./spot_finder.pl";   # spot finder #nate
-
+require "./hyp_mirrors.pl";   # hyp mirrors
+require "./pmts.pl";          # pmts
 
 # mirrors properties
 require "./mirrors.pl";
@@ -69,11 +68,10 @@ foreach my $conf ( @allConfs )
 	materials();
 	
 	# hits
-	#define_hit();
-	
+	define_hit();
 	
 	# bank definitions
-	#define_banks();
+	define_bank();
 	
 	# Building LTCC Box
 	build_ltcc_box();
@@ -81,42 +79,14 @@ foreach my $conf ( @allConfs )
 	# Elliptical mirrors
 	buildEllMirrors();
 
+	# Hyperbolic
+	buildHypMirrors();
+	
 	# mirrors surfaces
 	buildMirrorsSurfaces();
 
+	# PMTs
+	buildPmts();
 }
 
 
-
-
-# detector build subroutine
-sub build_detector
-{
-	
-	
-	# Building Elliptical mirrors
-	#	build_ell_mirrors();
-	#	#build_check_ell_cheeseform();
-	
-	
-	# Building Hyperbolic mirrors
-	#	build_hyp_mirrors();
-	
-	# Build PMTs
-	#build_pmts();
-	
-	#spot finder #nate
-	#	build_spot_finder();
-	
-}
-
-
-# Hit definition
-# Execute only when there are changes
-#require "./hit.pl";
-#quartz_pmt_hit();
-#mirrors_hit();
-
-# banks
-#require "./bank.pl";
-#define_ltcc_bank();

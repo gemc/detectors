@@ -42,14 +42,14 @@ my @focalpointsleft  = ( [ 417.483, 1558.067, -62.047], [ 462.948, 1727.744, 163
 my @focalpointsright = ( [-417.483, 1558.067, -62.047], [-462.948, 1727.744, 163.333], [-492.379, 1837.584, 425.482], [-503.907, 1880.607, 707.739] );
 
 my @directionanglesleftdeg = ( [85.2787, 72.1106, 161.4570],
-                               [81.6072, 56.9940, 145.6710],
-                               [78.6436, 42.7025, 130.4645],
-							   [76.5506, 29.7704, 116.0198] );
+[81.6072, 56.9940, 145.6710],
+[78.6436, 42.7025, 130.4645],
+[76.5506, 29.7704, 116.0198] );
 
 my @directionanglesrightdeg = ( [94.7213, 72.1106, 161.4570],
-								[98.3928, 56.9940, 145.6710],
-								[101.3564, 42.7025, 130.4645],
-                                [103.4494, 29.7704, 116.0198] );
+[98.3928, 56.9940, 145.6710],
+[101.3564, 42.7025, 130.4645],
+[103.4494, 29.7704, 116.0198] );
 
 # GOAL: position the PMTs such that the photocathodes are located at the focal points
 # and they point in the direction defined by the angles above.
@@ -64,9 +64,9 @@ my @directionanglesrightdeg = ( [94.7213, 72.1106, 161.4570],
 
 
 my @unitvectorsleft = ( [ cos($directionanglesleftdeg[0][0]*$pi/180.0), cos($directionanglesleftdeg[0][1]*$pi/180.0), cos($directionanglesleftdeg[0][2]*$pi/180.0) ] ,
-                        [ cos($directionanglesleftdeg[1][0]*$pi/180.0), cos($directionanglesleftdeg[1][1]*$pi/180.0), cos($directionanglesleftdeg[1][2]*$pi/180.0) ] ,
-                        [ cos($directionanglesleftdeg[2][0]*$pi/180.0), cos($directionanglesleftdeg[2][1]*$pi/180.0), cos($directionanglesleftdeg[2][2]*$pi/180.0) ] ,
-                        [ cos($directionanglesleftdeg[3][0]*$pi/180.0), cos($directionanglesleftdeg[3][1]*$pi/180.0), cos($directionanglesleftdeg[3][2]*$pi/180.0) ] );
+[ cos($directionanglesleftdeg[1][0]*$pi/180.0), cos($directionanglesleftdeg[1][1]*$pi/180.0), cos($directionanglesleftdeg[1][2]*$pi/180.0) ] ,
+[ cos($directionanglesleftdeg[2][0]*$pi/180.0), cos($directionanglesleftdeg[2][1]*$pi/180.0), cos($directionanglesleftdeg[2][2]*$pi/180.0) ] ,
+[ cos($directionanglesleftdeg[3][0]*$pi/180.0), cos($directionanglesleftdeg[3][1]*$pi/180.0), cos($directionanglesleftdeg[3][2]*$pi/180.0) ] );
 
 sub normalizeLeft
 {
@@ -86,9 +86,9 @@ sub normalizeLeft
 
 
 my @unitvectorsright = ( [ cos($directionanglesrightdeg[0][0]*$pi/180.0), cos($directionanglesrightdeg[0][1]*$pi/180.0), cos($directionanglesrightdeg[0][2]*$pi/180.0) ] ,
-                         [ cos($directionanglesrightdeg[1][0]*$pi/180.0), cos($directionanglesrightdeg[1][1]*$pi/180.0), cos($directionanglesrightdeg[1][2]*$pi/180.0) ] ,
-                         [ cos($directionanglesrightdeg[2][0]*$pi/180.0), cos($directionanglesrightdeg[2][1]*$pi/180.0), cos($directionanglesrightdeg[2][2]*$pi/180.0) ] ,
-                         [ cos($directionanglesrightdeg[3][0]*$pi/180.0), cos($directionanglesrightdeg[3][1]*$pi/180.0), cos($directionanglesrightdeg[3][2]*$pi/180.0) ] );
+[ cos($directionanglesrightdeg[1][0]*$pi/180.0), cos($directionanglesrightdeg[1][1]*$pi/180.0), cos($directionanglesrightdeg[1][2]*$pi/180.0) ] ,
+[ cos($directionanglesrightdeg[2][0]*$pi/180.0), cos($directionanglesrightdeg[2][1]*$pi/180.0), cos($directionanglesrightdeg[2][2]*$pi/180.0) ] ,
+[ cos($directionanglesrightdeg[3][0]*$pi/180.0), cos($directionanglesrightdeg[3][1]*$pi/180.0), cos($directionanglesrightdeg[3][2]*$pi/180.0) ] );
 
 sub normalizeRight
 {
@@ -111,115 +111,115 @@ sub normalizeRight
 # the associated mirror: In practice this means we have to shift the pmt center by half its length along its orientation vector:
 
 my @PMTposleft = ( [$focalpointsleft[0][0]+$unitvectorsleft[0][0]*$PMTlength/2.0,
-					$focalpointsleft[0][1]+$unitvectorsleft[0][1]*$PMTlength/2.0,
-					$focalpointsleft[0][2]+$unitvectorsleft[0][2]*$PMTlength/2.0],
-				   [$focalpointsleft[1][0]+$unitvectorsleft[1][0]*$PMTlength/2.0,
-					$focalpointsleft[1][1]+$unitvectorsleft[1][1]*$PMTlength/2.0,
-					$focalpointsleft[1][2]+$unitvectorsleft[1][2]*$PMTlength/2.0],
-				   [$focalpointsleft[2][0]+$unitvectorsleft[2][0]*$PMTlength/2.0,
-					$focalpointsleft[2][1]+$unitvectorsleft[2][1]*$PMTlength/2.0,
-					$focalpointsleft[2][2]+$unitvectorsleft[2][2]*$PMTlength/2.0],
-				   [$focalpointsleft[3][0]+$unitvectorsleft[3][0]*$PMTlength/2.0,
-					$focalpointsleft[3][1]+$unitvectorsleft[3][1]*$PMTlength/2.0,
-					$focalpointsleft[3][2]+$unitvectorsleft[3][2]*$PMTlength/2.0] );
+$focalpointsleft[0][1]+$unitvectorsleft[0][1]*$PMTlength/2.0,
+$focalpointsleft[0][2]+$unitvectorsleft[0][2]*$PMTlength/2.0],
+[$focalpointsleft[1][0]+$unitvectorsleft[1][0]*$PMTlength/2.0,
+$focalpointsleft[1][1]+$unitvectorsleft[1][1]*$PMTlength/2.0,
+$focalpointsleft[1][2]+$unitvectorsleft[1][2]*$PMTlength/2.0],
+[$focalpointsleft[2][0]+$unitvectorsleft[2][0]*$PMTlength/2.0,
+$focalpointsleft[2][1]+$unitvectorsleft[2][1]*$PMTlength/2.0,
+$focalpointsleft[2][2]+$unitvectorsleft[2][2]*$PMTlength/2.0],
+[$focalpointsleft[3][0]+$unitvectorsleft[3][0]*$PMTlength/2.0,
+$focalpointsleft[3][1]+$unitvectorsleft[3][1]*$PMTlength/2.0,
+$focalpointsleft[3][2]+$unitvectorsleft[3][2]*$PMTlength/2.0] );
 
 my @PMTposright = ( [$focalpointsright[0][0]+$unitvectorsright[0][0]*$PMTlength/2.0,
-                     $focalpointsright[0][1]+$unitvectorsright[0][1]*$PMTlength/2.0,
-                     $focalpointsright[0][2]+$unitvectorsright[0][2]*$PMTlength/2.0],
-					[$focalpointsright[1][0]+$unitvectorsright[1][0]*$PMTlength/2.0,
-                     $focalpointsright[1][1]+$unitvectorsright[1][1]*$PMTlength/2.0,
-                     $focalpointsright[1][2]+$unitvectorsright[1][2]*$PMTlength/2.0],
-					[$focalpointsright[2][0]+$unitvectorsright[2][0]*$PMTlength/2.0,
-                     $focalpointsright[2][1]+$unitvectorsright[2][1]*$PMTlength/2.0,
-                     $focalpointsright[2][2]+$unitvectorsright[2][2]*$PMTlength/2.0],
-					[$focalpointsright[3][0]+$unitvectorsright[3][0]*$PMTlength/2.0,
-                     $focalpointsright[3][1]+$unitvectorsright[3][1]*$PMTlength/2.0,
-                     $focalpointsright[3][2]+$unitvectorsright[3][2]*$PMTlength/2.0] );
+$focalpointsright[0][1]+$unitvectorsright[0][1]*$PMTlength/2.0,
+$focalpointsright[0][2]+$unitvectorsright[0][2]*$PMTlength/2.0],
+[$focalpointsright[1][0]+$unitvectorsright[1][0]*$PMTlength/2.0,
+$focalpointsright[1][1]+$unitvectorsright[1][1]*$PMTlength/2.0,
+$focalpointsright[1][2]+$unitvectorsright[1][2]*$PMTlength/2.0],
+[$focalpointsright[2][0]+$unitvectorsright[2][0]*$PMTlength/2.0,
+$focalpointsright[2][1]+$unitvectorsright[2][1]*$PMTlength/2.0,
+$focalpointsright[2][2]+$unitvectorsright[2][2]*$PMTlength/2.0],
+[$focalpointsright[3][0]+$unitvectorsright[3][0]*$PMTlength/2.0,
+$focalpointsright[3][1]+$unitvectorsright[3][1]*$PMTlength/2.0,
+$focalpointsright[3][2]+$unitvectorsright[3][2]*$PMTlength/2.0] );
 
 # define the positions of the winston cones: position the WC so that the bottom is at the position of the PMT photocathode:
 # In practice this means that we have to shift the WC position by minus half its length along the PMT orientation vector:
 
 my @WCposleft = ( [  $focalpointsleft[0][0]-$unitvectorsleft[0][0]*$WCdz,
-                     $focalpointsleft[0][1]-$unitvectorsleft[0][1]*$WCdz,
-                     $focalpointsleft[0][2]-$unitvectorsleft[0][2]*$WCdz],
-					[$focalpointsleft[1][0]-$unitvectorsleft[1][0]*$WCdz,
-                     $focalpointsleft[1][1]-$unitvectorsleft[1][1]*$WCdz,
-                     $focalpointsleft[1][2]-$unitvectorsleft[1][2]*$WCdz],
-					[$focalpointsleft[2][0]-$unitvectorsleft[2][0]*$WCdz,
-                     $focalpointsleft[2][1]-$unitvectorsleft[2][1]*$WCdz,
-                     $focalpointsleft[2][2]-$unitvectorsleft[2][2]*$WCdz],
-					[$focalpointsleft[3][0]-$unitvectorsleft[3][0]*$WCdz,
-                     $focalpointsleft[3][1]-$unitvectorsleft[3][1]*$WCdz,
-                     $focalpointsleft[3][2]-$unitvectorsleft[3][2]*$WCdz] );
+$focalpointsleft[0][1]-$unitvectorsleft[0][1]*$WCdz,
+$focalpointsleft[0][2]-$unitvectorsleft[0][2]*$WCdz],
+[$focalpointsleft[1][0]-$unitvectorsleft[1][0]*$WCdz,
+$focalpointsleft[1][1]-$unitvectorsleft[1][1]*$WCdz,
+$focalpointsleft[1][2]-$unitvectorsleft[1][2]*$WCdz],
+[$focalpointsleft[2][0]-$unitvectorsleft[2][0]*$WCdz,
+$focalpointsleft[2][1]-$unitvectorsleft[2][1]*$WCdz,
+$focalpointsleft[2][2]-$unitvectorsleft[2][2]*$WCdz],
+[$focalpointsleft[3][0]-$unitvectorsleft[3][0]*$WCdz,
+$focalpointsleft[3][1]-$unitvectorsleft[3][1]*$WCdz,
+$focalpointsleft[3][2]-$unitvectorsleft[3][2]*$WCdz] );
 
 my @WCposright = ( [ $focalpointsright[0][0]-$unitvectorsright[0][0]*$WCdz,
-                     $focalpointsright[0][1]-$unitvectorsright[0][1]*$WCdz,
-					 $focalpointsright[0][2]-$unitvectorsright[0][2]*$WCdz],
-					[$focalpointsright[1][0]-$unitvectorsright[1][0]*$WCdz,
-                     $focalpointsright[1][1]-$unitvectorsright[1][1]*$WCdz,
-                     $focalpointsright[1][2]-$unitvectorsright[1][2]*$WCdz],
-					[$focalpointsright[2][0]-$unitvectorsright[2][0]*$WCdz,
-                     $focalpointsright[2][1]-$unitvectorsright[2][1]*$WCdz,
-                     $focalpointsright[2][2]-$unitvectorsright[2][2]*$WCdz],
-					[$focalpointsright[3][0]-$unitvectorsright[3][0]*$WCdz,
-                     $focalpointsright[3][1]-$unitvectorsright[3][1]*$WCdz,
-                     $focalpointsright[3][2]-$unitvectorsright[3][2]*$WCdz] );
+$focalpointsright[0][1]-$unitvectorsright[0][1]*$WCdz,
+$focalpointsright[0][2]-$unitvectorsright[0][2]*$WCdz],
+[$focalpointsright[1][0]-$unitvectorsright[1][0]*$WCdz,
+$focalpointsright[1][1]-$unitvectorsright[1][1]*$WCdz,
+$focalpointsright[1][2]-$unitvectorsright[1][2]*$WCdz],
+[$focalpointsright[2][0]-$unitvectorsright[2][0]*$WCdz,
+$focalpointsright[2][1]-$unitvectorsright[2][1]*$WCdz,
+$focalpointsright[2][2]-$unitvectorsright[2][2]*$WCdz],
+[$focalpointsright[3][0]-$unitvectorsright[3][0]*$WCdz,
+$focalpointsright[3][1]-$unitvectorsright[3][1]*$WCdz,
+$focalpointsright[3][2]-$unitvectorsright[3][2]*$WCdz] );
 
 
 # the "inner" paraboloid is to be subtracted from outer, this means it is positioned *relative* to "outer":
 sub make_WC_shell
 {
-    my $sdz = sprintf("%12.8g",$WCdzd);
-    my $sr1 = sprintf("%12.8g",$WCr1d);
-    my $sr2 = sprintf("%12.8g",$WCr2d);
-    my $swcinnerdim = $sdz . "*mm " . $sr1 . "*mm " . $sr2 . "*mm";
-
+	my $sdz = sprintf("%12.8g",$WCdzd);
+	my $sr1 = sprintf("%12.8g",$WCr1d);
+	my $sr2 = sprintf("%12.8g",$WCr2d);
+	my $swcinnerdim = $sdz . "*mm " . $sr1 . "*mm " . $sr2 . "*mm";
+	
 	my %detector = init_det();
-    $detector{"name"}        = $_[0] . "inner";
-    $detector{"mother"}      = "htcc";
-    $detector{"description"} = $_[1] . "inner";
-    $detector{"col"}         = "558844";
-    $detector{"type"}        = "Paraboloid";
-    $detector{"dimensions"}  = $swcinnerdim;
-    $detector{"material"}    = "Component";
+	$detector{"name"}        = $_[0] . "inner";
+	$detector{"mother"}      = "htcc";
+	$detector{"description"} = $_[1] . "inner";
+	$detector{"col"}         = "558844";
+	$detector{"type"}        = "Paraboloid";
+	$detector{"dimensions"}  = $swcinnerdim;
+	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
-    my $r1outer = $WCr1 + 1.0;
-    my $r2outer = $WCr2 + 1.0;
-    $sdz = sprintf("%12.8g",$WCdz);
-    $sr1 = sprintf("%12.8g",$r1outer);
-    $sr2 = sprintf("%12.8g",$r2outer);
-    my $swcouterdim = $sdz . "*mm " . $sr1 . "*mm " . $sr2 . "*mm";
-   
+	my $r1outer = $WCr1 + 1.0;
+	my $r2outer = $WCr2 + 1.0;
+	$sdz = sprintf("%12.8g",$WCdz);
+	$sr1 = sprintf("%12.8g",$r1outer);
+	$sr2 = sprintf("%12.8g",$r2outer);
+	my $swcouterdim = $sdz . "*mm " . $sr1 . "*mm " . $sr2 . "*mm";
+	
 	%detector = init_det();
 	$detector{"name"}        = $_[0] . "outer";
-    $detector{"mother"}      = "htcc";
-    $detector{"description"} = $_[1] . "outer";
-    $detector{"pos"}         = $_[2];
-    $detector{"rotation"}    = $_[3];
-    $detector{"col"}         = "558844";
-    $detector{"type"}        = "Paraboloid";
-    $detector{"dimensions"}  = $swcouterdim;
-    $detector{"material"}    = "Component";
+	$detector{"mother"}      = "htcc";
+	$detector{"description"} = $_[1] . "outer";
+	$detector{"pos"}         = $_[2];
+	$detector{"rotation"}    = $_[3];
+	$detector{"col"}         = "558844";
+	$detector{"type"}        = "Paraboloid";
+	$detector{"dimensions"}  = $swcouterdim;
+	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
 	my $WCID = 1;
- 	%detector = init_det();
+	%detector = init_det();
 	$detector{"name"}        = $_[0];
-    $detector{"mother"}      = "htcc";
-    $detector{"description"} = $_[1] ;
-    $detector{"pos"}         = $_[2];
-    $detector{"rotation"}    = $_[3];
-    $detector{"color"}       = "$_[4]2";
-    $detector{"type"}        = "Operation: $_[0]outer - $_[0]inner";
-    $detector{"sensitivity"} = "mirror: htcc_AlMgF2";
-    $detector{"hit_type"}    = "mirror";
-    $detector{"dimensions"}  = "0";
-    $detector{"material"}    = "G4_Al";
+	$detector{"mother"}      = "htcc";
+	$detector{"description"} = $_[1] ;
+	$detector{"pos"}         = $_[2];
+	$detector{"rotation"}    = $_[3];
+	$detector{"color"}       = "$_[4]2";
+	$detector{"type"}        = "Operation: $_[0]outer - $_[0]inner";
+	$detector{"sensitivity"} = "mirror: htcc_AlMgF2";
+	$detector{"hit_type"}    = "mirror";
+	$detector{"dimensions"}  = "0";
+	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = "1";
 	$detector{"sensitivity"}  = "mirror: htcc_AlMgF2";
 	$detector{"hit_type"}     = "mirror";
-    $detector{"identifiers"} = "id manual $WCID";
+	$detector{"identifiers"} = "id manual $WCID";
 	print_det(\%configuration, \%detector);
 }
 
@@ -230,27 +230,27 @@ sub make_WC_shell
 sub build_pmts
 {
 	my $phitemp;
-    my $j;
-    for( my $i = 0; $i<6; $i++)
-    {
+	my $j;
+	for( my $i = 0; $i<6; $i++)
+	{
 		$phitemp = $sectorphirad * $i ;
-				
+		
 		for( $j=0; $j<4; $j++)
 		{
 			my @unitvectorleft_temp = ( $unitvectorsleft[$j][0] * cos( $phitemp ) - $unitvectorsleft[$j][1] * sin( $phitemp ),
-			                            $unitvectorsleft[$j][0] * sin( $phitemp ) + $unitvectorsleft[$j][1] * cos( $phitemp ),
-			                            $unitvectorsleft[$j][2] );
+			$unitvectorsleft[$j][0] * sin( $phitemp ) + $unitvectorsleft[$j][1] * cos( $phitemp ),
+			$unitvectorsleft[$j][2] );
 			my @unitvectorright_temp = ( $unitvectorsright[$j][0] * cos( $phitemp ) - $unitvectorsright[$j][1] * sin( $phitemp ),
-										 $unitvectorsright[$j][0] * sin( $phitemp ) + $unitvectorsright[$j][1] * cos( $phitemp ),
-			                             $unitvectorsright[$j][2] );
+			$unitvectorsright[$j][0] * sin( $phitemp ) + $unitvectorsright[$j][1] * cos( $phitemp ),
+			$unitvectorsright[$j][2] );
 			
 			
 			my @posvectorleft_temp = ( $PMTposleft[$j][0] * cos( $phitemp ) - $PMTposleft[$j][1] * sin( $phitemp ),
-			                           $PMTposleft[$j][0] * sin( $phitemp ) + $PMTposleft[$j][1] * cos( $phitemp ),
-			                           $PMTposleft[$j][2] );
+			$PMTposleft[$j][0] * sin( $phitemp ) + $PMTposleft[$j][1] * cos( $phitemp ),
+			$PMTposleft[$j][2] );
 			my @posvectorright_temp = ( $PMTposright[$j][0] * cos( $phitemp ) - $PMTposright[$j][1] * sin( $phitemp ),
-			                            $PMTposright[$j][0] * sin( $phitemp ) + $PMTposright[$j][1] * cos( $phitemp ),
-			                            $PMTposright[$j][2] );
+			$PMTposright[$j][0] * sin( $phitemp ) + $PMTposright[$j][1] * cos( $phitemp ),
+			$PMTposright[$j][2] );
 			
 			
 			# first, we rotate clockwise about the x axis so that the z axis of the cylinder aligns
@@ -300,7 +300,7 @@ sub build_pmts
 			$detector{"hit_type"}    = "htcc";
 			$detector{"identifiers"} = htccIdentifier($i, $j, 1);
 			print_det(\%configuration, \%detector);
-
+			
 			
 			
 			
@@ -348,11 +348,11 @@ sub build_pmts
 			}
 			
 			@posvectorleft_temp = ( $WCposleft[$j][0] * cos( $phitemp ) - $WCposleft[$j][1] * sin( $phitemp ),
-			                        $WCposleft[$j][0] * sin( $phitemp ) + $WCposleft[$j][1] * cos( $phitemp ),
-			                        $WCposleft[$j][2] );
+			$WCposleft[$j][0] * sin( $phitemp ) + $WCposleft[$j][1] * cos( $phitemp ),
+			$WCposleft[$j][2] );
 			@posvectorright_temp = ( $WCposright[$j][0] * cos( $phitemp ) - $WCposright[$j][1] * sin( $phitemp ),
-			                         $WCposright[$j][0] * sin( $phitemp ) + $WCposright[$j][1] * cos( $phitemp ),
-									 $WCposright[$j][2] );
+			$WCposright[$j][0] * sin( $phitemp ) + $WCposright[$j][1] * cos( $phitemp ),
+			$WCposright[$j][2] );
 			
 			
 			# first, we rotate clockwise about the x axis so that the z axis of the cylinder aligns with
@@ -385,7 +385,7 @@ sub build_pmts
 			my $WCdesc = htccDesc("wc", $i, $j, 1);
 			
 			make_WC_shell( $WCname, $WCdesc, $spos, $srot, $colors_even[2+($j%2)] );
-
+			
 			
 			# Create the Winston Cone for the right wc:
 			# Notice position vector name is different
@@ -401,18 +401,18 @@ sub build_pmts
 			$spos =sprintf("%15.8g*mm %15.8g*mm %15.8g*mm ",   $xpos, $ypos, $zpos);
 			$srot =sprintf("%15.8g*deg %15.8g*deg %15.8g*deg ",$xrot, $yrot, $zrot);
 			
-
+			
 			$WCname = htccName("wc", $i, $j, 2);
 			$WCdesc = htccDesc("wc", $i, $j, 2);
 			
 			make_WC_shell( $WCname, $WCdesc, $spos, $srot, $colors_even[($j%2)] );
 			
-
 			
 			
-				
+			
+			
 		}
-    }
+	}
 }
 
 normalizeLeft();

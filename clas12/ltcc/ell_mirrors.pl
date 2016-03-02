@@ -355,7 +355,6 @@ sub build_ell_mirrors
 		$detector{"color"}       = "110088";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*m 5*m 0.6*m $starttheta_r*deg $tubespan*deg";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -369,7 +368,6 @@ sub build_ell_mirrors
 		$detector{"color"}       = "880011";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*m 5*m 0.6*m $starttheta_l*deg $tubespan*deg";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);

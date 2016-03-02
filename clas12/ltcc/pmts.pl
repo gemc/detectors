@@ -53,7 +53,7 @@ sub build_pmts
 		$detector{"color"}       = "992200";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
-		$detector{"material"}    = "Air_Opt";
+		$detector{"material"}    = "LTCCPMTGlass";
 		$detector{"style"}       = 1;
 		$detector{"sensitivity"} = "ltcc";
 		$detector{"hit_type"}    = "ltcc";
@@ -70,7 +70,7 @@ sub build_pmts
 		$detector{"color"}       = "992200";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
-		$detector{"material"}    = "Air_Opt";
+		$detector{"material"}    = "LTCCPMTGlass";
 		$detector{"style"}       = 1;
 		$detector{"sensitivity"} = "ltcc";
 		$detector{"hit_type"}    = "ltcc";

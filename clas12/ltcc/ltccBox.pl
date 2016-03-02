@@ -3,9 +3,6 @@ use warnings;
 
 our %configuration;
 
-# TODO:
-# Try intersect this box with a big box at 0,0,0
-
 
 #
 #  large angle side(top) -->  /\
@@ -14,127 +11,88 @@ our %configuration;
 #                               \ \
 #                                \ \
 #                                 \_\   <-- small angle vertex(bottom)
-#  target  |
+#  target  o
 # 
 # We are using the Hall B coordinate system with the origin at the target center.
 
-my $inches = 25.4;
+# The bottom (downstream) of the CC will be dx1, dy1, the top will be dx2, dy2
 
-
-# Mother Volume - description of parameters for Geant4 G4Trap volume.
+# From the top, upstream:
 #
-# pDx1 	  Half x length of the side at y=-pDy1 of the face at -pDz
-# pDx2 	  Half x length of the side at y=+pDy1 of the face at -pDz
-# pDz 	  Half z length
-# pTheta  Polar angle of the line joining the centres of the faces at -/+pDz
-# pPhimom Azimuthal angle of the line joining the centre of the face at -pDz to the centre of the face at +pDz
-# pDy1 	  Half y length at -pDz
-# pDy2 	  Half y length at +pDz
-# pDx3 	  Half x length of the side at y=-pDy2 of the face at +pDz
-# pDx4 	  Half x length of the side at y=+pDy2 of the face at +pDz
-# pAlp1   Angle with respect to the y axis from the centre of the side (lower endcap)
-# pAlp2   Angle with respect to the y axis from the centre of the side (upper endcap)
-# 
-# Note on pAlph1/2: the two angles have to be the same due to the planarity condition. 
-#
-# all numbers are in mm or deg as specified in the $detector{"dimensions"} statement.
-
-# The bottom of the CC will be pdx1, pdx2, the top will be pdx3, pdx4
-
-
-
-
-# From the top:
-#
-#            b    | d  |
+#               pdx2
 #       --------------------
 #       \         |        /
 #		   \        |       /
 #	 	    \       |      /
-#		 	  \    h |     / c
+#		 	  \      |     /
 #			   \     |    /
 #				 \    |   /
 #				  --------
-#					   a
+#               pdx1
 #
+# From the top, downstream:
+#
+#               pdx4
+#       --------------------
+#       \         |        /
+#		   \        |       /
+#	 	    \       |      /
+#		 	  \      |     /
+#			   \     |    /
+#				 \    |   /
+#				  --------
+#               pdx3
+#
+
+
+
 # The downstream and upstream plates in the trapezoid are parallel
 #
 # From the side
 # 
-#         DC  |  c  | DC 
-#        -----------------
-#        |   /       \	 |
-#        |  /         \  |
-#        | /           \ |
-#        ----------------  
-#       c (downstream)   
 #
-#  Top View:                   | DB         
-#        --------------------------- Top Right Angle
-#        \                     |   /
-#         \               DC   |  /
-#          \                   | /
-#           ---------------------
+#             ------- --- DIFF must be same for pdx1 and pdx2
+#            /       \
+#           /         \
+#          /           \
+#         --------------
 #
-# Choose DC = 0 because the front and top planes in G4Trap are not independent.
-# Just subtract a box at 45 degrees from the top
 
 sub build_ltcc_box()
 {
-	my $depth = 59.21*$inches/2;
-
-	# downstream:
-	my $a_d =  11.78*$inches/2;        # bottom of the CC, downstream
-	my $b_d = 165.94*$inches/2;        # top of the CC, downstream
-	my $h_d = 141.87*$inches/2;
-	my $d_d = $b_d - $a_d;                 
-	my $c_d = sqrt($d_d*$d_d+$h_d*$h_d);
+	my $DIFF = 290;
 	
-	# upstream:
-	my $DC    = 0;
-	my $a_u =  11.78*$inches/2-50;      # bottom of the CC, downstream
-	my $h_u = (141.87 - $DC)*$inches/2;
-	#my $angle_top_right = atan(2*$h_d/($d_d));
-	#print tan($angle_top_right), " " , 2*$h_d/($d_d), "\n";
-	my $DB = $DC/(2*$h_d/($d_d));
-	my $b_u = (165.94-2*$DB)*$inches/2-50;        # top of the CC, downstream
-	my $d_u = $b_u - $a_u;     
-	my $c_u = sqrt($d_u*$d_u+$h_u*$h_u);
-	
-	
-	my $pDx1   = $a_d;      
-	my $pDx2   = $b_d;       
-	my $pDz    = $depth;          
-	my $pTheta = 0;                                        
-	my $pPhi   = 0;                     
-	my $pDy1   = $c_d;                   	
-	my $pDy2   = $c_u;                   
-	my $pDx3   = $a_u;                  
-	my $pDx4   = $b_u;                  
-	my $pAlp1  = 0;                      
-	my $pAlp2  = 0;                      
+	my $pDx1   = 300;
+	my $pDx2   = 2100;
+	my $pDz    = 850;
+	my $pTheta = 0;
+	my $pPhi   = 0;
+	my $pDy1   = 1800;
+	my $pDy2   = 1800 ;
+	my $pDx3   = $pDx1 - $DIFF;
+	my $pDx4   = $pDx2 - $DIFF;
+	my $pAlp1  = 0;
 
-
-	# generate  mother volume wireframe box, and write to a file. 
 	my %detector = init_det();
-	$detector{"name"}        = "aLTCC_Trap";
+	$detector{"name"}        = "ltccTrap";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Light Threshold Cerenkov Counter";
 	$detector{"color"}       = "110088";
 	$detector{"type"}        = "G4Trap";
-	$detector{"dimensions"}  = "$pDz*mm $pTheta*deg $pPhi*deg $pDy1*mm $pDx1*mm $pDx2*mm $pAlp1*deg $pDy2*mm $pDx3*mm $pDx4*mm $pAlp2*deg";
-	$detector{"material"}    = "Air";
+	$detector{"dimensions"}  = "$pDz*mm $pTheta*deg $pPhi*deg $pDy1*mm $pDx1*mm $pDx2*mm $pAlp1*deg $pDy2*mm $pDx3*mm $pDx4*mm $pAlp1*deg";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
+	
+	
 	
 	# Subtract box at 45ish degrees from the top
 	# The upper coordinate is at:
 	# x = 0
-	# y = $c_d 
+	# y = $dy1
 	# z = depth/2  
 	
-	my $y_upper = $c_d;
-	my $z_upper = $depth;
+	my $y_upper = $pDy1;
+	my $z_upper = $pDz;
 	
 	my $box_x   = 3000.0;
 	my $box_y   =  600.0;
@@ -149,7 +107,7 @@ sub build_ltcc_box()
 	my $z_box_p = -$z_upper + ($box_z*cos($absbox_angle) + $box_y*sin($absbox_angle));
 	
 	%detector = init_det();
-	$detector{"name"}        = "bLTCC_inclined_box";
+	$detector{"name"}        = "ltccTopBox";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Box to subtract from LTCC";
 	$detector{"pos"}         = "0*mm $y_box_p*mm $z_box_p*mm";
@@ -160,15 +118,13 @@ sub build_ltcc_box()
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 
-
-	
 	# Trap - Box
 	%detector = init_det();
-	$detector{"name"}        = "cLTCC_Trap_minus_TopBox";
+	$detector{"name"}        = "ltccMinusTopBox";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Trap minus Top Box ";
 	$detector{"color"}       = "110088";
-	$detector{"type"}        = "Operation:  aLTCC_Trap - bLTCC_inclined_box";
+	$detector{"type"}        = "Operation:  ltccTrap - ltccTopBox";
 	$detector{"dimensions"}  = "0";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
@@ -176,14 +132,14 @@ sub build_ltcc_box()
 	
 	
 	# Subtract tube 
-	my $R  = 130.50*$inches;
-	my $DZ = 180.00*$inches;
+	my $R  = 3250;
+	my $DZ = 4500;
 	
-	my $zpos = 3500;
-	my $ypos  = -23.36*$inches;
+	my $zpos = 3200;
+	my $ypos  = -600;
 	
 	%detector = init_det();
-	$detector{"name"}        = "dLTCC_Tube";
+	$detector{"name"}        = "ltccTubeHole";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Tube to subtract from LTCC ";
 	$detector{"pos"}         = "0*mm $ypos*mm $zpos*mm";
@@ -197,11 +153,11 @@ sub build_ltcc_box()
 	
 	# Trap - Box - Tube
 	%detector = init_det();
-	$detector{"name"}        = "eLTCC_Trap_minus_TopBox_minus_Tube";
+	$detector{"name"}        = "ltccTrapMinusHole";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Trap minus Top Box minus Tube";
 	$detector{"color"}       = "110088";
-	$detector{"type"}        = "Operation:  cLTCC_Trap_minus_TopBox - dLTCC_Tube";
+	$detector{"type"}        = "Operation:  ltccMinusTopBox - ltccTubeHole";
 	$detector{"dimensions"}  = "0";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
@@ -215,8 +171,8 @@ sub build_ltcc_box()
 	# y = -$c_d 
 	# z = depth/2  
 	
-	$y_upper = -$c_d;
-	$z_upper = $depth;
+	$y_upper = -$pDy1;
+	$z_upper = $pDz;
 	
 	$box_x   = 3000.0;
 	$box_y   =  600.0;
@@ -229,7 +185,7 @@ sub build_ltcc_box()
 	$z_box_p = -$z_upper + ($box_z*cos($absbox_angle) + $box_y*sin($absbox_angle));
 	
 	%detector = init_det();
-	$detector{"name"}        = "fLTCC_inclined_box2";
+	$detector{"name"}        = "ltccBottomBox";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Box to subtract from LTCC";
 	$detector{"pos"}         = "0*mm $y_box_p*mm $z_box_p*mm";
@@ -242,19 +198,64 @@ sub build_ltcc_box()
 
 
 	# Trap - Box - Tube - Box 2
+	# these numbers are empirical to match
+	# by eyes the box to the mirror position
+	my $tBoxZ = 3600;
+	my $tBoxY = 1600;
 	%detector = init_det();
-	$detector{"name"}        = "ltcc";
-	$detector{"mother"}      = "fc";
+	$detector{"name"}        = "trapBox";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Trap minus Top Box minus Tube minus Bottom Box";
-	$detector{"pos"}         = "0*mm 0*mm 2000*mm";
-	$detector{"rotation"}    = "0*deg 180*deg 0*deg"; 
+	$detector{"pos"}         = "0*mm $tBoxY*mm $tBoxZ*mm";
+	$detector{"rotation"}    = "25*deg 180*deg 0*deg";
 	$detector{"color"}       = "110088";
-	$detector{"type"}        = "Operation:  eLTCC_Trap_minus_TopBox_minus_Tube - fLTCC_inclined_box2";
+	$detector{"type"}        = "Operation:  ltccTrapMinusHole - ltccBottomBox";
 	$detector{"dimensions"}  = "0";
-	$detector{"material"}    = "C4F10";
+	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
+	%detector = init_det();
+	$detector{"name"}        = "ltcc_big_box";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Light Threshold Cerenkov Counter Box at the origin";
+	$detector{"type"}        = "Box";
+	$detector{"dimensions"}  = "3*m 5*m 6*m";
+	$detector{"material"}    = "Component";
+	print_det(\%configuration, \%detector);
+
+	
+	for(my $n=1; $n<=1; $n++)
+	{
+		#		my $c6toc12Z = 1700;
+		my $c6toc12Z = 0;
+		# Final box - Big Box * TrapBox
+		%detector = init_det();
+		$detector{"name"}        = "ltcc";
+		$detector{"mother"}      = "fc";
+		$detector{"description"} = "ltcc sector $n";
+		$detector{"pos"}         = "0*mm 0*mm 0*$c6toc12Z";
+		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector{"color"}       = "110088";
+		$detector{"type"}        = "Operation:  ltcc_big_box * trapBox";
+		$detector{"dimensions"}  = "0";
+		$detector{"material"}    = "C4F10";
+		print_det(\%configuration, \%detector);
+
+	}
+	
+
+	
+	
 }
+
+
+
+
+
+
+
+
+
 
 
 

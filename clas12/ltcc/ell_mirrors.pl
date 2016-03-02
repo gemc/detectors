@@ -204,6 +204,11 @@ sub build_ell_mirrors_containers
 		$detector{"type"}        = "Operation: segment_ell_box_$n - segment_ell_subtract_box_$n";
 		$detector{"material"}    = "C4F10";
 		$detector{"visible"}     = 0;
+		
+		if($n == 16) { $detector{"pos"} = "0*cm 5*cm 10*cm"; }
+		if($n == 17) { $detector{"pos"} = "0*cm 10*cm 15*cm"; }
+		if($n == 18) { $detector{"pos"} = "0*cm 15*cm 20*cm"; }
+
 		print_det(\%configuration, \%detector);
 		
 	}
@@ -225,7 +230,6 @@ sub build_ell_shells
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Outside $n";
 		$detector{"type"}        = "EllipticalTube";
 		$detector{"dimensions"}  = "$axisa[$n-1]*cm $axisb[$n-1]*cm $m_width*cm";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
@@ -239,7 +243,6 @@ sub build_ell_shells
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Inside $n";
 		$detector{"type"}        = "EllipticalTube";
 		$detector{"dimensions"}  = "$maa*cm $mab*cm $ml*cm";
-		$detector{"material"}    = "Air";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		

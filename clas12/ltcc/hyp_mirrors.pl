@@ -259,6 +259,10 @@ sub build_hyp_mirrors
 		$detector{"type"}        = "Operation: segment_hyp_box_$n - segment_hyp_subtract_box_$n";
 		$detector{"material"}    = "C4F10";
 		$detector{"visible"}     = 0;
+		if($n == 16) { $detector{"pos"} = "0*cm 5*cm 10*cm"; }
+		if($n == 17) { $detector{"pos"} = "0*cm 10*cm 15*cm"; }
+		if($n == 18) { $detector{"pos"} = "0*cm 15*cm 20*cm"; }
+
 		print_det(\%configuration, \%detector);
 		
 	}

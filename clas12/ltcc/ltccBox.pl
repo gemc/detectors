@@ -3,6 +3,10 @@ use warnings;
 
 our %configuration;
 
+# TODO:
+# Try intersect this box with a big box at 0,0,0
+
+
 #
 #  large angle side(top) -->  /\
 #                             \ \
@@ -247,7 +251,7 @@ sub build_ltcc_box()
 	$detector{"color"}       = "110088";
 	$detector{"type"}        = "Operation:  eLTCC_Trap_minus_TopBox_minus_Tube - fLTCC_inclined_box2";
 	$detector{"dimensions"}  = "0";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	print_det(\%configuration, \%detector);
 	
 }

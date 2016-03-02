@@ -9,6 +9,8 @@ use geometry;
 use hit;
 use math;
 use Math::Trig;
+use materials;
+use mirrors;
 
 
 # Help Message
@@ -36,7 +38,7 @@ our %parameters = get_parameters(%configuration);
 
 
 # materials
-# require "./materials.pl";
+require "./materials.pl";
 
 # banks definitions
 require "./bank.pl";
@@ -51,6 +53,11 @@ require "./ell_mirrors.pl";   # ell mirrors
 #require "./pmts.pl";          # pmts
 #require "./spot_finder.pl";   # spot finder #nate
 
+
+# mirrors properties
+require "./mirrors.pl";
+
+
 # all the scripts must be run for every configuration
 my @allConfs = ("original");
 
@@ -59,7 +66,7 @@ foreach my $conf ( @allConfs )
 	$configuration{"variation"} = $conf ;
 	
 	# materials
-	#materials();
+	materials();
 	
 	# hits
 	#define_hit();
@@ -73,6 +80,10 @@ foreach my $conf ( @allConfs )
 	
 	# Elliptical mirrors
 	buildEllMirrors();
+
+	# mirrors surfaces
+	buildMirrorsSurfaces();
+
 }
 
 

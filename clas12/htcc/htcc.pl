@@ -51,7 +51,7 @@ require "./hit.pl";
 # sensitive geometry
 require "./geometry.pl";
 
-# mirrors surfaces
+# mirrors properties
 require "./mirrors.pl";
 
 

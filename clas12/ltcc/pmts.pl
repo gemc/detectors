@@ -130,7 +130,7 @@ sub build_pmts
     $detector{"color"}       = "00ff11";
     $detector{"type"}        = "Operation: segment_pmt_box_$n - segment_pmt_subtract_box_$n";
     $detector{"dimensions"}  = "0";
-    $detector{"material"}    = "CCGas";
+    $detector{"material"}    = "C4F10";
 		$detector{"visible"}     = 0;
 		print_det(\%configuration, \%detector);
   

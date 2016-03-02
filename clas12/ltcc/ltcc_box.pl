@@ -14,7 +14,7 @@ sub build_big_mother()
 	$detector{"description"} = "Light Threshold Cerenkov Counter Box at the origin";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "2*m 5*m 6*m";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 }
@@ -36,7 +36,7 @@ sub cut_right_and_left()
 	$detector{"rotation"}    = "0*deg 0*deg $sector_cut_angle*deg";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -48,7 +48,7 @@ sub cut_right_and_left()
 	$detector{"rotation"}    = "0*deg 0*deg -$sector_cut_angle*deg";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -58,7 +58,7 @@ sub cut_right_and_left()
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "LTCC After Left Cut";
 	$detector{"type"}        = "Operation: ltcc_first_box - sector_left_cut";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -68,7 +68,7 @@ sub cut_right_and_left()
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "LTCC After Right Cut";
 	$detector{"type"}        = "Operation: sector_box_left_cut - sector_right_cut";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 }
@@ -92,7 +92,7 @@ sub cut_front_and_back()
 	$detector{"rotation"}    = "$cc_angle*deg 0*deg 0*deg";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -106,7 +106,7 @@ sub cut_front_and_back()
 	$detector{"rotation"}    = "$cc_angle*deg 0*deg 0*deg";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -117,7 +117,7 @@ sub cut_front_and_back()
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "LTCC After Backplane Cut";
 	$detector{"type"}        = "Operation: sector_box_right_cut - sector_box_back_cut";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -129,7 +129,7 @@ sub cut_front_and_back()
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "LTCC After Backplane Cut";
 	$detector{"type"}        = "Operation: sector_back_cut - sector_box_front_cut";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 }
@@ -150,7 +150,7 @@ sub cut_top_and_bottom()
 	$detector{"rotation"}    = "$cc_angle*deg 0*deg 0*deg";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -160,7 +160,7 @@ sub cut_top_and_bottom()
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "LTCC After Top Cut";
 	$detector{"type"}        = "Operation: sector_front_cut - sector_box_top_cut";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -175,7 +175,7 @@ sub cut_top_and_bottom()
 	$detector{"pos"}         = "0*cm $yshift*cm 0*cm";
 	$detector{"type"}        = "Box";
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
-	$detector{"material"}    = "CCGas";
+	$detector{"material"}    = "C4F10";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -189,8 +189,8 @@ sub cut_top_and_bottom()
 	$detector{"pos"}         = "0*cm 0*cm $cc_zpos*cm";
 	$detector{"rotation"}    = "0*deg 00*deg 0*deg";
 	$detector{"type"}        = "Operation: sector_top_cut - sector_box_bottom_cut";
-	$detector{"material"}    = "CCGas";
-	$detector{"visible"}     = 0; #nate
+	$detector{"material"}    = "C4F10";
+	$detector{"visible"}     = 1;
 	#$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	

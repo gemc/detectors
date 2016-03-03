@@ -2,6 +2,8 @@ use strict;
 use warnings;
 
 our %configuration;
+our $startS;
+our $endS;
 
 
 #
@@ -60,15 +62,15 @@ our %configuration;
 
 sub build_ltcc_box()
 {
-	my $DIFF = 290;
+	my $DIFF = 235;
 	
-	my $pDx1   = 300;
-	my $pDx2   = 2100;
-	my $pDz    = 850;
+	my $pDx1   = 240;
+	my $pDx2   = 2000;
+	my $pDz    = 500;
 	my $pTheta = 0;
 	my $pPhi   = 0;
-	my $pDy1   = 1800;
-	my $pDy2   = 1800 ;
+	my $pDy1   = 1700;
+	my $pDy2   = 1700 ;
 	my $pDx3   = $pDx1 - $DIFF;
 	my $pDx4   = $pDx2 - $DIFF;
 	my $pAlp1  = 0;
@@ -135,7 +137,7 @@ sub build_ltcc_box()
 	my $R  = 3250;
 	my $DZ = 4500;
 	
-	my $zpos = 3200;
+	my $zpos = 3500;
 	my $ypos  = -600;
 	
 	%detector = init_det();
@@ -146,7 +148,7 @@ sub build_ltcc_box()
 	$detector{"rotation"}    = "0*deg 90*deg 0*deg"; 
 	$detector{"color"}       = "110088";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm $R*mm $DZ 0*deg 360*deg";
+	$detector{"dimensions"}  = "0*mm $R*mm $DZ*mm 0*deg 360*deg";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
 	
@@ -171,11 +173,11 @@ sub build_ltcc_box()
 	# y = -$c_d 
 	# z = depth/2  
 	
-	$y_upper = -$pDy1;
+	$y_upper = -$pDy1-100;
 	$z_upper = $pDz;
 	
 	$box_x   = 3000.0;
-	$box_y   =  600.0;
+	$box_y   =  800.0;
 	$box_z   = 3000.0;
 	
 	$box_angle    =  25*$pi/180.0;
@@ -200,8 +202,8 @@ sub build_ltcc_box()
 	# Trap - Box - Tube - Box 2
 	# these numbers are empirical to match
 	# by eyes the box to the mirror position
-	my $tBoxZ = 3600;
-	my $tBoxY = 1600;
+	my $tBoxZ = 3900;
+	my $tBoxY = 1800;
 	%detector = init_det();
 	$detector{"name"}        = "trapBox";
 	$detector{"mother"}      = "root";
@@ -224,20 +226,22 @@ sub build_ltcc_box()
 	print_det(\%configuration, \%detector);
 
 	
-	for(my $n=1; $n<=1; $n++)
+	for(my $n=$startS; $n<=$endS; $n++)
 	{
 		#		my $c6toc12Z = 1700;
 		my $c6toc12Z = 0;
+		my $rotPhi = 90 - ($n-1)*60;
 		# Final box - Big Box * TrapBox
 		%detector = init_det();
-		$detector{"name"}        = "ltcc";
+		$detector{"name"}        = "ltccS$n";
 		$detector{"mother"}      = "fc";
 		$detector{"description"} = "ltcc sector $n";
-		$detector{"pos"}         = "0*mm 0*mm 0*$c6toc12Z";
-		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector{"pos"}         = "0*mm 0*mm $c6toc12Z*mm";
+		$detector{"rotation"}    = "0*deg 0*deg $rotPhi*deg";
 		$detector{"color"}       = "110088";
 		$detector{"type"}        = "Operation:  ltcc_big_box * trapBox";
 		$detector{"dimensions"}  = "0";
+		$detector{"visible"}     = 0;
 		$detector{"material"}    = "C4F10";
 		print_det(\%configuration, \%detector);
 

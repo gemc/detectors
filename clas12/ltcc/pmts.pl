@@ -1,6 +1,11 @@
 our %configuration;
 our %parameters;
 
+our $startS;
+our $endS;
+our $startN;
+our $endN;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
@@ -35,48 +40,46 @@ sub calculatePMTPars
 	}
 }
 
-my $start_n = 1;
-my $end_n   = 19;
-
-
 sub build_pmts
 {
-	for(my $n=$start_n; $n<$end_n; $n++)
+	for(my $n=$startN; $n<$endN; $n++)
 	{
-		my %detector = init_det();
-		$detector{"name"}        = "pmt_right_$n";
-		$detector{"mother"}      = "segment_pmt_$n";
-		#$detector{"mother"}      = "root";
-		$detector{"description"} = "PMT right $n";
-		$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
-		$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg 0*deg";
-		$detector{"color"}       = "992200";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
-		$detector{"material"}    = "LTCCPMTGlass";
-		$detector{"style"}       = 1;
-		$detector{"sensitivity"} = "ltcc";
-		$detector{"hit_type"}    = "ltcc";
-		$detector{"identifiers"} = "sector manual 1 side manual 1 segment manual $n";
-		print_det(\%configuration, \%detector);
-		
-		%detector = init_det();
-		$detector{"name"}        = "pmt_left_$n";
-		$detector{"mother"}      = "segment_pmt_$n";
-		#$detector{"mother"}      = "root";
-		$detector{"description"} = "PMT right $n";
-		$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
-		$detector{"rotation"}    = "90*deg $tilt[$n-1]*deg 0*deg";
-		$detector{"color"}       = "992200";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
-		$detector{"material"}    = "LTCCPMTGlass";
-		$detector{"style"}       = 1;
-		$detector{"sensitivity"} = "ltcc";
-		$detector{"hit_type"}    = "ltcc";
-		$detector{"identifiers"} = "sector manual 1 side manual 2 segment manual $n";
-		print_det(\%configuration, \%detector);
-		
+		for(my $s=$startS; $s<=$endS; $s++)
+		{
+			my %detector = init_det();
+			$detector{"name"}        = "pmt_s$s"."right_$n";
+			$detector{"mother"}      = "segment_pmt_s$s"."$n";
+			#$detector{"mother"}      = "root";
+			$detector{"description"} = "PMT right $n";
+			$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
+			$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg 0*deg";
+			$detector{"color"}       = "992200";
+			$detector{"type"}        = "Tube";
+			$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
+			$detector{"material"}    = "LTCCPMTGlass";
+			$detector{"style"}       = 1;
+			$detector{"sensitivity"} = "ltcc";
+			$detector{"hit_type"}    = "ltcc";
+			$detector{"identifiers"} = "sector manual 1 side manual 1 segment manual $n";
+			print_det(\%configuration, \%detector);
+			
+			%detector = init_det();
+			$detector{"name"}        = "pmt_s$s"."left_$n";
+			$detector{"mother"}      = "segment_pmt_s$s"."$n";
+			#$detector{"mother"}      = "root";
+			$detector{"description"} = "PMT right $n";
+			$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
+			$detector{"rotation"}    = "90*deg $tilt[$n-1]*deg 0*deg";
+			$detector{"color"}       = "992200";
+			$detector{"type"}        = "Tube";
+			$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
+			$detector{"material"}    = "LTCCPMTGlass";
+			$detector{"style"}       = 1;
+			$detector{"sensitivity"} = "ltcc";
+			$detector{"hit_type"}    = "ltcc";
+			$detector{"identifiers"} = "sector manual 1 side manual 2 segment manual $n";
+			print_det(\%configuration, \%detector);
+		}
 		
 		# Building the box that contains the pmts (left and right)
 		# Starts 1mm above x11
@@ -100,8 +103,8 @@ sub build_pmts
 		my $s_segment_box_height    = $segment_box_height   ;
 		my $yshift = $segment_box_thickness;      # Should be enough to encompass all mirrrors
 		
-		%detector = init_det();
-		$detector{"name"}        = "segment_pmt_subtract_box_$n";;
+		my %detector = init_det();
+		$detector{"name"}        = "segment_pmt_subtract_box_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Segment Box to Subtract $n";
 		$detector{"pos"}         = "0*cm -$yshift*cm 0*mm";
@@ -110,20 +113,22 @@ sub build_pmts
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
-		%detector = init_det();
-		$detector{"name"}        = "segment_pmt_$n";;
-		$detector{"mother"}      = "ltcc";
-		$detector{"description"} = "Light Threshold Cerenkov Counter PMT segment $n";
-		#$detector{"mother"}      = "root";
-		#$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-		$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
-		$detector{"color"}       = "00ff11";
-		$detector{"type"}        = "Operation: segment_pmt_box_$n - segment_pmt_subtract_box_$n";
-		$detector{"dimensions"}  = "0";
-		$detector{"material"}    = "C4F10";
-		$detector{"visible"}     = 0;
-		print_det(\%configuration, \%detector);
-  
+		for(my $s=$startS; $s<=$endS; $s++)
+		{
+			my %detector = init_det();
+			$detector{"name"}        = "segment_pmt_s$s"."$n";
+			$detector{"mother"}      = "ltccS$s";
+			$detector{"description"} = "Light Threshold Cerenkov Counter PMT segment $n";
+			#$detector{"mother"}      = "root";
+			#$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+			$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
+			$detector{"color"}       = "00ff11";
+			$detector{"type"}        = "Operation: segment_pmt_box_$n - segment_pmt_subtract_box_$n";
+			$detector{"dimensions"}  = "0";
+			$detector{"material"}    = "C4F10";
+			$detector{"visible"}     = 0;
+			print_det(\%configuration, \%detector);
+		}
 	}
 }
 
@@ -140,6 +145,7 @@ sub buildPmts
 
 
 
+1;
 
 
 

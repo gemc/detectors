@@ -13,6 +13,10 @@ use Math::Trig;
 use materials;
 use mirrors;
 
+our $startS = 1;
+our $endS   = 6;
+our $startN = 1;
+our $endN   = 18;
 
 # Help Message
 sub help()

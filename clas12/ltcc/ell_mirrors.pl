@@ -4,6 +4,11 @@ use warnings;
 our %configuration;
 our %parameters;
 
+our $startS;
+our $endS;
+our $startN;
+our $endN;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
@@ -39,9 +44,6 @@ my @mirror_width = ();
 
 # mirrors are 1 cm thick
 my $mirrors_thickness = 1;
-
-my $start_n = 1;  # 1 - 18
-my $end_n   = 19; # 2 - 19, greater than start_n
 
 
 sub calculateEllPars
@@ -155,7 +157,7 @@ sub calculateEllPars
 # Building the boxes that contains the mirrors (both left and right)
 sub build_ell_mirrors_containers
 {
-	for(my $n=$start_n; $n<$end_n; $n++)
+	for(my $n=$startN; $n<=$endN; $n++)
 	{
 		my $lcntx = -$centerx[$n-1];
 		my $ralpha = 180 - $alpha[$n-1];
@@ -168,7 +170,7 @@ sub build_ell_mirrors_containers
 		if($y12[$n-1] > $y11[$n-1]) {$segment_box_height = $y12[$n-1] + 5;}
 		
 		my %detector = init_det();
-		$detector{"name"}        = "segment_ell_box_$n";;
+		$detector{"name"}        = "segment_ell_box_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Segment Box $n";
 		$detector{"type"}        = "Box";
@@ -185,7 +187,7 @@ sub build_ell_mirrors_containers
 		if($y12[$n-1] > $y11[$n-1]) {$yshift = $segment_box_height - $y11[$n-1] + 0.2;}
 		
 		%detector = init_det();
-		$detector{"name"}        = "segment_ell_subtract_box_$n";;
+		$detector{"name"}        = "segment_ell_subtract_box_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Segment Box to Subtract $n";
 		$detector{"pos"}         = "0*cm -$yshift*cm 0*mm";
@@ -194,22 +196,24 @@ sub build_ell_mirrors_containers
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
-		# The subtraction is done so that the container
-		# has the same coordinates as clas center
-		%detector = init_det();
-		$detector{"name"}        = "segment_ell_$n";;
-		$detector{"mother"}      = "ltcc";
-		$detector{"description"} = "Light Threshold Cerenkov Counter ELL segment $n";
-		$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
-		$detector{"type"}        = "Operation: segment_ell_box_$n - segment_ell_subtract_box_$n";
-		$detector{"material"}    = "C4F10";
-		$detector{"visible"}     = 0;
-		
-		if($n == 16) { $detector{"pos"} = "0*cm 5*cm 10*cm"; }
-		if($n == 17) { $detector{"pos"} = "0*cm 10*cm 15*cm"; }
-		if($n == 18) { $detector{"pos"} = "0*cm 15*cm 20*cm"; }
-
-		print_det(\%configuration, \%detector);
+		for(my $s=$startS; $s<=$endS; $s++)
+		{
+			# The subtraction is done so that the container
+			# has the same coordinates as clas center
+			my %detector = init_det();
+			$detector{"name"}        = "segment_ell_s$s"."_$n";
+			$detector{"mother"}      = "ltccS$s";
+			$detector{"description"} = "Light Threshold Cerenkov Counter ELL sector $s segment $n";
+			$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
+			$detector{"type"}        = "Operation: segment_ell_box_$n - segment_ell_subtract_box_$n";
+			$detector{"material"}    = "C4F10";
+			$detector{"visible"}     = 0;
+			
+			if($n == 16) { $detector{"pos"} = "0*cm 5*cm 10*cm"; }
+			if($n == 17) { $detector{"pos"} = "0*cm 10*cm 15*cm"; }
+			if($n == 18) { $detector{"pos"} = "0*cm 15*cm 20*cm"; }
+			print_det(\%configuration, \%detector);
+		}
 		
 	}
 }
@@ -219,13 +223,13 @@ sub build_ell_mirrors_containers
 # builds the complete elliptical shells, to be cut bu cheese forms later
 sub build_ell_shells
 {
-	for(my $n=$start_n; $n<$end_n; $n++)
+	for(my $n=$startN; $n<=$endN; $n++)
 	{
 		my $m_width = $mirror_width[$n-1];
 		
 		# outer shell
 		my %detector = init_det();
-		$detector{"name"}        = "el_outer_shell_$n";;
+		$detector{"name"}        = "el_outer_shell_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Outside $n";
 		$detector{"type"}        = "EllipticalTube";
@@ -238,7 +242,7 @@ sub build_ell_shells
 		my $mab = $axisb[$n-1] - $mirrors_thickness;
 		my $ml  = $m_width + 1.0; # making the inner it 1 cm bigger so the subtraction is guaranteed
 		%detector = init_det();
-		$detector{"name"}        = "el_inner_shell_$n";;
+		$detector{"name"}        = "el_inner_shell_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Inside $n";
 		$detector{"type"}        = "EllipticalTube";
@@ -261,7 +265,7 @@ sub build_ell_shells
 		# Since z is coming out of the page
 		# Outer - Inner
 		%detector = init_det();
-		$detector{"name"}        = "ellipse_tube_right_$n";;
+		$detector{"name"}        = "ellipse_tube_right_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Frame $n";
 		$detector{"pos"}         = "$centerx[$n-1]*cm $centery[$n-1]*cm 0*mm";
@@ -273,7 +277,7 @@ sub build_ell_shells
 		
 		my $lcntx = -$centerx[$n-1];
 		%detector = init_det();
-		$detector{"name"}        = "ellipse_tube_left_$n";;
+		$detector{"name"}        = "ellipse_tube_left_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Frame $n";
 		$detector{"pos"}         = "$lcntx*cm $centery[$n-1]*cm 0*mm";
@@ -289,7 +293,7 @@ sub build_ell_shells
 
 sub build_check_ell_cheeseform
 {
-	for(my $n=$start_n; $n<$end_n; $n++)
+	for(my $n=$startN; $n<=$endN; $n++)
 	{
 		my $lcntx = -$centerx[$n-1];
 
@@ -320,7 +324,7 @@ sub build_check_ell_cheeseform
 		print_det(\%configuration, \%detector);
 
 		%detector = init_det();
-		$detector{"name"}        = "checktube_left_$n";;
+		$detector{"name"}        = "checktube_left_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Tube with Max Theta $n";
 		$detector{"pos"}         = "$lcntx*cm $centery[$n-1]*cm 0*mm";
@@ -334,7 +338,7 @@ sub build_check_ell_cheeseform
 
 sub build_ell_mirrors
 {
-	for(my $n=$start_n; $n<$end_n; $n++)
+	for(my $n=$startN; $n<=$endN; $n++)
 	{
 		my $lcntx = -$centerx[$n-1];
 		my $ralpha = 180 - $alpha[$n-1];
@@ -351,7 +355,7 @@ sub build_ell_mirrors
 		
 		
 		my %detector = init_det();
-		$detector{"name"}        = "span_tube_right_$n";;
+		$detector{"name"}        = "span_tube_right_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Tube with Max Theta - RIGHT segment $n";
 		$detector{"rotation"}    = "0*deg 0*deg -$ralpha*deg";
@@ -364,7 +368,7 @@ sub build_ell_mirrors
 		
 		
 		%detector = init_det();
-		$detector{"name"}        = "span_tube_left_$n";;
+		$detector{"name"}        = "span_tube_left_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Mirror Tube with Max Theta - LEFT segment $n";
 		$detector{"rotation"}    = "0*deg 0*deg -$lalpha*deg";
@@ -380,43 +384,46 @@ sub build_ell_mirrors
 		# The order translation/rotation is irrelevant since
 		# the rotation is around Z and translation is in XY plane
 		
-		# mirror RIGHT
-		%detector = init_det();
-		$detector{"name"}        = "el_mir_right_$n";;
-		$detector{"mother"}      = "segment_ell_$n";
-		$detector{"description"} = "LTCC Right Mirror $n";
-		$detector{"pos"}         = "$centerx[$n-1]*cm $centery[$n-1]*cm 0*mm";
-		$detector{"rotation"}    = "0*deg 0*deg $cralpha*deg";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Operation: ellipse_tube_right_$n - span_tube_right_$n ";
-		$detector{"dimensions"}  = "0*m";
-		$detector{"material"}    = "Air_Opt";
-		$detector{"style"}       = 1;
-		$detector{"visible"}     = 1; #nate
-		$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-		$detector{"hit_type"}       = "mirror";
-		$detector{"identifiers"}    = "sector manual 1 type manual 1 side manual 1 segment manual $n";
-		print_det(\%configuration, \%detector);
-		
-		# mirror LEFT
-		%detector = init_det();
-		$detector{"name"}        = "el_mir_left_$n";;
-		$detector{"mother"}      = "segment_ell_$n";
-		$detector{"description"} = "LTCC Left Mirror $n";
-		$detector{"pos"}         = "$lcntx*cm $centery[$n-1]*cm 0*mm";
-		$detector{"rotation"}    = "0*deg 0*deg $clalpha*deg";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Operation: ellipse_tube_left_$n - span_tube_left_$n ";
-		$detector{"dimensions"}  = "0*m";
-		$detector{"material"}    = "Air_Opt";
-		$detector{"mfield"}      = "no";
-		$detector{"style"}       = 1;
-		$detector{"visible"}     = 1; #nate
-		$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-		$detector{"hit_type"}       = "mirror";
-		$detector{"identifiers"}    = "sector manual 1 type manual 1 side manual 2 segment manual $n";
-		print_det(\%configuration, \%detector);
-		
+		for(my $s=$startS; $s<=$endS; $s++)
+		{
+			
+			# mirror RIGHT
+			%detector = init_det();
+			$detector{"name"}        = "el_mir_s$s"."_right_"."$n";
+			$detector{"mother"}      = "segment_ell_s$s"."_$n";
+			$detector{"description"} = "LTCC Right Mirror Sector $s Segment $n";
+			$detector{"pos"}         = "$centerx[$n-1]*cm $centery[$n-1]*cm 0*mm";
+			$detector{"rotation"}    = "0*deg 0*deg $cralpha*deg";
+			$detector{"color"}       = "aaffff";
+			$detector{"type"}        = "Operation: ellipse_tube_right_$n - span_tube_right_$n ";
+			$detector{"dimensions"}  = "0*m";
+			$detector{"material"}    = "Air_Opt";
+			$detector{"style"}       = 1;
+			$detector{"visible"}     = 1; #nate
+			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+			$detector{"hit_type"}       = "mirror";
+			$detector{"identifiers"}    = "sector manual $s type manual 1 side manual 1 segment manual $n";
+			print_det(\%configuration, \%detector);
+			
+			# mirror LEFT
+			%detector = init_det();
+			$detector{"name"}        = "el_mir_s$s"."_left_"."$n";
+			$detector{"mother"}      = "segment_ell_s$s"."_$n";
+			$detector{"description"} = "LTCC Left Mirror Sector $s Segment $n";
+			$detector{"pos"}         = "$lcntx*cm $centery[$n-1]*cm 0*mm";
+			$detector{"rotation"}    = "0*deg 0*deg $clalpha*deg";
+			$detector{"color"}       = "aaffff";
+			$detector{"type"}        = "Operation: ellipse_tube_left_$n - span_tube_left_$n ";
+			$detector{"dimensions"}  = "0*m";
+			$detector{"material"}    = "Air_Opt";
+			$detector{"mfield"}      = "no";
+			$detector{"style"}       = 1;
+			$detector{"visible"}     = 1; 
+			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+			$detector{"hit_type"}       = "mirror";
+			$detector{"identifiers"}    = "sector manual $s type manual 1 side manual 2 segment manual $n";
+			print_det(\%configuration, \%detector);
+		}
 	}
 }
 

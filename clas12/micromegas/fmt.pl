@@ -490,7 +490,7 @@ sub place_gas2
 	my $type = 1;
 	my $layer_no       = $l + 1;
 	
-	my $z           = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$Gas1_Dz + 2*$Mesh_Dz + $Gas2_Dz;;
+	my $z           = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$Gas1_Dz + 2*$Mesh_Dz + $Gas2_Dz;
 	my $vname       = "FMT_Gas2";
 	my $descriptio  = "Gas2, Layer $layer_no, ";
 	

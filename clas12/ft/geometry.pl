@@ -253,7 +253,7 @@ my $VETO_IR = 40.;    # inner radius
 my $VETO_Z  = $O_Shell_Z1 - $VETO_TN - 0.1; # position along z
 
 my $VETO_RING_IR = $VETO_IR;
-my $VETO_RING_OR = 105/2.;;
+my $VETO_RING_OR = 105/2.;
 
 my $LS_TN=5./2.;
 

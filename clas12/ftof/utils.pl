@@ -307,7 +307,7 @@ sub pb_pos
 {
     # shift the lead forward wrt mother center
     # by a distance half the thickness of the counters
-    my $ypos = -1*(0.001 + fstr($panel1b_w/2.0 + $mothergap));
+    my $ypos = (0.001 + fstr($panel1b_w/2.0 + $mothergap));
     return "0*inches $ypos*inches 0*inches";
 }
 

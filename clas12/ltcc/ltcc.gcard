@@ -9,6 +9,9 @@
 	<option name="INTEGRATEDRAW" value="ltcc"/>
 	
 	
+	
+	
+	
 <!--	<option name="BEAM_P"        value="opticalphoton, 2.5*eV, 90*deg, 90*deg"/>-->
 	<option name="BEAM_P"        value="e-, 2.5*GeV, 22*deg, 90*deg"/>
 	<option name="SPREAD_P"      value="0, 15*deg, 180*deg"/>

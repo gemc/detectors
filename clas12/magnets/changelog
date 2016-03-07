@@ -1,3 +1,6 @@
+3/7/16
+- relaxing magnets.pl to accept one argument so it is consistent with the other scripts
+
 3/1/16
 - added magnets.pl to build both solenoid and torus geometry
 - removed obsolete ftm as now it's inside FT

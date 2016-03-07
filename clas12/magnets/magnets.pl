@@ -20,7 +20,7 @@ sub help()
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 0)
+if( scalar @ARGV != 0 && scalar @ARGV != 1)
 {
 	help();
 	exit;

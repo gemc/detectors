@@ -1,6 +1,8 @@
 <gcard>
    
    <detector name="micromegas" factory="TEXT" variation="original"/>
+	<detector name="../bst/bst" factory="TEXT" variation="original"/>
+
    <option name="geometry" value="1400x1200"/>
 	
 	<option name="SIGNALVT" value="bmt"/>
@@ -11,7 +13,8 @@
    
    <option name="OUTPUT" value="evio, out.ev"/>
 	
-	
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+
 	<!-- removing the first 2 regions of MM -->
    <detector name="SL2_1">
       <existence exist="no"/>

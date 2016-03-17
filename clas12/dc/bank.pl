@@ -29,10 +29,8 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "LR",          5,  "Di", "Left/Right: -1 (right) if the track is between the beam and the closest wire");
 	insert_bank_variable(\%configuration, $bankname, "doca",        6,  "Dd", "2D distance between closest track step to the wire hit");
 	insert_bank_variable(\%configuration, $bankname, "sdoca",       7,  "Dd", "smeared doca");
-	insert_bank_variable(\%configuration, $bankname, "time",        8,  "Dd", "doca / drift velocity in each region 53, 26, 36 um/ns");
+	insert_bank_variable(\%configuration, $bankname, "time",        8,  "Dd", "doca / drift velocity in each region");
 	insert_bank_variable(\%configuration, $bankname, "stime",       9,  "Dd", "sdoca / drift velocity in each region");
-	insert_bank_variable(\%configuration, $bankname, "fired",      10,  "Di", "fired if passed efficiency");
-	insert_bank_variable(\%configuration, $bankname, "nearPlates", 11,  "Di", "1 if the hit is near the endplates");
 	insert_bank_variable(\%configuration, $bankname, "hitn",       99,  "Di", "hit number");
 }
 

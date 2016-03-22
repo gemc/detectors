@@ -35,7 +35,11 @@ our %configuration = load_configuration($ARGV[0]);
 
 
 # Global pars - these should be read by the load_parameters from file or DB
-our %parameters = get_parameters(%configuration);
+#our %parameters = get_parameters(%configuration);
+
+
+# Global pars - these should be read by the load_parameters from file or DB
+our @volumes = get_volumes(%configuration);
 
 
 # materials
@@ -48,7 +52,10 @@ require "./bank.pl";
 require "./hit.pl";
 
 # sensitive geometry
-require "./geometry.pl";
+#require "./geometry.pl";
+
+# volumes
+require "./volumes.pl";
 
 # calculate the parameters
 require "./utils.pl";
@@ -68,14 +75,16 @@ foreach my $conf ( @allConfs )
 	define_hit();
 	
 	# calculate pars
-	calculate_ftof_parameters();
+	# calculate_ftof_parameters();
 
 	# bank definitions
 	define_banks();
 	
 	# geometry
-	makeFTOF();
+	# makeFTOF();
 	
+	# volumes
+	makeFTOF();
 }
 
 

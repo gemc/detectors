@@ -54,7 +54,7 @@ require "./hit.pl";
 # sensitive geometry
 #require "./geometry.pl";
 
-# volumes
+# read volumes from txt output of groovy script
 require "./volumes.pl";
 
 # calculate the parameters

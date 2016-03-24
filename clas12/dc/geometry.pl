@@ -51,14 +51,27 @@ sub make_region
 
 	my $region = $iregion + 1;
 	
-	for(my $s=1; $s<=6; $s++)
+	my $nSectors = 6;
+	if( $configuration{"variation"} eq "cosmicR1") {$nSectors = 1;}
+
+	for(my $s=1; $s<=$nSectors; $s++)
 	{
 		my %detector = init_det();
 		$detector{"name"}        = "region$region"."_s$s";
 		$detector{"mother"}      = "fc";
 		$detector{"description"} = "CLAS12 Drift Chambers, Sector $s Region $iregion";
-		$detector{"pos"}         = region_pos($s, $iregion);
-		$detector{"rotation"}    = region_rot($s, $iregion);
+		
+		if( $configuration{"variation"} eq "ccdb")
+		{
+			$detector{"pos"}         = region_pos($s, $iregion);
+			$detector{"rotation"}    = region_rot($s, $iregion);
+		}
+		elsif( $configuration{"variation"} eq "cosmicR1")
+		{
+			$detector{"mother"}      = "root";
+			$detector{"rotation"}    = "90*deg 0*deg 0*deg";
+
+		}
 		$detector{"color"}       = "aa0000";
 		$detector{"type"}        = "G4Trap";
 		$detector{"dimensions"}  = "$mpDZ*cm $mtheta*deg $mphi*deg $mpDY1*cm $mpDX1*cm $mpDX2*cm $mpALP1*deg $mpDY2*cm $mpDX3*cm $mpDX4*cm $mpALP2*deg";
@@ -66,6 +79,7 @@ sub make_region
 		#$detector{"visible"}     = 0;
 		print_det(\%configuration, \%detector);
 	}
+
 }
 
 # Layers
@@ -88,7 +102,11 @@ sub make_layers
 	{
 		for (my $ilayer = 1; $ilayer < 7 ; $ilayer++)
 		{
-			for(my $s=1; $s<=6; $s++)
+			my $nSectors = 6;
+			if( $configuration{"variation"} eq "cosmicR1") {$nSectors = 1;}
+
+			
+			for(my $s=1; $s<=$nSectors; $s++)
 			{
 				my $dxplace = $daughter_xcent[$isup][$ilayer];
 				my $dyplace = $daughter_ycent[$isup][$ilayer];
@@ -138,15 +156,22 @@ sub make_layers
 
 sub makeDC
 {
-	make_region(0);
-	make_region(1);
-	make_region(2);
-	
-	make_layers(0);
-	make_layers(1);
-	make_layers(2);
+	if( $configuration{"variation"} eq "ccdb")
+	{
+		make_region(0);
+		make_region(1);
+		make_region(2);
+		
+		make_layers(0);
+		make_layers(1);
+		make_layers(2);
+	}
+	elsif( $configuration{"variation"} eq "cosmicR1")
+	{
+		make_region(0);
+		make_layers(0);
+	}
 }
-
 
 
 

@@ -1,7 +1,6 @@
 <gcard>
 
-	<detector name="dc" factory="TEXT" variation="ccdb"/>
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="dc" factory="TEXT" variation="cosmicR1"/>
 	
    <option name="geometry" value="1400x1000"/>
 	

@@ -6,7 +6,7 @@ import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.*;
 
 ConstantProvider  cp = DataBaseLoader.getConstantsFTOF();
-cp.show();
+//cp.show();
 
 FTOFGeant4Factory  factory = new FTOFGeant4Factory(cp);
 

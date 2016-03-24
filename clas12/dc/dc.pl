@@ -59,7 +59,7 @@ require "./utils.pl";
 
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
-my @allConfs = ("ccdb");
+my @allConfs = ("ccdb", "cosmicR1");
 
 foreach my $conf ( @allConfs )
 {

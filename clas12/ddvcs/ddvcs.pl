@@ -44,7 +44,7 @@ require "./muCal.pl";
 #build_ddvcsCone();
 
 
-make_mu_cal();
+#make_mu_cal();
 
 # all the scripts must be run for every configuration
 my @allConfs = ("original");

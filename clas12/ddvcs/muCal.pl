@@ -30,9 +30,9 @@ my $torus_z   = 2663.; # position of the front face of the Torus ring (set the l
 # CALORIMETER
 #
 # Define the number, dimensions and position of the crystals
-my $Nx = 22;                          # Number of crystals in horizontal directions
-my $Ny = 22;                          # Number of crystals in horizontal directions
-my $Cfront  =  1897.8;                # Position of the front face of the crystals
+my $Nx = 44;                          # Number of crystals in horizontal directions
+my $Ny = $Nx;                         # Number of crystals in horizontal directions
+my $Cfront  =  1000.0;                # Position of the front face of the crystals
 my $Cwidth  =    15.0;                # Crystal width in mm (side of the squared front face)
 my $Clength =   200.0;                # Crystal length in mm
 my $VM2000  =   0.130;                # Thickness of the VM2000 wrapping
@@ -51,8 +51,8 @@ my $Sfront  = $Vfront+$Vlength+$Sgap; # z position of the sensor front face
 # Define the copper thermal shield parameters
 # back disk
 my $Bdisk_TN = 4.;                                           # half thickness of the copper back disk
-my $Bdisk_IR = 55.;                                          # inner radius of the copper back disk
-my $Bdisk_OR = 178.5;                                        # outer radius of the copper back disk
+my $Bdisk_IR = $Vwidth*4.2;                                  # inner radius of the copper back disk
+my $Bdisk_OR = $Vwidth*$Nx/2;                                # outer radius of the copper back disk
 my $Bdisk_Z  = $Sfront+$Slength+$Bdisk_TN+0.1;               # z position of the copper back disk
 # front disk
 my $Fdisk_TN = 1.;                                           # half thickness of the copper front disk supporting the crystal assemblies
@@ -245,107 +245,6 @@ my $BLine_Z4  = $TPlate_Z2  + 0.01;
 my $BLine_Z5  = $BLine_Z4   - 0.01 + 20;
 
 
-###########################################################################################
-# Hodoscope Dimension and Parameters
-my $VETO_TN = 38./2.; # thickness of the hodoscope volume
-my $VETO_OR = 178.5;  # outer radius
-my $VETO_IR = 40.;    # inner radius
-my $VETO_Z  = $O_Shell_Z1 - $VETO_TN - 0.1; # position along z
-
-my $VETO_RING_IR = $VETO_IR;
-my $VETO_RING_OR = 105/2.;
-
-my $LS_TN=5./2.;
-
-my $p15_WW=15./2.;
-my $p15_WT=10./2.;
-#
-my $p30_WW=30./2.;
-my $p30_WT=$p15_WT;
-#
-my $p15_SW=$p15_WW-0.1;
-my $p15_ST=$p15_WT-0.1;
-#
-my $p30_SW=$p30_WW-0.1;
-my $p30_ST=$p30_WT-0.1;
-#
-my $p15_N = 11;
-my @p15_X = (  7.5,  22.5,  37.5,  52.5,  52.5,  67.5,  67.5,  67.5,  67.5,  97.5, 127.5);
-my @p15_Y = ( 67.5,  67.5,  67.5,  52.5,  67.5,   7.5,  22.5,  37.5,  52.5, 127.5,  97.5);
-#
-my $p30_N = 18;
-my @p30_X = (  15.,  15.,  15.,  45.,  45.,  45.,  75.,  75.,  75.,  90.,  90., 105., 105., 120., 120., 135., 150., 150.);
-my @p30_Y = (  90., 120., 150.,  90., 120., 150.,  75., 105., 135.,  15.,  45.,  75., 105.,  15.,  45.,  75.,  15.,  45.);
-my @q_X = (1., -1., -1.,  1.);
-my @q_Y = (1.,  1., -1., -1.);
-
-
-###########################################################################################
-# Tracker Dimension and Parameters
-
-# Tracker
-my @starting_point =();
-
-my $ftm_ir 		= 64.0;
-my $ftm_or 		= 161.0;
-my $nlayer		= 2;
-$starting_point[0] 	= 1773.0;
-$starting_point[1] 	= 1793.0;
-my $InnerRadius 	= 65.0;
-my $OuterRadius 	= 142.0;
-my $Epoxy_Dz 		= 0.5*0.3;
-my $PCB_Dz 		= 0.5*0.1;
-my $Strips_Dz 		= 0.5*0.015;
-my $Gas1_Dz 		= 0.5*0.128;
-my $Mesh_Dz 		= 0.5*0.030;
-my $Gas2_Dz 		= 0.5*5.350;
-my $Drift_Dz 		= 0.5*0.1;
-
-# G4 materials
-my $epoxy_material   = 'epoxy';
-my $pcboard_material = 'epoxy';
-my $strips_material  = 'mmstrips';
-my $gas_material     = 'mmgas';
-my $mesh_material    = 'mmmesh';
-my $drift_material   = 'mmmylar';
-
-
-# G4 colors
-my $epoxy_color      = 'e200e1';
-my $pcboard_color    = '0000ff';
-my $strips_color     = '353540';
-my $gas_color        = 'e10000';
-my $mesh_color       = '252020';
-my $drift_color      = 'fff600';
-
-# FTM is a Tube containing all SLs
-my $ftm_dz = ($starting_point[1] - $starting_point[0])/2.0 + $Epoxy_Dz*2.0 + $PCB_Dz*4.0 + $Strips_Dz*4.0 + $Gas1_Dz*4.0 + $Mesh_Dz*4.0 + $Gas2_Dz*4.0 + $Drift_Dz*4.0+1.0;
-my $ftm_starting = ($starting_point[1] + $starting_point[0])/2.0;
-
-#  FTM FEE Boxes
-my $FEE_Disk_OR = 200.;
-my $FEE_Disk_LN = 2.;
-my $FEE_ARM_LN  = 530./2.-80;
-my $FEE_ARM_WD  = 90./2.;
-
-# size of crate
-my $FEE_WD = 91./2.;
-my $FEE_HT = 265.5/2.;
-my $FEE_LN = 242./2.;
-my $FEE_TN = 1.5;
-
-my $FEE_PVT_TN=10.;
-
-my $FEE_PVT_WD = $FEE_WD+$FEE_PVT_TN;
-my $FEE_PVT_HT = $FEE_HT+$FEE_PVT_TN;
-my $FEE_PVT_LN = $FEE_LN+$FEE_PVT_TN;
-
-my $FEE_A_WD = $FEE_WD-$FEE_TN;
-my $FEE_A_HT = $FEE_HT-$FEE_TN;
-my $FEE_A_LN = $FEE_LN-$FEE_TN;
-my @FEE_azimuthal_angle = (210., 270., 330.);
-my $FEE_polar_angle = -22.;
-
 
 # define crystals mother volume
 my $nplanes_FT_CRY = 2;
@@ -400,7 +299,9 @@ sub make_mu_cal_crystals
 			$locX=($iX-$centX)*$Vwidth;
 			$locY=($iY-$centY)*$Vwidth;
 			my $locR=sqrt($locX*$locX+$locY*$locY);
-			if($locR>60. && $locR<$Vwidth*11)
+            my $Rmin=$Bdisk_IR+$Vwidth/sqrt(2.);
+            my $Rmax=$Bdisk_OR-$Vwidth/sqrt(2.);
+            if($locR>$Rmin && $locR<$Rmax)
 			{
 				# crystal mother volume
 				my %detector = init_det();
@@ -416,6 +317,7 @@ sub make_mu_cal_crystals
 				$dZ=$Vlength/2.0;
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
 				$detector{"material"}    = "G4_AIR";
+                $detector{"style"}       = "1" ;
 				print_det(\%configuration, \%detector);
 				
 				# APD housing
@@ -433,7 +335,7 @@ sub make_mu_cal_crystals
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
 				$detector{"material"}    = "G4_AIR";
 				$detector{"style"}       = "1" ;
-				print_det(\%configuration, \%detector);
+                print_det(\%configuration, \%detector);
 				
 				# Wrapping Volume;
 				%detector = init_det();
@@ -452,7 +354,7 @@ sub make_mu_cal_crystals
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
 				$detector{"material"}    = "G4_MYLAR";
 				$detector{"style"}       = "1" ;
-				print_det(\%configuration, \%detector);
+                print_det(\%configuration, \%detector);
 				
 				# PbWO4 Crystal;
 				%detector = init_det();
@@ -474,7 +376,7 @@ sub make_mu_cal_crystals
 #				$detector{"sensitivity"} = "ft_cal";
 #				$detector{"hit_type"}    = "ft_cal";
 #				$detector{"identifiers"} = "ih manual $iX iv manual $iY";
-				print_det(\%configuration, \%detector);
+                print_det(\%configuration, \%detector);
 				
 				# LED housing
 				%detector = init_det();

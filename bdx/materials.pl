@@ -1,41 +1,11 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/io");
-use utils;
-use materials;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   materials.pl <configuration filename>\n";
- 	print "   Will create the BDX materials\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# TODO:
-# some materials that are now taken from the G4 DB should be checked:
-# Tungsten, SteinlessSteel, Mylar
-# also PCB composition should be checked and VM2000 added 
-
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
+our %configuration;
 
 # One can change the "variation" here if one is desired different from the config.dat
 # $configuration{"variation"} = "myvar";
 
-sub print_materials
+sub define_bdx_materials
 {
 	# uploading the mat definition
 	
@@ -116,5 +86,4 @@ sub print_materials
 	
 }
 
-print_materials();
 

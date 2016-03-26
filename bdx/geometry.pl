@@ -1274,17 +1274,21 @@ sub make_bdx_main_volume
     $detector{"style"}       = 0;
     $detector{"visible"}     = 1;
     $detector{"type"}        = "Box";
+
     my $X = 0.;
     my $Y = 0.;
     my $Z = 0.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    #    my $par1 = 1000.;
-    #    my $par2 = 2000.;
-    #    my $par3 = 4000.;
-    my $par1 = 50.;
-    my $par2 = 100.;
-    my $par3 = 100.;
+    
+        my $par1 = 1000.;
+        my $par2 = 2000.;
+        my $par3 = 4000.;
+        if ($configuration{"variation"} eq "CT")
+    {$par1 = 50.;
+        $par2 = 100.;
+        $par3 = 100.;}
+    
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
     $detector{"material"}    = "G4_Galactic";
     print_det(\%configuration, \%detector);
@@ -2272,51 +2276,56 @@ sub make_cormo_lead
     my $cormo_leadshield_ly=50./2.;
     my $cormo_leadshield_lz=5.0/2.;
     my $X = 0.;
-    my $Y = -((35.1+1.0+1.0-50.+10.)/2+0.2);
-    my $Z = -(105.8+5.0)/2.;
+    my $Y =-((35.1+1.0+5.0+1.0)/2+0.2)-5/2+50/2.;
+    my $Z = -(105.8+5.0)/2.-2.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
     $detector{"material"}    = "G4_Pb";
+    #$detector{"material"}    = "Air";
     print_det(\%configuration, \%detector);
     $detector{"name"}        = "cormo_lead_downstream";
     $X = 0.;
-    $Y = -((35.1+1.0+1.0-50.+10.)/2+0.2);
-    $Z = 127+5.-(105.8+5.0)/2.;
+    $Z = 120+5.-(105.8+5.0)/2.+2.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
     print_det(\%configuration, \%detector);
 
     
     $detector{"name"}        = "cormo_lead_bottom";
-    $cormo_leadshield_lx=42.8/2;
+    $detector{"style"}       = 0;
+    $cormo_leadshield_lx=40./2;
     $cormo_leadshield_ly=5.0/2.;
-    $cormo_leadshield_lz=127/2.;
+    $cormo_leadshield_lz=120/2.;
     $X = 0.;
     $Y = -((35.1+1.0+5.0+1.0)/2+0.2);
-    $Z = -(105.8-127)/2.;
+    $Z = -(105.8-120)/2.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
     print_det(\%configuration, \%detector);
     $detector{"name"}        = "cormo_lead_top";
-    $Y = (35.1+1.0+5.0+1.0)/2.+0.5;
+    $cormo_leadshield_lx=50./2;
+    $cormo_leadshield_ly=5.0/2.;
+    $cormo_leadshield_lz=130/2.;
+    $Y = -((35.1+1.0+5.0+1.0)/2+0.2)+50.0+1.3;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
     print_det(\%configuration, \%detector);
     
     $detector{"name"}        = "cormo_lead_right";
+    $detector{"style"}       = 0;
     $cormo_leadshield_lx=5.0/2.;
     $cormo_leadshield_ly=50./2.;
-    $cormo_leadshield_lz=127/2.;
-    $X = -(42.8+5.0)/2.;
-    $Y = -((35.1+1.0+5.0+1.0-50.+5.)/2+0.2);
-    $Z = -(105.8-127)/2.;
+    $cormo_leadshield_lz=120/2.;
+    $X = -(40+5.0)/2.-2.2;
+    $Y = -((35.1+1.0+5.0+1.0)/2+0.2)-5/2+50/2.;
+    $Z = -(105.8-120)/2.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
     print_det(\%configuration, \%detector);
     
     $detector{"name"}        = "cormo_lead_left";
-    $X = +(42.8+5.0)/2.;
+    $X = +(40+5.0)/2.+2.2;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
      print_det(\%configuration, \%detector);
@@ -2332,14 +2341,15 @@ sub make_cormo_oveto
     $detector{"mother"}      = "bdx_main_volume";
     $detector{"description"} = "outer veto top upstream";
     $detector{"color"}       = "ff8000";
-    $detector{"style"}       = 0;
+    $detector{"style"}       = 1;
+    $detector{"visible"}     = 1;
     $detector{"type"}        = "Box";
     my $cormo_oveto_lx = 40./2;
     my $cormo_oveto_ly =2.0/2 ;
     my $cormo_oveto_lz =80./2 ;
     my $X = 0;
-    my $Y = ((50.+2)/2.-((35.1+1.0+1.0-50.+10.)/2+0.2));
-    my $Z = -(105.8-127)/2.-80./2.;
+    my $Y = -((35.1+1.0+5.0+1.0)/2+0.2)+50.0+1.3+5./2.+2/2;
+    my $Z = -(105.8-120)/2.-80./2.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
@@ -2352,7 +2362,7 @@ sub make_cormo_oveto
     $detector{"name"}        = "cormo_oveto_top_downstream";
     $detector{"description"} = "outer veto top downstream";
     $detector{"color"}       = "ff8000";
-    $Z = -(105.8-127)/2.+80./2.;
+    $Z = -(105.8-120)/2.+80./2.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 2";
@@ -2362,8 +2372,8 @@ sub make_cormo_oveto
     $detector{"color"}       = "ff8000";
     $detector{"description"} = "outer veto bottom upstream";
     $X = 0;
-    $Y = ((50.+2)/2.-((35.1+1.0+1.0-50.+10.)/2+0.2))-50.-2.-7.;
-    $Z = -(105.8-127)/2.-80./2.;
+    $Y = -((35.1+1.0+5.0+1.0)/2+0.2)-5/2-7-2/2.;
+    $Z = -(105.8-120)/2.-80./2.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 3";
@@ -2372,21 +2382,24 @@ sub make_cormo_oveto
     $detector{"name"}        = "cormo_oveto_bottom_downstream";
     $detector{"color"}       = "ff8000";
     $detector{"description"} = "outer veto bottom downstream";
-    $Z = -(105.8-127)/2.+80./2.;
+    $Z = -(105.8-120)/2.+80./2.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 4";
     print_det(\%configuration, \%detector);
+
     
+
+    $detector{"style"}       = 0;
     $detector{"name"}        = "cormo_oveto_upstream";
     $detector{"color"}       = "ff8000";
     $detector{"description"} = "outer veto upstream";
-    $cormo_oveto_lx = 40./2;
-    $cormo_oveto_ly =40./2 ;
+    $cormo_oveto_lx = 50./2;
+    $cormo_oveto_ly =56./2 ;
     $cormo_oveto_lz =2./2 ;
     $X = 0.;
-    $Y = 0.;
-    $Z = -(105.8+5.0+5.0+2.)/2.;
+    $Y = -((35.1+1.0+5.0+1.0)/2+0.2)-5/2+56/2;
+    $Z = -(105.8+5.0)/2.-2.5-2.5-2/2;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 5";
@@ -2395,13 +2408,12 @@ sub make_cormo_oveto
     $detector{"name"}        = "cormo_oveto_downstream";
     $detector{"color"}       = "ff8000";
     $detector{"description"} = "outer veto downstream";
-    $X = 0.;
-    $Y = 0.;
-    $Z = 127+5.-(105.8+5.0)/2.+5./2+2./2.;
+    $Z = 120+5.-(105.8+5.0)/2.+2.5+2.5+2/2;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 6";
     print_det(\%configuration, \%detector);
+    $detector{"style"}       = 0;
     
     $detector{"name"}        = "cormo_oveto_right1";
     $detector{"color"}       = "ff8000";
@@ -2409,22 +2421,23 @@ sub make_cormo_oveto
     $cormo_oveto_lx = 2./2;
     $cormo_oveto_ly =80./2 ;
     $cormo_oveto_lz =40./2 ;
-    $X = -(42.8+5.+5.+2.)/2;
-    $Y = ((50.+2)/2.-((35.1+1.0+1.0-50.+10.)/2+0.2))+2./2+15.-80/2.;
-    $Z = -((105.8+5.0+5.0)/2.-8.5-40./2.);
+    $X = -(40+5.0)/2.-2.2-2.5-2/2-3.6;
+    $Y = -((35.1+1.0+5.0+1.0)/2+0.2)-5/2-11+80/2.;
+    $Z = -(105.8+5.0)/2.-2.5-2.5+40/2+7.5;# 7.5 (and not 8.5) to make it suymmetric)
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 7";
     print_det(\%configuration, \%detector);
+        $detector{"style"}       = 0;
     $detector{"name"}        = "cormo_oveto_right2";
     $detector{"description"} = "outer veto left";
-    $Z = 40.-((105.8+5.0+5.0)/2.-8.5-40./2.);
+    $Z = 40.-(105.8+5.0)/2.-2.5-2.5+40/2+7.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 8";
     print_det(\%configuration, \%detector);
     $detector{"name"}        = "cormo_oveto_right3";
-    $Z = 80.-((105.8+5.0+5.0)/2.-8.5-40./2.);
+    $Z = 80.-(105.8+5.0)/2.-2.5-2.5+40/2+7.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 9";
@@ -2436,22 +2449,22 @@ sub make_cormo_oveto
     $cormo_oveto_lx = 2./2;
     $cormo_oveto_ly =80./2 ;
     $cormo_oveto_lz =40./2 ;
-    $X = (42.8+5.+5.+2.)/2;
-    $Y = ((50.+2)/2.-((35.1+1.0+1.0-50.+10.)/2+0.2))+2./2+15.-80/2.;
-    $Z = -((105.8+5.0+5.0)/2.-8.5-40./2.);
+    $X = -(-(40+5.0)/2.-2.2-2.5-2/2-3.6);
+    $Y = -((35.1+1.0+5.0+1.0)/2+0.2)-5/2-11+80/2.;
+    $Z = -(105.8+5.0)/2.-2.5-2.5+40/2+7.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 10";
     print_det(\%configuration, \%detector);
     $detector{"name"}        = "cormo_oveto_left2";
     $detector{"description"} = "outer veto left";
-    $Z = 40.-((105.8+5.0+5.0)/2.-8.5-40./2.);
+    $Z = 40.-(105.8+5.0)/2.-2.5-2.5+40/2+7.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 11";
     print_det(\%configuration, \%detector);
     $detector{"name"}        = "cormo_oveto_left3";
-    $Z = 80.-((105.8+5.0+5.0)/2.-8.5-40./2.);
+    $Z = 80.-(105.8+5.0)/2.-2.5-2.5+40/2+7.5;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"dimensions"}  = "$cormo_oveto_lx*cm $cormo_oveto_ly*cm $cormo_oveto_lz*cm";
     $detector{"identifiers"} = "sector manual 0 veto manual 2 channel manual 12";
@@ -2595,8 +2608,8 @@ my $shifty=-$Building_cc_thick/2.;
 my $shiftz=-($Building_dz-$Building_cc_thick/2)+20.;
 # to center at 0,0,0
 $shiftx=0.;
-$shifty=0.;
-$shiftz=0.;
+$shifty=-((35.1+1.0)/2+0.2)+0.5+17.-$cr_lsx;
+$shiftz=-(105.8-1.0)/2.+15.+1./2+54;
 
 my $tocntx=($ncol-1)/2.*($al_ar_wr_cr_lsx+$al_ar_wr_cr_lsx);
 my $tocnty=($nrow-1)/2.*($al_ar_wr_cr_lsy+$al_ar_wr_cr_ssy);
@@ -2613,7 +2626,7 @@ sub make_cry_module
     {
          for(my $ir=0; $ir<($nrow); $ir++)
         {
-            my $rot=$fg*180.*((int(($ib+1.)/2.)-int(($ib)/2.))-(int(($ir+1.)/2.)-int(($ir)/2.)));
+            my $rot=$fg*180.*((int(($ib+1.)/2.)-int(($ib)/2.))-(int(($ir+1.)/2.)-int(($ir)/2.)))+180.;
             # Carbon/Aluminum alveols
             my %detector = init_det();
             $detector{"name"}        = "cry_alveol_$ib"."$ir"."$im";
@@ -2710,6 +2723,7 @@ sub make_cry_module
             $par5 =$cr_lgt ;
             $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm $par4*cm $par5*cm";
             $detector{"material"}    = "CsI_Tl";
+            #$detector{"material"}    = "Air";
             $detector{"sensitivity"} = "crs";
             $detector{"hit_type"}    = "crs";
             my $i_im=$im+1;
@@ -2724,7 +2738,6 @@ sub make_cry_module
          }
     }
 }
-
 sub make_csi_pad
 {
     my %detector = init_det();
@@ -2735,12 +2748,12 @@ sub make_csi_pad
     $detector{"style"}       = 1;
     $detector{"visible"}     = 1;
     $detector{"type"}        = "Box";
-    my $csi_pad_lx =10./2.;
+    my $csi_pad_lx =12./2.;
     my $csi_pad_ly =1.0/2 ;
-    my $csi_pad_lz =20./2 ;
+    my $csi_pad_lz =12./2 ;
     my $X = 0;
-    my $Y = +($al_ar_wr_cr_ssy+$al_ar_wr_cr_lsy)/2.+1.5;
-    my $Z = 0.;
+    my $Y = $shifty-$cr_lsy-1.5-0.5+0.5+20.;
+    my $Z = $shiftz+$cr_lgt-$csi_pad_lz-8.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$csi_pad_lx*cm $csi_pad_ly*cm $csi_pad_lz*cm";
@@ -2753,12 +2766,12 @@ sub make_csi_pad
     $detector{"mother"}      = "bdx_main_volume";
     $detector{"description"} = "baddle below the crystal";
     $detector{"type"}        = "Box";
-    $csi_pad_lx =10./2.;
+    $csi_pad_lx =12./2.;
     $csi_pad_ly =1.0/2 ;
-    $csi_pad_lz =20./2 ;
+    $csi_pad_lz =12./2 ;
     $X = 0;
-    $Y = -($al_ar_wr_cr_ssy+$al_ar_wr_cr_lsy)/2.-1.5;
-    $Z = 0.;
+    $Y = $shifty-$cr_lsy-1.5-0.5;
+    $Z = $shiftz+$cr_lgt-$csi_pad_lz-8.;
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$csi_pad_lx*cm $csi_pad_ly*cm $csi_pad_lz*cm";
@@ -2834,22 +2847,39 @@ sub make_beamdump
     make_tunae();
 }
 
-sub make_cormo
+sub make_bdx_CT
 {
     make_bdx_main_volume();
-    #make_cormo_flux();
-	#make_cormo_det();
-	make_cormo_iveto;
+       #make_cormo_flux();
+	   #make_cormo_det();
+    make_cormo_iveto;
     make_cormo_oveto;
     make_cormo_lead();
     make_csi_pad();
+       #make_cormo_shield();
+       #  make_babar_crystal();
+       #make_cry_module_up();
+       #make_cry_module_down();
+    make_cry_module();
+         #  make_cry_module_II();
+}
+sub make_detector_bdx
+{
+    #make_cormo_flux();
+    #make_cormo_det();
+    #make_cormo_iveto;
+    #make_cormo_oveto;
+    #make_cormo_lead();
+    #make_csi_pad();
     #make_cormo_shield();
     #  make_babar_crystal();
-     #make_cry_module_up();
+    #make_cry_module_up();
     #make_cry_module_down();
     make_cry_module();
     #  make_cry_module_II();
 }
+
+
 
 1;
 

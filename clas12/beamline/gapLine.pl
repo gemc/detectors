@@ -13,15 +13,17 @@ sub gapLine()
 	
 	my $zStart = 50 + $microgap;     # end of target
 	my $zEnd   = 433.9 - $microgap;  # start of vacuum line
-	my $length = ($zEnd - $zStart) / 2.0;
-	my $zpos   = $zStart + $length;
 	
-	if( $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTWithInnerShield")
+	if( $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTWithInnerShield" || $configuration{"variation"} eq "realityWithFTWithHeliumBag" )
 	{
 		$zEnd = 750.0;
-        $length = ($zEnd - $zStart) / 2.0;
-        $zpos   = $zStart + $length;
 	}
+    if( $configuration{"variation"} eq "finalWithFT" )
+    {
+        $zEnd = 850.0;
+    }
+    my $length = ($zEnd - $zStart) / 2.0;
+    my $zpos   = $zStart + $length;
 	
 	# air pipe
 	my %detector = init_det();
@@ -33,7 +35,7 @@ sub gapLine()
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0*mm $R*mm $length*mm 0*deg 360*deg";
 	$detector{"material"}    = "G4_AIR";
-	if( $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag" )
+	if( $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag" || $configuration{"variation"} eq "realityWithFTWithHeliumBag")
 	{
 		$detector{"material"}    = "G4_He";
 		$detector{"name"}        = "heliumPipe";

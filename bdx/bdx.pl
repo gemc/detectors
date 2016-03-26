@@ -46,6 +46,12 @@ require "./geometry.pl";
 define_bdx_hits();
 define_banks();
 
-make_beamdump();
+
+#make_beamdump();
+#make_crystal();
+
+#make_whole();
 make_cormo();
+#make_hallA_bdx();
+#make_crystal_trap();
 

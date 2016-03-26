@@ -1,14 +1,14 @@
 
-CLAS12 TOF README
+CLAS12 LTCC README
+------------------
 
---------------------------------------------------
+TODO: Add focal point spheres for debugging purposes
 
-The geometry consists of 3 panels of scintillators:
 
-- 1a, which is the CLAS6 TOF paddles 1-23
-- 1b, which is the newly constructed for clas12,
-  in front of 1a
-- 2 which is 5 paddles from CLAS6 at large angles
+The geometry consists of 36 elliptical mirrors, 36 hyperbolic mirrors
+and 36 PMTs.
+
+The parameters are created by the mirrors.C macro.
 
 In MYSQL mode, before building the geometry one must
 upload the parameters onto the DB.
@@ -17,16 +17,5 @@ The commands to build the geometry, banks, hit defs
 and materials are:
 
 upload_parameters.pl config.dat   < only for MYSQL factory
-./geometry.pl config.dat
-./banks.pl config.dat
-./hit.pl config.dat
-./materials.pl config.dat
 
-
-
---------------------------------------------------
-
-To remove the created text files:
-
-rm -f ftof__bank*.txt ftof__geometry*.txt ftof__hit*.txt ftof__materials*.txt out.ev out.txt
-
+./ltcc.pl config.dat

@@ -17,7 +17,7 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   dc.pl <configuration filename>\n";
+	print "   bst.pl <configuration filename>\n";
  	print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
@@ -35,7 +35,7 @@ our %configuration = load_configuration($ARGV[0]);
 
 
 # Global pars - these should be read by the load_parameters from file or DB
-our %parameters    = get_parameters(%configuration);
+our %parameters = get_parameters(%configuration);
 
 
 # materials
@@ -70,8 +70,8 @@ foreach my $conf ( @allConfs )
 	# bank definitions
 	define_bank();
 	
-	# sensitive geometry
-	make_bst();
+	# geometry
+	makeBST();
 	
 }
 

@@ -1,37 +1,7 @@
-#!/usr/bin/perl -w
-
-use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use hit;
-
 use strict;
 use warnings;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   hit.pl  <configuration filename>\n";
- 	print "   Will define the CLAS12 Forward Time of Flight (ftof) hit \n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
+our %configuration;
 
 sub define_p1a_hit
 {
@@ -91,14 +61,10 @@ sub define_p2_hit
 }
 
 
-sub define_ftof_hits
+sub define_hit
 {
 	define_p1a_hit();
 	define_p1b_hit();
 	define_p2_hit();
 }
 
-define_ftof_hits();
-
-
-1;

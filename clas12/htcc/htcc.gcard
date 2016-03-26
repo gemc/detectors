@@ -1,6 +1,6 @@
 <gcard>
 	<detector name="htcc" factory="TEXT" variation="original"/>
-	<detector name="../beamline/beamline" factory="TEXT" variation="noft"/>
+	<detector name="../beamline/beamline" factory="TEXT" variation="realityNoFT"/>
 
 	<option name="geometry" value="1400x1200"/>
 

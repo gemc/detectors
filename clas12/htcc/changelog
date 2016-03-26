@@ -1,3 +1,7 @@
+2/11/16
+- added htcc.pl script to do geometry, material, banks and hits
+
+
 1/22/15
 - reduced htcc mother volume to avoid overlap with forward detector
 

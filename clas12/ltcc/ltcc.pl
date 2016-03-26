@@ -7,9 +7,16 @@ use utils;
 use parameters;
 use geometry;
 use hit;
+use bank;
 use math;
 use Math::Trig;
+use materials;
+use mirrors;
 
+our $startS = 1;
+our $endS   = 6;
+our $startN = 1;
+our $endN   = 18;
 
 # Help Message
 sub help()
@@ -22,61 +29,69 @@ sub help()
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1) 
+if( scalar @ARGV != 1)
 {
 	help();
 	exit;
 }
 
+# Loading configuration file and paramters
+our %configuration = load_configuration($ARGV[0]);
 
-# Loading configuration file and parameters
-# Make sure you created them
-my $config_file   = $ARGV[0];
+# Global pars - these should be read by the load_parameters from file or DB
+our %parameters = get_parameters(%configuration);
 
-# configuration and parameters are global variables 
-our %configuration = load_configuration($config_file);
-our %parameters    = get_parameters(%configuration);
+
+# materials
+require "./materials.pl";
+
+# banks definitions
+require "./bank.pl";
+
+# hits definitions
+require "./hit.pl";
 
 # Loading LTCC specific subroutines
-require "./ltcc_box.pl";      # mother volume
-#require "./ell_mirrors.pl";   # ell mirrors
-#require "./hyp_mirrors.pl";   # hyp mirrors
-#require "./pmts.pl";          # pmts
-#require "./spot_finder.pl";   # spot finder #nate
+#require "./ltcc_box.pl";      # mother volume
+require "./ltccBox.pl";      # mother volume
+require "./ell_mirrors.pl";   # ell mirrors
+require "./hyp_mirrors.pl";   # hyp mirrors
+require "./pmts.pl";          # pmts
+
+# mirrors properties
+require "./mirrors.pl";
 
 
+# all the scripts must be run for every configuration
+my @allConfs = ("original");
 
-# detector build subroutine
-sub build_detector
+foreach my $conf ( @allConfs )
 {
+	$configuration{"variation"} = $conf ;
+	
+	# materials
+	materials();
+	
+	# hits
+	define_hit();
+	
+	# bank definitions
+	define_bank();
+	
 	# Building LTCC Box
 	build_ltcc_box();
 	
-	
-	# Building Elliptical mirrors
-#	build_ell_mirrors();
-#	#build_check_ell_cheeseform();
-	
-	
-	# Building Hyperbolic mirrors
-#	build_hyp_mirrors();
-	
-	# Build PMTs
-	#build_pmts();
+	# Elliptical mirrors
+	buildEllMirrors();
 
-	#spot finder #nate
-#	build_spot_finder();
+	# Hyperbolic
+	buildHypMirrors();
+	
+	# mirrors surfaces
+	buildMirrorsSurfaces();
 
+	# PMTs
+	buildPmts();
 }
 
-build_detector();
 
-# Hit definition
-# Execute only when there are changes
-require "./hit.pl";
-#quartz_pmt_hit();
-#mirrors_hit();
-
-# banks
-require "./bank.pl";
-#define_ltcc_bank();

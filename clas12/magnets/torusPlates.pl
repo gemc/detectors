@@ -5,6 +5,7 @@ our %configuration;
 
 our $TorusLength;
 our $TorusZpos;
+our $inches;
 
 my $microgap = 0.1;
 

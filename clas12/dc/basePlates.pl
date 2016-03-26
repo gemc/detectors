@@ -25,12 +25,19 @@ sub make_plates
 	my @pl_bottom = (1.4*$inches/2    , 1.9*$inches/2    , 4.774*$inches/2);
 	my @pl_top    = (2.8*$inches/2    , 3.4*$inches/2    , 8.168*$inches/2);
 	
-	for(my $iregion=0; $iregion<3; $iregion++)
+	my $nRegions = 3;
+	if( $configuration{"variation"} eq "cosmicR1") {$nRegions = 1;}
+
+	
+	for(my $iregion=0; $iregion<$nRegions; $iregion++)
 	{
 		
 		my $region = $iregion+1;
 		
-		for(my $s=1; $s<=6; $s++)
+		my $nSectors = 6;
+		if( $configuration{"variation"} eq "cosmicR1") {$nSectors = 1;}
+
+		for(my $s=1; $s<=$nSectors; $s++)
 		{
 			
 			my %detector = init_det();

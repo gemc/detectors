@@ -95,7 +95,7 @@ double dndxdl(double *x, double *par)
 	
 	// gas transparency
 	if(par[3] == 0) transp = 1;
-	if(par[3] == 1) transp = interpolate(l, "c4f10t");;
+	if(par[3] == 1) transp = interpolate(l, "c4f10t");
 	
 	// wc reflectivity
 	if(par[4] == 0) wrefl = 1;

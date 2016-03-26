@@ -4,7 +4,6 @@ use warnings;
 our %configuration;
 our %parameters;
 
-my $envelope = 'BMT';
 
 # All dimensions in mm
 
@@ -80,36 +79,36 @@ $dtheta_start[4]		 = $Inactivtheta[4]/2.0;
 $dtheta_start[5]		 = $Inactivtheta[5]/2.0;
 
 # materials
-my $air_material	 		= 'myAir';
-my $copper_material	    	= 'myCopper';
-my $pcb_material      		= 'myFR4';
-my $bmtz4_strips_material    = 'mybmtz4MMStrips';#taking into account pitch/opacity
-my $bmtz5_strips_material    = 'mybmtz5MMStrips';#taking into account pitch/opacity
-my $bmtz6_strips_material    = 'mybmtz6MMStrips';#taking into account pitch/opacity
-my $bmtc4_strips_material    = 'mybmtc4MMStrips';#taking into account pitch/opacity
-my $bmtc5_strips_material    = 'mybmtc5MMStrips';#taking into account pitch/opacity
-my $bmtc6_strips_material    = 'mybmtc6MMStrips';#taking into account pitch/opacity
-my $kapton_material    		= 'myKapton';
-my $bmtz4_resist_material    = 'mybmtz4ResistPaste';#taking into account pitch/opacity
-my $bmtz5_resist_material    = 'mybmtz5ResistPaste';#taking into account pitch/opacity
-my $bmtz6_resist_material    = 'mybmtz6ResistPaste';#taking into account pitch/opacity
-my $bmtc4_resist_material    = 'mybmtc4ResistPaste';#taking into account pitch/opacity
-my $bmtc5_resist_material    = 'mybmtc5ResistPaste';#taking into account pitch/opacity
-my $bmtc6_resist_material    = 'mybmtc6ResistPaste';#taking into account pitch/opacity
-my $gas_material       		= 'mybmtMMGas';
-my $mesh_material      		= 'mybmtMMMesh';
+my $air_material	 		  = 'myAir';
+my $copper_material	     = 'myCopper';
+my $pcb_material      	  = 'myFR4';
+my $bmtz4_strips_material = 'mybmtz4MMStrips';#taking into account pitch/opacity
+my $bmtz5_strips_material = 'mybmtz5MMStrips';#taking into account pitch/opacity
+my $bmtz6_strips_material = 'mybmtz6MMStrips';#taking into account pitch/opacity
+my $bmtc4_strips_material = 'mybmtc4MMStrips';#taking into account pitch/opacity
+my $bmtc5_strips_material = 'mybmtc5MMStrips';#taking into account pitch/opacity
+my $bmtc6_strips_material = 'mybmtc6MMStrips';#taking into account pitch/opacity
+my $kapton_material    	  = 'myKapton';
+my $bmtz4_resist_material = 'mybmtz4ResistPaste';#taking into account pitch/opacity
+my $bmtz5_resist_material = 'mybmtz5ResistPaste';#taking into account pitch/opacity
+my $bmtz6_resist_material = 'mybmtz6ResistPaste';#taking into account pitch/opacity
+my $bmtc4_resist_material = 'mybmtc4ResistPaste';#taking into account pitch/opacity
+my $bmtc5_resist_material = 'mybmtc5ResistPaste';#taking into account pitch/opacity
+my $bmtc6_resist_material = 'mybmtc6ResistPaste';#taking into account pitch/opacity
+my $gas_material       	  = 'mybmtMMGas';
+my $mesh_material      	  = 'mybmtMMMesh';
 #define myGlue...
 
 # G4 colors
 # (colors random)
 my $air_color		   = 'e200e1';
 my $copper_color	   = '666600';
-my $pcb_color          = '0000ff';
-my $strips_color       = '353540';
+my $pcb_color        = '0000ff';
+my $strips_color     = '353540';
 my $kapton_color	   = 'fff600';
 my $resist_color	   = '000000';
-my $gas_color          = 'e10000';
-my $mesh_color         = '252020';
+my $gas_color        = 'e10000';
+my $mesh_color       = '252020';
 
 $pi = 3.141592653589793238;
 # sub rad { $_[0]*$pi/180.0  }
@@ -136,7 +135,7 @@ my @SL_ir = ($radius[0]-1.0, $radius[1]-1.0, $radius[2]-1.0, $radius[3]-1.0, $ra
 my @SL_or = ($radius[0]+5.0, $radius[1]+5.0, $radius[2]+5.0, $radius[3]+5.0, $radius[4]+5.0, $radius[5]+5.0);
 my $SL_dz = $bmt_dz;
 
-sub define_bmt
+sub build_bmt
 {
 	make_bmt();
 	make_sl(1);
@@ -145,19 +144,19 @@ sub define_bmt
 	make_sl(4);
 	make_sl(5);
 	make_sl(6);
-
+	
 	for(my $l = 0; $l < $nlayer; $l++)
 	{
-    	
+		
 		place_coverlay($l);
 		place_cuGround($l);
-    	place_pcb($l);
-    	place_strips($l);
+		place_pcb($l);
+		place_strips($l);
 		place_kapton($l);
 		place_resist($l);
-    	place_gas1($l);
-    	place_mesh($l);
-    	place_gas2($l);
+		place_gas1($l);
+		place_mesh($l);
+		place_gas2($l);
 		place_driftCuElectrode($l);
 		place_driftKapton($l);
 		place_driftCuGround($l);
@@ -166,61 +165,61 @@ sub define_bmt
 
 sub make_bmt
 {
- 	my %detector = init_det();
- 	$detector{"name"}        = $envelope;
- 	$detector{"mother"}      = "root";
- 	$detector{"description"} = "Barrel Micromegas Vertex Tracker";
- 	$detector{"pos"}         = "0*cm 0*cm 0*cm";
- 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
- 	$detector{"color"}       = "aaaaff";
- 	$detector{"type"}        = "Tube";
- 	$detector{"dimensions"}  = "$bmt_ir*mm $bmt_or*mm $bmt_dz*mm 0*deg 360*deg";
- 	$detector{"material"}    = "Air";
- 	$detector{"visible"}     = 0;
- 	$detector{"style"}       = 0;
- 	print_det(\%configuration, \%detector);
+	my %detector = init_det();
+	$detector{"name"}        = "bmt";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Barrel Micromegas Vertex Tracker";
+	$detector{"pos"}         = "0*cm 0*cm 0*cm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "aaaaff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "$bmt_ir*mm $bmt_or*mm $bmt_dz*mm 0*deg 360*deg";
+	$detector{"material"}    = "Air";
+	$detector{"visible"}     = 0;
+	$detector{"style"}       = 0;
+	print_det(\%configuration, \%detector);
 }
 
 sub make_sl
 {
- 	my $slnumber = shift;
- 	my $slindex  = $slnumber - 1;
-
- 	my %detector = init_det();
- 	$detector{"name"}        = "SL2_$slnumber";
- 	$detector{"mother"}      = $envelope;
- 	$detector{"description"} = "Super Layer $slnumber";
- 	$detector{"pos"}         = "0*cm 0*cm 0*cm";
- 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
- 	$detector{"color"}       = "aaaaff";
- 	$detector{"type"}        = "Tube";
- 	$detector{"dimensions"}  = "$SL_ir[$slindex]*mm $SL_or[$slindex]*mm $SL_dz*mm 0*deg 360*deg";
- 	$detector{"material"}    = "Air";
- 	$detector{"visible"}     = 0;
- 	$detector{"style"}       = 0;	
+	my $slnumber = shift;
+	my $slindex  = $slnumber - 1;
+	
+	my %detector = init_det();
+	$detector{"name"}        = "SL2_$slnumber";
+	$detector{"mother"}      = "bmt";
+	$detector{"description"} = "Super Layer $slnumber";
+	$detector{"pos"}         = "0*cm 0*cm 0*cm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "aaaaff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "$SL_ir[$slindex]*mm $SL_or[$slindex]*mm $SL_dz*mm 0*deg 360*deg";
+	$detector{"material"}    = "Air";
+	$detector{"visible"}     = 0;
+	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 }
 
 sub place_coverlay
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1; 
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_coverlay_C_Layer";
 		$descriptio = "coverlay C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_coverlay_Z_Layer";
 		$descriptio = "coverlay Z, Layer $layer_no, ";
-    }
-    
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
@@ -229,45 +228,45 @@ sub place_coverlay
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $kapton_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $kapton_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $kapton_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $kapton_material;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-    } 
+		
+	}
 }
 
 sub place_cuGround
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1; 
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_CuGround_C_Layer";
 		$descriptio = "CuGround C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_CuGround_Z_Layer";
 		$descriptio = "CuGround Z, Layer $layer_no, ";
-    }
-    
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
@@ -276,45 +275,45 @@ sub place_cuGround
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $copper_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $copper_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $copper_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $copper_material;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-    } 
+		
+	}
 }
 
 sub place_pcb
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1; 
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_PCB_C_Layer";
 		$descriptio = "PCB C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_PCB_Z_Layer";
 		$descriptio = "PCB Z, Layer $layer_no, ";
-    }
-    
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
@@ -323,62 +322,62 @@ sub place_pcb
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $pcb_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $pcb_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $pcb_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $pcb_material;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-    } 
+		
+	}
 }
 
 sub place_strips
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_CuStrips_C_Layer";
 		$descriptio = "CuStrips C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_CuStrips_Z_Layer";
 		$descriptio = "CuStrips Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $strips_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $strips_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
 		if($l == 0)
 		{
 			$detector{"material"}    = $bmtc4_strips_material;
@@ -391,46 +390,46 @@ sub place_strips
 		{
 			$detector{"material"}    = $bmtc6_strips_material;
 		}
-        if($l == 1)
+		if($l == 1)
 		{
 			$detector{"material"}    = $bmtz4_strips_material;
 		}
-        if($l == 2)
+		if($l == 2)
 		{
 			$detector{"material"}    = $bmtz5_strips_material;
-		}	
-        if($l == 4)
+		}
+		if($l == 4)
 		{
 			$detector{"material"}    = $bmtz6_strips_material;
 		}
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-	
-    } 
+		
+	}
 }
 
 sub place_kapton
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1; 
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_KaptonStrips_C_Layer";
 		$descriptio = "KaptonStrips C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_KaptonStrips_Z_Layer";
 		$descriptio = "KaptonStrips Z, Layer $layer_no, ";
-    }
-    
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
@@ -439,62 +438,62 @@ sub place_kapton
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $kapton_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $kapton_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $kapton_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $kapton_material;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-    } 
+		
+	}
 }
 
 sub place_resist
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_ResistStrips_C_Layer";
 		$descriptio = "ResistStrips C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_ResistStrips_Z_Layer";
 		$descriptio = "ResistStrips Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $resist_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $resist_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
 		if($l == 0)
 		{
 			$detector{"material"}    = $bmtc4_resist_material;
@@ -507,201 +506,201 @@ sub place_resist
 		{
 			$detector{"material"}    = $bmtc6_resist_material;
 		}
-        if($l == 1)
+		if($l == 1)
 		{
 			$detector{"material"}    = $bmtz4_resist_material;
 		}
-        if($l == 2)
+		if($l == 2)
 		{
 			$detector{"material"}    = $bmtz5_resist_material;
 		}
-        if($l == 4)
+		if($l == 4)
 		{
 			$detector{"material"}    = $bmtz6_resist_material;
 		}
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-	
-    } 
+		
+	}
 }
 
 sub place_gas1
 {
-    my $l    = shift;
-    my $layer_no       = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no       = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_Gas1_C_Layer";
 		$descriptio = "Gas1 C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_Gas1_Z_Layer";
 		$descriptio = "Gas1 Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $gas_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $gas_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $gas_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $gas_material;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-
-    } 
+		
+	}
 }
 
 sub place_mesh
 {
-    my $l    = shift;
-    my $layer_no = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_Mesh_C_Layer";
 		$descriptio = "Mesh C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_Mesh_Z_Layer";
 		$descriptio = "Mesh Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      =  "SL2_$layer_no";
-        $detector{"description"} = "$descriptio Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $mesh_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $mesh_material;
-        $detector{"mfield"}      = "no";
-        $detector{"ncopy"}       = $s + 1;
-        $detector{"pMany"}       = 1;
-        $detector{"exist"}       = 1;
-        $detector{"visible"}     = 1;
-        $detector{"style"}       = 1;
-        $detector{"sensitivity"} = "no";
-        $detector{"hit_type"}    = "no";
-        $detector{"identifiers"} = "no";
-
-        print_det(\%configuration, \%detector);
-
-    } 
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      =  "SL2_$layer_no";
+		$detector{"description"} = "$descriptio Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $mesh_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $mesh_material;
+		$detector{"mfield"}      = "no";
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"pMany"}       = 1;
+		$detector{"exist"}       = 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
+		$detector{"sensitivity"} = "no";
+		$detector{"hit_type"}    = "no";
+		$detector{"identifiers"} = "no";
+		
+		print_det(\%configuration, \%detector);
+		
+	}
 }
 
 sub place_gas2
 {
-    my $l    = shift;
-    my $layer_no = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-    my $type = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l    = shift;
+	my $layer_no = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	my $type = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_Gas2_C_Layer";
 		$descriptio = "Gas2 C, Layer $layer_no, ";
 		$type = 1;
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_Gas2_Z_Layer";
 		$descriptio = "Gas2 Z, Layer $layer_no, ";
 		$type = 2;
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
-        $detector{"name"}        = "$vname$layer_no\_Segment$snumber";
-        $detector{"mother"}      = "SL2_$layer_no";
-        $detector{"description"} = "$descriptio  Segment $snumber";
-        $detector{"pos"}         = "0*mm 0*mm $z*mm";
-        $detector{"rotation"}    = rot($l, $s);
-        $detector{"color"}       = $gas_color;
-        $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"material"}    = $gas_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"pMany"}       = 1;
-	    $detector{"exist"}       = 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
+		$detector{"mother"}      = "SL2_$layer_no";
+		$detector{"description"} = "$descriptio  Segment $snumber";
+		$detector{"pos"}         = "0*mm 0*mm $z*mm";
+		$detector{"rotation"}    = rot($l, $s);
+		$detector{"color"}       = $gas_color;
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"material"}    = $gas_material;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"pMany"}       = 1;
+		$detector{"exist"}       = 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		$detector{"sensitivity"} = "bmt";
-        $detector{"hit_type"}    = "bmt";
-        $detector{"identifiers"} ="superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
-
-        print_det(\%configuration, \%detector);
-
-    } 
+		$detector{"hit_type"}    = "bmt";
+		$detector{"identifiers"} ="superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
+		
+		print_det(\%configuration, \%detector);
+		
+	}
 }
 
 sub place_driftCuElectrode
 {
-    my $l = shift;
-    my $layer_no = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l = shift;
+	my $layer_no = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_DriftCuElectrode_C_Layer";
 		$descriptio = "DriftCuElectrode C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_DriftCuElectrode_Z_Layer";
 		$descriptio = "DriftCuElectrode Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width;
@@ -718,7 +717,7 @@ sub place_driftCuElectrode
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
 		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
 		$detector{"mother"}      = "SL2_$layer_no";
@@ -727,38 +726,38 @@ sub place_driftCuElectrode
 		$detector{"rotation"}    = rot($l, $s);
 		$detector{"color"}       = $copper_color;
 		$detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"mfield"}      = "no";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"mfield"}      = "no";
 		$detector{"material"}    = $copper_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-	
-    } 
+		
+	}
 }
 
 sub place_driftKapton
 {
-    my $l = shift;
-    my $layer_no = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l = shift;
+	my $layer_no = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_DriftKapton_C_Layer";
 		$descriptio = "DriftKapton C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_DriftKapton_Z_Layer";
 		$descriptio = "DriftKapton Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width + $DriftKapton_Width;
@@ -777,7 +776,7 @@ sub place_driftKapton
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
 		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
 		$detector{"mother"}      = "SL2_$layer_no";
@@ -786,38 +785,38 @@ sub place_driftKapton
 		$detector{"rotation"}    = rot($l, $s);
 		$detector{"color"}       = $kapton_color;
 		$detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"mfield"}      = "no";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"mfield"}      = "no";
 		$detector{"material"}    = $kapton_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-	
-    } 
+		
+	}
 }
 
 sub place_driftCuGround
 {
-    my $l = shift;
-    my $layer_no = $l + 1;
-    my $vname      = 0;
-    my $descriptio = 0;
-
-    if($l == 0 || $l == 3 || $l == 5)
-    {
+	my $l = shift;
+	my $layer_no = $l + 1;
+	my $vname      = 0;
+	my $descriptio = 0;
+	
+	if($l == 0 || $l == 3 || $l == 5)
+	{
 		$vname      = "BMT_DriftCuGround_C_Layer";
 		$descriptio = "DriftCuGround C, Layer $layer_no, ";
-    }
-    if($l == 1 || $l == 2 || $l == 4)
-    {
+	}
+	if($l == 1 || $l == 2 || $l == 4)
+	{
 		$vname      = "BMT_DriftCuGround_Z_Layer";
 		$descriptio = "DriftCuGround Z, Layer $layer_no, ";
-    }
-    for(my $s = 0; $s < $ntile; $s++)
-    {
+	}
+	for(my $s = 0; $s < $ntile; $s++)
+	{
 		# names
-        my $snumber     = segnumber($s);
+		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width + $DriftKapton_Width;
 		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width + $DriftKapton_Width + $DriftCuGround_Width;
@@ -836,7 +835,7 @@ sub place_driftCuGround
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l]; # to be defined, in degres
 		my $PDPhi     = $dtheta[$l];
-
+		
 		my %detector = init_det();
 		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
 		$detector{"mother"}      = "SL2_$layer_no";
@@ -845,16 +844,15 @@ sub place_driftCuGround
 		$detector{"rotation"}    = rot($l, $s);
 		$detector{"color"}       = $copper_color;
 		$detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-        $detector{"mfield"}      = "no";
+		$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+		$detector{"mfield"}      = "no";
 		$detector{"material"}    = $copper_material;
-        $detector{"ncopy"}       = $s + 1;
-	    $detector{"visible"}     = 1;
-	    $detector{"style"}       = 1;
+		$detector{"ncopy"}       = $s + 1;
+		$detector{"visible"}     = 1;
+		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
-	
-    } 
+		
+	}
 }
 
 
-1;

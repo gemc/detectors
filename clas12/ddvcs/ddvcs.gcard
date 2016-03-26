@@ -1,18 +1,5 @@
 <gcard>
 
-	<detector name="ddvcs" factory="TEXT" variation="60cm"/>
-   <detector name="../beamline/beamline" factory="TEXT" variation="noft"/>
-	<detector name="../ftof/ftof"         factory="TEXT" variation="original"/>
-	<detector name="../dc/dc"             factory="TEXT" variation="original"/>
-	<detector name="../fc/forwardCarriage"             factory="TEXT" variation="original"/>
-
-	<option name="geometry" value="800x600"/>
-	
-	<option name="BEAM_P"   value="mu-, 2.0*GeV, 20*deg, 10*deg"/>
-	<option name="SPREAD_P" value="0.0*GeV, 10*deg, 180*deg"/>
-	<option name="OUTPUT" value="evio, out.ev"/>
-
-
-	<option name="PHYSICS" value="FTFP_BERT + STD"/>
-
+	<detector name="ddvcs" factory="TEXT" variation="original"/>
+ 
 </gcard>

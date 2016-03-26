@@ -1,3 +1,10 @@
+3/24/16
+- added cosmicR1 configuration where only one sector of R1 is present
+
+3/17/16
+- added root macros to check wire efficiency and smeearing
+
+
 - 1/26/16
 - added core pars reading from CCDB
 

@@ -59,7 +59,7 @@ require "./utils.pl";
 
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
-my @allConfs = ("original", "ccdb");
+my @allConfs = ("ccdb", "cosmicR1");
 
 foreach my $conf ( @allConfs )
 {
@@ -78,7 +78,7 @@ foreach my $conf ( @allConfs )
 	calculate_dc_parameters();
 
 	# sensitive geometry
-	make_dc();
+	makeDC();
 	
 	# dc plates
 	make_plates();

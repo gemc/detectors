@@ -30,7 +30,7 @@ sub spot_finder_layers()
 		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 		$detector{"type"}        = "Box";
 		$detector{"dimensions"}  = "50*cm 0.1*cm 50*cm";
-		$detector{"material"}    = "CCGas";
+		$detector{"material"}    = "C4F10";
 		$detector{"sensitivity"} = "flux";
 		$detector{"hit_type"}    = "flux";
 		$detector{"identifiers"} = "id manual $n";

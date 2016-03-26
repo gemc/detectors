@@ -1,13 +1,25 @@
 <gcard>
 	
-   <detector name="ltcc" factory="TEXT" variation="original"/>
+	<detector name="ltcc" factory="TEXT" variation="original"/>
+	<detector name="../targets/target" factory="TEXT" variation="lh2"/>
+	<detector name="../fc/forwardCarriage"      factory="TEXT" variation="original"/>
 
+	<option name="geometry" value="1400x1200"/>
+	<option name="SIGNALVT" value="ltcc"/>
+	<option name="INTEGRATEDRAW" value="ltcc"/>
+	
+	
+	
+	
+	
+<!--	<option name="BEAM_P"        value="opticalphoton, 2.5*eV, 90*deg, 90*deg"/>-->
+	<option name="BEAM_P"        value="e-, 2.5*GeV, 22*deg, 90*deg"/>
+	<option name="SPREAD_P"      value="0, 15*deg, 180*deg"/>
+	<option name="OUTPUT"        value="txt, out.txt"/>
+	
+	<option name="NO_FIELD"      value="all"/>
+	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 
-  <option name="BEAM_P"        value="opticalphoton, 2.5*eV, 90*deg, 90*deg"/>
-  <option name="SPREAD_P"      value="0, 0, 5*deg"/>
-  <option name="geometry"      value="1200x800"/>
-  <option name="OUTPUT"        value="txt, out.txt"/>
-
-
+	
 </gcard>
 

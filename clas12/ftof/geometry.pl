@@ -1,52 +1,21 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use parameters;
-use geometry;
-use math;
+use warnings;
 
-use Math::Trig;
+our %configuration;
+our %parameters;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Forward Time of Flight (ftof) using the variation specified in the configuration file\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file from argument
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
-# Load the parameters
-our %parameters    = get_parameters(%configuration);
-
-# utility to derive secondary parameters from originals
-require "./utils.pl";
-calculate_ftof_parameters();
 
 my $panel1a_n = $parameters{"ftof.panel1A.ncounters"};
 my $panel1b_n = $parameters{"ftof.panel1B.ncounters"};
 my $panel2_n  = $parameters{"ftof.panel2.ncounters"};
 
-define_mothers();
-build_counters();
 
+
+sub makeFTOF
+{
+	define_mothers();
+	build_counters();
+}
 # define ftof sectors
 sub define_mothers
 {

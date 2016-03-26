@@ -1,36 +1,8 @@
-#!/usr/bin/perl -w
-
-use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use bank;
-
 use strict;
 use warnings;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   bank.pl <configuration filename>\n";
- 	print "   Will define the CLAS12 Forward Time of Flight (ftof) banks\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
+our %configuration;
 
-# If not pring the help
-# Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
 
 # Variable Type is two chars.
 # The first char:
@@ -72,8 +44,3 @@ sub define_banks
 	define_bank("ftof_p2",  1200);
 }
 
-
-define_banks();
-
-
-1;

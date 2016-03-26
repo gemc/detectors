@@ -1,41 +1,9 @@
-#!/usr/bin/perl -w
-
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
-use utils;
-use parameters;
-use geometry;
-use math;
+use warnings;
 
-use Math::Trig;
+our %configuration;
+our %parameters;
 
-# Help Message
-sub help()
-{
-    print "\n Usage: \n";
-    print "   geometry.pl <configuration filename>\n";
-    print "   Will create the CLAS12 Electro-magnetic calorimeter using the variation specified in the configuration file\n";
-    print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-    exit;
-}
-
-# Make sure the argument list is correct
-if( scalar @ARGV != 1) 
-{
-    help();
-    exit;
-}
-
-
-# Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
-
-
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
-
-# To get the parameters proper authentication is needed.
-our %parameters = get_parameters(%configuration);
 my $thetaEC_deg = $parameters{"thetaEC_deg"};
 
 #
@@ -163,8 +131,8 @@ my@CLAS12center = ($CLAS12front[0]+$toCenter[0],$CLAS12front[1]+$toCenter[1],$CL
 
 # array used to calculate pdX values for Geant4. Some lead layers are truncated at the small angle vertex.
 my @beamVertexCut=(0.00001, 0.0000001, 1.440, 0.0000001, 0.000001, 1.448, 0.000001, 0.000001, 1.455, 0.001,
-        0.000001, 1.462, 0.000001, 0.000001, 1.0, 0.000001, 0.00001, 1.0, 0.000001, 0.000001, 1.0, 0.000001, 0.000001,
-        1.0, 0.000001, 0.000001, 1.0, 0.001, 0.000001, 1.0, 0.000001, 0.000001, 1.0, 0.000001, 0.000001, 1.0, 0.000001, 0.000001);
+0.000001, 1.462, 0.000001, 0.000001, 1.0, 0.000001, 0.00001, 1.0, 0.000001, 0.000001, 1.0, 0.000001, 0.000001,
+1.0, 0.000001, 0.000001, 1.0, 0.001, 0.000001, 1.0, 0.000001, 0.000001, 1.0, 0.000001, 0.000001, 1.0, 0.000001, 0.000001);
 
 
 
@@ -175,7 +143,7 @@ my $stack  = &ECstack($i);
 # define ec sector. The definition is independendt so that misalignment between sectors can be implemented if needed
 sub define_mothers
 {
-for(my $s=1; $s<=6; $s++)
+	for(my $s=1; $s<=6; $s++)
 	{
 		build_mother($s);
 	}
@@ -185,62 +153,62 @@ for(my $s=1; $s<=6; $s++)
 sub build_mother
 {
 	# generate red mother volume wireframe box, and write to a file.
-    my $sector= shift;
-
-    my %detector = init_det();
-    $detector{"name"}        = "ec_s".$sector;
-    $detector{"mother"}      = "fc";
-    $detector{"description"} = "Forward Calorimeter - Sector ".$sector;
+	my $sector= shift;
+	
+	my %detector = init_det();
+	$detector{"name"}        = "ec_s".$sector;
+	$detector{"mother"}      = "fc";
+	$detector{"description"} = "Forward Calorimeter - Sector ".$sector;
 	$detector{"pos"}         = ec_sec_pos($sector);
 	$detector{"rotation"}    = ec_sec_rot($sector);
 	$detector{"color"}       = "ff1111";
-    $detector{"type"}        = "G4Trap";
-    $detector{"dimensions"}  = "${pDzmom}*mm ${pThetamom}*deg ${pPhimom}*deg ${pDy1mom}*mm ${pDx1mom}*mm ${pDx2mom}*mm ${pAlp1mom}*deg ${pDy2mom}*mm ${pDx3mom}*mm ${pDx4mom}*mm ${pAlp2mom}*deg";
-    $detector{"material"}    = "G4_AIR";
-    $detector{"visible"}     = 0;
-    print_det(\%configuration, \%detector);
+	$detector{"type"}        = "G4Trap";
+	$detector{"dimensions"}  = "${pDzmom}*mm ${pThetamom}*deg ${pPhimom}*deg ${pDy1mom}*mm ${pDx1mom}*mm ${pDx2mom}*mm ${pAlp1mom}*deg ${pDy2mom}*mm ${pDx3mom}*mm ${pDx4mom}*mm ${pAlp2mom}*deg";
+	$detector{"material"}    = "G4_AIR";
+	$detector{"visible"}     = 0;
+	print_det(\%configuration, \%detector);
 }
 
 
 
 # now start to do the alternating layers of scintillator and lead. Set up inputs first.
 
-# All volumes produced are now placed in mother volume's coordinate sytem. 
-#  The Mother volume coordinate system has it's y axis running from the mother 
-#  volumes small angle vertex straight up to form a perpendicular angle at the 
-#  midpoint of the large angle side. 
+# All volumes produced are now placed in mother volume's coordinate sytem.
+#  The Mother volume coordinate system has it's y axis running from the mother
+#  volumes small angle vertex straight up to form a perpendicular angle at the
+#  midpoint of the large angle side.
 #
 #
-#                large angle side(top). 
-#         ...........................      
-#         \            |            / 
-#          .           |           .     
-#          \           |           /        
-#           .          |          .       
-#           \          |y_axis    /      
+#                large angle side(top).
+#         ...........................
+#         \            |            /
+#          .           |           .
+#          \           |           /
+#           .          |          .
+#           \          |y_axis    /
 #            .         |         .
 #            \         |         /
 #             .        |        .
-#             \        |        /   
+#             \        |        /
 #        _____________ o________x_axis____
-#              \       |       /        
-#               .      |      .   
-#               \      |      /           
-#                .     |     .  
-#                \     |     /           
-#                 .    |    .   
-#                 \    |    /               
-#                  .   |    .   
-#                  \   |   /                 
-#                    .  |   .  
-#                   \  |  /                   
-#                    . |  .        
-#                    \ | /                      
-#                    . | .           
-#                     \|/                        
-#                      .    
+#              \       |       /
+#               .      |      .
+#               \      |      /
+#                .     |     .
+#                \     |     /
+#                 .    |    .
+#                 \    |    /
+#                  .   |    .
+#                  \   |   /
+#                    .  |   .
+#                   \  |  /
+#                    . |  .
+#                    \ | /
+#                    . | .
+#                     \|/
+#                      .
 #             small angle vertex(bottom)
-#                     
+#
 my $subname;
 my $submother = "ec";
 my $description;
@@ -281,7 +249,7 @@ my $pAlp2  = $pTheta;
 
 sub define_lids
 {
-for(my $s=1; $s<=6; $s++)
+	for(my $s=1; $s<=6; $s++)
 	{
 		build_lids($s);
 	}
@@ -289,69 +257,69 @@ for(my $s=1; $s<=6; $s++)
 
 sub build_lids
 {
-
+	
 	# Generate first stainless cover using first scintillator dimensions
-    my $sector=shift;
-    
-    my $xscint = &sxcenter($i);
-    my $yscint = &sycenter($i);
-    my $zscint = &szcenter($i);
-    my $pDzlid = $d_steel1/2;
-    my $x_lid = $xscint;
-    my $y_lid = $yscint;
-    my $z_lid = $zscint-$pDz-$d_steel2-$d_foam-$d_steel1/2;
-    
-    my %detector = init_det();
-    $detector{"name"}        = "eclid1_s".$sector;
-    $detector{"mother"}      = "ec_s".$sector;
-    $detector{"description"} = "Stainless Steel Skin 1";
-    $detector{"pos"}         = "${x_lid}*mm ${y_lid}*mm ${z_lid}*mm";
-    $detector{"rotation"}    = $rotation;
-    $detector{"color"}       = "FCFFF0";
-    $detector{"type"}        = "G4Trap";
-    $detector{"dimensions"}  = "${pDzlid}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
-    $detector{"material"}    = "G4_STAINLESS-STEEL";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-
+	my $sector=shift;
+	
+	my $xscint = &sxcenter($i);
+	my $yscint = &sycenter($i);
+	my $zscint = &szcenter($i);
+	my $pDzlid = $d_steel1/2;
+	my $x_lid = $xscint;
+	my $y_lid = $yscint;
+	my $z_lid = $zscint-$pDz-$d_steel2-$d_foam-$d_steel1/2;
+	
+	my %detector = init_det();
+	$detector{"name"}        = "eclid1_s".$sector;
+	$detector{"mother"}      = "ec_s".$sector;
+	$detector{"description"} = "Stainless Steel Skin 1";
+	$detector{"pos"}         = "${x_lid}*mm ${y_lid}*mm ${z_lid}*mm";
+	$detector{"rotation"}    = $rotation;
+	$detector{"color"}       = "FCFFF0";
+	$detector{"type"}        = "G4Trap";
+	$detector{"dimensions"}  = "${pDzlid}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
 	# Generate Last-a-Foam layer using first scintillator dimensions
-
-    $pDzlid = $d_foam/2;
-    $z_lid = $zscint-$pDz-$d_steel2-$d_foam/2;
-
-    %detector = init_det();
-    $detector{"name"}        = "eclid2_s".$sector;
-    $detector{"mother"}      = "ec_s".$sector;
-    $detector{"description"} = "Last-a-Foam";
-    $detector{"pos"}         = "${x_lid}*mm ${y_lid}*mm ${z_lid}*mm";
-    $detector{"rotation"}    = $rotation;
-    $detector{"color"}       = "EED18C";
-    $detector{"type"}        = "G4Trap";
-    $detector{"dimensions"}  = "${pDzlid}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
-    $detector{"material"}    = "LastaFoam";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-
-
-
+	
+	$pDzlid = $d_foam/2;
+	$z_lid = $zscint-$pDz-$d_steel2-$d_foam/2;
+	
+	%detector = init_det();
+	$detector{"name"}        = "eclid2_s".$sector;
+	$detector{"mother"}      = "ec_s".$sector;
+	$detector{"description"} = "Last-a-Foam";
+	$detector{"pos"}         = "${x_lid}*mm ${y_lid}*mm ${z_lid}*mm";
+	$detector{"rotation"}    = $rotation;
+	$detector{"color"}       = "EED18C";
+	$detector{"type"}        = "G4Trap";
+	$detector{"dimensions"}  = "${pDzlid}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
+	$detector{"material"}    = "LastaFoam";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
+	
+	
 	# Second stainless steel cover using first scintillator dimensions
-
-    $pDzlid = $d_steel2/2;
-    $z_lid =  $zscint-$pDz-$d_steel2/2;
-
-    %detector = init_det();
-    $detector{"name"}        = "eclid3_s".$sector;
-    $detector{"mother"}      = "ec_s".$sector;
-    $detector{"description"} = "Stainless Steel Skin 2";
-    $detector{"pos"}         = "${x_lid}*mm ${y_lid}*mm ${z_lid}*mm";
-    $detector{"rotation"}    = $rotation;
-    $detector{"color"}       = "FCFFF0";
-    $detector{"type"}        = "G4Trap";
-    $detector{"dimensions"}  = "${pDzlid}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
-    $detector{"material"}    = "G4_STAINLESS-STEEL";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-
+	
+	$pDzlid = $d_steel2/2;
+	$z_lid =  $zscint-$pDz-$d_steel2/2;
+	
+	%detector = init_det();
+	$detector{"name"}        = "eclid3_s".$sector;
+	$detector{"mother"}      = "ec_s".$sector;
+	$detector{"description"} = "Stainless Steel Skin 2";
+	$detector{"pos"}         = "${x_lid}*mm ${y_lid}*mm ${z_lid}*mm";
+	$detector{"rotation"}    = $rotation;
+	$detector{"color"}       = "FCFFF0";
+	$detector{"type"}        = "G4Trap";
+	$detector{"dimensions"}  = "${pDzlid}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
 }
 
 sub define_scintlayers
@@ -365,139 +333,139 @@ sub define_scintlayers
 
 sub build_scintlayers
 {
-    my $sector = shift;
-    my $i      = 1;
-    my $xscint = &sxcenter($i);
-    my $yscint = &sycenter($i);
-    my $zscint = &szcenter($i);
-
+	my $sector = shift;
+	my $i      = 1;
+	my $xscint = &sxcenter($i);
+	my $yscint = &sycenter($i);
+	my $zscint = &szcenter($i);
+	
 	my $bindex = cnumber($i-1, 10);
 	
 	$view = &ECview($i);
 	$stack= &ECstack($i);
-
+	
 	$subname = "scint_$bindex"."_s".$sector."_view_$view"."_stack_$stack";
-
-    
+	
+	
 	
 	$description ="Forward Calorimeter scintillator layer ${i}";
-    $pos = "$xscint*mm $yscint*mm $zscint*mm";
-# a scintillator layer first. set the G4Trap parameters.
-
-    my $pDx1   = 0.001;  # should be zero, but that makes gemc crash.
-    my $pDx2   = &spDx2(1);
-    my $pDz    = $dscint/2.0;  #<-------------------------------------
-    my $pTheta = 0;
-    my $pPhi   = $pTheta;
-    my $pDy1   = &spDy(1);
-    my $pDy2   = $pDy1;
-    my $pDx3   = $pDx1;
-    my $pDx4   = $pDx2;
-    my $pAlp1  = $pTheta;
-    my $pAlp2  = $pTheta;
-    
-    my %detector = init_det();
-    $detector{"name"}        = $subname;
-    $detector{"mother"}      = "ec_s".$sector;
-    $detector{"description"} = $description;
-    $detector{"pos"}         = $pos;
-    $detector{"rotation"}    = $rotation;
-    $detector{"color"}       = "0147FA";
-    $detector{"type"}        = "G4Trap";
-    $detector{"dimensions"}  = "${pDz}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
-    $detector{"material"}    = "scintillator";
-    $detector{"style"}       = 1;
-    $detector{"sensitivity"} = "ec";
-    $detector{"hit_type"}    = "ec";
-    $detector{"identifiers"} = "sector manual $sector stack manual $stack view manual $view strip manual 36";
-    print_det(\%configuration, \%detector);
-
+	$pos = "$xscint*mm $yscint*mm $zscint*mm";
+	# a scintillator layer first. set the G4Trap parameters.
+	
+	my $pDx1   = 0.001;  # should be zero, but that makes gemc crash.
+	my $pDx2   = &spDx2(1);
+	my $pDz    = $dscint/2.0;  #<-------------------------------------
+	my $pTheta = 0;
+	my $pPhi   = $pTheta;
+	my $pDy1   = &spDy(1);
+	my $pDy2   = $pDy1;
+	my $pDx3   = $pDx1;
+	my $pDx4   = $pDx2;
+	my $pAlp1  = $pTheta;
+	my $pAlp2  = $pTheta;
+	
+	my %detector = init_det();
+	$detector{"name"}        = $subname;
+	$detector{"mother"}      = "ec_s".$sector;
+	$detector{"description"} = $description;
+	$detector{"pos"}         = $pos;
+	$detector{"rotation"}    = $rotation;
+	$detector{"color"}       = "0147FA";
+	$detector{"type"}        = "G4Trap";
+	$detector{"dimensions"}  = "${pDz}*mm ${pTheta}*deg ${pPhi}*deg ${pDy1}*mm ${pDx1}*mm ${pDx2}*mm ${pAlp1}*deg ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
+	$detector{"material"}    = "scintillator";
+	$detector{"style"}       = 1;
+	$detector{"sensitivity"} = "ec";
+	$detector{"hit_type"}    = "ec";
+	$detector{"identifiers"} = "sector manual $sector stack manual $stack view manual $view strip manual 36";
+	print_det(\%configuration, \%detector);
+	
 	# loop over layers and generates Geant4 parameters for each scint and lead layer.
-
-
-    for ($i = 2; $i <= $nlayers; $i++)
+	
+	
+	for ($i = 2; $i <= $nlayers; $i++)
 	{
-
+		
 		$view = &ECview($i);
-        $stack= &ECstack($i);
+		$stack= &ECstack($i);
 		$bindex = cnumber($i-1, 10);
 		
 		# lead layer
-
-        my $xlead = &sxcenterPb(${i});
-        my $ylead = &sycenterPb(${i});
-        my $zlead = &szcenterPb(${i});
-
- 
+		
+		my $xlead = &sxcenterPb(${i});
+		my $ylead = &sycenterPb(${i});
+		my $zlead = &szcenterPb(${i});
+		
+		
 		$subname = "lead_$bindex"."_s".$sector."_view_$view"."_stack_$stack";
-        $description = "Forward Calorimeter lead layer ${i}";
-        $pos  = "${xlead}*mm ${ylead}*mm ${zlead}*mm";         #position of center of trapezoid.
+		$description = "Forward Calorimeter lead layer ${i}";
+		$pos  = "${xlead}*mm ${ylead}*mm ${zlead}*mm";         #position of center of trapezoid.
 		$pDz  = $dlead/2.0;
-        $pDy1 = &spDy($i) - $beamVertexCut[$i-2];     
-        $pDy2 = $pDy1;
-        $pDx1 = $beamVertexCut[$i-2]*tan($gamma1/2);
-        $pDx3 = $pDx1;
-        $pDx2 = &spDx2($i);
-        $pDx4 = $pDx2;
-        $pTheta = 0;
-        $pPhi   = $pTheta;
-        $pAlp1  = $pTheta;
-        $pAlp2  = $pTheta;
-
-        %detector = init_det();
-        $detector{"name"}        = $subname;
-        $detector{"mother"}      = "ec_s".$sector;
-        $detector{"description"} = $description;
-        $detector{"pos"}         = $pos;
-        $detector{"rotation"}    = $rotation;
-        $detector{"color"}       = "7CFC00";
-        $detector{"type"}        = "G4Trap";
-        $detector{"dimensions"}  = "${pDz}*mm ${pTheta}*deg ${pPhi}*deg  ${pDy1}*mm ${pDx1}*mm  ${pDx2}*mm  ${pAlp1}*deg  ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
-        $detector{"material"}    = "G4_Pb";
-        $detector{"style"}       = 1;
-        print_det(\%configuration, \%detector);
-
+		$pDy1 = &spDy($i) - $beamVertexCut[$i-2];
+		$pDy2 = $pDy1;
+		$pDx1 = $beamVertexCut[$i-2]*tan($gamma1/2);
+		$pDx3 = $pDx1;
+		$pDx2 = &spDx2($i);
+		$pDx4 = $pDx2;
+		$pTheta = 0;
+		$pPhi   = $pTheta;
+		$pAlp1  = $pTheta;
+		$pAlp2  = $pTheta;
+		
+		%detector = init_det();
+		$detector{"name"}        = $subname;
+		$detector{"mother"}      = "ec_s".$sector;
+		$detector{"description"} = $description;
+		$detector{"pos"}         = $pos;
+		$detector{"rotation"}    = $rotation;
+		$detector{"color"}       = "7CFC00";
+		$detector{"type"}        = "G4Trap";
+		$detector{"dimensions"}  = "${pDz}*mm ${pTheta}*deg ${pPhi}*deg  ${pDy1}*mm ${pDx1}*mm  ${pDx2}*mm  ${pAlp1}*deg  ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
+		$detector{"material"}    = "G4_Pb";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+		
 		
 		
 		# scintillator layer
-
-        $xscint = &sxcenter($i);
-        $yscint = &sycenter($i);
-        $zscint = &szcenter($i);
-
+		
+		$xscint = &sxcenter($i);
+		$yscint = &sycenter($i);
+		$zscint = &szcenter($i);
+		
 		$subname = "scint_$bindex"."_s".$sector."_view_$view"."_stack_$stack";
-        $description ="Forward Calorimeter scintillator layer ${i}";
-        $pos = "${xscint}*mm ${yscint}*mm ${zscint}*mm";
-        $pDz = $dscint/2.0;
-        $pDy1 = &spDy($i); 
-        $pDy2 = $pDy1;
-        $pDx1 = 0.001;
-        $pDx3 = $pDx1;
-        $pDx2 = &spDx2($i); 
-        $pDx4 = $pDx2;
-        $pTheta = 0;
-        $pPhi   = $pTheta;
-        $pAlp1  = $pTheta;
-        $pAlp2  = $pTheta;
- 
-
-        %detector = init_det();
-        $detector{"name"}        = $subname;
-        $detector{"mother"}      = "ec_s".$sector;
-        $detector{"description"} = $description;
-        $detector{"pos"}         = $pos;
-        $detector{"rotation"}    = $rotation;
-        $detector{"color"}       = "0147FA";
-        $detector{"type"}        = "G4Trap";
-        $detector{"dimensions"}  = "${pDz}*mm ${pTheta}*deg ${pPhi}*deg  ${pDy1}*mm ${pDx1}*mm  ${pDx2}*mm  ${pAlp1}*deg  ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
-        $detector{"material"}    = "scintillator";
-        $detector{"style"}       = 1;
-        $detector{"sensitivity"} = "ec";
-        $detector{"hit_type"}    = "ec";
-        $detector{"identifiers"} = "sector manual $sector stack manual $stack view manual $view strip manual 36";
+		$description ="Forward Calorimeter scintillator layer ${i}";
+		$pos = "${xscint}*mm ${yscint}*mm ${zscint}*mm";
+		$pDz = $dscint/2.0;
+		$pDy1 = &spDy($i);
+		$pDy2 = $pDy1;
+		$pDx1 = 0.001;
+		$pDx3 = $pDx1;
+		$pDx2 = &spDx2($i);
+		$pDx4 = $pDx2;
+		$pTheta = 0;
+		$pPhi   = $pTheta;
+		$pAlp1  = $pTheta;
+		$pAlp2  = $pTheta;
+		
+		
+		%detector = init_det();
+		$detector{"name"}        = $subname;
+		$detector{"mother"}      = "ec_s".$sector;
+		$detector{"description"} = $description;
+		$detector{"pos"}         = $pos;
+		$detector{"rotation"}    = $rotation;
+		$detector{"color"}       = "0147FA";
+		$detector{"type"}        = "G4Trap";
+		$detector{"dimensions"}  = "${pDz}*mm ${pTheta}*deg ${pPhi}*deg  ${pDy1}*mm ${pDx1}*mm  ${pDx2}*mm  ${pAlp1}*deg  ${pDy2}*mm ${pDx3}*mm  ${pDx4}*mm  ${pAlp2}*deg";
+		$detector{"material"}    = "scintillator";
+		$detector{"style"}       = 1;
+		$detector{"sensitivity"} = "ec";
+		$detector{"hit_type"}    = "ec";
+		$detector{"identifiers"} = "sector manual $sector stack manual $stack view manual $view strip manual 36";
 		print_det(\%configuration, \%detector);
-
-    }
+		
+	}
 }
 
 
@@ -507,42 +475,42 @@ sub build_scintlayers
 # gives the x position of each scintillator layers geometric center inside the mother volume.
 sub sxcenter($)
 {
-    my $xcent = 0;
-    return $xcent;
+	my $xcent = 0;
+	return $xcent;
 }
 
 # gives the y position of each scintillator layers geometric center inside the mother volume.
 sub sycenter($)
 {
-    my $ycent = $a1*($_[0] - 1);
-    return $ycent;
+	my $ycent = $a1*($_[0] - 1);
+	return $ycent;
 }
 
 # gives the z position of each scintillator layers geometric center inside the mother volume.
 sub szcenter($)
 {
-    my $layer = $_[0];
-    my $zcent = -$totaldepth/2 + ($layer - 1)*($dscint + $dlead) + $dscint/2;
-    return $zcent;
+	my $layer = $_[0];
+	my $zcent = -$totaldepth/2 + ($layer - 1)*($dscint + $dlead) + $dscint/2;
+	return $zcent;
 }
 
 # lead positions.
 # gives the x position of each lead layers geometric center inside the mother volume.
 sub sxcenterPb($)
 {
-    my $xcentPb = 0;
-    return $xcentPb;
+	my $xcentPb = 0;
+	return $xcentPb;
 }
 # gives the y position of each lead layers geometric center inside the mother volume.
 sub sycenterPb($)
 {
-    my $ycentPb = &sycenter($_[0]) + $beamVertexCut[$_[0]-2]/2;
-    return $ycentPb;
+	my $ycentPb = &sycenter($_[0]) + $beamVertexCut[$_[0]-2]/2;
+	return $ycentPb;
 }
 #gives the z position of each lead layers geometric center inside the mother volume.
 sub szcenterPb($){
-    my $zcentPb = -$totaldepth/2 + ($_[0] - 2)*($dscint + $dlead) + $dscint/2 + ($dscint+$dlead)/2;
-    return $zcentPb;
+	my $zcentPb = -$totaldepth/2 + ($_[0] - 2)*($dscint + $dlead) + $dscint/2 + ($dscint+$dlead)/2;
+	return $zcentPb;
 }
 
 # half-widths of lead and scintillator layers.
@@ -550,15 +518,15 @@ sub szcenterPb($){
 # gives half y distance of trapezoidal EC layer $i,
 sub spDy($)
 {
-    my $ywidth = $a2 + $a3*($_[0] - 1);
-    return $ywidth;
+	my $ywidth = $a2 + $a3*($_[0] - 1);
+	return $ywidth;
 }
 
 # gives half x distance of trapezoidal EC layer $i;
 sub spDx2($)
 {
-    my $xwidth = (2*&spDy($_[0]))/($tantheta);
-    return $xwidth;
+	my $xwidth = (2*&spDy($_[0]))/($tantheta);
+	return $xwidth;
 }
 
 
@@ -567,58 +535,58 @@ sub spDx2($)
 # using the layer to generate a number (1,2,3) for the different views (U, V,W).
 sub ECview($)
 {
-
-    my $layer = $_[0];
-    my $mod = $layer%3;
-
-    my $view = 4;
-    if ($mod == 1) {$view = 1;}
-    if ($mod == 2) {$view = 2;}
-    if ($mod == 0) {$view = 3;}
-
-    if ($view == 4) {print "**** WARNING: No View assignment made. ****\n";}
-
-    return $view;
+	
+	my $layer = $_[0];
+	my $mod = $layer%3;
+	
+	my $view = 4;
+	if ($mod == 1) {$view = 1;}
+	if ($mod == 2) {$view = 2;}
+	if ($mod == 0) {$view = 3;}
+	
+	if ($view == 4) {print "**** WARNING: No View assignment made. ****\n";}
+	
+	return $view;
 }
 
 # using the layer to generate a number (1,2,3) for the inner and outer stacks in the EC.
 sub ECstack($)
 {
-
-    my $layer = $_[0];
-
-    my $stack = 3;
-    if ($layer <= 15) {$stack = 1;}
-    if ($layer >  15) {$stack = 2;}
-    if ($stack == 3) {print "**** WARNING: No Stack assignment made. ****\n";
-    }
-
-    return $stack;
+	
+	my $layer = $_[0];
+	
+	my $stack = 3;
+	if ($layer <= 15) {$stack = 1;}
+	if ($layer >  15) {$stack = 2;}
+	if ($stack == 3) {print "**** WARNING: No Stack assignment made. ****\n";
+	}
+	
+	return $stack;
 }
 
 
 sub ec_sec_pos
 {
 	my $sector = shift;
-    # the ec sector is created on the xy plane with the tip toward the z axis, however it is placed  with the center at x=0
-    # in a position that does not correspond to any actual sector. Sector one is with y = 0. In order to calculate the
-    # position we need to rotate the center around the z axis, the rotation is negative (counterclockwise) by 60 degree for each sector, but
-    # there is an initial positive rotation of 90 to bring the first sector from x=0 to y=0
-    # my $phi = ($sector - 1)*60;
-    my $phi =  -($sector-1)*60 + 90;
-    my $x = fstr($CLAS12center[0]*cos(rad($phi))+$CLAS12center[1]*sin(rad($phi)));
-    my $y = fstr(-$CLAS12center[0]*sin(rad($phi))+$CLAS12center[1]*cos(rad($phi)));
-    my $z = fstr($CLAS12center[2]);
+	# the ec sector is created on the xy plane with the tip toward the z axis, however it is placed  with the center at x=0
+	# in a position that does not correspond to any actual sector. Sector one is with y = 0. In order to calculate the
+	# position we need to rotate the center around the z axis, the rotation is negative (counterclockwise) by 60 degree for each sector, but
+	# there is an initial positive rotation of 90 to bring the first sector from x=0 to y=0
+	# my $phi = ($sector - 1)*60;
+	my $phi =  -($sector-1)*60 + 90;
+	my $x = fstr($CLAS12center[0]*cos(rad($phi))+$CLAS12center[1]*sin(rad($phi)));
+	my $y = fstr(-$CLAS12center[0]*sin(rad($phi))+$CLAS12center[1]*cos(rad($phi)));
+	my $z = fstr($CLAS12center[2]);
 	
 	return "$x*mm $y*mm $z*mm";
 }
 
 sub ec_sec_rot
 {
-    #the ec_sec_pos position the six sectors in the right place but they are all oriented vertically (tip pointing in the -y direction) 
-    #and they are not tilted
-    #this sub routine will rotate them on themselves by 60 counterclockwise, plus there is an additional rotation of 90 clockwise to have sector 1
-    #correct (pointing in the -x direction). After the rotation around their own z axes is done, each sector is tilted around x. 
+	#the ec_sec_pos position the six sectors in the right place but they are all oriented vertically (tip pointing in the -y direction)
+	#and they are not tilted
+	#this sub routine will rotate them on themselves by 60 counterclockwise, plus there is an additional rotation of 90 clockwise to have sector 1
+	#correct (pointing in the -x direction). After the rotation around their own z axes is done, each sector is tilted around x.
 	my $sector = shift;
 	
 	my $tilt  = fstr($thetaEC_deg);
@@ -626,7 +594,15 @@ sub ec_sec_rot
 	return "ordered: zxy $zrot*deg $tilt*deg 0*deg ";
 }
 
-define_mothers();
-define_lids();
-define_scintlayers();
+sub makeEC
+{
+	define_mothers();
+	define_lids();
+	define_scintlayers();
+}
+
+
+1;
+
+
 

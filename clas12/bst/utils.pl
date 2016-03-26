@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 our %configuration;
-our %parameters    = get_parameters(%configuration);
+our %parameters;
 our @nsegments;
 our $nregions;
 

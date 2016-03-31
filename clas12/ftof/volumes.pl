@@ -30,11 +30,11 @@ sub makeFTOF
 
 		my %detector = init_det();
 
-		$detector{"name"}		= $vname;
-		$detector{"mother"}		= $mothers->{$vname};
-		$detector{"pos"}		= $positions->{$vname};
-		$detector{"rotation"}	= $rotations->{$vname};
-		$detector{"type"}		= $types->{$vname};
+		$detector{"name"}		   = $vname;
+		$detector{"mother"}     = $mothers->{$vname};
+		$detector{"pos"}		   = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}		   = $types->{$vname};
 		$detector{"dimensions"}	= $dimensions->{$vname};
 
 		# if the volume is mother volume (not a paddle)
@@ -50,7 +50,7 @@ sub makeFTOF
 			$detector{"style"}       = 0;
 		}
 		else {
-			$detector{"description"}  = "paddle $paddle - Panel $layernames[$layer-1] - Sector $sector";
+			$detector{"description"}  = "paddle $paddle - Layer $layer (panel $layernames[$layer-1]) - Sector $sector";
 			$detector{"color"}        = "ff11aa";
 			$detector{"material"}     = "scintillator";
 			$detector{"mfield"}       = "no";
@@ -58,7 +58,7 @@ sub makeFTOF
 			$detector{"style"}        = 1;
 			$detector{"sensitivity"}  = "ftof_p$layernames[$layer-1]";
 			$detector{"hit_type"}     = "ftof_p$layernames[$layer-1]";
-			$detector{"identifiers"}  = "sector manual $sector panel manual 1 paddle manual $paddle";
+			$detector{"identifiers"}  = "sector manual $sector panel manual $layer paddle manual $paddle";
 		}
 		print_det(\%configuration, \%detector);
 	}

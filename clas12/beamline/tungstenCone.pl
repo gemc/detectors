@@ -51,12 +51,6 @@ sub tungstenCone()
 	
 	else
 	{
-		my $zConeStart           = 433.9;  # htcc starts at 384 with ID 60.96
-		if($configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTWithInnerShield")
-		{
-			$zConeStart          = 750.0;
-		}
-		
 		# Tungsten Cone
 		my $totalShieldLength    = 1010.;
 		my $partialShieldLength  = 115.4;
@@ -67,8 +61,30 @@ sub tungstenCone()
 		my $shieldOR3            = 152.1/2.0;
 		my $tgTheta              = ($shieldOR3 - $shieldOR1) / $totalShieldLength;
 		my $shieldOR2            = $shieldOR3 - $partialShieldLength*$tgTheta;
-		
-		
+
+        my $zConeStart           = 433.9;  # htcc starts at 384 with ID 60.96
+        
+        my $tantheta25 = 0.0435;
+        if($configuration{"variation"} eq "realityWithFT" ||
+           $configuration{"variation"} eq "realityWithFTWithInnerShield" ||
+           $configuration{"variation"} eq "realityWithFTWithHeliumBag")
+        {
+            $zConeStart          = 750.0;
+        }
+        elsif($configuration{"variation"} eq "finalWithFT" ||
+              $configuration{"variation"} eq "finalNoFT"   ||
+              $configuration{"variation"} eq "finalWithFTNotUsed" ) {
+            $zConeStart           = 850.0;
+            $totalShieldLength    = 1010. - 100.;
+            $partialShieldLengthI = $totalShieldLength - $partialShieldLength;
+            $shieldOR1            = $zConeStart*$tantheta25;
+            $shieldIR1            = $shieldOR1-2;
+            $shieldOR2            = $shieldOR3 - $partialShieldLength*$tantheta25;
+            if($configuration{"variation"} eq "finalNoFT" || $configuration{"variation"} eq "finalWithFTNotUsed") {
+                $zConeStart           = 433.9+100.;
+            }
+        }
+        
 		my $nplanes_tcone = 4;
 		my @iradius_tcone  = ( $shieldIR1,            $shieldIR1,            $shieldIR2,         $shieldIR2 );
 		my @oradius_tcone  = ( $shieldOR1,            $shieldOR2,            $shieldOR2,         $shieldOR3 );
@@ -93,7 +109,10 @@ sub tungstenCone()
 		
 		
         # Shield after cone - LEAD
-        if($configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTWithInnerShield") {
+        if( $configuration{"variation"} eq "realityWithFT"    ||
+            $configuration{"variation"} eq "finalWithFT" ||
+            $configuration{"variation"} eq "realityWithFTWithHeliumBag" ||
+            $configuration{"variation"} eq "realityWithFTWithInnerShield") {
             ;
         }
         else {
@@ -121,7 +140,10 @@ sub tungstenCone()
             my $sstsz5       = $sstsz4;
             my $sstsz6       = $sstsz5 + 20;
 		
-            if($configuration{"variation"} eq "realityWithFTNotUsed" || $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" ||  $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag")
+            if($configuration{"variation"} eq "realityWithFTNotUsed" ||
+               $configuration{"variation"} eq "finalWithFTNotUsed"   ||
+               $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" ||
+               $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag")
             {
                 $coneTubeShieldLength = (316.1 + 49.61) / 2.0;
                 $nplanes_ssts = 6;
@@ -136,9 +158,9 @@ sub tungstenCone()
                 $sstsz6       = $sstsz3 + $coneTubeShieldLength*2;
                 
             }
-		
-		
+            
             my $coneTubeZpos         = $zConeStart + $totalShieldLength + $coneTubeShieldLength;
+            
             %detector = init_det();
             $detector{"name"}        = "leadShieldAfterCone";
             $detector{"mother"}      = "root";
@@ -150,7 +172,7 @@ sub tungstenCone()
             $detector{"material"}    = "G4_Pb";
             $detector{"style"}       = 1;
             print_det(\%configuration, \%detector);
-		
+            
 		
 		
             # Stainless steel support of the FT cone (if FT is not used0
@@ -177,7 +199,7 @@ sub tungstenCone()
             $detector{"style"}       = 1;
             print_det(\%configuration, \%detector);
 		
-		
+
             # Additional Cone on top of the FT cone
             my $addLength = 300;
             my $addY      = $shieldOR3*tan(2.5/180*3.141592);
@@ -205,7 +227,42 @@ sub tungstenCone()
             $detector{"dimensions"}  = $dimen;
             $detector{"material"}    = "beamline_W";
             $detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
+            print_det(\%configuration, \%detector);
+            
+            
+            if($configuration{"variation"} eq "finalNoFT" ||
+               $configuration{"variation"} eq "finalWithFTNotUsed")
+            {
+                my $nplanes_ConeTip = 4;
+                
+                my $length_ConeTip  = 100;
+                my $zConeTipStart   = $zConeStart - $length_ConeTip;
+                my $zConeTipEnd     = $zConeStart + $length_ConeTip;
+                my $TipIR1          = 60.0/2.0;
+                my $TipOR1          = 64.0/2.0;
+                
+                my @iradius_ConeTip  = ( $TipIR1,    $TipIR1,    $TipIR1,    $TipIR1 );
+                my @oradius_ConeTip  = ( $TipOR1, $shieldOR1, $shieldIR1, $shieldIR1 );
+                my @z_plane_ConeTip  = (       0, $zConeStart - $zConeTipStart, $zConeStart - $zConeTipStart, $zConeTipEnd - $zConeTipStart );
+                
+                %detector = init_det();
+                $detector{"name"}        = "ConeTip";
+                $detector{"mother"}      = "root";
+                $detector{"description"} = "Tungsten cone tip";
+                $detector{"pos"}         = "0*mm 0.0*mm $zConeTipStart*mm";
+                $detector{"color"}       = $tungstenColor;
+                $detector{"type"}        = "Polycone";
+                $dimen = "0.0*deg 360*deg $nplanes_ConeTip*counts";
+                for(my $i = 0; $i <$nplanes_ConeTip; $i++) {$dimen = $dimen ." $iradius_ConeTip[$i]*mm";}
+                for(my $i = 0; $i <$nplanes_ConeTip; $i++) {$dimen = $dimen ." $oradius_ConeTip[$i]*mm";}
+                for(my $i = 0; $i <$nplanes_ConeTip; $i++) {$dimen = $dimen ." $z_plane_ConeTip[$i]*mm";}
+                $detector{"dimensions"}  = $dimen;
+                $detector{"material"}    = "beamline_W";
+                $detector{"style"}       = 1;
+                print_det(\%configuration, \%detector);
+                
+                
+            }
 		}
 		
 	}

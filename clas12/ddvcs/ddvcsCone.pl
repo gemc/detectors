@@ -24,7 +24,7 @@ our %configuration;
 
 sub build_ddvcsCone
 {
-	$configuration{"variation"} = "60cm" ;
+   #$configuration{"variation"} = "60cm" ;
 	my %detector = init_det();
 	$detector{"name"}        = "ddvcsCone";
 	$detector{"mother"}      = "root";
@@ -34,9 +34,9 @@ sub build_ddvcsCone
 	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 70*mm 105*mm 0.7*m 1.12*m  1*m 1.6*m";
 	$detector{"material"}    = "G4_Fe";
 	$detector{"style"}       = "1";
-	print_det(\%configuration, \%detector);
+   #print_det(\%configuration, \%detector);
 	
-	$configuration{"variation"} = "80cm" ;
+   #$configuration{"variation"} = "80cm" ;
 	%detector = init_det();
 	$detector{"name"}        = "ddvcsCone";
 	$detector{"mother"}      = "root";
@@ -46,9 +46,9 @@ sub build_ddvcsCone
 	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 70*mm 105*mm 0.7*m 1.12*m  1*m 1.8*m";
 	$detector{"material"}    = "G4_Fe";
 	$detector{"style"}       = "1";
-	print_det(\%configuration, \%detector);
+   print_det(\%configuration, \%detector);
 
-	$configuration{"variation"} = "100cm" ;
+   #$configuration{"variation"} = "100cm" ;
 	%detector = init_det();
 	$detector{"name"}        = "ddvcsCone";
 	$detector{"mother"}      = "root";
@@ -58,6 +58,6 @@ sub build_ddvcsCone
 	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 70*mm 105*mm 0.7*m 1.12*m  1*m 2.0*m";
 	$detector{"material"}    = "G4_Fe";
 	$detector{"style"}       = "1";
-	print_det(\%configuration, \%detector);
+   #print_det(\%configuration, \%detector);
 }
 

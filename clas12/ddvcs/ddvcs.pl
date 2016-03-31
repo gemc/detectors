@@ -37,14 +37,8 @@ require "./materials.pl";
 
 
 # Loading DDVCS geometry routines specific subroutines
-#require "./ddvcsCone.pl";
+require "./ddvcsCone.pl";
 require "./muCal.pl";
-
-
-#build_ddvcsCone();
-
-
-#make_mu_cal();
 
 # all the scripts must be run for every configuration
 my @allConfs = ("original");
@@ -58,6 +52,7 @@ foreach my $conf ( @allConfs )
 	
 	# geometry
 	make_mu_cal();
+   build_ddvcsCone();
 	
 }
 

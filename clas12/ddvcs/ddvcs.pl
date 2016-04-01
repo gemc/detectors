@@ -28,13 +28,14 @@ if( scalar @ARGV != 1)
 	exit;
 }
 
+our $pi    = 3.141592653589793238;
+our $toRad = $pi/180.0;
+
 # Loading configuration file from argument
 our %configuration = load_configuration($ARGV[0]);
 
-
 # materials
 require "./materials.pl";
-
 
 # Loading DDVCS geometry routines specific subroutines
 require "./ddvcsCone.pl";

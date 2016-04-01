@@ -4,9 +4,13 @@ use warnings;
 our %configuration;
 
 
-my $Cwidth  =   20.0;    # Crystal width in mm (side of the squared front face)
+my $CwidthU =   13.0;    # Upstream   crystal width in mm (side of the squared front face)
+my $CwidthU =   17.0;    # Downstream crystal width in mm (side of the squared front face)
 my $Clength =  200.0;    # Crystal length in mm
-my $CZpos   =  500.0;    # Position of the front face of the crystals
+
+my $CZpos      =  500.0;    # Position of the front face of the crystals
+my $entryAngle = 7*$toRad;
+my $exitAngle  = 30*$toRad;
 
 my $calIR     = 100;
 my $calOR     = 1000;

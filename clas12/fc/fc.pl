@@ -71,6 +71,11 @@ sub build_fc
 	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
+	
+
+	$configuration{"variation"} = "fastField" ;
+	$detector{"mfield"}      = "clas12-torus-bigRK";
+	print_det(\%configuration, \%detector);
 }
 
 

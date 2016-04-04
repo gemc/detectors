@@ -18,7 +18,7 @@ sub gapLine()
 	{
 		$zEnd = 750.0;
 	}
-    if( $configuration{"variation"} eq "finalWithFT" )
+    if( $configuration{"variation"} eq "FTOn" )
     {
         $zEnd = 850.0;
     }

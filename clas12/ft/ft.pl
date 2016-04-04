@@ -48,7 +48,7 @@ require "./materials.pl";
 
 define_banks();
 # all the scripts must be run for every configuration
-my @allConfs = ("original", "WithInnerSST", "WithInnerShield", "NotUsed", "NotUsedWithInnerSST", "NotUsedWithInnerShield");
+my @allConfs = ("FTOn", "FTOff", "WithInnerSST", "WithInnerShield", "NotUsedWithInnerSST", "NotUsedWithInnerShield");
 
 foreach my $conf ( @allConfs )
 {
@@ -62,7 +62,7 @@ foreach my $conf ( @allConfs )
     #make_ft_shield();
     make_ft_cal();
     make_ft_hodo();
-    if($configuration{"variation"} eq "original" || $configuration{"variation"} eq "WithInnerSST" || $configuration{"variation"} eq "WithInnerShield" ) {
+    if($configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "WithInnerSST" || $configuration{"variation"} eq "WithInnerShield" ) {
         make_ft_trk();
     }
 }

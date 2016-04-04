@@ -14,22 +14,5 @@
    <option name="OUTPUT" value="evio, out.ev"/>
 	
 	<option name="HALL_FIELD"  value="clas12-solenoid"/>
-
-	<!-- removing the first 2 regions of MM -->
-   <detector name="SL2_1">
-      <existence exist="no"/>
-   </detector>
-   
-   <detector name="SL2_2">
-      <existence exist="no"/>
-   </detector>
-   
-   <detector name="SL2_3">
-      <existence exist="no"/>
-   </detector>
-   
-   <detector name="SL2_4">
-      <existence exist="no"/>
-   </detector>
    
 </gcard>

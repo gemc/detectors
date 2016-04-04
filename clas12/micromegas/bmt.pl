@@ -138,14 +138,15 @@ my $SL_dz = $bmt_dz;
 sub build_bmt
 {
 	make_bmt();
-	make_sl(1);
-	make_sl(2);
-	make_sl(3);
-	make_sl(4);
+	#	make_sl(1);
+	#	make_sl(2);
+	#	make_sl(3);
+	#	make_sl(4);
 	make_sl(5);
 	make_sl(6);
 	
-	for(my $l = 0; $l < $nlayer; $l++)
+	for(my $l = 4; $l < 6; $l++)
+	#	for(my $l = 0; $l < $nlayer; $l++)
 	{
 		
 		place_coverlay($l);

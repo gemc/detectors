@@ -33,7 +33,7 @@ sub vacuumLine()
 	{
 		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
 	}
-    if( $configuration{"variation"} eq "finalWithFT") {
+    if( $configuration{"variation"} eq "FTOn") {
         @z_plane_vbeam  =  ( 850.0, $tzs, $tzs, $tze, $tze, 11000 );
     }
 

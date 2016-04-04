@@ -71,16 +71,16 @@ sub tungstenCone()
         {
             $zConeStart          = 750.0;
         }
-        elsif($configuration{"variation"} eq "finalWithFT" ||
+        elsif($configuration{"variation"} eq "FTOn" ||
               $configuration{"variation"} eq "finalNoFT"   ||
-              $configuration{"variation"} eq "finalWithFTNotUsed" ) {
+              $configuration{"variation"} eq "FTOff" ) {
             $zConeStart           = 850.0;
             $totalShieldLength    = 1010. - 100.;
             $partialShieldLengthI = $totalShieldLength - $partialShieldLength;
             $shieldOR1            = $zConeStart*$tantheta25;
             $shieldIR1            = $shieldOR1-2;
             $shieldOR2            = $shieldOR3 - $partialShieldLength*$tantheta25;
-            if($configuration{"variation"} eq "finalNoFT" || $configuration{"variation"} eq "finalWithFTNotUsed") {
+            if($configuration{"variation"} eq "finalNoFT" || $configuration{"variation"} eq "FTOff") {
                 $zConeStart           = 433.9+100.;
             }
         }
@@ -110,7 +110,7 @@ sub tungstenCone()
 		
         # Shield after cone - LEAD
         if( $configuration{"variation"} eq "realityWithFT"    ||
-            $configuration{"variation"} eq "finalWithFT" ||
+            $configuration{"variation"} eq "FTOn" ||
             $configuration{"variation"} eq "realityWithFTWithHeliumBag" ||
             $configuration{"variation"} eq "realityWithFTWithInnerShield") {
             ;
@@ -141,7 +141,7 @@ sub tungstenCone()
             my $sstsz6       = $sstsz5 + 20;
 		
             if($configuration{"variation"} eq "realityWithFTNotUsed" ||
-               $configuration{"variation"} eq "finalWithFTNotUsed"   ||
+               $configuration{"variation"} eq "FTOff"   ||
                $configuration{"variation"} eq "realityWithFTNotUsedWithInnerShield" ||
                $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag")
             {
@@ -231,7 +231,7 @@ sub tungstenCone()
             
             
             if($configuration{"variation"} eq "finalNoFT" ||
-               $configuration{"variation"} eq "finalWithFTNotUsed")
+               $configuration{"variation"} eq "FTOff")
             {
                 my $nplanes_ConeTip = 4;
                 

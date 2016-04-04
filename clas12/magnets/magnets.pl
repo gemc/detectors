@@ -37,6 +37,11 @@ require "./torus.pl";
 # all the scripts must be run for every configuration
 my @allConfs = ("original");
 
+# manually removing the txt files as the scripts are not meant to produce 2 different
+# systems
+system('rm *.txt');
+
+
 # the configuration here is passed as an argument
 foreach my $conf ( @allConfs )
 {

@@ -4,42 +4,33 @@ use Getopt::Long;
 use Math::Trig;
 
 our %configuration;
-our $toRad ;
+our $microgap;
 
+our $CZpos;    # Position of the front face of the crystals
+our $Clength;    # Crystal length in mm
 
-my $entryAngle = 7*$toRad;
-my $exitAngle  = 30*$toRad;
-my $microgap = 0.1;
+our $supportLength;
 
+our $pipeOR ;
+our $CrminU;
 
-my $pipeIR = 25;
-my $pipeOR = 27.5;
-my $pipeL  = 500;
-my $Clength =  200.0;    # Crystal length in mm
+our $Smax;
 
-my $CZpos  =  500.0;    # Position of the front face of the crystals
-
-my $rminU = $CZpos*tan($entryAngle) - $microgap;
-my $rminD = $rminU + $Clength*tan($entryAngle);
-
-my $supportLength = 50;
-
-my $rmaxU  = $CZpos*tan($exitAngle);
-my $rmaxD  = $rmaxU + $Clength*tan($exitAngle);
-my $rmaxD2 = $rmaxD + $supportLength*tan($exitAngle) + 10;
-my $rmaxD3 = $rmaxD2 + 300*tan($exitAngle) + 10;
-
+our $TSrmax;
+our $TSThick;
+our $TSLength;
 
 
 sub buildBeamShield
 {
 	
    my $startz = $CZpos +  $Clength + $supportLength + $microgap;
-   my @mucal_zpos    = ( $startz, $startz+ 300, $startz + 300, $startz + 1500);
-   
+	
    my $pipeORS = $pipeOR + $microgap;
-   my @mucal_iradius = ( $pipeORS, $pipeORS           , $pipeORS           ,  $pipeORS                           );
-   my @mucal_oradius = ( $rmaxD2, $rmaxD3            , $rminU            ,  $rminU                           );
+
+	my @mucal_zpos    = ( $startz , $startz+ $TSThick  , $startz + $TSThick , $startz + $TSLength);
+   my @mucal_iradius = ( $pipeORS, $pipeORS           , $pipeORS           ,  $pipeORS          );
+   my @mucal_oradius = ( $Smax   , $TSrmax            , $CrminU            ,  $CrminU           );
 
    
    my $nplanes = 4;

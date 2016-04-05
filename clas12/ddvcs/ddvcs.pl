@@ -30,6 +30,38 @@ if( scalar @ARGV != 1)
 
 our $pi    = 3.141592653589793238;
 our $toRad = $pi/180.0;
+our $microgap = 0.1;
+
+our $CwidthU =   13.0;    # Upstream   crystal width in mm (side of the squared front face)
+our $CwidthD =   17.0;    # Downstream crystal width in mm (side of the squared front face)
+our $Clength =  200.0;    # Crystal length in mm
+
+our $CZpos      =  500.0;    # Position of the front face of the crystals
+our $CentryAngle = 7*$toRad;
+our $CexitAngle  = 30*$toRad;
+
+our $CrminU = $CZpos*tan($CentryAngle);
+our $CrmaxU = $CZpos*tan($CexitAngle);
+
+our $CrminD = $CrminU + $Clength*tan($CentryAngle);
+our $CrmaxD = $CrmaxU + $Clength*tan($CexitAngle);
+
+
+# aluminum support
+our $supportLength = 50;
+our $Smax = $CrmaxD + $supportLength*tan($CexitAngle); # support max
+
+our $pipeIR = 29;
+our $pipeOR = 31.5;
+our $pipeL  = 1000;
+
+
+# shield
+our $TSThick  = 300;
+our $TSLength = 1500;
+our $TSrmax = $Smax + $TSThick*tan($CexitAngle) + 10;
+
+
 
 # Loading configuration file from argument
 our %configuration = load_configuration($ARGV[0]);

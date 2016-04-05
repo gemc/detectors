@@ -2,32 +2,28 @@ use strict;
 use warnings;
 
 our %configuration;
-our $toRad ;
+our $toRad;
+our $microgap;
 
 
-my $CwidthU =   13.0;    # Upstream   crystal width in mm (side of the squared front face)
-my $CwidthD =   17.0;    # Downstream crystal width in mm (side of the squared front face)
-my $Clength =  200.0;    # Crystal length in mm
+our $CwidthU;    # Upstream   crystal width in mm (side of the squared front face)
+our $CwidthD;    # Downstream crystal width in mm (side of the squared front face)
+our $Clength;    # Crystal length in mm
 
-my $CZpos      =  500.0;    # Position of the front face of the crystals
-my $entryAngle = 7*$toRad;
-my $exitAngle  = 30*$toRad;
+our $CZpos;    # Position of the front face of the crystals
 
+our $CrminU;
+our $CrmaxU;
 
-my $microgap = 0.1;
-
-my $rminU = $CZpos*tan($entryAngle);
-my $rmaxU = $CZpos*tan($exitAngle);
-
-my $rminD = $rminU + $Clength*tan($entryAngle);
-my $rmaxD = $rmaxU + $Clength*tan($exitAngle);
+our $CrminD;
+our $CrmaxD;
 
 
 sub make_mucal_mvolume
 {	
 	my @mucal_zpos    = ( $CZpos - $microgap, $CZpos + $Clength + $microgap );
-	my @mucal_iradius = ( $rminU - $microgap, $rminD - $microgap );
-	my @mucal_oradius = ( $rmaxU - $microgap, $rmaxD - $microgap );
+	my @mucal_iradius = ( $CrminU - $microgap, $CrminD - $microgap );
+	my @mucal_oradius = ( $CrmaxU - $microgap, $CrmaxD - $microgap );
 
 	my $nplanes = 2;
 	
@@ -56,14 +52,14 @@ sub make_mucal_mvolume
 # PbWO4 Crystal;
 sub make_mucal_crystals
 {
-	my $nCrystal = 2*$rmaxU / $CwidthU;
+	my $nCrystal = 2*$CrmaxU / $CwidthU;
 	
 	for(my $iX = 0; $iX < $nCrystal; $iX++)
 	{
 		for(my $iY = 0; $iY < $nCrystal; $iY++)
 		{
-			my $centerX = - $rmaxU + $iX*$CwidthU + 0.5*$CwidthU;
-			my $centerY = - $rmaxU + $iY*$CwidthU + 0.5*$CwidthU;
+			my $centerX = - $CrmaxU + $iX*$CwidthU + 0.5*$CwidthU;
+			my $centerY = - $CrmaxU + $iY*$CwidthU + 0.5*$CwidthU;
 			
 			my $x12 = ($centerX - 0.5*$CwidthU)*($centerX - 0.5*$CwidthU);
 			my $x22 = ($centerX + 0.5*$CwidthU)*($centerX + 0.5*$CwidthU);
@@ -75,10 +71,10 @@ sub make_mucal_crystals
 			my $rad3 = sqrt($x12 + $y22);
 			my $rad4 = sqrt($x22 + $y12);
 			
-			if($rad1 > $rminU + $microgap && $rad1 < $rmaxU - $microgap &&
-				$rad2 > $rminU + $microgap && $rad2 < $rmaxU - $microgap &&
-				$rad3 > $rminU + $microgap && $rad3 < $rmaxU - $microgap &&
-				$rad4 > $rminU + $microgap && $rad4 < $rmaxU - $microgap
+			if($rad1 > $CrminU + $microgap && $rad1 < $CrmaxU - $microgap &&
+				$rad2 > $CrminU + $microgap && $rad2 < $CrmaxU - $microgap &&
+				$rad3 > $CrminU + $microgap && $rad3 < $CrmaxU - $microgap &&
+				$rad4 > $CrminU + $microgap && $rad4 < $CrmaxU - $microgap
 				)
 			{
 				
@@ -118,31 +114,6 @@ sub make_mu_cal
 {
    make_mucal_mvolume();
    make_mucal_crystals();
-}
-
-
-
-sub thetaFromVector
-{
-   my $x = shift;
-   my $y = shift;
-   my $z = shift;
-
-
-   my $radius = sqrt($x*$x + $y*$y + $z*$z);
-   
-   return acos($z/$radius)/$toRad;
-
-}
-
-
-
-sub phiFromVector
-{
-   my $x = shift;
-   my $y = shift;
-
-   return atan($y/$x)/$toRad;
 }
 
 

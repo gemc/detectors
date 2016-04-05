@@ -4,30 +4,22 @@ use Getopt::Long;
 use Math::Trig;
 
 our %configuration;
-our $toRad ;
+our $microgap = 0.1;
+our $CZpos;    # Position of the front face of the crystals
+our $Clength;    # Crystal length in mm
+
+our $supportLength;
+our $pipeIR ;
+our $pipeOR ;
+our $pipeL;
 
 
-my $entryAngle = 7*$toRad;
-my $exitAngle  = 30*$toRad;
-my $microgap = 0.1;
+our $CrminD;
+our $CrmaxD;
 
+our $Smax ;
 
-my $pipeIR = 25;
-my $pipeOR = 27.5;
-my $pipeL  = 1000;
-my $Clength =  200.0;    # Crystal length in mm
-
-my $CZpos  =  500.0;    # Position of the front face of the crystals
-
-my $rminU = $CZpos*tan($entryAngle) - $microgap;
-my $rminD = $rminU + $Clength*tan($entryAngle);
-
-my $supportLength = 50;
-
-my $rmaxU  = $CZpos*tan($exitAngle);
-my $rmaxD  = $rmaxU + $Clength*tan($exitAngle);
-my $rmaxD2 = $rmaxD + $supportLength*tan($exitAngle);
-
+our $CrminU;
 
 
 sub buildBeamPipe
@@ -45,12 +37,11 @@ sub buildBeamPipe
 	$detector{"style"}       = "1";
    print_det(\%configuration, \%detector);
 	
-   
-   my @mucal_zpos    = ( $CZpos , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength);
-   
-   my $pipeORS = $pipeOR + $microgap;
-   my @mucal_iradius = ( $pipeORS, $pipeORS           , $pipeORS           ,  $pipeORS                           );
-   my @mucal_oradius = ( $rminU - $microgap, $rminD - $microgap            , $rmaxD            ,  $rmaxD2                           );
+	my $pipeORS = $pipeOR + $microgap;
+	
+   my @mucal_zpos    = ( $CZpos              , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength);
+   my @mucal_iradius = ( $pipeORS            , $pipeORS                        , $pipeORS                        ,  $pipeORS                           );
+   my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD                         ,  $Smax                            );
 
    
    my $nplanes = 4;

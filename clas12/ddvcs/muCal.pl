@@ -5,8 +5,8 @@ our %configuration;
 our $toRad ;
 
 
-my $CwidthU =   13.0;    # Upstream   crystal width in mm (side of the squared front face)
-my $CwidthD =   17.0;    # Downstream crystal width in mm (side of the squared front face)
+my $CwidthU =   43.0;    # Upstream   crystal width in mm (side of the squared front face)
+my $CwidthD =   57.0;    # Downstream crystal width in mm (side of the squared front face)
 my $Clength =  200.0;    # Crystal length in mm
 
 my $CZpos      =  500.0;    # Position of the front face of the crystals
@@ -27,7 +27,7 @@ sub make_mucal_mvolume
 {	
 	my @mucal_zpos    = ( $CZpos - $microgap, $CZpos + $Clength + $microgap );
 	my @mucal_iradius = ( $rminU - $microgap, $rminD - $microgap );
-	my @mucal_oradius = ( $rmaxU - $microgap, $rmaxU - $microgap );
+	my @mucal_oradius = ( $rmaxU - $microgap, $rmaxD - $microgap );
 
 	my $nplanes = 2;
 	
@@ -45,6 +45,7 @@ sub make_mucal_mvolume
    $detector{"type"}        = "Polycone";
    $detector{"dimensions"}  = $dimen;
    $detector{"material"}    = "G4_AIR";
+   $detector{"material"}    = "G4_PbWO4";
    $detector{"style"}       = 1;
    print_det(\%configuration, \%detector);
 }
@@ -81,17 +82,28 @@ sub make_mucal_crystals
 				)
 			{
 				
-				
+            my $radius = sqrt($centerX*$centerX + $centerY*$centerY);
+            
+            my $theta  = thetaFromVector($centerX, $centerY, $CZpos);
+            my $theta2 = 90 - $theta;
+      
+            
 				my %detector = init_det();
 				$detector{"name"}        = "mucal_cr_" . $iX . "_" . $iY ;
 				$detector{"mother"}      = "mucal";
 				$detector{"description"} = "ft crystal (h:" . $iX . ", v:" . $iY . ")";
-				my $zPos = $CZpos;
+            
+            my $xpos = $centerX + $Clength*tan($theta * $toRad);
+            #my $ypos = $centerY + $Clength*tan($phi * $toRad);
+            my $zPos = $CZpos + $Clength / 2.0;
 				$detector{"pos"}         = "$centerX*mm $centerY*mm $zPos*mm";
+            $detector{"rotation"}    = "$theta2*deg $theta*deg 0*deg  ";
 				$detector{"color"}       = "a50021";
-				$detector{"type"}        = "Box" ;
-				my $dx = $CwidthU / 2.0;
-				$detector{"dimensions"}  = "$dx*mm $dx*mm 1*mm";
+				$detector{"type"}        = "Trd" ;
+				my $dx1 = $CwidthU / 2.0;
+            my $dx2 = $CwidthD / 2.0;
+            my $dz  = $Clength / 2.0;
+				$detector{"dimensions"}  = "$dx2*mm $dx1*mm $dx2*mm $dx1*mm $dz*mm";
 				$detector{"material"}    = "G4_PbWO4";
 				$detector{"style"}       = 0;
 				print_det(\%configuration, \%detector);
@@ -105,13 +117,33 @@ sub make_mucal_crystals
 sub make_mu_cal
 {
    make_mucal_mvolume();
-	make_mucal_crystals();
+   #make_mucal_crystals();
 }
 
 
 
+sub thetaFromVector
+{
+   my $x = shift;
+   my $y = shift;
+   my $z = shift;
 
 
+   my $radius = sqrt($x*$x + $y*$y + $z*$z);
+   
+   return acos($z/$radius)/$toRad;
+
+}
+
+
+
+sub phiFromVector
+{
+   my $x = shift;
+   my $y = shift;
+
+   return atan($y/$x)/$toRad;
+}
 
 
 

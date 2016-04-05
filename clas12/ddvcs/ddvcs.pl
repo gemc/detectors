@@ -40,6 +40,7 @@ require "./materials.pl";
 # Loading DDVCS geometry routines specific subroutines
 require "./ddvcsCone.pl";
 require "./muCal.pl";
+require "./beamSupport.pl";
 
 # all the scripts must be run for every configuration
 my @allConfs = ("original");
@@ -53,7 +54,8 @@ foreach my $conf ( @allConfs )
 	
 	# geometry
 	make_mu_cal();
-	#build_ddvcsCone();
+   buildBeamPipe();
+	buildBeamShield();
 	
 }
 

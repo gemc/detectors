@@ -5,8 +5,8 @@ our %configuration;
 our $toRad ;
 
 
-my $CwidthU =   43.0;    # Upstream   crystal width in mm (side of the squared front face)
-my $CwidthD =   57.0;    # Downstream crystal width in mm (side of the squared front face)
+my $CwidthU =   13.0;    # Upstream   crystal width in mm (side of the squared front face)
+my $CwidthD =   17.0;    # Downstream crystal width in mm (side of the squared front face)
 my $Clength =  200.0;    # Crystal length in mm
 
 my $CZpos      =  500.0;    # Position of the front face of the crystals
@@ -82,10 +82,10 @@ sub make_mucal_crystals
 				)
 			{
 				
-            my $radius = sqrt($centerX*$centerX + $centerY*$centerY);
+            #my $radius = sqrt($centerX*$centerX + $centerY*$centerY);
             
-            my $theta  = thetaFromVector($centerX, $centerY, $CZpos);
-            my $theta2 = 90 - $theta;
+            my $thetaX  = -atan($centerX/$CZpos)/$toRad;
+            my $thetaY  = atan($centerY/$CZpos)/$toRad;
       
             
 				my %detector = init_det();
@@ -93,11 +93,11 @@ sub make_mucal_crystals
 				$detector{"mother"}      = "mucal";
 				$detector{"description"} = "ft crystal (h:" . $iX . ", v:" . $iY . ")";
             
-            my $xpos = $centerX + $Clength*tan($theta * $toRad);
+            #my $xpos = $centerX + $Clength*tan($theta * $toRad);
             #my $ypos = $centerY + $Clength*tan($phi * $toRad);
             my $zPos = $CZpos + $Clength / 2.0;
 				$detector{"pos"}         = "$centerX*mm $centerY*mm $zPos*mm";
-            $detector{"rotation"}    = "$theta2*deg $theta*deg 0*deg  ";
+            $detector{"rotation"}    = "$thetaY*deg $thetaX*deg 0*deg  ";
 				$detector{"color"}       = "a50021";
 				$detector{"type"}        = "Trd" ;
 				my $dx1 = $CwidthU / 2.0;
@@ -117,7 +117,7 @@ sub make_mucal_crystals
 sub make_mu_cal
 {
    make_mucal_mvolume();
-   #make_mucal_crystals();
+   make_mucal_crystals();
 }
 
 

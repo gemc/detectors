@@ -57,7 +57,7 @@ sub buildBeamShield
 	$detector{"color"}       = "555599";
 	$detector{"type"}        = "Polycone";
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_Al";
+	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = "1";
    print_det(\%configuration, \%detector);
 

@@ -1,8 +1,5 @@
 <gcard>
 
 	<detector name="ddvcs" factory="TEXT" variation="original"/>
-   <detector name="../dc/dc" factory="TEXT" variation="ccdb"/>
-   <detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
-   <detector name="../magnets/torus" factory="TEXT" variation="original"/>
  
 </gcard>

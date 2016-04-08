@@ -10,6 +10,6 @@ ConstantProvider  cp = DataBaseLoader.getConstantsFTOF();
 
 FTOFGeant4Factory  factory = new FTOFGeant4Factory(cp);
 
-def outFile = new File("ftof__volumes_original.txt");
+def outFile = new File("ftof__volumes_java.txt");
 outFile << factory;
 

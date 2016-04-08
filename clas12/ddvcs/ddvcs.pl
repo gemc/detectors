@@ -59,17 +59,8 @@ our $pipeL  = 1000;
 # shield
 our $TSThick  = 300;
 our $TSLength = 1500;
-our $TSrmax = $Smax + $TSThick*tan($CexitAngle);
+our $TSrmax = $Smax + $TSThick*tan($CexitAngle) + 10;
 
-
-# Thickness of the pipe shielding
-our $ShieldThick = $pipeOR + $microgap + 150;
-
-# Additional length to outer radius
-our $Addoradius = 250;
-
-# Additional length/thickness to the support
-our $AddsupportLength = 50;
 
 
 # Loading configuration file from argument
@@ -84,7 +75,7 @@ require "./muCal.pl";
 require "./beamSupport.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("30_cm_TST", "50_cm_TST", "80_cm_TST");
+my @allConfs = ("original");
 
 foreach my $conf ( @allConfs )
 {

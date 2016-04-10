@@ -21,6 +21,11 @@ our $Smax ;
 
 our $CrminU;
 
+our $CexitAngle;
+
+our $Addoradius;
+our $AddsupportLength;
+
 
 sub buildBeamPipe
 {
@@ -39,9 +44,9 @@ sub buildBeamPipe
 	
 	my $pipeORS = $pipeOR + $microgap;
 	
-   my @mucal_zpos    = ( $CZpos              , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength);
+   my @mucal_zpos    = ( $CZpos              , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength + $AddsupportLength);
    my @mucal_iradius = ( $pipeORS            , $pipeORS                        , $pipeORS                        ,  $pipeORS                           );
-   my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD                         ,  $Smax                            );
+   my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD + $Addoradius                       ,  $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle)                            );
 
    
    my $nplanes = 4;
@@ -64,4 +69,3 @@ sub buildBeamPipe
    print_det(\%configuration, \%detector);
 
 }
-

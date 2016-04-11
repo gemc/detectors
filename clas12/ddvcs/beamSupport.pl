@@ -35,7 +35,7 @@ sub buildBeamPipe
 	$detector{"description"} = "volume containing cherenkov gas";
 	$detector{"color"}       = "aabbbb";
    my $pipeZPos = $pipeL + 400;
-   $detector{"pos"}         = "0*cm 0*cm $pipeZPos";
+   $detector{"pos"}         = "0*cm 0*cm $pipeZPos*mm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$pipeIR*mm $pipeOR*mm $pipeL*mm 0*deg 360*deg";
 	$detector{"material"}    = "G4_Al";

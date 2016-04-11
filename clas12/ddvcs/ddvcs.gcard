@@ -1,5 +1,15 @@
 <gcard>
 
-	<detector name="ddvcs" factory="TEXT" variation="original"/>
- 
+	<detector name="ddvcs" factory="TEXT" variation="30_cm_TST"/>
+
+	<detector name="../beamline/beamline"  factory="TEXT" variation="justDownstream"/>
+	<detector name="../magnets/torus"      factory="TEXT" variation="original"/>
+	<detector name="../fc/forwardCarriage" factory="TEXT" variation="fastField"/>
+
+
+	<detector name="../dc/dc" factory="TEXT" variation="ccdb"/>
+	<detector name="../ftof/ftof" factory="TEXT" variation="java"/>
+	<detector name="../ec/ec" factory="TEXT" variation="original"/>
+
+
 </gcard>

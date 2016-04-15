@@ -66,7 +66,7 @@ our $TSrmax = $Smax + $TSThick*tan($CexitAngle);
 our $ShieldThick = $pipeOR + $microgap + 150;
 
 # Additional length to outer radius
-our $Addoradius = 250;
+our $Addoradius = 150;
 
 # Additional length/thickness to the support
 our $AddsupportLength = 50;

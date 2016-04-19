@@ -66,7 +66,7 @@ sub makeHexagons
 	
 	%detector = init_det();
 	$detector{"name"}        = "vacuumHexFrame";
-	$detector{"mother"}      = "torus";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Torus SST Vacuum inside Vacuum Jacket Frame ";
 	$detector{"type"}        = "Pgon";
 	$detector{"dimensions"}  = $dimen;
@@ -113,7 +113,7 @@ sub makeParallelepipeds
 	my $coilThickness  = $vacuumJacketThickness;
 	my $vacuumCase_dx  = $vjacketCase_dx - $coilThickness;
 	my $vacuumCase_dy  = $vjacketCase_dy - $coilThickness;
-	my $vacuumCase_dz  = $vjacketCase_dz ;
+	my $vacuumCase_dz  = $vjacketCase_dz -10;
 
 	for(my $n=0; $n<6; $n++)
 	{
@@ -127,7 +127,7 @@ sub makeParallelepipeds
 		$detector{"description"} = "Torus Vacuum inside Frame Component $nindex parallelepiped part";
 		$detector{"type"}        = "Parallelepiped";
 		$detector{"dimensions"}  = "$vacuumCase_dx*mm $vacuumCase_dy*mm $vacuumCase_dz*mm 0*deg $pangle*deg 0*deg";
-		$detector{"pos"}         = framesPos($R, $n, $vjacketCase_zpos, $vacuumCase_dz, $pangle);
+		$detector{"pos"}         = framesPos($R+20, $n, $vjacketCase_zpos, $vacuumCase_dz, $pangle);
 		$detector{"rotation"}    = framesRot($R, $n);
 		$detector{"material"}    = "Component";
 		$detector{"style"}       = 1;
@@ -139,7 +139,7 @@ sub makeParallelepipeds
 	my $coilsThickness  = 74.2/2.0;     # M. Zarecky, 1/11/16
 	my $coilCase_dx     = $vacuumCase_dx - 30;   # empirical
 	my $coilCase_dy     = $coilsThickness;
-	my $coildCaseAddLength = 20;                 # empirical: additional length of coils
+	my $coildCaseAddLength = -20;                 # empirical: additional length of coils
 	my $coilCase_dz     = $vjacketCase_dz + $coildCaseAddLength;
 	
 	for(my $n=0; $n<6; $n++)
@@ -271,7 +271,10 @@ sub framesPos
 	my $zpos  = shift;
 	my $dz    = shift;
 	my $angle = shift;
-	my $z     = $zpos + $dz*tan(abs(rad($angle))) - 80.0;
+	# warning: empirical
+	my $z     = $zpos + $dz*tan(abs(rad($angle))) - 135.0;
+	
+	$R = $R+230;
 	
 	my $theta     = 30.0 + $i*60.0;
 	my $x         = sprintf("%.3f", $R*cos(rad($theta)));

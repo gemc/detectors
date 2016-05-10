@@ -43,7 +43,7 @@ our %configuration = load_configuration($ARGV[0]);
 # i for integers
 # d for doubles
 
-my $bankId    = 600;
+my $bankId    = 1800;
 my $bankname  = "rich";
 
 sub define_bank

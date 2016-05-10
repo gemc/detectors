@@ -47,7 +47,7 @@ require "./hit.pl";
 # sensitive geometry
 #require "./geometry.pl";
 
-system('groovy -cp "../coat-libs-2.4-SNAPSHOT.jar" factory.groovy');
+system('groovy -cp "../*" factory.groovy');
 
 # Global pars - these should be read by the load_parameters from file or DB
 our @volumes = get_volumes(%configuration);

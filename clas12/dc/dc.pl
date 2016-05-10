@@ -33,9 +33,7 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-
 # Global pars - these should be read by the load_parameters from file or DB
-
 
 # materials
 require "./materials.pl";
@@ -47,11 +45,19 @@ require "./bank.pl";
 require "./hit.pl";
 
 # sensitive geometry
-require "./geometry.pl";
+#require "./geometry.pl";
+
+system('groovy -cp "../coat-libs-2.4-SNAPSHOT.jar" factory.groovy');
+
+# Global pars - these should be read by the load_parameters from file or DB
+our @volumes = get_volumes(%configuration);
+
+# read volumes from txt output of groovy script
+require "./volumes.pl";
 
 # dc plates
-require "./basePlates.pl";
-require "./endPlates.pl";
+# require "./basePlates.pl";
+# require "./endPlates.pl";
 
 # calculate the parameters
 require "./utils.pl";
@@ -59,7 +65,7 @@ require "./utils.pl";
 
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
-my @allConfs = ("ccdb", "cosmicR1");
+my @allConfs = ("java");
 
 foreach my $conf ( @allConfs )
 {
@@ -75,13 +81,13 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# calculate pars
-	calculate_dc_parameters();
+	# calculate_dc_parameters();
 
 	# sensitive geometry
 	makeDC();
-	
+
 	# dc plates
-	make_plates();
+	# make_plates();
 }
 
 

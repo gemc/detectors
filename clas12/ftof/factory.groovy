@@ -10,13 +10,13 @@ ConstantProvider  cp = DataBaseLoader.getConstantsFTOF();
 
 FTOFGeant4Factory factory = new FTOFGeant4Factory(cp);
 
-def outFile = new File("ftof__volumes_original.txt");
+def outFile = new File("ftof__volumes_java.txt");
 outFile.newWriter().withWriter { w ->
 	w<<factory;
 }
 
 def axisName = ["x", "y", "z"];
-def parFile = new File("ftof__volpars_original.txt");
+def parFile = new File("ftof__parameters_java.txt");
 def writer=parFile.newWriter();
 
 //loop over panel volumes
@@ -51,18 +51,6 @@ for(panels in factory.getMother().getChildren()){
 		);
 	}
 
-	//print rotation sequence: e.g., zxy
-	writer<<sprintf("%s | %s | %s | %s | %s | %s | %s | %s | %s\n",
-		panels.getName()+".rotationSequence",	//name of parameter
-		panels.getRotationOrder(),					//parameter value
-		"none",									//no units needed for rotation sequence
-		"rotation sequence",						//description of parameter (rotation sequence)
-		factory.getProperty("author"),				//author names
-		factory.getProperty("email"),					//emails
-		factory.getProperty("something"),				//some information
-		factory.getProperty("something"),				//some information
-		factory.getProperty("date")					//date
-	);
 
 	//print rotation for each axis
 	for(int iaxis=0; iaxis<3; iaxis++){

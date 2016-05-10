@@ -1,5 +1,14 @@
 <gcard>
 
-	<detector name="ddvcs" factory="TEXT" variation="original"/>
- 
+<option name="geometry" value="1400x1200"/>
+
+	<detector name="ddvcs" factory="TEXT" variation="30_cm_TST"/>
+
+	<detector name="../beamline/beamline"  factory="TEXT" variation="justDownstream"/>
+	<detector name="../magnets/torus"      factory="TEXT" variation="original"/>
+	<detector name="../fc/forwardCarriage" factory="TEXT" variation="fastField"/>
+
+
+
+
 </gcard>

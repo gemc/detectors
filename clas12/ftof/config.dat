@@ -2,7 +2,7 @@
 
 # Detector name and variation
 detector_name: ftof
-variation:     original
+variation:     java
 
 # Factory can be MYQL or TEXT
 factory:       TEXT 

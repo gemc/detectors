@@ -8,17 +8,6 @@ our %parameters;
 # RICH parameters
 # all dimensions are in inches
 
-my $RichBox_dz    = $parameters{"par_RichBox_dz"};
-my $RichBox_th    = $parameters{"par_RichBox_th"};
-my $RichBox_ph    = $parameters{"par_RichBox_ph"};
-my $RichBox_dx1   = $parameters{"par_RichBox_dx1"};
-my $RichBox_dx2   = $parameters{"par_RichBox_dx2"};
-my $RichBox_dx3   = $parameters{"par_RichBox_dx3"};
-my $RichBox_dx4   = $parameters{"par_RichBox_dx4"};
-my $RichBox_dy1   = $parameters{"par_RichBox_dy1"};
-my $RichBox_dy2   = $parameters{"par_RichBox_dy2"};
-my $RichBox_alp1  = $parameters{"par_RichBox_alp1"};
-my $RichBox_alp2  = $parameters{"par_RichBox_alp2"};
 my $RichBox_x     = $parameters{"par_RichBox_x"};
 my $RichBox_y     = $parameters{"par_RichBox_y"};
 my $RichBox_z     = $parameters{"par_RichBox_z"};
@@ -26,7 +15,10 @@ my $RichBox_the   = $parameters{"par_RichBox_the"};
 my $RichBox_phi   = $parameters{"par_RichBox_phi"};
 my $RichBox_psi   = $parameters{"par_RichBox_psi"};
 
-# calculate paddles position, dimensions, titles based on parameters
+
+my $RichBox_y_offset = $parameters{"par_RichBox_y_offset"};
+
+my $RichBox_y_real = $RichBox_y + $RichBox_y_offset ;
 
 sub rich_box_pos
 {
@@ -34,7 +26,7 @@ sub rich_box_pos
 
 	# projection into the xy plane
 	my $phi = ($sector -1)*60;
-	my $r = sqrt( $RichBox_x* $RichBox_x + $RichBox_y*$RichBox_y) ;
+	my $r = sqrt( $RichBox_x* $RichBox_x + $RichBox_y_real*$RichBox_y_real) ;
 	my $x = $r*cos(rad($phi));
 	my $y = $r*sin(rad($phi));
 	my $z = $RichBox_z;

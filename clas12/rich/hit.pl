@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use hit;
 
@@ -37,8 +37,8 @@ sub define_hit
 	# uploading the hit definition
 	my %hit = init_hit();
 	$hit{"name"}            = "rich";
-	$hit{"description"}     = "rich hit definitions";
-	$hit{"identifiers"}     = "sector ring half nphe";
+	$hit{"description"}     = "rich hit definition";
+	$hit{"identifiers"}     = "sector pmt pixel";
 	$hit{"signalThreshold"} = "0.5*MeV";
 	$hit{"timeWindow"}      = "5*ns";
 	$hit{"prodThreshold"}   = "1*mm";

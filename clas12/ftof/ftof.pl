@@ -61,7 +61,7 @@ require "./utils.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("java");
 
 foreach my $conf ( @allConfs )
 {

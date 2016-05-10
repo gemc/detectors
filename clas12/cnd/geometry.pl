@@ -93,12 +93,13 @@ sub make_cndMother
 	
 	my $IR = $r0 - $mother_gap[0];
 	my $OR = $r1 + $mother_gap[1];
+	my $zpos = $mother_offset + $half_diff;
 	
 	my %detector = init_det();
 	$detector{"name"}        = "cnd";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Central Neutron Detector";
-	$detector{"pos"}         = "0*cm 0*cm ($mother_offset+$half_diff)*cm";
+	$detector{"pos"}         = "0*cm 0*cm $zpos*cm";
 	$detector{"color"}       = "33bb99";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$IR*cm $OR*cm $mother_dz*cm 0*deg 360*deg";

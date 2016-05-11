@@ -87,9 +87,10 @@ require "./materials.pl";
 require "./ddvcsCone.pl";
 require "./muCal.pl";
 require "./beamSupport.pl";
+require "./scorer.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("30_cm_TST", "50_cm_TST", "80_cm_TST");
+my @allConfs = ("30_cm_TST", "scorer");
 
 foreach my $conf ( @allConfs )
 {
@@ -97,11 +98,25 @@ foreach my $conf ( @allConfs )
 	
 	# materials
 	materials();
+
+	if($configuration{"variation"} eq "30_cm_TST")
+	{
+		# geometry
+		make_mu_cal();
+		buildBeamPipe();
+		buildBeamShield();
+	}
+	else
+	{
+		makeScorer();
+	}
 	
-	# geometry
-	make_mu_cal();
-   buildBeamPipe();
-	buildBeamShield();
-	
+
 }
+
+
+
+
+
+
 

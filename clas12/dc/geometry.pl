@@ -70,7 +70,11 @@ sub make_region
 		{
 			$detector{"mother"}      = "root";
 			$detector{"rotation"}    = "90*deg 0*deg 0*deg";
-
+		}
+		elsif( $configuration{"variation"} eq "ddvcs")
+		{
+			$detector{"pos"}         = region_pos($s, $iregion);
+			$detector{"rotation"}    = region_rot($s, $iregion);
 		}
 		$detector{"color"}       = "aa0000";
 		$detector{"type"}        = "G4Trap";
@@ -171,8 +175,17 @@ sub makeDC
 		make_region(0);
 		make_layers(0);
 	}
+	elsif( $configuration{"variation"} eq "ddvcs")
+	{
+		make_region(0);
+		make_region(1);
+		make_region(2);
+		
+		make_layers(0);
+		make_layers(1);
+		make_layers(2);
+	}
 }
-
 
 
 

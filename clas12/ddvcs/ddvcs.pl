@@ -99,7 +99,7 @@ foreach my $conf ( @allConfs )
 	# materials
 	materials();
 
-	if($configuration{"variation"} eq "30_cm_TST")
+	if($configuration{"variation"} ne "scorer")
 	{
 		# geometry
 		make_mu_cal();

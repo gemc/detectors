@@ -90,7 +90,7 @@ require "./beamSupport.pl";
 require "./scorer.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("30_cm_TST", "scorer");
+my @allConfs = ("30_cm_TST", "scorer", "mucalActive");
 
 foreach my $conf ( @allConfs )
 {
@@ -110,7 +110,6 @@ foreach my $conf ( @allConfs )
 	{
 		makeScorer();
 	}
-	
 
 }
 

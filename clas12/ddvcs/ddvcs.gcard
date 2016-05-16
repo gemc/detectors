@@ -19,9 +19,11 @@
 	<option name="INTEGRATEDRAW" value="flux"/>
 	<option name="RECORD_PASSBY" value="1"/>
 
+	<option name="BEAM_P"    value="pi-, 2*GeV, 20*deg, 0*deg" />
+	<option name="SPREAD_P"  value="1*GeV, 10*deg, 180*deg" />
 
 	<!-- luminosity conditions -->
-	<option name="LUMI_EVENT"     value="124000, 250*ns, 4*ns" />
+	<option name="LUMI_EVENT"     value="1, 250*ns, 4*ns" />
 	<option name="LUMI_P"         value="e-, 11*GeV, 0*deg, 0*deg" />
 	<option name="LUMI_V"         value="(0.,0.,-4.5.)cm" />
 	<option name="LUMI_SPREAD_V"  value="(0.01, 0.01)cm" />

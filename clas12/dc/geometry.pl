@@ -3,6 +3,8 @@ use warnings;
 
 our %configuration;
 
+
+
 our @mother_dx1;
 our @mother_dx2;
 our @mother_dy;
@@ -20,6 +22,8 @@ our @daughter_xcent;
 our @daughter_ycent;
 our @daughter_zcent;
 our @daughter_tilt;
+
+
 
 
 sub make_region

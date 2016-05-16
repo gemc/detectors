@@ -45,7 +45,7 @@ sub calculate_dc_parameters
 			$ireg-- ;  # index is c++ convention
 			$mother_dx1[$ireg]     = $dx1 + 1.0;   # Custom enlarging mother volume to contain daugthers
 			$mother_dx2[$ireg]     = $dx2 + 1.0;
-			$mother_dy[$ireg]      = $dy  + 1.0;
+			$mother_dy[$ireg]      = $dy + 1.0;
 			$mother_dz[$ireg]      = $dz;
 			$mother_xcent[$ireg]   = $xcent;
 			$mother_ycent[$ireg]   = $ycent;

@@ -7,6 +7,8 @@ use parameters;
 use geometry;
 use math;
 use materials;
+use bank;
+use hit;
 
 use Math::Trig;
 
@@ -88,6 +90,8 @@ require "./ddvcsCone.pl";
 require "./muCal.pl";
 require "./beamSupport.pl";
 require "./scorer.pl";
+require "./hit.pl";
+require "./bank.pl";
 
 # all the scripts must be run for every configuration
 my @allConfs = ("30_cm_TST", "scorer", "mucalActive");
@@ -105,6 +109,8 @@ foreach my $conf ( @allConfs )
 		make_mu_cal();
 		buildBeamPipe();
 		buildBeamShield();
+		define_mucal_bank();
+		define_mucal_hit();
 	}
 	else
 	{

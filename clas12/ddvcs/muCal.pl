@@ -136,7 +136,7 @@ sub make_mucal_crystals
 			my $locY = ($iY-$centY)*$CwidthU;
 			my $locR = sqrt($locX*$locX+$locY*$locY);
 
-			if($locR>100. && $locR < $CrmaxU-$CwidthU/2 - 0.8)
+			if($locR>$CrminU + 1 && $locR < $CrmaxU-$CwidthU/2 - 0.8)
 			{
 				# crystal mother volume
 				my %detector = init_det();
@@ -151,10 +151,13 @@ sub make_mucal_crystals
 				my $dZ = $Clength/2.0;
 				$detector{"dimensions"}  = "$dX*mm $dY*mm $dZ*mm";
 				$detector{"material"}    = "G4_PbWO4";
-				$detector{"sensitivity"} = "flux";
-				$detector{"hit_type"}    = "flux";
-				my $fluxID = 1000*$iX + $iY;
-				$detector{"identifiers"} = "id manual $fluxID";
+#				$detector{"sensitivity"} = "flux";
+#				$detector{"hit_type"}    = "flux";
+#				my $fluxID = 1000*$iX + $iY;
+#				$detector{"identifiers"} = "id manual $fluxID";
+				$detector{"sensitivity"} = "ft_cal";
+				$detector{"hit_type"}    = "ft_cal";
+				$detector{"identifiers"} = "ih manual $iX iv manual $iY";
 				print_det(\%configuration, \%detector);
 
 			}

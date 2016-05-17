@@ -4,6 +4,9 @@
 
 	<detector name="ddvcs"        factory="TEXT" variation="mucalActive"/>
 
+	<detector name="../targets/target"     factory="TEXT" variation="lH2"/>
+	<detector name="../magnets/solenoid"   factory="TEXT" variation="original"/>
+
 	<option name="HALL_FIELD" value="clas12-solenoid"/>
 
 	<option name="FIELD_PROPERTIES" value="clas12-solenoid, 0.1*mm, G4HelixSimpleRunge, linear"/>
@@ -16,7 +19,7 @@
 	<option name="HALL_MATERIAL" value="Vacuum"/>
 
 
-	<option name="INTEGRATEDRAW" value="flux"/>
+	<option name="INTEGRATEDRAW" value="ft_cal"/>
 	<option name="RECORD_PASSBY" value="1"/>
 
 	<option name="BEAM_P"    value="pi-, 2*GeV, 20*deg, 0*deg" />

@@ -39,6 +39,7 @@ our %configuration = load_configuration($ARGV[0]);
 
 # materials
 require "./materials.pl";
+require "./shield_material.pl";
 
 # banks definitions
 require "./bank.pl";
@@ -53,13 +54,16 @@ require "./geometry.pl";
 require "./basePlates.pl";
 require "./endPlates.pl";
 
+# region3 shielding for ddvcs
+require "./region3_shield.pl";
+
 # calculate the parameters
 require "./utils.pl";
 
 
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
-my @allConfs = ("ccdb", "cosmicR1");
+my @allConfs = ("ccdb", "cosmicR1", "ddvcs");
 
 foreach my $conf ( @allConfs )
 {
@@ -67,7 +71,8 @@ foreach my $conf ( @allConfs )
 	
 	# materials
 	materials();
-	
+	shield_material();
+
 	# hits
 	define_hit();
 	
@@ -82,6 +87,12 @@ foreach my $conf ( @allConfs )
 	
 	# dc plates
 	make_plates();
-}
 
+	# region 3 shielding
+	if($configuration{"variation"} eq "ddvcs")
+	{
+		make_region3_front_shield();
+		make_region3_back_shield();
+	}
+}
 

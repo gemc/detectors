@@ -34,11 +34,18 @@ sub make_region
 	# and prevent torus clipping (z), dx_shift preserves dc opening angle in case of y-enlargement
 	my $y_enlargement =  3.65;
 	my $z_enlargement = -2.96;
-	my $dx_shift      = fstr( $y_enlargement * tan(rad(29.5)));
+
+	# Opening angle of the DC, from loaded parameters. 
+	my $open_angle = ($mother_dx2[$iregion]-$mother_dx1[$iregion])/(2*$mother_dy[$iregion]);
+	my $dx_shift  = $y_enlargement*tan($open_angle)/2;
+
+	# Additional correction parameters used in attempts to fix overlaps between dc and torus.
+	my @dx1_correction = (0.3, -1.0, -2.15);
+	my @dx2_correction = (1.0, 1.0, 2.0);
 
 	# placement parameters for the mother region volume
-	my $mpDX1   = $mother_dx1[$iregion] - $dx_shift;
-	my $mpDX2   = $mother_dx2[$iregion] + $dx_shift;
+	my $mpDX1   = $mother_dx1[$iregion] - $dx_shift + $dx1_correction[$iregion];
+	my $mpDX2   = $mother_dx2[$iregion] + $dx_shift + $dx2_correction[$iregion];
 	my $mpDX3   = $mpDX1;
 	my $mpDX4   = $mpDX2;
 	my $mpDY1   = $mother_dy[$iregion]  + $y_enlargement;

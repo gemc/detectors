@@ -46,9 +46,10 @@ sub buildBeamPipe
 	
    my @mucal_zpos    = ( $CZpos              , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength + $AddsupportLength   );
    my @mucal_iradius = ( $pipeORS            , $pipeORS                        , $pipeORS                        ,  $pipeORS                                                 );
-   my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD + $Addoradius           ,  $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle) );
+   my @mucal_oradius = ( $CrminU - 50*$microgap , $CrminU - 50*$microgap             , $CrmaxD + $Addoradius           ,  $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle) );
+	#	my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD + $Addoradius           ,  $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle) );
 
-   
+
    my $nplanes = 4;
    
    my $dimen = "0.0*deg 360*deg $nplanes*counts";

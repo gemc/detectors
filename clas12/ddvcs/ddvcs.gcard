@@ -2,10 +2,8 @@
 
 	<option name="geometry" value="1400x1200"/>
 
-	<detector name="ddvcs"        factory="TEXT" variation="mucalActive"/>
+	<detector name="ddvcs"        factory="TEXT" variation="scorer"/>
 
-	<detector name="../targets/target"     factory="TEXT" variation="lH2"/>
-	<detector name="../magnets/solenoid"   factory="TEXT" variation="original"/>
 
 	<option name="HALL_FIELD" value="clas12-solenoid"/>
 

@@ -1,8 +1,6 @@
 use strict;
 use warnings;
 
-use Data::Dumper;
-
 our %configuration;
 our @volumes;
 
@@ -16,11 +14,11 @@ our @volumes;
 # types['volumeName'] = 'name of volumeType (Trd, Box etc.)'
 # dimensions['volumeName'] = 'dimensions of volume (e.g. 3 values for Box, 5 values for Trd etc.'
 # ids['volumeName'] = 'sector# region# layer#'
-my ($mothers, $positions, $rotations, $types, $dimensions, $ids) = @volumes;
 
-
-sub makeDC
+sub makeDC_java
 {
+	my ($mothers, $positions, $rotations, $types, $dimensions, $ids) = @volumes;
+
 	foreach my $vname (sort keys %{ $mothers })
 	{
 		# extract sector# layer# and paddle# from volume ID (returned by COATJAVA)
@@ -62,3 +60,4 @@ sub makeDC
 	}
 }
 
+1;

@@ -33,8 +33,7 @@ my $torusZstart = $TorusZpos - $SteelFrameLength;
 
 sub buildBeamShield
 {
-	my $AddTSThick;
-	if($configuration{"variation"} eq "30_cm_TST") {$AddTSThick = 0;}
+	my $AddTSThick = 0;
 	if($configuration{"variation"} eq "50_cm_TST") {$AddTSThick = 200;}
 	if($configuration{"variation"} eq "80_cm_TST") {$AddTSThick = 500;}
 

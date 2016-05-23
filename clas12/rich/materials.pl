@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/io");
+use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use materials;
 
@@ -181,7 +181,7 @@ sub define_material
 	
 	# carbon fiber
 	%mat = init_mat();
-	$mat{"name"}          = "carbonFiber";
+	$mat{"name"}          = "CarbonFiber";
 	$mat{"description"}   = "ft carbon fiber material is epoxy and carbon - 1.75g/cm3";
 	$mat{"density"}       = "1.75";
 	$mat{"ncomponents"}   = "2";

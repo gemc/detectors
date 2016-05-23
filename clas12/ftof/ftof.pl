@@ -36,7 +36,7 @@ our %configuration = load_configuration($ARGV[0]);
 # Global pars - these should be read by the load_parameters from file or DB
 #our %parameters = get_parameters(%configuration);
 
-system('groovy -cp "../coat-libs-2.0-SNAPSHOT.jar" factory.groovy');                                                                                        
+system('groovy -cp "../*" factory.groovy');
 
 # Global pars - these should be read by the load_parameters from file or DB
 our @volumes = get_volumes(%configuration);

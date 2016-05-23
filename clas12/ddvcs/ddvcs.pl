@@ -38,7 +38,7 @@ our $CwidthU =   13.0;    # Upstream   crystal width in mm (side of the squared 
 our $CwidthD =   17.0;    # Downstream crystal width in mm (side of the squared front face)
 our $Clength =  200.0;    # Crystal length in mm
 
-our $CZpos      =  500.0;    # Position of the front face of the crystals
+our $CZpos      =  600.0;    # Position of the front face of the crystals
 our $CentryAngle = 7*$toRad;
 our $CexitAngle  = 30*$toRad;
 

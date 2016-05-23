@@ -17,7 +17,7 @@ sub makeScorer
    $detector{"color"}       = "aa0000";
 	$detector{"pos"}         = "0*cm 0*cm 40*cm";
    $detector{"type"}        = "Tube";
-   $detector{"dimensions"}  = "4.5*cm 35*cm 1*mm 0*deg 360*deg";
+   $detector{"dimensions"}  = "3.4*cm 35*cm 1*mm 0*deg 360*deg";
    $detector{"material"}    = "Vacuum";
    $detector{"style"}       = 1;
 	$detector{"sensitivity"} = "flux";

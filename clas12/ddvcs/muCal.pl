@@ -22,8 +22,12 @@ our $CrmaxD;
 sub make_mucal_mvolume
 {	
 	my @mucal_zpos    = ( $CZpos - $microgap, $CZpos + $Clength + $microgap );
-	my @mucal_iradius = ( $CrminU - $microgap, $CrminD - $microgap );
-	my @mucal_oradius = ( $CrmaxU - $microgap, $CrmaxD - $microgap );
+	# my @mucal_iradius = ( $CrminU - $microgap, $CrminD - $microgap );
+
+	# keeping radius flat as crystals are not tilted yet
+	my @mucal_iradius = ( $CrminU - 40*$microgap, $CrminU - 40*$microgap );
+
+	my @mucal_oradius = ( $CrmaxU + 40*$microgap, $CrmaxD + 40*$microgap );
 
 	my $nplanes = 2;
 	
@@ -125,7 +129,7 @@ sub make_mucal_crystals
 	my $centX = ( int $nCrystal/2 )+0.5;
 	my $centY = ( int $nCrystal/2 )+0.5;
 
-	my $zPos  = $CZpos + $Clength/2.0 - 0.1;
+	my $zPos  = $CZpos + $Clength/2.0 + $microgap;
 
 
 	for ( my $iX = 1; $iX < $nCrystal; $iX++ )

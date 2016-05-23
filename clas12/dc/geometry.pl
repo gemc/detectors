@@ -165,7 +165,7 @@ sub make_layers
 
 
 
-sub makeDC
+sub makeDC_perl
 {
 	if( $configuration{"variation"} eq "ccdb")
 	{
@@ -193,32 +193,5 @@ sub makeDC
 		make_layers(2);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

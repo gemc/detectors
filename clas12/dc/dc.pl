@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 
-
 use strict;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
@@ -51,7 +50,7 @@ require "./hit.pl";
 system('groovy -cp "../*" factory.groovy');
 
 # sensitive geometry
-require "./volumes.pl";
+require "./geometry_java.pl";
 
 # sensitive geometry
 require "./geometry.pl";
@@ -91,7 +90,7 @@ foreach my $conf ( @allConfs )
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);
 
-		makeDC_java();
+		coatjava::makeDC();
 	}
 	else
 	{

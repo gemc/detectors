@@ -1,9 +1,7 @@
 use strict;
 use warnings;
 
-our %configuration;
 our %parameters;
-
 
 # FTOF parameters
 # all dimensions are in inches

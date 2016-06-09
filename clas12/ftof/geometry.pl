@@ -25,9 +25,6 @@ sub define_mothers
 		build_panel1b_mother($s);
 		build_panel2_mother($s);
 	}
-
-	make_pb();
-
 }
 
 sub build_panel1a_mother
@@ -185,4 +182,27 @@ sub build_panel2_counters
 	}
 }
 
+sub make_pb
+{
+    # loop over sectors 
+    for (my $isect = 0; $isect < 6; $isect++)
+    {
+	my $sector = $isect +1;
 
+	my %detector = init_det();
+	$detector{"name"}         = "ftof_shield_sector$sector";
+	$detector{"mother"}       = "ftof_p1b_s$sector";
+	$detector{"description"}  = "Layer of lead - Sector $sector";
+	$detector{"pos"}          = pb_pos();
+	$detector{"rotation"}     = "0*deg 0*deg 0*deg";
+	$detector{"color"}        = "dc143c";
+	$detector{"type"}         = "Trd";
+	$detector{"dimensions"}   = pb_dims();
+	$detector{"material"}     = "G4_Pb";
+	$detector{"visible"}      = 1;
+	$detector{"style"}        = 1;
+	print_det(\%configuration, \%detector);
+    }
+}
+
+1;

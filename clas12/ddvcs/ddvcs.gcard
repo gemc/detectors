@@ -3,6 +3,7 @@
 	<option name="geometry" value="1400x1200"/>
 
 	<detector name="ddvcs"        factory="TEXT" variation="mucalActive"/>
+	<detector name="../targets/target"        factory="TEXT" variation="lH2"/>
 
 
 	<option name="HALL_FIELD" value="clas12-solenoid"/>
@@ -20,11 +21,11 @@
 	<option name="INTEGRATEDRAW" value="ft_cal"/>
 	<option name="RECORD_PASSBY" value="1"/>
 
-	<option name="BEAM_P"    value="pi-, 2*GeV, 20*deg, 0*deg" />
-	<option name="SPREAD_P"  value="1*GeV, 10*deg, 180*deg" />
+	<option name="BEAM_P"    value="e-, 11*GeV, 0*deg, 0*deg" />
+<!--	<option name="SPREAD_P"  value="1*GeV, 10*deg, 180*deg" />-->
 
 	<!-- luminosity conditions -->
-	<option name="LUMI_EVENT"     value="1, 250*ns, 4*ns" />
+	<option name="LUMI_EVENT"     value="50000, 250*ns, 4*ns" />
 	<option name="LUMI_P"         value="e-, 11*GeV, 0*deg, 0*deg" />
 	<option name="LUMI_V"         value="(0.,0.,-4.5.)cm" />
 	<option name="LUMI_SPREAD_V"  value="(0.01, 0.01)cm" />

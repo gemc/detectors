@@ -1,17 +1,19 @@
 <gcard>
 	<detector name="ctof" factory="TEXT" variation="original"/>
+	<detector name="../bst/bst" factory="TEXT" variation="original"/>
 	<option name="geometry" value="1400x1200"/>
 	
 	<option name="INTEGRATEDRAW" value="ctof"/>
 	
 	<option name="BEAM_P" value="proton, 1.0*GeV, 90*deg, 10*deg"/>
-	<option name="SPREAD_P"  value="0.0*GeV, 00*deg, 180*deg"/>
+	<option name="SPREAD_P"  value="0.0*GeV, 0*deg, 180*deg"/>
 	
 	<option name="OUTPUT" value="evio, out.ev"/>
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
 	
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 
-<option name="ELECTRONICNOISE" value="ctof"/>
+	<option name="HALL_FIELD" value="clas12-solenoid"/>
+	<option name="FIELD_PROPERTIES" value="clas12-solenoid, 0.1*mm, G4HelixSimpleRunge, linear"/>
 
 </gcard>

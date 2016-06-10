@@ -72,37 +72,73 @@ require "./afterTorusShielding.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTWithInnerShield", "realityWithFTWithHeliumBag", "realityWithFTNotUsed", "realityWithFTNotUsedWithInnerShield", "realityWithFTNotUsedHeliumBag", "finalNoFT", "FTOn", "FTOff");
-my @allConfs = ("FTOn", "FTOff");
+my @allConfs = ("FTOn", "FTOff", "justDownstream", "mount_is_W");
 
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
-	# materials
-	materials();
-	
-	# vacuum line throughout the shields, torus and downstream
-	vacuumLine();
 
-	# air beampipe between the target and the vacuum line
-    gapLine();
+	if($configuration{"variation"} eq "mount_is_W")
+	{
 
-	# moeller shield
-	tungstenCone();
+		# materials
+		materials();
 	
-	# connection of moeller shield / FT to torus
-	torusFrontMount();
+		# vacuum line throughout the shields, torus and downstream
+		mount_is_W_vacuumLine();
+
+		# air beampipe between the target and the vacuum line
+		gapLine();
+
+		# moeller shield
+		tungstenCone();
 	
-	# shielding around the torus beamline
-	torusBeamShield();
+		# connection of moeller shield / FT to torus
+		mount_is_W_torusFrontMount();
 
-	# shielding blocks 
-	# torusShield();
+		# shielding around the torus beamline
+		SSlayer_out_torusBeamShield();
+		Wlayer_mid_torusBeamShield();
+		SSlayer_in_torusBeamShield();
 
-	# shielding downstream of the torus
-	# parameters: length of first part, length of second part, outer radius (mm), material
-	afterTorusShielding(350.0, 300.0, 195.4, "beamline_W");
+		# shielding blocks 
+		# torusShield();
+
+		# shielding downstream of the torus
+		# parameters: length of first part, length of second part, outer radius (mm), material
+		afterTorusShielding(350.0, 300.0, 195.4, "beamline_W");
+	}
+
+	else
+	{
+
+		# materials
+		materials();
+		
+		# vacuum line throughout the shields, torus and downstream
+		vacuumLine();
+		
+		if($configuration{"variation"} ne "justDownstream")
+		{
+			# air beampipe between the target and the vacuum line
+			gapLine();
+			
+			# moeller shield
+			tungstenCone();
+			
+			# connection of moeller shield / FT to torus
+			torusFrontMount();
+		}
+		# shielding around the torus beamline
+		torusBeamShield();
+		
+		# shielding blocks 
+		# torusShield();
+		
+		# shielding downstream of the torus
+		# parameters: length of first part, length of second part, outer radius (mm), material
+		afterTorusShielding(350.0, 300.0, 195.4, "beamline_W");
+	}
 }
-
 
 

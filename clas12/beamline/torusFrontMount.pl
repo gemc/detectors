@@ -195,17 +195,5 @@ sub mount_is_W_torusFrontMount()
 	
 	
 	
-	# outer shield made of tungsten
-	%detector = init_det();
-	$detector{"name"}        = "mountOuterShielding";
-	$detector{"mother"}      = "root";
-	$detector{"pos"}         = "0*mm 0.0*mm $noseShield_z_start2*mm";
-	$detector{"description"} = "beamline mount to torus beamline outer shield";
-	$detector{"color"}       = $tungstenColor;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$noseShieldIR2*mm $noseShieldOR2*mm $noseShieldLength2*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "beamline_W";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 	
 }

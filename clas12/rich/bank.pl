@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use bank;
 
@@ -43,7 +43,7 @@ our %configuration = load_configuration($ARGV[0]);
 # i for integers
 # d for doubles
 
-my $bankId    = 600;
+my $bankId    = 1800;
 my $bankname  = "rich";
 
 sub define_bank
@@ -52,9 +52,10 @@ sub define_bank
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "clas12 sector");
-	insert_bank_variable(\%configuration, $bankname, "ring",         2, "Di", "theta index");
-	insert_bank_variable(\%configuration, $bankname, "half",         3, "Di", "half-sector");
-	insert_bank_variable(\%configuration, $bankname, "nphe",         4, "Di", "number of photoelectrons");
+	insert_bank_variable(\%configuration, $bankname, "pmt",          2, "Di", "pmt number");
+	insert_bank_variable(\%configuration, $bankname, "pixel",        3, "Di", "pixel");
+#	insert_bank_variable(\%configuration, $bankname, "ludid",        4, "Di", "lund id of the particle");
+#	insert_bank_variable(\%configuration, $bankname, "nphe",         4, "Di", "number of photoelectrons");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
 

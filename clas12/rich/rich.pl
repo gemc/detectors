@@ -6,8 +6,7 @@ use utils;
 use parameters;
 use geometry;
 use math;
-
-use Math::Trig;
+use POSIX;
 
 # Help Message
 sub help()
@@ -38,34 +37,20 @@ our %parameters    = get_parameters(%configuration);
 
 # Loading RICH specific subroutines
 require "./geometry/box.pl";
-require "./geometry/gap.pl";
-require "./geometry/premirror.pl";
-require "./geometry/radiator.pl";
-require "./geometry/dummy_trap.pl";
-require "./geometry/mapmt.pl";
-require "./geometry/box_mirror.pl";
-require "./geometry/mirrors.pl";
-require "./geometry/cut.pl";
+require "./geometry/frontal_system.pl";
+require "./geometry/pmt.pl";
 
 build_rich();
 
 sub build_rich
 {
-	for(my $s=1; $s<=6; $s++)
+	for(my $s=4; $s<=4; $s++)
 	{
+
 		build_rich_box($s);
-		build_rich_gap($s);
-		build_rich_premirror($s);
-		build_rich_radiator($s);
-		build_dummy_trap($s);
-		build_mapmt($s);
-		build_box_mirror($s);
-		build_rich_mirror_a($s);
-		build_rich_mirror_b($s);
-		build_rich_mirror_c($s);
-		build_rich_mirror($s);
-		build_rich_cutbox($s);
-		build_rich_cutgap($s);
-		build_rich_cut($s);
+		build_frontal_system_bottom($s);
+		build_frontal_system_top($s);
+		build_pmts($s);
+
 	}
 }

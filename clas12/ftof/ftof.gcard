@@ -5,7 +5,9 @@
 	<option name="geometry" value="1400x1200"/>
 	<option name="SIGNALVT" value="ftof_p1a, ftof_p1b"/>
 	<option name="INTEGRATEDRAW" value="ftof_p1a, ftof_p1b"/>
-	
+
+	<option name="FIELD_PROPERTIES" value="clas12-torus-big, 2*mm, G4HelixSimpleRunge, linear"/>
+
 
 	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
 	<option name="SPREAD_P" value="0.0*GeV, 0*deg, 180*deg"/>

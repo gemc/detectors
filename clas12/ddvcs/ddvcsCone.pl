@@ -20,17 +20,30 @@ our $TSrmax;
 our $TSThick;
 our $TSLength;
 
+our $CexitAngle;
+
+our $ShieldThick;
+
+our $Addoradius;
+our $AddsupportLength;
+
+our $TorusZpos;
+our $SteelFrameLength;
+my $torusZstart = $TorusZpos - $SteelFrameLength;
 
 sub buildBeamShield
 {
-	
-   my $startz = $CZpos +  $Clength + $supportLength + $microgap;
+	my $AddTSThick = 0;
+	if($configuration{"variation"} eq "50_cm_TST") {$AddTSThick = 200;}
+	if($configuration{"variation"} eq "80_cm_TST") {$AddTSThick = 500;}
+
+   my $startz = $CZpos +  $Clength + $supportLength + $AddsupportLength + $microgap;
 	
    my $pipeORS = $pipeOR + $microgap;
 
-	my @mucal_zpos    = ( $startz , $startz+ $TSThick  , $startz + $TSThick , $startz + $TSLength);
+	my @mucal_zpos    = ( $startz , $startz+ $TSThick + $AddTSThick  , $startz + $TSThick + $AddTSThick , $torusZstart-$microgap);
    my @mucal_iradius = ( $pipeORS, $pipeORS           , $pipeORS           ,  $pipeORS          );
-   my @mucal_oradius = ( $Smax   , $TSrmax            , $CrminU            ,  $CrminU           );
+   my @mucal_oradius = ( $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle)   , $TSrmax + $Addoradius + $AddsupportLength*tan($CexitAngle) + $AddTSThick*tan($CexitAngle)           , $ShieldThick            ,    $ShieldThick       );
 
    
    my $nplanes = 4;
@@ -53,4 +66,3 @@ sub buildBeamShield
    print_det(\%configuration, \%detector);
 
 }
-

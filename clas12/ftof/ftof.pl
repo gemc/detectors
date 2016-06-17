@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 
-
 use strict;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
@@ -33,13 +32,7 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-# Global pars - these should be read by the load_parameters from file or DB
-#our %parameters = get_parameters(%configuration);
-
-system('groovy -cp "../coat-libs-2.0-SNAPSHOT.jar" factory.groovy');                                                                                        
-
-# Global pars - these should be read by the load_parameters from file or DB
-our @volumes = get_volumes(%configuration);
+system('groovy -cp "../*" factory.groovy');
 
 # materials
 require "./materials.pl";
@@ -50,18 +43,11 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# sensitive geometry
-#require "./geometry.pl";
-
 # read volumes from txt output of groovy script
-require "./volumes.pl";
-
-# calculate the parameters
-require "./utils.pl";
-
+require "./geometry_java.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("java");
+my @allConfs = ("original", "java");
 
 foreach my $conf ( @allConfs )
 {
@@ -73,17 +59,37 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 	
-	# calculate pars
-	# calculate_ftof_parameters();
-
 	# bank definitions
 	define_banks();
-	
-	# geometry
-	# makeFTOF();
-	
-	# volumes
-	makeFTOF();
+
+	if($configuration{"variation"} eq "original")
+	{
+		# Global pars - these should be read by the load_parameters from file or DB
+		our %parameters = get_parameters(%configuration);
+
+		# calculate the parameters
+		require "./utils.pl";
+
+		# sensitive geometry
+		require "./geometry.pl";
+
+		# calculate pars
+		calculate_ftof_parameters();
+
+		# volumes
+		makeFTOF();
+	}
+
+	if($configuration{"variation"} eq "java")
+	{
+		# Global pars - these should be read by the load_parameters from file or DB
+		our @volumes = get_volumes(%configuration);
+
+		coatjava::makeFTOF();
+	}
+
+	# make
+	make_pb();
 }
 
 

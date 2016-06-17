@@ -21,6 +21,11 @@ our $Smax ;
 
 our $CrminU;
 
+our $CexitAngle;
+
+our $Addoradius;
+our $AddsupportLength;
+
 
 sub buildBeamPipe
 {
@@ -30,7 +35,7 @@ sub buildBeamPipe
 	$detector{"description"} = "volume containing cherenkov gas";
 	$detector{"color"}       = "aabbbb";
    my $pipeZPos = $pipeL + 400;
-   $detector{"pos"}         = "0*cm 0*cm $pipeZPos";
+   $detector{"pos"}         = "0*cm 0*cm $pipeZPos*mm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$pipeIR*mm $pipeOR*mm $pipeL*mm 0*deg 360*deg";
 	$detector{"material"}    = "G4_Al";
@@ -39,11 +44,12 @@ sub buildBeamPipe
 	
 	my $pipeORS = $pipeOR + $microgap;
 	
-   my @mucal_zpos    = ( $CZpos              , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength);
-   my @mucal_iradius = ( $pipeORS            , $pipeORS                        , $pipeORS                        ,  $pipeORS                           );
-   my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD                         ,  $Smax                            );
+   my @mucal_zpos    = ( $CZpos              , $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + 2*$microgap, $CZpos +  $Clength + $supportLength + $AddsupportLength   );
+   my @mucal_iradius = ( $pipeORS            , $pipeORS                        , $pipeORS                        ,  $pipeORS                                                 );
+   my @mucal_oradius = ( $CrminU - 50*$microgap , $CrminU - 50*$microgap             , $CrmaxD + $Addoradius           ,  $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle) );
+	#	my @mucal_oradius = ( $CrminU - $microgap , $CrminD - $microgap             , $CrmaxD + $Addoradius           ,  $Smax + $Addoradius + $AddsupportLength*tan($CexitAngle) );
 
-   
+
    my $nplanes = 4;
    
    my $dimen = "0.0*deg 360*deg $nplanes*counts";
@@ -64,4 +70,3 @@ sub buildBeamPipe
    print_det(\%configuration, \%detector);
 
 }
-

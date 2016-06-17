@@ -1,3 +1,6 @@
+4/19/16
+- fixed torus overlaps (empirically)
+
 3/7/16
 - relaxing magnets.pl to accept one argument so it is consistent with the other scripts
 

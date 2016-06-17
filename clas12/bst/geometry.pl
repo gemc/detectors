@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+# Hello World!
+
 our %configuration;
 our %parameters;
 

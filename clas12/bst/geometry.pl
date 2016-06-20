@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 # Hello World!
+# Hello again!
 
 our %configuration;
 our %parameters;

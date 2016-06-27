@@ -25,8 +25,8 @@ double interpolate(double x, string what)
 		data = c4f10t;
 	else if(what == "ltcc_refl")
 		data = ltcc_refl;
-	else if(what == "eciw_witn")
-		data = eciw_witn;
+//	else if(what == "eciw_witn")
+//		data = eciw_witn;
 	else if(what == "ecis_samp")
 		data = ecis_samp;
 	else if(what == "wc_bad")
@@ -150,8 +150,9 @@ void integrate_yield()
 	{
 		TF12 *temp = new TF12("temp", momF, mom[i], "x");
 		
-		ngammas[i] = temp->Integral(190, 650, dummy, 0.1);
-		
+		ngammas[i] = temp->Integral(190, 650, 0.1);
+//		ngammas[i] = temp->Integral(190, 650, dummy, 0.1);
+
 		cout << pname[PART] << " momentum: " << mom[i] << "   n gammas: " << ngammas[i]
 		<< " mirror: " << mirname[MIRROR] <<  "  pmt: " << pmtname[PMT] << " wc: " << wcname[WC] << endl;
 		

@@ -1970,7 +1970,7 @@ sub make_ft_shield
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$al_tube_IR*mm $al_tube_OR*mm $al_tube_LT*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "Aluminum";
+	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 	
@@ -1987,7 +1987,7 @@ sub make_ft_shield
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0.0*mm $al_window_OR*mm $al_window_TN*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "Aluminum";
+	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 	

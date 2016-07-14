@@ -2,7 +2,8 @@
 
 	<detector name="dc" factory="TEXT" variation="ccdb"/>
 	<detector name="../fc/forwardCArriage" factory="TEXT" variation="original"/>
-	
+	<detector name="../magnets/torus" factory="TEXT" variation="original"/>
+
    <option name="geometry" value="1400x1000"/>
 	
 	<option name="BEAM_P"     value="e-, 5.0*GeV, 25*deg, 0*deg"/>

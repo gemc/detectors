@@ -670,6 +670,7 @@ sub make_ft_cal_motherboard
 	$detector{"material"}    = "pcboard";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
+
 	for ( my $i = 0; $i < 4; $i++ ) {
 		my $Bmtb_hear_DX = ($Bmtb_OR+$Bmtb_hear_LN-$Bmtb_hear_D0)*cos($Bmtb_angle[$i]/$degrad);
 		my $Bmtb_hear_DY =-($Bmtb_OR+$Bmtb_hear_LN-$Bmtb_hear_D0)*sin($Bmtb_angle[$i]/$degrad);

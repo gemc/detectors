@@ -1,6 +1,6 @@
 <gcard>
 
-	<detector name="dc" factory="TEXT" variation="ccdb"/>
+	<detector name="dc" factory="TEXT" variation="java"/>
 	<detector name="../fc/forwardCArriage" factory="TEXT" variation="original"/>
 	<detector name="../magnets/torus" factory="TEXT" variation="original"/>
 

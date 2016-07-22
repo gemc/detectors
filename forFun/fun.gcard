@@ -1,0 +1,31 @@
+<gcard>
+
+	<option name="geometry" value="1000x800"/>
+
+	<detector name="sphere" factory="GDML"/>
+
+	<detector name="enterprise" factory="CAD">
+   	<position x="-12*cm"  y="-20*cm"  z="-20*cm"  />
+   	<rotation x="90*deg"  y="0*deg"  z="0*deg"  />
+	</detector>
+
+	<detector name="dragon" factory="CAD">
+      <position x="-4*cm"  y="-10*cm"  z="-10*cm"  />
+   	<rotation x="80*deg"  y="0*deg"  z="0*deg"  />
+	</detector>
+
+	<detector name="truck" factory="CAD">
+      <position x="-2*cm"  y="-15*cm"  z="-20*cm"  />
+   	<rotation x="180*deg"  y="0*deg"  z="0*deg"  />
+	</detector>
+
+
+	<option name="BEAM_P" value="proton, 1.0*GeV, 4*deg, 0*deg"/>
+
+	<option name="SPREAD_V" value="(0.05, 0)cm"/>
+	<option name="BEAM_V" value="(-5.0, -13.33, -30.2)cm"/>
+
+	<option name="N"     value="10" />
+
+
+</gcard>

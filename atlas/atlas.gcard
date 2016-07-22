@@ -1,0 +1,18 @@
+<gcard>
+
+	<detector name="ForwardShield" factory="CAD"/>
+	<detector name="HEC" factory="CAD"/>
+	<detector name="LargeOuterWheel" factory="CAD"/>
+	<detector name="SmallBarrel" factory="CAD"/>
+	<detector name="Toroid" factory="CAD"/>
+	<detector name="TRT" factory="CAD"/>
+
+	<option name="geometry" value="1400x1200"/>
+	
+	<option name="BEAM_P" value="proton, 1.0*GeV, 0*deg, 0*deg"/>
+
+	<option name="SPREAD_V" value="(0.01, 0)cm"/>
+	<option name="BEAM_V" value="(240, 160, -0.3)cm"/>
+
+
+</gcard>

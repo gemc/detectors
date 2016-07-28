@@ -57,7 +57,10 @@ my @allConfs = ("original");
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
+	# geometry
+	makeCTOF();
+
 	# materials
 	materials();
 	
@@ -65,11 +68,8 @@ foreach my $conf ( @allConfs )
 	define_hit();
 	
 	# bank definitions
-	define_bank();
-	
-	# geometry
-	makeCTOF();
-	
+	define_bank();	
+
 }
 
 

@@ -98,5 +98,54 @@
    <volume name="cad/lgd47" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
    <volume name="cad/lgd48" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 
+	<volume name="cad/lgu01" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu02" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu03" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu04" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu05" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu06" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu07" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu08" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu09" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu10" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu11" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu12" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu13" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu14" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu15" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu16" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu17" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu18" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu19" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu20" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu21" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu22" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu23" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu24" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu25" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu26" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu27" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu28" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu29" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu30" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu31" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu32" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu33" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu34" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu35" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu36" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu37" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu38" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu39" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu40" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu41" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu42" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu43" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu44" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu45" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu46" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu47" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgu48" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+
 
 </gxml>

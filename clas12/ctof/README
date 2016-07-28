@@ -17,3 +17,15 @@ and materials are:
 upload_parameters.pl config.dat   < only for MYSQL factory
 
 ./cnd.pl config.dat
+
+
+
+Benchmark:
+
+- 10K events with g4volumes 11.5s
+- 10K events with cad volumes: 13.1s  (13% slow down)
+
+With solenoid:
+
+- 10K events with g4volumes 17.3.5s
+- 10K events with cad volumes: 18.1s  (4% slow down)

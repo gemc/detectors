@@ -1,0 +1,102 @@
+<gxml>
+	<volume name="cad/sc01" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 1"/>
+	<volume name="cad/sc02" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 2"/>
+	<volume name="cad/sc03" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 3"/>
+	<volume name="cad/sc04" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 4"/>
+	<volume name="cad/sc05" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 5"/>
+	<volume name="cad/sc06" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 6"/>
+	<volume name="cad/sc07" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 7"/>
+	<volume name="cad/sc08" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 8"/>
+	<volume name="cad/sc09" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 9"/>
+	<volume name="cad/sc10" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 10"/>
+	<volume name="cad/sc11" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 11"/>
+	<volume name="cad/sc12" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 12"/>
+	<volume name="cad/sc13" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 13"/>
+	<volume name="cad/sc14" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 14"/>
+	<volume name="cad/sc15" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 15"/>
+	<volume name="cad/sc16" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 16"/>
+	<volume name="cad/sc17" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 17"/>
+	<volume name="cad/sc18" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 18"/>
+	<volume name="cad/sc19" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 19"/>
+	<volume name="cad/sc20" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 20"/>
+	<volume name="cad/sc21" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 21"/>
+	<volume name="cad/sc22" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 22"/>
+	<volume name="cad/sc23" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 23"/>
+	<volume name="cad/sc24" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 24"/>
+	<volume name="cad/sc25" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 25"/>
+	<volume name="cad/sc26" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 26"/>
+	<volume name="cad/sc27" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 27"/>
+	<volume name="cad/sc28" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 28"/>
+	<volume name="cad/sc29" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 29"/>
+	<volume name="cad/sc30" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 30"/>
+	<volume name="cad/sc31" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 31"/>
+	<volume name="cad/sc32" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 32"/>
+	<volume name="cad/sc33" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 33"/>
+	<volume name="cad/sc34" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 34"/>
+	<volume name="cad/sc35" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 35"/>
+	<volume name="cad/sc36" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 36"/>
+	<volume name="cad/sc37" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 37"/>
+	<volume name="cad/sc38" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 38"/>
+	<volume name="cad/sc39" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 39"/>
+	<volume name="cad/sc40" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 40"/>
+	<volume name="cad/sc41" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 41"/>
+	<volume name="cad/sc42" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 42"/>
+	<volume name="cad/sc43" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 43"/>
+	<volume name="cad/sc44" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 44"/>
+	<volume name="cad/sc45" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 45"/>
+	<volume name="cad/sc46" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 46"/>
+	<volume name="cad/sc47" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 47"/>
+	<volume name="cad/sc48" color="444444" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" sensitivity="ctof" identifiers="paddle manual 48"/>
+
+
+	<volume name="cad/lgd01" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd02" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd03" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd04" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd05" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd06" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd07" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd08" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd09" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd10" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd11" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd12" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd13" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd14" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd15" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd16" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd17" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd18" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd19" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd20" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd21" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd22" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd23" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd24" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd25" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd26" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd27" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd28" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd29" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd30" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd31" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd32" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd33" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd34" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd35" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd36" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd37" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd38" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd39" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd40" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd41" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd42" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd43" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd44" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd45" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd46" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd47" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+   <volume name="cad/lgd48" color="666666" material="scintillator" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
+
+
+</gxml>

@@ -18,7 +18,7 @@ my $R =  25.0 + $dz + 0.1;
 sub makeCTOF
 {
 	build_mother();
-	build_paddles();
+	#	build_paddles();
 }
 
 sub build_mother
@@ -43,6 +43,7 @@ sub build_mother
 	$detector{"mfield"}      = "no";
 	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
+	$detector{"exist"}       = 0;
 	print_det(\%configuration, \%detector);
 }
 

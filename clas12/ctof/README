@@ -18,7 +18,12 @@ upload_parameters.pl config.dat   < only for MYSQL factory
 
 ./cnd.pl config.dat
 
+Light guides downstream: 1330 faces each
+Light guides upstream: 636 faces each
+Scintillator: 132 faces each
 
+Total number of faces: 1330*48 + 636*48 + 132*48
+							= 63,840  + 30,528 + 6,336  = 100,000 faces
 
 Benchmark:
 

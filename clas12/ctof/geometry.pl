@@ -18,7 +18,10 @@ my $R =  25.0 + $dz + 0.1;
 sub makeCTOF
 {
 	build_mother();
-	#build_paddles();
+
+	if($configuration{"variation"} eq "original") {
+		build_paddles();
+	}
 }
 
 sub build_mother
@@ -43,7 +46,9 @@ sub build_mother
 	$detector{"mfield"}      = "no";
 	$detector{"visible"}     = 0;
 	$detector{"style"}       = 1;
-	$detector{"exist"}       = 0;
+	if($configuration{"variation"} eq "cad") {
+		$detector{"exist"}       = 0;
+	}
 	print_det(\%configuration, \%detector);
 }
 

@@ -270,7 +270,7 @@ sub build_frontal_system_bottom
 	    $detector{"color"}       = "7575a3";
 	    $detector{"dimensions"}  = "0*mm";
 	    $detector{"type"}        = "Operation: AerogelContainingVolumeBottom.$sector * AerogelFullWrapBottom$AerogelTileNumber.inSec$sector";
-	    $detector{"material"}    = "Air";
+	    $detector{"material"}    = "G4_AIR";
 	    $detector{"style"}       = 1;
 
 	    print_det(\%configuration, \%detector);
@@ -497,7 +497,7 @@ sub build_frontal_system_top
 	    $detector{"color"}       = "7575a3";
 	    $detector{"dimensions"}  = "0*mm";
 	    $detector{"type"}        = "Operation: AerogelContainingVolumeTop.$sector * AerogelFullWrapTop$AerogelTileNumber.inSec$sector";
-	    $detector{"material"}    = "Air";
+	    $detector{"material"}    = "G4_AIR";
 	    $detector{"style"}       = 1;
 
 	    print_det(\%configuration, \%detector);

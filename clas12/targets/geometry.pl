@@ -63,7 +63,7 @@ sub build_targets
 		
 		# aluminum cell
 		$Rout       = 5.02;
-		$length     = 10.49;  # half length
+		$length     = 25.03;  # half length
 		%detector = init_det();
 		$detector{"name"}        = "aluminumCell";
 		$detector{"mother"}      = "aluminumCellVacuum";
@@ -78,7 +78,7 @@ sub build_targets
 		
 		# actual target
 		$Rout       = 5.00;
-		$length     = 10.47;  # half length
+		$length     = 25.00;  # half length
 		%detector = init_det();
 		$detector{"name"}        = $thisVariation;
 		$detector{"mother"}      = "aluminumCell";

@@ -73,7 +73,7 @@ sub make_first_layers
 	my $rmin  = 0;
 	my $rmax  = 0;
 	my $pspan = 0;
-	my $mate  = "Air";
+	my $mate  = "G4_AIR";
 	my %detector = init_det();
 	
 	
@@ -144,7 +144,7 @@ sub make_gems
 	my $rmax  = 0;
 	my $pspan = 0;
 	my $color = "000000";
-	my $mate  = "Air";
+	my $mate  = "G4_AIR";
 	
 	# first gem
 	if($layer == 0)

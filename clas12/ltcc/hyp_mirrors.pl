@@ -178,7 +178,7 @@ sub build_hyp_mirrors
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "LTCC Hyperbolic mirror right minus right box $n";
 		$detector{"type"}        = "Operation: hyperbolic_$n - left_sbox_$n";
-		$detector{"material"}    = "Air";
+		$detector{"material"}    = "G4_AIR";
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 		
@@ -195,7 +195,7 @@ sub build_hyp_mirrors
 			$detector{"rotation"}    = "0*deg -90*deg 0*deg";
 			$detector{"color"}       = "aaffff";
 			$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-			$detector{"material"}    = "Air";
+			$detector{"material"}    = "G4_AIR";
 			$detector{"style"}       = 1;
 			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 			$detector{"hit_type"}       = "mirror";
@@ -211,7 +211,7 @@ sub build_hyp_mirrors
 			$detector{"rotation"}    = "0*deg 90*deg 0*deg";
 			$detector{"color"}       = "aaffff";
 			$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-			$detector{"material"}    = "Air";
+			$detector{"material"}    = "G4_AIR";
 			$detector{"style"}       = 1;
 			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 			$detector{"hit_type"}       = "mirror";

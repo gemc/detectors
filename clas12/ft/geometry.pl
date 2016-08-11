@@ -380,7 +380,7 @@ sub make_ft_cal_mother_volume
 	for(my $i = 0; $i <$nplanes_FT; $i++) {$dimen = $dimen ." $oradius_FT[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_FT; $i++) {$dimen = $dimen ." $z_plane_FT[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}       = 0;
 	print_det(\%configuration, \%detector);
 	
@@ -406,7 +406,7 @@ sub make_ft_cal_crystals_volume
 	for(my $i = 0; $i <$nplanes_FT_CRY; $i++) {$dimen = $dimen ." $oradius_FT_CRY[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_FT_CRY; $i++) {$dimen = $dimen ." $z_plane_FT_CRY[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 	
@@ -670,6 +670,7 @@ sub make_ft_cal_motherboard
 	$detector{"material"}    = "pcboard";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
+
 	for ( my $i = 0; $i < 4; $i++ ) {
 		my $Bmtb_hear_DX = ($Bmtb_OR+$Bmtb_hear_LN-$Bmtb_hear_D0)*cos($Bmtb_angle[$i]/$degrad);
 		my $Bmtb_hear_DY =-($Bmtb_OR+$Bmtb_hear_LN-$Bmtb_hear_D0)*sin($Bmtb_angle[$i]/$degrad);
@@ -1317,7 +1318,7 @@ sub make_ft_trk_mother
 	$detector{"color"}       = "aaaaff";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$ftm_ir*mm $ftm_or*mm $ftm_dz*mm 0*deg 360*deg";
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
 	
@@ -1894,7 +1895,7 @@ sub make_ft_shield
 	}
 	
 	$detector{"dimensions"}   = $dimen;
-	$detector{"material"}     = "Air";
+	$detector{"material"}     = "G4_AIR";
 	$detector{"visible"}     = 0;
 	
 	print_det(\%configuration, \%detector);
@@ -1970,7 +1971,7 @@ sub make_ft_shield
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$al_tube_IR*mm $al_tube_OR*mm $al_tube_LT*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "Aluminum";
+	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 	
@@ -1987,7 +1988,7 @@ sub make_ft_shield
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0.0*mm $al_window_OR*mm $al_window_TN*mm 0.*deg 360.*deg";
-	$detector{"material"}    = "Aluminum";
+	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 	

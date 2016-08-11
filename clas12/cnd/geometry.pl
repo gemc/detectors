@@ -45,13 +45,33 @@ my @z_offset    = ($z_offset1, $z_offset2, $z_offset3);                # offset 
 my $angle_slice = 360.0/($paddles);                                    # degrees, angle corresponding to one segment in phi
 my $dR          = ($r1 - $r0 - (($layers-1) * $layer_gap)) / $layers;  # thickness of one layer (assuming all layers are equally thick)
 my @mother_gap  = ($mother_gap1, $mother_gap2);                        # cm, clearance on the inside of mother volume (just to fit in wrapping), followed by
-# clearance on outside of mother volume (to allow for the corners of the trapezoid paddles)
+																	   # clearance on outside of mother volume (to allow for the corners of the trapezoid paddles)
 
 my @pcolor = ('33dd66', '239a47', '145828');  # paddle colors by layer
 my $wcolor = 'af3cff';  # wrapping color
 my $ucolor =  '3c78ff';  # u-turn color
 
 my $half_diff = 0;
+
+
+####################################################################################
+=pod
+
+Looking downstream, paddles (in one block) are built in the following way:
+	                   ____ ____
+	Upper layer  (3)   \___|___/
+	Middle layer (2)    \__|__/
+	Lower layer  (1)     \_|_/
+
+Paddle numbering increases clockwise from 1-48, starting with the left paddle.
+
+Note that the x-axis (phi=0) is to the left (9 o'clock) and the y axis points upward (12 o'clock).
+
+Similarly, the downstream u-turns are numbered from 1-24 corresponding to their paddle pair.
+
+=cut
+####################################################################################
+
 
 sub makeCND
 {
@@ -120,22 +140,26 @@ sub make_paddles
 		my $dz = $length[$j-1] / 2.0;
 		my $z = sprintf("%.3f", $z_offset[$j-1]);
 		
+		#paddle's angled side's bottom and top x-positions
 		my $bx = $innerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		
-		for(my $i=1; $i<=($paddles); $i++)
+		for(my $i=1; $i<=($paddles); $i++)	
 		{
-			my $theta = ((2*$i - 1 + ((-1)**($i)))/2)*$angle_slice;  # increment angle for every other paddle
-			if ($i%2)
-			{
+			#increment angle by 15deg for every 2nd paddle, starting at i=3
+			my $theta = (((2*($i-1) - 1 + ((-1)**(($i)+1)))/2)*(-1)*$angle_slice)+90;
+
+			#odd (left) paddles
+			if ($i%2==1)
+			{	
 				#required vertices
-				my $ver1x = -$bx;
+				my $ver1x = (0.5)*$paddle_gap;
 				my $ver1y = $innerRadius;
-				my $ver2x = -$tx;
+				my $ver2x = (0.5)*$paddle_gap;
 				my $ver2y = $outerRadius;
-				my $ver3x = -(0.5)*$paddle_gap;
+				my $ver3x = $tx;
 				my $ver3y = $outerRadius;
-				my $ver4x = -(0.5)*$paddle_gap;
+				my $ver4x = $bx;
 				my $ver4y = $innerRadius;
 				
 				my $z_final = $z-$half_diff;
@@ -160,13 +184,13 @@ sub make_paddles
 			else
 			{
 				#required vertices
-				my $ver1x = (0.5)*$paddle_gap;
+				my $ver1x = -$bx;
 				my $ver1y = $innerRadius;
-				my $ver2x = (0.5)*$paddle_gap;
+				my $ver2x = -$tx;
 				my $ver2y = $outerRadius;
-				my $ver3x = $tx;
+				my $ver3x = -(0.5)*$paddle_gap;
 				my $ver3y = $outerRadius;
-				my $ver4x = $bx;
+				my $ver4x = -(0.5)*$paddle_gap;
 				my $ver4y = $innerRadius;
 				
 				my $z_final = $z-$half_diff;
@@ -203,24 +227,28 @@ sub make_paddles_wrapping_under
 		my $dz = $length[$j-1] / 2.0;
 		my $z = sprintf("%.3f", $z_offset[$j-1]);
 		
+		#paddle's angled side's bottom and top x-positions
 		my $bx = $innerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		
-		for(my $i=1; $i<=($paddles); $i++)
+		for(my $i=1; $i<=($paddles); $i++)			
 		{
-			my $theta = ((2*$i - 1 + ((-1)**($i)))/2)*$angle_slice;  # increment angle for every other paddle
-			if ($i%2)
+
+			#increment angle by 15deg for every 2nd paddle, starting at i=3	
+			my $theta = (((2*($i-1) - 1 + ((-1)**(($i)+1)))/2)*(-1)*$angle_slice)+90;
+
+			#odd (left) paddles
+			if ($i%2==1)
 			{
 				#required vertices
-				my $ver1x = -$bx;
+				my $ver1x = (0.5)*$paddle_gap;
 				my $ver1y = $innerRadius;
-				my $ver2x = -$tx;
+				my $ver2x = (0.5)*$paddle_gap;
 				my $ver2y = $outerRadius;
-				my $ver3x = -(0.5)*$paddle_gap;
+				my $ver3x = $tx;
 				my $ver3y = $outerRadius;
-				my $ver4x = -(0.5)*$paddle_gap;
+				my $ver4x = $bx;
 				my $ver4y = $innerRadius;
-				
 				my $z_final = $z-$half_diff;
 				
 				my %detector = init_det();
@@ -241,13 +269,13 @@ sub make_paddles_wrapping_under
 			else
 			{
 				#required vertices
-				my $ver1x = (0.5)*$paddle_gap;
+				my $ver1x = -$bx;
 				my $ver1y = $innerRadius;
-				my $ver2x = (0.5)*$paddle_gap;
+				my $ver2x = -$tx;
 				my $ver2y = $outerRadius;
-				my $ver3x = $tx;
+				my $ver3x = -(0.5)*$paddle_gap;
 				my $ver3y = $outerRadius;
-				my $ver4x = $bx;
+				my $ver4x = -(0.5)*$paddle_gap;
 				my $ver4y = $innerRadius;
 				
 				my $z_final = $z-$half_diff;
@@ -281,24 +309,28 @@ sub make_paddles_wrapping_upper
 		
 		my $dz = $length[$j-1] / 2.0;
 		my $z = sprintf("%.3f", $z_offset[$j-1]);
-		
+
+		#paddle's angled side's bottom and top x-positions		
 		my $bx = $innerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		
-		for(my $i=1; $i<=($paddles); $i++)
+		for(my $i=1; $i<=($paddles); $i++)			
 		{
-			my $theta = ((2*$i - 1 + ((-1)**($i)))/2)*$angle_slice;  # increment angle for every other paddle
-			if ($i%2)
+			#increment angle by 15deg for every 2nd paddle, starting at i=3		
+			my $theta = (((2*($i-1) - 1 + ((-1)**(($i)+1)))/2)*(-1)*$angle_slice)+90;
+			
+			#odd (left) paddles
+			if ($i%2==1)
 			{
 				#required vertices
-				my $ver1x = -$bx;
+				my $ver1x = (0.5)*$paddle_gap;
 				my $ver1y = $innerRadius;
-				my $ver2x = -$tx;
+				my $ver2x = (0.5)*$paddle_gap;
 				my $ver2y = $outerRadius;
-				my $ver3x = -(0.5)*$paddle_gap;
+				my $ver3x = $tx;
 				my $ver3y = $outerRadius;
-				my $ver4x = -(0.5)*$paddle_gap;
-				my $ver4y = $innerRadius;
+				my $ver4x = $bx;
+				my $ver4y = $innerRadius;				
 				
 				my $z_final = $z-$half_diff;
 				
@@ -320,14 +352,14 @@ sub make_paddles_wrapping_upper
 			else
 			{
 				#required vertices
-				my $ver1x = (0.5)*$paddle_gap;
+				my $ver1x = -$bx;
 				my $ver1y = $innerRadius;
-				my $ver2x = (0.5)*$paddle_gap;
+				my $ver2x = -$tx;
 				my $ver2y = $outerRadius;
-				my $ver3x = $tx;
+				my $ver3x = -(0.5)*$paddle_gap;
 				my $ver3y = $outerRadius;
-				my $ver4x = $bx;
-				my $ver4y = $innerRadius;
+				my $ver4x = -(0.5)*$paddle_gap;
+				my $ver4y = $innerRadius;				
 				
 				my $z_final = $z-$half_diff;
 				
@@ -361,20 +393,23 @@ sub make_paddles_wrapping_straight_edge
 		my $dz = $length[$j-1] / 2.0;
 		my $z = sprintf("%.3f", $z_offset[$j-1]);
 		
-		for(my $i=1; $i<=($paddles); $i++)
+		for(my $i=1; $i<=($paddles); $i++)			
 		{
-			my $theta = ((2*$i - 1 + ((-1)**($i)))/2)*$angle_slice;  # increment angle for every other paddle
-			if ($i%2)
+			#increment angle by 15deg for every 2nd paddle, starting at i=3	
+			my $theta = (((2*($i-1) - 1 + ((-1)**(($i)+1)))/2)*(-1)*$angle_slice)+90;
+
+			#odd (left) paddles
+			if ($i%2==1)
 			{
 				#required vertices
-				my $ver1x = -(0.5*$paddle_gap);
+				my $ver1x = ((0.5*$paddle_gap)-$wrap_thickness);
 				my $ver1y = $innerRadius;
-				my $ver2x = -(0.5*$paddle_gap);
+				my $ver2x = ((0.5*$paddle_gap)-$wrap_thickness);
 				my $ver2y = $outerRadius;
-				my $ver3x = (-(0.5*$paddle_gap)+$wrap_thickness);
+				my $ver3x = (0.5*$paddle_gap);
 				my $ver3y = $outerRadius;
-				my $ver4x = (-(0.5*$paddle_gap)+$wrap_thickness);
-				my $ver4y = $innerRadius;
+				my $ver4x = (0.5*$paddle_gap);
+				my $ver4y = $innerRadius;				
 				
 				my $z_final = $z-$half_diff;
 				
@@ -396,15 +431,15 @@ sub make_paddles_wrapping_straight_edge
 			else
 			{
 				#required vertices
-				my $ver1x = ((0.5*$paddle_gap)-$wrap_thickness);
+				my $ver1x = -(0.5*$paddle_gap);
 				my $ver1y = $innerRadius;
-				my $ver2x = ((0.5*$paddle_gap)-$wrap_thickness);
+				my $ver2x = -(0.5*$paddle_gap);
 				my $ver2y = $outerRadius;
-				my $ver3x = (0.5*$paddle_gap);
+				my $ver3x = (-(0.5*$paddle_gap)+$wrap_thickness);
 				my $ver3y = $outerRadius;
-				my $ver4x = (0.5*$paddle_gap);
+				my $ver4x = (-(0.5*$paddle_gap)+$wrap_thickness);
 				my $ver4y = $innerRadius;
-				
+
 				my $z_final = $z-$half_diff;
 				
 				my %detector = init_det();
@@ -437,23 +472,27 @@ sub make_paddles_wrapping_angled_edge
 		my $dz = $length[$j-1] / 2.0;
 		my $z = sprintf("%.3f", $z_offset[$j-1]);
 		
+		#paddle's angled side's bottom and top x-positions			
 		my $bx = $innerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice)))) + (($wrap_thickness)/(cos(rad($angle_slice))));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice)))) + (($wrap_thickness)/(cos(rad($angle_slice))));
 		
-		for(my $i=1; $i<=($paddles); $i++)
+		for(my $i=1; $i<=($paddles); $i++)		
 		{
-			my $theta = ((2*$i - 1 + ((-1)**($i)))/2)*$angle_slice;  # increment angle for every other paddle
-			if ($i%2)
+			#increment angle by 15deg for every 2nd paddle, starting at i=3	
+			my $theta = (((2*($i-1) - 1 + ((-1)**(($i)+1)))/2)*(-1)*$angle_slice)+90;
+			
+			#odd (left) paddles
+			if ($i%2==1)
 			{
 				#required vertices
-				my $ver1x = -$bx;
+				my $ver1x = $bx-(($wrap_thickness)/(cos(rad($angle_slice))));
 				my $ver1y = $innerRadius;
-				my $ver2x = -$tx;
+				my $ver2x = $tx-(($wrap_thickness)/(cos(rad($angle_slice))));
 				my $ver2y = $outerRadius;
-				my $ver3x = -$tx+(($wrap_thickness)/(cos(rad($angle_slice))));
+				my $ver3x = $tx;
 				my $ver3y = $outerRadius;
-				my $ver4x = -$bx+(($wrap_thickness)/(cos(rad($angle_slice))));
-				my $ver4y = $innerRadius;
+				my $ver4x = $bx;
+				my $ver4y = $innerRadius;				
 				
 				my $z_final = $z-$half_diff;
 				
@@ -475,14 +514,14 @@ sub make_paddles_wrapping_angled_edge
 			else
 			{
 				#required vertices
-				my $ver1x = $bx-(($wrap_thickness)/(cos(rad($angle_slice))));
+				my $ver1x = -$bx;
 				my $ver1y = $innerRadius;
-				my $ver2x = $tx-(($wrap_thickness)/(cos(rad($angle_slice))));
+				my $ver2x = -$tx;
 				my $ver2y = $outerRadius;
-				my $ver3x = $tx;
+				my $ver3x = -$tx+(($wrap_thickness)/(cos(rad($angle_slice))));
 				my $ver3y = $outerRadius;
-				my $ver4x = $bx;
-				my $ver4y = $innerRadius;
+				my $ver4x = -$bx+(($wrap_thickness)/(cos(rad($angle_slice))));
+				my $ver4y = $innerRadius;				
 				
 				my $z_final = $z-$half_diff;
 				
@@ -516,11 +555,13 @@ sub make_uturn
 		my $dz = $length[$j-1] / 2.0;
 		my $dy = $dR / 2.0;
 		my $z = sprintf("%.3f", ($dz + $z_offset[$j-1]));
-		
+
+		#paddle's angled side's bottom and top x-positions			
 		my $bx = $innerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
 		
-		for(my $i=1; $i<=(0.5*$paddles); $i++)
+		#for(my $i=1; $i<=(0.5*$paddles); $i++)
+		for(my $i=1; $i<=3; $i++)		
 		{
 			my $theta = ($i-1)*2*$angle_slice;
 			
@@ -564,14 +605,16 @@ sub make_uturn_wrapping_side
 		my $dz = $length[$j-1] / 2.0;
 		my $dy = $dR / 2.0;
 		my $z = sprintf("%.3f", ($dz + $z_offset[$j-1]));
-		
+
+		#paddle's angled side's bottom and top x-positions		
 		my $bxI = $innerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice))));
 		my $txI = $outerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice))));
 		
+		#now add on wrapping
 		my $bx = $bxI + (($wrap_thickness)/(cos(rad($angle_slice))));
 		my $tx = $txI + (($wrap_thickness)/(cos(rad($angle_slice))));
 		
-		for(my $i=1; $i<=(0.5*$paddles); $i++)
+		for(my $i=1; $i<=(0.5*$paddles); $i++)	
 		{
 			my $theta = ($i-1)*2*$angle_slice;
 			
@@ -615,6 +658,7 @@ sub make_uturn_wrapping_under
 		my $dy = $wrap_thickness/ 2.0;
 		my $z = sprintf("%.3f", ($dz + $z_offset[$j-1]));
 		
+		#paddle's angled side's bottom and top x-positions			
 		my $bx = $innerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice)))) + (($wrap_thickness)/(cos(rad($angle_slice))));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice)))) + (($wrap_thickness)/(cos(rad($angle_slice))));
 		
@@ -661,7 +705,8 @@ sub make_uturn_wrapping_upper
 		my $dz = $length[$j-1] / 2.0;
 		my $dy = $wrap_thickness / 2.0;
 		my $z = sprintf("%.3f", ($dz + $z_offset[$j-1]));
-		
+
+		#paddle's angled side's bottom and top x-positions		
 		my $bx = $innerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice)))) + (($wrap_thickness)/(cos(rad($angle_slice))));
 		my $tx = $outerRadius*tan(rad($angle_slice)) - ((0.5*$block_gap)/(cos(rad($angle_slice)))) + (($wrap_thickness)/(cos(rad($angle_slice))));
 		

@@ -69,7 +69,7 @@ Box_depth = 450.            # Size of the calorimeter box in the z-direction. Fr
 Box_height = 457.2          # Size of the front flange height (y)         Corresponds with ACAD drawing 2011/6/15
 Box_width_front = 768.35   # Size of the front flange width  (x)         Corresponds with ACAD drawing 2011/6/15
 Box_width_back = 820.     # Size of the rear of the box.  (x)
-Box_plate_material = "Aluminum"
+Box_plate_material='G4_Al'
 
 # The half sizes are useful due to G4 using 1/2 widths.
 Box_Half_depth = Box_depth / 2.
@@ -753,7 +753,7 @@ def calculate_ecal_box_geometry(g_en,origin=[0,0,0],mother="ECAL",style=0):
 
 def calculate_ecal_vacuum_geometry(g_en,origin=[0,0,0],mother="ECAL",style=1):
     """Transcribed from GDML. This creates the detailed vacuum system for the ECAL, with flanges."""
-    ecal_vac_material="Aluminum"
+    ecal_vac_material='G4_Al'
 
     front_x = 0.0
     front_z = 10.0
@@ -910,7 +910,7 @@ def calculate_ecal_vacuum_geometry(g_en,origin=[0,0,0],mother="ECAL",style=1):
                       rot_units=["deg","deg","deg"],
                       g4type="Operation: front_minus_egapleft - flange_egap_inside_tube2",
                       col="ccccdd",
-                      material="Aluminum",
+                      material='G4_Al',
                       style=fl_style,
                       visible=fl_visible
                       ))
@@ -1058,7 +1058,7 @@ def calculate_ecal_vacuum_geometry(g_en,origin=[0,0,0],mother="ECAL",style=1):
                       g4type="Operation: back_minus_egapleft - flange_egap_inside_tube4",
                       #material="Component",
                       col="ccccdd",
-                      material="Aluminum",
+                      material='G4_Al',
                       style=fl_style,
                       visible=fl_visible
                       ))
@@ -1436,7 +1436,7 @@ def calculate_ecal_vacuum_geometry(g_en,origin=[0,0,0],mother="ECAL",style=1):
                       rot_units=["deg","deg","deg"],
                       g4type="Operation: chamber_minus_egap_left -  egap_inside_tube2",
                       col="ccccdd",
-                      material="Aluminum",
+                      material='G4_Al',
                       style=style,
                       visible=1
                         ))
@@ -1461,7 +1461,7 @@ def calculate_ecal_vacuum_geometry(g_en,origin=[0,0,0],mother="ECAL",style=1):
 
 
 #                       col="ff0000",
-#                       material="Aluminum",
+#                       material='G4_Al',
 #                       style=1,
 #                       visible=1
  
@@ -1872,7 +1872,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1887,7 +1887,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1902,7 +1902,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1917,7 +1917,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1932,7 +1932,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1947,7 +1947,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1962,7 +1962,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -1977,7 +1977,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: box_with_ppd9 + ppd_10',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -2173,7 +2173,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: layer_5a7 + ppd_0',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -2188,7 +2188,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: layer_5a7 + ppd_0',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -2279,7 +2279,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: layer_5b4 + ppd_5',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -2294,7 +2294,7 @@ def calculate_ecal_crystalbox_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Operation: layer_5b4 + ppd_5',
           dimensions=[0.0],
           dims_units=['cm'],
-          material='Aluminum')
+          material='G4_Al')
     g_en.add(geo)
 
     geo = Geometry( 
@@ -2491,7 +2491,7 @@ def calculate_ecal_coolingsys_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Tube',
           dimensions=[cu_pipe_ir, cu_pipe_or, 33.0, 0.0, 360.0],
           dims_units=['cm', 'cm', 'cm', 'deg', 'deg'],
-          material='Aluminum',
+          material='G4_Al',
           style=1)
     g_en.add(geo)
 
@@ -2507,7 +2507,7 @@ def calculate_ecal_coolingsys_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Tube',
           dimensions=[cu_pipe_ir, cu_pipe_or, 37.0, 0.0, 360.0],
           dims_units=['cm', 'cm', 'cm', 'deg', 'deg'],
-          material='Aluminum',
+          material='G4_Al',
           style=1)
     g_en.add(geo)
 
@@ -2523,7 +2523,7 @@ def calculate_ecal_coolingsys_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Tube',
           dimensions=[cu_pipe_ir, cu_pipe_or, 35.0, 0.0, 360.0],
           dims_units=['cm', 'cm', 'cm', 'deg', 'deg'],
-          material='Aluminum',
+          material='G4_Al',
           style=1)
     g_en.add(geo)
 
@@ -2539,7 +2539,7 @@ def calculate_ecal_coolingsys_geometry(g_en,mother="ECAL",origin=[0,0,0]):
           g4type='Tube',
           dimensions=[cu_pipe_ir, cu_pipe_or, 39.0, 0.0, 360.0],
           dims_units=['cm', 'cm', 'cm', 'deg', 'deg'],
-          material='Aluminum',
+          material='G4_Al',
           style=1)
     g_en.add(geo)
 

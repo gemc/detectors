@@ -1,6 +1,10 @@
 <gcard>
-	<detector name="ctof" factory="TEXT" variation="original"/>
-	<detector name="../bst/bst" factory="TEXT" variation="original"/>
+
+	<detector name="ctof" factory="TEXT" variation="cad"/>
+	<detector name="cad/" factory="CAD"/>
+
+<!--	<detector name="ctof" factory="TEXT" variation="original"/>-->
+
 	<option name="geometry" value="1400x1200"/>
 	
 	<option name="INTEGRATEDRAW" value="ctof"/>
@@ -12,8 +16,4 @@
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
 	
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
-
-	<option name="HALL_FIELD" value="clas12-solenoid"/>
-	<option name="FIELD_PROPERTIES" value="clas12-solenoid, 0.1*mm, G4HelixSimpleRunge, linear"/>
-
 </gcard>

@@ -18,7 +18,7 @@ sub gapLine()
 	{
 		$zEnd = 750.0;
 	}
-    if( $configuration{"variation"} eq "FTOn" )
+    if( $configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "FTOn_mount_is_W" )
     {
         $zEnd = 850.0;
     }
@@ -46,5 +46,4 @@ sub gapLine()
 	
 	
 }
-
 

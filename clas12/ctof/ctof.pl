@@ -52,12 +52,15 @@ require "./geometry.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("original", "cad");
 
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
+	# geometry
+	makeCTOF();
+
 	# materials
 	materials();
 	
@@ -65,11 +68,8 @@ foreach my $conf ( @allConfs )
 	define_hit();
 	
 	# bank definitions
-	define_bank();
-	
-	# geometry
-	makeCTOF();
-	
+	define_bank();	
+
 }
 
 

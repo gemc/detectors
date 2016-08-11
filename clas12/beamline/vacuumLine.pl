@@ -22,9 +22,14 @@ sub vacuumLine()
 	my $nplanes = 6;
 	my $tzs     = $torusZstart + $microgap;
 	my $tze     = $torusZEnd   + 655;
-	
+
 	my @iradius_vbeam  =  ( 26.68, 26.68, 36.68, 36.68, 126,  126);
 	my @oradius_vbeam  =  (  29.8,  29.8,  39.8,  39.8, 132,  132);
+	if( $configuration{"variation"} eq "FTOn_mount_is_W" || $configuration{"variation"} eq "FTOff_mount_is_W")
+	{
+		@iradius_vbeam  =  ( 26.68, 26.68, 31.03, 31.03, 126,  126);
+		@oradius_vbeam  =  (  29.8,  29.8,  34.15,  34.15, 132,  132);	
+	}
 	my @z_plane_vbeam  =  ( 433.9,  $tzs, $tzs, $tze, $tze, 11000 );
 	
 	
@@ -33,7 +38,7 @@ sub vacuumLine()
 	{
 		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
 	}
-    if( $configuration{"variation"} eq "FTOn") {
+    if( $configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "FTOn_mount_is_W") {
         @z_plane_vbeam  =  ( 850.0, $tzs, $tzs, $tze, $tze, 11000 );
     }
 
@@ -78,5 +83,4 @@ sub vacuumLine()
 	
 	
 }
-
 

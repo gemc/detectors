@@ -112,13 +112,6 @@ sub materials
 	$mat{"components"}    = "G4_Al 1";
 	print_mat(\%configuration, \%mat);
 	
-	%mat = init_mat();
-	$mat{"name"}          = "myAir"; # found in gemc materials database
-	$mat{"description"}   = "Air";
-	$mat{"density"}       = "1.29";
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "G4_N 0.70 G4_O 0.30";
-	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
 	$mat{"name"}          = "mybmtMMGas"; # found in gemc materials database

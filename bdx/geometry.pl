@@ -1442,7 +1442,7 @@ sub make_bunker_tunnel
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_bunker
@@ -1593,7 +1593,7 @@ sub make_hallaBD_flux
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"sensitivity"} = "flux";
     $detector{"hit_type"}    = "flux";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     $detector{"identifiers"} = "id manual 0";
     print_det(\%configuration, \%detector);
 }
@@ -1686,7 +1686,7 @@ sub make_det_house_inner
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_det_shaft_outer
@@ -1738,7 +1738,7 @@ sub make_det_shaft_inner
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 
@@ -1805,7 +1805,7 @@ sub make_stair_inner
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_stair_wall
@@ -1858,7 +1858,7 @@ sub make_stair_wall_door
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_shaft_wall
@@ -1911,7 +1911,7 @@ sub make_shaft_wall_door
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 
@@ -1963,7 +1963,7 @@ sub make_ext_house_inner
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_ext_house_shaft_hole
@@ -1987,7 +1987,7 @@ sub make_ext_house_shaft_hole
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_ext_house_stair_hole
@@ -2011,7 +2011,7 @@ sub make_ext_house_stair_hole
     $detector{"pos"}         = "$X*cm $Y*cm $Z*cm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
 }
 sub make_stair_steps_1
@@ -2282,7 +2282,7 @@ sub make_cormo_lead
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
     $detector{"dimensions"}  = "$cormo_leadshield_lx*cm $cormo_leadshield_ly*cm $cormo_leadshield_lz*cm";
     $detector{"material"}    = "G4_Pb";
-    #$detector{"material"}    = "Air";
+    #$detector{"material"}    = "G4_AIR";
     print_det(\%configuration, \%detector);
     $detector{"name"}        = "cormo_lead_downstream";
     $X = 0.;
@@ -2673,7 +2673,7 @@ sub make_cry_module
             $par4 =$ar_wr_cr_lsy  ;
             $par5 =$ar_wr_cr_lgt ;
             $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm $par4*cm $par5*cm";
-            $detector{"material"}    = "Air";
+            $detector{"material"}    = "G4_AIR";
             print_det(\%configuration, \%detector);
             
             # Mylar wrapping
@@ -2723,7 +2723,7 @@ sub make_cry_module
             $par5 =$cr_lgt ;
             $detector{"dimensions"}  = "$par1*cm $par2*cm $par3*cm $par4*cm $par5*cm";
             $detector{"material"}    = "CsI_Tl";
-            #$detector{"material"}    = "Air";
+            #$detector{"material"}    = "G4_AIR";
             $detector{"sensitivity"} = "crs";
             $detector{"hit_type"}    = "crs";
             my $i_im=$im+1;

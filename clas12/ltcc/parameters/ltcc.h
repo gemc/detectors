@@ -120,3 +120,47 @@ TF1 *windowMore_cut_nose;
 
 
 
+
+// functions loaded with loadMacro now needs to be declared in headers
+double interpolate(double x, string what);
+double dndxdl(double *x, double *par);
+void integrate_yield();
+double windowy(double *x, double *par);
+int calculateNReflection(double r);
+int calculateWCgroup(double r);
+void simulateResponse();
+string stringify(double x);
+string stringify(int x);
+void init_parameters();
+void draw_W();
+void plot_yields();
+void normalized_yields_mirrors();
+void draw_qes();
+void draw_reflectivities();
+void draw_wcreflectivities();
+void draw_c4f10n();
+void draw_window_gain();
+void show_segment(int s);
+double PoissonReal(const Double_t *k, const Double_t *lambda);
+void setStyle();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

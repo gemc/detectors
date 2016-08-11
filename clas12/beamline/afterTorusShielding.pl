@@ -78,4 +78,3 @@ sub afterTorusShielding()
 
 }
 
-

@@ -55,7 +55,6 @@ my $strips_material  	= 'myfmtMMStrips'; #copper
 my $gas_material     	= 'myfmtMMGas'; # neon ethan CF4
 my $mesh_material    	= 'myfmtMMMesh'; # inox
 #my $drift_material   	= 'myMMMylar';
-my $air_material	 	= 'myAir';
 my $kapton_material	 	= 'myKapton';
 my $rohacell_material 	= 'myRohacell';
 my $resist_material		= 'myfmtResistPaste'; # for resistiv strips
@@ -127,7 +126,7 @@ sub make_fmt
 	$detector{"color"}       = "aaaaff";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$fmt_ir*mm $fmt_or*mm $fmt_dz*mm 0*deg 360*deg";
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;

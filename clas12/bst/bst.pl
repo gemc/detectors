@@ -47,15 +47,9 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# sensitive geometry
-require "./geometry.pl";
-
-# calculate the parameters
-require "./utils.pl";
-
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("original", "java");
 
 foreach my $conf ( @allConfs )
 {
@@ -69,10 +63,30 @@ foreach my $conf ( @allConfs )
 	
 	# bank definitions
 	define_bank();
-	
-	# geometry
-	makeBST();
+
+    if($configuration{"variation"} eq "original")
+    {
+        # sensitive geometry
+        require "./geometry.pl";
+    
+        # calculate the parameters
+        require "./utils.pl";
+        
+        # geometry
+        makeBST();
+    }
+
+    if($configuration{"variation"} eq "java")
+    {
+        system('groovy -cp ~/eclipse_workspace/CLAS12_SVT_GEOMETRY/bin factory.groovy');
+
+        # read volumes from txt output of groovy script
+        require "./geometry_java.pl";
+
+        # Global pars - these should be read by the load_parameters from file or DB
+		our @volumes = get_volumes(%configuration);
+
+		coatjava::makeBST();
+    }
 	
 }
-
-

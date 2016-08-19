@@ -77,14 +77,14 @@ sub makeCND
 {
 	make_cndMother();
 	make_paddles();
-	make_paddles_wrapping_under();
-	make_paddles_wrapping_upper();
-	make_paddles_wrapping_straight_edge();
-	make_paddles_wrapping_angled_edge();
+#	make_paddles_wrapping_under();
+#	make_paddles_wrapping_upper();
+#	make_paddles_wrapping_straight_edge();
+#	make_paddles_wrapping_angled_edge();
 	make_uturn();
-	make_uturn_wrapping_side();
-	make_uturn_wrapping_under();
-	make_uturn_wrapping_upper();
+#	make_uturn_wrapping_side();
+#	make_uturn_wrapping_under();
+#	make_uturn_wrapping_upper();
 }
 
 

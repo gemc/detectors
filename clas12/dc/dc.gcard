@@ -2,7 +2,6 @@
 
 	<detector name="dc" factory="TEXT" variation="java"/>
 	<detector name="../fc/forwardCArriage" factory="TEXT" variation="original"/>
-	<detector name="../magnets/torus" factory="TEXT" variation="original"/>
 
    <option name="geometry" value="1400x1000"/>
 	
@@ -12,6 +11,8 @@
 	
 	<option name="SIGNALVT" value="dc"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
+
+	<option name="SAVE_ALL_MOTHERS" value="1"/>
 
 
 	<option name="PHYSICS" value="FTFP_BERT + STD"/>

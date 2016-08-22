@@ -1,11 +1,9 @@
 <gcard>
    
    <detector name="micromegas" factory="TEXT" variation="original"/>
-	<detector name="../bst/bst" factory="TEXT" variation="original"/>
 
    <option name="geometry" value="1400x1200"/>
 	
-	<option name="SIGNALVT" value="bmt"/>
 	<option name="INTEGRATEDRAW" value="bmt"/>
 
 	

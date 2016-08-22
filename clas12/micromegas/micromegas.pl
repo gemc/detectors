@@ -5,7 +5,10 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
+use hit;
+use bank;
 use math;
+use materials;
 
 use Math::Trig;
 
@@ -65,8 +68,7 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	build_bmt();
-	# build_fmt();
+	define_bmt();
 	
 }
 

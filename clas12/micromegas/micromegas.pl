@@ -48,7 +48,7 @@ require "./hit.pl";
 
 # sensitive geometry
 require "./bmt.pl";
-#require "./ftm.pl";
+require "./fmt.pl";
 
 
 # all the scripts must be run for every configuration
@@ -69,7 +69,7 @@ foreach my $conf ( @allConfs )
 	
 	# geometry
 	define_bmt();
-	
+	define_fmt();
 }
 
 

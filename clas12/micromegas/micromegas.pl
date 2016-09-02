@@ -5,7 +5,10 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
+use hit;
+use bank;
 use math;
+use materials;
 
 use Math::Trig;
 
@@ -45,7 +48,7 @@ require "./hit.pl";
 
 # sensitive geometry
 require "./bmt.pl";
-#require "./ftm.pl";
+require "./fmt.pl";
 
 
 # all the scripts must be run for every configuration
@@ -65,9 +68,8 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	build_bmt();
-	# build_fmt();
-	
+	define_bmt();
+	define_fmt();
 }
 
 

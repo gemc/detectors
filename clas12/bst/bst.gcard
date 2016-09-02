@@ -1,5 +1,5 @@
 <gcard>
-	<detector name="bst" factory="TEXT" variation="original"/>
+	<detector name="bst" factory="TEXT" variation="java"/>
 
 	<option name="geometry" value="1400x1200"/>
 

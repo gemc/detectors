@@ -1,9 +1,6 @@
 use strict;
 use warnings;
 
-# Hello World!
-# Hello again!
-
 our %configuration;
 our %parameters;
 
@@ -24,7 +21,7 @@ $parameters{"starting_z_r2"} + $zshift,
 $parameters{"starting_z_r3"} + $zshift,
 $parameters{"starting_z_r4"} + $zshift);   # Z starting_point of the sensor in each region
 
-our $nregions = $parameters{"nregions"} ;
+our $nregions = $parameters{"nregions"};
 
 
 

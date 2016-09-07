@@ -1,3 +1,5 @@
+// TODO
+#if 0
 {
 	
 	ifstream f("../parameters/wcEff.txt");
@@ -73,13 +75,4 @@
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
+#endif

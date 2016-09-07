@@ -1,9 +1,15 @@
+#include "show_segment.h"
+
 // ATTENTION
 // for some reason this crashes when called a second time.
 // need to call one by one. Sucks
+//
+
+// TODO need to figure out where all these objects are defined..
 
 void show_segment(int s)
 {
+#if 0
 	TLatex lab;
 	lab.SetTextColor(kBlue+3);
 	lab.SetTextFont(42);
@@ -96,7 +102,7 @@ void show_segment(int s)
 
 
 	CE->Print(Form("segment_%d.gif", s+1));
-	
+#endif	
 }
 
 

@@ -1,3 +1,6 @@
+#ifndef LTCC_PARAMETERS_LTCC_LOADED
+#define LTCC_PARAMETERS_LTCC_LOADED
+
 const double PI    = 3.141592654;
 const double alpha = 1.0/137.0;
 
@@ -118,5 +121,4 @@ TF1 *windowMore_nocut_nose;
 TF1 *windowMore_cut_nonose;
 TF1 *windowMore_cut_nose;
 
-
-
+#endif

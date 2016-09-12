@@ -33,8 +33,8 @@ SVTConstants.VERBOSE = true;
 DatabaseConstantProvider cp = SVTConstants.connect( false );
 
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
-SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file
-factory.setApplyAlignmentShifts( true ); // shifted geometry
+//SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file
+//factory.setApplyAlignmentShifts( true ); // shifted geometry
 factory.makeVolumes();
 
 Util.scaleDimensions( factory.getMotherVolume(), 0.5 );

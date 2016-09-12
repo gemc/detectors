@@ -22,6 +22,9 @@ my @nsectors;
 my $nmodules;
 my $nsensors;
 
+my %materials = ("silicon","G4_Si",
+                 "rohacell", "rohacell");
+
 sub makeBST
 {
 	($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
@@ -84,6 +87,8 @@ sub build_sector
     {
         build_module($r,$s,$m);
     }
+
+    #build_rohacell($r,$s);
 }
 
 sub build_module
@@ -136,7 +141,6 @@ sub build_sensor_active
     $detector{"mother"} = "root"; # overwrite mother from file
     %detector = setup_detector_active( $vdesc, \%detector );
     $detector{"ncopy"} = $sp;
-    #$detector{"identifiers"} = "superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} module manual $module_n strip manual 1";
     print_det(\%main::configuration, \%detector);
 }
 
@@ -155,8 +159,8 @@ sub build_sensor_dead_len
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
     $detector{"mother"} = "root"; # overwrite mother from file
-    %detector = setup_detector_dummy( $vdesc, \%detector );
-    $detector{"material"} = "G4_Si"; # overwrite material
+    %detector = setup_detector_passive( $vdesc, \%detector );
+    $detector{"material"} = $materials{"silicon"}; # overwrite material
     $detector{"ncopy"} = $dz;
     print_det(\%main::configuration, \%detector);
 }
@@ -176,9 +180,27 @@ sub build_sensor_dead_wid
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
     $detector{"mother"} = "root"; # overwrite mother from file
-    %detector = setup_detector_dummy( $vdesc, \%detector );
-    $detector{"material"} = "G4_Si"; # overwrite material
+    %detector = setup_detector_passive( $vdesc, \%detector );
+    $detector{"material"} = $materials{"silicon"}; # overwrite material
     $detector{"ncopy"} = $dz;
+    print_det(\%main::configuration, \%detector);
+}
+
+sub build_rohacell
+{
+    my $r = shift;
+    my $s = shift;
+    my $vname = "rohacell"."_s".$s."_r".$r;
+    my $vdesc = "SVT Rohacell Support".", Sector ".$s.", Region ".$r;
+
+    #print "Hello from ".$vdesc."\n";
+
+    my %detector = init_det();
+    %detector = setup_detector( $vname, \%detector );
+    $detector{"mother"} = "root"; # overwrite mother from file
+    %detector = setup_detector_passive( $vdesc, \%detector );
+    $detector{"material"} = $materials{"rohacell"}; # overwrite material
+    $detector{"ncopy"} = 1;
     print_det(\%main::configuration, \%detector);
 }
 
@@ -196,11 +218,12 @@ sub setup_detector_active
     $detector{"material"}    = "G4_Si";
 	$detector{"sensitivity"} = "bst";
 	$detector{"hit_type"}    = "bst";
+	#$detector{"identifiers"} = "superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} module manual $module_n strip manual 1";
 	
     return %detector;
 }
 
-sub setup_detector_dummy
+sub setup_detector_passive
 {
     my $description = shift;
     my %detector = %{shift()};

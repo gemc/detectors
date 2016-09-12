@@ -45,8 +45,8 @@ require "./hit.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("original", "java");
-my @allConfs = ("java");
-#my @allConfs = ("modified");
+my @allConfs = ("java"); # java variation only, for testing
+#my @allConfs = ("modified"); # ignore
 
 foreach my $conf ( @allConfs )
 {

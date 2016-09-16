@@ -1,13 +1,8 @@
 nregions | 4 | na | P. Davies | pdavies@jlab.org | 7/15/16
 nsectors_r1 | 10 | na | P. Davies | pdavies@jlab.org | 7/15/16
-z_start_r1 | -219.826 | mm | P. Davies | pdavies@jlab.org | 7/15/16
 nsectors_r2 | 14 | na | P. Davies | pdavies@jlab.org | 7/15/16
-z_start_r2 | -180.38 | mm | P. Davies | pdavies@jlab.org | 7/15/16
 nsectors_r3 | 18 | na | P. Davies | pdavies@jlab.org | 7/15/16
-z_start_r3 | -141.206 | mm | P. Davies | pdavies@jlab.org | 7/15/16
 nsectors_r4 | 24 | na | P. Davies | pdavies@jlab.org | 7/15/16
-z_start_r4 | -83.405 | mm | P. Davies | pdavies@jlab.org | 7/15/16
 nmodules | 2 | na | P. Davies | pdavies@jlab.org | 7/15/16
 nsensors | 3 | na | P. Davies | pdavies@jlab.org | 7/15/16
-nlayers | 8 | na | P. Davies | pdavies@jlab.org | 7/15/16
-silicon_thk | 0.32 | mm | P. Davies | pdavies@jlab.org | 7/15/16
+bsensorzones | 0 | na | P. Davies | pdavies@jlab.org | 7/15/16

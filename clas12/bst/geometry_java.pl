@@ -17,27 +17,47 @@ use geometry;
 
 my ($mothers, $positions, $rotations, $types, $dimensions, $ids);
 
+# old                           -> new
+# superlayer (1,2,3,4)          -> region (1,2,3,4)
+# segment (1-10,1-14,1-18,1-24) -> sector (1-10,1-14,1-18,1-24)
+# type (V=1,W=2)                -> module (U=1,V=2)
+# module (1-3)                  -> sp (sensorPhysical) (1-3)
+# strip (1)                     -> strip (1)
+
 my $nregions;
 my @nsectors;
 my $nmodules;
 my $nsensors;
+my $bsensorzones;
 
+# will move materials to CCDB later
 my %materials = ("silicon","G4_Si",
                  "rohacell", "rohacell");
+
+my $btestone = 0;
 
 sub makeBST
 {
 	($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
 
-    $nregions = $main::parameters{"nregions"};
-    $nmodules = $main::parameters{"nmodules"};
-    $nsensors = $main::parameters{"nsensors"};
+    $nregions     = $main::parameters{"nregions"};
+    $nmodules     = $main::parameters{"nmodules"};
+    $nsensors     = $main::parameters{"nsensors"};
+    $bsensorzones = $main::parameters{"bsensorzones"};
+
+    if($btestone)
+    {
+        $nregions = 1;
+        $nmodules = 1;
+        $nsensors = 1;
+    }
 
     #build_mother();
     
     for(my $r=1; $r<=$nregions; $r++ )
     {
         $nsectors[$r-1] = $main::parameters{"nsectors_r".$r};
+        if($btestone){ $nsectors[0] = 1; }
         build_region($r);
     }
 }
@@ -113,16 +133,28 @@ sub build_sensor_physical
     my $s  = shift;
     my $m  = shift;
     my $sp = shift;
-    #my $vname = "sensorPhys".$sp."_m".$m."_s".$s."_r".$r;
+    my $vname = "sensorPhysical".$sp."_m".$m."_s".$s."_r".$r;
     my $vdesc = "SVT Physical Sensor ".$sp.", Module ".$m.", Sector ".$s.", Region ".$r;
 
     #print "Hello from ".$vdesc."\n";
 
-    build_sensor_active($r,$s,$m,$sp);
-    build_sensor_dead_len($r,$s,$m,$sp,1);
-    build_sensor_dead_len($r,$s,$m,$sp,2);
-    build_sensor_dead_wid($r,$s,$m,$sp,3);
-    build_sensor_dead_wid($r,$s,$m,$sp,4);
+    if( $bsensorzones )
+    {
+        build_sensor_active($r,$s,$m,$sp);
+        build_sensor_dead_len($r,$s,$m,$sp,1);
+        build_sensor_dead_len($r,$s,$m,$sp,2);
+        build_sensor_dead_wid($r,$s,$m,$sp,3);
+        build_sensor_dead_wid($r,$s,$m,$sp,4);
+    }
+    else
+    {
+        my %detector = init_det();
+        %detector = setup_detector( $vname, \%detector );
+        $detector{"mother"} = "root"; # overwrite mother from file
+        %detector = setup_detector_active( $vdesc, \%detector );
+        $detector{"ncopy"} = $sp;
+        print_det(\%main::configuration, \%detector);
+    }
 }
 
 sub build_sensor_active

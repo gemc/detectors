@@ -6,11 +6,16 @@ import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.*;
 
-import org.jlab.detector.calib.utils.DatabaseConstantProvider;
+import org.jlab.clasrec.utils.DatabaseConstantProvider; // 2.4
+//import org.jlab.detector.calib.utils.DatabaseConstantProvider; // coatjava-3.0
 
 import SVTFactory.SVTConstants;
 import SVTFactory.SVTVolumeFactory;
 import Misc.Util;
+
+//println "classpath dump:"
+//this.class.classLoader.rootLoader.URLs.each{ println it }
+//System.exit(0);
 
 // todo: add getConstantsSVT() to DataBaseLoader?
 //ConstantProvider cp = DataBaseLoader.getConstantsSVT();
@@ -35,9 +40,14 @@ DatabaseConstantProvider cp = SVTConstants.connect( false );
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
 //SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file
 //factory.setApplyAlignmentShifts( true ); // shifted geometry
+
+factory.BUILDPASSIVES = false; // only build the sensors
+factory.SENSORZONES = false; // do not include sensor active and dead zones
+//factory.VOLSPACER = 5.0E-3; // prevent overlaps if dead zones are enabled
+
 factory.makeVolumes();
 
-Util.scaleDimensions( factory.getMotherVolume(), 0.5 );
+Util.scaleDimensions( factory.getMotherVolume(), 0.5 ); // geant wants half-dimensions
 
 def outFile = new File("bst__volumes_java.txt");
 outFile.newWriter().withWriter{ w -> w << factory; }
@@ -56,14 +66,23 @@ for( Map.Entry< String, String > entry : factory.getParameters().entrySet() )
   value = entry.getValue();
   unit = "na";
 
-  if( key[0] != "n" )
+  def notna = true;
+  
+  switch( key[0] )
+  {
+  case "n":
+  case "b":
+    notna = false;
+  }
+
+  if( notna )
   {
     switch( key )
     {
     //case "sector0":
     //case "phiStart":
       //unit = factory.getProperty("unit_angle");
-      //break;      
+      //break;
     default:
       unit = factory.getProperty("unit_length");
     }

@@ -153,6 +153,7 @@ sub build_sensor_physical
         $detector{"mother"} = "root"; # overwrite mother from file
         %detector = setup_detector_active( $vdesc, \%detector );
         $detector{"ncopy"} = $sp;
+        $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1";
         print_det(\%main::configuration, \%detector);
     }
 }
@@ -173,6 +174,7 @@ sub build_sensor_active
     $detector{"mother"} = "root"; # overwrite mother from file
     %detector = setup_detector_active( $vdesc, \%detector );
     $detector{"ncopy"} = $sp;
+    $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1";
     print_det(\%main::configuration, \%detector);
 }
 
@@ -250,7 +252,6 @@ sub setup_detector_active
     $detector{"material"}    = "G4_Si";
 	$detector{"sensitivity"} = "bst";
 	$detector{"hit_type"}    = "bst";
-	#$detector{"identifiers"} = "superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} module manual $module_n strip manual 1";
 	
     return %detector;
 }

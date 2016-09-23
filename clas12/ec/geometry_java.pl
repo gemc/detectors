@@ -12,6 +12,8 @@ my $types;
 my $dimensions;
 my $ids;
 
+my $nstrips = 36;
+
 # define ec sector. The definition is independendt so that misalignment between sectors can be implemented if needed
 sub define_mothers
 {
@@ -112,7 +114,7 @@ sub build_lids
 	
 }
 
-sub define_scintlayers
+sub define_layers
 {
 	for(my $s=1; $s<=6; $s++)
 	{
@@ -156,12 +158,13 @@ sub build_scintlayers
 {
 	my $sector = shift;
 	my $nlayers= 39;
-	my $istack = 1;
+
+	#array of colors for layer mother volumes of U, V, W views respectively
+	my @colors = ("ff6633", "33ffcc", "33ffcc");
 
 	for(my $ilayer = 1; $ilayer <= $nlayers; $ilayer++){
-		if($ilayer>15){
-			$istack = 2;
-		}
+		my $istack = ($ilayer<16) ? 1 : 2;
+
 		my $iview = ($ilayer-1)%3 + 1;
 		my $uvw = substr("UVW", $iview-1, 1);
 
@@ -176,12 +179,46 @@ sub build_scintlayers
 		$detector{"dimensions"}	= $dimensions->{$vname};
 
 		$detector{"description"} ="Forward Calorimeter scintillator layer ${ilayer}";
-		$detector{"color"}       = "0147FA";
+		$detector{"color"}       = $colors[$iview-1];
+		$detector{"material"}    = "G4_TITANIUM_DIOXIDE";
+
+		print_det(\%main::configuration, \%detector);
+
+		build_strips($sector, $ilayer);
+	}
+}
+
+sub build_strips
+{
+	my $sector = shift;
+	my $ilayer = shift;
+
+	my $istack = ($ilayer<16) ? 1 : 2;
+	my $iview = ($ilayer-1)%3 + 1;
+	my $uvw = substr("UVW", $iview-1, 1);
+
+	#array of colors for strip volumes of U, V, W views respectively
+	my @colors = ("ff6633", "6600ff", "6600ff");
+
+	for(my $istrip = 1; $istrip<=$nstrips; $istrip++)
+	{
+		my %detector = init_det();
+		my $vname = "${uvw}_strip_${ilayer}_${istrip}_s${sector}_stack_${istack}";
+	
+		$detector{"name"}		= $vname;
+		$detector{"mother"}		= $mothers->{$vname};
+		$detector{"pos"}		= $positions->{$vname};
+		$detector{"rotation"}	= $rotations->{$vname};
+		$detector{"type"}		= $types->{$vname};
+		$detector{"dimensions"}	= $dimensions->{$vname};
+
+		$detector{"description"} = "Forward Calorimeter scintillator layer ${ilayer} strip ${istrip} view ${iview}";
+		$detector{"color"}       = $colors[$iview-1];
 		$detector{"material"}    = "scintillator";
 		$detector{"style"}       = 1;
 		$detector{"sensitivity"} = "ec";
 		$detector{"hit_type"}    = "ec";
-		$detector{"identifiers"} = "sector manual $sector stack manual $istack view manual $iview strip manual 36";
+		$detector{"identifiers"} = "sector manual $sector stack manual $istack view manual $iview strip manual $istrip";
 
 		print_det(\%main::configuration, \%detector);
 	}
@@ -193,7 +230,7 @@ sub makeEC
 
 	define_mothers();
 	define_lids();
-	define_scintlayers();
+	define_layers();
 }
 
 1;

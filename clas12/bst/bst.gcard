@@ -1,16 +1,14 @@
 <gcard>
-	<detector name="bst" factory="TEXT" variation="original"/>
+	<detector name="bst" factory="TEXT" variation="java"/>
 
 	<option name="geometry" value="1400x1200"/>
 
-	<option name="SIGNALVT" value="bst"/>
 	<option name="INTEGRATEDRAW" value="bst"/>
 
 	<option name="COSMICRAYS" value="default, 1, 5"/>
 	<option name="COSMICAREA" value="0*cm, 0*cm, 0*cm, 60*cm"/>
 
 	<option name="OUTPUT" value="evio, out.ev"/>
-	<option name="SAVE_ALL_MOTHERS" value="1"/>
 
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 </gcard>

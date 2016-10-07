@@ -175,7 +175,7 @@ sub build_panel1b_counters
 		$detector{"dimensions"}   = $dimensions->{$vname};
 
 		$detector{"description"}  = "paddle $n - Panel 1B - Sector $sector";
-		$detector{"color"}        = "111ffaa";
+		$detector{"color"}        = "11ffaa";
 		$detector{"material"}     = "scintillator";
 		$detector{"mfield"}       = "no";
 		$detector{"visible"}      = 1;

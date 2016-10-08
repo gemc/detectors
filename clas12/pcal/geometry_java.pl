@@ -211,7 +211,7 @@ sub build_V_single_strips
 
 				if($strip > $ndoubles){
 					$strip_no = ($iview-1)*$nsingles + ($strip-$ndoubles);
-					$strip_id = $strip;
+					$strip_id = $strip-$ncouples;
 				}
 
 				$detector{"sensitivity"} = "pcal";
@@ -293,7 +293,7 @@ sub build_W_single_strips
 
 				if($strip > $ndoubles){
 					$strip_no = ($iview-1)*$nsingles + ($strip-$ndoubles);
-					$strip_id = $strip;
+					$strip_id = $strip-$ncouples;
 				}
 
 				$detector{"sensitivity"} = "pcal";

@@ -1,0 +1,7 @@
+<gxml>
+
+	<volume name="enterprise" color="8899dd" position="-12*cm -20*cm -20*cm" rotation="90*deg 0*deg 0*deg" material="G4_Pb"/>
+	<volume name="truck" position="-2*cm -15*cm -20*cm" rotation="180*deg 0*deg 0*deg" color="22dddd" material="G4_Pb"/>
+	<volume name="dragon" position="-4*cm -10*cm -10*cm" rotation="80*deg 0*deg 0*deg" color="99ff00" material="G4_Pb" sensitivity="flux" identifiers="id manual 1"/>
+
+</gxml>

@@ -4,7 +4,6 @@
 	
 	<option name="geometry" value="1400x1200"/>
 	
-	<option name="SIGNALVT" value="pcal"/>
 	<option name="INTEGRATEDRAW" value="pcal"/>
 	
 	<option name="BEAM_P"   value="e-, 8.0*GeV, 20*deg, 6*deg"/>

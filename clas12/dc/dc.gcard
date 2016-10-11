@@ -2,6 +2,8 @@
 
 	<detector name="dc" factory="TEXT" variation="java"/>
 	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="../magnets/torus" factory="TEXT" variation="original"/>
+	<detector name="../magnets/solenoid" factory="TEXT" variation="original"/>
 
    <option name="geometry" value="1400x1000"/>
 	
@@ -9,11 +11,9 @@
 	<option name="SPREAD_P"   value="1.0*GeV, 15*deg, 180*deg"/>
 	<option name="INTEGRATEDRAW" value="dc"/>
 	
-	<option name="SIGNALVT" value="dc"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
-
 
 	<option name="PHYSICS" value="FTFP_BERT + STD"/>
 

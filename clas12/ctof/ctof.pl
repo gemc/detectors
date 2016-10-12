@@ -53,6 +53,9 @@ require "./geometry.pl";
 # all the scripts must be run for every configuration
 my @allConfs = ("original", "cad");
 
+# bank definitions
+define_bank();
+
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
@@ -65,10 +68,6 @@ foreach my $conf ( @allConfs )
 	
 	# hits
 	define_hit();
-	
-	# bank definitions
-	define_bank();	
-
 }
 
 

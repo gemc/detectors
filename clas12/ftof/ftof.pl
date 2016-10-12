@@ -49,6 +49,9 @@ require "./geometry_java.pl";
 # all the scripts must be run for every configuration
 my @allConfs = ("original", "java");
 
+# bank definitions commong to all variations
+define_bank();
+
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
@@ -59,9 +62,6 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 	
-	# bank definitions
-	define_banks();
-
 	if($configuration{"variation"} eq "original")
 	{
 		# Global pars - these should be read by the load_parameters from file or DB

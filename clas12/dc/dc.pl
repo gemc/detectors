@@ -70,6 +70,9 @@ require "./utils.pl";
 # Right now run both configurations, later on just ccdb
 my @allConfs = ("ccdb", "cosmicR1", "ddvcs", "java");
 
+# bank definitions commong to all variations
+define_bank();
+
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
@@ -81,9 +84,7 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 	
-	# bank definitions
-	define_bank();
-	
+
 	# sensitive geometry
 	if($configuration{"variation"} eq "java")
 	{

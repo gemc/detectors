@@ -44,14 +44,14 @@ BMT_DriftCuGround_width		|    0.005 | mm  | Drift Cu Ground width (radially) 			
 FMT_mothervol_InnerRadius 	|   20.000 | mm	 | Mother volume inner radius					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_mothervol_OutRadius 	|  250.000 | mm  | Mother volume outer radius 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_mothervol_zmin		|  302.000 | mm  | Mother volume zmin						| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 09/08/2016
-FMT_mothervol_zmax		|  370.000 | mm  | Mother volume zmax						| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 09/08/2016
+FMT_mothervol_zmax		|  372.000 | mm  | Mother volume zmax						| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 09/08/2016
 FMT_nlayer		 	|    6	   | na  | Number of layers     					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_zpos_layer1 		|  305.250 | mm  | Position of the first layer of MM center (in z) 		| Frederic Georges	| frederic.georges@cea.fr 	 | - | - | - | 22/07/2015
 FMT_zpos_layer2 		|  315.750 | mm  | Position of the second layer of MM center (in z) 		| Frederic Georges	| frederic.georges@cea.fr 	 | - | - | - | 22/07/2015
 FMT_zpos_layer3 		|  326.250 | mm  | Position of the third layer of MM center (in z) 		| Frederic Georges	| frederic.georges@cea.fr 	 | - | - | - | 22/07/2015
-FMT_zpos_layer4 		|  336.750 | mm  | Position of the fourth layer of MM center (in z) 		| Frederic Georges	| frederic.georges@cea.fr 	 | - | - | - | 22/07/2015
-FMT_zpos_layer5 		|  347.250 | mm  | Position of the fifth layer of MM center (in z) 		| Frederic Georges	| frederic.georges@cea.fr 	 | - | - | - | 22/07/2015
-FMT_zpos_layer6 		|  357.750 | mm  | Position of the sixth layer of MM center (in z) 		| Frederic Georges	| frederic.georges@cea.fr 	 | - | - | - | 22/07/2015
+FMT_zpos_layer4 		|  338.750 | mm  | Position of the fourth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 30/09/2016 
+FMT_zpos_layer5 		|  349.250 | mm  | Position of the fifth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 30/09/2016  
+FMT_zpos_layer6 		|  359.750 | mm  | Position of the sixth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 30/09/2016 
 FMT_DetInnerRadius 		|   25.000 | mm  | Inner Radius of the MM disk					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_DetOuterRadius 		|  225.000 | mm  | Outer Radius of the MM disk					| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 20/05/2016
 FMT_ActInnerRadius 		|   42.000 | mm  | Inner Radius of the active area				| Michel Garcon		| michel.garcon@cea.fr     	 | - | - | - | 20/05/2016

@@ -43,7 +43,8 @@ void init_parameters() {
   // winston cones and pmts
   for (int s = 0; s < NSEG; s++) {
     in >> dummy >> wc0[0][s] >> wc0[1][s] >> pmt0[0][s] >> pmt0[1][s] >>
-        wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s];
+        wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >>
+        wcz[s];
     wc0[2][s] = 0;
     pmt0[2][s] = 0;
   }
@@ -475,13 +476,68 @@ void write_parameters() {
 
     // par value, units, comment
     OUT.width(14);
-    OUT << wcang[s] << "\t | cm | Winston Cone Angle  " << s + 1 << " \t | ";
+    OUT << wcang[s] << "\t | degrees | Winston Cone Angle  " << s + 1 << " \t | ";
 
     // author, emails
     OUT << " vlassov, ungaro | vlassov@jlab.org, ungaro@jlab.org | ";
 
     // link to drawings, name, date
     OUT << " none | none | 3/10/12";
+
+    OUT << endl;
+  }
+
+  // WC r1inner
+  for (int s = 0; s < NSEG; s++) {
+    // par name
+    OUT << "ltcc.wc.s" << s + 1 << "_r1inner"
+        << "\t | ";
+
+    // par value, units, comment
+    OUT.width(14);
+    OUT << wcr1[s] << "\t | cm | Winston Cone r1inner  " << s + 1 << " \t | ";
+
+    // author, emails
+    OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+
+    // link to drawings, name, date
+    OUT << " none | none | 10/20/16";
+
+    OUT << endl;
+  }
+  // WC r2inner
+  for (int s = 0; s < NSEG; s++) {
+    // par name
+    OUT << "ltcc.wc.s" << s + 1 << "_r2inner"
+        << "\t | ";
+
+    // par value, units, comment
+    OUT.width(14);
+    OUT << wcr2[s] << "\t | cm | Winston Cone r2inner  " << s + 1 << " \t | ";
+
+    // author, emails
+    OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+
+    // link to drawings, name, date
+    OUT << " none | none | 10/20/16";
+
+    OUT << endl;
+  }
+  // WC zouter
+  for (int s = 0; s < NSEG; s++) {
+    // par name
+    OUT << "ltcc.wc.s" << s + 1 << "_zouter"
+        << "\t | ";
+
+    // par value, units, comment
+    OUT.width(14);
+    OUT << wcz[s] << "\t | cm | Winston Cone zouter  " << s + 1 << " \t | ";
+
+    // author, emails
+    OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+
+    // link to drawings, name, date
+    OUT << " none | none | 10/20/16";
 
     OUT << endl;
   }

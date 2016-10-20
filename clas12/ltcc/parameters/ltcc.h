@@ -49,18 +49,23 @@ double hwdh[NSEG];
 // where z is along the biggest axis of the ellips.
 double pwo[3][NSEG];
 // coordinates of WC window center.
-double wc0[3][NSEG];
+double wc0[3][NSEG]; // OLD - DEPRECATED
 // coordinates of PMT window center.
 double pmt0[3][NSEG];
-// WC max radius
-double wcr[NSEG];
+// WC max radius 
+double wcr[NSEG]; // OLD - DEPRECATED
 // pmt radius
 double pmtr[NSEG];
 // distance between two planes in WC.
-double dplwc[NSEG];
+double dplwc[NSEG]; // OLD - DEPRECATED
 // angle between this planes and Segment median plane.
 // PLANES ARE DEFINED as p(1)*x + p(2)*y + p(3)*z + 1.0 = 0
 double wcang[NSEG];
+// winston cone small (r1) and large (r2) radius
+double wcr1[NSEG];
+double wcr2[NSEG];
+// winston cone length
+double wcz[NSEG];
 
 
 // refractive index of C4F10 is given by Sellmeier equation

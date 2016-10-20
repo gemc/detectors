@@ -66,6 +66,8 @@ double wcr1[NSEG];
 double wcr2[NSEG];
 // winston cone length
 double wcz[NSEG];
+// shield half lengths (x,y,z)
+double shield[3][NSEG];
 
 
 // refractive index of C4F10 is given by Sellmeier equation

@@ -44,7 +44,7 @@ void init_parameters() {
   for (int s = 0; s < NSEG; s++) {
     in >> dummy >> wc0[0][s] >> wc0[1][s] >> pmt0[0][s] >> pmt0[1][s] >>
         wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >>
-        wcz[s];
+        wcz[s] >> shield[0][s] >> shield[1][s] >> shield[2][s];
     wc0[2][s] = 0;
     pmt0[2][s] = 0;
   }
@@ -541,6 +541,28 @@ void write_parameters() {
 
     OUT << endl;
   }
+  // shield dimensions (shield is centered around PMT face)
+  string shielddim[3] = {"dx", "dy", "dz"};
+  for (int s = 0; s < NSEG; s++) {
+    for (int p = 0; p < 3; p++) {
+      // par name
+      OUT << "ltcc.shield.s" << s + 1 << "_" << shielddim[p] << "\t | ";
+
+      // par value, units, comment
+      OUT.width(14);
+      OUT << shield[p][s] << "\t | cm | shield dimensions for " << s + 1
+          << ", coordinate  " << shielddim[p] << "\t | ";
+
+      // author, emails
+      OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+
+      // link to drawings, name, date
+      OUT << " none | none | 10/20/16";
+
+      OUT << endl;
+    }
+  }
+
 
   // number of mirrors
   // par name par value, units, comment , author, emails

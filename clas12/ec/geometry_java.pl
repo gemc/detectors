@@ -180,7 +180,7 @@ sub build_scintlayers
 
 		$detector{"description"} ="Forward Calorimeter scintillator layer ${ilayer}";
 		$detector{"color"}       = $colors[$iview-1];
-		$detector{"material"}    = "G4_TITANIUM_DIOXIDE";
+		$detector{"material"}    = "G4_AIR";
 
 		print_det(\%main::configuration, \%detector);
 

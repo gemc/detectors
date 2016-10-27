@@ -1,7 +1,7 @@
 #ifndef LTCC_UTILS_UTILS_LOADED
 #define LTCC_UTILS_UTILS_LOADED
 
-#include <RTypes.h>
+#include <Rtypes.h>
 
 void setStyle();
 void change_particle();

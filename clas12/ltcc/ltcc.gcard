@@ -1,11 +1,11 @@
 <gcard>
 	
 	<detector name="ltcc" factory="TEXT" variation="original"/>
-	<detector name="../targets/target" factory="TEXT" variation="lh2"/>
+	<detector name="../targets/target" factory="TEXT" variation="lH2"/>
 	<detector name="../fc/forwardCarriage"      factory="TEXT" variation="original"/>
 
 	<option name="geometry" value="1400x1200"/>
-	<option name="INTEGRATEDRAW" value="ltcc"/>
+	<option name="INTEGRATEDRAW" value="ltcc,flux,mirror"/>
 	
 	
 <!--	<option name="BEAM_P"        value="opticalphoton, 2.5*eV, 90*deg, 90*deg"/>-->
@@ -15,6 +15,7 @@
 	
 	<option name="NO_FIELD"      value="all"/>
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
 
 	
 </gcard>

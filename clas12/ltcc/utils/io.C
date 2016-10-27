@@ -44,7 +44,8 @@ void init_parameters() {
   for (int s = 0; s < NSEG; s++) {
     in >> dummy >> wc0[0][s] >> wc0[1][s] >> pmt0[0][s] >> pmt0[1][s] >>
         wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >>
-        wcz[s] >> shield[0][s] >> shield[1][s] >> shield[2][s];
+        wcz[s] >> shield[0][s] >> shield[1][s] >> shield[2][s] >> 
+	shieldangz[s];
     wc0[2][s] = 0;
     pmt0[2][s] = 0;
   }
@@ -544,14 +545,27 @@ void write_parameters() {
   // shield dimensions (shield is centered around PMT face)
   string shielddim[3] = {"dx", "dy", "dz"};
   for (int s = 0; s < NSEG; s++) {
-    for (int p = 0; p < 3; p++) {
-      // par name
-      OUT << "ltcc.shield.s" << s + 1 << "_" << shielddim[p] << "\t | ";
+    // loop over x,y,z and z-angle
+    for (int p = 0; p < 4; p++) {
+      // x,y,z
+      if (p < 3) {
+        // par name
+        OUT << "ltcc.shield.s" << s + 1 << "_" << shielddim[p] << "\t | ";
 
-      // par value, units, comment
-      OUT.width(14);
-      OUT << shield[p][s] << "\t | cm | shield dimensions for " << s + 1
-          << ", coordinate  " << shielddim[p] << "\t | ";
+        // par value, units, comment
+        OUT.width(14);
+        OUT << shield[p][s] << "\t | cm | shield dimensions for " << s + 1
+            << ", coordinate  " << shielddim[p] << "\t | ";
+      // z-angle
+      } else {
+        // par name
+        OUT << "ltcc.shield.s" << s + 1 << "_zangle \t | ";
+
+        // par value, units, comment
+        OUT.width(14);
+        OUT << shield[p][s] << "\t | degrees | shield z angle for " << s + 1
+            << "\t | ";
+      }
 
       // author, emails
       OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";

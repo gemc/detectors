@@ -29,7 +29,8 @@
 	my @sub_box_x0 = ();
 	my @sub_box_y0 = ();
 	my @sub_box_z0 = ();
-	my @poly_z = ();
+	my @box_tilt = ();
+	
 
 
 	sub buildPmts
@@ -54,11 +55,11 @@
 			$box_x0[$n] = $parameters{"ltcc.shield.s$s"."_dx"};
 			$box_y0[$n] = $parameters{"ltcc.shield.s$s"."_dy"};
 			$box_z0[$n] = $parameters{"ltcc.shield.s$s"."_dz"};
-			$box_tilt[$n] = $parameters{"ltcc.box.s$s"."_angle"};
+			$box_tilt[$n] = $parameters{"ltcc.shield.s$s"."_zangle"};
 			$sub_box_x0[$n] = $box_x0[$n] - 0.2;
 			$sub_box_y0[$n] = $box_y0[$n] - 0.2 ;
 			$sub_box_z0[$n] = $box_z0[$n] + 0.2;
-			$poly_z[$n] = 2*$box_z0[$n];
+			
 			
 			
 
@@ -174,7 +175,7 @@
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				$detector{"description"} = "combined box right $n";
 				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*cm";
-				$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg $tilt[$n-1]*deg";
+				$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg $box_tilt[$n-1]*deg";
 				$detector{"color"}       = "558844";
 				$detector{"type"}        = "Operation:  box_s$s"."right_$n - subtraction_box_s$s"."right_$n";
 				$detector{"material"}    = "G4_Fe";
@@ -186,7 +187,7 @@
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				$detector{"description"} = "combined box left $n";
 				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*cm";
-				$detector{"rotation"}    = "90*deg $tilt[$n-1]*deg -$tilt[$n-1]*deg";
+				$detector{"rotation"}    = "90*deg $tilt[$n-1]*deg -$box_tilt[$n-1]*deg";
 				$detector{"color"}       = "558844";
 				$detector{"type"}        = "Operation:  box_s$s"."left_$n - subtraction_box_s$s"."left_$n";
 				$detector{"material"}    = "G4_Fe";
@@ -244,7 +245,7 @@
 				$detector{"description"} = "combined cone right $n";
 				$detector{"pos"}         = "$geo_pos_x_r*cm $geo_pos_y_r*cm $geo_pos_z_r*cm";
 				$detector{"rotation"}    = "-$phi*deg $theta*deg -$psi*deg";
-				$detector{"color"}       = "66bbff";
+				$detector{"color"}       = "0000ff";
 				$detector{"type"}        = "Operation:  cone_s$s"."right_outer$n - cone_s$s"."right_inner$n ";
 				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
@@ -287,7 +288,7 @@
 				$detector{"description"} = "combined cone left $n";
 				$detector{"pos"}         = "$geo_pos_x_l*cm $geo_pos_y_l*cm $geo_pos_z_l*cm";
 				$detector{"rotation"}    = "-$phi*deg -$theta*deg -$psi*deg";
-				$detector{"color"}       = "66bbff";
+				$detector{"color"}       = "0000ff";
 				$detector{"type"}        = "Operation:  cone_s$s"."left_outer$n - cone_s$s"."left_inner$n";
 				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";

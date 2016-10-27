@@ -68,7 +68,8 @@ double wcr2[NSEG];
 double wcz[NSEG];
 // shield half lengths (x,y,z)
 double shield[3][NSEG];
-
+// shield z-angle
+double shieldangz[NSEG];
 
 // refractive index of C4F10 is given by Sellmeier equation
 // (n-1) 10^6 = p1/(p2^-2 - lambda^-2)

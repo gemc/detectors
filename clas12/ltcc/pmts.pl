@@ -86,20 +86,21 @@
 			{       
 
 				my %detector = init_det();
+
 				$detector{"name"}        = "pmt_s$s"."right_$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "PMT right $n";
 				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
 				$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg 0*deg";
-				$detector{"color"}       = "992200";
+				$detector{"color"}       = "800000";
 				$detector{"type"}        = "Tube";
 				$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
 				$detector{"material"}    = "LTCCPMTGlass";
 				$detector{"style"}       = 1;
 				$detector{"sensitivity"} = "ltcc";
 				$detector{"hit_type"}    = "ltcc";
-				$detector{"identifiers"} = "sector manual 1 side manual 1 segment manual $n";
+				$detector{"identifiers"} = "sector manual $s type manual 3  side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 
 				%detector = init_det();
@@ -109,23 +110,58 @@
 				$detector{"description"} = "PMT left $n";
 				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
 				$detector{"rotation"}    = "90*deg  $tilt[$n-1]*deg  0*deg";
-				$detector{"color"}       = "992200";
+				$detector{"color"}       = "8000000";
 				$detector{"type"}        = "Tube";
 				$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm $len[$n-1]*cm 0*deg 360*deg";
 				$detector{"material"}    = "LTCCPMTGlass";
 				$detector{"style"}       = 1;
 				$detector{"sensitivity"} = "ltcc";
 				$detector{"hit_type"}    = "ltcc";
-				$detector{"identifiers"} = "sector manual 1 side manual 2 segment manual $n";
+				$detector{"identifiers"} = "sector manual $s type manual 3  side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);
 
+				%detector = init_det();
+				$detector{"name"}        = "pmt_light_stopper_s$s"."right_$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				#$detector{"mother"}      = "root";
+				$detector{"description"} = "PMT light stopper right $n";
+				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
+				$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg 0*deg";
+				$detector{"color"}       = "558844";
+				$detector{"type"}        = "Tube";
+				$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm 0.5*cm 0*deg 360*deg";
+				$detector{"material"}    = "G4_Galactic";
+				$detector{"style"}       = 1;
+				#$detector{"sensitivity"} = "";
+				#$detector{"hit_type"}    = "";
+				#$detector{"identifiers"} = "sector manual $s type manual 3  side manual 1 segment manual $n";
+				print_det(\%configuration, \%detector);
+
+				%detector = init_det();
+				$detector{"name"}        = "pmt_light_stopper_s$s"."left_$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				#$detector{"mother"}      = "root";
+				$detector{"description"} = "PMT light stopper left $n";
+				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
+				$detector{"rotation"}    = "90*deg  $tilt[$n-1]*deg  0*deg";
+				$detector{"color"}       = "558844";
+				$detector{"type"}        = "Tube";
+				$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm 0.5*cm 0*deg 360*deg";
+				$detector{"material"}    = "G4_Galactic";
+				$detector{"style"}       = 1;
+				#$detector{"sensitivity"} = "";
+				#$detector{"hit_type"}    = "";
+				#$detector{"identifiers"} = "sector manual $s type manual 3  side manual 2 segment manual $n";
+				print_det(\%configuration, \%detector);
+
+				%detector = init_det();
 				$detector{"name"}        = "box_s$s"."right_$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Box right $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";;
-				$detector{"color"}       = "992200";
+				$detector{"color"}       = "000000";
 				$detector{"type"}        = "Box";
 				$detector{"dimensions"}  = "$box_x0[$n-1]*cm $box_y0[$n-1]*cm $box_z0[$n-1]*cm";
 				$detector{"material"}    = "Component";
@@ -138,33 +174,33 @@
 				$detector{"description"} = "Box left $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "992200";
+				$detector{"color"}       = "000000";
 				$detector{"type"}        = "Box";
 				$detector{"dimensions"}  = "$box_x0[$n-1]*cm $box_y0[$n-1]*cm $box_z0[$n-1]*cm";
 				$detector{"material"}    = "Component";
 				print_det(\%configuration, \%detector);
 		
-				
+				%detector = init_det();
 				$detector{"name"}        = "subtraction_box_s$s"."right_$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Subtraction Box right $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";;
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";;
-				$detector{"color"}       = "992200";
+				$detector{"color"}       = "000000";
 				$detector{"type"}        = "Box";
 				$detector{"dimensions"}  = "$sub_box_x0[$n-1]*cm $sub_box_y0[$n-1]*cm $sub_box_z0[$n-1]*cm";
 				$detector{"material"} = "Component";
 				print_det(\%configuration, \%detector);
-				%detector = init_det();
 
+				%detector = init_det();
 				$detector{"name"}        = "subtraction_box_s$s"."left_$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Subtraction Box left $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "992200";
+				$detector{"color"}       = "000000";
 				$detector{"type"}        = "Box";
 				$detector{"dimensions"}  = "$sub_box_x0[$n-1]*cm $sub_box_y0[$n-1]*cm $sub_box_z0[$n-1]*cm";
 				$detector{"material"}    = "Component";
@@ -176,7 +212,7 @@
 				$detector{"description"} = "combined box right $n";
 				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*cm";
 				$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg $box_tilt[$n-1]*deg";
-				$detector{"color"}       = "558844";
+				$detector{"color"}       = "202020";
 				$detector{"type"}        = "Operation:  box_s$s"."right_$n - subtraction_box_s$s"."right_$n";
 				$detector{"material"}    = "G4_Fe";
 				$detector{"style"}       = 1;
@@ -188,7 +224,7 @@
 				$detector{"description"} = "combined box left $n";
 				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*cm";
 				$detector{"rotation"}    = "90*deg $tilt[$n-1]*deg -$box_tilt[$n-1]*deg";
-				$detector{"color"}       = "558844";
+				$detector{"color"}       = "202020";
 				$detector{"type"}        = "Operation:  box_s$s"."left_$n - subtraction_box_s$s"."left_$n";
 				$detector{"material"}    = "G4_Fe";
 				$detector{"style"}       = 1;
@@ -213,7 +249,8 @@
 				my $geo_pos_x_l = -$x0[$n-1] - $pos_xp_l; #positions for WCs which will be in front of left pmts	
 				my $geo_pos_y_l = $y0[$n-1] - $pos_yp_l;
 				my $geo_pos_z_l =  - $pos_zp_l;
-			
+
+				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."right_inner$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				$detector{"description"} = "cone right inner $n";
@@ -245,17 +282,17 @@
 				$detector{"description"} = "combined cone right $n";
 				$detector{"pos"}         = "$geo_pos_x_r*cm $geo_pos_y_r*cm $geo_pos_z_r*cm";
 				$detector{"rotation"}    = "-$phi*deg $theta*deg -$psi*deg";
-				$detector{"color"}       = "0000ff";
+				$detector{"color"}       = "b87333";
 				$detector{"type"}        = "Operation:  cone_s$s"."right_outer$n - cone_s$s"."right_inner$n ";
-				$detector{"material"}    = "G4_Cu";
+				$detector{"material"}    = "Air_Opt";
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}       = "mirror";
-				$detector{"identifiers"} = "sector manual 1 side manual 2 segment manual $n";
+				$detector{"identifiers"} = "sector manual $s type manual 3 side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			
 	
-			
+				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."left_inner$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
 				$detector{"description"} = "cone left inner $n";
@@ -288,13 +325,13 @@
 				$detector{"description"} = "combined cone left $n";
 				$detector{"pos"}         = "$geo_pos_x_l*cm $geo_pos_y_l*cm $geo_pos_z_l*cm";
 				$detector{"rotation"}    = "-$phi*deg -$theta*deg -$psi*deg";
-				$detector{"color"}       = "0000ff";
+				$detector{"color"}       = "b87333";
 				$detector{"type"}        = "Operation:  cone_s$s"."left_outer$n - cone_s$s"."left_inner$n";
-				$detector{"material"}    = "G4_Cu";
+				$detector{"material"}    = "Air_Opt";
 				$detector{"style"}       = "1";
    				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}       = "mirror";
-				$detector{"identifiers"} = "sector manual 1 side manual 2 segment manual $n";
+				$detector{"identifiers"} = "sector manual $s type manual 3 side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);
 
 
@@ -320,7 +357,7 @@
 				my $s_segment_box_height    = $segment_box_height   ;
 				my $yshift = $segment_box_thickness;      # Should be enough to encompass all mirrrors
 		
-				my %detector = init_det();
+			        %detector = init_det();
 				$detector{"name"}        = "segment_pmt_subtract_box_$n";
 				$detector{"mother"}      = "root";
 				$detector{"description"} = "Light Threshold Cerenkov Counter Segment Box to Subtract $n";

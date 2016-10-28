@@ -50,7 +50,7 @@ require "./geometry_java.pl";
 my @allConfs = ("original", "java");
 
 # bank definitions commong to all variations
-define_bank();
+define_banks();
 
 foreach my $conf ( @allConfs )
 {

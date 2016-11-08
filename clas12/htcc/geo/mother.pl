@@ -55,10 +55,14 @@ sub make_entrydishvolume
 
 # Entry Cone Volume
 my $entryconeNumZplanes = 9;
-my @entryconeZplanes = ( 380.00, 470.17, 561.61,  653.05,
+my @entryconeZplanes = ( 400.00, 470.17, 561.61,  653.05,
 						 744.49, 835.93, 927.37, 1018.81, 1116.6 );
 my $entryconeRinner  = 0;
-my @entryconeRouter  = ( 257.505, 323.952, 390.373, 456.819,
+#my @entryconeRouter  = ( 257.505, 323.952, 390.373, 456.819,
+#                         525.831, 599.872, 673.913, 747.979, 827.151 );
+
+# modified to accomodate for CTOF
+my @entryconeRouter  = ( 235, 323.952, 390.373, 456.819,
                          525.831, 599.872, 673.913, 747.979, 827.151 );
 
 

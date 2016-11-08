@@ -3,7 +3,8 @@
 //============================================================
 import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
-import org.jlab.detector.geant4.*;
+import org.jlab.detector.geant4.v2.*;
+import org.jlab.detector.units.SystemOfUnits.Length;
 
 ConstantProvider  cp = DataBaseLoader.getConstantsFTOF();
 //cp.show();
@@ -22,11 +23,11 @@ def writer=parFile.newWriter();
 //loop over panel volumes
 for(panels in factory.getMother().getChildren()){
 
-	for(int idim = 0; idim < panels.getParameters().length; idim++){
+	for(int idim = 0; idim < panels.getDimensions().size(); idim++){
 		writer<<sprintf("%s | %.3f | %s | %s | %s | %s | %s | %s | %s\n",
 			panels.getName()+".dimension"+idim,			//dimension0, 1, 2, 3 etc.
-			panels.getParameters()[idim],					//parameter value
-			panels.getUnits(),							//units
+			panels.getDimensions().get(idim).value,			//parameter value
+			panels.getDimensions().get(idim).unit,			//units
 			"dimension " + idim,						//description of parameter (dimension)
 			factory.getProperty("author"),				//author names
 			factory.getProperty("email"),					//emails
@@ -37,11 +38,12 @@ for(panels in factory.getMother().getChildren()){
 	}
 
 	//loop over axes for position X, Y, Z print
+	double[] pos = [panels.getLocalPosition().x, panels.getLocalPosition().y, panels.getLocalPosition().z];
 	for(int iaxis=0; iaxis<3; iaxis++){
 		writer<<sprintf("%s | %.3f | %s | %s | %s | %s | %s | %s | %s\n",
 			panels.getName()+".position"+axisName[iaxis],	//name of volume+position+axisname
-			panels.getPosition()[iaxis],					//parameter value
-			panels.getUnits(),							//units
+			pos[iaxis],					//parameter value
+			Length.unit(),							//units
 			"position along " + axisName[iaxis] + " axis",	//description of parameter (position)
 			factory.getProperty("author"),				//author names
 			factory.getProperty("email"),					//emails
@@ -54,11 +56,11 @@ for(panels in factory.getMother().getChildren()){
 
 	//print rotation for each axis
 	for(int iaxis=0; iaxis<3; iaxis++){
-		axisLabel = panels.getRotationOrder().charAt(iaxis);	//axis label taken from sequence
+		axisLabel = panels.getLocalRotationOrder().charAt(iaxis);	//axis label taken from sequence
 
 		writer<<sprintf("%s | %.3f | %s | %s | %s | %s | %s | %s | %s\n",
 			panels.getName()+".rotation"+axisLabel,			//name of volume+rotation+axisname
-			panels.getRotation()[iaxis],					//parameter value
+			panels.getLocalRotation()[iaxis],					//parameter value
 			"rad",									//units
 			"rotation along " + axisLabel + " axis",		//description of parameter (rotation)
 			factory.getProperty("author"),				//author names

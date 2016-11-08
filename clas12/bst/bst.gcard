@@ -1,16 +1,25 @@
 <gcard>
-	<detector name="bst" factory="TEXT" variation="original"/>
+	<detector name="bst" factory="TEXT" variation="java"/>
 
 	<option name="geometry" value="1400x1200"/>
 
-	<option name="SIGNALVT" value="bst"/>
 	<option name="INTEGRATEDRAW" value="bst"/>
 
+	<option name="BEAM_P" value="proton, 1*GeV, 80*deg, 0*deg"/>
+	<option name="SPREAD_P" value="0*GeV, 10*deg,180*deg"/>
+   <option name="BEAM_V" value="(0, 0 , 0)mm"/>
+
+	<!--
 	<option name="COSMICRAYS" value="default, 1, 5"/>
 	<option name="COSMICAREA" value="0*cm, 0*cm, 0*cm, 60*cm"/>
+	-->
 
 	<option name="OUTPUT" value="evio, out.ev"/>
-	<option name="SAVE_ALL_MOTHERS" value="1"/>
+
+
+	<!-- hall field  -->
+	<option name="HALL_FIELD"  value="clas12-solenoid"/>
+	<option name="FIELD_PROPERTIES" value="clas12-solenoid, 0.5*mm, G4HelixSimpleRunge, linear"/>
 
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 </gcard>

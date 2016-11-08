@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-use materials;
 
 our %configuration;
 
@@ -16,7 +15,7 @@ sub materials
 	print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
-	my $fmtMMStripTransparency_Density = (400./525.)*8.96; # for fmt
+	my $fmtMMStripTransparency_Density = (425./525.)*8.96; # for fmt
 	$mat{"name"}          = "myfmtMMStrips";
 	$mat{"description"}   = "micromegas fmt strips are copper";
 	$mat{"density"}       = "$fmtMMStripTransparency_Density";
@@ -25,7 +24,8 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtz4MMStripTransparency_Density = (1-10*64*0.201/311.881)*8.96; # for bmt Z4 (311.881 from computation with pitches)
+	my $bmtz4MMStripTransparency_Density = (1-10*64*0.201/311.881)*8.96; 
+        # for bmt Z4 (311.881 from computation with pitches)
 	$mat{"name"}          = "mybmtz4MMStrips";
 	$mat{"description"}   = "micromegas bmt Z4 strips are copper";
 	$mat{"density"}       = "$bmtz4MMStripTransparency_Density";
@@ -34,7 +34,8 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtz5MMStripTransparency_Density = (1-11*64*0.201/345)*8.96; # for bmt Z5 #no existing value, value guess
+	my $bmtz5MMStripTransparency_Density = (1-11*64*0.201/345)*8.96; 
+        # for bmt Z5 #no existing value, value guess
 	$mat{"name"}          = "mybmtz5MMStrips";
 	$mat{"description"}   = "micromegas bmt Z5 strips are copper";
 	$mat{"density"}       = "$bmtz5MMStripTransparency_Density";
@@ -43,7 +44,8 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtz6MMStripTransparency_Density = (1-12*64*0.201/403.968)*8.96; # for bmt Z6 # 12*64*(0.201+0.325) = 403.968 from computation with pitches instead of 407.16 (geometry)
+	my $bmtz6MMStripTransparency_Density = (1-12*64*0.201/403.968)*8.96; 
+        # for bmt Z6 # 12*64*(0.201+0.325) = 403.968 from computation with pitches instead of 407.16 (geometry)
 	$mat{"name"}          = "mybmtz6MMStrips";
 	$mat{"description"}   = "micromegas bmt Z6 strips are copper";
 	$mat{"density"}       = "$bmtz6MMStripTransparency_Density";
@@ -52,7 +54,8 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtc4MMStripTransparency_Density = (1-14*64*0.16/372.75)*8.96; # for bmt C4 (372.75 from geometry)
+	my $bmtc4MMStripTransparency_Density = (1-14*64*0.16/372.75)*8.96; 
+        # for bmt C4 (372.75 from geometry)
 	$mat{"name"}          = "mybmtc4MMStrips";
 	$mat{"description"}   = "micromegas bmt C4 strips are copper";
 	$mat{"density"}       = "$bmtc4MMStripTransparency_Density";
@@ -61,7 +64,8 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtc5MMStripTransparency_Density = (1-16*64*0.16/423.99)*8.96; # for bmt C5  (423.99 from geometry)
+	my $bmtc5MMStripTransparency_Density = (1-16*64*0.16/423.99)*8.96; 
+        # for bmt C5  (423.99 from geometry)
 	$mat{"name"}          = "mybmtc5MMStrips";
 	$mat{"description"}   = "micromegas bmt C5 strips are copper";
 	$mat{"density"}       = "$bmtc5MMStripTransparency_Density";
@@ -70,7 +74,8 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtc6MMStripTransparency_Density = (1-18*64*0.16/444.96)*8.96; # for bmt C6  (444.96 from geometry)
+	my $bmtc6MMStripTransparency_Density = (1-18*64*0.16/444.96)*8.96; 
+        # for bmt C6  (444.96 from geometry)
 	$mat{"name"}          = "mybmtc6MMStrips";
 	$mat{"description"}   = "micromegas bmt C6 strips are copper";
 	$mat{"density"}       = "$bmtc6MMStripTransparency_Density";
@@ -97,11 +102,11 @@ sub materials
 
 	# Peek chemical formula (C19 H12 O3)
 	%mat = init_mat();
-	$mat{"name"}          = "myPeek"; # old data, should check formula and density, to be safe...
+	$mat{"name"}          = "myPeek"; 
 	$mat{"description"}   = "peek";
-	$mat{"density"}       = "1.31";
+	$mat{"density"}       = "1.31";   # between 1.26 and 1.32, but most often 1.31 or 1.32
 	$mat{"ncomponents"}   = "3";
-	$mat{"components"}    = "C 19 H 12 O 3";
+	$mat{"components"}    = "C 19 H 12 O 3"; # OK http://www.dollfus-muller.com/fr/faq-general-fr/
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
@@ -115,7 +120,7 @@ sub materials
 	%mat = init_mat();
 	$mat{"name"}          = "myAir"; # found in gemc materials database
 	$mat{"description"}   = "Air";
-	$mat{"density"}       = "1.29";
+	$mat{"density"}       = "0.001205";
 	$mat{"ncomponents"}   = "2";
 	$mat{"components"}    = "G4_N 0.70 G4_O 0.30";
 	print_mat(\%configuration, \%mat);
@@ -123,7 +128,7 @@ sub materials
 	%mat = init_mat();
 	$mat{"name"}          = "mybmtMMGas"; # found in gemc materials database
 	$mat{"description"}   = "micromegas bmt argon isobutan gas";
-	$mat{"density"}       = "1.70335";
+	$mat{"density"}       = "0.00170335";
 	$mat{"ncomponents"}   = "3";
 #	$mat{"components"}    = "G4_Ar 0.95 G4_H 0.0086707 G4_C 0.0413293";
 	$mat{"components"}    = "G4_Ar 0.90 G4_H 0.0173414 G4_C 0.0826586";
@@ -131,15 +136,17 @@ sub materials
 	
 	%mat = init_mat();
 	$mat{"name"}          = "myfmtMMGas"; # found in gemc materials database
-	$mat{"description"}   = "micromegas fmt neon ethan CF4 gas";
-	$mat{"density"}       = "1.17";
+	$mat{"description"}   = "micromegas fmt neon ethane CF4 gas";
+	$mat{"density"}       = "0.00117";
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "G4_Ne 0.79 G4_H 0.022121 G4_C 0.101529 G4_F 0.08635";
 	print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
-	my $fmtMMMeshTransparency_Density = 0.490*7.93; #(45*45)/(45+18)*(45+18) = 0.51
-	$mat{"name"}          = "myfmtMMMesh"; # found in gemc materials database. Shouldn't have changed since then thought, I guess...
+	#my $fmtMMMeshTransparency_Density = 0.490*7.93; #(45*45)/(45+18)*(45+18) = 0.51
+        my $fmtMMMeshTransparency_Density = 0.55*7.93;
+	# effective thickness (taking into account double thickness when wires overlap and effect of wire circular section) ~ 0.55*thickness (MG's notebook page 138)
+	$mat{"name"}          = "myfmtMMMesh"; # found in gemc materials database.
 	$mat{"description"}   = "micromegas fmt micromesh is inox";
 	$mat{"density"}       = "$fmtMMMeshTransparency_Density";
 	$mat{"ncomponents"}   = "5";
@@ -172,25 +179,47 @@ sub materials
 	print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
+	my $fmtCompressedRohacellDensity = 0.072*2.0; # Rohacell 71XT (message du labo Rui le 13/06/2016).
 	$mat{"name"}          = "myRohacell"; # found in gemc materials database as rohacell31... not sure if it is the good model
 	$mat{"description"}   = "Rohacell";
-	$mat{"density"}       = "0.032";
+	$mat{"density"}       = "$fmtCompressedRohacellDensity";
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "G4_C 0.6463 G4_H 0.0784 G4_N 0.0839 G4_O 0.1914";
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $fmtResistPasteTransparency_Density = (325./525.)*2.0; # for fmt
-	$mat{"name"}          = "myfmtResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	# my $fmtResistPasteTransparency_Density = (325./525.)*2.0; # for fmt
+        my $fmtResistPasteTransparency_Density = 0.81*1.33; 
+        # for fmt: 81% filling fraction, 1.33 density from excel file; 
+        # from Cern mail 12/06/16, suppose 50% C / 50% epoxy; 
+        # adopt C at above density.
+        # thickness almost negligible, so not crucial to be exact.
+	$mat{"name"}          = "myfmtResistPaste"; 
 	$mat{"description"}   = "micromegas fmt resistiv strips";
 	$mat{"density"}       = "$fmtResistPasteTransparency_Density";
-	$mat{"ncomponents"}   = "1";
-	$mat{"components"}    = "G4_C 1";
+	$mat{"ncomponents"}   = "1";     
+	$mat{"components"}    = "G4_C 1"; 
 	print_mat(\%configuration, \%mat);
 	
+
 	%mat = init_mat();
-	my $bmtz4ResistPasteTransparency_Density = (1-10*64*0.201/311.881)*2.0; # for bmt Z4 (311.881 from computation with pitches)
-	$mat{"name"}          = "mybmtz4ResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	my $PhotoResist_Density = 1.42; 
+        # 1.42 density from excel file; 
+        # from Cern mail 12/06/16, suppose 50% acrylique / 50% epoxy; 
+        # adopt C at above density.
+        # thickness negligible compared to Peek rings at similar radii, but extends a few mm into the active area.
+	$mat{"name"}          = "myPhRes"; 
+	$mat{"description"}   = "PhotoResist";
+	$mat{"density"}       = "$PhotoResist_Density";
+	$mat{"ncomponents"}   = "1";     
+	$mat{"components"}    = "G4_C 1"; 
+	print_mat(\%configuration, \%mat);
+
+
+	%mat = init_mat();
+	my $bmtz4ResistPasteTransparency_Density = (1-10*64*0.201/311.881)*1.33; 
+        # for bmt Z4 (311.881 from computation with pitches); see fmtResistPaste for comment on density and chemical formula
+	$mat{"name"}          = "mybmtz4ResistPaste"; 
 	$mat{"description"}   = "micromegas bmt Z4 resistiv strips";
 	$mat{"density"}       = "$bmtz4ResistPasteTransparency_Density";
 	$mat{"ncomponents"}   = "1";
@@ -198,8 +227,9 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtz5ResistPasteTransparency_Density = (1-11*64*0.201/345)*2.0; # for bmt Z5 #no existing value, value guess
-	$mat{"name"}          = "mybmtz5ResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	my $bmtz5ResistPasteTransparency_Density = (1-11*64*0.201/345)*1.33; 
+        # for bmt Z5 no existing value, value guess
+	$mat{"name"}          = "mybmtz5ResistPaste"; 
 	$mat{"description"}   = "micromegas bmt Z5 resistiv strips";
 	$mat{"density"}       = "$bmtz5ResistPasteTransparency_Density";
 	$mat{"ncomponents"}   = "1";
@@ -207,8 +237,9 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtz6ResistPasteTransparency_Density = (1-12*64*0.201/403.968)*2.0; # for bmt Z6 # 12*64*(0.201+0.325) = 403.968 from computation with pitches instead of 407.16 (geometry)
-	$mat{"name"}          = "mybmtz6ResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	my $bmtz6ResistPasteTransparency_Density = (1-12*64*0.201/403.968)*1.33; 
+        # for bmt Z6 # 12*64*(0.201+0.325) = 403.968 from computation with pitches instead of 407.16 (geometry)
+	$mat{"name"}          = "mybmtz6ResistPaste"; 
 	$mat{"description"}   = "micromegas bmt Z6 resistiv strips";
 	$mat{"density"}       = "$bmtz6ResistPasteTransparency_Density";
 	$mat{"ncomponents"}   = "1";
@@ -216,8 +247,9 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtc4ResistPasteTransparency_Density = (1-14*64*0.16/372.75)*2.0; # for bmt C4 (372.75 from geometry)
-	$mat{"name"}          = "mybmtc4ResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	my $bmtc4ResistPasteTransparency_Density = (1-14*64*0.16/372.75)*1.33; 
+        # for bmt C4 (372.75 from geometry)
+	$mat{"name"}          = "mybmtc4ResistPaste"; 
 	$mat{"description"}   = "micromegas bmt C4 resistiv strips";
 	$mat{"density"}       = "$bmtc4ResistPasteTransparency_Density";
 	$mat{"ncomponents"}   = "1";
@@ -225,8 +257,9 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtc5ResistPasteTransparency_Density = (1-16*64*0.16/423.99)*2.0; # for bmt C5  (423.99 from geometry)
-	$mat{"name"}          = "mybmtc5ResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	my $bmtc5ResistPasteTransparency_Density = (1-16*64*0.16/423.99)*1.33; 
+        # for bmt C5  (423.99 from geometry)
+	$mat{"name"}          = "mybmtc5ResistPaste"; 
 	$mat{"description"}   = "micromegas bmt C5 resistiv strips";
 	$mat{"density"}       = "$bmtc5ResistPasteTransparency_Density";
 	$mat{"ncomponents"}   = "1";
@@ -234,8 +267,9 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	my $bmtc6ResistPasteTransparency_Density = (1-18*64*0.16/444.96)*2.0; # for bmt C6  (444.96 from geometry)
-	$mat{"name"}          = "mybmtc6ResistPaste"; # assumed it was carbon. Don't know the formula yet. Has to be checked and eventually, changed
+	my $bmtc6ResistPasteTransparency_Density = (1-18*64*0.16/444.96)*1.33; 
+        # for bmt C6  (444.96 from geometry)
+	$mat{"name"}          = "mybmtc6ResistPaste";
 	$mat{"description"}   = "micromegas bmt C6 resistiv strips";
 	$mat{"density"}       = "$bmtc6ResistPasteTransparency_Density";
 	$mat{"ncomponents"}   = "1";
@@ -243,11 +277,12 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
-	$mat{"name"}          = "myFR4"; # found in geant4 materials database here : http://www.phenix.bnl.gov/~suhanov/ncc/geant/rad-source/src/ExN03DetectorConstruction.cc
+	$mat{"name"}          = "myFR4"; 
+        # found in geant4 materials database here : http://www.phenix.bnl.gov/~suhanov/ncc/geant/rad-source/src/ExN03DetectorConstruction.cc
 	$mat{"description"}   = "pcb FR4";
 	$mat{"density"}       = "1.86";
 	$mat{"ncomponents"}   = "4";
-	$mat{"components"}    = "G4_C 0.4355 G4_H 0.03654 G4_Si 0.2468 G4_O 0.28116"; # not sure about it
+	$mat{"components"}    = "G4_C 0.4355 G4_H 0.0365 G4_Si 0.2468 G4_O 0.2812";
 	print_mat(\%configuration, \%mat);
 	
 	#data unknown
@@ -259,5 +294,42 @@ sub materials
 	#$mat{"components"}    = "G4_C 1";
 	#print_mat(\%configuration, \%mat);
 
+	%mat = init_mat();
+	my $fmtInnerScrew_Density = 7.93*9.0/(10.5-7.914);
+	# effective screw length to match the interdisk space;
+	# real screw = 9 mm; interdisk space = 10.5 mm; disk = 7.914 mm;
+	# if these numbers change slightly, not too serious a problem
+	$mat{"name"}          = "myfmtInnerScrew";
+	$mat{"description"}   = "fmt micromeshInner Screw is inox";
+	$mat{"density"}       = "$fmtInnerScrew_Density";
+	$mat{"ncomponents"}   = "5";
+	$mat{"components"}    = "G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.10 G4_Fe 0.68";
+	print_mat(\%configuration, \%mat);
+
+	%mat = init_mat();
+	$mat{"name"}          = "myCfiber"; 
+	$mat{"description"}   = "Cfiber";
+	$mat{"density"}       = "1.80";
+	$mat{"ncomponents"}   = "1";     
+	$mat{"components"}    = "G4_C 1"; 
+	print_mat(\%configuration, \%mat);
+
+	%mat = init_mat();
+	my $bmtCstraight_Density = 2.2*5./9.; # hollow for gas
+	$mat{"name"}          = "myCstraight"; 
+	$mat{"description"}   = "C_hollow";
+	$mat{"density"}       = "$bmtCstraight_Density";
+	$mat{"ncomponents"}   = "1";     
+	$mat{"components"}    = "G4_C 1"; 
+	print_mat(\%configuration, \%mat);
+
+	%mat = init_mat();
+	$mat{"name"}          = "myInox"; # found in gemc materials database.
+	$mat{"description"}   = "Inox";
+	$mat{"density"}       = "7.93";
+	$mat{"ncomponents"}   = "5";
+	$mat{"components"}    = "G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.10 G4_Fe 0.68";
+	print_mat(\%configuration, \%mat);
 }
+
 

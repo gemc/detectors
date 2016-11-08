@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 
-
 use strict;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
@@ -52,24 +51,23 @@ require "./geometry.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("original", "cad");
+
+# bank definitions
+define_bank();
 
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
+	# geometry
+	makeCTOF();
+
 	# materials
 	materials();
 	
 	# hits
 	define_hit();
-	
-	# bank definitions
-	define_bank();
-	
-	# geometry
-	makeCTOF();
-	
 }
 
 

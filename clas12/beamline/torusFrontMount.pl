@@ -38,6 +38,10 @@ sub torusFrontMount()
 
 	# measurements coming from Bob's email on 1/21/16
 	my @iradius_nose1  = (  44.45, 44.45, 44.45, 44.45 );
+	if( $configuration{"variation"} eq "FTOff_mount_is_W" || $configuration{"variation"} eq "FTOn_mount_is_W")
+	{
+		@iradius_nose1  = (  34.55, 34.55, 34.55, 34.55 );
+	}
 	my @oradius_nose1  = ( 100.0, 100.0,  63.5,  63.5 );
 	my @nose1_z        = (   0.0,  25.0,  25.0, 433.0 );
 	
@@ -82,7 +86,14 @@ sub torusFrontMount()
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius_nose1[$i]*mm";}
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $nose1_z[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	if( $configuration{"variation"} eq "FTOff_mount_is_W" || $configuration{"variation"} eq "FTOn_mount_is_W")
+	{
+		$detector{"material"}    = "beamline_W";
+	}
+	else
+	{
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+	}
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 	
@@ -99,7 +110,10 @@ sub torusFrontMount()
 	$detector{"dimensions"}  = "$noseShieldIR*mm $noseShieldOR*mm $noseShieldLength*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+	if( $configuration{"variation"} ne "FTOff_mount_is_W" && $configuration{"variation"} ne "FTOn_mount_is_W")
+	{
+		print_det(\%configuration, \%detector);
+	}
 	
 	# outer shield made of tungsten
 	%detector = init_det();
@@ -112,8 +126,10 @@ sub torusFrontMount()
 	$detector{"dimensions"}  = "$noseShieldIR2*mm $noseShieldOR2*mm $noseShieldLength2*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+	if( $configuration{"variation"} ne "FTOff_mount_is_W" && $configuration{"variation"} ne "FTOn_mount_is_W")
+	{
+		print_det(\%configuration, \%detector);
+	}
 	
 }
-
 

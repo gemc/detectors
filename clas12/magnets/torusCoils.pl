@@ -81,12 +81,14 @@ sub makeParallelepipeds
 {
 	my $pangle           = -25;
 	my $vjacketOR        =  7.87*$inches ;
-	my $vjacketCase_zpos = 78.0;
+
+	# empirical
+	my $vjacketCase_zpos = 155.0;
 
 	# vacuum jacket fgrame
 	my $vjacketCase_dx    = $TorusLength - 30;    # empirical
 	my $vjacketCase_dy    = 122.6/2.0;            # M. Zarecky, 1/11/16
-	my $vjacketCase_dz    = 1400.0;                # length from beampipe
+	my $vjacketCase_dz    = 1400.0;               # length from beampipe
 	
 	
 	# SST Vacuum Jacket cases

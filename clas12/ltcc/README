@@ -2,7 +2,9 @@
 CLAS12 LTCC README
 ------------------
 
-TODO: Add focal point spheres for debugging purposes
+TODO: Fix macro so it runs on ROOT6
+
+TODO: Addfocal point spheres for debugging purposes
 
 
 The geometry consists of 36 elliptical mirrors, 36 hyperbolic mirrors

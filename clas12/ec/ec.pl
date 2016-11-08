@@ -47,29 +47,42 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
+# run PCAL factory from COATJAVA to produce volumes
+system('groovy -cp "../*" factory.groovy');
+
+# sensitive geometry
+require "./geometry_java.pl";
+
 # sensitive geometry
 require "./geometry.pl";
 
-
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("original", "java");
+
+# bank definitions commong to all variations
+define_bank();
 
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
 	# materials
 	materials();
-	
+
 	# hits
 	define_hit();
-	
-	# bank definitions
-	define_bank();
-	
-	# geometry
-	makeEC();
-	
+
+	if($configuration{"variation"} eq "java")
+	{
+		# Global pars - these should be read by the load_parameters from file or DB
+		our @volumes = get_volumes(%configuration);
+
+		coatjava::makeEC();
+	}
+	else{
+		# geometry
+		makeEC();
+	}
 }
 
 

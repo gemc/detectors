@@ -4,7 +4,7 @@
 
 
 	<detector name="forwardCarriage"      factory="TEXT" variation="original"/>
-	<detector name="../dc/dc"             factory="TEXT" variation="original"/>
+	<detector name="../dc/dc"             factory="TEXT" variation="java"/>
 	<detector name="../htcc/htcc"         factory="TEXT" variation="original"/>
 
 	<option name="SCALE_FIELD" value="clas12-torus-big, -1"/>

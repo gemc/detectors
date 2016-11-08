@@ -65,6 +65,9 @@ require "./mirrors.pl";
 # all the scripts must be run for every configuration
 my @allConfs = ("original");
 
+# bank definitions commong to all variations
+define_bank();
+
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
@@ -74,9 +77,6 @@ foreach my $conf ( @allConfs )
 	
 	# hits
 	define_hit();
-	
-	# bank definitions
-	define_bank();
 	
 	# Building LTCC Box
 	build_ltcc_box();

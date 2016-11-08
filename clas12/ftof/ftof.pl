@@ -78,6 +78,9 @@ foreach my $conf ( @allConfs )
 
 		# volumes
 		makeFTOF();
+
+		# make
+		make_pb();
 	}
 
 	if($configuration{"variation"} eq "java")
@@ -86,10 +89,8 @@ foreach my $conf ( @allConfs )
 		our @volumes = get_volumes(%configuration);
 
 		coatjava::makeFTOF();
+		coatjava::make_pb();
 	}
-
-	# make
-	make_pb();
 }
 
 

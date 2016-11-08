@@ -14,7 +14,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   bank.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 BONUS bank\n";
+ 	print "   Will create the CLAS12 RTPC bank\n";
  	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
 	exit;
 }
@@ -45,7 +45,7 @@ our %configuration = load_configuration($ARGV[0]);
 # d for doubles
 
 my $bankId   = 1700;
-my $bankname = "bonus";
+my $bankname = "RTPC";
 
 sub define_bank
 {

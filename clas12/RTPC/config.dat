@@ -1,7 +1,7 @@
-# Configuration file for Bonus
+# Configuration file for RTPC
 
 # Detector name and variation
-detector_name: bonus
+detector_name: RTPC
 variation:     original
 
 # Factory can be MYQL or TEXT

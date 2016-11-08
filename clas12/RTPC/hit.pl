@@ -8,8 +8,8 @@ sub define_hit
 
 		# uploading the hit definition
 		my %hit = init_hit();
-		$hit{"name"}            = "bonus";
-		$hit{"description"}     = "bonus hit definitions";
+		$hit{"name"}            = "RTPC";
+		$hit{"description"}     = "RTPC hit definitions";
 		$hit{"identifiers"}     = "rtpc";
 		$hit{"signalThreshold"} = "0.0*MeV";
 		$hit{"timeWindow"}      = "0.00001*ns";

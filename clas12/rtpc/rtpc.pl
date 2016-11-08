@@ -13,7 +13,7 @@ use hit;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   RTPC.pl <configuration filename>\n";
+	print "   rtpc.pl <configuration filename>\n";
 	print "   Will create the CLAS12 RTPC using the variation specified in the configuration file\n";
 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
 	exit;
@@ -61,10 +61,10 @@ my @gem_color = ('661122',  '330099', '661122');
 my @pcb_layer_color = ('aaafff');
 
 # mother volume
-sub make_RTPC
+sub make_rtpc
 {
 	my %detector = init_det();
-	$detector{"name"}        = "RTPC";
+	$detector{"name"}        = "rtpc";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Radial Time Projecion Chamber";
 	$detector{"color"}       = "eeeegg";
@@ -86,7 +86,7 @@ sub make_target
 	my %detector = init_det();
 
 	$detector{"name"} = "BONuS12 Target";
-	$detector{"mother"}      = "RTPC";
+	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "BONuS12 target";
 	$detector{"color"}       = "egegege";
 	$detector{"type"}        = "Tube";
@@ -117,7 +117,7 @@ sub make_layers
 	$mate  = $layer_mater[$layer];		
 	
 	$detector{"name"} = "layer_".$layer;
-	$detector{"mother"}      =  "RTPC";
+	$detector{"mother"}      =  "rtpc";
 	$detector{"description"} = "Layer ".$layer;
 	$detector{"color"}       = $layer_color[$layer];
 	$detector{"type"}        = "Tube";
@@ -149,7 +149,7 @@ sub make_gems
 		
 	
 	$detector{"name"} = "gem_".$gemN."_layer_".$layer;	
-	$detector{"mother"}      = "RTPC";
+	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "gem_".$gemN."_layer_".$layer;
 	$detector{"color"}       = $color;
 	$detector{"type"}        = "Tube";
@@ -172,7 +172,7 @@ sub make_buffer_volume
 	my $mate  = "G4_He";	
 
 	$detector{"name"} = "buffer_layer";	
-	$detector{"mother"}      = "RTPC";
+	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "Buffer volume";
 	$detector{"color"}       = "ff88994";
 	$detector{"type"}        = "Tube";
@@ -194,7 +194,7 @@ sub make_buffer2_volume
 	my $mate  = "bonusGas";	
 
 	$detector{"name"} = "buffer2_layer";	
-	$detector{"mother"}      = "RTPC";
+	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "Buffer volume";
 	$detector{"color"}       = "ff88994";
 	$detector{"type"}        = "Tube";
@@ -215,15 +215,15 @@ sub make_drift_volume
 	my %detector = init_det();
 
 	$detector{"name"} = "sensitive_drift_volume";	
-	$detector{"mother"}      = "RTPC";
+	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "Sensitive drift volume";
 	$detector{"color"}       = "ff88994";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
 	$detector{"material"}    = "bonusGas";
 	$detector{"style"}       = 1;
-	$detector{"sensitivity"}  = "RTPC"; ## HitProcess definition
-	$detector{"hit_type"}     = "RTPC"; ## HitProcess definition
+	$detector{"sensitivity"}  = "rtpc"; ## HitProcess definition
+	$detector{"hit_type"}     = "rtpc"; ## HitProcess definition
 	print_det(\%configuration, \%detector);
 }
 
@@ -244,7 +244,7 @@ sub make_electronics_layer
 	
 	$detector{"name"} = "pcb_layer";	
 	
-	$detector{"mother"}      = "RTPC";
+	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "PCB layer";
 	$detector{"color"}       = $pcb_layer_color[0];
 	$detector{"type"}        = "Tube";
@@ -256,7 +256,7 @@ sub make_electronics_layer
 
 
 
-make_RTPC();
+make_rtpc();
 
 make_target();
 

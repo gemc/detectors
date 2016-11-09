@@ -19,8 +19,8 @@ sub torusBeamShield()
 	my $microgap = 0.2;
 	my $totalLength  = $SteelFrameLength;   # total beamline semi-length
 	my $bpipeTorusZ  = $torusZstart + $totalLength ;  # z position - to place the pipe inside torus
-	my $pipeIR       = 40 + $microgap;
-	my $pipeOR       = 60 - $microgap;
+	my $pipeIR       = 37.55;
+	my $pipeOR       = 57.15;
 	if ( $configuration{"variation"} eq "FTOff_mount_is_W" || $configuration{"variation"} eq "FTOn_mount_is_W")
 	{
 		$pipeIR       = 37.55;
@@ -45,7 +45,20 @@ sub torusBeamShield()
 	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
+	
+	# Stainless-steel Support
+	%detector = init_det();
+	$detector{"name"}        = "SSLayerOutTorusBeamShield";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "tungsten beampipe shield inside torus";
+	$detector{"color"}       = "3333ff";
+	$detector{"pos"}         = "0*mm 0.0*mm $bpipeTorusZ*mm";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "$SSout_pipeIR*mm $SSout_pipeOR*mm $totalLength*mm 0.0*deg 360*deg";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+	
 	if ($configuration{"variation"} eq "FTOff_mount_is_W" || $configuration{"variation"} eq "FTOn_mount_is_W")
 	{
 		# Stainless-steel Cones

@@ -23,16 +23,25 @@ sub materials
         $mat{"components"}    = "C 2 H 6 O 1";
         print_mat(\%configuration, \%mat);
 
-        # bonusGas
+        # DriftbonusGas
         %mat = init_mat();
         my $HeProp = 0.9;
         my $DMEProp = 0.1;
         my $bonusGas_Density = $HeProp*0.0001664+$DMEProp*0.00197;
-        $mat{"name"}          ="bonusGas";
-        $mat{"description"}   = "bonus Gas";
+        $mat{"name"}          ="BONuSGas";
+        $mat{"description"}   = "Drift region BONuS Gas";
         $mat{"density"}       = $bonusGas_Density;  # in g/cm3
         $mat{"ncomponents"}   = "2";
         $mat{"components"}    = "G4_He $HeProp DME $DMEProp";
+        print_mat(\%configuration, \%mat);
+
+        # TargetbonusGas
+        %mat = init_mat();
+        $mat{"name"}          ="DeuteriumTargetGas";
+        $mat{"description"}   = "7 atm deuterium gas";
+        $mat{"density"}       = "0.001025";  # in g/cm3
+        $mat{"ncomponents"}   = "1";
+        $mat{"components"}    = "deuteriumGas 1";
         print_mat(\%configuration, \%mat);
 
 }

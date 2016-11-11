@@ -82,12 +82,12 @@ sub make_target
 	my $rmax  = $radius[0];
         my $phistart = 0;
 	my $pspan = 360;
-	my $mate  = "bonusGas";
+	my $mate  = "DeuteriumTargetGas";
 	my %detector = init_det();
 
-	$detector{"name"} = "BONuS12 Target";
+	$detector{"name"} = "DeuteriumTarget";
 	$detector{"mother"}      = "rtpc";
-	$detector{"description"} = "BONuS12 target";
+	$detector{"description"} = "7 atm deuterium target gas";
 	$detector{"color"}       = "egegege";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
@@ -143,6 +143,9 @@ sub make_gems
 	my %detector = init_det();
 	
 	$rmin  = $radius[3+$gemN];
+        for(my $l = $layer-1; $l > -1; $l--){
+	  $rmin +=  $gem_thick[$layer];
+        } 
 	$rmax  = $rmin + $gem_thick[$layer];
 	$color = $gem_color[$layer];
 	$mate  = $gem_mater[$layer];
@@ -191,7 +194,7 @@ sub make_buffer2_volume
 	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
-	my $mate  = "bonusGas";	
+	my $mate  = "BONuSGas";	
 
 	$detector{"name"} = "buffer2_layer";	
 	$detector{"mother"}      = "rtpc";
@@ -220,7 +223,7 @@ sub make_drift_volume
 	$detector{"color"}       = "ff88994";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
-	$detector{"material"}    = "bonusGas";
+	$detector{"material"}    = "BONuSGas";
 	$detector{"style"}       = 1;
 	$detector{"sensitivity"}  = "rtpc"; ## HitProcess definition
 	$detector{"hit_type"}     = "rtpc"; ## HitProcess definition

@@ -47,7 +47,7 @@ require "./materials.pl";
 
 
 # bank definitions commong to all variations
-define_bank();
+define_banks();
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("FTOn", "FTOff", "WithInnerSST", "WithInnerShield", "NotUsedWithInnerSST", "NotUsedWithInnerShield");

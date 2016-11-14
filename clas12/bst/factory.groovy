@@ -6,32 +6,21 @@ import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.*;
 
-import org.jlab.clasrec.utils.DatabaseConstantProvider; // 2.4
-//import org.jlab.detector.calib.utils.DatabaseConstantProvider; // coatjava-3.0
+// coatjava-2.4
+//import org.jlab.clasrec.utils.DatabaseConstantProvider;
 
-import SVTFactory.SVTConstants;
-import SVTFactory.SVTVolumeFactory;
-import Misc.Util;
+// custom
+//import SVTFactory.SVTConstants;
+//import SVTFactory.SVTVolumeFactory;
+//import Misc.Util;
+
+// coatjava-3.0
+import org.jlab.detector.calib.utils.DatabaseConstantProvider;
+// JCSG
+//import org.jlab.detector.geant4.v2.SVT.*;
 
 //println "classpath dump:"
 //this.class.classLoader.rootLoader.URLs.each{ println it }
-//System.exit(0);
-
-// todo: add getConstantsSVT() to DataBaseLoader?
-//ConstantProvider cp = DataBaseLoader.getConstantsSVT();
-
-// load the CCDB tables manually for now
-//DatabaseConstantProvider cp = new DatabaseConstantProvider( 10, "default");
-//cp.loadTable( SVTConstants.getCcdbPath() +"svt");
-//cp.loadTable( SVTConstants.getCcdbPath() +"region");
-//cp.loadTable( SVTConstants.getCcdbPath() +"support");
-//cp.loadTable( SVTConstants.getCcdbPath() +"fiducial");
-//cp.loadTable( SVTConstants.getCcdbPath() +"alignment");
-//cp.loadTable( SVTConstants.getCcdbPath() +"material");
-//cp.disconnect();
-//cp.show();
-//println cp.toString();
-
 //System.exit(0);
 
 SVTConstants.VERBOSE = true;
@@ -41,10 +30,7 @@ SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
 //SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file
 //factory.setApplyAlignmentShifts( true ); // shifted geometry
 
-factory.BUILDPASSIVES = false; // only build the sensors
-factory.SENSORZONES = false; // do not include sensor active and dead zones
-//factory.VOLSPACER = 5.0E-3; // prevent overlaps if dead zones are enabled
-
+factory.BUILDSENSORS = true; // include physical sensors (aka cards)
 factory.makeVolumes();
 
 Util.scaleDimensions( factory.getMotherVolume(), 0.5 ); // geant wants half-dimensions

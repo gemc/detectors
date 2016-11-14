@@ -46,7 +46,6 @@ require "./hit.pl";
 # all the scripts must be run for every configuration
 #my @allConfs = ("original", "java");
 my @allConfs = ("java"); # java variation only, for testing
-#my @allConfs = ("modified"); # ignore
 
 foreach my $conf ( @allConfs )
 {
@@ -70,27 +69,8 @@ foreach my $conf ( @allConfs )
         makeBST();
     }
 
-    #if($configuration{"variation"} eq "modified")
-    #{
-    #    system('$COATJAVA/bin/run-groovy factory.groovy');
-    #    system('cp bst__parameters_java.txt bst__parameters_modified.txt');
-    #    
-    #    # Global pars - these should be read by the load_parameters from file or DB
-    #    $configuration{"verbosity"} = 1;
-    #    our %parameters = get_parameters(%configuration);
-    #    $configuration{"verbosity"} = 0;
-    #    
-    #    require "./material_dimensions.pl";
-    #    our @material_dimensions = get_material_dimensions(%configuration);
-    #    
-    #    require "./geometry_modified.pl";
-    #    #makeBST();
-    #}
-
     if($configuration{"variation"} eq "java")
     {
-        #system('$COATJAVA/bin/run-groovy factory.groovy');
-
         system('groovy -cp "../*" factory.groovy');
         
         # Global pars - these should be read by the load_parameters from file or DB

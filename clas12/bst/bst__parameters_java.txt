@@ -6,3 +6,4 @@ nsectors_r4 | 24 | na | P. Davies | pdavies@jlab.org | 7/15/16
 nmodules | 2 | na | P. Davies | pdavies@jlab.org | 7/15/16
 nsensors | 3 | na | P. Davies | pdavies@jlab.org | 7/15/16
 bsensorzones | 0 | na | P. Davies | pdavies@jlab.org | 7/15/16
+bsensors | 1 | na | P. Davies | pdavies@jlab.org | 7/15/16

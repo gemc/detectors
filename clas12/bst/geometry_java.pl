@@ -29,10 +29,12 @@ my @nsectors;
 my $nmodules;
 my $nsensors;
 my $bsensorzones;
+my $bsensors;
 
 # will move materials to CCDB later
-my %materials = ("silicon","G4_Si",
-                 "rohacell", "rohacell");
+my %materials = ("silicon", "G4_Si",
+                 "rohacell", "rohacell",
+                 "pitchAdaptor", "G4_SILICON_DIOXIDE");
 
 my $btestone = 0;
 
@@ -44,6 +46,7 @@ sub makeBST
     $nmodules     = $main::parameters{"nmodules"};
     $nsensors     = $main::parameters{"nsensors"};
     $bsensorzones = $main::parameters{"bsensorzones"};
+    $bsensors     = $main::parameters{"bsensors"};
 
     if($btestone)
     {
@@ -52,7 +55,7 @@ sub makeBST
         $nsensors = 1;
     }
 
-    #build_mother();
+    build_mother();
     
     for(my $r=1; $r<=$nregions; $r++ )
     {
@@ -69,24 +72,25 @@ sub build_mother
     
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
-    %detector = set_detector_dummy($vdesc, \%detector );
+    %detector = setup_detector_passive($vdesc, \%detector );
     $detector{"mother"} = "root"; # overwrite mother from file
+    $detector{"visible"} = 0;
     print_det(\%main::configuration, \%detector);
 }
 
 sub build_region
 {
     my $r = shift;
-    #my $vname = "region".$r;
+    my $vname = "region".$r;
     my $vdesc = "SVT Region ".$r;
 
     #print "Hello from ".$vdesc."\n";
 
-    #my %detector = init_det();
-    #%detector = setup_detector( $vname, \%detector );
-    #%detector = set_detector_dummy( $vdesc, \%detector );
-    #$detector{"mother"} = "root";
-    #print_det(\%main::configuration, \%detector);
+    my %detector = init_det();
+    %detector = setup_detector( $vname, \%detector );
+    %detector = setup_detector_passive( $vdesc, \%detector );
+    $detector{"visible"} = 0;
+    print_det(\%main::configuration, \%detector);
 
     for(my $s=1; $s<=$nsectors[$r-1]; $s++ )
     {
@@ -98,14 +102,21 @@ sub build_sector
 {
     my $r = shift;
     my $s = shift;
-    #my $vname = "sector".$s;
+    my $vname = "sector".$s."_r".$r;
     my $vdesc = "SVT Sector ".$s.", Region ".$r;
 
-    print "Hello from ".$vdesc."\n";
+    #print "Hello from ".$vdesc."\n";
+
+    my %detector = init_det();
+    %detector = setup_detector( $vname, \%detector );
+    %detector = setup_detector_passive( $vdesc, \%detector );
+    $detector{"visible"} = 0;
+    print_det(\%main::configuration, \%detector);
 
     for(my $m=1; $m<=$nmodules; $m++ )
     {
         build_module($r,$s,$m);
+        build_pitch_adaptor($r,$s,$m);
     }
 
     #build_rohacell($r,$s);
@@ -121,10 +132,29 @@ sub build_module
 
     #print "Hello from ".$vdesc."\n";
 
-    for(my $sp=1; $sp<=$nsensors; $sp++ )
-    {
-        build_sensor_physical($r,$s,$m,$sp);
-    }
+    #if( $bsensors )
+    #{
+        for(my $sp=1; $sp<=$nsensors; $sp++ )
+        {
+            build_sensor_physical($r,$s,$m,$sp);
+        }
+        
+        my %detector = init_det();
+        %detector = setup_detector( $vname, \%detector );
+        %detector = setup_detector_passive( $vdesc, \%detector );
+        $detector{"visible"} = 0;
+        print_det(\%main::configuration, \%detector);
+    #}
+    #else
+    #{
+    #    my %detector = init_det();
+    #    %detector = setup_detector( $vname, \%detector );
+    #    #$detector{"mother"} = "root"; # overwrite mother from file
+    #    %detector = setup_detector_active( $vdesc, \%detector );
+    #    $detector{"ncopy"} = $sp;
+    #    $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1"; # cannot do! need 3 physical sensors!
+    #    print_det(\%main::configuration, \%detector);
+    #}
 }
 
 sub build_sensor_physical
@@ -139,20 +169,24 @@ sub build_sensor_physical
     #print "Hello from ".$vdesc."\n";
 
     if( $bsensorzones )
-    {
+    {        
         build_sensor_active($r,$s,$m,$sp);
         build_sensor_dead_len($r,$s,$m,$sp,1);
         build_sensor_dead_len($r,$s,$m,$sp,2);
         build_sensor_dead_wid($r,$s,$m,$sp,3);
         build_sensor_dead_wid($r,$s,$m,$sp,4);
+
+        my %detector = init_det();
+        %detector = setup_detector( $vname, \%detector );
+        %detector = setup_detector_passive( $vdesc, \%detector );
+        $detector{"visible"} = 0;
+        print_det(\%main::configuration, \%detector);
     }
     else
     {
         my %detector = init_det();
         %detector = setup_detector( $vname, \%detector );
-        $detector{"mother"} = "root"; # overwrite mother from file
         %detector = setup_detector_active( $vdesc, \%detector );
-        $detector{"ncopy"} = $sp;
         $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1";
         print_det(\%main::configuration, \%detector);
     }
@@ -171,9 +205,7 @@ sub build_sensor_active
 
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
-    $detector{"mother"} = "root"; # overwrite mother from file
     %detector = setup_detector_active( $vdesc, \%detector );
-    $detector{"ncopy"} = $sp;
     $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1";
     print_det(\%main::configuration, \%detector);
 }
@@ -192,10 +224,8 @@ sub build_sensor_dead_len
 
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
-    $detector{"mother"} = "root"; # overwrite mother from file
     %detector = setup_detector_passive( $vdesc, \%detector );
-    $detector{"material"} = $materials{"silicon"}; # overwrite material
-    $detector{"ncopy"} = $dz;
+    $detector{"material"} = $materials{"silicon"};
     print_det(\%main::configuration, \%detector);
 }
 
@@ -213,10 +243,25 @@ sub build_sensor_dead_wid
 
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
-    $detector{"mother"} = "root"; # overwrite mother from file
     %detector = setup_detector_passive( $vdesc, \%detector );
-    $detector{"material"} = $materials{"silicon"}; # overwrite material
-    $detector{"ncopy"} = $dz;
+    $detector{"material"} = $materials{"silicon"};
+    print_det(\%main::configuration, \%detector);
+}
+
+sub build_pitch_adaptor
+{
+    my $r = shift;
+    my $s = shift;
+    my $m = shift;
+    my $vname = "pitchAdaptor".$m."_s".$s."_r".$r;
+    my $vdesc = "SVT Pitch Adaptor ".$m.", Sector ".$s.", Region ".$r;
+
+    #print "Hello from ".$vdesc."\n";
+
+    my %detector = init_det();
+    %detector = setup_detector( $vname, \%detector );
+    %detector = setup_detector_passive( $vdesc, \%detector );
+    $detector{"material"} = $materials{"pitchAdaptor"};
     print_det(\%main::configuration, \%detector);
 }
 
@@ -231,10 +276,8 @@ sub build_rohacell
 
     my %detector = init_det();
     %detector = setup_detector( $vname, \%detector );
-    $detector{"mother"} = "root"; # overwrite mother from file
     %detector = setup_detector_passive( $vdesc, \%detector );
-    $detector{"material"} = $materials{"rohacell"}; # overwrite material
-    $detector{"ncopy"} = 1;
+    $detector{"material"} = $materials{"rohacell"};
     print_det(\%main::configuration, \%detector);
 }
 
@@ -246,6 +289,7 @@ sub setup_detector_active
     $detector{"description"} = $description;
 	$detector{"color"}       = "0000ff";
 	$detector{"mfield"}      = "no";
+    $detector{"ncopy"}       = "1";
 	$detector{"visible"}     = 1;
     $detector{"style"}       = 1; # 0 = wireframe, 1 = solid
     

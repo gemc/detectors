@@ -6,24 +6,16 @@ import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.*;
 
-// coatjava-2.4
-//import org.jlab.clasrec.utils.DatabaseConstantProvider;
-
-// custom
-//import SVTFactory.SVTConstants;
-//import SVTFactory.SVTVolumeFactory;
-//import Misc.Util;
-
 // coatjava-3.0
 import org.jlab.detector.calib.utils.DatabaseConstantProvider;
 // JCSG
-//import org.jlab.detector.geant4.v2.SVT.*;
+import org.jlab.detector.geant4.v2.SVT.*;
 
 //println "classpath dump:"
 //this.class.classLoader.rootLoader.URLs.each{ println it }
 //System.exit(0);
 
-SVTConstants.VERBOSE = true;
+//SVTConstants.VERBOSE = true;
 DatabaseConstantProvider cp = SVTConstants.connect( false );
 
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
@@ -31,9 +23,8 @@ SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
 //factory.setApplyAlignmentShifts( true ); // shifted geometry
 
 factory.BUILDSENSORS = true; // include physical sensors (aka cards)
+factory.HALFBOXES = true;
 factory.makeVolumes();
-
-Util.scaleDimensions( factory.getMotherVolume(), 0.5 ); // geant wants half-dimensions
 
 def outFile = new File("bst__volumes_java.txt");
 outFile.newWriter().withWriter{ w -> w << factory; }

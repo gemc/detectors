@@ -47,6 +47,9 @@ require "./hit.pl";
 #my @allConfs = ("original", "java");
 my @allConfs = ("java"); # java variation only, for testing
 
+# bank definitions commong to all variations
+define_bank();
+
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf;
@@ -79,6 +82,5 @@ foreach my $conf ( @allConfs )
         
         require "./geometry_java.pl";
 		coatjava::makeBST();
-    }
-	
+    }	
 }

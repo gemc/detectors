@@ -1,8 +1,15 @@
 <gcard>
-	
+
+	<!--
 	<detector name="beamline"              factory="TEXT" variation="FTOff"/>
+	-->
+
+	<detector name="cadBeamline/" factory="CAD"/>
+
+<!--
 	<detector name="../magnets/torus"      factory="TEXT" variation="original"/>
 	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	-->
 
 
 	<option name="geometry" value="1400x1200"/>

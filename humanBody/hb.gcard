@@ -2,17 +2,11 @@
 
 	<option name="geometry" value="1000x800"/>
 
-	<detector name="brain" factory="CAD"/>
-	<detector name="Lower_GI" factory="CAD"/>
-	<detector name="Upper_GI" factory="CAD"/>
-   <detector name="heart" factory="CAD"/>
+	<detector name="cad/"    factory="CAD"/>
 
 	<option name="BEAM_P" value="proton, 1.0*GeV, 90*deg, 270*deg"/>
 
 	<option name="SPREAD_V" value="(0.05, 0)cm"/>
 	<option name="BEAM_V" value="(0.0, 20, 50)cm"/>
-
-	<option name="N" value="10"/>
-
 
 </gcard>

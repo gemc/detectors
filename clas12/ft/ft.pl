@@ -46,7 +46,9 @@ require "./geometry.pl";
 require "./materials.pl";
 
 
+# bank definitions commong to all variations
 define_banks();
+
 # all the scripts must be run for every configuration
 #my @allConfs = ("FTOn", "FTOff", "WithInnerSST", "WithInnerShield", "NotUsedWithInnerSST", "NotUsedWithInnerShield");
 my @allConfs = ("FTOn", "FTOff");

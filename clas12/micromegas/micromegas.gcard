@@ -1,6 +1,6 @@
 <gcard>
    
-   <detector name="micromegas" factory="TEXT" variation="original"/>
+   <detector name="micromegas" factory="TEXT" variation="michel"/>
 
    <option name="geometry" value="1400x1200"/>
 	

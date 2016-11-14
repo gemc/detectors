@@ -1,7 +1,0 @@
-<gxml>
-
-	<volume name="enterprise" color="8899dd" material="G4_Pb"/>
-	<volume name="truck" color="22dddd" material="G4_Pb"/>
-	<volume name="dragon" color="99ff00" material="G4_Pb" sensitivity="flux" identifiers="id manual 1"/>
-
-</gxml>

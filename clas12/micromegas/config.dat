@@ -2,7 +2,7 @@
 
 # Detector name and variation
 detector_name: micromegas
-variation:     original
+variation:     michel
 
 # Factory can be MYQL or TEXT
 factory:       TEXT

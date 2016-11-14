@@ -175,7 +175,7 @@ sub build_panel1b_counters
 		$detector{"dimensions"}   = $dimensions->{$vname};
 
 		$detector{"description"}  = "paddle $n - Panel 1B - Sector $sector";
-		$detector{"color"}        = "111ffaa";
+		$detector{"color"}        = "11ffaa";
 		$detector{"material"}     = "scintillator";
 		$detector{"mfield"}       = "no";
 		$detector{"visible"}      = 1;
@@ -215,6 +215,32 @@ sub build_panel2_counters
 		$detector{"identifiers"}  = "sector manual $sector  panel manual 3  paddle manual $n";
 		print_det(\%main::configuration, \%detector);
 	}
+}
+
+sub make_pb
+{
+	# loop over sectors 
+	for (my $isect = 0; $isect < 6; $isect++)
+	{
+		my $sector = $isect +1;
+
+		my %detector = init_det();
+
+		my $vname				 = "ftof_shield_sector$sector";
+		$detector{"name"}         = $vname;
+		$detector{"mother"}       = $mothers->{$vname};
+		$detector{"pos"}          = $positions->{$vname};
+		$detector{"rotation"}     = $rotations->{$vname};
+		$detector{"type"}         = $types->{$vname};
+		$detector{"dimensions"}   = $dimensions->{$vname};
+
+		$detector{"description"}  = "Layer of lead - Sector $sector";
+		$detector{"color"}        = "dc143c";
+		$detector{"material"}     = "G4_Pb";
+		$detector{"visible"}      = 1;
+		$detector{"style"}        = 1;
+		print_det(\%main::configuration, \%detector);
+}
 }
 
 1;

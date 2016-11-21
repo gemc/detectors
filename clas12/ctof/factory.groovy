@@ -16,7 +16,7 @@ new File(dirName).mkdir();
 
 factory.getComponents().forEach{ volume ->
 	if(volume.getType()=="Stl"){
-		volume.toCSG().toStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()]));
+		volume.getPrimitive().toCSG().toStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()]));
 	}
 }
 

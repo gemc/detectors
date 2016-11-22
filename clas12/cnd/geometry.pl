@@ -264,6 +264,98 @@ ver4 = "^"
 	}
 }
 
+# U-Turn
+sub make_uturnNEW
+{
+
+	for(my $i=1; $i<=$sectors; $i++){
+
+		for(my $j=1; $j<=$layers; $j++){
+
+			my $innerRadius = $r0 + ($j-1)*$dR + ($j-1)*$layer_gap;
+			my $outerRadius = $innerRadius + $dR;
+			
+			my $dz = $length[$j-1] / 2.0;
+			my $dy = $dR / 2.0;
+			my $z = sprintf("%.3f", ($dz + $z_offset[$j-1]));
+
+########################################
+=pod
+
+Consider the u-turn for one layer:
+
+	________.
+ 	\______/
+ 	       ^
+
+"." represents the top x-position 
+"^" represents the bottom x-position 
+
+=cut
+######################################## 
+
+			# x-positions of paddle's angled side's bottom and top vertices
+			my $bottom_x = $innerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
+			my $top_x = $outerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
+
+			# only 1 u-turn per layer
+			my $k=1;
+
+			# increment sector angle by 15 deg for every sector
+			# start position is at 9 o'clock when looking downstream!
+
+			my $theta = (($i-1)*(2*$angle_slice));					
+			
+			# rotations
+			my $rotZ = 0.;
+			my $rotX = 270.;
+			my $rotY = 270.-$theta;
+			
+			# positions
+			my $x = sprintf("%.11f", ($innerRadius+$dy)*(cos(rad($theta))));
+			my $y = sprintf("%.11f", ($innerRadius+$dy)*(sin(rad($theta))));
+			
+			my $z_final = $z-$half_diff;
+			
+			my %detector = init_det();
+			$detector{"name"}        = "CND_S$i"."_L$j"."_U-Turn_$k";
+			$detector{"mother"}      = "cnd";
+			$detector{"description"} = "Central Neutron Detector, S $i, L $j, U-Turn $k";
+			$detector{"pos"}         = "$x*cm $y*cm $z_final*cm";
+			$detector{"color"}       = $ucolor;
+			$detector{"rotation"}    = "$rotX*deg $rotY*deg $rotZ*deg";
+			$detector{"type"}        = "Cons";
+			$detector{"dimensions"}  = "0*cm $bottom_x*cm 0*cm $top_x*cm $dy*cm 0*deg 180.*deg";
+			$detector{"material"}    = "G4_PLEXIGLASS";
+			$detector{"style"}       = 1;
+			$detector{"ncopy"}       = $k;
+			$detector{"identifiers"} = "sector manual $i layer manual $j u-turn manual $k";
+			print_det(\%configuration, \%detector);
+		}
+	}
+}
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+# Old code...
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+
 # Paddles
 sub make_paddles
 {
@@ -680,76 +772,7 @@ sub make_paddles_wrapping_angled_edge
 	}
 }
 
-# U-Turn
-sub make_uturnNEW
-{
 
-	for(my $i=1; $i<=$sectors; $i++){
-
-		for(my $j=1; $j<=$layers; $j++){
-
-			my $innerRadius = $r0 + ($j-1)*$dR + ($j-1)*$layer_gap;
-			my $outerRadius = $innerRadius + $dR;
-			
-			my $dz = $length[$j-1] / 2.0;
-			my $dy = $dR / 2.0;
-			my $z = sprintf("%.3f", ($dz + $z_offset[$j-1]));
-
-########################################
-=pod
-
-Consider the u-turn for one layer:
-
-	________.
- 	\______/
- 	       ^
-
-"." represents the top x-position 
-"^" represents the bottom x-position 
-
-=cut
-######################################## 
-
-			# x-positions of paddle's angled side's bottom and top vertices
-			my $bottom_x = $innerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
-			my $top_x = $outerRadius*tan(rad($angle_slice)) - 0.5*$block_gap/(cos(rad($angle_slice)));
-
-			# only 1 u-turn per layer
-			my $k=1;
-
-			# increment sector angle by 15 deg for every sector
-			# start position is at 9 o'clock when looking downstream!
-
-			my $theta = (($i-1)*(2*$angle_slice));					
-			
-			# rotations
-			my $rotZ = 0.;
-			my $rotX = 270.;
-			my $rotY = 270.-$theta;
-			
-			# positions
-			my $x = sprintf("%.11f", ($innerRadius+$dy)*(cos(rad($theta))));
-			my $y = sprintf("%.11f", ($innerRadius+$dy)*(sin(rad($theta))));
-			
-			my $z_final = $z-$half_diff;
-			
-			my %detector = init_det();
-			$detector{"name"}        = "CND_S$i"."_L$j"."_U-Turn_$k";
-			$detector{"mother"}      = "cnd";
-			$detector{"description"} = "Central Neutron Detector, S $i, L $j, U-Turn $k";
-			$detector{"pos"}         = "$x*cm $y*cm $z_final*cm";
-			$detector{"color"}       = $ucolor;
-			$detector{"rotation"}    = "$rotX*deg $rotY*deg $rotZ*deg";
-			$detector{"type"}        = "Cons";
-			$detector{"dimensions"}  = "0*cm $bottom_x*cm 0*cm $top_x*cm $dy*cm 0*deg 180.*deg";
-			$detector{"material"}    = "G4_PLEXIGLASS";
-			$detector{"style"}       = 1;
-			$detector{"ncopy"}       = $k;
-			$detector{"identifiers"} = "sector manual $i layer manual $j u-turn manual $k";
-			print_det(\%configuration, \%detector);
-		}
-	}
-}
 
 
 # U-Turn

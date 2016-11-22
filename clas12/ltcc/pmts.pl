@@ -153,7 +153,7 @@
 				#$detector{"hit_type"}    = "";
 				#$detector{"identifiers"} = "sector manual $s type manual 3  side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);
-
+=pod
 				%detector = init_det();
 				$detector{"name"}        = "box_s$s"."right_$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."$n";
@@ -229,7 +229,7 @@
 				$detector{"material"}    = "G4_Fe";
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
-
+=cut
 				my $swcouterdim = $WCzouter[$n-1] . "*cm " . $WCr1outer[$n-1] . "*cm " . $WCr2outer[$n-1] . "*cm";
 				my $swcinnerdim = $WCzinner[$n-1] . "*cm " . $WCr1inner[$n-1] . "*cm " . $WCr2inner[$n-1] . "*cm";
 				my $l = $WCzouter[$n-1] + $len[$n-1]  ; # the distance between pmt and WC center of masses
@@ -333,6 +333,49 @@
 				$detector{"hit_type"}       = "mirror";
 				$detector{"identifiers"} = "sector manual $s type manual 3 side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);
+
+				my $l_wm = $WCzouter[$n-1] + 3 ;
+				my $mir_pos_x_r = $geo_pos_x_r - $l_wm * sin($theta * $d2r);
+				my $mir_pos_y_r = $geo_pos_y_r - $l_wm * sin($phi * $d2r) * cos($theta * $d2r);
+				my $mir_pos_z_r = $geo_pos_z_r - $l_wm * cos($theta * $d2r) * cos($phi * $d2r);
+				
+				my $mir_pos_x_l = $geo_pos_x_l + $l_wm * sin($theta * $d2r);
+				my $mir_pos_y_l = $geo_pos_y_l - $l_wm * sin($phi * $d2r) * cos($theta * $d2r);
+				my $mir_pos_z_l = $geo_pos_z_l - $l_wm * cos($theta * $d2r) * cos($phi * $d2r);
+				
+				$detector{"name"}        = "cyl_mirrors_s$s"."right_$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				#$detector{"mother"}      = "root";
+				$detector{"description"} = "cyl mirrors right $n";
+				$detector{"pos"}         = "$mir_pos_x_r*cm $mir_pos_y_r*cm $mir_pos_z_r*cm";
+				$detector{"rotation"}    = "-$phi*deg $theta*deg -$psi*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Tube";
+				$detector{"dimensions"}  = "7*cm 8*cm 3*cm 0*deg 180*deg";
+				$detector{"material"}    = "G4_AIR";
+				$detector{"style"}       = 1;
+				$detector{"sensitivity"} = "ltcc";
+				$detector{"hit_type"}    = "ltcc";
+				$detector{"identifiers"} = "sector manual $s type manual 3  side manual 1 segment manual $n";
+				print_det(\%configuration, \%detector);
+
+				%detector = init_det();
+				$detector{"name"}        = "cyl_mirrors_s$s"."left_$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				#$detector{"mother"}      = "root";
+				$detector{"description"} = "cyl mirrors left $n";
+				$detector{"pos"}         = "$mir_pos_x_l*cm $mir_pos_y_l*cm $mir_pos_z_l*cm";
+				$detector{"rotation"}    = "-$phi*deg -$theta*deg -$psi*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Tube";
+				$detector{"dimensions"}  = "7*cm 8*cm 3*cm 0*deg 180*deg";
+				$detector{"material"}    = "G4_AIR";
+				$detector{"style"}       = 1;
+				$detector{"sensitivity"} = "ltcc";
+				$detector{"hit_type"}    = "ltcc";
+				$detector{"identifiers"} = "sector manual $s type manual 3  side manual 2 segment manual $n";
+				print_det(\%configuration, \%detector);
+
 
 
 	}

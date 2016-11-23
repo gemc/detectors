@@ -3,7 +3,7 @@
    <detector name="../fc/forwardCarriage"      factory="TEXT" variation="original"/>
 
 	<option name="geometry" value="1400x1200"/>
-	<option name="INTEGRATEDRAW" value="ftof_p1a, ftof_p1b"/>
+	<option name="INTEGRATEDRAW" value="ftof"/>
 
 	<option name="FIELD_PROPERTIES" value="clas12-torus-big, 2*mm, G4HelixSimpleRunge, linear"/>
 

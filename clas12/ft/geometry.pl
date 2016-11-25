@@ -380,7 +380,7 @@ sub make_ft_cal_mother_volume
 	for(my $i = 0; $i <$nplanes_FT; $i++) {$dimen = $dimen ." $oradius_FT[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_FT; $i++) {$dimen = $dimen ." $z_plane_FT[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}       = 0;
 	print_det(\%configuration, \%detector);
 	
@@ -406,7 +406,7 @@ sub make_ft_cal_crystals_volume
 	for(my $i = 0; $i <$nplanes_FT_CRY; $i++) {$dimen = $dimen ." $oradius_FT_CRY[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_FT_CRY; $i++) {$dimen = $dimen ." $z_plane_FT_CRY[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 	
@@ -1317,7 +1317,7 @@ sub make_ft_trk_mother
 	$detector{"color"}       = "aaaaff";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$ftm_ir*mm $ftm_or*mm $ftm_dz*mm 0*deg 360*deg";
-	$detector{"material"}    = "Air";
+	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
 	
@@ -1894,7 +1894,7 @@ sub make_ft_shield
 	}
 	
 	$detector{"dimensions"}   = $dimen;
-	$detector{"material"}     = "Air";
+	$detector{"material"}     = "G4_AIR";
 	$detector{"visible"}     = 0;
 	
 	print_det(\%configuration, \%detector);

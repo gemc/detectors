@@ -255,30 +255,45 @@ my $VETO_Z  = $O_Shell_Z1 - $VETO_TN - 0.1; # position along z
 my $VETO_RING_IR = $VETO_IR;
 my $VETO_RING_OR = 105/2.;
 
-my $LS_TN=5./2.;
-
-my $p15_WW=15./2.;
-my $p15_WT=10./2.;
+my $VETO_SKIN_TN = 0.5;
+my $PAINT_TN     = 0.1;
+my $TILE_WW      = 15.0;
+#my $LS_TN=5./2.;
 #
-my $p30_WW=30./2.;
-my $p30_WT=$p15_WT;
+#my $p15_WW=15./2.;
+#my $p15_WT=10./2.;
+##
+#my $p30_WW=30./2.;
+#my $p30_WT=$p15_WT;
+##
+#my $p15_SW=$p15_WW-0.1;
+#my $p15_ST=$p15_WT-0.1;
+##
+#my $p30_SW=$p30_WW-0.1;
+#my $p30_ST=$p30_WT-0.1;
+##
+#my $p15_N = 11;
+#my @p15_X = (  7.5,  22.5,  37.5,  52.5,  52.5,  67.5,  67.5,  67.5,  67.5,  97.5, 127.5);
+#my @p15_Y = ( 67.5,  67.5,  67.5,  52.5,  67.5,   7.5,  22.5,  37.5,  52.5, 127.5,  97.5);
 #
-my $p15_SW=$p15_WW-0.1;
-my $p15_ST=$p15_WT-0.1;
-#
-my $p30_SW=$p30_WW-0.1;
-my $p30_ST=$p30_WT-0.1;
-#
-my $p15_N = 11;
-my @p15_X = (  7.5,  22.5,  37.5,  52.5,  52.5,  67.5,  67.5,  67.5,  67.5,  97.5, 127.5);
-my @p15_Y = ( 67.5,  67.5,  67.5,  52.5,  67.5,   7.5,  22.5,  37.5,  52.5, 127.5,  97.5);
-#
-my $p30_N = 18;
-my @p30_X = (  15.,  15.,  15.,  45.,  45.,  45.,  75.,  75.,  75.,  90.,  90., 105., 105., 120., 120., 135., 150., 150.);
-my @p30_Y = (  90., 120., 150.,  90., 120., 150.,  75., 105., 135.,  15.,  45.,  75., 105.,  15.,  45.,  75.,  15.,  45.);
+#my $p30_N = 18;
+#my @p30_X = (  15.,  15.,  15.,  45.,  45.,  45.,  75.,  75.,  75.,  90.,  90., 105., 105., 120., 120., 135., 150., 150.);
+#my @p30_Y = (  90., 120., 150.,  90., 120., 150.,  75., 105., 135.,  15.,  45.,  75., 105.,  15.,  45.,  75.,  15.,  45.);
 my @q_X = (1., -1., -1.,  1.);
 my @q_Y = (1.,  1., -1., -1.);
 
+
+my $n_L = 2;
+my @tn_L = ( 7.0, 15.0 );
+my $n_S1 = 9;
+my @px_S1 = ( 3.25, 2.5, 4.25, 3.5, 2.5, 4.5, 3.5, 2.5, 1.75 );
+my @py_S1 = ( 4.25, 4.5, 3.25, 3.5, 3.5, 2.5, 2.5, 2.5, 1.75 );
+my @ww_S1 = ( 1.00, 2.0, 1.00, 2.0, 2.0, 2.0, 2.0, 2.0, 1.00 );
+
+my $n_S2 = 20;
+my @px_S2 = (  1.5,  0.5, -0.5, -1.5,  1.5,  0.5, -0.5, -1.5,  1.5,  0.5, -0.5, -1.5,  1.75,  1.25,  0.75,  0.25, -0.25, -0.75, -1.25, -1.75 );
+my @py_S2 = (  5.0,  5.0,  5.0,  5.0,  4.0,  4.0,  4.0,  4.0,  3.0,  3.0 , 3.0,  3.0,  2.25,  2.25,  2.25,  2.25,  2.25,  2.25,  2.25,  2.25 );
+my @ww_S2 = (  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  1.00,  1.00,  1.00,  1.00,  1.00,  1.00,  1.00,  1.00 );
 
 ###########################################################################################
 # Tracker Dimension and Parameters
@@ -1178,126 +1193,154 @@ sub make_ft_hodo
 	$detector{"style"}     = 1;
 	print_det(\%configuration, \%detector);
 	
-	for ( my $l = 0; $l < 2; $l++ ) { # loop over layers
+    my $LS_Z =-$VETO_TN;
+	for ( my $l = 0; $l < $n_L; $l++ ) { # loop over layers
 		
-		my $LS_Z =$VETO_TN-$LS_TN-($LS_TN+$p15_WT)*2*$l;
-		
-		%detector = init_det();
-		$detector{"name"}        = "ft_hodo_ls$l";
+        my $L = $l + 1;
+        my $LS_TN = $VETO_SKIN_TN/2.;
+        $LS_Z = $LS_Z + $LS_TN;
+        %detector = init_det();
+		$detector{"name"}        = "ft_hodo_L$L";
 		$detector{"mother"}      = "ft_hodo";
-		$detector{"description"} = "ft_hodo layer $l support";
+		$detector{"description"} = "ft_hodo layer $L support";
 		$detector{"pos"}         = "0.0*cm 0.0*cm $LS_Z*mm";
 		$detector{"color"}       = "EFEFFB";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$VETO_RING_OR*mm $VETO_OR*mm $LS_TN*mm 0.*deg 360.*deg";
-		$detector{"material"}    = "insfoam";
+		$detector{"material"}    = "carbonFiber";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
+        $LS_Z = $LS_Z + $LS_TN;
 		
-		
+        $LS_TN = $tn_L[$l]/2. + $PAINT_TN;
+        my $TILE_TN = $tn_L[$l]/2;
+        $LS_Z = $LS_Z + $LS_TN;
 		my $p_X=0.;
 		my $p_Y=0.;
-		my $p_Z=$LS_Z-$LS_TN-$p15_WT;
-		my $p_i=0;
+		my $p_Z=$LS_Z;
 		for ( my $q = 0; $q < 4; $q++ ) {
-			for ( my $i = 0; $i < $p15_N; $i++ ) {
-				$p_i=($q+1)*100+$i;
-				$p_X = $p15_X[$i]*$q_X[$q];
-				$p_Y = $p15_Y[$i]*$q_Y[$q];
-				if ( $q==0 && $i==0) {
-					# define tile mother volume
-					%detector = init_det();
-					$detector{"name"}        = "ft_hodo_p15_$l";
-					$detector{"mother"}      = "ft_hodo";
-					$detector{"description"} = "ft_hodo p15 layer $l";
-					$detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
-					$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-					$detector{"color"}       = "3399FF";
-					$detector{"type"}        = "Box";
-					$detector{"dimensions"}  = "$p15_WW*mm $p15_WW*mm $p15_WT*mm";
-					$detector{"material"}    = "G4_MYLAR";
-					$detector{"ncopy"}       = $p_i;
-					$detector{"style"}       = 1;
-					print_det(\%configuration, \%detector);
-					
-					%detector = init_det();
-					$detector{"name"}        = "ft_hodo_p15_tile_$l";
-					$detector{"mother"}      = "ft_hodo_p15_$l";
-					$detector{"description"} = "ft_hodo p15 tile layer $l";
-					$detector{"color"}       = "BCA9F5";
-					$detector{"type"}        = "Box";
-					$detector{"dimensions"}  = "$p15_SW*mm $p15_SW*mm $p15_ST*mm";
-					$detector{"material"}    = "scintillator";
-					$detector{"style"}       = 1;
-					$detector{"sensitivity"} = "ft_hodo";
-					$detector{"hit_type"}    = "ft_hodo";
-					$detector{"identifiers"} = "ft_hodo_p15 ncopy 0 layer manual $l";
-					print_det(\%configuration, \%detector);
-					
-				}
-				else {
-					%detector = init_det();
-					$detector{"name"}        = "ft_hodo_p15_".$l."_".$p_i;
-					$detector{"mother"}      = "ft_hodo";
-					$detector{"description"} = "ft_hodo p15 l=$l id=".$p_i;
-					$detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
-					$detector{"color"}       = "3399FF";
-					$detector{"type"}        = "CopyOf ft_hodo_p15_$l";
-					$detector{"dimensions"}  = "0.*mm";
-					$detector{"material"}    = "G4_MYLAR";
-					$detector{"ncopy"}       = $p_i;
-					$detector{"style"}       = 1;
-					print_det(\%configuration, \%detector);
-				}
+            my $S = 1 + 2*$q;
+			for ( my $i = 0; $i < $n_S1; $i++ ) {
+                my $I = $i+1;
+                my $sp_X = $px_S1[$i]*2.*($TILE_WW+2*$PAINT_TN);
+                my $sp_Y = $py_S1[$i]*2.*($TILE_WW+2*$PAINT_TN);
+                if( $q==0 ) {
+                    $p_X = $sp_X;
+                    $p_Y = $sp_Y;
+                }
+                elsif ( $q==1) {
+                    $p_X = -$sp_Y;
+                    $p_Y =  $sp_X;
+                }
+                elsif ( $q==2) {
+                    $p_X = -$sp_X;
+                    $p_Y = -$sp_Y;
+                }
+                elsif ( $q==3) {
+                    $p_X =  $sp_Y;
+                    $p_Y = -$sp_X;
+                }
+                my $WW_TILE  = $ww_S1[$i]*$TILE_WW/2.;
+                my $WW_PAINT = $ww_S1[$i]*($TILE_WW+2*$PAINT_TN)/2.;
+                my $TNAME  = "ft_hodo_p30_";
+                my $TTNAME = "ft_hodo_p30_tile_";
+                my $TCOLOR = "0431B4";
+                if ($ww_S1[$i]==1) {
+                    $TNAME  = "ft_hodo_p15_";
+                    $TTNAME = "ft_hodo_p15_tile_";
+                    $TCOLOR = "3399FF";
+                }
+                # define tile mother volume
+                %detector = init_det();
+                $detector{"name"}        = "$TNAME$S$L$I";
+                $detector{"mother"}      = "ft_hodo";
+                $detector{"description"} = "$TNAME $S $L $I";
+                $detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
+                $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+                $detector{"color"}       = "$TCOLOR";
+                $detector{"type"}        = "Box";
+                $detector{"dimensions"}  = "$WW_PAINT*mm $WW_PAINT*mm $LS_TN*mm";
+                $detector{"material"}    = "G4_MYLAR";
+                $detector{"style"}       = 1;
+                print_det(\%configuration, \%detector);
+
+                %detector = init_det();
+                $detector{"name"}        = "$TTNAME$S$L$I";
+                $detector{"mother"}      = "$TNAME$S$L$I";
+                $detector{"description"} = "$TTNAME $S $L $I";
+                $detector{"color"}       = "BCA9F5";
+                $detector{"type"}        = "Box";
+                $detector{"dimensions"}  = "$WW_TILE*mm $WW_TILE*mm $TILE_TN*mm";
+                $detector{"material"}    = "scintillator";
+                $detector{"style"}       = 1;
+                $detector{"sensitivity"} = "ft_hodo";
+                $detector{"hit_type"}    = "ft_hodo";
+                $detector{"identifiers"} = "sector manual $S layer manual $L component manual $I";
+                print_det(\%configuration, \%detector);
+        
 			}
-			for ( my $i = 0; $i < $p30_N; $i++ ) {
-				$p_i=($q+1)*100+(11+$i);
-				$p_X = $p30_X[$i]*$q_X[$q];
-				$p_Y = $p30_Y[$i]*$q_Y[$q];
-				if ( $q==0 && $i==0) {
-					%detector = init_det();
-					$detector{"name"}        = "ft_hodo_p30_$l";
-					$detector{"mother"}      = "ft_hodo";
-					$detector{"description"} = "ft_hodo p30 layer $l";
-					$detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
-					$detector{"color"}       = "0431B4";
-					$detector{"type"}        = "Box";
-					$detector{"dimensions"}  = "$p30_WW*mm $p30_WW*mm $p30_WT*mm";
-					$detector{"material"}    = "G4_MYLAR";
-					$detector{"ncopy"}       = $p_i;
-					$detector{"style"}       = 1;
-					print_det(\%configuration, \%detector);
-					
-					%detector = init_det();
-					$detector{"name"}        = "ft_hodo_p30_tile_$l";
-					$detector{"mother"}      = "ft_hodo_p30_$l";
-					$detector{"description"} = "ft_hodo p30 tile layer $l";
-					$detector{"color"}       = "BCA9F5";
-					$detector{"type"}        = "Box";
-					$detector{"dimensions"}  = "$p30_SW*mm $p30_SW*mm $p30_ST*mm";
-					$detector{"material"}    = "scintillator";
-					$detector{"style"}       = 1;
-					$detector{"sensitivity"} = "ft_hodo";
-					$detector{"hit_type"}    = "ft_hodo";
-					$detector{"identifiers"} = "ft_hodo_p30 ncopy 0 layer manual $l";
-					print_det(\%configuration, \%detector);
-				}
-				else {
-					%detector = init_det();
-					$detector{"name"}        = "ft_hodo_p30_".$l."_".$p_i;
-					$detector{"mother"}      = "ft_hodo";
-					$detector{"description"} = "ft_hodo p30 l=$l id=".$p_i;
-					$detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
-					$detector{"color"}       = "0431B4";
-					$detector{"type"}        = "CopyOf ft_hodo_p30_$l";
-					$detector{"dimensions"}  = "0.*mm";
-					$detector{"material"}    = "G4_MYLAR";
-					$detector{"ncopy"}       = $p_i;
-					$detector{"style"}       = 1;
-					print_det(\%configuration, \%detector);
-				}
-			}
-		}
+            $S = 2 + 2*$q;
+            for ( my $i = 0; $i < $n_S2; $i++ ) {
+                my $I = $i+1;
+                my $sp_X = $px_S2[$i]*2.*($TILE_WW+2*$PAINT_TN);
+                my $sp_Y = $py_S2[$i]*2.*($TILE_WW+2*$PAINT_TN);
+                if( $q==0 ) {
+                    $p_X = $sp_X;
+                    $p_Y = $sp_Y;
+                }
+                elsif ( $q==1) {
+                    $p_X = -$sp_Y;
+                    $p_Y =  $sp_X;
+                }
+                elsif ( $q==2) {
+                    $p_X = -$sp_X;
+                    $p_Y = -$sp_Y;
+                }
+                elsif ( $q==3) {
+                    $p_X =  $sp_Y;
+                    $p_Y = -$sp_X;
+                }
+                my $WW_TILE  = $ww_S2[$i]*$TILE_WW/2.;
+                my $WW_PAINT = $ww_S2[$i]*($TILE_WW+2*$PAINT_TN)/2.;
+                my $TNAME  = "ft_hodo_p30_";
+                my $TTNAME = "ft_hodo_p30_tile_";
+                my $TCOLOR = "0431B4";
+                if ($ww_S2[$i]==1) {
+                    $TNAME  = "ft_hodo_p15_";
+                    $TTNAME = "ft_hodo_p15_tile_";
+                    $TCOLOR = "3399FF";
+                }
+                # define tile mother volume
+                %detector = init_det();
+                $detector{"name"}        = "$TNAME$S$L$I";
+                $detector{"mother"}      = "ft_hodo";
+                $detector{"description"} = "$TNAME $S $L $I";
+                $detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
+                $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+                $detector{"color"}       = "$TCOLOR";
+                $detector{"type"}        = "Box";
+                $detector{"dimensions"}  = "$WW_PAINT*mm $WW_PAINT*mm $LS_TN*mm";
+                $detector{"material"}    = "G4_MYLAR";
+                $detector{"style"}       = 1;
+                print_det(\%configuration, \%detector);
+                
+                %detector = init_det();
+                $detector{"name"}        = "$TTNAME$S$L$I";
+                $detector{"mother"}      = "$TNAME$S$L$I";
+                $detector{"description"} = "$TTNAME $S $L $I";
+                $detector{"color"}       = "BCA9F5";
+                $detector{"type"}        = "Box";
+                $detector{"dimensions"}  = "$WW_TILE*mm $WW_TILE*mm $TILE_TN*mm";
+                $detector{"material"}    = "scintillator";
+                $detector{"style"}       = 1;
+                $detector{"sensitivity"} = "ft_hodo";
+                $detector{"hit_type"}    = "ft_hodo";
+                $detector{"identifiers"} = "sector manual $S layer manual $L component manual $I";
+                print_det(\%configuration, \%detector);
+                
+            }
+        }
+		$LS_Z = $LS_Z + $LS_TN;
 	}
 }
 
@@ -1789,9 +1832,9 @@ sub make_ft_trk_fee_boxes
 		$detector{"material"}    = "scintillator";
 		$detector{"mfield"}      = "no";
 		$detector{"style"}       = 1;
-		$detector{"sensitivity"} = "ft_hodo";
-		$detector{"hit_type"}    = "ft_hodo";
-		$detector{"identifiers"} = "id manual 5000";
+        #		$detector{"sensitivity"} = "ft_hodo";
+        #		$detector{"hit_type"}    = "ft_hodo";
+        #		$detector{"identifiers"} = "id manual 5000";
 		print_det(\%configuration, \%detector);
 		
 	}

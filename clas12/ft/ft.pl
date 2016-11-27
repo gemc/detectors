@@ -60,10 +60,10 @@ foreach my $conf ( @allConfs )
     
     define_ft_hits();
     
-    #make_ft_shield();
+    #    make_ft_shield();
     make_ft_cal();
     make_ft_hodo();
     if($configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "WithInnerSST" || $configuration{"variation"} eq "WithInnerShield" ) {
-        make_ft_trk();
+    make_ft_trk();
     }
 }

@@ -30,7 +30,7 @@ sub define_ft_hodo_hit
 	my %hit = init_hit();
 	$hit{"name"}            = "ft_hodo";
 	$hit{"description"}     = "forward tagger hodoscope hit definition";
-	$hit{"identifiers"}     = "id layer";
+	$hit{"identifiers"}     = "sector layer component";
 	$hit{"signalThreshold"} = "0.1*MeV";
 	$hit{"timeWindow"}      = "4*ns";
 	$hit{"prodThreshold"}   = "1*mm";

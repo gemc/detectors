@@ -54,7 +54,7 @@ my %colors = ("silicon","ccffff",
               "pcBoard","ffff99",
               "chip","cccc00");
 
-my $btestone = 1;
+my $btestone = 0;
 
 sub makeBST
 {
@@ -135,7 +135,7 @@ sub build_sector
 
     for(my $m=1; $m<=$nmodules; $m++ )
     {
-        #build_module($r,$s,$m);
+        build_module($r,$s,$m);
         build_passive_in_module($r,$s,$m,"pitchAdaptor","SVT Pitch Adaptor");
         build_carbon_fiber($r,$s,$m);
         build_bus_cable($r,$s,$m);

@@ -127,11 +127,11 @@ sub build_sector
 
     #print "Hello from ".$vdesc."\n";
 
-    my %detector = init_det();
-    %detector = setup_detector( $vname, \%detector );
-    %detector = setup_detector_passive( $vdesc, \%detector );
-    $detector{"visible"} = 0;
-    print_det(\%main::configuration, \%detector);
+    #my %detector = init_det();
+    #%detector = setup_detector( $vname, \%detector );
+    #%detector = setup_detector_passive( $vdesc, \%detector );
+    #$detector{"visible"} = 0;
+    #print_det(\%main::configuration, \%detector);
 
     for(my $m=1; $m<=$nmodules; $m++ )
     {
@@ -284,7 +284,7 @@ sub build_heat_sink
     my $mat = "heatSink";
     my $name = $mat;
     my ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
-    build_passive($vname,$vdesc,$mat,1); # hide container volume
+    #build_passive($vname,$vdesc,$mat,1); # hide container volume
 
     $name = $mat."Cu";
     ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);

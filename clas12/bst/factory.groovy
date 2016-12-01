@@ -22,8 +22,9 @@ SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
 //SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file
 //factory.setApplyAlignmentShifts( true ); // shifted geometry
 
+//factory.VERBOSE = true;
 factory.BUILDSENSORS = true; // include physical sensors (aka cards)
-factory.HALFBOXES = true; // geant4 wants half dimensions for boxes (but not tube radii?!)
+factory.HALFBOXES = true; // geant4 wants half dimensions for boxes (but not tube radii)
 factory.makeVolumes();
 
 def outFile = new File("bst__volumes_java.txt");

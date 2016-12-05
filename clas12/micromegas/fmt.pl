@@ -13,17 +13,19 @@ my @starting_point =();
 
 my $fmt_ir 	       	= $parameters{"FMT_mothervol_InnerRadius"};
 my $fmt_or 		= $parameters{"FMT_mothervol_OutRadius"};
-#my $fmt_dz       = ($starting_point[5] - $starting_point[0])/2.0 + 8.0;
-#my $fmt_starting = ($starting_point[2] + $starting_point[3])/2.0;
-# Mother volume zmin to take into account support extension upstream D1 (2 mm) and BMT MV zmax
-# Mother volume zmax to take into account innerscrews extension downstream D6 (about 3.5 mm)
+
+# Mother volume zmin = BMT MV zmax = end of BMT closing plate
+# Mother volume zmax to take into account innerscrews extension downstream D6 (about 3.5 mm) >= FMT_zpos_layer6 + 7.6 + 3.5
 # Mother volume half-length and middle position: 
 my $fmt_dz              = ($parameters{"FMT_mothervol_zmax"} - $parameters{"FMT_mothervol_zmin"})/2.0;
 my $fmt_starting        = ($parameters{"FMT_mothervol_zmax"} + $parameters{"FMT_mothervol_zmin"})/2.0;
+
 my $Dtheta              = 60.0; # rotation angle of each disk wrt to the preceding one
 my $nlayer	      	= $parameters{"FMT_nlayer"};
 
-$starting_point[0] 	= $parameters{"FMT_zpos_layer1"};
+$starting_point[0] 	= $parameters{"FMT_zpos_layer1"}; 
+# should be FMT_mothervol_zmin + 2 mm (FMT support thickness upstream of D1)
+# then nominally, interdisks space = 11.9 mm except between D3 and D4 13.9 mm.
 $starting_point[1] 	= $parameters{"FMT_zpos_layer2"};
 $starting_point[2] 	= $parameters{"FMT_zpos_layer3"};
 $starting_point[3] 	= $parameters{"FMT_zpos_layer4"};
@@ -44,7 +46,6 @@ my $outerPeek_RMin 	= $parameters{"FMT_outerPEEKInnerRadius"};
 my $outerPeek_RMax 	= $parameters{"FMT_outerPEEKOuterRadius"};
 
 
-# my $Epoxy_Dz 		= 0.5*$parameters{"FMT_Epoxy_Dz"}; # half width
 my $CuGround_Dz 	= 0.5*$parameters{"FMT_CuGround_Dz"}; # half width
 my $PCBGround_Dz 	= 0.5*$parameters{"FMT_PCBGround_Dz"}; # half width
 my $Rohacell_Dz 	= 0.5*$parameters{"FMT_Rohacell_Dz"}; # half width
@@ -62,8 +63,8 @@ my $DriftCuElectrode_Dz = 0.5*$parameters{"FMT_DriftCuElectrode_Dz"}; # half wid
 my $DriftPCB_Dz 	= 0.5*$parameters{"FMT_DriftPCB_Dz"}; # half width
 my $DriftCuGround_Dz 	= 0.5*$parameters{"FMT_DriftCuGround_Dz"}; # half width
 
-my $RotDisks            = $parameters{"FMT_overall_disks_rotation"};
-my $RotSpacers          = $parameters{"FMT_overall_spacers_rotation"};
+my $RotDisks            = $parameters{"FMT_overall_disks_rotation"};   # nominal = 60°;
+my $RotSpacers          = $parameters{"FMT_overall_spacers_rotation"}; # nominal = 0°; if not 0, alignment with BMT interface to be revised
 
 # G4 materials
 my $peek_material   	= 'myPeek';
@@ -81,27 +82,27 @@ my $resist_material	= 'myfmtResistPaste'; # for resistive strips
 my $innerscrew_material = 'myfmtInnerScrew' ; # effective screws "in" the inner peek ring
 #define myGlue...
 # pillars holding the mesh neglected
-#my $epoxy_material  	= 'myEpoxy';
 #my $drift_material   	= 'myMMMylar';
 
 # G4 colors
 # set somewhat at random 'rrggbb(t)' (transparency from 0 opaque to 5 fully transparent)
-my $peek_color       = '6666664';     # grey
-my $alu_color        = '4444444';     # dark grey
-my $hvcover_color    = '4444444';    # dark grey semi-transparent
-my $pcb_color        = '0000ff4';     # blue
-my $copper_color     = '6666004';     # greenish (dark)
-my $strips_color     = '3535404';
-my $gas_color        = 'e100002';
-my $photoresist_color= 'aa00aa4';     # purple
-my $mesh_color       = '2520205';     # black
 my $air_color	     = 'e200e15';
+my $alu_color        = 'b2577a4';     # dark grey
+my $connector_color  = '40b8af4';
+my $copper_color     = '6666004';     # greenish (dark)
+my $gas_color        = 'ffcc004';
+my $hvcover_color    = '6c2d582';     # dark grey semi-transparent
+my $inox_color       = '8888883';
 my $kapton_color     = 'fff6004';    # yellowish transparent (active zone)
-my $rohacell_color   = '00ff004';     # green
+my $mesh_color       = '2520204';     # black
+my $pcb_color        = '0000ff4';     # blue
+my $peek_color       = '6ccecb4';     # light blue
+my $photoresist_color= 'aa00aa4';     # purple
 my $resist_color     = '0000004';
-my $connector_color  = 'aa00004';
+my $rohacell_color   = '00ff004';     # green
+my $spacer_color     = '6666002';
+my $strips_color     = '3535404';
 #myGlue
-#my $epoxy_color      = 'e200e1';
 #my $drift_color      = 'fff600';
 
 $pi = 3.141592653589793238;
@@ -128,8 +129,7 @@ sub rot_connector
 sub rot_support
 {
  my $c = shift;
- my $theta_rot = 135.0 + $RotSpacers + $c*180; 
-# 135° nominal position for these supports; if changed here, should also be changed in place_spacers.
+ my $theta_rot = $RotSpacers + $c*180; 
  return "0*deg 0*deg -$theta_rot*deg";
 }
 
@@ -165,11 +165,8 @@ sub define_fmt
 	place_innerscrews($l);
 	if ( $l == 2 || $l == 5) {place_supports36($l);}
 	if ( $l == 0 || $l == 1 || $l == 3 || $l == 4 )  {place_supports1245($l);}
-	if ( $l < 5) {place_spacers($l);
-    }
-	
-#       place_epoxy($l); 
-    
+	if ( $l < 5) {place_spacers($l);}
+#       place_cables{$l}; to be implemented after assembly at JLab; must be compatible with place_rods in bmt.pl 
   }
 }
 
@@ -186,7 +183,7 @@ sub make_fmt
     $detector{"color"}       = "aaaaff";
     $detector{"type"}        = "Tube";
     $detector{"dimensions"}  = "$fmt_ir*mm $fmt_or*mm $fmt_dz*mm 0*deg 360*deg";
-    $detector{"material"}    = "myAir";
+    $detector{"material"}    = "Air";
     $detector{"mfield"}      = "no";
     $detector{"ncopy"}       = 1;
     $detector{"pMany"}       = 1;
@@ -846,7 +843,7 @@ sub place_gas2
     $detector{"style"}       = 1;
     $detector{"sensitivity"} = "fmt";
     $detector{"hit_type"}    = "fmt";
-    $detector{"identifiers"} ="superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
+    $detector{"identifiers"} ="disk manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
     print_det(\%configuration, \%detector);
 }
 
@@ -1013,7 +1010,8 @@ sub place_hvcovers
     my @rmin   = (200.0, 204.0, 204.0, 223.8);
     my @rmax   = (224.8, 223.8, 223.8, 224.8);
     my @dz     = (1.0, 6.5, 6.5, 6.5); # full thickness
-    my @stheta = (-13.755, -13.755, 13.5, -13.755);
+    my @stheta = (-13.755, -13.755, 13.5, -13.755); 
+    # for initial angular position (HV covers and connectors sym/y-axis); then corrected via RotDisks parameter
     my @dtheta = (27.51, 0.255, 0.255, 27.51);
     
     
@@ -1034,7 +1032,7 @@ sub place_hvcovers
      my $Dtheta = $dtheta[$e];
  
      my $tpos   = "0*mm 0*mm";
-     my $z      = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$PhRes128_Dz + $PDz;
+     my $z      = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$PhRes128_Dz + $PDz;   # starts 2.615 mm after starting point
      if ($element_no == 1) { $z = $z + $dz[2]; }
     
     my %detector = init_det();
@@ -1077,7 +1075,8 @@ sub place_connectors
     my @rmin   = (205.9, 205.9, 213.3, 216.5); 
     my @rmax   = (213.3, 213.3, 225.3, 224.0);
     my @dz     = (3.0, 0.5, 2.0, 0.7); # full thickness * effective density, approximate !
-    my @stheta = (33.2, 33.6, 33.0, 35.0); 
+    my @stheta = (33.2, 33.6, 33.0, 35.0);
+    # for initial angular position (HV-covers and connectors sym/y-axis); then corrected via RotDisks parameter
     my @dtheta = (8.6, 7.8, 9.6, 5.6);    
     my @mat    = ($pcb_material, $alu_material, $pcb_material, $alu_material);
     my @col    = ($connector_color, $hvcover_color, $connector_color, $hvcover_color);
@@ -1092,7 +1091,7 @@ sub place_connectors
     for(my $cc = 0; $cc < 2 ; $cc++)
     {
 	if($cc == 1) {$connector_no  = $connector_no + 8; }
-    for(my $e = 0; $e < 4 ; $e++)   # 4 elements (femelle + male, plastic + metal each) compose a connector
+    for(my $e = 0; $e < 4 ; $e++)   # 4 elements (female + male, plastic + metal each) compose a connector
     {
      my $element_no= $e + 1;
      my $descriptio = "Connector $connector_no, Layer $layer_no, Element $element_no";
@@ -1138,40 +1137,47 @@ sub place_innerscrews
     my $l    = shift; 
     my $layer_no       = $l + 1;
 
-# units = mm, deg. ; 
-# 9 identical tubes per layer: 4.3 mm diameter as an average between threaded part at 2.5 mm and head at 5 mm; 
-# real length 9 mm; 
-# in order to avoid overlapping volumes, these screws are displaced in z and placed on top (downstream) of the detector; the material density is scaled by 9/dz (which is then supposed to be the same for all layers).
-
+# Screws are divided into head and body, placed respectively upstream and downstream the detector in order to avoid overlaps.
     
-    my $vname      = "FMT_InnerScrew";
-    
-     my	$z      = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$PhRes128_Dz + 2*$Mesh_Dz + 2*$PhRes64_Dz + 2*$Peek_Dz + 2*$DriftCuElectrode_Dz + 2*$DriftPCB_Dz + 2*$DriftCuGround_Dz; # top of disk
-#     if ($layer_no <  $nlayer) {$dz = $starting_point[$l+1] - $fmt_starting - $z;} # effective length
-#     if ($layer_no == $nlayer) {$dz = $starting_point[$l] + 10.5 - $fmt_starting - $z;}
-     my $dz = $starting_point[$l] + 10.5 - $fmt_starting - $z;
-     my $PDz    = 0.5*$dz;
-     $z         = $z + $PDz; # middle of effective screw
+     my $vname      = "FMT_InnerScrew";
+     my $descriptio = "InnerScrew";
+     my @dz         = (1.5, 3.0);      # half real length compensated by double density
+     my @radius     = (2.5, 1.25);
+     my	$z0         = $starting_point[$l] - $fmt_starting;
+     my $z          = $z0;
     
     for(my $s = 0; $s < 9 ; $s++)   # 9 screws per layer
     {
      my $screw_no= $s + 1;
-     my $descriptio = "InnerScrew $screw_no, Layer $layer_no";
-
-# le rayon de 29 mm et l'angle de 3.6° de la première vis ont été mesurés sur plan papier; à vérifier; temp     
-     my $theta_rot = 3.6 + $RotDisks + $l*60 + $s*40;
-     my $xpos   = 29.0*cos($theta_rot*$pi/180.0);
-     my $ypos   = 29.0*sin($theta_rot*$pi/180.0);
-     
-
+    for(my $e = 0; $e < 2 ; $e++)   # 2 elements (head and body) per screw
+    {
+     my $element_no = $e + 1;
+     my $PRadius    = $radius[$e];
+     my $PDz        = 0.5*$dz[$e];
+     if ($element_no == 1)
+     {
+	 $z = $z0 - $PDz;
+	 $descriptio = "InnerScrewHead Layer $layer_no, $screw_no";
+     }
+     if ($element_no == 2)
+     {
+	 $z = $z0 + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$PhRes128_Dz + 2*$Mesh_Dz + 2*$PhRes64_Dz + 2*$Peek_Dz + 2*$DriftCuElectrode_Dz + 2*$DriftPCB_Dz + 2*$DriftCuGround_Dz + $PDz;
+	 $descriptio = "InnerScrewBody Layer $layer_no, $screw_no";
+     }       
+     my $theta_rot = 3.6 + $RotDisks + $l*60 + $s*40;  
+     # 3.6° read approximately on paper on Sedi drawing 6 2075 DM 1240 013 (for above defined initial angular position); temp ?
+     my $xpos   = 30.0*cos($theta_rot*$pi/180.0);      
+     my $ypos   = 30.0*sin($theta_rot*$pi/180.0);
+     # 30 mm on Sedi drawing 6 2075 DM 1240 133
+ 
     my %detector = init_det();	
-    $detector{"name"}        = "$vname$screw_no\_$layer_no";
+    $detector{"name"}        = "$vname$layer_no\_$screw_no\_$element_no";;
     $detector{"mother"}      =  $envelope;
     $detector{"description"} = "$descriptio";
     $detector{"pos"}         = "$xpos*mm $ypos*mm $z*mm";
-    $detector{"color"}       =  $mesh_color;
+    $detector{"color"}       =  $inox_color;
     $detector{"type"}        = "Tube";
-    $detector{"dimensions"}  = "0.0*mm 2.3*mm $PDz*mm 0.0*deg 360.0*deg";
+    $detector{"dimensions"}  = "0.0*mm $PRadius*mm $PDz*mm 0.0*deg 360.0*deg";
     $detector{"material"}    = $innerscrew_material;
     $detector{"mfield"}      = "no";
     $detector{"ncopy"}       = 1;
@@ -1184,6 +1190,7 @@ sub place_innerscrews
     $detector{"identifiers"} = "no";
     
     print_det(\%configuration, \%detector);
+    }
     }
 }
 
@@ -1199,7 +1206,7 @@ sub place_supports36
     my @rmin   = (205.0, 225.0, 225.0, 225.0);
     my @rmax   = (225.0, 240.0, 240.0, 240.0);
     my @dz     = (2.0, 5.0, 5.0, 5.0);          # full thickness
-    my @stheta = (-17.0, -17.0, 13.0, 39.0);    # to check after final assembly
+    my @stheta = ( -2.0,  -2.0, 28.0, 58.0);    # nominal position
     my @dtheta = ( 64.0,   4.0,  4.0,  4.0);    
     
     
@@ -1259,14 +1266,15 @@ sub place_supports1245
 
     my @rmin   = (205.0, 225.0, 225.0);
     my @rmax   = (225.0, 240.0, 240.0);
-    my @dz     = (2.0, 5.0, 5.0);          # full thickness
-    my @stheta = (-17.0, -17.0, 13.0);     # to check after final assembly   
+    my @dz     = (2.0, 5.0, 5.0);          # full thickness 
+    my @stheta = ( -2.0,  -2.0,  28.0);    # nominal position 
     my @dtheta = ( 34.0,   4.0,  4.0);    
     if ($l == 0)
     {
 	$dtheta[1] = 5.5 ;
 	$dtheta[2] = 5.5 ;
-	$stheta[2] = 11.5 ;
+	#$stheta[2] = 11.5 ;
+        $stheta[2] = 26.5 ;
     }
     
     
@@ -1321,7 +1329,7 @@ sub place_spacers
     my $layer_no       = $l + 1;
 
 # units = mm, deg. ;
-# these spacers ("entretoises") are screwed on the supports; their length is such as to fill the available space between 2 spacers = 10.5 - 5 = 5.5 mm (12.5 - 5 = 7.5 mm between D3 and D4 because of extra bolt)
+# these spacers ("entretoises") are screwed on the supports; their length is such as to fill the available space between 2 supports = 11.9 - 5 = 6.9 mm (13.9 - 5 = 8.9 mm between D3 and D4 because of extra bolt)
 # they are placed on top of support elements 2 and 3, which extend 3 mm beyond disk entrance.
 # 4 identical tubes per layer: 4.6 mm diameter as an average between threaded part at 3 mm and hexagonal head at 6mm ( + 1mm long cylinder at 5mm diameter)
 # approximate brass by copper   
@@ -1336,11 +1344,10 @@ sub place_spacers
      my $element_no= $e + 1;
      my $descriptio = "Support$support_no, Layer$layer_no, Spacer$element_no";
      
-     my $theta_rot = 135.0 + $RotSpacers + $e*32.0 + $c*180.0 -16.0;
-     # 135° nominal position for these spacers; if changed here, should also be changed in rot_support.
+     my $theta_rot =  $e*32.0 + $c*180.0 - 1.0;  # +0.75 (axis offset wrt H) - 1.75 (hole offset wrt axis) = -1.
+     # 0.75° nominal position for these spacers; if changed here, should also be changed in rot_support.
      my $xpos   = 236.0*cos($theta_rot*$pi/180.0);
      my $ypos   = 236.0*sin($theta_rot*$pi/180.0);
-#    my $tpos   = "236.0*mm 0*mm";
      my $dz     = ($starting_point[$l+1]-2.0) - ($starting_point[$l]+3.0);
      my $PDz    = 0.5*$dz;
      my $z      = $starting_point[$l] - $fmt_starting + 3.0 + $PDz ;
@@ -1350,7 +1357,7 @@ sub place_spacers
     $detector{"mother"}      =  $envelope;
     $detector{"description"} = "$descriptio";
     $detector{"pos"}         = "$xpos*mm $ypos*mm $z*mm";
-    $detector{"color"}       =  $copper_color;
+    $detector{"color"}       =  $spacer_color;
     $detector{"type"}        = "Tube";
     $detector{"dimensions"}  = "0.0*mm 2.3*mm $PDz*mm 0.0*deg 360.0*deg";
     $detector{"material"}    = $copper_material;
@@ -1367,46 +1374,6 @@ sub place_spacers
     print_det(\%configuration, \%detector);
     }
     }
-}
-
-# not useful for fmt
-sub place_epoxy
-{
-    my $l    = shift; 
-    my $layer_no       = $l + 1;
-    
-    my $z          = - $fmt_starting + $starting_point[$l];
-    my $vname      = "FMT_Epoxy";
-    my $descriptio = "Epoxy, Layer $layer_no, ";
-    
-    # names
-    my $tpos      = "0*mm 0*mm";
-    my $PRMin     = $Det_RMin;
-    my $PRMax     = $Det_RMax;
-    my $PDz       = $Epoxy_Dz;
-
-    my %detector = init_det();    	
-    $detector{"name"}        = "$vname$layer_no";
-    $detector{"mother"}      = $envelope;
-    $detector{"description"} = "$descriptio";
-    $detector{"pos"}         = "$tpos $z*mm";
-    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    $detector{"color"}       = $epoxy_color;
-    $detector{"type"}        = "Tube";
-    $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
-    $detector{"material"}    = $epoxy_material;
-    $detector{"mfield"}      = "no";
-    $detector{"ncopy"}       = 1;
-    $detector{"pMany"}       = 1;
-    $detector{"exist"}       = 1;
-    $detector{"visible"}     = 1;
-    $detector{"style"}       = 1;
-    $detector{"sensitivity"} = "no";
-    $detector{"hit_type"}    = "no";
-    $detector{"identifiers"} = "no";
-    
-    print_det(\%configuration, \%detector);
-    
 }
 
 

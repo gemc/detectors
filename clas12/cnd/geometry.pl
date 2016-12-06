@@ -202,7 +202,7 @@ ver4 = "^"
 					
 					my $z_final = $z-$half_diff;
 					
-					my $name_string = join('',"CND_S",$i,"_L",$j,"_C",$k);		
+					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);		
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
@@ -235,7 +235,7 @@ ver4 = "^"
 					
 					my $z_final = $z-$half_diff;
 					
-					my $name_string = join('',"CND_S",$i,"_L",$j,"_C",$k);			
+					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);		
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
@@ -312,7 +312,7 @@ Consider the u-turn for one layer:
 			
 			my $z_final = $z-$half_diff;
 
-			my $name_string = join('',"CND_S",$i,"_L",$j,"_U-Turn",$k);
+			my $name_string = join('','CND_S',$i,'_L',$j,'_U-Turn',$k);
 
 			my %detector = init_det();
 			$detector{"name"}        = $name_string;		

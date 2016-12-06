@@ -35,10 +35,9 @@ sub buildMirrorsSurfaces
 	$mat{"name"}         = "htcc_AlMgF2";
 	$mat{"description"}  = "htcc mirror reflectivity";
 	$mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polishedfrontpainted";
+	$mat{"finish"}       = "polished";
 	$mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-	$mat{"sigmaAlhpa"}   = "0.1";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;	
 	print_mir(\%configuration, \%mat);

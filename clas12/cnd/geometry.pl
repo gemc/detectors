@@ -203,11 +203,13 @@ ver4 = "^"
 					my $z_final = $z-$half_diff;
 					
 					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);		
+					my $desc_string = join('','Central Neutron Detector, S ',$i,', L ',$j,', C ',$k);		
+					my $id_string = join('','sector manual ',$i,' layer manual ',$j,' component manual ',$k);							
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
 					$detector{"mother"}      = "cnd";
-					$detector{"description"} = "Central Neutron Detector, S $i, L $j, C $k";
+					$detector{"description"} = $desc_string;
 					$detector{"pos"}         = "0*cm 0*cm $z_final*cm";
 					$detector{"color"}       = $pcolor[$j-1];
 					$detector{"rotation"}    = "0*deg 0*deg $theta*deg";
@@ -218,7 +220,7 @@ ver4 = "^"
 					$detector{"ncopy"}       = $i;
 					$detector{"sensitivity"} = "cnd";
 					$detector{"hit_type"}    = "cnd";
-					$detector{"identifiers"} = "sector manual $i layer manual $j component manual $k";
+					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
 				}
 				else
@@ -235,12 +237,14 @@ ver4 = "^"
 					
 					my $z_final = $z-$half_diff;
 					
-					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);		
+					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);	
+					my $desc_string = join('','Central Neutron Detector, S ',$i,', L ',$j,', C ',$k);		
+					my $id_string = join('','sector manual ',$i,' layer manual ',$j,' component manual ',$k);							
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
 					$detector{"mother"}      = "cnd";
-					$detector{"description"} = "Central Neutron Detector, S $i, L $j, C $k";
+					$detector{"description"} = $desc_string;
 					$detector{"pos"}         = "0*cm 0*cm $z_final*cm";
 					$detector{"color"}       = $pcolor[$j-1];
 					$detector{"rotation"}    = "0*deg 0*deg $theta*deg";
@@ -251,7 +255,7 @@ ver4 = "^"
 					$detector{"ncopy"}       = $i;
 					$detector{"sensitivity"} = "cnd";
 					$detector{"hit_type"}    = "cnd";
-					$detector{"identifiers"} = "sector manual $i layer manual $j component manual $k";
+					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
 				}
 			}
@@ -313,11 +317,13 @@ Consider the u-turn for one layer:
 			my $z_final = $z-$half_diff;
 
 			my $name_string = join('','CND_S',$i,'_L',$j,'_U-Turn',$k);
+			my $desc_string = join('','Central Neutron Detector, S ',$i,', L ',$j,', U-Turn ',$k);		
+			my $id_string = join('','sector manual ',$i,' layer manual ',$j,' u-turn manual ',$k);		
 
 			my %detector = init_det();
 			$detector{"name"}        = $name_string;		
 			$detector{"mother"}      = "cnd";
-			$detector{"description"} = "Central Neutron Detector, S $i, L $j, U-Turn $k";
+			$detector{"description"} = $desc_string;
 			$detector{"pos"}         = "$x*cm $y*cm $z_final*cm";
 			$detector{"color"}       = $ucolor;
 			$detector{"rotation"}    = "$rotX*deg $rotY*deg $rotZ*deg";
@@ -326,7 +332,7 @@ Consider the u-turn for one layer:
 			$detector{"material"}    = "G4_PLEXIGLASS";
 			$detector{"style"}       = 1;
 			$detector{"ncopy"}       = $k;
-			$detector{"identifiers"} = "sector manual $i layer manual $j u-turn manual $k";
+			$detector{"identifiers"} = $id_string;
 			print_det(\%configuration, \%detector);
 		}
 	}

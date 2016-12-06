@@ -1,4 +1,3 @@
-
 sectors           | 24     | counts |  Number of sectors                                                                     | Gavin Murdoch | gmurdoch@jlab.org | agreed upon labelling convention               | 22/11/16
 layers            | 3      | counts |  Number of layers per sector                                                           | Gavin Murdoch | gmurdoch@jlab.org | agreed upon labelling convention               | 22/11/16
 paddles           | 2      | counts |  Number of paddles per layer                                                           | Gavin Murdoch | gmurdoch@jlab.org | agreed upon labelling convention               | 22/11/16

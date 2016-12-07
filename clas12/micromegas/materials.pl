@@ -1,10 +1,37 @@
+#!/usr/bin/perl -w
+
 use strict;
-use warnings;
+#use lib ("$ENV{GEMC}/io");
+use lib ("$ENV{GEMC}/api/perl");
+use utils;
+use materials;
 
-our %configuration;
+# Help Message
+sub help()
+{
+	print "\n Usage: \n";
+	print "   materials.pl <configuration filename>\n";
+ 	print "   Will create the CLAS12 micromegas materials\n";
+ 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
+	exit;
+}
+
+# Make sure the argument list is correct
+# If not pring the help
+if( scalar @ARGV != 1)
+{
+	help();
+	exit;
+}
 
 
-sub materials
+# Loading configuration file and paramters
+our %configuration = load_configuration($ARGV[0]);
+
+# One can change the "variation" here if one is desired different from the config.dat
+# $configuration{"variation"} = "myvar";
+
+sub print_materials
 {
 	my %mat = init_mat();
 	$mat{"name"}          = "myEpoxy";
@@ -295,11 +322,9 @@ sub materials
 	#print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
-	my $fmtInnerScrew_Density = 7.93*9.0/(10.5-7.914);
-	# effective screw length to match the interdisk space;
-	# real screw = 9 mm; interdisk space = 10.5 mm; disk = 7.914 mm;
-	# if these numbers change slightly, not too serious a problem
-	$mat{"name"}          = "myfmtInnerScrew";
+	my $fmtInnerScrew_Density = 7.93*2.0;
+	# density doubled to comensate for halved lengths
+        $mat{"name"}          = "myfmtInnerScrew";
 	$mat{"description"}   = "fmt micromeshInner Screw is inox";
 	$mat{"density"}       = "$fmtInnerScrew_Density";
 	$mat{"ncomponents"}   = "5";
@@ -332,4 +357,5 @@ sub materials
 	print_mat(\%configuration, \%mat);
 }
 
+print_materials();
 

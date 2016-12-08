@@ -15,7 +15,7 @@ import org.jlab.detector.geant4.v2.SVT.*;
 //this.class.classLoader.rootLoader.URLs.each{ println it }
 //System.exit(0);
 
-//SVTConstants.VERBOSE = true;
+SVTConstants.VERBOSE = true;
 DatabaseConstantProvider cp = SVTConstants.connect( false );
 
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry

@@ -396,9 +396,10 @@ sub build_epoxy_and_rail_and_pads
     build_passive($vname,$vdesc,$mat);
 
     $mat = "pad";
-    for(my $p=1; $p<=$npads; $p++ )
+    for(my $p=01; $p<=$npads; $p++ )
     {
-        $name = $mat.$p;
+        #$name = $mat.$p;
+        $name = $mat.($p-1);
         ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
         build_passive($vname,$vdesc,$mat);
     }

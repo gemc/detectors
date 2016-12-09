@@ -16,7 +16,7 @@ import org.jlab.detector.geant4.v2.SVT.*;
 //System.exit(0);
 
 SVTConstants.VERBOSE = true;
-DatabaseConstantProvider cp = SVTConstants.connect( false );
+DatabaseConstantProvider cp = SVTConstants.connect();
 
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
 //SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file

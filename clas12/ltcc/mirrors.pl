@@ -3,7 +3,7 @@ use warnings;
 
 our %configuration;
 
-# Table of optical photon energies (wavelengths) from 190-650 nm:
+# Table of optical photon energies (wavelengths) from 170-650 nm:
 my $penergy =
 "  1.9074494*eV  1.9372533*eV  1.9680033*eV  1.9997453*eV  2.0325280*eV " .
 "  2.0664035*eV  2.1014273*eV  2.1376588*eV  2.1751616*eV  2.2140038*eV " .
@@ -14,7 +14,7 @@ my $penergy =
 "  3.5424060*eV  3.6465944*eV  3.7570973*eV  3.8745066*eV  3.9994907*eV " .
 "  4.1328070*eV  4.2753176*eV  4.4280075*eV  4.5920078*eV  4.7686235*eV " .
 "  4.9593684*eV  5.1660088*eV  5.3906179*eV  5.6356459*eV  5.9040100*eV " .
-"  6.1992105*eV  ";
+"  6.1992105*eV  6.5254848*eV  6.8880107*eV  7.2931878*eV  ";
 
 # Reflectivity of AlMgF2 coated on thermally shaped acrylic sheets, measured by AJRP, 10/01/2012:
 my $reflectivity =
@@ -26,8 +26,8 @@ my $reflectivity =
 "  0.8941976     0.8948479     0.8877356     0.9026919     0.8999685 " .
 "  0.9101617     0.8983005     0.8991694     0.8990987     0.9000493 " .
 "  0.9065833     0.9028855     0.8985184     0.9009736     0.9086968 " .
-"  0.9015145     0.8914838     0.8816829     0.8666895     0.8496298 " .
-"  0.9042583 ";
+"  0.9015145     0.8914838     0.8816829     0.8666895     0.8452400" .
+"  0.8293650     0.8095238     0.7857142     0.7579365 ";
 
 
 sub buildMirrorsSurfaces

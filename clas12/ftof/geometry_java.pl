@@ -150,8 +150,8 @@ sub build_panel1a_counters
 		$detector{"mfield"}       = "no";
 		$detector{"visible"}      = 1;
 		$detector{"style"}        = 1;
-		$detector{"sensitivity"}  = "ftof_p1a";
-		$detector{"hit_type"}     = "ftof_p1a";
+		$detector{"sensitivity"}  = "ftof";
+		$detector{"hit_type"}     = "ftof";
 		$detector{"identifiers"}  = "sector manual $sector panel manual 1 paddle manual $n";
 		print_det(\%main::configuration, \%detector);
 	}
@@ -180,8 +180,8 @@ sub build_panel1b_counters
 		$detector{"mfield"}       = "no";
 		$detector{"visible"}      = 1;
 		$detector{"style"}        = 1;
-		$detector{"sensitivity"}  = "ftof_p1b";
-		$detector{"hit_type"}     = "ftof_p1b";
+		$detector{"sensitivity"}  = "ftof";
+		$detector{"hit_type"}     = "ftof";
 		$detector{"identifiers"}  = "sector manual $sector panel manual 2 paddle manual $n";
 		print_det(\%main::configuration, \%detector);
 	}
@@ -210,11 +210,37 @@ sub build_panel2_counters
 		$detector{"mfield"}       = "no";
 		$detector{"visible"}      = 1;
 		$detector{"style"}        = 1;
-		$detector{"sensitivity"}  = "ftof_p2";
-		$detector{"hit_type"}     = "ftof_p2";
+		$detector{"sensitivity"}  = "ftof";
+		$detector{"hit_type"}     = "ftof";
 		$detector{"identifiers"}  = "sector manual $sector  panel manual 3  paddle manual $n";
 		print_det(\%main::configuration, \%detector);
 	}
+}
+
+sub make_pb
+{
+	# loop over sectors 
+	for (my $isect = 0; $isect < 6; $isect++)
+	{
+		my $sector = $isect +1;
+
+		my %detector = init_det();
+
+		my $vname				 = "ftof_shield_sector$sector";
+		$detector{"name"}         = $vname;
+		$detector{"mother"}       = $mothers->{$vname};
+		$detector{"pos"}          = $positions->{$vname};
+		$detector{"rotation"}     = $rotations->{$vname};
+		$detector{"type"}         = $types->{$vname};
+		$detector{"dimensions"}   = $dimensions->{$vname};
+
+		$detector{"description"}  = "Layer of lead - Sector $sector";
+		$detector{"color"}        = "dc143c";
+		$detector{"material"}     = "G4_Pb";
+		$detector{"visible"}      = 1;
+		$detector{"style"}        = 1;
+		print_det(\%main::configuration, \%detector);
+}
 }
 
 1;

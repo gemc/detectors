@@ -4,7 +4,7 @@
 detector_name: bst
 variation:     original
 
-# Factory can be MYQL or TEXT
+# Factory can be MYSQL or TEXT
 factory:       TEXT 
 
 # run ranges and variation will apply to geometry, materials and parameters
@@ -15,7 +15,7 @@ rmax:       10000
 dbhost: clasdb.jlab.org
 
 # Comments/Description
-comment:       This is the first implementation of the bst
+comment:       This is the second implementation of the bst
 
 # Verbosity controls the perl script output
 verbosity: 0

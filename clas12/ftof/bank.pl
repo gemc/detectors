@@ -23,24 +23,23 @@ sub define_bank
 	
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid",   $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "sector",         1, "Di", "sector number");
-	insert_bank_variable(\%configuration, $bankname, "paddle",         2, "Di", "paddle number");
-	insert_bank_variable(\%configuration, $bankname, "ADCL",           3, "Di", "ADC Left");
-	insert_bank_variable(\%configuration, $bankname, "ADCR",           4, "Di", "ADC Right");
-	insert_bank_variable(\%configuration, $bankname, "TDCL",           5, "Di", "TDC Left");
-	insert_bank_variable(\%configuration, $bankname, "TDCR",           6, "Di", "TDC Right");
-	insert_bank_variable(\%configuration, $bankname, "ADCLu",          7, "Di", "ADC Left  - unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "ADCRu",          8, "Di", "ADC Right - unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "TDCLu",          9, "Di", "TDC Left  - unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "TDCRu",         10, "Di", "TDC Right - unsmeared");
+    insert_bank_variable(\%configuration, $bankname, "sector",         1, "Di", "sector number");
+    insert_bank_variable(\%configuration, $bankname, "layer",          2, "Di", "layer number (1: 1A, 2: 1B, 3: 2B)");
+	insert_bank_variable(\%configuration, $bankname, "paddle",         3, "Di", "paddle number");
+	insert_bank_variable(\%configuration, $bankname, "ADCL",           4, "Di", "ADC Left");
+	insert_bank_variable(\%configuration, $bankname, "ADCR",           5, "Di", "ADC Right");
+	insert_bank_variable(\%configuration, $bankname, "TDCL",           6, "Di", "TDC Left");
+	insert_bank_variable(\%configuration, $bankname, "TDCR",           7, "Di", "TDC Right");
+	insert_bank_variable(\%configuration, $bankname, "ADCLu",          8, "Di", "ADC Left  - unsmeared");
+	insert_bank_variable(\%configuration, $bankname, "ADCRu",          9, "Di", "ADC Right - unsmeared");
+	insert_bank_variable(\%configuration, $bankname, "TDCLu",         10, "Di", "TDC Left  - unsmeared");
+	insert_bank_variable(\%configuration, $bankname, "TDCRu",         11, "Di", "TDC Right - unsmeared");
 	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");
 }
 
 
 sub define_banks
 {
-	define_bank("ftof_p1a", 1000);
-	define_bank("ftof_p1b", 1100);
-	define_bank("ftof_p2",  1200);
+	define_bank("ftof", 1000);
 }
 

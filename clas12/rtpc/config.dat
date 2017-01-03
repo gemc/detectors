@@ -1,7 +1,7 @@
-# Configuration file for Bonus
+# Configuration file for RTPC
 
 # Detector name and variation
-detector_name: bonus
+detector_name: rtpc
 variation:     original
 
 # Factory can be MYQL or TEXT
@@ -15,7 +15,7 @@ rmax:       10000
 dbhost: clasdb.jlab.org
 
 # Comments/Description
-comment:       This is the first implementation of the HTCC
+comment:       This is the first implementation of the RTPC
 
 # Verbosity controls the perl script output
 verbosity: 0

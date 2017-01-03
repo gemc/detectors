@@ -24,12 +24,13 @@ sub define_bank
 	
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid",   $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "layer",          1, "Di", "sector number");
-	insert_bank_variable(\%configuration, $bankname, "paddle",         2, "Di", "paddle number");
-	insert_bank_variable(\%configuration, $bankname, "ADCD",           3, "Di", "ADC Direct");
-	insert_bank_variable(\%configuration, $bankname, "ADCN",           4, "Di", "ADC Neighbor");
-	insert_bank_variable(\%configuration, $bankname, "TDCD",           5, "Di", "TDC Direct");
-	insert_bank_variable(\%configuration, $bankname, "TDCN",           6, "Di", "TDC Neighbor");
+        insert_bank_variable(\%configuration, $bankname, "sector",         1, "Di", "sector number");
+	insert_bank_variable(\%configuration, $bankname, "layer",          2, "Di", "layer number");
+	insert_bank_variable(\%configuration, $bankname, "paddle",         3, "Di", "paddle number");
+	insert_bank_variable(\%configuration, $bankname, "ADCD",           4, "Di", "ADC Direct");
+	insert_bank_variable(\%configuration, $bankname, "ADCN",           5, "Di", "ADC Neighbor");
+	insert_bank_variable(\%configuration, $bankname, "TDCD",           6, "Di", "TDC Direct");
+	insert_bank_variable(\%configuration, $bankname, "TDCN",           7, "Di", "TDC Neighbor");
 	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");
 }
 

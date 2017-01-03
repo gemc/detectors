@@ -1,9 +1,10 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
+use lib ("$ENV{GEMC}/io");
 use utils;
 use bank;
+use materials;
 
 use strict;
 use warnings;
@@ -13,7 +14,8 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   bank.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 Central Time of Flight (ctof) bank\n";
+ 	print "   Will create the CLAS12 rtpc
+ bank\n";
  	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
 	exit;
 }
@@ -44,18 +46,24 @@ our %configuration = load_configuration($ARGV[0]);
 # d for doubles
 
 my $bankId   = 1700;
-my $bankname = "bonus";
+my $bankname = "rtpc";
 
 sub define_bank
 {
 	
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "ADCL",         1, "Di", "ADC Left");
-	insert_bank_variable(\%configuration, $bankname, "ADCR",         2, "Di", "ADC Right");
-	insert_bank_variable(\%configuration, $bankname, "TDCL",         3, "Di", "TDC Left");
-	insert_bank_variable(\%configuration, $bankname, "TDCR",         4, "Di", "TDC Right");
-	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
+	insert_bank_variable(\%configuration, $bankname, "CellID",       1, "Di", "Pad CellId");
+	insert_bank_variable(\%configuration, $bankname, "ADC",          2, "Dd", "ADC");
+	insert_bank_variable(\%configuration, $bankname, "TDC",          3, "Dd", "TDC");
+	insert_bank_variable(\%configuration, $bankname, "step",         4, "Di", "nstep");
+	insert_bank_variable(\%configuration, $bankname, "EDep",         5, "Dd", "EDep");
+        insert_bank_variable(\%configuration, $bankname, "hitn",         6, "Di", "hit number");
+	insert_bank_variable(\%configuration, $bankname, "PosX",         7, "Dd", "PosX");
+	insert_bank_variable(\%configuration, $bankname, "PosY",         8, "Dd", "PosY");
+        insert_bank_variable(\%configuration, $bankname, "PosZ",         9, "Dd", "PosZ");
+        insert_bank_variable(\%configuration, $bankname, "phiRad",      10, "Dd", "phiRad");
+    
 }
 
 define_bank();

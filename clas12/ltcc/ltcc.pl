@@ -15,8 +15,11 @@ use mirrors;
 
 our $startS = 1;
 our $endS   = 6;
+#our $endS   = 1;
 our $startN = 1;
 our $endN   = 18;
+#our $startN = 9;
+#our $endN   = 10;
 
 # Help Message
 sub help()
@@ -56,6 +59,7 @@ require "./hit.pl";
 require "./ltccBox.pl";      # mother volume
 require "./ell_mirrors.pl";   # ell mirrors
 require "./hyp_mirrors.pl";   # hyp mirrors
+require "./cyl_mirrors.pl";   # cyl mirrors
 require "./pmts.pl";          # pmts
 
 # mirrors properties
@@ -92,6 +96,9 @@ foreach my $conf ( @allConfs )
 
 	# PMTs
 	buildPmts();
+
+	# cylindrical
+	#buildCylMirrors();
 }
 
 

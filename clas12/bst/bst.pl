@@ -33,11 +33,6 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-
-# Global pars - these should be read by the load_parameters from file or DB
-our %parameters = get_parameters(%configuration);
-
-
 # materials
 require "./materials.pl";
 
@@ -47,22 +42,17 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# sensitive geometry
-require "./geometry.pl";
-
-# calculate the parameters
-require "./utils.pl";
-
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+#my @allConfs = ("original", "java");
+my @allConfs = ("java"); # java variation only, for testing
 
 # bank definitions commong to all variations
 define_bank();
 
 foreach my $conf ( @allConfs )
 {
-	$configuration{"variation"} = $conf ;
+	$configuration{"variation"} = $conf;
 	
 	# materials
 	materials();
@@ -70,9 +60,27 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 	
-	# geometry
-	makeBST();
-	
+	# bank definitions
+	define_bank();
+
+    if($configuration{"variation"} eq "original")
+    {
+        # Global pars - these should be read by the load_parameters from file or DB
+        our %parameters = get_parameters(%configuration);
+        
+        require "./geometry.pl";
+        makeBST();
+    }
+
+    if($configuration{"variation"} eq "java")
+    {
+        system('groovy -cp "../*" factory.groovy');
+        
+        # Global pars - these should be read by the load_parameters from file or DB
+        our %parameters = get_parameters(%configuration);
+		our @volumes = get_volumes(%configuration);
+        
+        require "./geometry_java.pl";
+		coatjava::makeBST();
+    }	
 }
-
-

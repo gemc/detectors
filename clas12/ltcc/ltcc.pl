@@ -98,7 +98,7 @@ foreach my $conf ( @allConfs )
 	buildPmts();
 
 	# cylindrical
-	#buildCylMirrors();
+	buildCylMirrors();
 }
 
 

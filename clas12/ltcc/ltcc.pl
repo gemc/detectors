@@ -59,7 +59,6 @@ require "./hit.pl";
 require "./ltccBox.pl";      # mother volume
 require "./ell_mirrors.pl";   # ell mirrors
 require "./hyp_mirrors.pl";   # hyp mirrors
-require "./cyl_mirrors.pl";   # cyl mirrors
 require "./pmts.pl";          # pmts
 
 # mirrors properties
@@ -96,9 +95,6 @@ foreach my $conf ( @allConfs )
 
 	# PMTs
 	buildPmts();
-
-	# cylindrical
-	buildCylMirrors();
 }
 
 

@@ -80,7 +80,7 @@
 
 	sub build_pmts
 	{
-		for(my $n=$startN; $n<$endN; $n++)
+		for(my $n=$startN; $n<=$endN; $n++)
 		{
 			for(my $s=$startS; $s<=$endS; $s++)
 			{       
@@ -88,7 +88,7 @@
 				my %detector = init_det();
 
 				$detector{"name"}        = "pmt_s$s"."right_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "PMT right $n";
 				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
@@ -105,7 +105,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "pmt_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "PMT left $n";
 				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
@@ -122,7 +122,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "pmt_light_stopper_s$s"."right_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "PMT light stopper right $n";
 				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
@@ -136,7 +136,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "pmt_light_stopper_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "PMT light stopper left $n";
 				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*mm";
@@ -150,7 +150,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "box_s$s"."right_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Box right $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
@@ -163,7 +163,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "box_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Box left $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
@@ -176,7 +176,7 @@
 		
 				%detector = init_det();
 				$detector{"name"}        = "subtraction_box_s$s"."right_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Subtraction Box right $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";;
@@ -189,7 +189,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "subtraction_box_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "Subtraction Box left $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
@@ -202,7 +202,7 @@
 			
 				%detector = init_det();
 				$detector{"name"}        = "final_box_s$s"."right$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "combined box right $n";
 				$detector{"pos"}         = "$x0[$n-1]*cm $y0[$n-1]*cm 0*cm";
 				$detector{"rotation"}    = "90*deg -$tilt[$n-1]*deg $box_tilt[$n-1]*deg";
@@ -214,7 +214,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "final_box_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "combined box left $n";
 				$detector{"pos"}         = "-$x0[$n-1]*cm $y0[$n-1]*cm 0*cm";
 				$detector{"rotation"}    = "90*deg $tilt[$n-1]*deg -$box_tilt[$n-1]*deg";
@@ -246,7 +246,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."right_inner$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "cone right inner $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
@@ -259,7 +259,7 @@
 	
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."right_outer$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "cone right outer $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
@@ -272,7 +272,7 @@
 			
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."right_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "combined cone right $n";
 				$detector{"pos"}         = "$geo_pos_x_r*cm $geo_pos_y_r*cm $geo_pos_z_r*cm";
 				$detector{"rotation"}    = "-$phi*deg $theta*deg -$psi*deg";
@@ -288,7 +288,7 @@
 	
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."left_inner$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "cone left inner $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
@@ -302,7 +302,7 @@
 	
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."left_outer$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "cone left outer $n";
 				$detector{"pos"}         = "0*cm 0*cm 0*cm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
@@ -315,7 +315,7 @@
 			
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "combined cone left $n";
 				$detector{"pos"}         = "$geo_pos_x_l*cm $geo_pos_y_l*cm $geo_pos_z_l*cm";
 				$detector{"rotation"}    = "-$phi*deg -$theta*deg -$psi*deg";
@@ -338,7 +338,7 @@
 				my $mir_pos_z_l = $geo_pos_z_l - $l_wm * cos($theta * $d2r) * cos($phi * $d2r);
 				
 				$detector{"name"}        = "cyl_mirrors_s$s"."right_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "cyl mirrors right $n";
 				$detector{"pos"}         = "$mir_pos_x_r*cm $mir_pos_y_r*cm $mir_pos_z_r*cm";
@@ -355,7 +355,7 @@
 
 				%detector = init_det();
 				$detector{"name"}        = "cyl_mirrors_s$s"."left_$n";
-				$detector{"mother"}      = "segment_pmt_s$s"."$n";
+				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				#$detector{"mother"}      = "root";
 				$detector{"description"} = "cyl mirrors left $n";
 				$detector{"pos"}         = "$mir_pos_x_l*cm $mir_pos_y_l*cm $mir_pos_z_l*cm";
@@ -408,7 +408,7 @@
 				for(my $s=$startS; $s<=$endS; $s++)
 				{
 					my %detector = init_det();
-					$detector{"name"}        = "segment_pmt_s$s"."$n";
+					$detector{"name"}        = "segment_pmt_s$s"."_$n";
 					$detector{"mother"}      = "ltccS$s";
 					$detector{"description"} = "Light Threshold Cerenkov Counter PMT segment $n";
 					#$detector{"mother"}      = "root";

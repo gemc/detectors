@@ -66,8 +66,8 @@
 			$WCr1inner[$n] = $parameters{"ltcc.wc.s$s"."_r1inner"}; 
 			$WCr2inner[$n] = $parameters{"ltcc.wc.s$s"."_r2inner"};
 			$WCzouter[$n] = $parameters{"ltcc.wc.s$s"."_zouter"};  
-			$WCr1outer[$n] = $WCr1inner[$n] - 1;
-			$WCr2outer[$n] = $WCr2inner[$n] - 1;
+			$WCr1outer[$n] = $WCr1inner[$n] + 1;
+			$WCr2outer[$n] = $WCr2inner[$n] + 1;
 			$WCzinner[$n] = $WCzouter[$n] + 0.01;
 			
 			# 90 - theta of center of ltcc. segment
@@ -327,9 +327,9 @@
 				$detector{"hit_type"}       = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);
+=pod
 
-
-=pod				%detector = init_det();
+				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."left_$n";
 				$detector{"mother"}      = "segment_pmt_s$s"."_$n";
 				$detector{"description"} = "combined cone left $n";
@@ -337,7 +337,7 @@
 				$detector{"rotation"}    = "-$phi*deg -$theta*deg -$psi*deg";
 				$detector{"color"}       = "b87333";
 				$detector{"type"}        = "Cons";
-				$detector{"dimensions"}  = "$WCr1outer[$n-1]*cm $WCr1inner[$n-1]*cm  $WCr2outer[$n-1]*cm $WCr2inner[$n-1]*cm $WCzouter[$n-1]*cm 0*deg 360*deg ";
+				$detector{"dimensions"}  = "$WCr1inner[$n-1]*cm $WCr1outer[$n-1]*cm  $WCr2inner[$n-1]*cm $WCr2outer[$n-1]*cm $WCzouter[$n-1]*cm 0*deg 360*deg ";
 				$detector{"material"}    = "Air_Opt";
 				$detector{"style"}       = "1";
    				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
@@ -353,7 +353,7 @@
 				$detector{"rotation"}    = "-$phi*deg $theta*deg -$psi*deg";
 				$detector{"color"}       = "b87333";
 				$detector{"type"}        = "Cons ";
-				$detector{"dimensions"}  = "$WCr1outer[$n-1]*cm $WCr1inner[$n-1]*cm $WCr2outer[$n-1]*cm $WCr2inner[$n-1]*cm $WCzouter[$n-1]*cm 0*deg 360*deg";
+				$detector{"dimensions"}  = "$WCr1inner[$n-1]*cm $WCr1outer[$n-1]*cm $WCr2inner[$n-1]*cm $WCr2outer[$n-1]*cm $WCzouter[$n-1]*cm 0*deg 360*deg";
 				$detector{"material"}    = "Air_Opt";
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";

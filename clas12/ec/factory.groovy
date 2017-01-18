@@ -4,9 +4,10 @@
 import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.v2.*;
+import org.jlab.detector.base.DetectorType;
+import org.jlab.detector.base.GeometryFactory;
 
-ConstantProvider cp = DataBaseLoader.getCalorimeterConstants()
-//cp.show();
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.EC);
 
 ECGeant4Factory factory = new ECGeant4Factory(cp);
 

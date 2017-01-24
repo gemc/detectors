@@ -90,7 +90,7 @@
 			$len[$n] = 1;  # Harcoding length here
 
 			#degree to radian
-			my $d2r = pi/180;
+			$d2r = pi/180;
 
 			
 			# pmt positions in ltcc sectors. Calculated by using rotation(by segtheta angle) and translation(no 		translation in x direction) from their positions in segments
@@ -226,6 +226,8 @@
 				my $shield_pos_y_l = ($y0[$n-1] - $shield_yp_l)*cos($segtheta[$n-1]*$d2r)+($shield_zp_l)*sin($segtheta[$n-1]*$d2r);
 				my $shield_pos_z_l = ($y0[$n-1] - $shield_yp_l)*sin($segtheta[$n-1]*$d2r)-($shield_zp_l)*cos($segtheta[$n-1]*$d2r);
 
+				if($n < $endN) 
+				{
 
 				%detector = init_det();
 				$detector{"name"}        = "cone_s$s"."right_inner$n";
@@ -388,6 +390,8 @@
 				$detector{"material"}    = "G4_Fe";
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
+
+				}
 
 				# the distance between WC and cylindrical mirror center of masses
 				my $l_wm = $WCzouter[$n-1] + 3 ;

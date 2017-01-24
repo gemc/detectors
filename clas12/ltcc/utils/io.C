@@ -45,7 +45,7 @@ void init_parameters() {
     in >> dummy >> wc0[0][s] >> wc0[1][s] >> pmt0[0][s] >> pmt0[1][s] >>
         wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >>
         wcz[s] >> shield[0][s] >> shield[1][s] >> shield[2][s] >> 
-	shieldangz[s];
+	shieldangz[s] >> shields[s];
     wc0[2][s] = 0;
     pmt0[2][s] = 0;
   }
@@ -499,7 +499,7 @@ void write_parameters() {
     OUT << wcr1[s] << "\t | cm | Winston Cone r1inner  " << s + 1 << " \t | ";
 
     // author, emails
-    OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+    OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
 
     // link to drawings, name, date
     OUT << " none | none | 10/20/16";
@@ -517,7 +517,7 @@ void write_parameters() {
     OUT << wcr2[s] << "\t | cm | Winston Cone r2inner  " << s + 1 << " \t | ";
 
     // author, emails
-    OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+    OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
 
     // link to drawings, name, date
     OUT << " none | none | 10/20/16";
@@ -535,7 +535,7 @@ void write_parameters() {
     OUT << wcz[s] << "\t | cm | Winston Cone zouter  " << s + 1 << " \t | ";
 
     // author, emails
-    OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+    OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
 
     // link to drawings, name, date
     OUT << " none | none | 10/20/16";
@@ -568,7 +568,7 @@ void write_parameters() {
       }
 
       // author, emails
-      OUT << " duran, joosten | tuf67049@temple.edu, sjjooste@jlab.org | ";
+      OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
 
       // link to drawings, name, date
       OUT << " none | none | 10/20/16";
@@ -577,6 +577,24 @@ void write_parameters() {
     }
   }
 
+  // shift in shield's z direction
+  for (int s = 0; s < NSEG; s++) {
+    // par name
+    OUT << "ltcc.shield.s" << s + 1 << "_shift"
+        << "\t | ";
+
+    // par value, units, comment
+    OUT.width(14);
+    OUT << shields[s] << "\t | cm | shield shift in z direction  " << s + 1 << " \t | ";
+
+    // author, emails
+    OUT << " duran | bduran@jlab.org | ";
+
+    // link to drawings, name, date
+    OUT << " none | none | 1/22/16";
+
+    OUT << endl;
+  }
 
   // number of mirrors
   // par name par value, units, comment , author, emails

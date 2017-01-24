@@ -15,11 +15,9 @@ use mirrors;
 
 our $startS = 1;
 our $endS   = 6;
-#our $endS   = 1;
 our $startN = 1;
 our $endN   = 18;
-#our $startN = 9;
-#our $endN   = 10;
+
 
 # Help Message
 sub help()

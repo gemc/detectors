@@ -68,8 +68,7 @@ require "./utils.pl";
 
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
-# my @allConfs = ("ccdb", "cosmicR1", "ddvcs", "java");
-my @allConfs = ("java");
+my @allConfs = ("ccdb", "cosmicR1", "ddvcs", "java");
 
 # bank definitions commong to all variations
 define_bank();

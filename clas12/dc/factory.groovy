@@ -3,7 +3,7 @@
 //============================================================
 import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
-import org.jlab.detector.geant4.*;
+import org.jlab.detector.geant4.v2.*;
 import org.jlab.detector.base.*;
 
 ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC);

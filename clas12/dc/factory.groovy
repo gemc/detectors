@@ -4,8 +4,9 @@
 import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.*;
+import org.jlab.detector.base.*;
 
-ConstantProvider  cp = DataBaseLoader.getConstantsDC(0, "");
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC);
 //cp.show();
 
 DCGeant4Factory factory = new DCGeant4Factory(cp);

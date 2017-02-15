@@ -4,19 +4,17 @@
 //============================================================
 import org.jlab.geom.base.*;
 import org.jlab.clasrec.utils.*;
-import org.jlab.detector.geant4.*;
-
-// coatjava-3.0
-import org.jlab.detector.calib.utils.DatabaseConstantProvider;
-// JCSG
+import org.jlab.detector.geant4.v2.*;
 import org.jlab.detector.geant4.v2.SVT.*;
+import org.jlab.detector.calib.utils.DatabaseConstantProvider;
 
 //println "classpath dump:"
 //this.class.classLoader.rootLoader.URLs.each{ println it }
 //System.exit(0);
 
 SVTConstants.VERBOSE = true;
-DatabaseConstantProvider cp = SVTConstants.connect();
+ConstantProvider cp = new DatabaseConstantProvider(10, "default");
+SVTConstants.connect(cp);
 
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry
 //SVTConstants.loadAlignmentShifts("shifts_test.dat"); // load alignment shifts from file

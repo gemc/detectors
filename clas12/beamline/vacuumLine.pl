@@ -23,8 +23,8 @@ sub vacuumLine()
 	my $tzs     = $torusZstart + $microgap;
 	my $tze     = $torusZEnd   + 655;
 
-	my @iradius_vbeam  =  ( 26.68, 26.68, 36.68, 36.68, 126,  126);
-	my @oradius_vbeam  =  (  29.8,  29.8,  39.8,  39.8, 132,  132);
+	my @iradius_vbeam  =  ( 26.68, 26.68, 34.03, 34.03, 126,  126);
+	my @oradius_vbeam  =  (  29.8,  29.8,  37.15,  37.15, 132,  132);
 	if( $configuration{"variation"} eq "FTOn_mount_is_W" || $configuration{"variation"} eq "FTOff_mount_is_W")
 	{
 		@iradius_vbeam  =  ( 26.68, 26.68, 31.03, 31.03, 126,  126);

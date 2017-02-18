@@ -1046,22 +1046,23 @@ sub make_ft_cal_beamline
 	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR);
 	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR);
 	
-	# tungsten plate on the back of the calorimeter
-	%detector = init_det();
-	$detector{"name"}        = "ft_cal_tplate";
-	$detector{"mother"}      = "ft_cal";
-	$detector{"description"} = "ft tungsten plate";
-	$detector{"color"}       = "ff0000";
-	$detector{"type"}        = "Polycone";
-	my $dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
-	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $iradius_TPlate[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $oradius_TPlate[$i]*mm";}
-	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $z_plane_TPlate[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "ft_W";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-	
+    if($configuration{"variation"} ne "FTPipe") {
+        # tungsten plate on the back of the calorimeter
+        %detector = init_det();
+        $detector{"name"}        = "ft_cal_tplate";
+        $detector{"mother"}      = "ft_cal";
+        $detector{"description"} = "ft tungsten plate";
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Polycone";
+        my $dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
+        for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $iradius_TPlate[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $oradius_TPlate[$i]*mm";}
+        for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $z_plane_TPlate[$i]*mm";}
+        $detector{"dimensions"}  = $dimen;
+        $detector{"material"}    = "ft_W";
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
 	
 	
 	
@@ -1077,7 +1078,7 @@ sub make_ft_cal_beamline
 	$detector{"description"} = "ft beam collar";
 	$detector{"color"}       = "cccccc";
 	$detector{"type"}        = "Polycone";
-	$dimen = "0.0*deg 360*deg $nplanes_TCollar*counts";
+	my $dimen = "0.0*deg 360*deg $nplanes_TCollar*counts";
 	for(my $i = 0; $i <$nplanes_TCollar ; $i++) {$dimen = $dimen ." $iradius_TCollar[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TCollar ; $i++) {$dimen = $dimen ." $oradius_TCollar[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TCollar ; $i++) {$dimen = $dimen ." $z_plane_TCollar[$i]*mm";}
@@ -1165,6 +1166,12 @@ sub make_ft_cal
 }
 
 
+sub make_ft_pipe
+{
+    make_ft_cal_mother_volume();
+    make_ft_cal_beamline();
+
+}
 
 
 

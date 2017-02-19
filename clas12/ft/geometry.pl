@@ -1046,7 +1046,7 @@ sub make_ft_cal_beamline
 	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR);
 	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR);
 	
-    if($configuration{"variation"} ne "FTPipe") {
+    if($configuration{"variation"} ne "KPP") {
         # tungsten plate on the back of the calorimeter
         %detector = init_det();
         $detector{"name"}        = "ft_cal_tplate";

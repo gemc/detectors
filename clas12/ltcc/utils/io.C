@@ -43,11 +43,24 @@ void init_parameters() {
   // winston cones and pmts
   for (int s = 0; s < NSEG; s++) {
     in >> dummy >> wc0[0][s] >> wc0[1][s] >> pmt0[0][s] >> pmt0[1][s] >>
-        wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >>
-        wcz[s] >> shield[0][s] >> shield[1][s] >> shield[2][s] >> 
-	shieldangz[s] >> shields[s];
+        wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >> shield[0][s] >> shield[1][s] >> shield[2][s] >> 
+	shieldangz[s] >> shields[s] >> cyl_L[s] >> cyl_R[s] >> pmt_sec[0][s] >> pmt_sec[1][s] >> pmt_sec[2][s];
     wc0[2][s] = 0;
     pmt0[2][s] = 0;
+  }
+
+  for (int s = 0; s < NSEG; s++) {
+     for (int p = 0; p < 6; p++) {
+      in >> shield_pos[p][s];
+     }
+    
+  }
+
+  for (int s = 0; s < NSEG; s++) {
+     for (int p = 0; p < 6; p++) {
+      in >> mirror_pos[p][s];
+     }
+    
   }
 
   // PMT, ell. edges
@@ -524,24 +537,7 @@ void write_parameters() {
 
     OUT << endl;
   }
-  // WC zouter
-  for (int s = 0; s < NSEG; s++) {
-    // par name
-    OUT << "ltcc.wc.s" << s + 1 << "_zouter"
-        << "\t | ";
-
-    // par value, units, comment
-    OUT.width(14);
-    OUT << wcz[s] << "\t | cm | Winston Cone zouter  " << s + 1 << " \t | ";
-
-    // author, emails
-    OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
-
-    // link to drawings, name, date
-    OUT << " none | none | 10/20/16";
-
-    OUT << endl;
-  }
+  
   // shield dimensions (shield is centered around PMT face)
   string shielddim[3] = {"dx", "dy", "dz"};
   for (int s = 0; s < NSEG; s++) {
@@ -596,6 +592,112 @@ void write_parameters() {
     OUT << endl;
   }
 
+  // cylindrical mirror (left) rotation around z 
+  for (int s = 0; s < NSEG; s++) {
+    // par name
+    OUT << "ltcc.cyl.s" << s + 1 << "_leftAngle"
+        << "\t | ";
+
+    // par value, units, comment
+    OUT.width(14);
+    OUT << cyl_L[s] << "\t | cm | cylindrical mirror(left) rotation around z  " << s + 1 << " \t | ";
+
+    // author, emails
+    OUT << " duran | bduran@jlab.org | ";
+
+    // link to drawings, name, date
+    OUT << " none | none | 2/19/16";
+
+    OUT << endl;
+  }
+
+ // cylindrical mirror (right) rotation around z 
+  for (int s = 0; s < NSEG; s++) {
+    // par name
+    OUT << "ltcc.cyl.s" << s + 1 << "_rightAngle"
+        << "\t | ";
+
+    // par value, units, comment
+    OUT.width(14);
+    OUT << cyl_R[s] << "\t | cm | cylindrical mirror(right) rotation around z  " << s + 1 << " \t | ";
+
+    // author, emails
+    OUT << " duran | bduran@jlab.org | ";
+
+    // link to drawings, name, date
+    OUT << " none | none | 2/19/16";
+
+    OUT << endl;
+  }
+
+ // pmt positions in sector
+  string pmtpos[3] = {"x", "y", "z"};
+  for (int s = 0; s < NSEG; s++) {
+    
+    for (int p = 0; p < 3; p++) {
+    
+        // par name
+        OUT << "ltcc.pmt.s" << s + 1 << "_" << pmtpos[p] << "\t | ";
+
+        // par value, units, comment
+        OUT.width(14);
+        OUT << pmt_sec[p][s] << "\t | cm | pmt positions  " << s + 1 << "\t | ";
+        // author, emails
+      	OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
+
+      	// link to drawings, name, date
+      	OUT << " none | none | 10/20/16";
+
+      	OUT << endl;
+      }	
+ 
+  }
+
+  // shield positions in sector
+  string shieldpos[6] = {"xR", "yR", "zR", "xL", "yL", "zL"};
+  for (int s = 0; s < NSEG; s++) {
+    
+    for (int p = 0; p < 6; p++) {
+    
+        // par name
+        OUT << "ltcc.shield.s" << s + 1 << "_" << shieldpos[p] << "\t | ";
+
+        // par value, units, comment
+        OUT.width(14);
+        OUT << shield_pos[p][s] << "\t | cm | shield positions  " << s + 1 << "\t | ";
+        // author, emails
+      	OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
+
+      	// link to drawings, name, date
+      	OUT << " none | none | 10/20/16";
+
+      	OUT << endl;
+      }	
+
+  }
+
+  // mirror positions in sector
+  string mirrorpos[6] = {"xR", "yR", "zR", "xL", "yL", "zL"};
+  for (int s = 0; s < NSEG; s++) {
+    
+    for (int p = 0; p < 6; p++) {
+    
+        // par name
+        OUT << "ltcc.mirror.s" << s + 1 << "_" << mirrorpos[p] << "\t | ";
+
+        // par value, units, comment
+        OUT.width(14);
+        OUT << mirror_pos[p][s] << "\t | cm | mirror positions  " << s + 1 << "\t | ";
+        // author, emails
+      	OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
+
+      	// link to drawings, name, date
+      	OUT << " none | none | 10/20/16";
+
+      	OUT << endl;
+      }	  
+ 
+  }
   // number of mirrors
   // par name par value, units, comment , author, emails
   OUT << "nmirrors | \t 18 |  na | number of mirrors on one side |  vlassov, "

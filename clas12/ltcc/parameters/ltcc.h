@@ -72,6 +72,17 @@ double shield[3][NSEG];
 double shieldangz[NSEG];
 // shield shift in z direction
 double shields[NSEG];
+// cylindrical mirror (left) rotation around z
+double cyl_L[NSEG];
+// cylindrical mirror (right) rotation around z
+double cyl_R[NSEG];
+// pmt positions in sector
+double pmt_sec[3][NSEG];
+//shield positions in sector
+double shield_pos[6][NSEG];
+//mirror positions in sector
+double mirror_pos[6][NSEG];
+
 
 // refractive index of C4F10 is given by Sellmeier equation
 // (n-1) 10^6 = p1/(p2^-2 - lambda^-2)

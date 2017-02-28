@@ -72,7 +72,7 @@ require "./afterTorusShielding.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTWithInnerShield", "realityWithFTWithHeliumBag", "realityWithFTNotUsed", "realityWithFTNotUsedWithInnerShield", "realityWithFTNotUsedHeliumBag", "finalNoFT", "FTOn", "FTOff");
-my @allConfs = ("FTOn", "FTOff", "justDownstream");
+my @allConfs = ("FTOn", "FTOff", "justDownstream", "KPP");
 
 foreach my $conf ( @allConfs )
 {
@@ -86,8 +86,11 @@ foreach my $conf ( @allConfs )
 
 	if($configuration{"variation"} ne "justDownstream")
 	{
-		# air beampipe between the target and the vacuum line
-		gapLine();
+        if($configuration{"variation"} ne "KPP")
+        {
+            # air beampipe between the target and the vacuum line
+            gapLine();
+        }
 
 		# moeller shield
 		tungstenCone();

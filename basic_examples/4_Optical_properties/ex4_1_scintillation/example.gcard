@@ -1,0 +1,11 @@
+<gcard>
+	<detector name="example" factory="TEXT" variation="original"/>
+	<option name="geometry" value="600x600"/>
+	<option name="N" value="1"/>
+	
+	<option name="BEAM_P" value="e-, 15.*MeV, 180*deg, 0*deg"/>
+	<option name="BEAM_V" value="(0, 0., 2.0)cm"/>
+	<option name="SPREAD_P"  value="0.0*MeV, 0*deg, 0*deg"/>
+	
+	<option name="PHYSICS" value="STD + FTFP_BERT + Optical"/>
+</gcard>

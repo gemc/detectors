@@ -1,0 +1,2 @@
+               water  |                 optical water  |      none  |         1  |                                        G4_WATER 1  |1.0*eV 6.0*eV  |1.33 1.33  | none  | none  | none  | none  | none  |   -1  |   -1  |   -1  |   -1  |   -1  | none  
+                 air  |                   optical air  |      none  |         1  |                                          G4_AIR 1  |1.0*eV 6.0*eV  |1.0 1.0  | none  | none  | none  | none  | none  |   -1  |   -1  |   -1  |   -1  |   -1  | none  

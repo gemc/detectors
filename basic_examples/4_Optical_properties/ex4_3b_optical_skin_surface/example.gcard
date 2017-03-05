@@ -1,0 +1,15 @@
+<gcard>
+	<detector name="example" factory="TEXT" variation="original"/>
+	<option name="geometry" value="600x600"/>
+	<option name="N" value="300"/>
+	
+	<option name="BEAM_P" value="opticalphoton, 1.5*eV, 90*deg, 180*deg"/>
+	<option name="BEAM_V" value="(0.2, 0., 0.)cm"/>
+	<option name="SPREAD_P"  value="0.*eV, 0.*deg, 100*deg"/>
+	
+	<option name="PHYSICS" value="STD + FTFP_BERT + Optical"/>
+	
+	<option name="HALL_MATERIAL" value="vacOpt"/>
+	
+	<option name="MIRROR_VERBOSITY" value="4"/>
+</gcard>

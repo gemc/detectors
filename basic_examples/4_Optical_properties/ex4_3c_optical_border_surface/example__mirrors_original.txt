@@ -1,0 +1,1 @@
+       scint_surface  |border between scintillator and the envelope volume  |   dielectric_dielectric  |polishedfrontpainted  |   unified  |         scintillator_env  |                   EJ_510  |notDefined | none | none | none | none | none | none 

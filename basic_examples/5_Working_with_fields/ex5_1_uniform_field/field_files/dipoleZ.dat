@@ -1,0 +1,5 @@
+<mfield>
+        <description name="dipoleZ" factory="ASCII" comment="Uniform 0.1 T Field along z-axis"/>
+        <symmetry type="uniform" format="simple"/>
+        <dimension bx="0" by="0" bz="0.1" units="T"/>
+</mfield>

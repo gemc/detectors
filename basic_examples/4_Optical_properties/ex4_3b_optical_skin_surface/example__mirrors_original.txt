@@ -1,0 +1,1 @@
+        front_mirror  |front painted mirror skin surface  |   dielectric_dielectric  |polishedfrontpainted  |   unified  |              SkinSurface  |           mirror_coating  |notDefined | none | none | none | none | none | none 

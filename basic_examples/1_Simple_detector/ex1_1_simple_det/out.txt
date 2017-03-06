@@ -1,0 +1,148 @@
+   Simulation Conditions, TAG 5:
+   > example  is loaded with factory TEXT, variation original and run number 1
+   > option ACTIVEFIELDS none
+   > option ALIGN_ZAXIS no
+   > option ALLRAWS no
+   > option BANK_VERBOSITY 1
+   > option BEAM_P proton, 1.0*GeV, 180*deg, 0*deg
+   > option BEAM_V (0., 0., 0.0)cm
+   > option CATCH Maurizio
+   > option CHANGEVOLUMEMATERIALTO none
+   > option CHECK_OVERLAPS 0
+   > option COSMICAREA 0*cm, 0*cm, 0*cm, 50*cm
+   > option COSMICRAYS no
+   > option DATABASE no
+   > option DAWN_N 0
+   > option DBHOST no
+   > option DBPORT 0
+   > option DBPSWD no
+   > option DBUSER gemc
+   > option DEFAULT_MATERIAL none
+   > option DF no
+   > option ELECTRONICNOISE no
+   > option ENERGY_CUT -1
+   > option EVN 1
+   > option EVTN 1
+   > option EXEC_MACRO no
+   > option FIELD_DIR env
+   > option FIELD_PROPERTIES no
+   > option FIELD_VERBOSITY 0
+   > option FORCE_MUON_RADIATIVE_DECAY 0
+   > option G4P_VERBOSITY 1
+   > option G4TRACK_VERBOSITY 0
+   > option GEN_VERBOSITY 0
+   > option GEO_VERBOSITY 1
+   > option GUIPOS (150, 150)
+   > option GUI_VERBOSITY 1
+   > option HALL_DIMENSIONS 20*m, 20*m, 20*m
+   > option HALL_FIELD no
+   > option HALL_MATERIAL Vacuum
+   > option HIGH_RES 1
+   > option HIT_PROCESS_LIST clas12
+   > option HIT_VERBOSITY 1
+   > option INPUT_GEN_FILE gemc_internal
+   > option INTEGRATEDDGT yes
+   > option INTEGRATEDRAW flux
+   > option LOG_MSG 0
+   > option LOG_VERBOSITY 0
+   > option LUMI2_EVENT 0, 2*ns
+   > option LUMI2_P proton, 50*GeV, 175*deg, 180*deg
+   > option LUMI2_SPREAD_P 0*GeV, 0*deg, 0*deg
+   > option LUMI2_SPREAD_V (0, 0)cm
+   > option LUMI2_V (4, 0, 50)cm
+   > option LUMI_EVENT 0, 0*ns, 2*ns
+   > option LUMI_P e-, 11*GeV, 0*deg, 0*deg
+   > option LUMI_SPREAD_P 0*GeV, 0*deg, 0*deg
+   > option LUMI_SPREAD_V (0, 0)cm
+   > option LUMI_V (0, 0, -20)cm
+   > option MATERIAL_VERBOSITY 0
+   > option MAX_FIELD_STEP 0
+   > option MAX_X_POS 20000
+   > option MAX_Y_POS 20000
+   > option MAX_Z_POS 20000
+   > option MERGE_LUND_BG no
+   > option MIRROR_VERBOSITY 0
+   > option N 0
+   > option NGENP 10
+   > option NO_FIELD none
+   > option OUTPUT txt, out.txt
+   > option PARAMETER_VERBOSITY 0
+   > option PHYSICS STD + FTFP_BERT
+   > option PHYS_VERBOSITY 0
+   > option PHY_VERBOSITY 1
+   > option POLAR 100, 0*deg, 0*deg
+   > option PRINT_EVENT 1000
+   > option PRODUCTIONCUT 10
+   > option QTSTYLE no
+   > option RANDOM TIME
+   > option RECORD_MIRRORS 0
+   > option RECORD_PASSBY 0
+   > option REMOVESENSITIVITY none
+   > option RFSETUP no
+   > option RUNNO 1
+   > option RUN_WEIGHTS no
+   > option SAVE_ALL_MOTHERS 1
+   > option SCALE_FIELD no, 1
+   > option SIGNALVT no
+   > option SPREAD_P 0.*GeV, 0*deg, 0*deg
+   > option SPREAD_V (0, 0)cm
+   > option STEER_BEAM 0
+   > option SWITCH_MATERIALTO none
+   > option TSAMPLING 4, 250
+   > option USE_GUI 1
+   > option VTRESOLUTION 0.1
+   > option gcard example.gcard
+   > option geometry 600x600
+ --- Header Bank -- 
+    - (10, 1) time:	Sun, 02.19.2017 15:31:56
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	1
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- flux  (50, 0) ---- 
+   -- integrated true infos bank  (51, 0) -- 
+    - (51, 1) pid:	2212	
+    - (51, 2) mpid:	0	
+    - (51, 3) tid:	1	
+    - (51, 4) mtid:	0	
+    - (51, 5) otid:	1	
+    - (51, 6) trackE:	1371.26013957	
+    - (51, 7) totEdep:	2.93676147302	
+    - (51, 8) avg_x:	-0.000306461243507	
+    - (51, 9) avg_y:	-0.00157885432472	
+    - (51, 10) avg_z:	-2.9775467886	
+    - (51, 11) avg_lx:	-0.000306461243507	
+    - (51, 12) avg_ly:	-0.00157885432472	
+    - (51, 13) avg_lz:	-2.9775467886	
+    - (51, 14) px:	1.22464679915e-13	
+    - (51, 15) py:	0	
+    - (51, 16) pz:	-1000	
+    - (51, 17) vx:	0	
+    - (51, 18) vy:	0	
+    - (51, 19) vz:	0	
+    - (51, 20) mvx:	0	
+    - (51, 21) mvy:	0	
+    - (51, 22) mvz:	0	
+    - (51, 23) avg_t:	0.0136269180205	
+    - (51, 24) nsteps:	6	
+    - (51, 25) procID:	999	
+    - (51, 99) hitn:	1	
+   -- end of integrated raw bank.
+   -- integrated digitized bank  (52, 0) -- 
+    - (52, 1) id:	0	
+    - (52, 99) hitn:	1	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 2212   -  mom: (1.22464679915e-13,0,-1000) MeV   -  vert: (0,0,0) mm
+    - Hit >flux< Has 1 hit with etot 2.93676147302 MeV and time 0.00457418454189 ns
+ --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 

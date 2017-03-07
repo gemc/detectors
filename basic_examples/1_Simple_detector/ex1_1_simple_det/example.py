@@ -1,3 +1,8 @@
+#!/usr/bin/python -B		# -B prevents writing compiled bytecode files. Otherwise python writes .pyc compiled versions of each module
+
+# The API files location should be in PYTHONPATH. If installing via the DMG, add the following path for gemc-2.5, adjust version number for gemc-2.6
+#	/Applications/gemc-2.6.app/gemc.app/Contents/Resources/api/python
+
 import sys, os
 import argparse	# Used to parse the command line arguments
 from gemc_api_utils import *

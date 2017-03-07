@@ -24,6 +24,7 @@
    > option EVN 1
    > option EVTN 1
    > option EXEC_MACRO no
+   > option FASTMCMODE 0
    > option FIELD_DIR env
    > option FIELD_PROPERTIES no
    > option FIELD_VERBOSITY 0
@@ -43,6 +44,7 @@
    > option INPUT_GEN_FILE gemc_internal
    > option INTEGRATEDDGT yes
    > option INTEGRATEDRAW flux
+   > option ION_P no
    > option LOG_MSG 
    > option LOG_VERBOSITY 0
    > option LUMI2_EVENT 0, 2*ns
@@ -84,6 +86,7 @@
    > option SAVE_ALL_MOTHERS 1
    > option SCALE_FIELD no, 1
    > option SIGNALVT no
+   > option SKIPNGEN 0
    > option SPREAD_P 0.*GeV, 0*deg, 0*deg
    > option SPREAD_V (0, 0)cm
    > option STEER_BEAM 0
@@ -94,7 +97,7 @@
    > option gcard example.gcard
    > option geometry 600x600
  --- Header Bank -- 
-    - (10, 1) time:	Sun, 02.19.2017 19:16:43
+    - (10, 1) time:	Mon, 03.06.2017 17:50:20
     - (10, 5) beamPol:	0
     - (10, 3) evn:	1
     - (10, 4) evn_type:	-1
@@ -115,24 +118,24 @@
     - (51, 3) tid:	1	
     - (51, 4) mtid:	0	
     - (51, 5) otid:	1	
-    - (51, 6) trackE:	10032.2628747	
-    - (51, 7) totEdep:	3.7999777431	
-    - (51, 8) avg_x:	0.109170196662	
-    - (51, 9) avg_y:	-0.0097256476341	
-    - (51, 10) avg_z:	-0.15759144489	
-    - (51, 11) avg_lx:	0.109170196662	
-    - (51, 12) avg_ly:	-0.0097256476341	
-    - (51, 13) avg_lz:	-0.15759144489	
-    - (51, 14) px:	8.21389657638	
-    - (51, 15) py:	-0.569744906449	
-    - (51, 16) pz:	-9988.2869514	
+    - (51, 6) trackE:	10032.9144652	
+    - (51, 7) totEdep:	3.60738439175	
+    - (51, 8) avg_x:	-0.0055192653481	
+    - (51, 9) avg_y:	0.114216494471	
+    - (51, 10) avg_z:	-0.57478963093	
+    - (51, 11) avg_lx:	-0.0055192653481	
+    - (51, 12) avg_ly:	0.114216494471	
+    - (51, 13) avg_lz:	-0.57478963093	
+    - (51, 14) px:	-2.46111604342	
+    - (51, 15) py:	5.14575410181	
+    - (51, 16) pz:	-9988.94317531	
     - (51, 17) vx:	0	
     - (51, 18) vy:	0	
     - (51, 19) vz:	250	
     - (51, 20) mvx:	0	
     - (51, 21) mvy:	0	
     - (51, 22) mvz:	0	
-    - (51, 23) avg_t:	0.838106315087	
+    - (51, 23) avg_t:	0.83950385679	
     - (51, 24) nsteps:	11	
     - (51, 25) procID:	999	
     - (51, 99) hitn:	1	
@@ -143,6 +146,6 @@
    -- End of integrated digitized bank.
  --- Generated Particles Bank -- 
     - Particle 1 pid: 2212   -  mom: (1.22464679915e-12,0,-10000) MeV   -  vert: (0,0,250) mm
-    - Hit >flux< Has 1 hit with etot 3.7999777431 MeV and time 0.824176985569 ns
+    - Hit >flux< Has 1 hit with etot 3.60738439175 MeV and time 0.824176782984 ns
  --- End of Generated Particles Bank -- 
  ---- End of Event  ---- 

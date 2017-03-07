@@ -45,7 +45,7 @@
    > option INTEGRATEDDGT yes
    > option INTEGRATEDRAW ctof
    > option ION_P no
-   > option LOG_MSG 4.03179e-313
+   > option LOG_MSG 
    > option LOG_VERBOSITY 0
    > option LUMI2_EVENT 0, 2*ns
    > option LUMI2_P proton, 50*GeV, 175*deg, 180*deg

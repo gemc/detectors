@@ -24,6 +24,7 @@
    > option EVN 1
    > option EVTN 1
    > option EXEC_MACRO no
+   > option FASTMCMODE 0
    > option FIELD_DIR env
    > option FIELD_PROPERTIES no
    > option FIELD_VERBOSITY 0
@@ -43,7 +44,8 @@
    > option INPUT_GEN_FILE gemc_internal
    > option INTEGRATEDDGT yes
    > option INTEGRATEDRAW flux
-   > option LOG_MSG 
+   > option ION_P no
+   > option LOG_MSG 0
    > option LOG_VERBOSITY 0
    > option LUMI2_EVENT 0, 2*ns
    > option LUMI2_P proton, 50*GeV, 175*deg, 180*deg
@@ -84,6 +86,7 @@
    > option SAVE_ALL_MOTHERS 1
    > option SCALE_FIELD no, 1
    > option SIGNALVT no
+   > option SKIPNGEN 0
    > option SPREAD_P 0.2*MeV, 0*deg, 0*deg
    > option SPREAD_V (0, 0)cm
    > option STEER_BEAM 0

@@ -18,11 +18,12 @@ In this example, the config.dat file sets the "original" variation and the "orig
 The example should be able to run directly in gemc with the provided text input files and  the gcard option 
 file using the command:
 	gemc.command ctof.gcard
-The configuration variation can be selected in the gcard file.	
 
-If one wants to generate the text input files from the provided python scripts, the files in the GitHub 
-gemc/api/python folder must be copied to a convenient location and included in the python path so the 
-modules in the api can be imported.  When this is done, generate the project files using:
-	python3 ctof.py config.dat
+If one wants to generate the text input files from the provided python scripts, the location of the python api files should be added to the PYTHONPATH. If installing via the DMG, add the following path for gemc-2.6:
+export PYTHONPATH=$PYTHONPATH:/Applications/gemc-2.6.app/gemc.app/Contents/Resources/api/python
+Adjust version number for a different gemc version
+
+When this is done, generate the project files using:
+	./ctof.py config.dat
 WARNING:  this will overwrite the original project text files.
 

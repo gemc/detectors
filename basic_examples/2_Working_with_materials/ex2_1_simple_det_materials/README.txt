@@ -1,6 +1,5 @@
 #=======================================
 #	README simple_det	materials
-#	J. George, 2/18/2017
 #=======================================
 
 This folder contains one of the simplest possible projects:  a simple material in a beam. 
@@ -13,7 +12,16 @@ http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDev
 
 The example should be able to run directly in gemc with the provided text input files and  the gcard option file using the command:
 	gemc.command example.gcard
-If one wants to generate the text input files from the provided python scripts, the files in the included ‘api/python’ folder must be included in the python path so the modules in the api can be imported.  When this is done, generate the project files using:
-	python3 example.py config.dat
+
+The example should be able to run directly in gemc with the provided text input files and  the gcard option 
+file using the command:
+	gemc.command example.gcard
+
+If one wants to generate the text input files from the provided python scripts, the location of the python api files should be added to the PYTHONPATH. If installing via the DMG, add the following path for gemc-2.6:
+export PYTHONPATH=$PYTHONPATH:/Applications/gemc-2.6.app/gemc.app/Contents/Resources/api/python
+Adjust version number for a different gemc version
+
+When this is done, generate the project files using:
+	./example.py config.dat
 WARNING:  this will overwrite the original project text files.
 

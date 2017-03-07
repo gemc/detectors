@@ -24,6 +24,7 @@
    > option EVN 1
    > option EVTN 1
    > option EXEC_MACRO no
+   > option FASTMCMODE 0
    > option FIELD_DIR ./field_files
    > option FIELD_PROPERTIES no
    > option FIELD_VERBOSITY 2
@@ -43,6 +44,7 @@
    > option INPUT_GEN_FILE gemc_internal
    > option INTEGRATEDDGT yes
    > option INTEGRATEDRAW flux
+   > option ION_P no
    > option LOG_MSG 
    > option LOG_VERBOSITY 0
    > option LUMI2_EVENT 0, 2*ns
@@ -84,6 +86,7 @@
    > option SAVE_ALL_MOTHERS 1
    > option SCALE_FIELD dipoleZ, 0.15
    > option SIGNALVT no
+   > option SKIPNGEN 0
    > option SPREAD_P 0.2*MeV, 0*deg, 0*deg
    > option SPREAD_V (0, 0)cm
    > option STEER_BEAM 0
@@ -94,7 +97,7 @@
    > option gcard example.gcard
    > option geometry 600x600
  --- Header Bank -- 
-    - (10, 1) time:	Wed, 02.22.2017 19:13:19
+    - (10, 1) time:	Mon, 03.06.2017 18:00:04
     - (10, 5) beamPol:	0
     - (10, 3) evn:	1
     - (10, 4) evn_type:	-1
@@ -109,5 +112,311 @@
     - (10, 13) var8:	0
  --- End of Header Bank -- 
  --- Generated Particles Bank -- 
-    - Particle 1 pid: 11   -  mom: (-1.94299,2.37948e-16,1.18974e-16) MeV   -  vert: (100,400,0) mm
+    - Particle 1 pid: 11   -  mom: (-1.82241,2.23181e-16,1.1159e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:08
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	2
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.7025,2.08496e-16,1.04248e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:09
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	3
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.91386,2.34381e-16,1.1719e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:09
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	4
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.61005,1.97174e-16,9.85872e-17) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:09
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	5
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.87031,2.29047e-16,1.14524e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:10
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	6
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.64045,2.00897e-16,1.00449e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:10
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	7
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.74163,2.13288e-16,1.06644e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:11
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	8
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.84243,2.25633e-16,1.12816e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:15
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	9
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.80416,2.20946e-16,1.10473e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:16
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	10
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.85955,2.2773e-16,1.13865e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:17
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	11
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.60169,1.96151e-16,9.80754e-17) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:17
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	12
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.94352,2.38013e-16,1.19006e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:17
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	13
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.80505,2.21055e-16,1.10527e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:18
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	14
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.84959,2.2651e-16,1.13255e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:21
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	15
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.86634,2.2856e-16,1.1428e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:21
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	16
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.95736,2.39708e-16,1.19854e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:22
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	17
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.75726,2.15202e-16,1.07601e-16) MeV   -  vert: (100,400,0) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Mon, 03.06.2017 18:00:22
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	18
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+    - (10, 6) var1:	0
+    - (10, 7) var2:	0
+    - (10, 8) var3:	0
+    - (10, 9) var4:	0
+    - (10, 10) var5:	0
+    - (10, 11) var6:	0
+    - (10, 12) var7:	0
+    - (10, 13) var8:	0
+ --- End of Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1.9078,2.33638e-16,1.16819e-16) MeV   -  vert: (100,400,0) mm
  --- End of Generated Particles Bank -- 

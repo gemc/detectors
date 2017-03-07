@@ -1,12 +1,13 @@
 <gcard>
 	<detector name="bst" factory="TEXT" variation="java"/>
+	<detector name="../targets/target" factory="TEXT" variation="lH2"/>
 
 	<option name="geometry" value="1400x1200"/>
 
 	<option name="INTEGRATEDRAW" value="bst"/>
 
 	<option name="BEAM_P" value="proton, 1*GeV, 80*deg, 0*deg"/>
-	<option name="SPREAD_P" value="0*GeV, 10*deg,180*deg"/>
+	<option name="SPREAD_P" value="0*GeV, 40*deg,180*deg"/>
    <option name="BEAM_V" value="(0, 0 , 0)mm"/>
 
 	<!--

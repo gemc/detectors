@@ -61,11 +61,8 @@ double dplwc[NSEG]; // OLD - DEPRECATED
 // angle between this planes and Segment median plane.
 // PLANES ARE DEFINED as p(1)*x + p(2)*y + p(3)*z + 1.0 = 0
 double wcang[NSEG];
-// winston cone small (r1) and large (r2) radius
-double wcr1[NSEG];
-double wcr2[NSEG];
-// winston cone length
-double wcz[NSEG];
+// cylindrical mirror outer radius
+double cyl_r[NSEG];
 // shield half lengths (x,y,z)
 double shield[3][NSEG];
 // shield z-angle
@@ -82,7 +79,8 @@ double pmt_sec[3][NSEG];
 double shield_pos[6][NSEG];
 //mirror positions in sector
 double mirror_pos[6][NSEG];
-
+//wc positions in sector
+double wc_pos[6][NSEG];
 
 // refractive index of C4F10 is given by Sellmeier equation
 // (n-1) 10^6 = p1/(p2^-2 - lambda^-2)

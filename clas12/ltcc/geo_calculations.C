@@ -1,4 +1,4 @@
-
+#include <fstream>
  // This script is to calculate the positions of the LTCC geometries in segment, sector or in detector.
 
  // PMTs, PMT light stoppers, shields, cylindrical mirrors were placed in the LTCC sectors. The Winston Cones were drawn in AutoCAD and imported in GEMC. They were placed directly into the detector. Corresponding positions and rotations of WCs in the detector were calculating by using their positions and rotations in the sector.
@@ -13,11 +13,20 @@
 
  // The detector's frame is the rotated sector's frame around z and also there is a translation in z direction.
 
- void angleCal() {
+ void geo_calculations() {
+
+ ofstream geo_calculations;
+ geo_calculations.open ("geo_calculations.tsv");
+
+ geo_calculations<<"pmtX"<<"\t"<<"pmtY"<<"\t"<<"pmtZ"<<"\t"<<"WC_R_X"<<"\t"<<"WC_R_Y"<<"\t"<<"WC_R_Z" <<"\t"<<"WC_L_X"<<"\t"<<"WC_L_Y"<<"\t"<<"WC_L_Z"<<"\t"<<"shield_R_X"<<"\t"<<"shield_R_Y"<<"\t"<<"shield_R_Z" <<"\t"<<"shield_L_X"<<"\t"<<"shield_L_Y"<<"\t"<<"shield_L_Z"<<"\t"<<"mirror_R_X"<<"\t"<<"mirror_R_Y"<<"\t"<<"mirror_R_Z" <<"\t"<<"mirror_L_X"<<"\t"<<"mirror_L_Y"<<"\t"<<"mirror_L_Z"<<endl;
 
  const Int_t i = 18;
 
  //All angles are in degrees, they will be converted to radian in trigonometric calculations
+
+ Double_t xp[i] = {17.36, 25.42, 33.54, 41.61, 49.6, 57.51, 65.34, 72.76, 80.32, 87.93, 95.28, 103.2, 113.55, 122.17, 130.72, 139.1, 147.66, 155.46};
+
+ Double_t yp[i] = {461.71, 458.69, 456.66, 454.56, 452.46, 450.29, 447.55, 445.13, 444.06, 442.32, 442.97, 441.12, 446.19, 443.75, 441.72, 440.17, 438.5, 436.86};
 
  Double_t phi[i] = {7.72, 9.44, 11.17, 12.93, 14.69, 16.47, 18.29, 20.15, 22.03, 24, 26.04, 28.18, 30.48, 32.94, 35.44, 37.97, 40.51, 43.11};
 
@@ -125,11 +134,9 @@
 
 			TVector3 d_rl(d_pwL.X(), d_pwL.Y(), d_pwL.Z());
 
-			/*TVector3 r0(x0[n-1], y0[n-1], 0); // the position of pmts in the segment
-			r0.RotateX(segTh[n-1]*d2r);
-			TVector3 pmt_sec(r0.X(), r0.Y(), r0.Z());
-			cout<<pmt_sec.X()<<" "<<pmt_sec.Y()<<" "<<pmt_sec.Z()<<endl;*/
-
+			TVector3 rp(xp[n-1], yp[n-1], 0); // the position of pmts in the segment
+			rp.RotateX(segTh[n-1]*d2r);
+			TVector3 pmt_sec(rp.X(), rp.Y(), rp.Z());
 			
 
 			TVector3 rf_r(x0[n-1]-d_rr.X(), y0[n-1]-d_rr.Y(), 0-d_rr.Z()); // the position of WC in the segment
@@ -247,10 +254,10 @@
 			TVector3 mir_pos_secR(mir_segR.X(), mir_segR.Y(), mir_segR.Z()); //the position of shields in sector
 			TVector3 mir_pos_secL(mir_segL.X(), mir_segL.Y(), mir_segL.Z()); //the position of shields in sector
 
-			cout<<mir_pos_secR.X()<<" "<<  mir_pos_secR.Y()<<" "<<  mir_pos_secR.Z()<<mir_pos_secL.X()<<" "<<  mir_pos_secL.Y()<<" "<<  mir_pos_secL.Z()<<endl;
-
+			geo_calculations<<pmt_sec.X()<<"\t"<<pmt_sec.Y()<<"\t"<<pmt_sec.Z()<<"\t"<<WC_pos_detR.X()<<"\t"<<WC_pos_detR.Y()<<"\t"<<WC_pos_detR.Z()<<"\t"<<WC_pos_detL.X()<<"\t"<<WC_pos_detL.Y()<<"\t"<<WC_pos_detL.Z()<<"\t"<<sh_pos_secR.X()<<"\t"<<sh_pos_secR.Y()<<"\t"<<sh_pos_secR.Z()<<"\t"<<sh_pos_secL.X()<<"\t"<<sh_pos_secL.Y()<<"\t"<<sh_pos_secR.Z()<<"\t"<<mir_pos_secR.X()<<"\t"<<  mir_pos_secR.Y()<<"\t"<<  mir_pos_secR.Z()<<"\t"<<mir_pos_secL.X()<<"\t"<<  mir_pos_secL.Y()<<"\t"<<  mir_pos_secL.Z()<<endl;
 
 			
+
                  }
 
         }

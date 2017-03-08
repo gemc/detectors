@@ -43,7 +43,7 @@ void init_parameters() {
   // winston cones and pmts
   for (int s = 0; s < NSEG; s++) {
     in >> dummy >> wc0[0][s] >> wc0[1][s] >> pmt0[0][s] >> pmt0[1][s] >>
-        wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s] >> wcr1[s] >> wcr2[s] >> shield[0][s] >> shield[1][s] >> shield[2][s] >> 
+        wcr[s] >> pmtr[s] >> dplwc[s] >> wcang[s]  >> cyl_r[s] >> shield[0][s] >> shield[1][s] >> shield[2][s] >> 
 	shieldangz[s] >> shields[s] >> cyl_L[s] >> cyl_R[s] >> pmt_sec[0][s] >> pmt_sec[1][s] >> pmt_sec[2][s];
     wc0[2][s] = 0;
     pmt0[2][s] = 0;
@@ -59,6 +59,13 @@ void init_parameters() {
   for (int s = 0; s < NSEG; s++) {
      for (int p = 0; p < 6; p++) {
       in >> mirror_pos[p][s];
+     }
+    
+  }
+
+   for (int s = 0; s < NSEG; s++) {
+     for (int p = 0; p < 6; p++) {
+      in >> wc_pos[p][s];
      }
     
   }
@@ -501,39 +508,22 @@ void write_parameters() {
     OUT << endl;
   }
 
-  // WC r1inner
+  
+  // cylindrical mirror outer radius
   for (int s = 0; s < NSEG; s++) {
     // par name
-    OUT << "ltcc.wc.s" << s + 1 << "_r1inner"
+    OUT << "ltcc.cyl.s" << s + 1 << "_router"
         << "\t | ";
 
     // par value, units, comment
     OUT.width(14);
-    OUT << wcr1[s] << "\t | cm | Winston Cone r1inner  " << s + 1 << " \t | ";
+    OUT << cyl_r[s] << "\t | cm | cylindrical mirror outer radius  " << s + 1 << " \t | ";
 
     // author, emails
-    OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
+    OUT << " duran | bduran@jlab.org | ";
 
     // link to drawings, name, date
-    OUT << " none | none | 10/20/16";
-
-    OUT << endl;
-  }
-  // WC r2inner
-  for (int s = 0; s < NSEG; s++) {
-    // par name
-    OUT << "ltcc.wc.s" << s + 1 << "_r2inner"
-        << "\t | ";
-
-    // par value, units, comment
-    OUT.width(14);
-    OUT << wcr2[s] << "\t | cm | Winston Cone r2inner  " << s + 1 << " \t | ";
-
-    // author, emails
-    OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
-
-    // link to drawings, name, date
-    OUT << " none | none | 10/20/16";
+    OUT << " none | none | 3/2/17";
 
     OUT << endl;
   }
@@ -688,6 +678,29 @@ void write_parameters() {
         // par value, units, comment
         OUT.width(14);
         OUT << mirror_pos[p][s] << "\t | cm | mirror positions  " << s + 1 << "\t | ";
+        // author, emails
+      	OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
+
+      	// link to drawings, name, date
+      	OUT << " none | none | 10/20/16";
+
+      	OUT << endl;
+      }	  
+ 
+  }
+
+  // WC positions in sector
+  string WCpos[6] = {"xR", "yR", "zR", "xL", "yL", "zL"};
+  for (int s = 0; s < NSEG; s++) {
+    
+    for (int p = 0; p < 6; p++) {
+    
+        // par name
+        OUT << "ltcc.wc.s" << s + 1 << "_" << WCpos[p] << "\t | ";
+
+        // par value, units, comment
+        OUT.width(14);
+        OUT << wc_pos[p][s] << "\t | cm | wc positions  " << s + 1 << "\t | ";
         // author, emails
       	OUT << " duran, joosten | bduran@jlab.org, sjjooste@jlab.org | ";
 

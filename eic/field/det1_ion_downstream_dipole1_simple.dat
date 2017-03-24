@@ -1,0 +1,5 @@
+<mfield>
+<description name="det1_ion_downstream_dipole1_simple" factory="ASCII" comment="det1_ion_downstream_dipole1_simple"/>
+<symmetry type="multipole" format="simple" integration="RungeKutta" minStep="1*mm"/>
+<dimension Npole="2" scale="1.333366896" Bunit="T" x="0" y="0" z="5.742698253" XYZunit="m" rot="0" ROTunit="rad" ROTaxis="Y"/>
+<mfield>

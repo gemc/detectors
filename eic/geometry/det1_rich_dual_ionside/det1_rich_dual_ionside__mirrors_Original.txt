@@ -1,0 +1,1 @@
+    spherical_mirror  |reflective mirrors for eic rich  |   dielectric_dielectric  |polishedfrontpainted  |   unified  |              SkinSurface  |               notDefined  |1.7712*eV 6.1992*eV  | none |0.95 0.95  | none | none | none | none |   -1

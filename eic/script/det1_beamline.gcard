@@ -1,0 +1,90 @@
+<gcard>
+<option name="DBHOST" value="eicdb"/>
+<option name="DATABASE" value="test"/>
+<option name="DBUSER" value="eicuser"/>
+<option name="DBPSWD" value="iloveeic"/>
+
+<detector name="../geometry/det1_beamline_magnet/det1_beamline_magnet" factory="TEXT" variation="Original"/>
+<detector name="../geometry/det1_beamline_pipe/det1_beamline_pipe" factory="TEXT" variation="Original"/>
+<detector name="../geometry/det1_tagger_eledownstream/det1_tagger_eledownstream" factory="TEXT" variation="Original"/>
+<detector name="../geometry/det1_compton_eledownstream/det1_compton_eledownstream" factory="TEXT" variation="Original"/>
+
+
+<option name="INTEGRATEDRAW" value="flux"/>
+
+<option name="HIT_PROCESS_LIST" value="eic"/>
+<option name="PHYSICS" value="QGSP_BERT"/>
+<option name="RECORD_PASSBY" value="1"/>
+<option name="HALL_MATERIAL" value="Vacuum"/>
+
+<option name="MAX_X_POS" value="100000"/>
+<option name="MAX_Y_POS" value="100000"/>
+<option name="MAX_Z_POS" value="100000"/>
+<option name="HALL_DIMENSIONS" value="100*m,100*m,100*m"/>
+
+<option name="FIELD_DIR" value="../field"/>
+
+<option name="BEAM_P"   value="proton, 100*GeV, 50e-3*rad, 180*deg"/>
+<option name="SPREAD_P" value="0*GeV,0*deg,0*deg"/>
+<option name="BEAM_V"   value="(0.50041708375538789, 0, -10)m"/>
+<option name="SPREAD_V" value="(0.,0)cm"/>
+<option name="LUMI_EVENT"   value="1, 1*ns, 1*ns"/>
+<option name="LUMI_P"   value="e-, 5*GeV, 180*deg, 0*deg"/>
+<option name="LUMI_SPREAD_P" value="0*GeV,0*deg,0*deg"/>
+<option name="LUMI_V"   value="(0, 0, 80)m"/>
+<option name="LUMI_SPREAD_V" value="(0.,0)cm"/>
+<option name="LUMI2_EVENT"   value="1, 1*ns, 1*ns"/>
+<option name="LUMI2_P"   value="neutron, 5*GeV, 50e-3*rad, 180*deg"/>
+<option name="LUMI2_SPREAD_P" value="0*GeV,0*deg,0*deg"/>
+<option name="LUMI2_V"   value="(0, 0, 0)m"/>
+<option name="LUMI2_SPREAD_V" value="(0.,0)cm"/>
+
+<option name="geometry" value="1000x1000"/>
+<option name="HIGH_RES" value="1"/>
+<option name="USE_GUI"  value="1"/>
+
+<option name="EXEC_MACRO" value="det1_slice_tilt.vis"/>
+</gcard>
+
+<!--  comment out
+
+<option name="geometry" value="800x800"/>
+<option name="HIGH_RES" value="1"/>
+<option name="USE_GUI"  value="1"/>
+
+<option name="EXEC_MACRO" value="meic_slice_solenoid.vis"/>
+
+
+<option name="CHECK_OVERLAPS"  value="1"/>
+<option name="USE_GUI"  value="0"/>
+
+<option name="HALL_FIELD" value="det_sol_field_cylinder"/>
+
+<option name="HIT_PROCESS_LIST" value="solid"/>
+
+<option name="FIELD_VERBOSITY"  value="100"/>
+<option name="GEO_VERBOSITY"  value="100"/>
+
+use this to check overlap
+<option name="CHECK_OVERLAPS"  value="1"/>
+<option name="USE_GUI"  value="0"/>
+
+use this to run batch mode for txt or evio output
+<option name="N" value="1"/>
+<option name="OUTPUT" value="txt,output.txt"/>
+<option name="OUTPUT" value="evio,output.evio"/>
+<option name="USE_GUI"  value="0"/>
+
+use this for interactive mode
+<option name="geometry" value="1000x1000"/>
+<option name="HIGH_RES" value="1"/>
+<option name="USE_GUI"  value="1"/>
+
+use this to cut 
+<option name="EXEC_MACRO" value="meic_slice_tilt.vis"/>
+<option name="EXEC_MACRO" value="meic_slice_solenoid.vis"/>
+
+
+use "gemc -help" to see all options
+
+-->

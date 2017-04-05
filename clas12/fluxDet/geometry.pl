@@ -26,6 +26,9 @@ sub makeFlux
 	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 1;
 	$detector{"style"}       = 1;
+	$detector{"sensitivity"} = "flux";
+	$detector{"hit_type"}    = "flux";
+	$detector{"identifiers"} = "id manual 1";
 	print_det(\%configuration, \%detector);
 }
 

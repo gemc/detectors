@@ -430,45 +430,27 @@ ltcc.wc.s15_angle	 | 27.26         	 | degrees | Winston Cone Angle  15 	 |  vla
 ltcc.wc.s16_angle	 | 26.26         	 | degrees | Winston Cone Angle  16 	 |  vlassov, ungaro | vlassov@jlab.org, ungaro@jlab.org |  none | none | 3/10/12
 ltcc.wc.s17_angle	 | 26.68         	 | degrees | Winston Cone Angle  17 	 |  vlassov, ungaro | vlassov@jlab.org, ungaro@jlab.org |  none | none | 3/10/12
 ltcc.wc.s18_angle	 | 26.74         	 | degrees | Winston Cone Angle  18 	 |  vlassov, ungaro | vlassov@jlab.org, ungaro@jlab.org |  none | none | 3/10/12
-ltcc.wc.s1_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  1 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s2_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  2 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s3_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  3 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s4_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  4 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s5_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  5 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s6_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  6 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s7_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  7 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s8_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  8 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s9_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  9 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s10_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  10 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s11_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  11 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s12_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  12 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s13_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  13 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s14_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  14 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s15_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  15 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s16_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  16 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s17_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  17 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s18_r1inner	 | 5.6           	 | cm | Winston Cone r1inner  18 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s1_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  1 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s2_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  2 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s3_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  3 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s4_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  4 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s5_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  5 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s6_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  6 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s7_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  7 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s8_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  8 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s9_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  9 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s10_r2inner	 | 6.5           	 | cm | Winston Cone r2inner  10 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s11_r2inner	 | 7.6           	 | cm | Winston Cone r2inner  11 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s12_r2inner	 | 7.6           	 | cm | Winston Cone r2inner  12 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s13_r2inner	 | 7.495         	 | cm | Winston Cone r2inner  13 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s14_r2inner	 | 7.495         	 | cm | Winston Cone r2inner  14 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s15_r2inner	 | 7.495         	 | cm | Winston Cone r2inner  15 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s16_r2inner	 | 7.495         	 | cm | Winston Cone r2inner  16 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s17_r2inner	 | 7.495         	 | cm | Winston Cone r2inner  17 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.wc.s18_r2inner	 | 7.495         	 | cm | Winston Cone r2inner  18 	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.cyl.s1_router	 | 6.3           	 | cm | cylindrical mirror outer radius  1 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s2_router	 | 6.3           	 | cm | cylindrical mirror outer radius  2 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s3_router	 | 6.3           	 | cm | cylindrical mirror outer radius  3 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s4_router	 | 6.3           	 | cm | cylindrical mirror outer radius  4 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s5_router	 | 6.3           	 | cm | cylindrical mirror outer radius  5 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s6_router	 | 6.3           	 | cm | cylindrical mirror outer radius  6 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s7_router	 | 6.3           	 | cm | cylindrical mirror outer radius  7 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s8_router	 | 6.3           	 | cm | cylindrical mirror outer radius  8 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s9_router	 | 6.3           	 | cm | cylindrical mirror outer radius  9 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s10_router	 | 6.3           	 | cm | cylindrical mirror outer radius  10 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s11_router	 | 6.8           	 | cm | cylindrical mirror outer radius  11 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s12_router	 | 6.8           	 | cm | cylindrical mirror outer radius  12 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s13_router	 | 7.495         	 | cm | cylindrical mirror outer radius  13 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s14_router	 | 7.495         	 | cm | cylindrical mirror outer radius  14 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s15_router	 | 7.495         	 | cm | cylindrical mirror outer radius  15 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s16_router	 | 7.495         	 | cm | cylindrical mirror outer radius  16 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s17_router	 | 7.495         	 | cm | cylindrical mirror outer radius  17 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
+ltcc.cyl.s18_router	 | 7.495         	 | cm | cylindrical mirror outer radius  18 	 |  duran | bduran@jlab.org |  none | none | 3/2/17
 ltcc.shield.s1_dx	 | 7.395         	 | cm | shield dimensions for 1, coordinate  dx	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.shield.s1_dy	 | 7.7           	 | cm | shield dimensions for 1, coordinate  dy	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.shield.s1_dz	 | 8            	 | cm | shield dimensions for 1, coordinate  dz	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.shield.s1_dz	 | 11            	 | cm | shield dimensions for 1, coordinate  dz	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.shield.s1_zangle 	 | 30.8          	 | degrees | shield z angle for 1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.shield.s2_dx	 | 7.395         	 | cm | shield dimensions for 2, coordinate  dx	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.shield.s2_dy	 | 7.7           	 | cm | shield dimensions for 2, coordinate  dy	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
@@ -814,24 +796,24 @@ ltcc.mirror.s10_zR	 | 386.742       	 | cm | mirror positions  10	 |  duran, joo
 ltcc.mirror.s10_xL	 | -78.042       	 | cm | mirror positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s10_yL	 | 172.188       	 | cm | mirror positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s10_zL	 | 386.742       	 | cm | mirror positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s11_xR	 | 85.5014       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s11_yR	 | 186.107       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s11_zR	 | 380.9         	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s11_xL	 | -85.5014      	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s11_yL	 | 186.107       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s11_zL	 | 380.9         	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s11_xR	 | 83.628        	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s11_yR	 | 184.506       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s11_zR	 | 377.623       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s11_xL	 | -83.628       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s11_yL	 | 184.506       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s11_zL	 | 377.623       	 | cm | mirror positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s12_xR	 | 91.7702       	 | cm | mirror positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s12_yR	 | 197.551       	 | cm | mirror positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s12_zR	 | 368.74        	 | cm | mirror positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s12_xL	 | -91.7702      	 | cm | mirror positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s12_yL	 | 197.551       	 | cm | mirror positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s12_zL	 | 368.74        	 | cm | mirror positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s13_xR	 | 103.178       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s13_yR	 | 214.508       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s13_zR	 | 364.453       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s13_xL	 | -103.178      	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s13_yL	 | 214.508       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
-ltcc.mirror.s13_zL	 | 364.453       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s13_xR	 | 101.389       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s13_yR	 | 212.469       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s13_zR	 | 360.989       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s13_xL	 | -101.389      	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s13_yL	 | 212.469       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.mirror.s13_zL	 | 360.989       	 | cm | mirror positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s14_xR	 | 110.009       	 | cm | mirror positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s14_yR	 | 226.441       	 | cm | mirror positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s14_zR	 | 349.489       	 | cm | mirror positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
@@ -862,4 +844,112 @@ ltcc.mirror.s18_zR	 | 299.433       	 | cm | mirror positions  18	 |  duran, joo
 ltcc.mirror.s18_xL	 | -142.007      	 | cm | mirror positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s18_yL	 | 280.302       	 | cm | mirror positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 ltcc.mirror.s18_zL	 | 299.433       	 | cm | mirror positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s1_xR	 | 0.390826      	 | cm | wc positions  1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s1_yR	 | 58.2255       	 | cm | wc positions  1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s1_zR	 | 446.167       	 | cm | wc positions  1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s1_xL	 | -9.5397       	 | cm | wc positions  1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s1_yL	 | 51.2011       	 | cm | wc positions  1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s1_zL	 | 441.615       	 | cm | wc positions  1	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s2_xR	 | 8.55429       	 | cm | wc positions  2	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s2_yR	 | 71.0102       	 | cm | wc positions  2	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s2_zR	 | 441.116       	 | cm | wc positions  2	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s2_xL	 | -17.7847      	 | cm | wc positions  2	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s2_yL	 | 63.9387       	 | cm | wc positions  2	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s2_zL	 | 436.808       	 | cm | wc positions  2	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s3_xR	 | 16.7449       	 | cm | wc positions  3	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s3_yR	 | 83.8417       	 | cm | wc positions  3	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s3_zR	 | 436.698       	 | cm | wc positions  3	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s3_xL	 | -26.0299      	 | cm | wc positions  3	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s3_yL	 | 76.7026       	 | cm | wc positions  3	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s3_zL	 | 432.626       	 | cm | wc positions  3	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s4_xR	 | 24.8912       	 | cm | wc positions  4	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s4_yR	 | 96.6779       	 | cm | wc positions  4	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s4_zR	 | 431.786       	 | cm | wc positions  4	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s4_xL	 | -34.2342      	 | cm | wc positions  4	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s4_yL	 | 89.4814       	 | cm | wc positions  4	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s4_zL	 | 427.955       	 | cm | wc positions  4	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s5_xR	 | 32.9657       	 | cm | wc positions  5	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s5_yR	 | 109.286       	 | cm | wc positions  5	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s5_zR	 | 426.492       	 | cm | wc positions  5	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s5_xL	 | -42.3719      	 | cm | wc positions  5	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s5_yL	 | 102.046       	 | cm | wc positions  5	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s5_zL	 | 422.904       	 | cm | wc positions  5	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s6_xR	 | 40.9637       	 | cm | wc positions  6	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s6_yR	 | 121.785       	 | cm | wc positions  6	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s6_zR	 | 420.721       	 | cm | wc positions  6	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s6_xL	 | -50.4345      	 | cm | wc positions  6	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s6_yL	 | 114.512       	 | cm | wc positions  6	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s6_zL	 | 417.379       	 | cm | wc positions  6	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s7_xR	 | 48.8928       	 | cm | wc positions  7	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s7_yR	 | 134.133       	 | cm | wc positions  7	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s7_zR	 | 413.943       	 | cm | wc positions  7	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s7_xL	 | -58.435       	 | cm | wc positions  7	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s7_yL	 | 126.842       	 | cm | wc positions  7	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s7_zL	 | 410.853       	 | cm | wc positions  7	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s8_xR	 | 56.4029       	 | cm | wc positions  8	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s8_yR	 | 146.578       	 | cm | wc positions  8	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s8_zR	 | 407.016       	 | cm | wc positions  8	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s8_xL	 | -66.0086      	 | cm | wc positions  8	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s8_yL	 | 139.268       	 | cm | wc positions  8	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s8_zL	 | 404.18        	 | cm | wc positions  8	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s9_xR	 | 64.0618       	 | cm | wc positions  9	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s9_yR	 | 159.355       	 | cm | wc positions  9	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s9_zR	 | 400.91        	 | cm | wc positions  9	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s9_xL	 | -73.7359      	 | cm | wc positions  9	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s9_yL	 | 152.04        	 | cm | wc positions  9	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s9_zL	 | 398.33        	 | cm | wc positions  9	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s10_xR	 | 71.7877       	 | cm | wc positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s10_yR	 | 172.222       	 | cm | wc positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s10_zR	 | 393.509       	 | cm | wc positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s10_xL	 | -81.5403      	 | cm | wc positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s10_yL	 | 164.921       	 | cm | wc positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s10_zL	 | 391.198       	 | cm | wc positions  10	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s11_xR	 | 76.6113       	 | cm | wc positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s11_yR	 | 184.572       	 | cm | wc positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s11_zR	 | 384.362       	 | cm | wc positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s11_xL	 | -87.2134      	 | cm | wc positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s11_yL	 | 176.68        	 | cm | wc positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s11_zL	 | 382.156       	 | cm | wc positions  11	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s12_xR	 | 84.7201       	 | cm | wc positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s12_yR	 | 197.753       	 | cm | wc positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s12_zR	 | 375.441       	 | cm | wc positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s12_xL	 | -95.4279      	 | cm | wc positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s12_yL	 | 189.923       	 | cm | wc positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s12_zL	 | 373.545       	 | cm | wc positions  12	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s13_xR	 | 93.0427       	 | cm | wc positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s13_yR	 | 212.743       	 | cm | wc positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s13_zR	 | 368.448       	 | cm | wc positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s13_xL	 | -105.689      	 | cm | wc positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s13_yL	 | 204.072       	 | cm | wc positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s13_zL	 | 367.019       	 | cm | wc positions  13	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s14_xR	 | 101.705       	 | cm | wc positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s14_yR	 | 226.915       	 | cm | wc positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s14_zR	 | 356.985       	 | cm | wc positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s14_xL	 | -114.428      	 | cm | wc positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s14_yL	 | 218.32        	 | cm | wc positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s14_zL	 | 355.804       	 | cm | wc positions  14	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s15_xR	 | 109.153       	 | cm | wc positions  15	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s15_yR	 | 241.659       	 | cm | wc positions  15	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s15_zR	 | 346.131       	 | cm | wc positions  15	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s15_xL	 | -121.613      	 | cm | wc positions  15	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s15_yL	 | 232.739       	 | cm | wc positions  15	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s15_zL	 | 344.6         	 | cm | wc positions  15	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s16_xR	 | 117.929       	 | cm | wc positions  16	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s16_yR	 | 255.386       	 | cm | wc positions  16	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s16_zR	 | 333.682       	 | cm | wc positions  16	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s16_xL	 | -130.582      	 | cm | wc positions  16	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s16_yL	 | 246.68        	 | cm | wc positions  16	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s16_zL	 | 332.559       	 | cm | wc positions  16	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s17_xR	 | 126.403       	 | cm | wc positions  17	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s17_yR	 | 268.793       	 | cm | wc positions  17	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s17_zR	 | 320.971       	 | cm | wc positions  17	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s17_xL	 | -139.1        	 | cm | wc positions  17	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s17_yL	 | 260.134       	 | cm | wc positions  17	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s17_zL	 | 319.977       	 | cm | wc positions  17	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s18_xR	 | 134.244       	 | cm | wc positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s18_yR	 | 281.829       	 | cm | wc positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s18_zR	 | 307.356       	 | cm | wc positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s18_xL	 | -147.019      	 | cm | wc positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s18_yL	 | 273.266       	 | cm | wc positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
+ltcc.wc.s18_zL	 | 306.556       	 | cm | wc positions  18	 |  duran, joosten | bduran@jlab.org, sjjooste@jlab.org |  none | none | 10/20/16
 nmirrors | 	 18 |  na | number of mirrors on one side |  vlassov, ungaro | vlassov@jlab.org, ungaro@jlab.org |  none | none | 3/10/12

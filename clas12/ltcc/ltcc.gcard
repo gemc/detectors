@@ -19,7 +19,7 @@
 
  	<option name="HALL_FIELD"  value="clas12-solenoid"/>
 <!--	<option name="SWITCH_MATERIALTO"  value="C4F10,N2"/>-->
-	<option name="OUTPUT"        value="txt, out.txt"/>
+	<option name="OUTPUT"        value="evio, out.ev"/>
 	
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 

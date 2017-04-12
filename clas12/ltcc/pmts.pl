@@ -418,8 +418,8 @@
 				$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
 				$detector{"material"}    = "G4_AIR";
 				$detector{"style"}       = 1;
-				$detector{"sensitivity"} = "ltcc";
-				$detector{"hit_type"}    = "ltcc";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 
@@ -434,8 +434,8 @@
 				$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
 				$detector{"material"}    = "G4_AIR";
 				$detector{"style"}       = 1;
-				$detector{"sensitivity"} = "ltcc";
-				$detector{"hit_type"}    = "ltcc";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);  
 

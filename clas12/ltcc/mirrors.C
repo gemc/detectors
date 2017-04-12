@@ -11,7 +11,7 @@
 // global application settings
 const std::string variation = "original";
 const std::string PRINT = ".png";
-const int RECALC = 0;
+const int RECALC  = 0;
 const int RECALC2 = 0;
 
 // include all the other function definitions when running with cling (currently

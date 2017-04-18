@@ -77,53 +77,96 @@ sub materials
 	$mat{"components"}    = "C 9 H 10";
 	print_mat(\%configuration, \%mat);
 
+    
+    # pcb-FR4
+    %mat = init_mat();
+    $mat{"name"}          = "myFR4";
+    # found in geant4 materials database here : http://www.phenix.bnl.gov/~suhanov/ncc/geant/rad-source/src/ExN03DetectorConstruction.cc
+    $mat{"description"}   = "pcb FR4";
+    $mat{"density"}       = "1.86";
+    $mat{"ncomponents"}   = "4";
+    $mat{"components"}    = "G4_C 0.4355 G4_H 0.0365 G4_Si 0.2468 G4_O 0.2812";
+    print_mat(\%configuration, \%mat);
+    
+    # micromegas strips
+    my $mmstriptransparency = 459./559.; #strips filling fraction
+    my $mmstripdensity      = 8.96*$mmstriptransparency*(15./12.); #3 extra microns for connecting strips underneath
+    %mat = init_mat();
+    $mat{"name"}          = "mmstrips";
+    $mat{"description"}   = "ft micromegas strips";
+    $mat{"density"}       = $mmstripdensity;
+    $mat{"ncomponents"}   = "1";
+    $mat{"components"}    = "G4_Cu 1";
+    print_mat(\%configuration, \%mat);
+    
+    %mat = init_mat();
+    $mat{"name"}          = "myKapton"; # found in gemc materials database.
+    $mat{"description"}   = "Kapton";
+    $mat{"density"}       = "1.42";
+    $mat{"ncomponents"}   = "4";
+    $mat{"components"}    = "G4_H 0.026362 G4_C 0.691133 G4_N 0.073270 G4_O 0.209235";
+    print_mat(\%configuration, \%mat);
+    
+    # resistive strips
+    %mat = init_mat();
+    my $ResistPasteTransparency_Density = 0.81*1.33;
+    # for fmt: 81% filling fraction, 1.33 density from excel file;
+    # from Cern mail 12/06/16, suppose 50% C / 50% epoxy;
+    # adopt C at above density.
+    # thickness almost negligible, so not crucial to be exact.
+    $mat{"name"}          = "ResistPaste";
+    $mat{"description"}   = "micromegas fmt resistiv strips";
+    $mat{"density"}       = "$ResistPasteTransparency_Density";
+    $mat{"ncomponents"}   = "1";
+    $mat{"components"}    = "G4_C 1";
+    print_mat(\%configuration, \%mat);
+    
+    # micromegas mesh
+    my $mmmeshtransparency = 0.55;
+    my $mmmeshdensity = 7.93*$mmmeshtransparency;
+    %mat = init_mat();
+    $mat{"name"}          = "mmmesh";
+    $mat{"description"}   = "ft micromegas mesh";
+    $mat{"density"}       = $mmmeshdensity;
+    $mat{"ncomponents"}   = "5";
+    $mat{"components"}    = "G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.10 G4_Fe 0.68";
+    print_mat(\%configuration, \%mat);
+    
+    
+    # micromegas gas: Ar/Isobutane for now, but not sure what will be used
+    my $mmgasdensity = (1.662*0.95+2.489*0.05)*0.001;
+    %mat = init_mat();
+    $mat{"name"}          = "mmgas";
+    $mat{"description"}   = "ft micromegas gas";
+    $mat{"density"}       = $mmgasdensity;
+    $mat{"ncomponents"}   = "3";
+    $mat{"components"}    = "G4_Ar 0.95 G4_H 0.0086707 G4_C 0.0413293";
+    print_mat(\%configuration, \%mat);
+    
+    # photoresist (pillars and inner/outer remaining rings)
+    %mat = init_mat();
+    my $PhotoResist_Density = 1.42;
+    # 1.42 density from excel file;
+    # from Cern mail 12/06/16, suppose 50% acrylique / 50% epoxy;
+    # adopt C at above density.
+    # thickness negligible compared to Al rings at similar radii, but extends 1.5 mm into the active area.
+    $mat{"name"}          = "myPhRes";
+    $mat{"description"}   = "PhotoResist";
+    $mat{"density"}       = "$PhotoResist_Density";
+    $mat{"ncomponents"}   = "1";
+    $mat{"components"}    = "G4_C 1";
+    print_mat(\%configuration, \%mat);
+    
+    # micromegas mylar
+    %mat = init_mat();
+    $mat{"name"}          = "mmmylar";
+    $mat{"description"}   = "ft micromegas mylar 1.40g/cm3";
+    $mat{"density"}       = "1.4";
+    $mat{"ncomponents"}   = "3";
+    $mat{"components"}    = "G4_H 0.041958 G4_C 0.625017 G4_O 0.333025";
+    print_mat(\%configuration, \%mat);
+    
 
-	# micromegas strips
-	my $mmstriptransparency = 300./400.;
-	my $mmstripdensity = 8.96*$mmstriptransparency;
-	%mat = init_mat();
-	$mat{"name"}          = "mmstrips";
-	$mat{"description"}   = "ft micromegas strips";
-	$mat{"density"}       = $mmstripdensity;
-	$mat{"ncomponents"}   = "1";
-	$mat{"components"}    = "G4_Cu 1";
-	print_mat(\%configuration, \%mat);
-#	G4Material *MMStrips = new G4Material("Copper", z=29, a=   63.55*g/mole, density = 8.960*MMStripTransparency*g/cm3);
-	
-
-	# micromegas mesh
-#	my $mmmeshtransparency = (19./50.)*(19./50.);
-	my $mmmeshtransparency = 1.0;
-	my $mmmeshdensity = 8.02*$mmmeshtransparency;
-	%mat = init_mat();
-	$mat{"name"}          = "mmmesh";
-	$mat{"description"}   = "ft micromegas mesh";
-	$mat{"density"}       = $mmmeshdensity;
-	$mat{"ncomponents"}   = "5";
-	$mat{"components"}    = "G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.10 G4_Fe 0.68";
-	print_mat(\%configuration, \%mat);
-
-	
-	# micromegas gas
-	my $mmgasdensity = (1.662*0.95+2.489*0.05)*0.001; 
-	%mat = init_mat();
-	$mat{"name"}          = "mmgas";
-	$mat{"description"}   = "ft micromegas gas";
-	$mat{"density"}       = $mmgasdensity;
-	$mat{"ncomponents"}   = "3";
-	$mat{"components"}    = "G4_Ar 0.95 G4_H 0.0086707 G4_C 0.0413293";
-	print_mat(\%configuration, \%mat);
-
-
-	# micromegas mylar
-	%mat = init_mat();
-	$mat{"name"}          = "mmmylar";
-	$mat{"description"}   = "ft micromegas mylar 1.40g/cm3";
-	$mat{"density"}       = "1.4";
-	$mat{"ncomponents"}   = "3";
-	$mat{"components"}    = "G4_H 0.041958 G4_C 0.625017 G4_O 0.333025";
-	print_mat(\%configuration, \%mat);
-	
 }
 
 

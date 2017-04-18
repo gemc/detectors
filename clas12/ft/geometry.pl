@@ -252,12 +252,20 @@ my $VETO_OR = 178.5;  # outer radius
 my $VETO_IR = 40.;    # inner radius
 my $VETO_Z  = $O_Shell_Z1 - $VETO_TN - 0.1; # position along z
 
+my $VETO_RING_TN = 37./2.; # thickness of the hodoscope volume
 my $VETO_RING_IR = $VETO_IR;
 my $VETO_RING_OR = 105/2.;
+my $VETO_RING_Z  = $O_Shell_Z1 - $VETO_RING_TN - 0.1; # position along z
 
 my $VETO_SKIN_TN = 0.5;
 my $PAINT_TN     = 0.1;
 my $TILE_WW      = 15.0;
+
+my $VETO_nplanes = 4;
+my @VETO_iradius = ($VETO_RING_OR,    $VETO_RING_OR, $VETO_IR, $VETO_IR);
+my @VETO_oradius = ($VETO_OR,         $VETO_OR,      $VETO_OR, $VETO_OR);
+my @VETO_zpos    = ($VETO_Z-$VETO_TN, 1810.6,        1810.6,   $VETO_Z+$VETO_TN);
+
 #my $LS_TN=5./2.;
 #
 #my $p15_WW=15./2.;
@@ -297,32 +305,102 @@ my @ww_S2 = (  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0,  2.0, 
 
 ###########################################################################################
 # Tracker Dimension and Parameters
+#############   Gabriel Charles - 2014  #################
+############# Michel Garçon - Jan. 2017 #################
 
-# Tracker
-my @starting_point =();
+# Tracker Dimension and Parameters
+#my @starting_point =();
 
-my $ftm_ir 		= 64.0;
-my $ftm_or 		= 161.0;
+# Mother volume dimensions
+my $MVftt_ir 		= 40;
+my $MVftt_mr 		= 59.75;
+my $MVftt_er 		= 50.;
+my $MVftt_or 		= 170.0;
+my $MVftt_z1 	    = 1760.0; # includes support ring
+my $MVftt_zmin 	    = 1770.0; # should be <= 1774
+my $MVftt_zmax   	= 1809.0; # should be >= 1806 and <= 1809.6
+my $MVftt_z4 	    = 1810.6; # includes support ring
+my $MVftt_zctr      = ($MVftt_zmax + $MVftt_zmin)/2.0;
+my $MVftt_dz        = ($MVftt_zmax - $MVftt_zmin)/2.0;
+
+
 my $nlayer		= 2;
-$starting_point[0] 	= 1773.0;
-$starting_point[1] 	= 1793.0;
-my $InnerRadius 	= 65.0;
-my $OuterRadius 	= 142.0;
-my $Epoxy_Dz 		= 0.5*0.3;
-my $PCB_Dz 		= 0.5*0.1;
-my $Strips_Dz 		= 0.5*0.015;
+
+# Detector inner and outer radii
+my $InnerRadius 	= 60.0;
+my $OuterRadius 	= 170.0;
+
+# Half-thicknesses:
+my $Epoxy_Dz 		= 0.5*0.1;
+# 0.1 is half the 200 microns thickness (1/2 is attributed to each disk
+# some detectors may have 500 microns glue instead of 200; check !
+my $PCB_Dz 		= 0.5*0.2;
+my $Strips_Dz 		= 0.5*0.012;
+my $Kapton_Dz           = 0.5*0.075;
+my $ResistStrips_Dz     = 0.5*0.020;
 my $Gas1_Dz 		= 0.5*0.128;
-my $Mesh_Dz 		= 0.5*0.030;
-my $Gas2_Dz 		= 0.5*5.350;
-my $Drift_Dz 		= 0.5*0.1;
+my $Mesh_Dz 		= 0.5*0.018;
+my $Photoresist_Dz      = 0.5*0.064;
+my $AluRings_Dz         = 0.5*5.0;
+my $DriftElectrode_Dz   = 0.5*0.012;
+#my $Gas2_Dz 		= $Photoresist_Dz + $AluRings_Dz - $DriftElectrode_Dz;
+#above is the real thickness, but leads to overlaps -> neglect 64 microns of gas (replaced de facto by air since the positioning does not change)
+my $Gas2_Dz 		= $AluRings_Dz - $DriftElectrode_Dz;
+my $DriftPCB_Dz		= 0.5*0.2;
+my $DriftGround_Dz      = 0.5*0.005;
+my $Protection_Dz       = 0.5*0.05;
+
+my $AssemblyRing1_Dz   = 0.5*7.8;
+my $AssemblyRing2_Dz   = 0.5*7.8;
+my $AssemblyRing3_Dz   = 0.5*9.0;
+
+#my $zoffset            = 0.;    # may be adjusted
+my @CenteringSupportRing_zmin = ($MVftt_z1, 1774.,  1805.2,    $MVftt_zmin);
+my @CenteringSupportRing_zmax = (1774.,     1805.2, $MVftt_z4, 1774.);
+my @CenteringSupportRing_Rmin = ($MVftt_ir, $MVftt_ir, $MVftt_ir, $MVftt_mr);
+my @CenteringSupportRing_Rmax = ($MVftt_mr, 50.,       $MVftt_er, 67.);
+
+my $MVftt_nplanes = 6;
+my @MVftt_iradius = ($MVftt_ir, $MVftt_ir,   $MVftt_ir,   $MVftt_ir,   $MVftt_ir,   $MVftt_ir);
+my @MVftt_oradius = ($MVftt_mr, $MVftt_mr,   $MVftt_or,   $MVftt_or,   $MVftt_er,   $MVftt_er );
+my @MVftt_zpos    = ($MVftt_z1, $MVftt_zmin, $MVftt_zmin, $MVftt_zmax, $MVftt_zmax, $MVftt_z4);
+
+
+#my $ftm_ring_z          = ( 1760 + 1809.6)/2.;
+#my $ftm_ring_dz         = (-1760 + 1809.6)/2.;
+#my $ftm_ring_ir         = 80./2.;
+
+my @zrel = ();                              # $zrel[i] = zmax(i) of Table 1 of MG report, i= 1,12.
+$zrel[0] =  0.;
+$zrel[1] =  $zrel[0]  + 2.*$Epoxy_Dz;
+$zrel[2] =  $zrel[1]  + 2.*$PCB_Dz;
+$zrel[3] =  $zrel[2]  + 2.*$Strips_Dz;
+$zrel[4] =  $zrel[3]  + 2.*$Kapton_Dz;
+$zrel[5] =  $zrel[4]  + 2.*$ResistStrips_Dz;
+$zrel[6] =  $zrel[5]  + 2.*$Gas1_Dz;
+$zrel[7] =  $zrel[6]  + 2.*$Mesh_Dz;
+$zrel[8] =  $zrel[7]  + 2.*($Photoresist_Dz+$Gas2_Dz);
+$zrel[9] =  $zrel[8]  + 2.*$DriftElectrode_Dz;
+$zrel[10] = $zrel[9]  + 2.*$DriftPCB_Dz;
+$zrel[11] = $zrel[10] + 2.*$DriftGround_Dz;
+$zrel[12] = $zrel[11] + 2.*$Protection_Dz;
+
+my $z_abs  = $CenteringSupportRing_zmax[3]; # entrance of detector1/disk1 = end of SupportRing4 = 1774.
+my @z0     = ();                            # starting absolute z-coordinate for each disk
+$z0[0]     = $z_abs + $zrel[12];
+$z0[1]     = $z0[0] + 2.*$zrel[9] + 2.*$AssemblyRing3_Dz;
+
 
 # G4 materials
-my $epoxy_material   = 'epoxy';
-my $pcboard_material = 'epoxy';
-my $strips_material  = 'mmstrips';
-my $gas_material     = 'mmgas';
-my $mesh_material    = 'mmmesh';
-my $drift_material   = 'mmmylar';
+my $epoxy_material       = 'epoxy';
+my $pcboard_material     = 'myFR4';
+my $strips_material      = 'mmstrips';
+my $kapton_material      = 'myKapton';
+my $resistive_material   = 'ResistPaste';
+my $gas_material         = 'mmgas';
+my $mesh_material        = 'mmmesh';
+my $photoresist_material = 'myPhRes';
+my $drift_material       = 'mmmylar';
 
 
 # G4 colors
@@ -331,11 +409,10 @@ my $pcboard_color    = '0000ff';
 my $strips_color     = '353540';
 my $gas_color        = 'e10000';
 my $mesh_color       = '252020';
+my $photoresist_color= 'd200d1';
 my $drift_color      = 'fff600';
+my $alu_color        = 'aaaaff';
 
-# FTM is a Tube containing all SLs
-my $ftm_dz = ($starting_point[1] - $starting_point[0])/2.0 + $Epoxy_Dz*2.0 + $PCB_Dz*4.0 + $Strips_Dz*4.0 + $Gas1_Dz*4.0 + $Mesh_Dz*4.0 + $Gas2_Dz*4.0 + $Drift_Dz*4.0+1.0;
-my $ftm_starting = ($starting_point[1] + $starting_point[0])/2.0;
 
 #  FTM FEE Boxes
 my $FEE_Disk_OR = 200.;
@@ -1166,6 +1243,7 @@ sub make_ft_cal
 }
 
 
+
 sub make_ft_pipe
 {
     make_ft_cal_mother_volume();
@@ -1174,17 +1252,32 @@ sub make_ft_pipe
 }
 
 
-
 sub make_ft_hodo
 {
-	my %detector = init_det();
-	$detector{"name"}        = "ft_hodo";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "ft scintillation hodoscope";
+    my %detector = init_det();
+    $detector{"name"}        = "ft_hodo";
+    $detector{"mother"}      = "root";
+    $detector{"description"} = "ft scintillation hodoscope";
+    $detector{"pos"}         = "0.0*cm 0.0*cm 0.0*mm";
+    $detector{"color"}       = "3399FF";
+    $detector{"type"}        = "Polycone";
+    my $dimen = "0.0*deg 360*deg $VETO_nplanes*counts";
+    for(my $i = 0; $i <$VETO_nplanes; $i++) {$dimen = $dimen ." $VETO_iradius[$i]*mm";}
+    for(my $i = 0; $i <$VETO_nplanes; $i++) {$dimen = $dimen ." $VETO_oradius[$i]*mm";}
+    for(my $i = 0; $i <$VETO_nplanes; $i++) {$dimen = $dimen ." $VETO_zpos[$i]*mm";}
+    $detector{"dimensions"}  = $dimen;
+    $detector{"material"}    = "G4_AIR";
+    $detector{"visible"}     = 0;
+    print_det(\%configuration, \%detector);
+
+    %detector = init_det();
+	$detector{"name"}        = "ft_hodo_vol";
+	$detector{"mother"}      = "ft_hodo";
+	$detector{"description"} = "ft scintillation hodoscope inner volume";
 	$detector{"pos"}         = "0.0*cm 0.0*cm $VETO_Z*mm";
 	$detector{"color"}       = "3399FF";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$VETO_IR*mm $VETO_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
+	$detector{"dimensions"}  = "$VETO_RING_OR*mm $VETO_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 0;
 	print_det(\%configuration, \%detector);
@@ -1193,10 +1286,10 @@ sub make_ft_hodo
 	$detector{"name"}        = "ft_hodo_ring";
 	$detector{"mother"}      = "ft_hodo";
 	$detector{"description"} = "ft hodoscope support ring";
-	$detector{"pos"}         = "0.0*cm 0.0*cm 0.0*mm";
+	$detector{"pos"}         = "0.0*cm 0.0*cm $VETO_RING_Z*mm";
 	$detector{"color"}       = "cccccc";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$VETO_RING_IR*mm $VETO_RING_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
+	$detector{"dimensions"}  = "$VETO_RING_IR*mm $VETO_RING_OR*mm $VETO_RING_TN*mm 0.*deg 360.*deg";
 	$detector{"material"}    = "ft_peek";
 	$detector{"style"}     = 1;
 	print_det(\%configuration, \%detector);
@@ -1209,7 +1302,7 @@ sub make_ft_hodo
         $LS_Z = $LS_Z + $LS_TN;
         %detector = init_det();
 		$detector{"name"}        = "ft_hodo_L$L";
-		$detector{"mother"}      = "ft_hodo";
+		$detector{"mother"}      = "ft_hodo_vol";
 		$detector{"description"} = "ft_hodo layer $L support";
 		$detector{"pos"}         = "0.0*cm 0.0*cm $LS_Z*mm";
 		$detector{"color"}       = "EFEFFB";
@@ -1261,7 +1354,7 @@ sub make_ft_hodo
                 # define tile mother volume
                 %detector = init_det();
                 $detector{"name"}        = "$TNAME$S$L$I";
-                $detector{"mother"}      = "ft_hodo";
+                $detector{"mother"}      = "ft_hodo_vol";
                 $detector{"description"} = "$TNAME $S $L $I";
                 $detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
                 $detector{"rotation"}    = "0*deg 0*deg 0*deg";
@@ -1321,7 +1414,7 @@ sub make_ft_hodo
                 # define tile mother volume
                 %detector = init_det();
                 $detector{"name"}        = "$TNAME$S$L$I";
-                $detector{"mother"}      = "ft_hodo";
+                $detector{"mother"}      = "ft_hodo_vol";
                 $detector{"description"} = "$TNAME $S $L $I";
                 $detector{"pos"}         = "$p_X*mm $p_Y*mm $p_Z*mm";
                 $detector{"rotation"}    = "0*deg 0*deg 0*deg";
@@ -1358,329 +1451,654 @@ sub make_ft_hodo
 # Define the FT Tracker Geometry Components
 sub make_ft_trk_mother
 {
-	my $zpos      = $ftm_starting;
-	my %detector = init_det();
-	$detector{"name"}        = "ft_trk";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "ft tracker micromegas";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = "aaaaff";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$ftm_ir*mm $ftm_or*mm $ftm_dz*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_AIR";
-	$detector{"visible"}     = 0;
-	print_det(\%configuration, \%detector);
-	
-	my $ftm_ring_z = ( $BLine_ML + $VETO_Z -$VETO_TN)/2.;
-	my $ftm_ring_dz= (-$BLine_ML + $VETO_Z -$VETO_TN)/2.;
-	%detector = init_det();
-	$detector{"name"}        = "ft_trk_ring";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "ft tracker support ring";
-	$detector{"pos"}         = "0*mm 0*mm $ftm_ring_z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = "aaaaff";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$BLine_FR*mm $ftm_ir*mm $ftm_ring_dz*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Al";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-	
+    my $zpos      = $MVftt_zctr;
+    my %detector = init_det();
+    $detector{"name"}        = "ft_trk";
+    $detector{"mother"}      = "root";
+    $detector{"description"} = "ft tracker micromegas";
+    $detector{"pos"}         = "0*mm 0*mm 0*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = "aaaaff";
+    $detector{"type"}        = "Polycone";
+    #    $detector{"dimensions"}  = "$MVftt_ir*mm $MVftt_or*mm $MVftt_dz*mm 0*deg 360*deg";
+    my $dimen = "0.0*deg 360*deg $MVftt_nplanes*counts";
+    for(my $i = 0; $i <$MVftt_nplanes; $i++) {$dimen = $dimen ." $MVftt_iradius[$i]*mm";}
+    for(my $i = 0; $i <$MVftt_nplanes; $i++) {$dimen = $dimen ." $MVftt_oradius[$i]*mm";}
+    for(my $i = 0; $i <$MVftt_nplanes; $i++) {$dimen = $dimen ." $MVftt_zpos[$i]*mm";}
+    $detector{"dimensions"}  = $dimen;
+    $detector{"material"}    = "G4_AIR";
+    $detector{"visible"}     = 0;
+    print_det(\%configuration, \%detector);
+    
+    my $vname                = "ft_trk_support";
+    my $descriptio           = "ft tracker centering support";
+    for(my $ring = 0; $ring < 4; $ring++)
+    {
+        %detector = init_det();
+        my $ring_no              = $ring + 1;
+        my $zmin                 = $CenteringSupportRing_zmin[$ring];
+        my $zmax                 = $CenteringSupportRing_zmax[$ring];
+        my $PDz                  = 0.5*($zmax-$zmin);
+        $zpos                    = 0.5*($zmax+$zmin);
+        my $PRmin                = $CenteringSupportRing_Rmin[$ring];
+        my $PRmax                = $CenteringSupportRing_Rmax[$ring];
+        $detector{"mother"}      = "ft_trk";
+        $detector{"name"}        = "$vname\_R$ring_no";
+        $detector{"description"} = "$descriptio\, ring $ring_no";
+        #        if($ring_no == 4){
+        #            $detector{"mother"}  = "ft_trk";
+        #            $zpos                = $zpos - $MVftt_zctr;
+        #        }
+        $detector{"color"}       = $alu_color;
+        $detector{"type"}        = "Tube";
+        $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = 1;
+        $detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+        $detector{"dimensions"}  = "$PRmin*mm $PRmax*mm $PDz*mm 0*deg 360*deg";
+        print_det(\%configuration, \%detector);
+    }
 }
-
 
 
 sub place_epoxy
 {
-	my $l    = shift;
-	my $layer_no       = $l + 1;
-	
-	my $z          = - $ftm_starting + $starting_point[$l];
-	my $vname      = "ft_trk_epoxy";
-	my $descriptio = "epoxy, layer $layer_no";
-	
-	# names
-	my $r         = 0.000;
-	my $PDz       = $Epoxy_Dz;
-	my $PSPhi     = 0.0;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $epoxy_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    = $epoxy_material;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $vname = 0;
+    my $descriptio = 0;
+    
+    my $z         = 0.0;
+    my $PDz       = $Epoxy_Dz;
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[0]+$zrel[1]);
+        $vname       = "ft_trk_epoxy_X_L";
+        $descriptio  = "epoxy X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[0]+$zrel[1]);
+        $vname       = "ft_trk_epoxy_Y_L";
+        $descriptio  = "epoxy Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $epoxy_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $epoxy_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 }
+
 
 sub place_pcboard
 {
-	my $l    = shift;
-	my $type = shift;
-	my $layer_no   = $l + 1;
-	my $z          = 0;
-	my $vname      = 0;
-	my $descriptio = 0;
-	my $PSPhi     = 0.0;
-	
-	if($type == 1)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz;
-		$vname       = "ft_trk_pcboard_X_L";
-		$descriptio  = "pc board X, layer $layer_no";
-	}
-	
-	if($type == 2)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz;
-		$vname       = "ft_trk_pcboard_Y_L";
-		$descriptio  = "pc board Y, layer $layer_no";
-	}
-	
-	# names
-	my $r         = 0.000;
-	my $PDz       = $PCB_Dz;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $pcboard_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    = $pcboard_material;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no   = $l + 1;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $z          = 0;
+    my $PDz       = $PCB_Dz;
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    
+    if($type == 1)
+    {
+        $z           = $z0[$l] - 0.5*($zrel[1]+$zrel[2]);
+        $vname       = "ft_trk_pcboard_X_L";
+        $descriptio  = "pc board X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           = $z0[$l] + 0.5*($zrel[1]+$zrel[2]);
+        $vname       = "ft_trk_pcboard_Y_L";
+        $descriptio  = "pc board Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $pcboard_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $pcboard_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 }
+
 
 sub place_strips
 {
-	my $l    = shift;
-	my $type = shift;
-	my $layer_no       = $l + 1;
-	my $z          = 0;
-	my $vname      = 0;
-	my $descriptio = 0;
-	my $PSPhi     = 0.0;
-	
-	if($type == 1)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz;
-		$vname       = "ft_trk_strips_X_L";
-		$descriptio  = "strips X, layer $layer_no";
-	}
-	
-	if($type == 2)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz;
-		$vname       = "ft_trk_strips_Y_L";
-		$descriptio  = "strips Y, layer $layer_no";
-	}
-	
-	# names
-	my $r         = 0.000;
-	my $PDz       = $Strips_Dz;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $strips_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    = $strips_material;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $z          = 0;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    my $PDz       = $Strips_Dz;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[2]+$zrel[3]);
+        $vname       = "ft_trk_strips_X_L";
+        $descriptio  = "strips X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[2]+$zrel[3]);
+        $vname       = "ft_trk_strips_Y_L";
+        $descriptio  = "strips Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $strips_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "70.43*mm 143.66*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $strips_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
+}
+
+sub place_kapton
+{
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $vname = 0;
+    my $descriptio = 0;
+    
+    my $z         = 0.0;
+    my @zmin      = ($zrel[3], $zrel[11]);
+    my @zmax      = ($zrel[4], $zrel[12]);
+    my @PRMin     = ($InnerRadius, $InnerRadius);
+    my @PRMax     = ($OuterRadius, 158.5);
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    
+    for(my $ring = 0; $ring < 2; $ring++)
+    {
+        my %detector  = init_det();
+        my $ring_no   = $ring + 1;
+        if($type == 1)
+        {
+            $z           = $z0[$l] - 0.5*($zmin[$ring]+$zmax[$ring]);
+            $vname       = "ft_trk_kapton_X_L";
+            $descriptio  = "kapton X, layer $layer_no";
+        }
+        
+        if($type == 2)
+        {
+            $z           = $z0[$l] + 0.5*($zmin[$ring]+$zmax[$ring]);
+            $vname       = "ft_trk_kapton_Y_L";
+            $descriptio  = "kapton Y, layer $layer_no";
+        }
+        my $PDz       = 0.5*(-$zmin[$ring]+$zmax[$ring]);
+        
+        $detector{"name"}        = "$vname$layer_no\_R$ring_no";
+        $detector{"mother"}      = "ft_trk";
+        $detector{"description"} = "$descriptio\, ring $ring_no";
+        $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+        $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+        $detector{"color"}       = $pcboard_color;
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$PRMin[$ring]*mm $PRMax[$ring]*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+        $detector{"material"}    = $kapton_material;
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
+}
+
+sub place_resiststrips
+{
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $z          = 0;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    my $PDz       = $ResistStrips_Dz;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[4]+$zrel[5]);
+        $vname       = "ft_trk_resiststrips_X_L";
+        $descriptio  = "resistive strips X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[4]+$zrel[5]);
+        $vname       = "ft_trk_resiststrips_Y_L";
+        $descriptio  = "resistive strips Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $strips_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "70.43*mm 143.66*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $resistive_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 }
 
 sub place_gas1
 {
-	my $l    = shift;
-	my $type = shift;
-	my $layer_no       = $l + 1;
-	my $z          = 0;
-	my $vname      = 0;
-	my $descriptio = 0;
-	my $PSPhi     = 0.0;
-	
-	if($type == 1)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz;
-		$vname       = "ft_trk_gas1_X_L";
-		$descriptio  = "gas1 X, layer $layer_no";
-	}
-	
-	if($type == 2)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz;
-		$vname       = "ft_trk_gas1_Y_L";
-		$descriptio  = "gas1 Y, layer $layer_no";
-	}
-	
-	# names
-	my $r         = 0.000;
-	my $PDz       = $Gas1_Dz;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $gas_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    = $gas_material;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $z          = 0;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    my $PDz       = $Gas1_Dz;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[5]+$zrel[6]);
+        $vname       = "ft_trk_gas1_X_L";
+        $descriptio  = "gas1 X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[5]+$zrel[6]);
+        $vname       = "ft_trk_gas1_Y_L";
+        $descriptio  = "gas1 Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $gas_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "71.43*mm 143.16*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $gas_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
+}
+
+sub place_photoresist
+{
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $vname = 0;
+    my $descriptio = 0;
+    
+    my $z         = 0.0;
+    my @zmin      = ($zrel[5], $zrel[5], $zrel[7], $zrel[7]);
+    my @zmax      = ($zrel[6], $zrel[6], $zrel[9]-2.*$AluRings_Dz, $zrel[9]-2.*$AluRings_Dz);
+    my @PRMin     = ($InnerRadius, 143.16, $InnerRadius, 143.16);
+    my @PRMax     = (71.43, $OuterRadius, 71.43, $OuterRadius);
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    
+    for(my $ring = 0; $ring < 4; $ring++)
+    {
+        my %detector  = init_det();
+        my $ring_no   = $ring + 1;
+        if($type == 1)
+        {
+            $z           = $z0[$l] - 0.5*($zmin[$ring]+$zmax[$ring]);
+            $vname       = "ft_trk_phrst_X_L";
+            $descriptio  = "photoresist X, layer $layer_no";
+        }
+        
+        if($type == 2)
+        {
+            $z           = $z0[$l] + 0.5*($zmin[$ring]+$zmax[$ring]);
+            $vname       = "ft_trk_phrst_Y_L";
+            $descriptio  = "photoresist Y, layer $layer_no";
+        }
+        my $PDz       = 0.5*(-$zmin[$ring]+$zmax[$ring]);
+        
+        $detector{"name"}        = "$vname$layer_no\_R$ring_no";
+        $detector{"mother"}      = "ft_trk";
+        $detector{"description"} = "$descriptio\, ring $ring_no";
+        $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+        $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+        $detector{"color"}       = $photoresist_color;
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$PRMin[$ring]*mm $PRMax[$ring]*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+        $detector{"material"}    = $photoresist_material;
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
 }
 
 sub place_mesh
 {
-	my $l    = shift;
-	my $type = shift;
-	my $layer_no       = $l + 1;
-	my $z          = 0;
-	my $vname      = 0;
-	my $descriptio = 0;
-	my $PSPhi     = 0.0;
-	
-	if($type == 1)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz;
-		$vname       = "ft_trk_mesh_X_L";
-		$descriptio  = "mesh X, layer $layer_no";
-	}
-	
-	if($type == 2)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz;
-		$vname       = "ft_trk_mesh_Y_L";
-		$descriptio  = "mesh Y, layer $layer_no";
-	}
-	# names
-	my $r         = 0.000;
-	my $PDz       = $Mesh_Dz;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $mesh_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    = $mesh_material;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    my $l          = shift;
+    my $type       = shift;
+    my $layer_no   = $l + 1;
+    my $z          = 0;
+    my $PDz        = $Mesh_Dz;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi      = 0.0;
+    my $PDPhi     = 360.000;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[6]+$zrel[7]);
+        $vname       = "ft_trk_mesh_X_L";
+        $descriptio  = "mesh X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[6]+$zrel[7]);
+        $vname       = "ft_trk_mesh_Y_L";
+        $descriptio  = "mesh Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $mesh_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $mesh_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 }
 
 
 sub place_gas2
 {
-	my $l    = shift;
-	my $type = shift;
-	my $layer_no       = $l + 1;
-	my $z          = 0;
-	my $vname      = 0;
-	my $descriptio = 0;
-	my $PSPhi     = 0.0;
-	
-	if($type == 1)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz*2. - $Gas2_Dz;
-		$vname       = "ft_trk_gas2_X_L";
-		$descriptio  = "gas2 X, layer $layer_no";
-	}
-	
-	if($type == 2)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz*2. + $Gas2_Dz;
-		$vname       = "ft_trk_gas2_Y_L";
-		$descriptio  = "gas2 Y, layer $layer_no";
-	}
-	
-	# names
-	my $r         = 0.000;
-	my $PDz       = $Gas2_Dz;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $gas_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    =  $gas_material;
-	$detector{"style"}       = 1;
-	$detector{"sensitivity"} = "ftm";
-	$detector{"hit_type"}    = "ftm";
-	$detector{"identifiers"} ="superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
-	print_det(\%configuration, \%detector);
+    my $l          = shift;
+    my $type       = shift;
+    my $layer_no   = $l + 1;
+    my $z          = 0;
+    my $PDz        = $Gas2_Dz;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi      = 0.0;
+    my $PDPhi      = 360.000;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[7]+2.*$Photoresist_Dz+$zrel[8]);
+        $vname       = "ft_trk_gas2_X_L";
+        $descriptio  = "gas2 X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[7]+2.*$Photoresist_Dz+$zrel[8]);
+        $vname       = "ft_trk_gas2_Y_L";
+        $descriptio  = "gas2 Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $gas_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "67.0*mm 151.5*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    =  $gas_material;
+    $detector{"style"}       = 1;
+    $detector{"sensitivity"} = "ftm";
+    $detector{"hit_type"}    = "ftm";
+    $detector{"identifiers"} ="superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
+    print_det(\%configuration, \%detector);
 }
 
+sub place_driftelectrode
+{
+    my $l          = shift;
+    my $type       = shift;
+    my $layer_no   = $l + 1;
+    my $z          = 0;
+    my $PDz        = $DriftElectrode_Dz;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi      = 0.0;
+    my $PDPhi      = 360.000;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[8]+$zrel[9]);
+        $vname       = "ft_trk_driftel_X_L";
+        $descriptio  = "drift electrode X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[8]+$zrel[9]);
+        $vname       = "ft_trk_driftel_Y_L";
+        $descriptio  = "drift electrode Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $strips_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "70.43*mm 143.66*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = "G4_Cu";
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
+}
 
 sub place_drift
 {
-	my $l    = shift;
-	my $type = shift;
-	my $layer_no       = $l + 1;
-	my $z          = 0;
-	my $vname      = 0;
-	my $descriptio = 0;
-	my $PSPhi     = 0.0;
-	
-	
-	if($type == 1)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] - $Epoxy_Dz - $PCB_Dz*2. - $Strips_Dz*2. - $Gas1_Dz*2. - $Mesh_Dz*2. - $Gas2_Dz*2. - $Drift_Dz;
-		$vname       = "ft_trk_drift_X_L";
-		$descriptio  = "drift X, layer $layer_no";
-	}
-	
-	if($type == 2)
-	{
-		$z           =   - $ftm_starting + $starting_point[$l] + $Epoxy_Dz + $PCB_Dz*2. + $Strips_Dz*2. + $Gas1_Dz*2. + $Mesh_Dz*2. + $Gas2_Dz*2. + $Drift_Dz;
-		$vname       = "ft_trk_drift_Y_L";
-		$descriptio  = "drift Y, layer $layer_no";
-	}
-	
-	# names
-	my $r         = 0.000;
-	my $PDz       = $Drift_Dz;
-	my $PDPhi     = 360.000;
-	
-	my %detector = init_det();
-	$detector{"name"}        = "$vname$layer_no";
-	$detector{"mother"}      = "ft_trk";
-	$detector{"description"} = "$descriptio";
-	$detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = $drift_color;
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$InnerRadius*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
-	$detector{"material"}    = $drift_material;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+    my $l          = shift;
+    my $type       = shift;
+    my $layer_no   = $l + 1;
+    my $z          = 0;
+    my $PDz        = $DriftPCB_Dz;
+    my $vname      = 0;
+    my $descriptio = 0;
+    my $PSPhi      = 0.0;
+    my $PDPhi      = 360.000;
+    
+    if($type == 1)
+    {
+        $z           =  $z0[$l] - 0.5*($zrel[9]+$zrel[10]);
+        $vname       = "ft_trk_drift_X_L";
+        $descriptio  = "drift X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           =  $z0[$l] + 0.5*($zrel[9]+$zrel[10]);
+        $vname       = "ft_trk_drift_Y_L";
+        $descriptio  = "drift Y, layer $layer_no";
+    }
+    
+    my %detector = init_det();
+    $detector{"name"}        = "$vname$layer_no";
+    $detector{"mother"}      = "ft_trk";
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+    $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+    $detector{"color"}       = $pcboard_color;
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$InnerRadius*mm 158.5*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+    $detector{"material"}    = $pcboard_material;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
+}
+
+sub place_rings
+{
+    my $l    = shift;
+    my $type = shift;
+    my $layer_no       = $l + 1;
+    my $vname = 0;
+    my $descriptio = 0;
+    
+    my $z         = 0.0;
+    my $zmin      = $zrel[7] + 2.0*$Photoresist_Dz;
+    my $zmax      = $zrel[9];
+    my @PRMin = ();
+    my @PRMax = ();
+    $PRMin[0]     = 60.0;
+    $PRMax[0]     = 67.0;
+    $PRMin[1]     = 151.5;
+    $PRMax[1]     = 158.5;
+    my $PDz       = 0.5*5.0;
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.000;
+    
+    if($type == 1)
+    {
+        $z           = $z0[$l] - 0.5*($zmin+$zmax);
+        $vname       = "ft_trk_ring_X_L";
+        $descriptio  = "ring X, layer $layer_no";
+    }
+    
+    if($type == 2)
+    {
+        $z           = $z0[$l] + 0.5*($zmin+$zmax);
+        $vname       = "ft_trk_ring_Y_L";
+        $descriptio  = "ring Y, layer $layer_no";
+    }
+    
+    for(my $ring = 0; $ring < 2; $ring++)
+    {
+        my %detector = init_det();
+        my $ring_no = $ring + 1;
+        $detector{"name"}        = "$vname$layer_no\_R$ring_no";
+        $detector{"mother"}      = "ft_trk";
+        $detector{"description"} = "$descriptio\, ring $ring_no";
+        $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+        $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+        $detector{"color"}       = $alu_color;
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$PRMin[$ring]*mm $PRMax[$ring]*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
+    
+    my $ang_offset = 0.;
+    # an overall rotation will have to be added to position correctly extensions 24 and 25 which break cylindrical symmetry
+    for(my $ext = 0; $ext < 25; $ext++)
+    {
+        my %detector = init_det();
+        my $ext_no = $ext + 1;
+        $PSPhi    = - 0.5*4.9 + $ext*15.0 + $ang_offset;
+        $PDPhi    = 4.9;
+        if($ext_no == 24) {$PSPhi = $PSPhi - 5.0;}
+        if($ext_no == 25) {$PSPhi = $PSPhi - 15.0 + 5.0;}
+        $detector{"name"}        = "$vname$layer_no\_E$ext_no";
+        $detector{"mother"}      = "ft_trk";
+        $detector{"description"} = "$descriptio\, ext $ext_no";
+        $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+        $detector{"rotation"}    = "0*deg 0*deg 0.*deg";
+        $detector{"color"}       = $alu_color;
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$PRMax[1]*mm $OuterRadius*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
+        $detector{"material"}    = "G4_Al"; 
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
+}
+
+
+sub place_assembly
+{
+    my $vname = "ft_trk_assembly"; 
+    my $descriptio = "assembly";
+    
+    my @PRMin     = (60., 158.7, 163.5);
+    my @PRMax     = (67., 163.5, 170.0);
+    my @PDz       = ($AssemblyRing1_Dz, $AssemblyRing2_Dz, $AssemblyRing3_Dz );
+    my $zmin      = $zrel[9];
+    my $zmax      = $zmin + 2.*$PDz[2];
+    my $z         = $z0[0] + 0.5*($zmin+$zmax);
+    my $PSPhi     = 0.0;
+    my $PDPhi     = 360.0;
+    
+    for(my $ring = 0; $ring < 3; $ring++)
+    {
+        my %detector = init_det();
+        my $ring_no = $ring + 1;
+        
+        $detector{"name"}        = "$vname\_R$ring_no";
+        $detector{"mother"}      = "ft_trk";
+        $detector{"description"} = "$descriptio\, ring $ring_no";
+        $detector{"pos"}         = "0.000*mm 0.000*mm $z*mm";
+        $detector{"rotation"}    = "0*deg 0*deg 0*deg";
+        $detector{"color"}       = $alu_color; 
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$PRMin[$ring]*mm $PRMax[$ring]*mm $PDz[$ring]*mm $PSPhi*deg $PDPhi*deg";
+        $detector{"material"}    = "G4_Al"; 
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
+    my $Px        = 0.5*(158.69 - 67.0);
+    my $Py        = 0.5*3.0;
+    my $Pz        = $PDz[0];
+    my $ang_offset = 0.;
+    # an overall rotation will have to be added to position correctly the 3 branches
+    for(my $branch = 0; $branch < 3; $branch++)
+    {
+        my %detector = init_det();
+        my $branch_no = $branch + 1;
+        my $rot       = $branch*120.0 + $ang_offset;	
+        my $x         = (67.0 + $Px)*cos($rot*$pi/180.0); 
+        my $y         = (67.0 + $Px)*sin($rot*$pi/180.0);
+        
+        $detector{"name"}        = "$vname\_B$branch_no";
+        $detector{"mother"}      = "ft_trk";
+        $detector{"description"} = "$descriptio\, branch $branch_no";
+        $detector{"pos"}         = "$x*mm $y*mm $z*mm";
+        $detector{"rotation"}    = "0*deg 0*deg -$rot*deg";
+        $detector{"color"}       = $alu_color; 
+        $detector{"type"}        = "Box";
+        $detector{"dimensions"}  = "$Px*mm $Py*mm $Pz*mm";
+        $detector{"material"}    = "G4_Al"; 
+        $detector{"style"}       = 1;
+        print_det(\%configuration, \%detector);
+    }
 }
 
 
@@ -1850,31 +2268,32 @@ sub make_ft_trk_fee_boxes
 
 
 
-
 sub make_ft_trk
 {
-	make_ft_trk_mother();
-	for(my $l = 0; $l < $nlayer; $l++)
-	{
-		my $layer_no       = $l + 1;
-		place_epoxy($l);
-		
-		# X layer type
-		place_pcboard($l,1);
-		place_strips($l,1);
-		place_gas1($l,1);
-		place_mesh($l,1);
-		place_gas2($l,1);
-		place_drift($l,1);
-		
-		# Y layer type
-		place_pcboard($l,2);
-		place_strips($l,2);
-		place_gas1($l,2);
-		place_mesh($l,2);
-		place_gas2($l,2);
-		place_drift($l,2);
-	}
+    make_ft_trk_mother();
+    for(my $l = 0; $l < $nlayer; $l++)
+    {
+        my $layer_no       = $l + 1;
+        for(my $t = 0; $t < 2; $t++)
+        {
+            my $type = $t + 1;
+            # type 1: X layer type ? beam enters disk on drift side
+            # type 2: Y layer type ? beam enters disk on bulk side
+            place_epoxy($l,$type);
+            place_pcboard($l,$type);
+            place_strips($l,$type);
+            place_kapton($l,$type);
+            place_resiststrips($l,$type);
+            place_gas1($l,$type);
+            place_photoresist($l,$type);
+            place_mesh($l,$type);
+            place_gas2($l,$type);
+            place_driftelectrode($l,$type);
+            place_drift($l,$type);
+            place_rings($l,$type);
+        }
+    }
+    place_assembly();
 	make_ft_trk_fee_boxes();
 }
 

@@ -32,7 +32,6 @@ sub define_trk_bank
 	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "layer number");
 	insert_bank_variable(\%configuration, $bankname, "strip",        3, "Di", "strip number");
 	insert_bank_variable(\%configuration, $bankname, "adc",          4, "Di", "adc");
-	insert_bank_variable(\%configuration, $bankname, "tdc",          5, "Di", "tdc");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
 

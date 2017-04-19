@@ -1880,8 +1880,8 @@ sub place_gas2
     $detector{"dimensions"}  = "67.0*mm 151.5*mm $PDz*mm $PSPhi*deg $PDPhi*deg";
     $detector{"material"}    =  $gas_material;
     $detector{"style"}       = 1;
-    $detector{"sensitivity"} = "ftm";
-    $detector{"hit_type"}    = "ftm";
+    $detector{"sensitivity"} = "ft_trk";
+    $detector{"hit_type"}    = "ft_trk";
     $detector{"identifiers"} ="superlayer manual $layer_no type manual $type segment manual $detector{'ncopy'} strip manual 1";
     print_det(\%configuration, \%detector);
 }

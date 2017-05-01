@@ -41,9 +41,9 @@
 <option name="INTEGRATEDRAW" value="flux"/>
 
 <option name="HIT_PROCESS_LIST" value="eic"/>
-<option name="PHYSICS" value="QGSP_BERT"/>
+<option name="PHYSICS" value="QGSP_BERT+STD+Optical"/>
 <option name="RECORD_PASSBY" value="1"/>
-<option name="HALL_MATERIAL" value="Vacuum"/>
+<option name="HALL_MATERIAL" value="G4_Galactic"/>
 
 <option name="MAX_X_POS" value="100000"/>
 <option name="MAX_Y_POS" value="100000"/>
@@ -70,8 +70,6 @@
 <option name="geometry" value="1000x1000"/>
 <option name="HIGH_RES" value="1"/>
 <option name="USE_GUI"  value="1"/>
-
-<option name="OUTPUT" value="evio,output.evio"/>
 
 <option name="EXEC_MACRO" value="det1_slice_solenoid.vis"/>
 

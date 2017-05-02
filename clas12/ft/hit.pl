@@ -9,7 +9,7 @@ sub define_ft_trk_hit
 {
 	# uploading the hit definition
 	my %hit = init_hit();
-	$hit{"name"}            = "ftm";
+	$hit{"name"}            = "ft_trk";
 	$hit{"description"}     = "forward tagger tracker hit definition";
 	$hit{"identifiers"}     = "layer sector strip";
 	$hit{"signalThreshold"} = "2.0*KeV";

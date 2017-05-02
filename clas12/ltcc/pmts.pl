@@ -221,12 +221,12 @@
 				$detector{"description"} = "cone right $n";
 				$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
 				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "b87333";
+				$detector{"color"}       = "aa9999";
 				$detector{"type"}        = "CopyOf WC_S";
-				$detector{"material"}    = "Air_Opt";
+				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			 
@@ -236,12 +236,12 @@
 				$detector{"description"} = "cone left $n";
 				$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
 				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "b87333";
+				$detector{"color"}       = "aa9999";
 				$detector{"type"}        = "CopyOf WC_S";
-				$detector{"material"}    = "Air_Opt";
+				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			
@@ -256,12 +256,12 @@
 				$detector{"description"} = "cone right $n";
 				$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
 				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "b87333";
+				$detector{"color"}       = "aa9999";
 				$detector{"type"}        = "CopyOf WC_M";
-				$detector{"material"}    = "Air_Opt";
+				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			 
@@ -271,12 +271,12 @@
 				$detector{"description"} = "cone left $n";
 				$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
 				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "b87333";
+				$detector{"color"}       = "aa9999";
 				$detector{"type"}        = "CopyOf WC_M";
-				$detector{"material"}    = "Air_Opt";
+				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			
@@ -291,12 +291,12 @@
 				$detector{"description"} = "cone right $n";
 				$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
 				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "b87333";
+				$detector{"color"}       = "aa9999";
 				$detector{"type"}        = "CopyOf WC_L";
-				$detector{"material"}    = "Air_Opt";
+				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			 
@@ -306,12 +306,12 @@
 				$detector{"description"} = "cone left $n";
 				$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
 				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "b87333";
+				$detector{"color"}       = "aa9999";
 				$detector{"type"}        = "CopyOf WC_L";
-				$detector{"material"}    = "Air_Opt";
+				$detector{"material"}    = "G4_Cu";
 				$detector{"style"}       = "1";
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			

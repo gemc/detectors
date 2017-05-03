@@ -41,7 +41,7 @@
 <option name="INTEGRATEDRAW" value="flux"/>
 
 <option name="HIT_PROCESS_LIST" value="eic"/>
-<option name="PHYSICS" value="QGSP_BERT+STD"/>
+<option name="PHYSICS" value="QGSP_BERT"/>
 <option name="RECORD_PASSBY" value="1"/>
 <option name="HALL_MATERIAL" value="G4_Galactic"/>
 

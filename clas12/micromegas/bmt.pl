@@ -241,7 +241,7 @@ sub make_bmt
  	$detector{"color"}       = "aaaaff3";
  	$detector{"type"}        = "Tube";
  	$detector{"dimensions"}  = "$bmt_ir*mm $bmt_or*mm $bmt_dz*mm 0*deg 360*deg";
- 	$detector{"material"}    = "Air";
+ 	$detector{"material"}    = $air_material;
  	$detector{"visible"}     = 0;
  	$detector{"style"}       = 0;
  	print_det(\%configuration, \%detector);
@@ -263,7 +263,7 @@ sub make_sl
  	$detector{"color"}       = "aaaaff";
  	$detector{"type"}        = "Tube";
  	$detector{"dimensions"}  = "$SL_ir[$slindex]*mm $SL_or[$slindex]*mm $SL_dz*mm 0*deg 360*deg";
- 	$detector{"material"}    = "Air";
+ 	$detector{"material"}    = $air_material;
  	$detector{"visible"}     = 0;
  	$detector{"style"}       = 0;	
 	print_det(\%configuration, \%detector);

@@ -41,7 +41,7 @@
 <option name="INTEGRATEDRAW" value="flux"/>
 
 <option name="HIT_PROCESS_LIST" value="eic"/>
-<option name="PHYSICS" value="QGSP_BERT+STD+Optical"/>
+<option name="PHYSICS" value="QGSP_BERT"/>
 <option name="RECORD_PASSBY" value="1"/>
 <option name="HALL_MATERIAL" value="G4_Galactic"/>
 
@@ -77,6 +77,8 @@
 
 <!--  comment out
 <detector name="../geometry/det1_rich_simple_ionside/det1_rich_simple_ionside" factory="TEXT" variation="Original"/>
+
+<option name="PHYSICS" value="QGSP_BERT+STD+Optical"/>
 
 <option name="geometry" value="800x800"/>
 <option name="HIGH_RES" value="1"/>

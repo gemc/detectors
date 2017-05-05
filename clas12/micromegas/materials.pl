@@ -31,7 +31,7 @@ our %configuration = load_configuration($ARGV[0]);
 # One can change the "variation" here if one is desired different from the config.dat
 # $configuration{"variation"} = "myvar";
 
-sub print_materials
+sub materials
 {
 	my %mat = init_mat();
 	$mat{"name"}          = "myEpoxy";
@@ -149,7 +149,7 @@ sub print_materials
 	$mat{"description"}   = "Air";
 	$mat{"density"}       = "0.001205";
 	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "G4_N 0.70 G4_O 0.30";
+	$mat{"components"}    = "G4_N 0.77 G4_O 0.23";
 	print_mat(\%configuration, \%mat);
 	
 	%mat = init_mat();
@@ -356,6 +356,4 @@ sub print_materials
 	$mat{"components"}    = "G4_Mn 0.02 G4_Si 0.01 G4_Cr 0.19 G4_Ni 0.10 G4_Fe 0.68";
 	print_mat(\%configuration, \%mat);
 }
-
-print_materials();
 

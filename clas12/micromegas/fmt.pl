@@ -183,7 +183,7 @@ sub make_fmt
     $detector{"color"}       = "aaaaff";
     $detector{"type"}        = "Tube";
     $detector{"dimensions"}  = "$fmt_ir*mm $fmt_or*mm $fmt_dz*mm 0*deg 360*deg";
-    $detector{"material"}    = "Air";
+    $detector{"material"}    = $air_material;
     $detector{"mfield"}      = "no";
     $detector{"ncopy"}       = 1;
     $detector{"pMany"}       = 1;

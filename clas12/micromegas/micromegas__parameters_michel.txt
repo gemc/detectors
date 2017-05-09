@@ -11,16 +11,16 @@ BMT_radius_layer3 		|  175.731 | mm  | Radius of the 3rd layer of MM		 		| Frede
 BMT_radius_layer4 		|  190.731 | mm  | Radius of the 4th layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_radius_layer5 		|  205.731 | mm  | Radius of the 5th layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_radius_layer6 		|  220.731 | mm  | Radius of the 6th layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
-BMT_zpos_layer1 		| -127.770 | mm  | Position of the 1st layer (in z) (active zone only)		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
+BMT_zpos_layer1 		| -126.070 | mm  | Position of the 1st layer (in z) (active zone only)		| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 24/11/2016
 BMT_zpos_layer2 		| -127.770 | mm  | Position of the 2nd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
 BMT_zpos_layer3 		| -148.690 | mm  | Position of the 3rd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zpos_layer4			| -148.690 | mm  | Position of the 4th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
+BMT_zpos_layer4			| -148.230 | mm  | Position of the 4th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 24/11/2016
 BMT_zpos_layer5 		| -169.600 | mm  | Position of the 5th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zpos_layer6 		| -169.600 | mm  | Position of the 6th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zlength_layer1		|  372.750 | mm  | Length of the 1st layer (in z)   (active zone only)   	| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
+BMT_zpos_layer6 		| -169.550 | mm  | Position of the 6th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr        | - | - | - | 24/11/2016
+BMT_zlength_layer1		|  372.320 | mm  | Length of the 1st layer (in z)   (active zone only)   	| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 18/08/2015
 BMT_zlength_layer2		|  372.750 | mm  | Length of the 2nd layer (in z) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_zlength_layer3		|  420.590 | mm  | Length of the 3rd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zlength_layer4		|  420.590 | mm  | Length of the 4th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
+BMT_zlength_layer4		|  420.480 | mm  | Length of the 4th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 24/11/2016
 BMT_zlength_layer5		|  444.800 | mm  | Length of the 5th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
 BMT_zlength_layer6		|  444.800 | mm  | Length of the 6th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
 BMT_theta_layer1		| -150.000 | deg | Starting angle of the 1st tile of 1st layer 			| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 05/08/2016

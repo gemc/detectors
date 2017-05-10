@@ -74,7 +74,7 @@ foreach my $conf ( @allConfs )
 
     if($configuration{"variation"} eq "java")
     {
-        system('groovy -cp "../*" factory.groovy');
+        system('groovy -cp "$myCOATJAVALIBS/*" factory.groovy');
         
         # Global pars - these should be read by the load_parameters from file or DB
         our %parameters = get_parameters(%configuration);

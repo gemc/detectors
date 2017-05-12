@@ -36,7 +36,7 @@
 <detector name="../geometry/det1_zdc_iondownstream/det1_zdc_iondownstream" factory="TEXT" variation="Original"/>
 <detector name="../geometry/det1_ec_iondownstream/det1_ec_iondownstream" factory="TEXT" variation="Original"/>
 <detector name="../geometry/det1_hc_iondownstream/det1_hc_iondownstream" factory="TEXT" variation="Original"/>
-<detector name="../geometry/det1_tracker_iondownstream/det1_tracker_iondownstream" factory="TEXT" variation="Original"/>
+<!--<detector name="../geometry/det1_tracker_iondownstream/det1_tracker_iondownstream" factory="TEXT" variation="Original"/> -->
 
 <option name="INTEGRATEDRAW" value="flux"/>
 

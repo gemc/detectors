@@ -22,10 +22,12 @@ sub det1_hc_ionside
 #  my @Rin  = (50);
 #   my @Rin  = (60);
 #  my @Rout = (300);
-  my @Rin1  = (40);
+#   my @Rin1  = (40);
+  my @Rin1  = (80);
 #  my @Rout1 = (250);
  my @Rout1 = (300);
-  my @Rin2  = (50);
+#   my @Rin2  = (50);
+  my @Rin2  = (80);  
  my @Rout2 = (300); 
 #  my @Dz   = (29);
  my @Dz   = (75);

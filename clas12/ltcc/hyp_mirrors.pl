@@ -199,7 +199,6 @@ sub build_hyp_mirrors
 			$detector{"style"}       = 1;
 			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 			$detector{"hit_type"}       = "mirror";
-			$detector{"identifiers"}    = "sector manual 1 type manual 2 side manual 1 segment manual $n";
 			print_det(\%configuration, \%detector);
 			
 			# Subtracting right box - LEFT MIRROR
@@ -215,7 +214,6 @@ sub build_hyp_mirrors
 			$detector{"style"}       = 1;
 			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
 			$detector{"hit_type"}       = "mirror";
-			$detector{"identifiers"}    = "sector manual 1 type manual 2 side manual 2 segment manual $n";
 			print_det(\%configuration, \%detector);
 		}
 		

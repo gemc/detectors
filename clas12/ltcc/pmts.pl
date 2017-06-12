@@ -179,29 +179,26 @@
 
 				# To prevent photons getting trapped inside the pmts smaller cylinders (light stoppers) are placed inside the pmts. 
 				# These light stoppers do not have optical properties unlike pmts.
+				my $stopLength = $rad[$n-1] - 0.01;
 
 				%detector = init_det();
 				$detector{"name"}        = "pmt_light_stopper_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
+				$detector{"mother"}      = "pmt_s$s"."right_$n";
 				$detector{"description"} = "PMT light stopper right $n";
-				$detector{"pos"}         = "$x0_sec[$n-1]*cm $y0_sec[$n-1]*cm $z0_sec[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg 0*deg";
 				$detector{"color"}       = "558844";
 				$detector{"type"}        = "Tube";
-				$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm 0.5*cm 0*deg 360*deg";
+				$detector{"dimensions"}  = "0*cm $stopLength*cm 0.5*cm 0*deg 360*deg";
 				$detector{"material"}    = "G4_Galactic";
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
 
 				%detector = init_det();
 				$detector{"name"}        = "pmt_light_stopper_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";			
+				$detector{"mother"}      = "pmt_s$s"."left_$n";
 				$detector{"description"} = "PMT light stopper left $n";
-				$detector{"pos"}         = "-$x0_sec[$n-1]*cm $y0_sec[$n-1]*cm $z0_sec[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg  $tilt[$n-1]*deg  0*deg";
 				$detector{"color"}       = "558844";
 				$detector{"type"}        = "Tube";
-				$detector{"dimensions"}  = "0*cm $rad[$n-1]*cm 0.5*cm 0*deg 360*deg";
+				$detector{"dimensions"}  = "0*cm $stopLength*cm 0.5*cm 0*deg 360*deg";
 				$detector{"material"}    = "G4_Galactic";
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
@@ -227,7 +224,6 @@
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			 
 				%detector = init_det();
@@ -242,7 +238,6 @@
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			
 
@@ -262,7 +257,6 @@
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			 
 				%detector = init_det();
@@ -277,7 +271,6 @@
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			
 
@@ -297,7 +290,6 @@
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			 
 				%detector = init_det();
@@ -312,7 +304,6 @@
 				$detector{"style"}       = "1";
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 			
 
@@ -420,7 +411,6 @@
 				$detector{"style"}       = 1;
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
 
 				%detector = init_det();
@@ -436,8 +426,7 @@
 				$detector{"style"}       = 1;
 				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 				$detector{"hit_type"}    = "mirror";
-				$detector{"identifiers"} = "sector manual $s side manual 2 segment manual $n";
-				print_det(\%configuration, \%detector);  
+				print_det(\%configuration, \%detector);
 
 		}
 

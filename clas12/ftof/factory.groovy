@@ -8,7 +8,9 @@ import org.jlab.detector.units.SystemOfUnits.Length;
 import org.jlab.detector.base.DetectorType;
 import org.jlab.detector.base.GeometryFactory;
 
-ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF);
+// ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF);
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, 19, "default");
+
 
 FTOFGeant4Factory factory = new FTOFGeant4Factory(cp);
 

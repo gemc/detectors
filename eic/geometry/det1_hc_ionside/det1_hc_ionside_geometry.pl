@@ -23,11 +23,13 @@ sub det1_hc_ionside
 #   my @Rin  = (60);
 #  my @Rout = (300);
 #   my @Rin1  = (40);
-  my @Rin1  = (80);
+  my @Rin1  = (0);
+#   my @Rin1  = (80);
 #  my @Rout1 = (250);
  my @Rout1 = (300);
+  my @Rin2  = (0); 
 #   my @Rin2  = (50);
-  my @Rin2  = (80);  
+#   my @Rin2  = (80);  
  my @Rout2 = (300); 
 #  my @Dz   = (29);
  my @Dz   = (75);
@@ -45,7 +47,8 @@ sub det1_hc_ionside
     $detector{"pos"}        = "0*cm 0*cm $z[$n-1]*cm";
     $detector{"rotation"}   = "$rot[$n-1]*deg 0*deg 0*deg";
 #     $detector{"color"}      = "008080"; #blue
-    $detector{"color"}      = "9900CC";
+#     $detector{"color"}      = "9900CC";
+    $detector{"color"}      = "9900ff";
     $detector{"type"}       = "Cons";
     $detector{"dimensions"} = "$Rin1[$n-1]*cm $Rout1[$n-1]*cm $Rin2[$n-1]*cm $Rout2[$n-1]*cm $Dz[$n-1]*cm 0*deg 360*deg";
     $detector{"material"}   = $mat[$n-1];
@@ -59,5 +62,27 @@ sub det1_hc_ionside
     $detector{"hit_type"}    = "no";
     $detector{"identifiers"} = "no";
      print_det(\%configuration, \%detector);
+     
+    $detector{"name"}        = "det1_hc_ionside_hole";
+    $detector{"mother"}      = "$DetectorName\_$name[$n-1]" ;
+    $detector{"description"} = "det1_hc_ionside_hole";
+    $detector{"pos"}        = "-0.3*m 0*m 0*m";
+    $detector{"rotation"}   = "0*rad 0*rad 0*rad";
+    $detector{"color"}      = "CDE6FA"; 
+    $detector{"type"}       = "Tube";
+    $detector{"dimensions"} = "0*cm 60*cm $Dz[$n-1]*cm 0*deg 360*deg";  
+    $detector{"material"}   = "G4_Galactic";
+    $detector{"mfield"}     = "no";
+    $detector{"ncopy"}      = 1;
+    $detector{"pMany"}       = 1;
+    $detector{"exist"}       = 1;
+    $detector{"visible"}     = 1;
+    $detector{"style"}       = 1;
+    $detector{"sensitivity"} = "no";
+    $detector{"hit_type"}    = "no";
+    $detector{"identifiers"} = "no";
+     print_det(\%configuration, \%detector);
+     
  }
 }
+

@@ -83,13 +83,13 @@ foreach my $conf ( @allConfs )
 	build_ltcc_box();
 	
 	# Elliptical mirrors
-	buildEllMirrors();
+	#buildEllMirrors();
 
 	# Hyperbolic
-	buildHypMirrors();
+	#buildHypMirrors();
 	
 	# mirrors surfaces
-	buildMirrorsSurfaces();
+	#buildMirrorsSurfaces();
 
 	# PMTs
 	buildPmts();

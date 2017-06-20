@@ -210,104 +210,107 @@
 				# There are 3 different sizes of the cones: small, medium and large.
 
 				
-				if($n < 11){
+					if($n < 11){
 
-				%detector = init_det();
-				$detector{"name"}        = "cone_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cone right $n";
-				$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "aa9999";
-				$detector{"type"}        = "CopyOf WC_S";
-				$detector{"material"}    = "G4_Cu";
-				$detector{"style"}       = "1";
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
-			 
-				%detector = init_det();
-				$detector{"name"}        = "cone_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cone left $n";
-				$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "aa9999";
-				$detector{"type"}        = "CopyOf WC_S";
-				$detector{"material"}    = "G4_Cu";
-				$detector{"style"}       = "1";
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
-			
+						if($n != 1) {
+							%detector = init_det();
+							$detector{"name"}        = "cone_s$s"."right_$n";
+							$detector{"mother"}      = "ltccS$s";
+							$detector{"description"} = "cone right $n";
+							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
+							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+							$detector{"color"}       = "aa9999";
+							$detector{"type"}        = "CopyOf WC_S";
+							$detector{"material"}    = "G4_Cu";
+							$detector{"style"}       = "1";
+							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+							$detector{"hit_type"}    = "mirror";
+							print_det(\%configuration, \%detector);
+						}
+						%detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
+						$detector{"mother"}      = "ltccS$s";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+						$detector{"color"}       = "aa9999";
+						$detector{"type"}        = "CopyOf WC_S";
+						$detector{"material"}    = "G4_Cu";
+						$detector{"style"}       = "1";
+						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+						$detector{"hit_type"}    = "mirror";
+						print_det(\%configuration, \%detector);
+						
+						
+					}
+					
+					elsif($n > 10 && $n < 13){
 
-				}
-
-				elsif($n > 10 && $n < 13){
-
-				%detector = init_det();
-				$detector{"name"}        = "cone_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cone right $n";
-				$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "aa9999";
-				$detector{"type"}        = "CopyOf WC_M";
-				$detector{"material"}    = "G4_Cu";
-				$detector{"style"}       = "1";
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
-			 
-				%detector = init_det();
-				$detector{"name"}        = "cone_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cone left $n";
-				$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "aa9999";
-				$detector{"type"}        = "CopyOf WC_M";
-				$detector{"material"}    = "G4_Cu";
-				$detector{"style"}       = "1";
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
-			
-
-				}
+						if($n != 11) {
+							%detector = init_det();
+							$detector{"name"}        = "cone_s$s"."right_$n";
+							$detector{"mother"}      = "ltccS$s";
+							$detector{"description"} = "cone right $n";
+							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
+							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+							$detector{"color"}       = "aa9999";
+							$detector{"type"}        = "CopyOf WC_M";
+							$detector{"material"}    = "G4_Cu";
+							$detector{"style"}       = "1";
+							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+							$detector{"hit_type"}    = "mirror";
+							print_det(\%configuration, \%detector);
+						}
+						%detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
+						$detector{"mother"}      = "ltccS$s";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+						$detector{"color"}       = "aa9999";
+						$detector{"type"}        = "CopyOf WC_M";
+						$detector{"material"}    = "G4_Cu";
+						$detector{"style"}       = "1";
+						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+						$detector{"hit_type"}    = "mirror";
+						print_det(\%configuration, \%detector);
+						
+						
+					}
 				
-				elsif($n > 12 && $n < $endN) {
+					elsif($n > 12 && $n < $endN) {
 
-				%detector = init_det();
-				$detector{"name"}        = "cone_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cone right $n";
-				$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "aa9999";
-				$detector{"type"}        = "CopyOf WC_L";
-				$detector{"material"}    = "G4_Cu";
-				$detector{"style"}       = "1";
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
-			 
-				%detector = init_det();
-				$detector{"name"}        = "cone_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cone left $n";
-				$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "aa9999";
-				$detector{"type"}        = "CopyOf WC_L";
-				$detector{"material"}    = "G4_Cu";
-				$detector{"style"}       = "1";
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
-			
-
-				}
+						if($n != 13) {
+							%detector = init_det();
+							$detector{"name"}        = "cone_s$s"."right_$n";
+							$detector{"mother"}      = "ltccS$s";
+							$detector{"description"} = "cone right $n";
+							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
+							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+							$detector{"color"}       = "aa9999";
+							$detector{"type"}        = "CopyOf WC_L";
+							$detector{"material"}    = "G4_Cu";
+							$detector{"style"}       = "1";
+							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+							$detector{"hit_type"}    = "mirror";
+							print_det(\%configuration, \%detector);
+						}
+						%detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
+						$detector{"mother"}      = "ltccS$s";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+						$detector{"color"}       = "aa9999";
+						$detector{"type"}        = "CopyOf WC_L";
+						$detector{"material"}    = "G4_Cu";
+						$detector{"style"}       = "1";
+						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+						$detector{"hit_type"}    = "mirror";
+						print_det(\%configuration, \%detector);
+						
+						
+					}
 
 				# Shield dimensions were determined in a way that shields cover the outer face of the WC
 

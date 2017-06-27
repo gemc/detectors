@@ -27,6 +27,8 @@ sub define_FMT_bank
 	insert_bank_variable(\%configuration, $bankname, "layer",          1, "Di", "layer number");
 	insert_bank_variable(\%configuration, $bankname, "sector",         2, "Di", "sector number");
 	insert_bank_variable(\%configuration, $bankname, "strip",          3, "Di", "strip number");
+	insert_bank_variable(\%configuration, $bankname, "Edep",           4, "Dd", "energy deposited");
+	insert_bank_variable(\%configuration, $bankname, "ADC",            5, "Di", "ADC");
 	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");
 }
 
@@ -41,6 +43,7 @@ sub define_BMT_bank
 	insert_bank_variable(\%configuration, $bankname, "sector",         2, "Di", "sector number");
 	insert_bank_variable(\%configuration, $bankname, "strip",          3, "Di", "strip number");
 	insert_bank_variable(\%configuration, $bankname, "Edep",           4, "Dd", "energy deposited");
+	insert_bank_variable(\%configuration, $bankname, "ADC",            5, "Di", "ADC");
 	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");
 }
 

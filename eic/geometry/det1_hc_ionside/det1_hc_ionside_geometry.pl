@@ -70,7 +70,7 @@ sub det1_hc_ionside
     $detector{"rotation"}   = "0*rad 0*rad 0*rad";
     $detector{"color"}      = "CDE6FA"; 
     $detector{"type"}       = "Tube";
-    $detector{"dimensions"} = "0*cm 60*cm $Dz[$n-1]*cm 0*deg 360*deg";  
+    $detector{"dimensions"} = "0*cm 65*cm $Dz[$n-1]*cm 0*deg 360*deg";  
     $detector{"material"}   = "G4_Galactic";
     $detector{"mfield"}     = "no";
     $detector{"ncopy"}      = 1;

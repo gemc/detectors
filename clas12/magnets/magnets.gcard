@@ -1,10 +1,10 @@
 <gcard>
 
-	<detector name="solenoid" factory="TEXT" variation="original"/>
+	<detector name="cad/" factory="CAD" />
 
-	<detector name="torus" factory="TEXT" variation="original"/>
+
+    <detector name="../targets/target"     factory="TEXT" variation="lH2"/>
 	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
-	<detector name="../beamline/beamline" factory="TEXT" variation="realityWithFTNotUsed"/>
 
 
 	<option name="geometry" value="1400x1200"/>

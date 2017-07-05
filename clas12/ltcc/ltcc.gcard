@@ -20,7 +20,9 @@
 
 
 	<option name="geometry" value="600x600"/>
-	<option name="INTEGRATEDRAW" value="ltcc"/>
+	<option name="INTEGRATEDRAW" value="flux htcc mirror"/>
+	<option name="RECORD_MIRRORS"     value="1"/>
+	<option name="RECORD_PASSBY"     value="1"/>
 
 	<!--
 	<option name="RECORD_MIRRORS" value="1"/>
@@ -36,8 +38,8 @@
 
  	<option name="HALL_FIELD"  value="clas12-solenoid"/>
 <!--	
+ <option name="SWITCH_MATERIALTO"  value="C4F10,HTCCgas"/>
  -->
-<option name="SWITCH_MATERIALTO"  value="C4F10,HTCCgas"/>
 	<option name="OUTPUT"        value="evio, out.ev"/>
 	
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>

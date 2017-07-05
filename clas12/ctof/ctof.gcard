@@ -1,7 +1,7 @@
 <gcard>
 
-<detector name="ctof" factory="TEXT" variation="original"/>
-<!--	-->
+	<detector name="ctof" factory="TEXT" variation="cad"/>
+	<detector name="javacad/" factory="CAD"/>
 
 	<option name="geometry" value="1400x1200"/>
 	

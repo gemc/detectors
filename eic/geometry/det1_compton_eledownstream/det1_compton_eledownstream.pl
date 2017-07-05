@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
+use lib ("$ENV{GEMC}/io");
 use lib ("$ENV{GEMC}/api/perl/");
 use parameters;
 use utils;
@@ -49,8 +50,9 @@ our %configuration = load_configuration($config_file);
 $configuration{"variation"} = "Original";
 
 # To get the parameters proper authentication is needed.
+$configuration{"detector_name"} = "../det1_beamline_magnet/det1_beamline_magnet";
 our %parameters    = get_parameters(%configuration);
-# $configuration{"detector_name"} = "meic_det1_dual";
+$configuration{"detector_name"} = "det1_compton_eledownstream";
 
 #####Load geometry ########################################################
 require "det1_compton_eledownstream_geometry.pl";
@@ -78,5 +80,5 @@ require "eic_compton_hit.pl";
 require "eic_compton_bank.pl";
 
 # Dipole definition
-require "det1_beamline_magnet_ele_dipole.pl";
-det1_beamline_magnet_ele_dipole();
+#require "det1_beamline_magnet_ele_dipole.pl";
+#det1_beamline_magnet_ele_dipole();

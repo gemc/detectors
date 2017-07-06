@@ -191,6 +191,8 @@ my $NUM  = 0;
    my @Xepos =(0.6,1.,1.2,1.5);
     my $angle=3.1415 +$rotBeam*2;
     
+    my $rotBeam2=$rotBeam*2;
+    
  for(my $e=1; $e<=2; $e++)
  {
      for(my $k=1; $k<=$NUME; $k++)
@@ -205,7 +207,7 @@ my $NUM  = 0;
 	 if($e==1) {
 	     my $X12=$X11[$k-1]+$thickE;
 	     $detector{"pos"}        = "$Xepos[$k-1]*cm 0.*cm  $Zend[$k-1]*cm";
-	     $detector{"rotation"}   = "0*rad ($rotBeam*2)*rad 0*rad"; 
+	     $detector{"rotation"}   = "0*rad $rotBeam2*rad 0*rad"; 
 	     $detector{"dimensions"} = " $X11[$k-1]*cm $X12*cm  $X21[$k-1]*cm $X22*cm $Length[$k-1]*cm 0*deg 360*deg";    
 	 }
 	 else { 

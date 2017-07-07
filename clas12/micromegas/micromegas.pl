@@ -68,7 +68,7 @@ foreach my $conf ( @allConfs )
 	define_bank();
 	
 	# geometry
-	define_bmt();
+	# define_bmt();
 	define_fmt();
 }
 

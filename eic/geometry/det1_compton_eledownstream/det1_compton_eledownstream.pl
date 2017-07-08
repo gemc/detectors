@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
 use lib ("$ENV{GEMC}/io");
+use lib ("$ENV{GEMC}/api/perl/");
 use parameters;
 use utils;
 
@@ -50,10 +50,35 @@ our %configuration = load_configuration($config_file);
 $configuration{"variation"} = "Original";
 
 # To get the parameters proper authentication is needed.
+$configuration{"detector_name"} = "../det1_beamline_magnet/det1_beamline_magnet";
 our %parameters    = get_parameters(%configuration);
-# $configuration{"detector_name"} = "meic_det1_dual";
+$configuration{"detector_name"} = "det1_compton_eledownstream";
 
 #####Load geometry ########################################################
 require "det1_compton_eledownstream_geometry.pl";
-det1_compton_eledownstream();
+make_det1_compton_eledownstream_geometry();
 
+require "det1_compton_edetector_geometry.pl";
+make_det1_compton_edetector_geometry();
+
+require "det1_compton_aperture_geometry.pl";
+make_det1_compton_aperture_geometry();
+
+#require "det1_compton_flux_monitor_geometry.pl";
+#make_det1_compton_flux_monitor_geometry();
+
+#materials
+require "det1_compton_eledownstream_materials.pl";
+
+#mirror
+# require "det1_compton_eledownstream_mirror.pl";
+
+#hit definition
+require "eic_compton_hit.pl";
+
+# bank definition
+require "eic_compton_bank.pl";
+
+# Dipole definition
+#require "det1_beamline_magnet_ele_dipole.pl";
+#det1_beamline_magnet_ele_dipole();

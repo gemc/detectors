@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
 use lib ("$ENV{GEMC}/io");
+use lib ("$ENV{GEMC}/api/perl");
 use parameters;
 use utils;
 
@@ -53,7 +53,7 @@ $configuration{"variation"} = "Original";
 # our %parameters    = get_parameters(%configuration);
 
 #####Load geometry ########################################################
-require "det1_rich_dual_ionside_geometry.pl";
+require "det1_rich_dual_ionside_geometry_shield.pl";
 det1_rich_dual_ionside();
 
 #materials
@@ -64,6 +64,8 @@ require "det1_rich_dual_ionside_mirror.pl";
 
 #hit
 require "eic_rich_hit.pl";
+define_hit();
 
 # banks
 require "eic_rich_bank.pl";
+define_bank();

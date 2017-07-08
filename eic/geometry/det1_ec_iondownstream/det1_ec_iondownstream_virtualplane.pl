@@ -17,7 +17,8 @@ sub det1_ec_iondownstream_virtualplane
 {
  my $NUM  = 1;
 #  my @z    = (585+$offset-9-0.01);
- my @z    = (592+$offset-12.5-0.01);
+#  my @z    = (592+$offset-12.5-0.01);
+ my @z    = (650);
  my @Rin  = (10);
 #  my @Rout = (50);
  my @Rout = (55);

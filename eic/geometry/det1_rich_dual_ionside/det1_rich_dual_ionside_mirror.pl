@@ -1,7 +1,6 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/api/perl");
 use lib ("$ENV{GEMC}/io");
 use utils;
 use mirrors;
@@ -61,6 +60,31 @@ my $reflectivity =
 # Photon energy bins
 my @PhotonEnergyBin = ( "1.7712*eV", "6.1992*eV" );
 my @Reflectivity = ( 0.95, 0.95 );
+
+my @PhotonEnergyBin1 = ( "2.04358*eV", "2.0664*eV", "2.09046*eV", "2.14023*eV", 
+"2.16601*eV", "2.20587*eV", "2.23327*eV", "2.26137*eV", 
+"2.31972*eV", "2.35005*eV", "2.38116*eV", "2.41313*eV", 
+"2.44598*eV", "2.47968*eV", "2.53081*eV", "2.58354*eV", 
+"2.6194*eV", "2.69589*eV", "2.73515*eV", "2.79685*eV", 
+"2.86139*eV", "2.95271*eV", "3.04884*eV", "3.12665*eV", 
+"3.2393*eV", "3.39218*eV", "3.52508*eV", "3.66893*eV",
+"3.82396*eV", "3.99949*eV", "4.13281*eV", "4.27679*eV", 
+"4.48244*eV", "4.65057*eV", "4.89476*eV", "5.02774*eV", 
+"5.16816*eV", "5.31437*eV", "5.63821*eV", "5.90401*eV", 
+"6.19921*eV");
+
+my @Reflectivity1 = (0.8678125, 0.8651562, 0.8639063, 0.8637500,
+0.8640625, 0.8645313, 0.8643750, 0.8656250,
+0.8653125, 0.8650000, 0.8648437, 0.8638281, 
+0.8635156, 0.8631250, 0.8621875, 0.8617188,
+0.8613281, 0.8610156, 0.8610938, 0.8616016,
+0.8623047, 0.8637500, 0.8655859, 0.8673828,
+0.8700586, 0.8741992, 0.8781055, 0.8825195,
+0.8876172, 0.8937207, 0.8981836, 0.9027441,
+0.9078369, 0.9102002, 0.9093164, 0.9061743,
+0.9004223, 0.8915210, 0.8599536, 0.8208313,
+0.7625024);
+
 #my @Reflectivity = ( 1., 1. );
 
 
@@ -76,8 +100,8 @@ sub print_mirror
 	$mir{"finish"}       = "polishedfrontpainted";
 	$mir{"model"}        = "unified";
 	$mir{"border"} 	     = "SkinSurface";
-	$mir{"photonEnergy"} = arrayToString(@PhotonEnergyBin);
-	$mir{"reflectivity"} = arrayToString(@Reflectivity);
+	$mir{"photonEnergy"} = arrayToString(@PhotonEnergyBin1);
+	$mir{"reflectivity"} = arrayToString(@Reflectivity1);
 	print_mir(\%configuration, \%mir);
 
 }

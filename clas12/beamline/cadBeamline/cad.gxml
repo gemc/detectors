@@ -21,7 +21,7 @@
     <volume name="nut8"                  color="992222" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" material="G4_Cu"/>
     <volume name="nut9"                  color="992222" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" material="G4_Cu"/>
     <volume name="taggerInnerShield"     color="bb1111" position="0*mm 0*mm 1643.00*mm" rotation="0*deg 180*deg 0*deg" material="G4_W"/>
-    <volume name="main-cone"             color="22ffff" position="0*mm 0*mm 1512.07*mm" rotation="0*deg 180*deg 0*deg" material="G4_W"/>
+    <volume name="main-cone"             color="22ffff" position="0*mm 0*mm 1589.47*mm" rotation="0*deg 180*deg 0*deg" material="G4_W"/>
 	<volume name="flange-assembly"       color="00d2d2" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
     <volume name="lifting-plate"         color="e50000" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
 </gxml>

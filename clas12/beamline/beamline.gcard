@@ -1,19 +1,15 @@
 <gcard>
 
-	<!--
-	<detector name="beamline"              factory="TEXT" variation="FTOff"/>
-	-->
+
+	<detector name="beamlinePipes" factory="TEXT" variation="FTOn"/>
 
 	<detector name="cadBeamline/" factory="CAD"/>
 
-<!--
-	<detector name="../magnets/torus"      factory="TEXT" variation="original"/>
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
-	-->
 
+	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="../magnets/cad/" factory="CAD"/>
 
 	<option name="geometry" value="1400x1200"/>
 	<option name="NO_FIELD" value="all"/>
 
-<!--	<option name="EXEC_MACRO" value="vis.macro"/>-->
 </gcard>

@@ -1,0 +1,18 @@
+<gxml>
+	<volume name="WC_S" mother="ltccS1" color="aa9999"  sensitivity="mirror: ltcc_AlMgF2" hitType="mirror" identifiers="sector manual 1 side manual 2 segment manual 1"   position="51.2312*cm 9.19604*cm 610.878*cm" rotation="31.0299*deg -6.62588*deg 55.2293*deg" />
+	<volume name="WC_M" mother="ltccS1" color="aa9999"  sensitivity="mirror: ltcc_AlMgF2" hitType="mirror" identifiers="sector manual 1 side manual 2 segment manual 11"  position="176.29*cm 86.7564*cm 551.357*cm" rotation="29.7587*deg -22.9848*deg 50.2245*deg" />
+	<volume name="WC_L" mother="ltccS1" color="aa9999"  sensitivity="mirror: ltcc_AlMgF2" hitType="mirror" identifiers="sector manual 1 side manual 2 segment manual 15"  position="232.224*cm 121.155*cm 513.875*cm" rotation="32.3105*deg -31.0276*deg 47.4748*deg" />
+
+ 	
+	<volume name="S1-BB" color="ccccdd"   position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg"/>
+	<volume name="S1-BLB" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-BRB" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-BW" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-LW" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-RW" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-TB" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-TLB" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-TRB" color="ccccdd"  position="0*mm 0*mm 1000*mm" rotation="180*deg 0*deg 60*deg" />
+		
+</gxml>
+

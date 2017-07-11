@@ -13,7 +13,7 @@ sub define_hit
 	$hit{"description"}     = "ctof hit definitions";
 	$hit{"identifiers"}     = "paddle";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "5*ns";
+	$hit{"timeWindow"}      = "20*ns";
 	$hit{"prodThreshold"}   = "2*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";

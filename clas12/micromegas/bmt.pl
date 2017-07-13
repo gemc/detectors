@@ -173,7 +173,7 @@ sub rot
 {
  my $l = shift;
  my $s = shift;
- my $theta_rot = $starting_theta[$l] - $s*$Dtheta;
+ my $theta_rot = $starting_theta[$l] + $s*$Dtheta;
  return "0*deg 0*deg $theta_rot*deg";
 }
 

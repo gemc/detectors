@@ -37,12 +37,6 @@
 	my @cyl_tilt_r = (); # rotation about z axis for cylindrical mirrors (right)
 	my @cyl_ang = (); # angle of the cylindrical mirror segment
 	my @cyl_outer = (); # outer radius of the cylindrical mirror
-	my @wc_sec_x_r = ();
-	my @wc_sec_y_r = ();
-	my @wc_sec_z_r = ();
-	my @wc_sec_x_l = ();
-	my @wc_sec_y_l = ();
-	my @wc_sec_z_l = ();
 	my @shield_pos_xR = (); # positions of the shields in sectors (R=right L=left)
 	my @shield_pos_yR = ();
 	my @shield_pos_zR = ();
@@ -55,6 +49,7 @@
 	my @mirror_pos_xL = ();
 	my @mirror_pos_yL = ();
 	my @mirror_pos_zL = ();
+	my @fangle = ();
 
 	sub buildPmts
 	{	
@@ -78,12 +73,6 @@
 			$y0_sec[$n] = $parameters{"ltcc.pmt.s$s"."_y"};
 			$z0_sec[$n] = $parameters{"ltcc.pmt.s$s"."_z"};
 			$tilt[$n] = $parameters{"ltcc.wc.s$s"."_angle"}; 
-			$wc_sec_x_r[$n] = $parameters{"ltcc.wc.s$s"."_xR"};
-			$wc_sec_y_r[$n] = $parameters{"ltcc.wc.s$s"."_yR"};
-			$wc_sec_z_r[$n] = $parameters{"ltcc.wc.s$s"."_zR"};
-			$wc_sec_x_l[$n] = $parameters{"ltcc.wc.s$s"."_xL"};
-			$wc_sec_y_l[$n] = $parameters{"ltcc.wc.s$s"."_yL"};
-			$wc_sec_z_l[$n] = $parameters{"ltcc.wc.s$s"."_zL"};
 			$shield_x0[$n] = $parameters{"ltcc.shield.s$s"."_dx"};
 			$shield_y0[$n] = $parameters{"ltcc.shield.s$s"."_dy"};
 			$shield_z0[$n] = $parameters{"ltcc.shield.s$s"."_dz"};
@@ -128,6 +117,8 @@
 			$segphi_cyl[$n] = -90 - $segtheta[$n];
 
 			$len[$n] = 1;  # Hardcoding pmt length here
+
+			$fangle[$s] = ($s - 2) * 60; # rotation angle of the ltcc frame for each sectors
 			
 			}
 			
@@ -136,6 +127,7 @@
 
 	sub build_pmts
 	{
+
 
 	
 		for(my $n=$startN; $n<=$endN; $n++)
@@ -203,114 +195,12 @@
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
 
-	
+				
+				
 				# In this simulation there are 18 pmts and cylindrical mirrors in left and right segments of each sector
 				# However the # of shields and  WCs are 17 in each segment. The following if statement is for 17 shields in each segment 
 
-				# There are 3 different sizes of the cones: small, medium and large.
-
 				
-					if($n < 11){
-
-						if($n != 1) {
-							%detector = init_det();
-							$detector{"name"}        = "cone_s$s"."right_$n";
-							$detector{"mother"}      = "ltccS$s";
-							$detector{"description"} = "cone right $n";
-							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-							$detector{"color"}       = "aa9999";
-							$detector{"type"}        = "CopyOf WC_S";
-							$detector{"material"}    = "G4_Cu";
-							$detector{"style"}       = "1";
-							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-							$detector{"hit_type"}    = "mirror";
-							print_det(\%configuration, \%detector);
-						}
-						%detector = init_det();
-						$detector{"name"}        = "cone_s$s"."left_$n";
-						$detector{"mother"}      = "ltccS$s";
-						$detector{"description"} = "cone left $n";
-						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-						$detector{"color"}       = "aa9999";
-						$detector{"type"}        = "CopyOf WC_S";
-						$detector{"material"}    = "G4_Cu";
-						$detector{"style"}       = "1";
-						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-						$detector{"hit_type"}    = "mirror";
-						print_det(\%configuration, \%detector);
-						
-						
-					}
-					
-					elsif($n > 10 && $n < 13){
-
-						if($n != 11) {
-							%detector = init_det();
-							$detector{"name"}        = "cone_s$s"."right_$n";
-							$detector{"mother"}      = "ltccS$s";
-							$detector{"description"} = "cone right $n";
-							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-							$detector{"color"}       = "aa9999";
-							$detector{"type"}        = "CopyOf WC_M";
-							$detector{"material"}    = "G4_Cu";
-							$detector{"style"}       = "1";
-							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-							$detector{"hit_type"}    = "mirror";
-							print_det(\%configuration, \%detector);
-						}
-						%detector = init_det();
-						$detector{"name"}        = "cone_s$s"."left_$n";
-						$detector{"mother"}      = "ltccS$s";
-						$detector{"description"} = "cone left $n";
-						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-						$detector{"color"}       = "aa9999";
-						$detector{"type"}        = "CopyOf WC_M";
-						$detector{"material"}    = "G4_Cu";
-						$detector{"style"}       = "1";
-						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-						$detector{"hit_type"}    = "mirror";
-						print_det(\%configuration, \%detector);
-						
-						
-					}
-				
-					elsif($n > 12 && $n < $endN) {
-
-						if($n != 13) {
-							%detector = init_det();
-							$detector{"name"}        = "cone_s$s"."right_$n";
-							$detector{"mother"}      = "ltccS$s";
-							$detector{"description"} = "cone right $n";
-							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-							$detector{"color"}       = "aa9999";
-							$detector{"type"}        = "CopyOf WC_L";
-							$detector{"material"}    = "G4_Cu";
-							$detector{"style"}       = "1";
-							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-							$detector{"hit_type"}    = "mirror";
-							print_det(\%configuration, \%detector);
-						}
-						%detector = init_det();
-						$detector{"name"}        = "cone_s$s"."left_$n";
-						$detector{"mother"}      = "ltccS$s";
-						$detector{"description"} = "cone left $n";
-						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-						$detector{"color"}       = "aa9999";
-						$detector{"type"}        = "CopyOf WC_L";
-						$detector{"material"}    = "G4_Cu";
-						$detector{"style"}       = "1";
-						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-						$detector{"hit_type"}    = "mirror";
-						print_det(\%configuration, \%detector);
-						
-						
-					}
 
 				# Shield dimensions were determined in a way that shields cover the outer face of the WC
 
@@ -431,11 +321,124 @@
 				$detector{"hit_type"}    = "mirror";
 				print_det(\%configuration, \%detector);
 
+			}
+
 		}
 
 
+					for(my $s=$startS; $s<=$endS; $s++) {   
 
-	}	
+					my %detector = init_det();
+					$detector{"name"}        = "frame1_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-BW ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+
+					%detector = init_det();
+					$detector{"name"}        = "frame2_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-BB ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+
+					%detector = init_det();
+					$detector{"name"}        = "frame3_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-BRB ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+			
+					%detector = init_det();
+					$detector{"name"}        = "frame4_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-LW ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+			
+					%detector = init_det();
+					$detector{"name"}        = "frame5_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-RW ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+				
+					%detector = init_det();
+					$detector{"name"}        = "frame6_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-TB ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+
+					%detector = init_det();
+					$detector{"name"}        = "frame7_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-TRB ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+
+					%detector = init_det();
+					$detector{"name"}        = "frame8_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-TLB ";
+					#$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+
+			
+					%detector = init_det();
+					$detector{"name"}        = "frame9_s$s";
+					$detector{"mother"}      = "root";
+					$detector{"description"} = "ltcc frame $s";
+					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
+					$detector{"color"}       = "ccccdd";
+					$detector{"type"}        = "CopyOf S1-BLB ";
+					$detector{"material"}    = "G4_Galactic";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+
+				
+				        }
 
 
  }

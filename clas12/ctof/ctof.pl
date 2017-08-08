@@ -54,7 +54,8 @@ require "./geometry.pl";
 require "./geometry_java.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original", "cad", "java");
+#my @allConfs = ("original", "cad", "java");
+my @allConfs = ("cad", "java");
 
 # bank definitions
 define_bank();

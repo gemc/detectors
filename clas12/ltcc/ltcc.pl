@@ -58,6 +58,10 @@ require "./ltccBox.pl";      # mother volume
 require "./ell_mirrors.pl";   # ell mirrors
 require "./hyp_mirrors.pl";   # hyp mirrors
 require "./pmts.pl";          # pmts
+require "./cones.pl";          # cones
+require "./cyl_mirrors.pl";          # cyl mirrors
+require "./ltcc_frame.pl";          # frame
+require "./shields.pl";          # shields
 
 # mirrors properties
 require "./mirrors.pl";
@@ -93,6 +97,18 @@ foreach my $conf ( @allConfs )
 
 	# PMTs
 	buildPmts();
+
+	# Cones
+	buildCones();
+
+	# Cylindrical mirrors
+	buildCylMirrors();
+
+	# frame
+	buildLtccFrame();
+
+	# Shields
+	buildShields();
 }
 
 

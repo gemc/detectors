@@ -41,7 +41,7 @@
 					$detector{"name"}        = "frame1_s$s";
 					$detector{"mother"}      = "root";
 					$detector{"description"} = "ltcc frame $s";
-					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
 					$detector{"type"}        = "CopyOf S1-BW";
@@ -53,7 +53,7 @@
 						$detector{"name"}        = "frame2_s$s";
 						$detector{"mother"}      = "root";
 						$detector{"description"} = "ltcc frame $s";
-						$detector{"pos"}         = "0*cm 0*cm 100*cm";
+						$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
 						$detector{"type"}        = "CopyOf S1-BB";
@@ -65,7 +65,7 @@
 					$detector{"name"}        = "frame3_s$s";
 					$detector{"mother"}      = "root";
 					$detector{"description"} = "ltcc frame $s";
-					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
 					$detector{"type"}        = "CopyOf S1-BRB";
@@ -77,7 +77,7 @@
 						$detector{"name"}        = "frame4_s$s";
 						$detector{"mother"}      = "root";
 						$detector{"description"} = "ltcc frame $s";
-						$detector{"pos"}         = "0*cm 0*cm 100*cm";
+						$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
 						$detector{"type"}        = "CopyOf S1-LW ";
@@ -89,7 +89,7 @@
 					$detector{"name"}        = "frame5_s$s";
 					$detector{"mother"}      = "root";
 					$detector{"description"} = "ltcc frame $s";
-					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
 					$detector{"type"}        = "CopyOf S1-RW";
@@ -101,7 +101,7 @@
 						$detector{"name"}        = "frame6_s$s";
 						$detector{"mother"}      = "root";
 						$detector{"description"} = "ltcc frame $s";
-						$detector{"pos"}         = "0*cm 0*cm 100*cm";
+						$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
 						$detector{"type"}        = "CopyOf S1-TB";
@@ -113,7 +113,7 @@
 					$detector{"name"}        = "frame7_s$s";
 					$detector{"mother"}      = "root";
 					$detector{"description"} = "ltcc frame $s";
-					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
 					$detector{"type"}        = "CopyOf S1-TRB";
@@ -125,7 +125,7 @@
 						$detector{"name"}        = "frame8_s$s";
 						$detector{"mother"}      = "root";
 						$detector{"description"} = "ltcc frame $s";
-						$detector{"pos"}         = "0*cm 0*cm 100*cm";
+						$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
 						$detector{"type"}        = "CopyOf S1-TLB";
@@ -138,7 +138,7 @@
 					$detector{"name"}        = "frame9_s$s";
 					$detector{"mother"}      = "root";
 					$detector{"description"} = "ltcc frame $s";
-					$detector{"pos"}         = "0*cm 0*cm 100*cm";
+					$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
 					$detector{"type"}        = "CopyOf S1-BLB";

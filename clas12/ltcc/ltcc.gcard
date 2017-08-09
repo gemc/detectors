@@ -17,6 +17,7 @@
 
 	<detector name="ltcc" factory="TEXT" variation="original"/>
 	<detector name="cad_cone/" factory="CAD"/>
+	<detector name="cad/" factory="CAD"/>
 
 
 	<option name="geometry" value="600x600"/>

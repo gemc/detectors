@@ -44,8 +44,8 @@
 					$detector{"pos"}         = "0*cm 0*cm 100*cm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
-					$detector{"type"}        = "CopyOf S1-BW ";
-					#$detector{"material"}    = "G4_Galactic";
+					$detector{"type"}        = "CopyOf S1-BW";
+					$detector{"material"}    = "G4_Galactic";
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
 
@@ -56,7 +56,7 @@
 						$detector{"pos"}         = "0*cm 0*cm 100*cm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
-						$detector{"type"}        = "CopyOf S1-BB ";
+						$detector{"type"}        = "CopyOf S1-BB";
 						$detector{"material"}    = "G4_Galactic";
 						$detector{"style"}       = 1;
 						print_det(\%configuration, \%detector);
@@ -68,8 +68,8 @@
 					$detector{"pos"}         = "0*cm 0*cm 100*cm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
-					$detector{"type"}        = "CopyOf S1-BRB ";
-					#$detector{"material"}    = "G4_Galactic";
+					$detector{"type"}        = "CopyOf S1-BRB";
+					$detector{"material"}    = "G4_Galactic";
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
 			
@@ -92,7 +92,7 @@
 					$detector{"pos"}         = "0*cm 0*cm 100*cm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
-					$detector{"type"}        = "CopyOf S1-RW ";
+					$detector{"type"}        = "CopyOf S1-RW";
 					$detector{"material"}    = "G4_Galactic";
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
@@ -104,7 +104,7 @@
 						$detector{"pos"}         = "0*cm 0*cm 100*cm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
-						$detector{"type"}        = "CopyOf S1-TB ";
+						$detector{"type"}        = "CopyOf S1-TB";
 						$detector{"material"}    = "G4_Galactic";
 						$detector{"style"}       = 1;
 						print_det(\%configuration, \%detector);
@@ -116,7 +116,7 @@
 					$detector{"pos"}         = "0*cm 0*cm 100*cm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
-					$detector{"type"}        = "CopyOf S1-TRB ";
+					$detector{"type"}        = "CopyOf S1-TRB";
 					$detector{"material"}    = "G4_Galactic";
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
@@ -128,8 +128,8 @@
 						$detector{"pos"}         = "0*cm 0*cm 100*cm";
 						$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 						$detector{"color"}       = "ccccdd";
-						$detector{"type"}        = "CopyOf S1-TLB ";
-						#$detector{"material"}    = "G4_Galactic";
+						$detector{"type"}        = "CopyOf S1-TLB";
+						$detector{"material"}    = "G4_Galactic";
 						$detector{"style"}       = 1;
 						print_det(\%configuration, \%detector);
 
@@ -141,7 +141,7 @@
 					$detector{"pos"}         = "0*cm 0*cm 100*cm";
 					$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
 					$detector{"color"}       = "ccccdd";
-					$detector{"type"}        = "CopyOf S1-BLB ";
+					$detector{"type"}        = "CopyOf S1-BLB";
 					$detector{"material"}    = "G4_Galactic";
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);

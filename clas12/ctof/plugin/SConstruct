@@ -1,0 +1,10 @@
+from init_env import init_environment
+
+env = init_environment("mlibrary qt5 geant4 clhep")
+
+pluginSources = Split("""
+    loadConstants.cc
+    """)
+
+ctof_dll = env.SharedLibrary( source = pluginSources,  target = "../ctof")
+

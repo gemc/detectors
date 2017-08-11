@@ -105,7 +105,7 @@ foreach my $conf ( @allConfs )
 	buildCylMirrors();
 
 	# frame
-	# buildLtccFrame();
+	 buildLtccFrame();
 
 	# Shields
 	 buildShields();

@@ -228,7 +228,7 @@ sub build_ltcc_box()
 	
 	for(my $n=$startS; $n<=$endS; $n++)
 	{
-      my $c6toc12Z = 1700;
+      my $c6toc12Z = 1973;
       #my $c6toc12Z = 0;
 		my $rotPhi = 90 - ($n-1)*60;
 		# Final box - Big Box * TrapBox

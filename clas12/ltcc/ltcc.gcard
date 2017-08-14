@@ -21,7 +21,7 @@
 
 
 	<option name="geometry" value="600x600"/>
-	<option name="INTEGRATEDRAW" value="flux htcc mirror"/>
+	<option name="INTEGRATEDRAW" value="ltcc"/>
 	<option name="RECORD_MIRRORS"     value="1"/>
 	<option name="RECORD_PASSBY"     value="1"/>
 

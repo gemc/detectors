@@ -72,7 +72,8 @@ require "./afterTorusShielding.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTWithInnerShield", "realityWithFTWithHeliumBag", "realityWithFTNotUsed", "realityWithFTNotUsedWithInnerShield", "realityWithFTNotUsedHeliumBag", "finalNoFT", "FTOn", "FTOff");
-my @allConfs = ("FTOn", "FTOff", "justDownstream", "KPP");
+#my @allConfs = ("FTOn", "FTOff", "justDownstream", "KPP");
+my @allConfs = ("FTOn", "FTOff");
 
 foreach my $conf ( @allConfs )
 {

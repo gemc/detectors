@@ -6,5 +6,9 @@ pluginSources = Split("""
     loadConstants.cc
     """)
 
-ctof_dll = env.SharedLibrary( source = pluginSources,  target = "../ctof")
+# standard pre and suffix for gemc plugins
+env.Replace(SHLIBSUFFIX = ".gplugin")
+env.Replace(SHLIBPREFIX = "")
+
+ctof_dll = env.SharedLibrary( source = pluginSources,  target = "ctof")
 

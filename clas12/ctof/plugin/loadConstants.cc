@@ -2,7 +2,7 @@
 
 bool ctofPlugin::loadConstants(int runno, string variation)
 {
-	var1    = 2.98;
+	var1    = 2.198;
 	var2[0] = 1;
 	var2[0] = 2;
 

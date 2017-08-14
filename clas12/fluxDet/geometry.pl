@@ -7,10 +7,10 @@ our %configuration;
 sub makeFlux
 {
 
-	my $minAngle = 7;   # degrees
-	my $maxAngle = 45;  # degrees
+	my $minAngle = 0.3;   # degrees
+	my $maxAngle = 5;  # degrees
 	my $zpos     = 100; # cm
-	my $thick    = 1;   # cm
+	my $thick    = 0.1;   # cm
 
 	my $IR = $zpos*tan(rad($minAngle));
 	my $OR = $zpos*tan(rad($maxAngle));

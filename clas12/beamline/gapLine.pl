@@ -12,25 +12,14 @@ sub gapLine()
 {
     
     my $zStart = 50 + $microgap;     # end of target
-    my $zEnd   = 433.9 - $microgap;  # start of vacuum line
+    my $zEnd   = 877.4 - $microgap;  # start of vacuum line
     
-    if( $configuration{"variation"} eq "realityWithFT" || $configuration{"variation"} eq "realityWithFTWithInnerShield" || $configuration{"variation"} eq "realityWithFTWithHeliumBag" )
-    {
-        $zEnd = 750.0;
-    }
-    if( $configuration{"variation"} eq "FTOnINFN" || $configuration{"variation"} eq "FTOn_mount_is_W" )
-    {
-        $zEnd = 850.0;
-    }
-    if( $configuration{"variation"} eq "FTOff" )
+     if( $configuration{"variation"} eq "FTOff" )
     {
         $zEnd = 458.2;
     }
-    if( $configuration{"variation"} eq "FTOn" )
-    {
-        $zEnd = 877.4;
-    }
-    my $length = ($zEnd - $zStart) / 2.0;
+
+	my $length = ($zEnd - $zStart) / 2.0;
     my $zpos   = $zStart + $length;
     
     # air pipe
@@ -43,12 +32,6 @@ sub gapLine()
     $detector{"type"}        = "Tube";
     $detector{"dimensions"}  = "0*mm $R*mm $length*mm 0*deg 360*deg";
     $detector{"material"}    = "G4_AIR";
-    if( $configuration{"variation"} eq "realityWithFTNotUsedHeliumBag" || $configuration{"variation"} eq "realityWithFTWithHeliumBag")
-    {
-        $detector{"material"}    = "G4_He";
-        $detector{"name"}        = "heliumPipe";
-    }
-    
     $detector{"style"}       = 1;
     print_det(\%configuration, \%detector);
     

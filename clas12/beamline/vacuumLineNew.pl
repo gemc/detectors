@@ -5,14 +5,14 @@ our %configuration;
 
 
 my $shieldStart = 877.4; # start of W shield
-my $torusStart  = 2756;
-my $torusEnd    = 4915.27;
+my $torusStart  = 2754.17 + 2;
+my $torusEnd    = 4915.27 + 2;
 my $pipeEnds    = 10000;
 
 # temp backnose until CAD model
-my $backNoseLength1 = 200;
-my $backNoseLength2 = 200;
-my $backNoseIR  = 110.0;
+my $backNoseLength1 = $torusEnd + 300;
+my $backNoseLength2 = $backNoseLength1 + 400;
+my $backNoseIR  =  66.0;
 my $backNoseOR1 = 150.0;
 my $backNoseOR2 = 125.0;
 
@@ -72,7 +72,7 @@ sub vacuumLine()
 	$nplanes = 4;
 	#                       big------------------------------small------------------------
 	my @iradius_nose  =  (  $backNoseIR,   $backNoseIR,      $backNoseIR,      $backNoseIR);
-	my @oradius_nose  =  (  $backNoseOR2,  $backNoseOR2,     $backNoseOR1,     $backNoseOR1);
+	my @oradius_nose  =  (  $backNoseOR1,  $backNoseOR1,     $backNoseOR2,     $backNoseOR2);
 	my @z_plane_nose  =  (  $torusEnd,     $backNoseLength1, $backNoseLength1, $backNoseLength2 );
 
 	# lead nose
@@ -88,6 +88,7 @@ sub vacuumLine()
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_nose[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_Pb";
+	$detector{"color"}       = "ff4444";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 

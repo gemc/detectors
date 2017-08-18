@@ -1,5 +1,4 @@
 <gxml>
-	<volume name="Beamline"                 mother="fc"   color="aaaacc" material="G4_STAINLESS-STEEL" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 	<volume name="BoreShield"               mother="fc"   color="bb9999" material="G4_STAINLESS-STEEL" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 	<volume name="CenterTube"               mother="fc"   color="bb9999" material="G4_Cu"              position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 	<volume name="DownstreamShieldingPlate" mother="fc"   color="bb9999" material="G4_STAINLESS-STEEL" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>

@@ -30,10 +30,10 @@ sub vacuumLine()
 	my @z_plane_vbeam  =  ( $shieldStart,  $torusStart, $torusStart, $torusEnd, $torusEnd, $pipeEnds );
 
 
-	if( $configuration{"variation"} eq "FTOn" {
+	if( $configuration{"variation"} eq "FTOn" ) {
 		@iradius_vbeam  =  (  26.6,  26.6,  32.0,  32.0, 60.0,  60.0);
 		@oradius_vbeam  =  (  28.6,  28.6,  35.0,  35.0, 66.0,  66.0);
-		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
+		#		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
    }
 
     # sst pipe
@@ -85,7 +85,7 @@ sub vacuumLine()
 	$dimen = "0.0*deg 360*deg $nplanes*counts";
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius_nose[$i]*mm";}
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius_nose[$i]*mm";}
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $@z_plane_nose[$i]*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_nose[$i]*mm";}
 	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_Pb";
 	$detector{"style"}       = 1;

@@ -1,7 +1,7 @@
 <gcard>
 
 
-    <detector name="beamlinePipes" factory="TEXT" variation="FTOn"/>
+    <detector name="beamline" factory="TEXT" variation="FTOn"/>
 
     <detector name="cadBeamline/" factory="CAD"/>
 

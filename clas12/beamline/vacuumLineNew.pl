@@ -13,8 +13,9 @@ my $pipeEnds    = 10000;
 my $backNoseLength1 = $torusEnd + 300;
 my $backNoseLength2 = $backNoseLength1 + 400;
 my $backNoseIR  =  66.0;
-my $backNoseOR1 = 150.0;
-my $backNoseOR2 = 125.0;
+my $backNoseOR1 = 170.0;
+my $backNoseOR2 = 115.0;
+my $oneWSleeve = 307.7;
 
 sub vacuumLine()
 {
@@ -30,10 +31,11 @@ sub vacuumLine()
 	my @z_plane_vbeam  =  ( $shieldStart,  $torusStart, $torusStart, $torusEnd, $torusEnd, $pipeEnds );
 
 
-	if( $configuration{"variation"} eq "FTOn" ) {
-		@iradius_vbeam  =  (  26.6,  26.6,  32.0,  32.0, 60.0,  60.0);
-		@oradius_vbeam  =  (  28.6,  28.6,  35.0,  35.0, 66.0,  66.0);
-		#		@z_plane_vbeam  =  ( 750.0, $tzs, $tzs, $tze, $tze, 11000 );
+	if( $configuration{"variation"} eq "FTOn2" ) {
+		$nplanes = 8;
+		@iradius_vbeam  =  (  26.6,          26.6,        32.0,        32.0,                    51.0,                     51.0,        60.0,     60.0);
+		@oradius_vbeam  =  (  28.6,          28.6,        35.0,        35.0,                    55.0,                     55.0,        66.0,     66.0);
+		@z_plane_vbeam  =  (  $shieldStart,  $torusStart, $torusStart, $torusEnd - $oneWSleeve, $torusEnd - $oneWSleeve,  $torusEnd,  $torusEnd, $pipeEnds );
    }
 
     # sst pipe

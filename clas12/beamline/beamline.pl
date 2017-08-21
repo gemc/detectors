@@ -44,7 +44,7 @@ require "./vacuumLineNew.pl";
 # air beampipe between the target and the vacuum line
 require "./gapLine.pl";
 
-my @allConfs = ("FTOn", "FTOff");
+my @allConfs = ("FTOn", "FTOff", "FTOn2");
 
 foreach my $conf ( @allConfs )
 {

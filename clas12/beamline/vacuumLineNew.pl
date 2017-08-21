@@ -17,6 +17,12 @@ my $backNoseOR1 = 170.0;
 my $backNoseOR2 = 115.0;
 my $oneWSleeve = 307.7;
 
+# apex cad model not filled with lead.
+my $apexIR = 140;
+my $apexOR = 190;
+my $apexLength = 1200;
+my $apexPos = 5372;
+
 sub vacuumLine()
 {
     # corrected physicists design vacuum line
@@ -94,6 +100,21 @@ sub vacuumLine()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+
+	# lead inside apex
+	my $zpos = $apexPos + $apexLength;
+
+	%detector = init_det();
+	$detector{"name"}        = "leadInsideApex";
+	$detector{"mother"}      = "fc";
+	$detector{"description"} = "lead inside apex";
+	$detector{"color"}       = "4499ff";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "$apexIR*mm $apexOR*mm $apexLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Pb";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
 
 }
 

@@ -37,6 +37,9 @@ our %configuration = load_configuration($ARGV[0]);
 # General:
 our $inches = 25.4;
 
+# materials
+require "./materials.pl";
+
 
 # vacuum line throughout the shields, torus and downstream
 require "./vacuumLineNew.pl";
@@ -48,7 +51,11 @@ my @allConfs = ("FTOn", "FTOff", "FTOn2");
 
 foreach my $conf ( @allConfs )
 {
+
 	$configuration{"variation"} = $conf ;
+
+	# materials
+	materials();
 
 	# vacuum line throughout the shields, torus and downstream
 	# temp includes the torus back nose

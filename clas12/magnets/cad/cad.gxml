@@ -50,8 +50,5 @@
 	<volume name="dcs4r1back"               mother="fc"   color="ffaaff" material="G4_KAPTON"          position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 	<volume name="dcs5r1back"               mother="fc"   color="ffaaff" material="G4_KAPTON"          position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 	<volume name="dcs6r1back"               mother="fc"   color="ffaaff" material="G4_KAPTON"          position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
-	<volume name="ShieldDSadapter"          mother="fc"   color="4444dd" material="G4_STAINLESS-STEEL" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
-	<volume name="ShieldDSleadbase"         mother="fc"   color="99ff99" material="G4_STAINLESS-STEEL" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
-	<volume name="ShieldDSlead"             mother="fc"   color="99ff99" material="G4_Pb"              position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 	<volume name="apex"                     mother="fc"   color="993333" material="G4_STAINLESS-STEEL" position="0*mm 0*mm 1273.27*mm" rotation="0*deg 180*deg 0*deg"/>
 </gxml>

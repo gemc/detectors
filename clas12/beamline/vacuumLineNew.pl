@@ -5,14 +5,14 @@ our %configuration;
 
 
 my $shieldStart = 877.4; # start of W shield
-my $torusStart  = 2754.17 + 2;
-my $torusEnd    = 4915.27 + 2;
-my $pipeEnds    = 10000;
+my $torusStart  = 2754.17 ;
+my $torusEnd    = 4915.27 ;
+my $pipeEnds    = 9400;
 
 # temp backnose until CAD model
 my $backNoseLength1 = $torusEnd + 300;
 my $backNoseLength2 = $backNoseLength1 + 400;
-my $backNoseIR  =  66.0;
+my $backNoseIR  =  68.0;
 my $backNoseOR1 = 170.0;
 my $backNoseOR2 = 115.0;
 my $oneWSleeve = 307.7;
@@ -20,34 +20,65 @@ my $oneWSleeve = 307.7;
 # apex cad model not filled with lead.
 my $apexIR = 140;
 my $apexOR = 190;
-my $apexLength = 1200;
+my $apexLength = 1000;
 my $apexPos = 5372;
 
 sub vacuumLine()
 {
-    # corrected physicists design vacuum line
-    # straight aluminum pipe with vacucum inside
-    
+	# in "root" the first part of the pipe is straight
+	my $pipeLength = ($torusStart - $shieldStart) / 2.0 - 0.1;
+	my $zpos = $shieldStart + $pipeLength ;
+	my $firstVacuumIR = 26.6;
+	my $firstVacuumOR = 28.6;
 
-    my $nplanes = 6;
+	my %detector = init_det();
+	$detector{"name"}        = "vacuumPipe1";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "straightVacuumPipe";
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "0*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
 
-	#                       upstream-------inside torus-------------------------downstream
-    my @iradius_vbeam  =  (  26.6,         26.6,        32.0,        32.0,      60.0,      60.0);
-    my @oradius_vbeam  =  (  28.6,         28.6,        35.0,        35.0,      66.0,      66.0);
-	my @z_plane_vbeam  =  ( $shieldStart,  $torusStart, $torusStart, $torusEnd, $torusEnd, $pipeEnds );
+	# vacuum inside
+	%detector = init_det();
+	$detector{"name"}        = "vacuumInPipe1";
+	$detector{"mother"}      = "vacuumPipe1";
+	$detector{"description"} = "straightVacuumPipe";
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+
+
+
+    # sst pipe inside torus has steps
+
+    my $nplanes = 4;
+
+	#                        inside torus------------downstream
+    my @iradius_vbeam  =  (  32.0,        32.0,      60.0,      60.0);
+    my @oradius_vbeam  =  (  35.0,        35.0,      66.0,      66.0);
+	my @z_plane_vbeam  =  (  $torusStart, $torusEnd, $torusEnd, $pipeEnds );
 
 
 	if( $configuration{"variation"} eq "FTOn2" ) {
-		$nplanes = 8;
-		@iradius_vbeam  =  (  26.6,          26.6,        32.0,        32.0,                    51.0,                     51.0,        60.0,     60.0);
-		@oradius_vbeam  =  (  28.6,          28.6,        35.0,        35.0,                    55.0,                     55.0,        66.0,     66.0);
-		@z_plane_vbeam  =  (  $shieldStart,  $torusStart, $torusStart, $torusEnd - $oneWSleeve, $torusEnd - $oneWSleeve,  $torusEnd,  $torusEnd, $pipeEnds );
+		$nplanes = 6;
+		@iradius_vbeam  =  (  32.0,        32.0,                    51.0,                     51.0,        60.0,     60.0);
+		@oradius_vbeam  =  (  35.0,        35.0,                    55.0,                     55.0,        66.0,     66.0);
+		@z_plane_vbeam  =  (  $torusStart, $torusEnd - $oneWSleeve, $torusEnd - $oneWSleeve,  $torusEnd,  $torusEnd, $pipeEnds );
    }
 
     # sst pipe
-    my %detector = init_det();
+	%detector = init_det();
     $detector{"name"}        = "vacuumPipe";
-    $detector{"mother"}      = "root";
+    $detector{"mother"}      = "fc";
     $detector{"description"} = "vacuumPipe beampipe";
     $detector{"color"}       = "aaffff";
     $detector{"type"}        = "Polycone";
@@ -102,7 +133,7 @@ sub vacuumLine()
 
 
 	# lead inside apex
-	my $zpos = $apexPos + $apexLength;
+	$zpos = $apexPos + $apexLength;
 
 	%detector = init_det();
 	$detector{"name"}        = "leadInsideApex";

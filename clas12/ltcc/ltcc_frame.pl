@@ -40,7 +40,7 @@ sub build_LtccFrame
 		if($s != 3) {
 			my %detector = init_det();
 			$detector{"name"}        = "frame1_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -52,7 +52,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame2_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -64,7 +64,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame3_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -76,7 +76,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame4_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -88,7 +88,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame5_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -100,7 +100,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame6_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -112,7 +112,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame7_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -124,7 +124,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame8_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -137,7 +137,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame9_s$s";
-			$detector{"mother"}      = "root";
+			$detector{"mother"}      = "fc";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";

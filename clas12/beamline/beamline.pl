@@ -44,9 +44,6 @@ require "./materials.pl";
 # vacuum line throughout the shields, torus and downstream
 require "./vacuumLineNew.pl";
 
-# air beampipe between the target and the vacuum line
-require "./gapLine.pl";
-
 my @allConfs = ("FTOn", "FTOff");
 
 foreach my $conf ( @allConfs )

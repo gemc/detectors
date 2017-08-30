@@ -61,8 +61,6 @@ foreach my $conf ( @allConfs )
 	# temp includes the torus back nose
 	vacuumLine();
 
-	# air pipe between target and shield
-    gapLine();
 }
 
 

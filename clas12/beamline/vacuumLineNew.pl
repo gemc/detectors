@@ -67,14 +67,6 @@ sub vacuumLine()
     my @oradius_vbeam  =  (  35.0,        35.0,      66.0,      66.0);
 	my @z_plane_vbeam  =  (  $torusStart, $torusEnd, $torusEnd, $pipeEnds );
 
-
-	if( $configuration{"variation"} eq "FTOn2" ) {
-		$nplanes = 6;
-		@iradius_vbeam  =  (  32.0,        32.0,                    51.0,                     51.0,        60.0,     60.0);
-		@oradius_vbeam  =  (  35.0,        35.0,                    55.0,                     55.0,        66.0,     66.0);
-		@z_plane_vbeam  =  (  $torusStart, $torusEnd - $oneWSleeve, $torusEnd - $oneWSleeve,  $torusEnd,  $torusEnd, $pipeEnds );
-   }
-
     # sst pipe
 	%detector = init_det();
     $detector{"name"}        = "vacuumPipe";

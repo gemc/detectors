@@ -2,6 +2,7 @@
   
    <!-- other variations include: lH2, lD2, ND3, elaborate -->
 
+	<detector name="target" factory="TEXT" variation="cad"/>
 	<detector name="cad/" factory="CAD"/>
 
 	<option name="geometry" value="1400x1200"/>

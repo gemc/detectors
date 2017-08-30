@@ -187,11 +187,11 @@ sub build_targets
 	# cad variation has two volume:
 	# target container
 	# and inside cell
-	#	elsif($thisVariation eq "cad")
+	elsif($thisVariation eq "cad")
 	{
 		my $nplanes = 6;
 
-		my @oradius  =  (    55.0,   55.0,  23.0,  23.0,  15.0,  15.0 );
+		my @oradius  =  (    51.0,   51.0,  21.0,  21.0,  13.5,  13.5 );
 		my @z_plane  =  (  -115.0,  265.0, 290.0, 350.0, 350.0, 942.0 );
 
 		# vaccum target container

@@ -4,7 +4,7 @@ use warnings;
 our %configuration;
 
 
-my $shieldStart = 877.4; # start of W shield
+my $shieldStart = 943; # start of vacuum pipe is 1mm downstream of target vac extension
 my $torusStart  = 2754.17 ;
 my $torusEnd    = 4915.27 ;
 my $pipeEnds    = 9400;

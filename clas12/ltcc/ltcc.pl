@@ -76,22 +76,22 @@ define_bank();
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
 	# materials
 	materials();
-	
+
 	# hits
 	define_hit();
-	
+
 	# Building LTCC Box
 	build_ltcc_box();
-	
+
 	# Elliptical mirrors
 	buildEllMirrors();
 
 	# Hyperbolic
 	buildHypMirrors();
-	
+
 	# mirrors surfaces
 	buildMirrorsSurfaces();
 
@@ -105,10 +105,10 @@ foreach my $conf ( @allConfs )
 	buildCylMirrors();
 
 	# frame
-	 buildLtccFrame();
+	buildLtccFrame();
 
 	# Shields
-	 buildShields();
+	buildShields();
 }
 
 

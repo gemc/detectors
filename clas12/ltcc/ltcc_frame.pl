@@ -147,9 +147,9 @@ sub build_LtccFrame
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
 		}
-
+		
 	}
-
+	
 }
 
 1;

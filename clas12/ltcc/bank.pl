@@ -21,7 +21,7 @@ my $bankname  = "ltcc";
 
 sub define_bank
 {
-	
+
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "clas12 sector");

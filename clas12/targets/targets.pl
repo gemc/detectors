@@ -38,7 +38,7 @@ require "./geometry.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("lH2", "lD2", "ND3", "elaborate");
+my @allConfs = ("lH2", "lD2", "ND3", "cad");
 
 foreach my $conf ( @allConfs )
 {

@@ -37,76 +37,27 @@ our %configuration = load_configuration($ARGV[0]);
 # General:
 our $inches = 25.4;
 
-# Torus
-our $SteelFrameLength     = 2158.4/2.0;  # 1/2 length of torus
-our $TorusZpos            = 3833;        # center of the torus position (include its semilengt). Value from M. Zarecky, R. Miller PDF file on 1/13/16
-our $torusFrontNoseLength = 365.6;            # nose
-our $mountTotalLength     = 484.2;            # total length of the torus Mount
-
-our $tungstenColor        = "ff0000";
-
 # materials
 require "./materials.pl";
 
+
 # vacuum line throughout the shields, torus and downstream
-require "./vacuumLine.pl";
+require "./vacuumLineNew.pl";
 
-# air beampipe between the target and the vacuum line
-require "./gapLine.pl";
-
-# moeller shield
-require "./tungstenCone.pl";
-
-# connection of moeller shield / FT to torus
-require "./torusFrontMount.pl";
-
-# shielding around the torus beamline
-require "./torusBeamShield.pl";
-
-# shielding downstream of the torus
-require "./afterTorusShielding.pl";
-
-# shielding blocks on the torus
-# require "./torusShielding.pl";
-
-
-# all the scripts must be run for every configuration
-#my @allConfs = ("physicistsCorrectedBaselineNoFT", "realityNoFT", "realityWithFT", "realityWithFTWithInnerShield", "realityWithFTWithHeliumBag", "realityWithFTNotUsed", "realityWithFTNotUsedWithInnerShield", "realityWithFTNotUsedHeliumBag", "finalNoFT", "FTOn", "FTOff");
-my @allConfs = ("FTOn", "FTOff", "justDownstream", "KPP");
+my @allConfs = ("FTOn", "FTOff");
 
 foreach my $conf ( @allConfs )
 {
+
 	$configuration{"variation"} = $conf ;
-	
+
 	# materials
 	materials();
-	
+
 	# vacuum line throughout the shields, torus and downstream
+	# temp includes the torus back nose
 	vacuumLine();
 
-	if($configuration{"variation"} ne "justDownstream")
-	{
-        if($configuration{"variation"} ne "KPP")
-        {
-            # air beampipe between the target and the vacuum line
-            gapLine();
-        }
-
-		# moeller shield
-		tungstenCone();
-	
-		# connection of moeller shield / FT to torus
-		torusFrontMount();
-	}
-	# shielding around the torus beamline
-	torusBeamShield();
-
-	# shielding blocks 
-	# torusShield();
-
-	# shielding downstream of the torus
-	# parameters: length of first part, length of second part, outer radius (mm), material
-	afterTorusShielding(350.0, 300.0, 195.4, "beamline_W");
 }
 
 

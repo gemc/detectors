@@ -14,11 +14,9 @@ use Math::Trig;
 
 my $microgap = 0.1;
 
-my $TorusLength = 2158.4/2.0;  # 1/2 length of torus
-my $TorusZpos   = 3833;        # center of the torus position (include its semilengt). Value from M. Zarecky, R. Miller PDF file on 1/13/16
-
-my $torusZstart = $TorusZpos - $TorusLength - $microgap;
-my $torusZEnd   = $TorusZpos + $TorusLength + $microgap;
+my $torusZstart = 2754.17 - $microgap; # from drawings
+my $fcend = 9500;
+my $fcMaxRadius = 5000;
 
 # Help Message
 sub help()
@@ -40,13 +38,13 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-my $nplanes_Cone = 8;
+my $nplanes_Cone = 6;
 
 # Notice:
 # The FC coordinates are the same as CLAS12 target center
-my @z_plane_Cone = ( 1206.0,  1556.0, 2406.0, $torusZstart,  $torusZstart, $torusZEnd, $torusZEnd, 8500.0 );
-my @iradius_Cone = ( 2575.0,  2000.0,  132.0,        132.0,          61.5,       61.5,      197.0,  197.0 );
-my @oradius_Cone = ( 2575.0,  3500.0, 4800.0,       5000.0,        5000.0,     5000.0,     5000.0, 5000.0 );
+my @z_plane_Cone = ( 1206.0,  1556.0, 2406.0, $torusZstart,  $torusZstart, $fcend );
+my @iradius_Cone = ( 2575.0,  2000.0,  132.0,        132.0,             0,      0 );
+my @oradius_Cone = ( 2575.0,  $fcMaxRadius, $fcMaxRadius,       $fcMaxRadius,        $fcMaxRadius,  $fcMaxRadius);
 
 sub build_fc
 {

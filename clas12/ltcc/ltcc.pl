@@ -90,7 +90,8 @@ foreach my $conf ( @allConfs )
 	buildEllMirrors();
 
 	# Hyperbolic
-	#buildHypMirrors();
+
+	buildHypMirrors();
 
 	# mirrors surfaces
 	buildMirrorsSurfaces();
@@ -105,10 +106,11 @@ foreach my $conf ( @allConfs )
 	#buildCylMirrors();
 
 	# frame
-	#buildLtccFrame();
+
+	buildLtccFrame();
 
 	# Shields
-	#buildShields();
+	buildShields();
 }
 
 

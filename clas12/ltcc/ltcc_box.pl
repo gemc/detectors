@@ -26,7 +26,7 @@ sub cut_right_and_left()
 	my $box_dimension    = 2000;
 	my $additional_shift = 4;  # to be far from the coils
 	my $xshift = $box_dimension/cos($sector_cut_angle*$pi/180.0) - $additional_shift;
-	
+
 	my %detector = init_det();
 	$detector{"name"}        = "sector_left_cut";
 	$detector{"mother"}      = "root";
@@ -37,8 +37,8 @@ sub cut_right_and_left()
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
- 	%detector = init_det();
+
+	%detector = init_det();
 	$detector{"name"}        = "sector_right_cut";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "LTCC Left Cut";
@@ -48,7 +48,7 @@ sub cut_right_and_left()
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
+
 	# Subtracting left box
 	%detector = init_det();
 	$detector{"name"}        = "sector_box_left_cut";
@@ -57,7 +57,7 @@ sub cut_right_and_left()
 	$detector{"type"}        = "Operation: ltcc_first_box - sector_left_cut";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
+
 	# Subtracting right box
 	%detector = init_det();
 	$detector{"name"}        = "sector_box_right_cut";
@@ -72,13 +72,13 @@ sub cut_right_and_left()
 
 sub cut_front_and_back()
 {
-	
+
 	my $box_dimension = 2000;
- 	# Cutting off the back window
+	# Cutting off the back window
 	# WARNING: For now, by EYES by looking at the mirrors and ftof
 	my $zshift = 2740;
 	my $cc_angle         = 25;
-	
+
 	my %detector = init_det();
 	$detector{"name"}        = "sector_box_back_cut";
 	$detector{"mother"}      = "root";
@@ -89,9 +89,9 @@ sub cut_front_and_back()
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
-	
- 	$zshift = -1830;
+
+
+	$zshift = -1830;
 	%detector = init_det();
 	$detector{"name"}        = "sector_box_front_cut";
 	$detector{"mother"}      = "root";
@@ -102,8 +102,8 @@ sub cut_front_and_back()
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
-	
+
+
 	# Subtracting back box
 	%detector = init_det();
 	$detector{"name"}        = "sector_back_cut";
@@ -112,9 +112,9 @@ sub cut_front_and_back()
 	$detector{"type"}        = "Operation: sector_box_right_cut - sector_box_back_cut";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
-	
-	
+
+
+
 	# Subtracting front box
 	%detector = init_det();
 	$detector{"name"}        = "sector_front_cut";
@@ -143,7 +143,7 @@ sub cut_top_and_bottom()
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
+
 	# Subtracting top box
 	%detector = init_det();
 	$detector{"name"}        = "sector_top_cut";
@@ -152,8 +152,8 @@ sub cut_top_and_bottom()
 	$detector{"type"}        = "Operation: sector_front_cut - sector_box_top_cut";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
-	
+
+
 	# Bottom Box
 	%detector = init_det();
 	my $bottom_angle = 20;
@@ -166,7 +166,7 @@ sub cut_top_and_bottom()
 	$detector{"dimensions"}  = "$box_dimension*cm $box_dimension*cm $box_dimension*cm";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
+
 	#my $cc_zpos          = 170; # distance between the CLAS and the CLAS12 center.
 	my $cc_zpos          = 0; # distance between the CLAS and the CLAS12 center.
 	# Subtracting top box
@@ -181,7 +181,7 @@ sub cut_top_and_bottom()
 	$detector{"visible"}     = 1;
 	#$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-	
+
 }
 
 sub build_ltcc_box()

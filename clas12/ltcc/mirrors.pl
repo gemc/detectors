@@ -32,7 +32,7 @@ my $reflectivity =
 
 sub buildMirrorsSurfaces
 {
-    # htcc gas is 100% CO2 with optical properties
+	# htcc gas is 100% CO2 with optical properties
 	my %mat = init_mir();
 	$mat{"name"}         = "ltcc_AlMgF2";
 	$mat{"description"}  = "ltcc mirror reflectivity";
@@ -41,7 +41,7 @@ sub buildMirrorsSurfaces
 	$mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
-	$mat{"reflectivity"} = $reflectivity ;	
+	$mat{"reflectivity"} = $reflectivity ;
 	print_mir(\%configuration, \%mat);
 }
 

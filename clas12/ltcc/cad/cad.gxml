@@ -1,11 +1,11 @@
 <gxml>
-	<volume name="S1-BB"  color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg"/>
-	<volume name="S1-BLB" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-BRB" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-BW"  color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-LW"  color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-RW"  color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-TB"  color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-TLB" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
-	<volume name="S1-TRB" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-BB"  mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg"/>
+	<volume name="S1-BLB" mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-BRB" mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-BW"  mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-LW"  mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-RW"  mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-TB"  mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-TLB" mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
+	<volume name="S1-TRB" mother="fc" color="ccccdd"  position="0*mm 0*mm 1273.7*mm" rotation="180*deg 0*deg 60*deg" />
 </gxml>

@@ -1,15 +1,20 @@
 <gcard>
 
 
-	<detector name="beamlinePipes" factory="TEXT" variation="FTOn"/>
+    <detector name="beamline" factory="TEXT" variation="FTOn2"/>
 
-	<detector name="cadBeamline/" factory="CAD"/>
+    <detector name="cadBeamline/" factory="CAD"/>
 
+     <detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
 
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
-	<detector name="../magnets/cad/" factory="CAD"/>
+    <detector name="../magnets/cad/" factory="CAD"/>
+    <detector name="../targets/target" factory="TEXT" variation="lH2"/>
 
-	<option name="geometry" value="1400x1200"/>
-	<option name="NO_FIELD" value="all"/>
+    <option name="geometry" value="1400x1200"/>
+
+	<detector name="Shield7">
+		<existence exist="no" />
+	</detector>
+
 
 </gcard>

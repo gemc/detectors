@@ -105,21 +105,31 @@ sub make_cndMother
 	}
 	
 	my $mother_dz = ($longest_half1 + $longest_half2) * 0.5 + $mother_clearance;
-	
+	my $mother_mid = $mother_dz-($length3-$length2)*2.2;
 	$half_diff = 0.5 * ($longest_half2 - $longest_half1);
 	
 	my $IR = $r0 - $mother_gap1;
 	my $OR = $r1 + $mother_gap2;
+	my $MR = $OR - $dR;
 	my $zpos = $mother_offset + $half_diff;
 	
+	my $nplanes = 3;
+	my @z_plane = (-$mother_dz, $mother_mid, $mother_dz);
+	my @oradius = (        $OR,         $OR,        $OR);
+	my @iradius = (        $IR,         $IR,        $MR);
+
 	my %detector = init_det();
 	$detector{"name"}        = "cnd";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Central Neutron Detector";
 	$detector{"pos"}         = "0*cm 0*cm $zpos*cm";
 	$detector{"color"}       = "33bb99";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$IR*cm $OR*cm $mother_dz*cm 0*deg 360*deg";
+	$detector{"type"}        = "Polycone";
+	my $dimen = "0.0*deg 360*deg $nplanes*counts";
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius[$i]*cm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*cm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*cm";}
+	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_AIR";
 	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;

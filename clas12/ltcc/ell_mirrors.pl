@@ -20,6 +20,7 @@ my $nmirrors = $parameters{"nmirrors"} ;
 
 # ellipse center
 my @centerx = ();
+my @newcenterx = ();
 my @centery = ();
 
 # ellipse tilt
@@ -164,7 +165,7 @@ sub build_ell_mirrors_containers
 		my $lalpha =  $alpha[$n-1];
 
 		# Starts 1mm above x11
-		my $segment_box_length    = $x12[$n-1] + 0.1;
+		my $segment_box_length    = $x12[$n-1] + 0.5;
 		my $segment_box_thickness = $mirror_width[$n-1] + 0.1;
 		my $segment_box_height    = $y11[$n-1] + 5;   # Harcoded 5 mm to add to box
 		if($y12[$n-1] > $y11[$n-1]) {$segment_box_height = $y12[$n-1] + 5;}
@@ -183,10 +184,11 @@ sub build_ell_mirrors_containers
 		my $s_segment_box_length    = $segment_box_length    + 0.2;
 		my $s_segment_box_thickness = $segment_box_thickness + 0.2;
 		my $s_segment_box_height    = $segment_box_height   ;
-		my $yshift = $segment_box_height - $y12[$n-1] + 0.2;
-		if($y12[$n-1] > $y11[$n-1]) {$yshift = $segment_box_height - $y11[$n-1] + 0.2;}
+		
+    my $yshift = $segment_box_height - $y12[$n-1] + 2.0;
+		if($y12[$n-1] > $y11[$n-1]) {$yshift = $segment_box_height - $y11[$n-1] + 2.0;}
 
-		%detector = init_det();
+    %detector = init_det();
 		$detector{"name"}        = "segment_ell_subtract_box_$n";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Light Threshold Cerenkov Counter Segment Box to Subtract $n";
@@ -295,6 +297,7 @@ sub build_check_ell_cheeseform
 {
 	for(my $n=$startN; $n<=$endN; $n++)
 	{
+		
 		my $lcntx = -$centerx[$n-1];
 
 		# tube with MAX theta angle to subtract
@@ -340,7 +343,9 @@ sub build_ell_mirrors
 {
 	for(my $n=$startN; $n<=$endN; $n++)
 	{
-		my $lcntx = -$centerx[$n-1];
+
+		$newcenterx[$n-1] = $centerx[$n-1] + 0.2;
+		my $lcntx = -$newcenterx[$n-1];
 		my $ralpha = 180 - $alpha[$n-1];
 		my $lalpha =  $alpha[$n-1];
 
@@ -392,7 +397,7 @@ sub build_ell_mirrors
 			$detector{"name"}        = "el_mir_s$s"."_right_"."$n";
 			$detector{"mother"}      = "segment_ell_s$s"."_$n";
 			$detector{"description"} = "LTCC Right Mirror Sector $s Segment $n";
-			$detector{"pos"}         = "$centerx[$n-1]*cm $centery[$n-1]*cm 0*mm";
+			$detector{"pos"}         = "$newcenterx[$n-1]*cm $centery[$n-1]*cm 0*mm";
 			$detector{"rotation"}    = "0*deg 0*deg $cralpha*deg";
 			$detector{"color"}       = "aaffff";
 			$detector{"type"}        = "Operation: ellipse_tube_right_$n - span_tube_right_$n ";

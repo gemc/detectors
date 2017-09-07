@@ -234,8 +234,11 @@ my $front_flange_OR = 148.0;
 my $flange_TN       =  15.0;
 
 
+my $TPlate_RR  = $TPlate_TN * 0.6;
 my $TPlate_Z1  = $O_Ins_Z9 + 0.01;
 my $TPlate_Z2  = $TPlate_Z1 + $TPlate_TN-0.01;
+my $TPlate_ZM  = $TPlate_Z2 - $TPlate_RR;
+my $TPlate_MR  = $BLine_IR  + $BLine_TN + $TPlate_RR;
 
 my $BLine_MR  = $BLine_IR + $BLine_TN;    # outer radius in the calorimeter section
 my $BLine_Z1  = $BLine_BG;
@@ -454,13 +457,17 @@ my @oradius_FT_CRY = (          $Odisk_OR,          $Odisk_OR);
 
 sub make_ft_cal_mother_volume
 {
-	my $nplanes_FT = 7;
-	my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
-	my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
-	my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
-	if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
-		@iradius_FT = ($BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR, $BLine_DR, $BLine_DR);
-	}
+#	my $nplanes_FT = 7;
+#	my @z_plane_FT = ($BLine_Z1,   $BLine_Z2,   $BLine_Z2, $O_Shell_Z1, $O_Shell_Z1,     2098., $BLine_Z5);
+#	my @oradius_FT = ($BLine_MR,   $BLine_MR,   $BLine_FR,   $BLine_FR,        700.,      700.,      238.);
+#	my @iradius_FT = ($BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR,   $BLine_IR, $BLine_IR, $BLine_IR);
+#	if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
+#		@iradius_FT = ($BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR,   $BLine_DR, $BLine_DR, $BLine_DR);
+#	}
+	my $nplanes_FT = 6;
+	my @z_plane_FT = ($O_Shell_Z1,     2098., $TPlate_ZM,  $BLine_Z4, $BLine_Z4, $BLine_Z5);
+	my @oradius_FT = (      700.,       700.,       238.,       238.,      238.,      238.);
+	my @iradius_FT = ( $BLine_MR,  $BLine_MR,  $BLine_MR, $TPlate_MR, $BLine_OR, $BLine_OR);
 	my %detector = init_det();
 	$detector{"name"}        = "ft_cal";
 	$detector{"mother"}      = "root";
@@ -1066,6 +1073,7 @@ sub make_ft_cal_beamline
 		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "G4_STAINLESS-STEEL";
+		print_det(\%configuration, \%detector);
 	}
 	elsif($configuration{"variation"} eq "NotUsedWithInnerSST" || $configuration{"variation"} eq "WithInnerSST") {
 		$detector{"color"}       = "cccccc";
@@ -1076,6 +1084,7 @@ sub make_ft_cal_beamline
 		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "G4_STAINLESS-STEEL";
+		print_det(\%configuration, \%detector);
 	}
 	else {
 		$detector{"color"}       = "ff0000";
@@ -1086,8 +1095,8 @@ sub make_ft_cal_beamline
 		for(my $i = 0; $i <$nplanes_BLine ; $i++) {$dimen = $dimen ." $z_plane_BLine[$i]*mm";}
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "ft_W";
+		#print_det(\%configuration, \%detector);
 	}
-	print_det(\%configuration, \%detector);
 	
 	
 	if($configuration{"variation"} eq "NotUsedWithInnerShield" || $configuration{"variation"} eq "WithInnerShield" ) {
@@ -1117,11 +1126,11 @@ sub make_ft_cal_beamline
 	
 	my $TPlate_IR= $BLine_IR + $BLine_TN;
 	my $TPlate_OR= $TPlate_Z1*$BCup_tang;
-	
-	my $nplanes_TPlate = 2;
-	my @z_plane_TPlate = ($TPlate_Z1, $TPlate_Z2);
-	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR);
-	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR);
+	  
+	my $nplanes_TPlate = 3;
+	my @z_plane_TPlate = ($TPlate_Z1, $TPlate_ZM, $TPlate_Z2);
+	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR, $TPlate_OR);
+	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR, $TPlate_MR);
 	
     if($configuration{"variation"} ne "KPP") {
         # tungsten plate on the back of the calorimeter

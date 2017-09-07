@@ -11,7 +11,7 @@ sub define_hit
 	$hit{"description"}     = "bst hit definitions";
 	$hit{"identifiers"}     = "superlayer  type  segment  module  strip";
 	$hit{"signalThreshold"} = "2.0*KeV";
-	$hit{"timeWindow"}      = "132*ns";
+	$hit{"timeWindow"}      = "128*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*mm";
 	$hit{"delay"}           = "50*ns";

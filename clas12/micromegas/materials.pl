@@ -6,23 +6,6 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use materials;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   materials.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 micromegas materials\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
 
 
 # Loading configuration file and paramters

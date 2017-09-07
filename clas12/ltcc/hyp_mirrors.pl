@@ -222,7 +222,7 @@ sub build_hyp_mirrors
 		# Starts 1mm above x11
 		my $segment_box_length    = $x21[$n-1] + 0.1;
 		my $segment_box_thickness = $m_width + 0.1;
-		my $yshift = 20;      # Should be enough to encompass all mirrrors
+		my $yshift = 22;      # Should be enough to encompass all mirrrors
 		my $segment_box_height    = $YPOS0 + $yshift;
 		%detector = init_det();
 		$detector{"name"}        = "segment_hyp_box_$n";

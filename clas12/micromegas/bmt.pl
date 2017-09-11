@@ -142,19 +142,19 @@ my $peek_material   	     = 'myPeek';
 # (colors random)
 # 'rrggbb(t)' (transparency from 0 opaque to 5 fully transparent)
 my $air_color	       = 'e200e15';
-my $alu_color          = '4444444';     # dark grey
-my $carbon_color       = '0044004';
-my $copper_color       = '6666005';
+my $alu_color          = '444444';     # dark grey
+my $carbon_color       = '004400';
+my $copper_color       = '666600';
 my $gas_color          = 'e868504';
 #my $gas_color          = 'a100002';
-my $inox_color         = '8888882';
-my $kapton_color       = 'fff6004';
-my $mesh_color         = '2520204';
-my $pcb_color          = '0000ff4';
-my $peek_color         = '6ccecb2';     # light blue 
-my $resist_color       = '0000004';
-my $strips_color       = '3535404';
-my $structure_color    = 'e3e4e54';
+my $inox_color         = '888888';
+my $kapton_color       = 'fff600';
+my $mesh_color         = '252020';
+my $pcb_color          = '0000ff';
+my $peek_color         = '6ccecb';     # light blue
+my $resist_color       = '000000';
+my $strips_color       = '353540';
+my $structure_color    = 'e3e4e5';
 
 
 # sub rad { $_[0]*$pi/180.0  }

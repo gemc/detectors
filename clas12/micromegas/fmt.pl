@@ -87,21 +87,21 @@ my $innerscrew_material = 'myfmtInnerScrew' ; # effective screws "in" the inner 
 # G4 colors
 # set somewhat at random 'rrggbb(t)' (transparency from 0 opaque to 5 fully transparent)
 my $air_color	     = 'e200e15';
-my $alu_color        = 'b2577a4';     # dark grey
-my $connector_color  = '40b8af4';
-my $copper_color     = '6666004';     # greenish (dark)
+my $alu_color        = 'b2577a';     # dark grey
+my $connector_color  = '40b8af';
+my $copper_color     = '666600';     # greenish (dark)
 my $gas_color        = 'ffcc004';
-my $hvcover_color    = '6c2d582';     # dark grey semi-transparent
-my $inox_color       = '8888883';
-my $kapton_color     = 'fff6004';    # yellowish transparent (active zone)
-my $mesh_color       = '2520204';     # black
-my $pcb_color        = '0000ff4';     # blue
+my $hvcover_color    = '6c2d58';     # dark grey semi-transparent
+my $inox_color       = '888888';
+my $kapton_color     = 'fff600';    # yellowish transparent (active zone)
+my $mesh_color       = '252020';     # black
+my $pcb_color        = '0000ff';     # blue
 my $peek_color       = '6ccecb';     # light blue
-my $photoresist_color= 'aa00aa4';     # purple
-my $resist_color     = '0000004';
-my $rohacell_color   = '00ff004';     # green
-my $spacer_color     = '6666002';
-my $strips_color     = '3535404';
+my $photoresist_color= 'aa00aa';     # purple
+my $resist_color     = '000000';
+my $rohacell_color   = '00ff00';     # green
+my $spacer_color     = '666600';
+my $strips_color     = '353540';
 #myGlue
 #my $drift_color      = 'fff600';
 

@@ -3,6 +3,16 @@ CLAS12 micromegas README
 
 --------------------------------------------------
 
+TODO:
+
+use geant4 material database when possible, for example:
+
+G4_KAPTON
+G4_Al
+G4_STAINLESS-STEEL
+
+
+
 The geometry consists of...
 
 In MYSQL mode, before building the geometry one must

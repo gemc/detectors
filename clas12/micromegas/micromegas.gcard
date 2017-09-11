@@ -1,5 +1,9 @@
 <gcard>
-    
+
+<detector name="../targets/target" factory="TEXT" variation="cad"/>
+<detector name="../targets/cad/" factory="CAD"/>
+
+
    	<detector name="micromegas" factory="TEXT" variation="michel"/>
     <detector name="../bst/bst" factory="TEXT" variation="java"/>
     

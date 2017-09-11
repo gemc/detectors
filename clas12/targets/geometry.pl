@@ -189,10 +189,10 @@ sub build_targets
 	# and inside cell
 	elsif($thisVariation eq "cad")
 	{
-		my $nplanes = 6;
+		my $nplanes = 4;
 
-		my @oradius  =  (    51.0,   51.0,  21.0,  21.0,  13.5,  13.5 );
-		my @z_plane  =  (  -115.0,  265.0, 290.0, 350.0, 350.0, 942.0 );
+		my @oradius  =  (    51.0,   51.0,  21.0,  21.0 );
+		my @z_plane  =  (  -115.0,  265.0, 290.0, 350.0 );
 
 		# vaccum target container
 		my %detector = init_det();

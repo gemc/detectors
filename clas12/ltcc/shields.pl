@@ -85,85 +85,87 @@ sub build_shields
 
 			# Shield dimensions are not real dimension. Their sizes are decreased to avoid overlaps with other geometries and neighbor shields
 
-			if($n < $endN){
+			if($s != 4){
 
-				my %detector = init_det();
-				$detector{"name"}        = "shield_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "shield right $n";
-				$detector{"pos"}         = "0*cm 0*cm 0*cm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "000000";
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "$shield_x0[$n-1]*cm $shield_y0[$n-1]*cm $shield_z0[$n-1]*cm";
-				$detector{"material"}    = "Component";
-				print_det(\%configuration, \%detector);
+				if($n < $endN){
 
-				%detector = init_det();
-				$detector{"name"}        = "subtraction_shield_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "Subtraction shield right $n";
-				$detector{"pos"}         = "0*cm 0*cm 0*cm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "000000";
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "$sub_shield_x0[$n-1]*cm $sub_shield_y0[$n-1]*cm $sub_shield_z0[$n-1]*cm";
-				$detector{"material"} = "Component";
-				print_det(\%configuration, \%detector);
+					my %detector = init_det();
+					$detector{"name"}        = "shield_s$s"."right_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "shield right $n";
+					$detector{"pos"}         = "0*cm 0*cm 0*cm";
+					$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+					$detector{"color"}       = "000000";
+					$detector{"type"}        = "Box";
+					$detector{"dimensions"}  = "$shield_x0[$n-1]*cm $shield_y0[$n-1]*cm $shield_z0[$n-1]*cm";
+					$detector{"material"}    = "Component";
+					print_det(\%configuration, \%detector);
+	
+					%detector = init_det();
+					$detector{"name"}        = "subtraction_shield_s$s"."right_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "Subtraction shield right $n";
+					$detector{"pos"}         = "0*cm 0*cm 0*cm";
+					$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+					$detector{"color"}       = "000000";
+					$detector{"type"}        = "Box";
+					$detector{"dimensions"}  = "$sub_shield_x0[$n-1]*cm $sub_shield_y0[$n-1]*cm $sub_shield_z0[$n-1]*cm";
+					$detector{"material"} = "Component";
+					print_det(\%configuration, \%detector);
 
-				%detector = init_det();
-				$detector{"name"}        = "final_shield_s$s"."right$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "combined shield right $n";
-				$detector{"pos"}         = "$shield_pos_xR[$n-1]*cm $shield_pos_yR[$n-1]*cm $shield_pos_zR[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "202020";
-				$detector{"type"}        = "Operation:  shield_s$s"."right_$n - subtraction_shield_s$s"."right_$n";
-				$detector{"material"}    = "G4_Fe";
-				$detector{"style"}       = 1;
-				print_det(\%configuration, \%detector);
-
-
-				%detector = init_det();
-				$detector{"name"}        = "shield_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "shield left $n";
-				$detector{"pos"}         = "0*cm 0*cm 0*cm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "000000";
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "$shield_x0[$n-1]*cm $shield_y0[$n-1]*cm $shield_z0[$n-1]*cm";
-				$detector{"material"}    = "Component";
-				print_det(\%configuration, \%detector);
-
-				%detector = init_det();
-				$detector{"name"}        = "subtraction_shield_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "Subtraction shield left $n";
-				$detector{"pos"}         = "0*cm 0*cm 0*cm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "000000";
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "$sub_shield_x0[$n-1]*cm $sub_shield_y0[$n-1]*cm $sub_shield_z0[$n-1]*cm";
-				$detector{"material"}    = "Component";
-				print_det(\%configuration, \%detector);
+					%detector = init_det();
+					$detector{"name"}        = "final_shield_s$s"."right$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "combined shield right $n";
+					$detector{"pos"}         = "$shield_pos_xR[$n-1]*cm $shield_pos_yR[$n-1]*cm $shield_pos_zR[$n-1]*cm";
+					$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+					$detector{"color"}       = "202020";
+					$detector{"type"}        = "Operation:  shield_s$s"."right_$n - subtraction_shield_s$s"."right_$n";
+					$detector{"material"}    = "G4_Fe";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
 
 
+					%detector = init_det();
+					$detector{"name"}        = "shield_s$s"."left_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "shield left $n";
+					$detector{"pos"}         = "0*cm 0*cm 0*cm";
+					$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+					$detector{"color"}       = "000000";
+					$detector{"type"}        = "Box";
+					$detector{"dimensions"}  = "$shield_x0[$n-1]*cm $shield_y0[$n-1]*cm $shield_z0[$n-1]*cm";
+					$detector{"material"}    = "Component";
+					print_det(\%configuration, \%detector);
 
-				%detector = init_det();
-				$detector{"name"}        = "final_shield_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "combined shield left $n";
-				$detector{"pos"}         = "$shield_pos_xL[$n-1]*cm $shield_pos_yL[$n-1]*cm $shield_pos_zL[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-				$detector{"color"}       = "202020";
-				$detector{"type"}        = "Operation:  shield_s$s"."left_$n - subtraction_shield_s$s"."left_$n";
-				$detector{"material"}    = "G4_Fe";
-				$detector{"style"}       = 1;
-				print_det(\%configuration, \%detector);
+					%detector = init_det();
+					$detector{"name"}        = "subtraction_shield_s$s"."left_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "Subtraction shield left $n";
+					$detector{"pos"}         = "0*cm 0*cm 0*cm";
+					$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+					$detector{"color"}       = "000000";
+					$detector{"type"}        = "Box";
+					$detector{"dimensions"}  = "$sub_shield_x0[$n-1]*cm $sub_shield_y0[$n-1]*cm $sub_shield_z0[$n-1]*cm";
+					$detector{"material"}    = "Component";
+					print_det(\%configuration, \%detector);
 
 
-			}
+
+					%detector = init_det();
+					$detector{"name"}        = "final_shield_s$s"."left_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "combined shield left $n";
+					$detector{"pos"}         = "$shield_pos_xL[$n-1]*cm $shield_pos_yL[$n-1]*cm $shield_pos_zL[$n-1]*cm";
+					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+					$detector{"color"}       = "202020";
+					$detector{"type"}        = "Operation:  shield_s$s"."left_$n - subtraction_shield_s$s"."left_$n";
+					$detector{"material"}    = "G4_Fe";
+					$detector{"style"}       = 1;
+					print_det(\%configuration, \%detector);
+	
+						}
+				}
 
 		}
 

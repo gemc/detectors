@@ -392,41 +392,45 @@ sub build_ell_mirrors
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			# mirror RIGHT
-			%detector = init_det();
-			$detector{"name"}        = "el_mir_s$s"."_right_"."$n";
-			$detector{"mother"}      = "segment_ell_s$s"."_$n";
-			$detector{"description"} = "LTCC Right Mirror Sector $s Segment $n";
-			$detector{"pos"}         = "$newcenterx[$n-1]*cm $centery[$n-1]*cm 0*mm";
-			$detector{"rotation"}    = "0*deg 0*deg $cralpha*deg";
-			$detector{"color"}       = "aaffff";
-			$detector{"type"}        = "Operation: ellipse_tube_right_$n - span_tube_right_$n ";
-			$detector{"dimensions"}  = "0*m";
-			$detector{"material"}    = "Air_Opt";
-			$detector{"style"}       = 1;
-			$detector{"visible"}     = 1; #nate
-			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-			$detector{"hit_type"}       = "mirror";
-			print_det(\%configuration, \%detector);
+			if($s != 4) {
 
-			# mirror LEFT
-			%detector = init_det();
-			$detector{"name"}        = "el_mir_s$s"."_left_"."$n";
-			$detector{"mother"}      = "segment_ell_s$s"."_$n";
-			$detector{"description"} = "LTCC Left Mirror Sector $s Segment $n";
-			$detector{"pos"}         = "$lcntx*cm $centery[$n-1]*cm 0*mm";
-			$detector{"rotation"}    = "0*deg 0*deg $clalpha*deg";
-			$detector{"color"}       = "aaffff";
-			$detector{"type"}        = "Operation: ellipse_tube_left_$n - span_tube_left_$n ";
-			$detector{"dimensions"}  = "0*m";
-			$detector{"material"}    = "Air_Opt";
-			$detector{"mfield"}      = "no";
-			$detector{"style"}       = 1;
-			$detector{"visible"}     = 1;
-			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-			$detector{"hit_type"}       = "mirror";
-			print_det(\%configuration, \%detector);
-		}
+				# mirror RIGHT
+				%detector = init_det();
+				$detector{"name"}        = "el_mir_s$s"."_right_"."$n";
+				$detector{"mother"}      = "segment_ell_s$s"."_$n";
+				$detector{"description"} = "LTCC Right Mirror Sector $s Segment $n";
+				$detector{"pos"}         = "$newcenterx[$n-1]*cm $centery[$n-1]*cm 0*mm";
+				$detector{"rotation"}    = "0*deg 0*deg $cralpha*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Operation: ellipse_tube_right_$n - span_tube_right_$n ";
+				$detector{"dimensions"}  = "0*m";
+				$detector{"material"}    = "Air_Opt";
+				$detector{"style"}       = 1;
+				$detector{"visible"}     = 1; #nate
+				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}       = "mirror";
+				print_det(\%configuration, \%detector);
+
+				# mirror LEFT
+				%detector = init_det();
+				$detector{"name"}        = "el_mir_s$s"."_left_"."$n";
+				$detector{"mother"}      = "segment_ell_s$s"."_$n";
+				$detector{"description"} = "LTCC Left Mirror Sector $s Segment $n";
+				$detector{"pos"}         = "$lcntx*cm $centery[$n-1]*cm 0*mm";
+				$detector{"rotation"}    = "0*deg 0*deg $clalpha*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Operation: ellipse_tube_left_$n - span_tube_left_$n ";
+				$detector{"dimensions"}  = "0*m";
+				$detector{"material"}    = "Air_Opt";
+				$detector{"mfield"}      = "no";
+				$detector{"style"}       = 1;
+				$detector{"visible"}     = 1;
+				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}       = "mirror";
+				print_det(\%configuration, \%detector);
+
+				       }
+		 }
 	}
 }
 

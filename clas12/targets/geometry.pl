@@ -192,7 +192,7 @@ sub build_targets
 		my $nplanes = 4;
 
 		my @oradius  =  (    51.0,   51.0,  21.0,  21.0 );
-		my @z_plane  =  (  -115.0,  265.0, 290.0, 350.0 );
+		my @z_plane  =  (  -115.0,  265.0, 290.0, 375.0 );
 
 		# vaccum target container
 		my %detector = init_det();

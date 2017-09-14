@@ -139,5 +139,32 @@ sub vacuumLine()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+
+
+	# airgap still needed
+	%detector = init_det();
+	$detector{"name"}        = "airPipe";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "airgap between target and shield to limit e- steps";
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm 625*mm";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm 45*mm 250*mm 0*deg 360*deg";
+	$detector{"style"}       = 1;
+	$detector{"material"}    = "G4_AIR";
+	print_det(\%configuration, \%detector);
+
+	%detector = init_det();
+	$detector{"name"}        = "airPipe2";
+	$detector{"mother"}      = "airPipe";
+	$detector{"description"} = "airgap between target and shield to limit e- steps";
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm 10*mm 249*mm 0*deg 360*deg";
+	$detector{"style"}       = 1;
+	$detector{"material"}    = "G4_AIR";
+	print_det(\%configuration, \%detector);
+
 }
 

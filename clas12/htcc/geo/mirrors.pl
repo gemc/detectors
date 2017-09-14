@@ -411,7 +411,7 @@ sub build_mirrors
 					$detector{"color"}          = $colors_even[$color_index];
 					$detector{"type"}           = "Operation:@ MirrorCylinderCut_sect$i"."mirr$j"."half$k * phicut_sect$i"."half$k";
 					$detector{"dimensions"}     = "0";
-					$detector{"style"}          = "0";
+					$detector{"style"}          = "1";
 					$detector{"material"}       = "rohacell31";
 					
 					# The "mirror" sensitivity allow gemc to access the mirror to define the optical properties
@@ -679,7 +679,7 @@ sub build_mirrors
 					$detector{"color"}          = $colors_even[$color_index];
 					$detector{"type"}           = "Operation:@ MirrorBoxCut_down_sect$i"."mirr$j"."half$k * phicut_sect$i"."half$k";
 					$detector{"dimensions"}     = "0";
-					$detector{"style"}          = "0";
+					$detector{"style"}          = "1";
 					$detector{"material"}       = "rohacell31";
 					# The "mirror" sensitivity allow gemc to access the mirror to define the optical properties
 					# The identfier is sector*1000 + 1/2*10 + mirror
@@ -814,7 +814,7 @@ sub build_mirrors
 					$detector{"color"}          = $colors_even[$color_index];
 					$detector{"type"}           = "Operation:@ MirrorConeCut_sect$i"."mirr$j"."half$k * phicut_sect$i"."half$k";
 					$detector{"dimensions"}     = "0";
-					$detector{"style"}          = "0";
+					$detector{"style"}          = "1";
 					$detector{"material"}       = "rohacell31";
 					# The "mirror" sensitivity allow gemc to access the mirror to define the optical properties
 					# The identfier is sector*1000 + 1/2*10 + mirror

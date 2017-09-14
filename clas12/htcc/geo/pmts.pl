@@ -217,7 +217,7 @@ sub make_WC_shell
 	$detector{"dimensions"}  = "0";
 	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = "0";
-	$detector{"visible"}       = "0";
+	$detector{"visible"}     = "0";
 	$detector{"sensitivity"}  = "mirror: htcc_AlMgF2";
 	$detector{"hit_type"}     = "mirror";
 	$detector{"identifiers"} = "id manual $WCID";
@@ -296,7 +296,7 @@ sub build_pmts
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0*mm $PMTradius*mm $PMTdz*mm 0*deg 360*deg";
 			$detector{"material"}    = "HTCCPMTQuartz";
-			$detector{"style"}       = "0";
+			$detector{"style"}       = "1";
 			$detector{"sensitivity"} = "htcc";
 			$detector{"hit_type"}    = "htcc";
 			$detector{"identifiers"} = htccIdentifier($i, $j, 1);
@@ -331,7 +331,7 @@ sub build_pmts
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0*mm $PMTradius*mm $PMTdz*mm 0*deg 360*deg";
 			$detector{"material"}    = "HTCCPMTQuartz";
-			$detector{"style"}       = "0";
+			$detector{"style"}       = "1";
 			$detector{"sensitivity"} = "htcc";
 			$detector{"hit_type"}    = "htcc";
 			$detector{"identifiers"} = htccIdentifier($i, $j, 2);

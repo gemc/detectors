@@ -71,39 +71,42 @@ sub build_cylMir
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			if($n < $endN){
+			if($s != 4){
 
-				my %detector = init_det();
-				$detector{"name"}        = "cyl_mirrors_s$s"."right_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cyl mirrors right $n";
-				$detector{"pos"}         = "$mirror_pos_xR[$n-1]*cm  $mirror_pos_yR[$n-1]*cm  $mirror_pos_zR[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi_cyl[$n-1]*deg $tilt[$n-1]*deg $cyl_tilt_r[$n-1]*deg";
-				$detector{"color"}       = "aaffff";
-				$detector{"type"}        = "Tube";
-				$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
-				$detector{"material"}    = "G4_AIR";
-				$detector{"style"}       = 1;
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
+				if($n < $endN){
+			
+					my %detector = init_det();
+					$detector{"name"}        = "cyl_mirrors_s$s"."right_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "cyl mirrors right $n";
+					$detector{"pos"}         = "$mirror_pos_xR[$n-1]*cm  $mirror_pos_yR[$n-1]*cm  $mirror_pos_zR[$n-1]*cm";
+					$detector{"rotation"}    = "$segphi_cyl[$n-1]*deg $tilt[$n-1]*deg $cyl_tilt_r[$n-1]*deg";
+					$detector{"color"}       = "aaffff";
+					$detector{"type"}        = "Tube";
+					$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
+					$detector{"material"}    = "G4_AIR";
+					$detector{"style"}       = 1;
+					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+					$detector{"hit_type"}    = "mirror";
+					print_det(\%configuration, \%detector);
 
-				%detector = init_det();
-				$detector{"name"}        = "cyl_mirrors_s$s"."left_$n";
-				$detector{"mother"}      = "ltccS$s";
-				$detector{"description"} = "cyl mirrors left $n";
-				$detector{"pos"}         = "$mirror_pos_xL[$n-1]*cm $mirror_pos_yL[$n-1]*cm $mirror_pos_zL[$n-1]*cm";
-				$detector{"rotation"}    = "$segphi_cyl[$n-1]*deg -$tilt[$n-1]*deg $cyl_tilt_l[$n-1]*deg";
-				$detector{"color"}       = "aaffff";
-				$detector{"type"}        = "Tube";
-				$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
-				$detector{"material"}    = "G4_AIR";
-				$detector{"style"}       = 1;
-				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}    = "mirror";
-				print_det(\%configuration, \%detector);
+					%detector = init_det();
+					$detector{"name"}        = "cyl_mirrors_s$s"."left_$n";
+					$detector{"mother"}      = "ltccS$s";
+					$detector{"description"} = "cyl mirrors left $n";
+					$detector{"pos"}         = "$mirror_pos_xL[$n-1]*cm $mirror_pos_yL[$n-1]*cm $mirror_pos_zL[$n-1]*cm";
+					$detector{"rotation"}    = "$segphi_cyl[$n-1]*deg -$tilt[$n-1]*deg $cyl_tilt_l[$n-1]*deg";
+					$detector{"color"}       = "aaffff";
+					$detector{"type"}        = "Tube";
+					$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
+					$detector{"material"}    = "G4_AIR";
+					$detector{"style"}       = 1;
+					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+					$detector{"hit_type"}    = "mirror";
+					print_det(\%configuration, \%detector);
 
-			}
+						}
+				    }
 		}
 	}
 }

@@ -186,35 +186,38 @@ sub build_hyp_mirrors
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
+			if($s != 4){
 			# Subtracting right box - RIGHT MIRROR
-			%detector = init_det();
-			$detector{"name"}        = "hyp_mirror_s$s"."_right_$n";
-			$detector{"mother"}      = "segment_hyp_s$s"."_$n";
-			$detector{"description"} = "LTCC Hyperbolic mirror right $n";
-			$detector{"pos"}         = "$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
-			$detector{"rotation"}    = "0*deg -90*deg 0*deg";
-			$detector{"color"}       = "aaffff";
-			$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-			$detector{"material"}    = "G4_AIR";
-			$detector{"style"}       = 1;
-			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-			$detector{"hit_type"}       = "mirror";
-			print_det(\%configuration, \%detector);
+				%detector = init_det();
+				$detector{"name"}        = "hyp_mirror_s$s"."_right_$n";
+				$detector{"mother"}      = "segment_hyp_s$s"."_$n";
+				$detector{"description"} = "LTCC Hyperbolic mirror right $n";
+				$detector{"pos"}         = "$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
+				$detector{"rotation"}    = "0*deg -90*deg 0*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
+				$detector{"material"}    = "G4_AIR";
+				$detector{"style"}       = 1;
+				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}       = "mirror";
+				print_det(\%configuration, \%detector);
+	
+				# Subtracting right box - LEFT MIRROR
+				%detector = init_det();
+				$detector{"name"}        = "hyp_mirror_s$s"."_left_$n";
+				$detector{"mother"}      = "segment_hyp_s$s"."_$n";
+				$detector{"description"} = "LTCC Hyperbolic mirror right $n";
+				$detector{"pos"}         = "-$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
+				$detector{"rotation"}    = "0*deg 90*deg 0*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
+				$detector{"material"}    = "G4_AIR";
+				$detector{"style"}       = 1;
+				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}       = "mirror";
+				print_det(\%configuration, \%detector);
 
-			# Subtracting right box - LEFT MIRROR
-			%detector = init_det();
-			$detector{"name"}        = "hyp_mirror_s$s"."_left_$n";
-			$detector{"mother"}      = "segment_hyp_s$s"."_$n";
-			$detector{"description"} = "LTCC Hyperbolic mirror right $n";
-			$detector{"pos"}         = "-$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
-			$detector{"rotation"}    = "0*deg 90*deg 0*deg";
-			$detector{"color"}       = "aaffff";
-			$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-			$detector{"material"}    = "G4_AIR";
-			$detector{"style"}       = 1;
-			$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-			$detector{"hit_type"}       = "mirror";
-			print_det(\%configuration, \%detector);
+				      }
 		}
 
 

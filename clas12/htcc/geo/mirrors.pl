@@ -89,7 +89,6 @@ sub build_mirrors
     $detector{"mother"}      = "htcc";
     $detector{"description"} = "Outer cut cylinder";
     $detector{"pos"}         = "$x0*mm $y0*mm ".(1500+$z0)."*mm";
-    $detector{"color"}       = "0000ff";
     $detector{"type"}        = "Tube";
     $detector{"dimensions"}  = "$Routercylinder"."*mm 1500.0*mm 500*mm 0*deg 360*deg";
     $detector{"material"}    = "Component";
@@ -101,7 +100,6 @@ sub build_mirrors
     $detector{"mother"}      = "htcc";
     $detector{"description"} = "Inner cut cone";
     $detector{"pos"}         = "$x0*mm $y0*mm ".(1000+$z0)."*mm";
-    $detector{"color"}       = "0000ff";
     $detector{"type"}        = "Cons";
     $detector{"dimensions"}  = "0.0*mm 0.0*mm 0.0*mm 174.97733*mm 1000.0*mm 0*deg 360*deg";
     $detector{"material"}    = "Component";
@@ -153,7 +151,6 @@ sub build_mirrors
 			$detector{"mother"}      = "htcc";
 			$detector{"description"} = "Barrel defining mirror back surface";
 			$detector{"rotation"}    = "ordered: yzx 0*rad "."$sphirot"."*rad "."$stheta_axis"."*rad ";
-			$detector{"color"}       = "ee99ff";
 			$detector{"type"}        = "Polycone";
 			$detector{"dimensions"}  = $dimensions;
 			$detector{"material"}    = "Component";
@@ -183,7 +180,6 @@ sub build_mirrors
 			$detector{"mother"}         = "htcc";
 			$detector{"description"}    = "Half-sector phi cut";
 			$detector{"pos"}            = "$x0*mm $y0*mm ".(1500+$z0)."*mm";
-			$detector{"color"}          = "443388";
 			$detector{"type"}           = "Tube";
 			$detector{"dimensions"}     = "0.0*mm 1500.0*mm 500.0*mm $sphistart_cut"."*rad $sdphi_cut"."*rad";
 			$detector{"material"}       = "Component";
@@ -242,7 +238,6 @@ sub build_mirrors
 				$detector{"pos"}         = ($scenter[0]+$x0)."*mm ".($scenter[1]+$y0)."*mm ".($scenter[2]+$z0)."*mm";
 				$detector{"rotation"}    = "ordered: yzx 0*rad "."$sphiellipse"."*rad "."$sangle"."*rad ";
 				$detector{"dimensions"}  = "$b[$j]*mm $b[$j]*mm $a[$j]*mm 0*mm 0*mm";
-				$detector{"color"}       = $colors_even[$color_index];
 				$detector{"type"}        = "Ellipsoid";
 				$detector{"material"}    = "Component";
 				print_det(\%configuration, \%detector);
@@ -258,7 +253,6 @@ sub build_mirrors
 				$detector{"description"}    = "subtraction of barrel and ellipse";
 				$detector{"pos"}            = "$x0"."*mm $y0"."*mm $z0"."*mm";
 				$detector{"rotation"}       = "ordered: yzx 0*rad "."$sphirot"."*rad "."$stheta_axis"."*rad ";
-				$detector{"color"}          = "00ff00";
 				$detector{"type"}           = "Operation:@ Barrel_sect$i"."half$k"." - Mirror_sect$i"."mirr$j"."half$k";
 				$detector{"dimensions"}     = "0";
 				$detector{"material"}       = "Component";
@@ -375,7 +369,6 @@ sub build_mirrors
 					$detector{"dimensions"}    = "$boxwidth*mm $boxwidth*mm $boxwidth*mm";
 					$detector{"pos"}           = ($x0+$sboxpos[0])."*mm ".($sboxpos[1]+$y0)."*mm ".($sboxpos[2]+$z0)."*mm";
 					$detector{"rotation"}      = "ordered: yzx 0*rad "."$sphibox"."*rad "."$sangle"."*rad";
-					$detector{"color"}         = "ff0000";
 					$detector{"type"}          = "Box";
 					$detector{"material"}      = "Component";
 					print_det(\%configuration, \%detector);
@@ -390,7 +383,6 @@ sub build_mirrors
 					$detector{"description"}    = "subtraction of box and (barrel - ellipse)";
 					$detector{"pos"}            = "$x0"."*mm $y0"."*mm $z0"."*mm";
 					$detector{"rotation"}       = "ordered: yzx 0*rad "."$sphirot"."*rad "."$stheta_axis"."*rad ";
-					$detector{"color"}          = "00ff00";
 					$detector{"type"}           = "Operation:@ BarrelEllipseCut_sect$i"."mirr$j"."half$k - Boxcut12_sect".$i."mirr".$j."half".$k;
 					$detector{"dimensions"}     = "0";
 					$detector{"material"}       = "Component";
@@ -403,7 +395,6 @@ sub build_mirrors
 					$detector{"description"}    = "subtraction of cylinder and (box - (barrel - ellipse))";
 					$detector{"pos"}            = "$x0"."*mm $y0"."*mm $z0"."*mm";
 					$detector{"rotation"}       = "ordered: yzx 0*rad "."$sphirot"."*rad "."$stheta_axis"."*rad ";
-					$detector{"color"}          = "00ff00";
 					$detector{"type"}           = "Operation:@ MirrorBoxCut_sect$i"."mirr$j"."half$k - HTCC_OuterCutCylinder";
 					$detector{"dimensions"}     = "0";
 					$detector{"material"}       = "Component";
@@ -420,7 +411,7 @@ sub build_mirrors
 					$detector{"color"}          = $colors_even[$color_index];
 					$detector{"type"}           = "Operation:@ MirrorCylinderCut_sect$i"."mirr$j"."half$k * phicut_sect$i"."half$k";
 					$detector{"dimensions"}     = "0";
-					$detector{"style"}          = "1";
+					$detector{"style"}          = "0";
 					$detector{"material"}       = "rohacell31";
 					
 					# The "mirror" sensitivity allow gemc to access the mirror to define the optical properties
@@ -639,7 +630,6 @@ sub build_mirrors
 					$detector{"dimensions"}       = "$box1width*mm $box1width*mm $box1width*mm";
 					$detector{"pos"}              = ($sbox1pos[0]+$x0)."*mm ".($sbox1pos[1]+$y0)."*mm ".($sbox1pos[2]+$z0)."*mm";
 					$detector{"rotation"}         = "ordered: yzx 0*rad "."$sphi1"."*rad "."$sangle1"."*rad";
-					$detector{"color"}            = "00ff00";
 					$detector{"type"}             = "Box";
 					$detector{"material"}         = "Component";
 					print_det(\%configuration, \%detector);
@@ -652,7 +642,6 @@ sub build_mirrors
 					$detector{"dimensions"}       = "$box2width*mm $box2width*mm $box2width*mm";
 					$detector{"pos"}              = ($sbox2pos[0]+$x0)."*mm ".($sbox2pos[1]+$y0)."*mm ".($sbox2pos[2]+$z0)."*mm";
 					$detector{"rotation"}         = "ordered: yzx 0*rad "."$sphi2"."*rad "."$sangle2"."*rad";
-					$detector{"color"}            = "00ff00";
 					$detector{"type"}             = "Box";
 					$detector{"material"}         = "Component";
 					print_det(\%configuration, \%detector);
@@ -664,7 +653,6 @@ sub build_mirrors
 					$detector{"description"}      = "subtraction of upper box from (barrel - ellipse)";
 					$detector{"pos"}              = "$x0"."*mm $y0"."*mm $z0"."*mm";
 					$detector{"rotation"}         = "ordered: yzx 0*rad "."$sphirot"."*rad "."$stheta_axis"."*rad ";
-					$detector{"color"}            = "0000ff";
 					$detector{"type"}             = "Operation:@ BarrelEllipseCut_sect$i"."mirr$j"."half$k - Boxcut_up_sect$i"."mirr$j"."half$k";
 					$detector{"dimensions"}       = "0";
 					$detector{"material"}         = "Component";
@@ -676,7 +664,6 @@ sub build_mirrors
 					$detector{"description"}      = "subtraction of lower box from (barrel - ellipse - upper box)";
 					$detector{"pos"}              = "$x0"."*mm $y0"."*mm $z0"."*mm";
 					$detector{"rotation"}         = "ordered: yzx 0*rad "."$sphirot"."*rad "."$stheta_axis"."*rad ";
-					$detector{"color"}            = "0000ff";
 					$detector{"type"}             = "Operation:@ MirrorBoxCut_up_sect$i"."mirr$j"."half$k - Boxcut_down_sect$i"."mirr$j"."half$k";
 					$detector{"dimensions"}       = "0";
 					$detector{"material"}         = "Component";
@@ -692,7 +679,7 @@ sub build_mirrors
 					$detector{"color"}          = $colors_even[$color_index];
 					$detector{"type"}           = "Operation:@ MirrorBoxCut_down_sect$i"."mirr$j"."half$k * phicut_sect$i"."half$k";
 					$detector{"dimensions"}     = "0";
-					$detector{"style"}          = "1";
+					$detector{"style"}          = "0";
 					$detector{"material"}       = "rohacell31";
 					# The "mirror" sensitivity allow gemc to access the mirror to define the optical properties
 					# The identfier is sector*1000 + 1/2*10 + mirror
@@ -827,7 +814,7 @@ sub build_mirrors
 					$detector{"color"}          = $colors_even[$color_index];
 					$detector{"type"}           = "Operation:@ MirrorConeCut_sect$i"."mirr$j"."half$k * phicut_sect$i"."half$k";
 					$detector{"dimensions"}     = "0";
-					$detector{"style"}          = "1";
+					$detector{"style"}          = "0";
 					$detector{"material"}       = "rohacell31";
 					# The "mirror" sensitivity allow gemc to access the mirror to define the optical properties
 					# The identfier is sector*1000 + 1/2*10 + mirror

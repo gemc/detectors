@@ -77,7 +77,6 @@ sub make_entryconevolume
     $detector{"name"}         = "htccEntryConeVolume";
     $detector{"mother"}       = "root";
     $detector{"description"}  = "HTCC entry cone volume";
-	$detector{"color"}        = "ee99ff";
     $detector{"type"}         = "Polycone";
     $detector{"dimensions"}   = "$dimensions";
     $detector{"material"}     = "Component";
@@ -92,7 +91,6 @@ sub make_EntryDishPlusCone
     $detector{"name"}        = "htccEntryDishCone";
     $detector{"mother"}      = "root";
     $detector{"description"} = "subtraction entry dish - cone";
-    $detector{"color"}       = "ee99ff";
     $detector{"type"}        = "Operation:@ htccEntryDishVolume - htccEntryConeVolume";
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "Component";
@@ -109,6 +107,7 @@ sub make_GasVolumeFinal
 	$detector{"color"}       = "0000ff3"; # add a 4 or 5 at the end to make transparent (change visibility above too)
 	$detector{"type"}        = "Operation:@ htccBigGasVolume - htccEntryDishCone";
 	$detector{"dimensions"}  = "0";
+	$detector{"visible"}        = "0";
 	$detector{"material"}    = "HTCCgas";
     $detector{"style"}       = "1";
 	print_det(\%configuration, \%detector);

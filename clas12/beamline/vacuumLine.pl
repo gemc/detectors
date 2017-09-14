@@ -8,12 +8,12 @@ our %configuration;
 
 sub vacuumLine()
 {
-    # straight aluminum pipe with vacucum inside
-    
-    # the beampipe is 0.125" (3mm) thick up to the torus downstream nose end, then 5mm thick
+	# straight aluminum pipe with vacucum inside
 
-    my $iradius  = 26.68;
-    my $oradius  = 29.8;
+	# the beampipe is 0.125" (3mm) thick up to the torus downstream nose end, then 5mm thick
+
+	my $iradius  = 26.68;
+	my $oradius  = 29.8;
 	my $starLine = 433.9;
 	my $length   = 4000;
 
@@ -24,19 +24,18 @@ sub vacuumLine()
 
 	my $zstart = $starLine + $length;
 
-    # aluminum pipe
-    my %detector = init_det();
-    $detector{"name"}        = "aluminumBeamPipe";
-    $detector{"mother"}      = "root";
-    $detector{"description"} = "aluminum beampipe";
-    $detector{"color"}       = "aaffff";
-    $detector{"type"}        = "Tube";
+	# aluminum pipe
+	my %detector = init_det();
+	$detector{"name"}        = "aluminumBeamPipe";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "aluminum beampipe";
+	$detector{"color"}       = "aaffff";
 	$detector{"pos"}         = "0*mm 0*mm $zstart*mm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0*mm $oradius*mm $length*mm 0*deg 360*deg";
-    $detector{"style"}       = 1;
+	$detector{"style"}       = 1;
 	$detector{"material"}    = "G4_Al";
-   print_det(\%configuration, \%detector);
+	print_det(\%configuration, \%detector);
 
 	# vacuum pipe
 	%detector = init_det();
@@ -44,7 +43,6 @@ sub vacuumLine()
 	$detector{"mother"}      = "aluminumBeamPipe";
 	$detector{"description"} = "aluminum beampipe";
 	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm 0*mm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0*mm $iradius*mm $length*mm 0*deg 360*deg";
@@ -52,6 +50,31 @@ sub vacuumLine()
 	$detector{"material"}    = "G4_Galactic";
 	print_det(\%configuration, \%detector);
 
+
+	# airgap still needed
+	%detector = init_det();
+	$detector{"name"}        = "airPipe";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "airgap between target and shield to limit e- steps";
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm 625*mm";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm 45*mm 250*mm 0*deg 360*deg";
+	$detector{"style"}       = 1;
+	$detector{"material"}    = "G4_AIR";
+	print_det(\%configuration, \%detector);
+
+	%detector = init_det();
+	$detector{"name"}        = "airPipe2";
+	$detector{"mother"}      = "airPipe";
+	$detector{"description"} = "airgap between target and shield to limit e- steps";
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm 15*mm 249*mm 0*deg 360*deg";
+	$detector{"style"}       = 1;
+	$detector{"material"}    = "G4_AIR";
+	print_det(\%configuration, \%detector);
 
 }
 

@@ -140,6 +140,18 @@ sub vacuumLine()
 	print_det(\%configuration, \%detector);
 
 
+	my $gapZpos = 376;
+	my $gapLength = 249;
+
+
+	if ($configuration{"variation"} eq "FTOff")
+	{
+		$gapLength = 39;
+	}
+
+	my $gapLengthm = $gapLength + 1;
+	my $ztart = $gapZpos + $gapLength;
+
 
 	# airgap still needed
 	%detector = init_det();
@@ -148,9 +160,9 @@ sub vacuumLine()
 	$detector{"description"} = "airgap between target and shield to limit e- steps";
 	$detector{"color"}       = "aaffff";
 	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm 625*mm";
+	$detector{"pos"}         = "0*mm 0*mm $ztart*mm";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm 45*mm 250*mm 0*deg 360*deg";
+	$detector{"dimensions"}  = "0*mm 45*mm $gapLengthm*mm 0*deg 360*deg";
 	$detector{"style"}       = 1;
 	$detector{"material"}    = "G4_AIR";
 	print_det(\%configuration, \%detector);
@@ -161,10 +173,13 @@ sub vacuumLine()
 	$detector{"description"} = "airgap between target and shield to limit e- steps";
 	$detector{"color"}       = "aaffff";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm 10*mm 249*mm 0*deg 360*deg";
+	$detector{"dimensions"}  = "0*mm 10*mm $gapLength*mm 0*deg 360*deg";
 	$detector{"style"}       = 1;
 	$detector{"material"}    = "G4_AIR";
 	print_det(\%configuration, \%detector);
+
+
+
 
 }
 

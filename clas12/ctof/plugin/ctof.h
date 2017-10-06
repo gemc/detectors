@@ -9,17 +9,18 @@
 using namespace std;
 
 class ctofPlugin : public GDynamic {
-
-public:
+	
+	public:
 	bool loadConstants(int runno, string variation);
-
-private:
-
+	bool checkPlugin() { return true; }
+	
+	private:
+	
 	double var1;
 	int var2[2];
 	vector<double> var3;
 	string var4;
-
+	
 };
 
 extern "C" GDynamic* GDynamicFactory(void) {

@@ -12,7 +12,7 @@ class ctofPlugin : public GDynamic {
 	
 	public:
 	bool loadConstants(int runno, string variation);
-	void showConstants();
+	vector<string> showConstants();
 	bool checkPlugin() { return true; }
 	
 	private:

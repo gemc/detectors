@@ -2,7 +2,16 @@
 
 bool ctofPlugin::loadConstants(int runno, string variation)
 {
+	
 	var1    = 2.198;
+	
+	if(runno == 11)
+		var1    = 11.198;
+	if(runno == 12)
+		var1    = 12.198;
+	if(runno == 13)
+		var1    = 13.198;
+
 	var2[0] = 1;
 	var2[0] = 2;
 
@@ -12,8 +21,6 @@ bool ctofPlugin::loadConstants(int runno, string variation)
 	var3.push_back(6.0);
 
 	var4 = "hello";
-
-	cout << " Constants loaded for run number " << runno << " for ctof! var1  is " << var1 << " var2 pointer is " << var2 << endl;
 
 	return true;
 }

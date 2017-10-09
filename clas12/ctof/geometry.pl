@@ -76,7 +76,7 @@ sub build_paddles
 		$detector{"color"}      = "66bbff";
 		$detector{"type"}       = "Trd";
 		$detector{"dimensions"} = "$dx1*cm $dx2*cm $dy*cm $dy*cm $dz*cm";
-		$detector{"material"}   = "scintillator";
+		$detector{"material"}   = "G4_AIR";
 		$detector{"visible"}     = 1;
 		$detector{"style"}       = 1;
 		$detector{"sensitivity"} = "ctof";

@@ -12,6 +12,7 @@ class ctofPlugin : public GDynamic {
 	
 	public:
 	bool loadConstants(int runno, string variation);
+	void showConstants();
 	bool checkPlugin() { return true; }
 	
 	private:
@@ -23,9 +24,9 @@ class ctofPlugin : public GDynamic {
 	
 };
 
-extern "C" GDynamic* GDynamicFactory(void) {
-	return static_cast<GDynamic*>(new ctofPlugin);
-}
+//extern "C" GDynamic* GDynamicFactory(void) {
+//	return static_cast<GDynamic*>(new ctofPlugin);
+//}
 
 
 #endif

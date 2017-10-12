@@ -22,6 +22,12 @@ my $apexPos = 5372;
 
 sub vacuumLine()
 {
+
+	if( $configuration{"variation"} eq "FTOff") {
+		$shieldStart = 503;
+	}
+
+
 	# in "root" the first part of the pipe is straight
 	# 1.651mm thick
 	my $pipeLength = ($pipeFirstStep - $shieldStart) / 2.0 - 0.1;

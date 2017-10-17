@@ -186,7 +186,7 @@ sub build_hyp_mirrors
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			if($s != 4){
+			if($s != 4 && $s != 1){
 			# Subtracting right box - RIGHT MIRROR
 				%detector = init_det();
 				$detector{"name"}        = "hyp_mirror_s$s"."_right_$n";

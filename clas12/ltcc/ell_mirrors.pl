@@ -392,7 +392,7 @@ sub build_ell_mirrors
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			if($s != 4) {
+			if($s != 4 && $s != 1) {
 
 				# mirror RIGHT
 				%detector = init_det();

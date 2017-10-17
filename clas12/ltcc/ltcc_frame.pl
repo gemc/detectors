@@ -37,7 +37,7 @@ sub build_LtccFrame
 
 	for(my $s=$startS; $s<=$endS; $s++) {
 
-		if($s != 3 && $s != 4 ) {
+		if($s != 3 && $s != 4 && $s != 1) {
 			my %detector = init_det();
 			$detector{"name"}        = "frame1_s$s";
 			$detector{"mother"}      = "fc";

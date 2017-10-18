@@ -12,6 +12,9 @@ class ctofPlugin : public GDynamic {
 	
 	public:
 	bool loadConstants(int runno, string variation);
+	void loadSensitivePars(int runno, string variation);
+
+	
 	vector<string> showConstants();
 	bool checkPlugin() { return true; }
 	

@@ -73,7 +73,7 @@ sub build_pmts
 
 			# All following geometries are in the LTCC sectors ! Right and Left in names correspond to the specific geometries at right side or left side of the sector's center line
 
-			if($s != 4) {
+			if($s != 4 && $s != 1) {
 
 				my %detector = init_det();
 				$detector{"name"}        = "pmt_s$s"."right_$n";

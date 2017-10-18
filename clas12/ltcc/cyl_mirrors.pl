@@ -71,7 +71,7 @@ sub build_cylMir
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			if($s != 4){
+			if($s != 4 && $s != 1){
 
 				if($n < $endN){
 			

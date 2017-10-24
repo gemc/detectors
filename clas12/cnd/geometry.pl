@@ -175,7 +175,7 @@ Consider the two paddles for one layer:
 				# increment sector angle by 15 deg for every sector
 				# start position is at 9 o'clock when looking downstream!
 
-				my $theta = (($i-1)*(-1)*(2*$angle_slice)) + 90;	
+				my $theta = -(($i-1)*(2*$angle_slice))-$angle_slice+90.0;	
 
 
 ########################################
@@ -313,7 +313,7 @@ Consider the u-turn for one layer:
 			# increment sector angle by 15 deg for every sector
 			# start position is at 9 o'clock when looking downstream!
 
-			my $theta = (($i-1)*(2*$angle_slice));					
+			my $theta = -(($i-1)*(2*$angle_slice))-$angle_slice+90.0;			
 			
 			# rotations
 			my $rotZ = 0.;

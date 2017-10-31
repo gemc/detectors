@@ -36,7 +36,8 @@ our %configuration = load_configuration($ARGV[0]);
 our %parameters = get_parameters(%configuration);
 
 my $javaCadDir = "javacad";
-system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
+system(join(' ', 'groovy -cp "../*" factory.groovy', $javaCadDir));
+#system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
 
 # materials
 require "./materials.pl";

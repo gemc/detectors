@@ -41,7 +41,7 @@ BMT_Gas2_width			|    3.000 | mm  | Gas2 width (radially) 					| Sebastien Procu
 BMT_DriftCuElectrode_width	|    0.005 | mm  | Drift Cu Electrode width (radially) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_DriftKapton_width		|    0.250 | mm  | Drift Kapton width (radially) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_DriftCuGround_width		|    0.005 | mm  | Drift Cu Ground width (radially) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
-FMT_mothervol_InnerRadius 	|   20.000 | mm	 | Mother volume inner radius					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
+FMT_mothervol_InnerRadius 	|   22.000 | mm	 | Mother volume inner radius					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_mothervol_OutRadius 	|  250.000 | mm  | Mother volume outer radius 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_mothervol_zmin		|  298.300 | mm  | Mother volume zmin (BMT_mothervol_zmax set to same value)	| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016
 FMT_mothervol_zmax		|  373.000 | mm  | Mother volume zmax						| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016

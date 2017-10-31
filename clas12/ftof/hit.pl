@@ -11,7 +11,7 @@ sub define_hit
 	$hit{"description"}     = "ftof hit definitions for panel ";
 	$hit{"identifiers"}     = "sector panel paddle";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "20*ns";
+	$hit{"timeWindow"}      = "400*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";

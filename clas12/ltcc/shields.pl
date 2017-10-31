@@ -85,7 +85,7 @@ sub build_shields
 
 			# Shield dimensions are not real dimension. Their sizes are decreased to avoid overlaps with other geometries and neighbor shields
 
-			if($s != 4){
+			if($s != 4 && $s != 1){
 
 				if($n < $endN){
 

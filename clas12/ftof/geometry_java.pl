@@ -152,7 +152,7 @@ sub build_panel1a_counters
 		$detector{"style"}        = 1;
 		$detector{"sensitivity"}  = "ftof";
 		$detector{"hit_type"}     = "ftof";
-		$detector{"identifiers"}  = "sector manual $sector panel manual 1 paddle manual $n";
+		$detector{"identifiers"}  = "sector manual $sector panel manual 1 paddle manual $n side manual 0";
 		print_det(\%main::configuration, \%detector);
 	}
 }
@@ -182,7 +182,7 @@ sub build_panel1b_counters
 		$detector{"style"}        = 1;
 		$detector{"sensitivity"}  = "ftof";
 		$detector{"hit_type"}     = "ftof";
-		$detector{"identifiers"}  = "sector manual $sector panel manual 2 paddle manual $n";
+		$detector{"identifiers"}  = "sector manual $sector panel manual 2 paddle manual $n side manual 0";
 		print_det(\%main::configuration, \%detector);
 	}
 }
@@ -212,7 +212,7 @@ sub build_panel2_counters
 		$detector{"style"}        = 1;
 		$detector{"sensitivity"}  = "ftof";
 		$detector{"hit_type"}     = "ftof";
-		$detector{"identifiers"}  = "sector manual $sector  panel manual 3  paddle manual $n";
+		$detector{"identifiers"}  = "sector manual $sector  panel manual 3  paddle manual $n side manual 0";
 		print_det(\%main::configuration, \%detector);
 	}
 }

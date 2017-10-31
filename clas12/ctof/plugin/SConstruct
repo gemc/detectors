@@ -4,6 +4,7 @@ env = init_environment("mlibrary qt5 geant4 clhep")
 
 pluginSources = Split("""
 	loadConstants.cc
+	loadSensitivePars.cc
 	showConstants.cc
 	gDynamicFactory.cc
     """)

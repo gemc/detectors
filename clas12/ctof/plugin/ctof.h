@@ -27,9 +27,5 @@ class ctofPlugin : public GDynamic {
 	
 };
 
-//extern "C" GDynamic* GDynamicFactory(void) {
-//	return static_cast<GDynamic*>(new ctofPlugin);
-//}
-
 
 #endif

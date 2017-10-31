@@ -48,7 +48,7 @@ sub build_paddles
 		$detector{"color"}       = "444444";
 		$detector{"material"}    = "scintillator";
 		$detector{"sensitivity"}    = "ctof";
-		$detector{"identifiers"}    = sprintf("paddle manual %d", $ipaddle);
+		$detector{"identifiers"}    = sprintf("paddle manual %d side manual 0", $ipaddle);
 
 		$gxmlFile->add(\%detector);
 	}

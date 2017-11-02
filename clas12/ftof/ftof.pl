@@ -33,6 +33,7 @@ if( scalar @ARGV != 1)
 our %configuration = load_configuration($ARGV[0]);
 
 system('groovy -cp "../*" factory.groovy');
+#system('~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy');
 
 # materials
 require "./materials.pl";

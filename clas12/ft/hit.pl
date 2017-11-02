@@ -32,7 +32,7 @@ sub define_ft_hodo_hit
 	$hit{"description"}     = "forward tagger hodoscope hit definition";
 	$hit{"identifiers"}     = "sector layer component";
 	$hit{"signalThreshold"} = "0.1*MeV";
-	$hit{"timeWindow"}      = "4*ns";
+	$hit{"timeWindow"}      = "400*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "10*ns";
@@ -51,7 +51,7 @@ sub define_ft_cal_hit
 	$hit{"description"}     = "forward tagger calorimeter hit definition";
 	$hit{"identifiers"}     = "idx idy";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "4*ns";
+	$hit{"timeWindow"}      = "400*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "10*ns";

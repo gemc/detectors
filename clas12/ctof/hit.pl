@@ -11,9 +11,9 @@ sub define_hit
 	my %hit = init_hit();
 	$hit{"name"}            = "ctof";
 	$hit{"description"}     = "ctof hit definitions";
-	$hit{"identifiers"}     = "paddle";
+	$hit{"identifiers"}     = "paddle pmt";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "20*ns";
+	$hit{"timeWindow"}      = "400*ns";
 	$hit{"prodThreshold"}   = "2*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";

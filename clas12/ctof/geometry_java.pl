@@ -49,12 +49,13 @@ sub build_paddles
 		$detector{"material"}    = "scintillator";
 		$detector{"sensitivity"}    = "ctof";
 
+		$detector{"identifiers"}    = sprintf("paddle manual %d side manual 0", $ipaddle);
+
+
 		my $paddleid = $ipaddle + 35;
 		if ($ipaddle>13){
 			$paddleid = $ipaddle - 13;
 		}
-
-		$detector{"identifiers"}    = sprintf("paddle manual %d", $paddleid);
 
 		$gxmlFile->add(\%detector);
 	}

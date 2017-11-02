@@ -24,13 +24,10 @@ sub define_bank
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "paddle",       1, "Di", "paddle number");
-	insert_bank_variable(\%configuration, $bankname, "ADCU",         2, "Di", "ADC Upstream");
-	insert_bank_variable(\%configuration, $bankname, "ADCD",         3, "Di", "ADC Downstream");
-	insert_bank_variable(\%configuration, $bankname, "TDCU",         4, "Di", "TDC Upstream");
-	insert_bank_variable(\%configuration, $bankname, "TDCD",         5, "Di", "TDC Downstream");
-	insert_bank_variable(\%configuration, $bankname, "ADCUu",        6, "Di", "ADC Upstream Unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "ADCDu",        7, "Di", "ADC Downstream Unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "TDCUu",        8, "Di", "TDC Upstream Unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "TDCDu",        9, "Di", "TDC Downstream Unsmeared");
+        insert_bank_variable(\%configuration, $bankname, "side",         2, "Di", "side of PMT");
+	insert_bank_variable(\%configuration, $bankname, "ADC",          3, "Di", "ADC");
+	insert_bank_variable(\%configuration, $bankname, "TDC",          4, "Di", "TDC");
+	insert_bank_variable(\%configuration, $bankname, "ADCu",         5, "Di", "ADC Unsmeared");
+	insert_bank_variable(\%configuration, $bankname, "TDCu",         6, "Di", "TDC Unsmeared");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }

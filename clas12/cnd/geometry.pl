@@ -198,7 +198,7 @@ ver4 = "^"
 ######################################## 
 
 				#odd (left) paddles
-				if ($k%2 != 1)
+				if ($k%2 == 1)
 				{	
 					#required vertices
 					my $ver1x = (0.5)*$paddle_gap;

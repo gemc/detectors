@@ -10,15 +10,16 @@ using namespace std;
 
 class ctofPlugin : public GDynamic {
 	
-	public:
+public:
 	bool loadConstants(int runno, string variation);
 	void loadSensitivePars(int runno, string variation);
+	GObservables* digitizeHit(GHit *ghit);
 
 	
 	vector<string> showConstants();
 	bool checkPlugin() { return true; }
 	
-	private:
+private:
 	
 	double var1;
 	int var2[2];

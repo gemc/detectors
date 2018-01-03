@@ -1,0 +1,16 @@
+<gcard>
+
+	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
+	<detector name="../targets/cad/" factory="CAD"/>
+	<detector name="../targets/target" factory="TEXT" variation="cad"/>
+
+	<!-- central detectors  -->
+	<detector name="../bst/bst"  factory="TEXT" variation="java"/>
+
+	<detector name="bstShield"   factory="TEXT" variation="thick500"/>
+
+	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
+	<option name="OUTPUT" value="evio, out.ev"/>
+
+</gcard>
+

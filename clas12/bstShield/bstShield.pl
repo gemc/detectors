@@ -27,7 +27,11 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-my @allConfs = ("thick50", "thick100", "thick150", "thick200", "thick300", "thick500");
+my @allConfs = ("lead_thick50",    "lead_thick100",    "lead_thick200",
+				 "sst_thick50",     "sst_thick100",     "sst_thick200",
+				"zinc_thick50",    "zinc_thick100",    "zinc_thick200",
+	 	  	  "copper_thick50",  "copper_thick100",  "copper_thick200",
+			  "nickel_thick50",  "nickel_thick100",  "nickel_thick200");
 
 my $rmin   = 50.3;
 my $length = 180;
@@ -48,30 +52,58 @@ foreach my $conf ( @allConfs )
 
 	my $rmax = 0;
 	
-	if($conf eq "thick50")
-	{
+	if($conf eq "lead_thick50") {
 		$rmax = $rmin + 0.05;
-	} elsif ($conf eq "thick100")
-	{		
+		$detector{"material"}    = "G4_Pb";
+	} elsif ($conf eq "lead_thick100") {
 		$rmax = $rmin + 0.1;
-	} elsif ($conf eq "thick150")
-	{
-		$rmax = $rmin + 0.15;
-	} elsif ($conf eq "thick200")
-	{
+		$detector{"material"}    = "G4_Pb";
+	} elsif ($conf eq "lead_thick200") {
 		$rmax = $rmin + 0.2;
-	} elsif ($conf eq "thick300")
-	{
-		$rmax = $rmin + 0.3;
-	} elsif ($conf eq "thick500")
-	{
-		$rmax = $rmin + 0.5;
+		$detector{"material"}    = "G4_Pb";
+	} elsif ($conf eq "sst_thick50") {
+		$rmax = $rmin + 0.05;
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+	} elsif ($conf eq "sst_thick100") {
+		$rmax = $rmin + 0.1;
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+	} elsif ($conf eq "sst_thick200") {
+		$rmax = $rmin + 0.2;
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+	} elsif ($conf eq "zinc_thick50") {
+		$rmax = $rmin + 0.05;
+		$detector{"material"}    = "G4_Zn";
+	} elsif ($conf eq "zinc_thick100") {
+		$rmax = $rmin + 0.1;
+		$detector{"material"}    = "G4_Zn";
+	} elsif ($conf eq "zinc_thick200") {
+		$rmax = $rmin + 0.2;
+		$detector{"material"}    = "G4_Zn";
+	} elsif ($conf eq "copper_thick50") {
+		$rmax = $rmin + 0.05;
+		$detector{"material"}    = "G4_Cu";
+	} elsif ($conf eq "copper_thick100") {
+		$rmax = $rmin + 0.1;
+		$detector{"material"}    = "G4_Cu";
+	} elsif ($conf eq "copper_thick200") {
+		$rmax = $rmin + 0.2;
+		$detector{"material"}    = "G4_Cu";
+	} elsif ($conf eq "nickel_thick50") {
+		$rmax = $rmin + 0.05;
+		$detector{"material"}    = "G4_Ni";
+	} elsif ($conf eq "nickel_thick100") {
+		$rmax = $rmin + 0.1;
+		$detector{"material"}    = "G4_Ni";
+	}  elsif ($conf eq "nickel_thick200") {
+		$rmax = $rmin + 0.2;
+		$detector{"material"}    = "G4_Ni";
 	}
-		
+
+	
+	
 	my $dimen = "$rmin*mm $rmax*mm $length*mm 0*deg 360*deg";
 
 	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_Pb";
 	$detector{"visible"}     = 1;
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);

@@ -48,6 +48,7 @@ sub build_paddles
 		$detector{"color"}       = "444444";
 		$detector{"material"}    = "scintillator";
 		$detector{"sensitivity"}    = "ctof";
+		$detector{"hitType"}    = "ctof";
 
 		$detector{"identifiers"}    = sprintf("paddle manual %d side manual 0", $ipaddle);
 

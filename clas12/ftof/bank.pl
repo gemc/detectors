@@ -28,15 +28,14 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "paddle",         3, "Di", "paddle number");
 	insert_bank_variable(\%configuration, $bankname, "side",           4, "Di", "PMT side (0 Left, 1 Right)");
 	insert_bank_variable(\%configuration, $bankname, "ADC",            5, "Di", "ADC");
-	insert_bank_variable(\%configuration, $bankname, "TDC" ,           7, "Di", "TDC");
-	insert_bank_variable(\%configuration, $bankname, "ADCu",           9, "Di", "ADC unsmeared");
-	insert_bank_variable(\%configuration, $bankname, "TDCu",          11, "Di", "TDC unsmeared");
+	insert_bank_variable(\%configuration, $bankname, "TDC" ,           6, "Di", "TDC");
+	insert_bank_variable(\%configuration, $bankname, "ADCu",           7, "Di", "ADC unsmeared");
+	insert_bank_variable(\%configuration, $bankname, "TDCu",           8, "Di", "TDC unsmeared");
 	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");
 }
 
 
-sub define_banks
-{
+sub define_banks {
 	define_bank("ftof", 1000);
 }
 

@@ -24,7 +24,7 @@ sub define_bank
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "paddle",       1, "Di", "paddle number");
-        insert_bank_variable(\%configuration, $bankname, "side",         2, "Di", "side of PMT");
+	insert_bank_variable(\%configuration, $bankname, "side",         2, "Di", "side of PMT");
 	insert_bank_variable(\%configuration, $bankname, "ADC",          3, "Di", "ADC");
 	insert_bank_variable(\%configuration, $bankname, "TDC",          4, "Di", "TDC");
 	insert_bank_variable(\%configuration, $bankname, "ADCu",         5, "Di", "ADC Unsmeared");

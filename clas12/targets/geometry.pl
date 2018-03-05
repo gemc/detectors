@@ -240,7 +240,7 @@ sub build_targets
 	{
 		# vacuum container
 		my $Rout         = 44;
-		my $ZhalfLength  = 50;  # half length along beam axis
+		my $ZhalfLength  = 130;  # half length along beam axis
 		my %detector = init_det();
 		$detector{"name"}        = "PolTarg";
 		$detector{"mother"}      = "root";

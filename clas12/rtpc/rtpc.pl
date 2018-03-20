@@ -48,7 +48,7 @@ define_hit();
 my @radius  = (3.0, 20.0,   30.0,  70.0,  73.0,  76.0); # mm
 my @thickness = (0.055, 0.006, 0.004); # mm, GEM thicknesses are defined below
 
-my $z_half = 200.0;
+my $z_half = 192.0;
 
 # Target, Ground foil, Cathod foil (al layer neglected)
 my @layer_mater = ('G4_KAPTON', 'G4_MYLAR', 'G4_MYLAR');
@@ -88,7 +88,7 @@ sub make_target
 	$detector{"name"} = "DeuteriumTarget";
 	$detector{"mother"}      = "rtpc";
 	$detector{"description"} = "7 atm deuterium target gas";
-	$detector{"color"}       = "egegege";
+	$detector{"color"}       = "a54382";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
 	$detector{"material"}    = $mate;
@@ -97,21 +97,20 @@ sub make_target
 
 }
 
-
 sub make_layers
 {
 	my $layer = shift;
 	
 	my $rmin  = 0;
 	my $rmax  = 0;
-        my $phistart = 0;
+    	my $phistart = 0;
 	my $pspan = 360;
 	my $mate  = "G4_He";
 	my %detector = init_det();
 	
 	# target wall $layer==0
-        # ground foil $layer==1
-        # cathode $layer==2
+    	# ground foil $layer==1
+    	# cathode $layer==2
 	$rmin  = $radius[$layer];
 	$rmax  = $rmin + $thickness[$layer];
 	$mate  = $layer_mater[$layer];		
@@ -125,6 +124,49 @@ sub make_layers
 	$detector{"material"}    = $mate;
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
+}
+
+# Buffer volume between target and ground foil (20mm)
+sub make_buffer_volume
+{
+    my $rmin  = $radius[0] + $thickness[0];
+    my $rmax  = $radius[1];
+    my $phistart = 0;
+    my $pspan = 360;
+    my %detector = init_det();
+    my $mate  = "BONuSGas";
+    
+    $detector{"name"} = "buffer_layer";
+    $detector{"mother"}      = "rtpc";
+    $detector{"description"} = "Buffer volume";
+    $detector{"color"}       = "f0f8ff";
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
+    $detector{"material"}    = $mate;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
+}
+
+
+# Buffer volume between ground foil and cathode (30mm)
+sub make_buffer2_volume
+{
+    my $rmin  = $radius[1] + $thickness[1];
+    my $rmax  = $radius[2];
+    my $phistart = 0;
+    my $pspan = 360;
+    my %detector = init_det();
+    my $mate  = "BONuSGas";
+    
+    $detector{"name"} = "buffer2_layer";
+    $detector{"mother"}      = "rtpc";
+    $detector{"description"} = "Buffer volume";
+    $detector{"color"}       = "e0ffff";
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
+    $detector{"material"}    = $mate;
+    $detector{"style"}       = 1;
+    print_det(\%configuration, \%detector);
 }
 
 
@@ -149,7 +191,6 @@ sub make_gems
 	$rmax  = $rmin + $gem_thick[$layer];
 	$color = $gem_color[$layer];
 	$mate  = $gem_mater[$layer];
-		
 	
 	$detector{"name"} = "gem_".$gemN."_layer_".$layer;	
 	$detector{"mother"}      = "rtpc";
@@ -163,52 +204,7 @@ sub make_gems
 	
 }
 
-
-# Buffer volume between target and ground foil (20mm)
-sub make_buffer_volume
-{
-	my $rmin  = $radius[0] + $thickness[0];
-	my $rmax  = $radius[1];
-	my $phistart = 0;
-	my $pspan = 360;
-	my %detector = init_det();
-	my $mate  = "G4_He";	
-
-	$detector{"name"} = "buffer_layer";	
-	$detector{"mother"}      = "rtpc";
-	$detector{"description"} = "Buffer volume";
-	$detector{"color"}       = "ff88994";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
-	$detector{"material"}    = $mate;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-}
-
-
-# Buffer volume between target and ground foil (20mm)
-sub make_buffer2_volume
-{
-	my $rmin  = $radius[1] + $thickness[1];
-	my $rmax  = $radius[2];
-	my $phistart = 0;
-	my $pspan = 360;
-	my %detector = init_det();
-	my $mate  = "BONuSGas";	
-
-	$detector{"name"} = "buffer2_layer";	
-	$detector{"mother"}      = "rtpc";
-	$detector{"description"} = "Buffer volume";
-	$detector{"color"}       = "ff88994";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
-	$detector{"material"}    = $mate;
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-}
-
-
-
+# make drift volume from cathode to first GEM (30-60 mm)
 sub make_drift_volume
 {	
 	my $rmin  = $radius[2] + $thickness[2];
@@ -216,6 +212,7 @@ sub make_drift_volume
 	my $pspan = 360.;	
 	my $phistart = 0;
 	my %detector = init_det();
+	my $mate  = "BONuSGas";
 
 	$detector{"name"} = "sensitive_drift_volume";	
 	$detector{"mother"}      = "rtpc";
@@ -223,17 +220,12 @@ sub make_drift_volume
 	$detector{"color"}       = "ff88994";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$rmin*mm $rmax*mm $z_half*mm $phistart*deg $pspan*deg";
-	$detector{"material"}    = "BONuSGas";
+	$detector{"material"}    = $mate;
 	$detector{"style"}       = 1;
 	$detector{"sensitivity"}  = "rtpc"; ## HitProcess definition
 	$detector{"hit_type"}     = "rtpc"; ## HitProcess definition
 	print_det(\%configuration, \%detector);
 }
-
-
-
-
-
 
 # electronics readout layer, external radius is random but it does not matter so far
 sub make_electronics_layer
@@ -282,10 +274,3 @@ for(my $gem = 0; $gem < 3; $gem++)
 
 
 make_electronics_layer();
-
-
-
-
-
-
-

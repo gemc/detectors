@@ -54,16 +54,9 @@ sub define_bank
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "CellID",       1, "Di", "Pad CellId");
-	insert_bank_variable(\%configuration, $bankname, "ADC",          2, "Dd", "ADC");
-	insert_bank_variable(\%configuration, $bankname, "TDC",          3, "Dd", "TDC");
-	insert_bank_variable(\%configuration, $bankname, "step",         4, "Di", "nstep");
-	insert_bank_variable(\%configuration, $bankname, "EDep",         5, "Dd", "EDep");
-        insert_bank_variable(\%configuration, $bankname, "hitn",         6, "Di", "hit number");
-	insert_bank_variable(\%configuration, $bankname, "PosX",         7, "Dd", "PosX");
-	insert_bank_variable(\%configuration, $bankname, "PosY",         8, "Dd", "PosY");
-        insert_bank_variable(\%configuration, $bankname, "PosZ",         9, "Dd", "PosZ");
-        insert_bank_variable(\%configuration, $bankname, "phiRad",      10, "Dd", "phiRad");
-    
+	insert_bank_variable(\%configuration, $bankname, "ADC",          2, "Di", "ADC");	
+	insert_bank_variable(\%configuration, $bankname, "Time",         3, "Dd", "Time");
+	insert_bank_variable(\%configuration, $bankname, "hitn",         4, "Di", "hit number");
 }
 
 define_bank();

@@ -74,8 +74,37 @@ sub build_fc
 	$configuration{"variation"} = "fastField" ;
 	$detector{"mfield"}      = "clas12-torus-bigRK";
 	print_det(\%configuration, \%detector);
+
+	$configuration{"variation"} = "TorusSymmetric" ;
+	$detector{"mfield"}      = "TorusSymmetric";
+	print_det(\%configuration, \%detector);
+
 }
 
 
 
 build_fc();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

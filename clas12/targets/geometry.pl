@@ -252,6 +252,21 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 		
+		# LHe fill between targets
+                my $ZCenter = 0;  # center location of target along beam axis
+                $Rout       = 10;  # radius in mm
+                $ZhalfLength  = 15;  # half length along beam axis
+                %detector = init_det();
+                $detector{"name"}        = "LHeVoidFill";
+                $detector{"mother"}      = "PolTarg";
+                $detector{"description"} = "LHe between target cells";
+                $detector{"pos"}         = "0 0 $ZCenter";
+                $detector{"color"}       = "0000ff";
+                $detector{"type"}        = "Tube";
+                $detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
+                $detector{"material"}    = "lHeCoolant";
+                $detector{"style"}       = "1";
+                print_det(\%configuration, \%detector);
 		
 		# NH3Targ
 		my $ZCenter = -25;  # center location of target along beam axis

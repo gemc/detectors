@@ -154,8 +154,8 @@ sub materials
 
 	%mat = init_mat();
 	#my $fmtMMMeshTransparency_Density = 0.490*7.93; #(45*45)/(45+18)*(45+18) = 0.51
-        my $fmtMMMeshTransparency_Density = 0.55*7.93;
-	# effective thickness (taking into account double thickness when wires overlap and effect of wire circular section) ~ 0.55*thickness (MG's notebook page 138)
+        my $fmtMMMeshTransparency_Density = 0.45*7.93;
+	# effective thickness (taking into account double thickness when wires overlap and effect of wire circular section) ~ 0.45*thickness (MG's notebook page 163)
 	$mat{"name"}          = "myfmtMMMesh"; # found in gemc materials database.
 	$mat{"description"}   = "micromegas fmt micromesh is inox";
 	$mat{"density"}       = "$fmtMMMeshTransparency_Density";
@@ -164,7 +164,9 @@ sub materials
 	print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
-	my $bmtMMMeshTransparency_Density = 0.408*7.93; #Sebastien had 0.395... don't know how or why ? (60*60)/(60+18)*(60+18) = 0.592
+	#my $bmtMMMeshTransparency_Density = 0.408*7.93; #Sebastien had 0.395... don't know how or why ? (60*60)/(60+18)*(60+18) = 0.592
+	my $bmtMMMeshTransparency_Density = 0.36*7.93;
+	# effective thickness (taking into account double thickness when wires overlap and effect of wire circular section) ~ 0.36*thickness (MG's notebook page 163)
 	$mat{"name"}          = "mybmtMMMesh"; # found in gemc materials database. Shouldn't have changed since then thought, I guess...
 	$mat{"description"}   = "micromegas bmt micromesh is inox";
 	$mat{"density"}       = "$bmtMMMeshTransparency_Density";

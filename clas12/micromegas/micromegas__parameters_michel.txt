@@ -2,7 +2,7 @@ mm_radius_layer1   		|  145.00  | mm  |  center radii of barrel MM 					| Sebast
 BMT_mothervol_InnerRadius 	|  140.000 | mm	 | Mother volume inner radius					| Sebastien Procureur	| sebastien.procureur@cea.fr  | - | - | - | 07/06/12
 BMT_mothervol_OutRadius 	|  240.000 | mm  | Mother volume outer radius 					| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 05/08/2016
 BMT_mothervol_HalfLength 	|  385.000 | mm  | Mother volume half length (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016
-BMT_endPCB_zpos			|  290.300 | mm  | Position of detector (PCB) downstream end 			| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 11/08/2016
+BMT_endPCB_zpos			|  282.300 | mm  | Position of detector (PCB) downstream end 			| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 11/08/2016
 BMT_nlayer		 	|    6	   | na  | Number of layers     					| Sebastien Procureur	| sebastien.procureur@cea.fr  | - | - | - | 07/06/12
 BMT_ntile		 	|    3	   | na  | Number of tiles per layer     				| Sebastien Procureur	| sebastien.procureur@cea.fr  | - | - | - | 07/06/12
 BMT_radius_layer1 		|  145.731 | mm  | Radius of the 1st layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
@@ -11,16 +11,16 @@ BMT_radius_layer3 		|  175.731 | mm  | Radius of the 3rd layer of MM		 		| Frede
 BMT_radius_layer4 		|  190.731 | mm  | Radius of the 4th layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_radius_layer5 		|  205.731 | mm  | Radius of the 5th layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_radius_layer6 		|  220.731 | mm  | Radius of the 6th layer of MM		 		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
-BMT_zpos_layer1 		| -126.070 | mm  | Position of the 1st layer (in z) (active zone only)		| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 24/11/2016
-BMT_zpos_layer2 		| -127.770 | mm  | Position of the 2nd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zpos_layer3 		| -148.690 | mm  | Position of the 3rd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zpos_layer4			| -148.230 | mm  | Position of the 4th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 24/11/2016
-BMT_zpos_layer5 		| -169.600 | mm  | Position of the 5th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zpos_layer6 		| -169.550 | mm  | Position of the 6th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr        | - | - | - | 24/11/2016
-BMT_zlength_layer1		|  372.320 | mm  | Length of the 1st layer (in z)   (active zone only)   	| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 18/08/2015
+BMT_zpos_layer1 		| -134.070 | mm  | Position of the 1st layer (in z) (active zone only)		| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | ??/08/2017
+BMT_zpos_layer2 		| -135.770 | mm  | Position of the 2nd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
+BMT_zpos_layer3 		| -156.690 | mm  | Position of the 3rd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
+BMT_zpos_layer4			| -156.230 | mm  | Position of the 4th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | ??/08/2017
+BMT_zpos_layer5 		| -177.600 | mm  | Position of the 5th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
+BMT_zpos_layer6 		| -177.550 | mm  | Position of the 6th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | ??/08/2017
+BMT_zlength_layer1		|  372.320 | mm  | Length of the 1st layer (in z)   (active zone only)   	| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | ??/08/2017
 BMT_zlength_layer2		|  372.750 | mm  | Length of the 2nd layer (in z) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_zlength_layer3		|  420.590 | mm  | Length of the 3rd layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
-BMT_zlength_layer4		|  420.480 | mm  | Length of the 4th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | 24/11/2016
+BMT_zlength_layer4		|  420.480 | mm  | Length of the 4th layer (in z) 				| Maxime Defurne	| maxime.defurne@cea.fr       | - | - | - | ??/08/2017
 BMT_zlength_layer5		|  444.800 | mm  | Length of the 5th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
 BMT_zlength_layer6		|  444.800 | mm  | Length of the 6th layer (in z) 				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 24/11/2016
 BMT_theta_layer1		| -150.000 | deg | Starting angle of the 1st tile of 1st layer 			| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 05/08/2016
@@ -41,17 +41,17 @@ BMT_Gas2_width			|    3.000 | mm  | Gas2 width (radially) 					| Sebastien Procu
 BMT_DriftCuElectrode_width	|    0.005 | mm  | Drift Cu Electrode width (radially) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_DriftKapton_width		|    0.250 | mm  | Drift Kapton width (radially) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
 BMT_DriftCuGround_width		|    0.005 | mm  | Drift Cu Ground width (radially) 				| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 18/08/2015
-FMT_mothervol_InnerRadius 	|   22.000 | mm	 | Mother volume inner radius					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
+FMT_mothervol_InnerRadius 	|   22.000 | mm	 | Mother volume inner radius					| Maurizio Ungaro	|                             | - | - | - | ??/11/2017
 FMT_mothervol_OutRadius 	|  250.000 | mm  | Mother volume outer radius 					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
-FMT_mothervol_zmin		|  298.300 | mm  | Mother volume zmin (BMT_mothervol_zmax set to same value)	| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016
-FMT_mothervol_zmax		|  373.000 | mm  | Mother volume zmax						| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016
+FMT_mothervol_zmin		|  290.300 | mm  | Mother volume zmin (BMT_mothervol_zmax set to same value)	| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016
+FMT_mothervol_zmax		|  365.000 | mm  | Mother volume zmax						| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 09/08/2016
 FMT_nlayer		 	|    6	   | na  | Number of layers     					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
-FMT_zpos_layer1 		|  300.300 | mm  | Position of the first layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
-FMT_zpos_layer2 		|  312.200 | mm  | Position of the second layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
-FMT_zpos_layer3 		|  324.100 | mm  | Position of the third layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
-FMT_zpos_layer4 		|  338.000 | mm  | Position of the fourth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016 
-FMT_zpos_layer5 		|  349.900 | mm  | Position of the fifth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016  
-FMT_zpos_layer6 		|  361.800 | mm  | Position of the sixth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
+FMT_zpos_layer1 		|  292.300 | mm  | Position of the first layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
+FMT_zpos_layer2 		|  304.200 | mm  | Position of the second layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
+FMT_zpos_layer3 		|  316.100 | mm  | Position of the third layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
+FMT_zpos_layer4 		|  330.000 | mm  | Position of the fourth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016 
+FMT_zpos_layer5 		|  341.900 | mm  | Position of the fifth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016  
+FMT_zpos_layer6 		|  353.800 | mm  | Position of the sixth layer of MM center (in z) 		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 14/11/2016
 FMT_DetInnerRadius 		|   25.000 | mm  | Inner Radius of the MM disk					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_DetOuterRadius 		|  225.000 | mm  | Outer Radius of the MM disk					| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 20/05/2016
 FMT_ActInnerRadius 		|   42.000 | mm  | Inner Radius of the active area				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 20/05/2016
@@ -78,7 +78,7 @@ FMT_Peek_Dz    			|    5.000 | mm  | Drift length (in z) (real DL = Peek_Dz + Ph
 FMT_DriftCuElectrode_Dz    	|    0.012 | mm  | Drift Cu electrode width (in z)   				| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 20/05/2016
 FMT_DriftPCB_Dz    		|    0.200 | mm  | Drift pcb width (in z)   					| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
 FMT_DriftCuGround_Dz    	|    0.005 | mm  | Drift Cu Ground  width (in z) * 44% filling fraction		| Frederic Georges	| frederic.georges@cea.fr     | - | - | - | 22/07/2015
-FMT_overall_disks_rotation	|   60.000 | deg | Rotation of the 6 disks wrt (arbitrary) nominal		| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 16/11/2016
+FMT_overall_disks_rotation	|   60.000 | deg | Rotation of the 6 disks wrt (arbitrarily chosen) nominal	| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 16/11/2016
 FMT_overall_spacers_rotation	|    0.000 | deg | Rotation of FMT supports and interdisks spacers wrt nominal	| Michel Garcon		| michel.garcon@cea.fr        | - | - | - | 30/05/2016
 FTT_M_mothervol_InnerRadius 	|   64.000 | mm	 | Mother volume inner radius					| Gabriel Charles	| gabriel.charles@cea.fr     | - | - | - | 13/04/12
 FTT_M_mothervol_OutRadius 	|  161.000 | mm  | Mother volume outer radius 					| Gabriel Charles	| gabriel.charles@cea.fr     | - | - | - | 13/04/12

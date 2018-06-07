@@ -73,10 +73,10 @@ my $Gas1_Width 	    		= $parameters{"BMT_Gas1_width"};
 my $Mesh_Width 	    		= $parameters{"BMT_Mesh_width"};
                                   #opacity taken into account in the density of the material
 my $Gas2_Width 	    		= $parameters{"BMT_Gas2_width"};
-my $DriftZCuElectrode_Width	= 0.024*$parameters{"BMT_DriftCuElectrode_width"};
+my $DriftCuElectrode_Width	= 0.024*$parameters{"BMT_DriftCuElectrode_width"};
                                   #0.024 from gerber : 1 - 10*10/(10+0.12)*(10+0.12) = 0.024
-my $DriftCCuElectrode_Width	= $parameters{"BMT_DriftCuElectrode_width"};
-                                  #for CRnC, the Cu electrode is not a mesh
+my $DriftCuElectrode6C_Width	= $parameters{"BMT_DriftCuElectrode_width"};
+                                  #for layer 6C, the Cu electrode is not a mesh
 my $DriftKapton_Width 		= $parameters{"BMT_DriftKapton_width"};
 my $DriftCuGround_Width 	= 0.082*$parameters{"BMT_DriftCuGround_width"};
                                   #0.082 from gerber : 1 - 4.6*4.6/(4.6+0.2)*(4.6+0.2) = 0.082
@@ -746,10 +746,12 @@ sub place_driftCuElectrode
 		my $PSPhi     = $dtheta_start[$l]; 
 		my $PDPhi     = $dtheta[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width;				
-	  if($l == 0 || $l == 3 || $l == 5){
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width;}
-	  if($l == 1 || $l == 2 || $l == 4){
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftZCuElectrode_Width;}         	
+#	  if($l == 0 || $l == 3 || $l == 5){
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width;
+#		}
+#	  if($l == 1 || $l == 2 || $l == 4){
+	        if($l == 5){
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width;}         	
 	
 		my %detector = init_det();
 		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
@@ -778,13 +780,22 @@ sub place_driftKapton
     my $descriptio = 0;
     my @drift_dz     = (449.0, 449.0, 478.82, 478.82, 491.0, 491.0);
 
-                if($l == 0 || $l == 3 || $l == 5)
+                if($l == 0 || $l == 3)
                 {
 		$vname      = "BMT_DriftKapton_C_Layer";
 		$descriptio = "DriftKapton C, Layer $layer_no, ";
 
-		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width + $DriftKapton_Width;
+		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width;
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width;
+		}
+		
+		if($l == 5)
+                {
+		$vname      = "BMT_DriftKapton_C_Layer";
+		$descriptio = "DriftKapton C, Layer $layer_no, ";
+
+		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width;
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width + $DriftKapton_Width;
 		}
 
                 if($l == 1 || $l == 2 || $l == 4)
@@ -792,8 +803,8 @@ sub place_driftKapton
 		$vname      = "BMT_DriftKapton_Z_Layer";
 		$descriptio = "DriftKapton Z, Layer $layer_no, ";
 
-		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftZCuElectrode_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftZCuElectrode_Width + $DriftKapton_Width;
+		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width;
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width;
 		}
                 
                 #my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
@@ -857,15 +868,16 @@ sub place_driftCuGround
                 my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 			
-		if($l == 0 || $l == 3 || $l == 5)
+		if($l == 5)
 		{
-		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width + $DriftKapton_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCCuElectrode_Width + $DriftKapton_Width + $DriftCuGround_Width;
+		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width + $DriftKapton_Width;
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width + $DriftKapton_Width + $DriftCuGround_Width;
 		}
-		if($l == 1 || $l == 2 || $l == 4)
+		
+		if($l == 0 || $l == 3 || $l == 1 || $l == 2 || $l == 4)
 		{
-		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftZCuElectrode_Width + $DriftKapton_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftZCuElectrode_Width + $DriftKapton_Width + $DriftCuGround_Width;
+		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width;
+		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width + $DriftCuGround_Width;
 		}
 		
 		my $PDz       = $Dz_halflength[$l];
@@ -1321,7 +1333,7 @@ sub place_rods
 		
 		$Px        =   0.0876;   # half-thickness equivalent to the copper content of 2 cables
 		$Py        =   18.0/2.0; # half (nominal) width of cable
-		$Pz        =   $bmt_dz - 10.0;  # -10 to avoid overlap with BMT_attFMT
+		$Pz        =   $bmt_dz - 6.0;  # -6 to avoid overlap with BMT_attFMT
 		$z         =   0.0;          
 		$sphi      =   $sphi + 0.5*$dphi;                 
 

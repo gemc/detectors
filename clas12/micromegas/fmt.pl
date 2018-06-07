@@ -19,8 +19,9 @@ my $fmt_or 		= $parameters{"FMT_mothervol_OutRadius"};
 # Mother volume half-length and middle position: 
 my $fmt_dz              = ($parameters{"FMT_mothervol_zmax"} - $parameters{"FMT_mothervol_zmin"})/2.0;
 my $fmt_starting        = ($parameters{"FMT_mothervol_zmax"} + $parameters{"FMT_mothervol_zmin"})/2.0;
+my $fmt_zmin		= $parameters{"FMT_mothervol_zmin"};
 
-my $Dtheta              = 60.0; # rotation angle of each disk wrt to the preceding one
+#my $Dtheta              = 60.0; # rotation angle of each disk wrt to the preceding one
 my $nlayer	      	= $parameters{"FMT_nlayer"};
 
 $starting_point[0] 	= $parameters{"FMT_zpos_layer1"}; 
@@ -162,11 +163,12 @@ sub define_fmt
         place_driftcuground($l);
 	place_hvcovers($l);
 	place_connectors($l);
+	place_cables($l);
 	place_innerscrews($l);
 	if ( $l == 2 || $l == 5) {place_supports36($l);}
 	if ( $l == 0 || $l == 1 || $l == 3 || $l == 4 )  {place_supports1245($l);}
 	if ( $l < 5) {place_spacers($l);}
-#       place_cables{$l}; to be implemented after assembly at JLab; must be compatible with place_rods in bmt.pl 
+          
   }
 }
 
@@ -1013,10 +1015,8 @@ sub place_hvcovers
     my @stheta = (-13.755, -13.755, 13.5, -13.755); 
     # for initial angular position (HV covers and connectors sym/y-axis); then corrected via RotDisks parameter
     my @dtheta = (27.51, 0.255, 0.255, 27.51);
-    
-    
+       
     my $vname      = "FMT_HVcover";
- #   my $descriptio = "HVcover, Layer $layer_no, ";
     
     for(my $c = 0; $c < 2 ; $c++)   # 2 HV cover per disk
     {
@@ -1061,6 +1061,7 @@ sub place_hvcovers
 }
 
 sub place_connectors
+# this includes the radial part of the cables right after the connectors
 {
     my $l    = shift; 
     my $layer_no       = $l + 1;
@@ -1070,20 +1071,20 @@ sub place_connectors
 # element 2 = connector (metallic part placed on top of 1 instead of in the middle) 
 # element 3 = flat cable end (PCB part placed beyond 1 in radius)
 # element 4 = flat cable end (metallic part placed on top of 3 instead of in the middle)
+# element 5 = radial part of FMT cable (Cu) - same as in bmt.pl, except approximated by angular sector
+# element 6 = radial part of FMT cable (polyester) - same as in bmt.pl, except approximated by angular sector
 
 
-    my @rmin   = (205.9, 205.9, 213.3, 216.5); 
-    my @rmax   = (213.3, 213.3, 225.3, 224.0);
-    my @dz     = (3.0, 0.5, 2.0, 0.7); # full thickness * effective density, approximate !
-    my @stheta = (33.2, 33.6, 33.0, 35.0);
+    my @rmin   = (205.9, 205.9, 213.3, 216.5, 225.3, 225.3); 
+    my @rmax   = (213.3, 213.3, 225.3, 224.0, 241.2, 241.2);
+    my @dz     = (3.0, 0.5, 2.0, 0.7,0.0876, 1.054); # full thickness * effective density, approximate !
+    my @stheta = (33.2, 33.6, 33.0, 34.7, 35.305, 35.305);
     # for initial angular position (HV-covers and connectors sym/y-axis); then corrected via RotDisks parameter
-    my @dtheta = (8.6, 7.8, 9.6, 5.6);    
-    my @mat    = ($pcb_material, $alu_material, $pcb_material, $alu_material);
-    my @col    = ($connector_color, $hvcover_color, $connector_color, $hvcover_color);
-    
+    my @dtheta = (8.6, 7.8, 9.6, 5.6, 4.390, 4.390); # 4.39 degrees = 18 mm cable width / 235 mm average radius   
+    my @mat    = ($pcb_material, $alu_material, $pcb_material, $alu_material, $copper_material, $peek_material);
+    my @col    = ($connector_color, $hvcover_color, $connector_color, $hvcover_color, $copper_color, $peek_color);
     
     my $vname      = "FMT_connector";
- #   my $descriptio = "Connector, Layer $layer_no, ";
     
     for(my $c = 0; $c < 8 ; $c++)   # 2*8 connectors per disk
     {
@@ -1091,12 +1092,14 @@ sub place_connectors
     for(my $cc = 0; $cc < 2 ; $cc++)
     {
 	if($cc == 1) {$connector_no  = $connector_no + 8; }
-    for(my $e = 0; $e < 4 ; $e++)   # 4 elements (female + male, plastic + metal each) compose a connector
+    for(my $e = 0; $e < 6 ; $e++)   # 4 elements (female + male, plastic + metal each) compose a connector
+                                    # and 2 elements (copper and polyester approximated by peek) compose a cable
     {
      my $element_no= $e + 1;
-     my $descriptio = "Connector $connector_no, Layer $layer_no, Element $element_no";
+     my $descriptio = "Connector Layer $layer_no, Conn. $connector_no, Element $element_no";
      my $PRMin  = $rmin[$e];
      my $PRMax  = $rmax[$e];
+     if ($element_no == 5 || $element_no == 6) {$PRMax = $PRMax + $l*1.7;}
      my $PDz    = 0.5*$dz[$e];
      my $Stheta = $stheta[$e];
      my $Dtheta = $dtheta[$e];
@@ -1105,10 +1108,12 @@ sub place_connectors
      my $z      = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$PhRes128_Dz + $PDz;
      if ($element_no == 2) { $z = $z + $dz[0]; }
      if ($element_no == 3) { $z = $z + 0.5*$dz[0]; }
-     if ($element_no == 4) { $z = $z + 0.5*$dz[0] + $dz[2]; }   
+     if ($element_no == 4) { $z = $z + 0.5*$dz[0] + $dz[2]; } 
+     if ($element_no == 5) { $z = $z + 0.5*$dz[0]; }
+     if ($element_no == 6) { $z = $z + 0.5*$dz[0] + $dz[4]; } 
 
     my %detector = init_det();	
-    $detector{"name"}        = "$vname$connector_no\_$layer_no\_$element_no";
+    $detector{"name"}        = "$vname$layer_no\_$connector_no\_$element_no";
     $detector{"mother"}      = $envelope;
     $detector{"description"} = "$descriptio";
     $detector{"pos"}         = "$tpos $z*mm";
@@ -1129,6 +1134,77 @@ sub place_connectors
     
     print_det(\%configuration, \%detector);
     }
+    }
+    }
+}
+sub place_cables
+
+# this is the longitudinal part of the cables, modeled by 
+# 6 (disks) x 2 (at 180 degrees from each other) x 2 (Copper and polyester parts) homogeneous 120 degrees sectors,
+# each sector having the same amount of material as 8 cables
+
+{
+    my $l    = shift; 
+    my $layer_no       = $l + 1;
+ 
+# element 1 = long. part of FMT cable (Cu) - same as in bmt.pl, except approximated by angular sector
+# element 2 = long. part of FMT cable (polyester) - same as in bmt.pl, except approximated by angular sector
+
+    my $zmin = $fmt_zmin - $fmt_starting;
+    my $zmax = $starting_point[$l] - $fmt_starting + 2*$CuGround_Dz + 2*$PCBGround_Dz + 2*$Rohacell_Dz + 2*$PCBDetector_Dz + 2*$Strips_Dz + 2*$Kapton_Dz + 2*$ResistStrips_Dz + 2*$PhRes128_Dz + 1.5;
+	
+    my $z    = 0.5*($zmin + $zmax);
+    my $PDz  = 0.5*($zmax - $zmin);
+    my @thickness = (0.0876*0.281, 1.054*0.281); # 0.281 = (18 mm cable width / 245 mm average radius)/15 degrees
+    
+    my $Stheta = 30.0;
+    # for initial angular position (HV-covers and connectors sym/y-axis); then corrected via RotDisks parameter
+    my $Dtheta = 120.0;
+       
+    my @mat    = ($copper_material, $peek_material);
+    my @col    = ($copper_color, $peek_color);
+    
+    my $vname      = "FMT_cable";
+    
+    for(my $s = 0; $s < 2 ; $s++)
+    {
+     my $sector_no= $s + 1;
+    for(my $e = 0; $e < 2 ; $e++)   # 2 elements (copper and polyester approximated by peek) compose a cable
+    {
+     my $element_no= $e + 1;
+     my $descriptio = "Cable, Layer $layer_no, Sector $sector_no, Element $element_no";
+    
+     my $PRMax = 241.2 + $l*1.7;
+     my $PRMin = $PRMax - $thickness[1];
+     if ($element_no == 1) 
+        {
+        $PRMax = $PRMin; 
+	$PRMin = $PRMax - $thickness[0];
+        }
+      
+     my $tpos   = "0*mm 0*mm";
+     
+    my %detector = init_det();	
+    $detector{"name"}        = "$vname$layer_no\_$sector_no\_$element_no";
+    $detector{"mother"}      = $envelope;
+    $detector{"description"} = "$descriptio";
+    $detector{"pos"}         = "$tpos $z*mm";
+    $detector{"rotation"}    = rot_connector($l,0,$s);
+    $detector{"color"}       = $col[$e];
+    $detector{"type"}        = "Tube";
+    $detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
+    $detector{"material"}    = $mat[$e];
+    $detector{"mfield"}      = "no";
+    $detector{"ncopy"}       = 1;
+    $detector{"pMany"}       = 1;
+    $detector{"exist"}       = 1;
+    $detector{"visible"}     = 1;
+    $detector{"style"}       = 1;
+    $detector{"sensitivity"} = "no";
+    $detector{"hit_type"}    = "no";
+    $detector{"identifiers"} = "no";
+    
+    print_det(\%configuration, \%detector);
     }
     }
 }
@@ -1209,9 +1285,7 @@ sub place_supports36
     my @stheta = ( -2.0,  -2.0, 28.0, 58.0);    # nominal position
     my @dtheta = ( 64.0,   4.0,  4.0,  4.0);    
     
-    
     my $vname      = "FMT_support";
- #   my $descriptio = "Support, Layer $layer_no, ";
     
     for(my $c = 0; $c < 2 ; $c++)   # 2 supports per disk
     {
@@ -1277,9 +1351,7 @@ sub place_supports1245
         $stheta[2] = 26.5 ;
     }
     
-    
-    my $vname      = "FMT_support";
- #   my $descriptio = "Support, Layer $layer_no, ";
+     my $vname      = "FMT_support";
     
     for(my $c = 0; $c < 2 ; $c++)   # 2 supports per disk
     {

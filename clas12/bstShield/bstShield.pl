@@ -27,16 +27,17 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-my @allConfs = ("lead_thick50",    "lead_thick100",    "lead_thick200",
-				 "sst_thick50",     "sst_thick100",     "sst_thick200",
-				"zinc_thick50",    "zinc_thick100",    "zinc_thick200",
-	 	  	  "copper_thick50",  "copper_thick100",  "copper_thick200",
-			  "nickel_thick50",  "nickel_thick100",  "nickel_thick200",
-				   "w_thick50",       "w_thick100",       "w_thick150");
+my @allConfs = ( "w51");
 
-my $rmin   = 50.3;
+my $rmin   = 51;
 my $length = 180;
 my $pos    = "0*mm 0*mm -50*mm";
+
+# Adding the neoprene insulation Heat Shield
+
+my $HSrmin   = 130.0;
+my $HSlength = 270.0;
+my $HSpos    = "0*mm 0*mm -10*mm";
 
 foreach my $conf ( @allConfs )
 {
@@ -53,64 +54,10 @@ foreach my $conf ( @allConfs )
 
 	my $rmax = 0;
 	
-	if($conf eq "lead_thick50") {
-		$rmax = $rmin + 0.05;
-		$detector{"material"}    = "G4_Pb";
-	} elsif ($conf eq "lead_thick100") {
-		$rmax = $rmin + 0.1;
-		$detector{"material"}    = "G4_Pb";
-	} elsif ($conf eq "lead_thick200") {
-		$rmax = $rmin + 0.2;
-		$detector{"material"}    = "G4_Pb";
-	} elsif ($conf eq "sst_thick50") {
-		$rmax = $rmin + 0.05;
-		$detector{"material"}    = "G4_STAINLESS-STEEL";
-	} elsif ($conf eq "sst_thick100") {
-		$rmax = $rmin + 0.1;
-		$detector{"material"}    = "G4_STAINLESS-STEEL";
-	} elsif ($conf eq "sst_thick200") {
-		$rmax = $rmin + 0.2;
-		$detector{"material"}    = "G4_STAINLESS-STEEL";
-	} elsif ($conf eq "zinc_thick50") {
-		$rmax = $rmin + 0.05;
-		$detector{"material"}    = "G4_Zn";
-	} elsif ($conf eq "zinc_thick100") {
-		$rmax = $rmin + 0.1;
-		$detector{"material"}    = "G4_Zn";
-	} elsif ($conf eq "zinc_thick200") {
-		$rmax = $rmin + 0.2;
-		$detector{"material"}    = "G4_Zn";
-	} elsif ($conf eq "copper_thick50") {
-		$rmax = $rmin + 0.05;
-		$detector{"material"}    = "G4_Cu";
-	} elsif ($conf eq "copper_thick100") {
-		$rmax = $rmin + 0.1;
-		$detector{"material"}    = "G4_Cu";
-	} elsif ($conf eq "copper_thick200") {
-		$rmax = $rmin + 0.2;
-		$detector{"material"}    = "G4_Cu";
-	} elsif ($conf eq "nickel_thick50") {
-		$rmax = $rmin + 0.05;
-		$detector{"material"}    = "G4_Ni";
-	} elsif ($conf eq "nickel_thick100") {
-		$rmax = $rmin + 0.1;
-		$detector{"material"}    = "G4_Ni";
-	}  elsif ($conf eq "nickel_thick200") {
-		$rmax = $rmin + 0.2;
-		$detector{"material"}    = "G4_Ni";
-	} elsif ($conf eq "w_thick50") {
-		$rmax = $rmin + 0.05;
-		$detector{"material"}    = "G4_W";
-	} elsif ($conf eq "w_thick100") {
-		$rmax = $rmin + 0.1;
-		$detector{"material"}    = "G4_W";
-	}  elsif ($conf eq "w_thick150") {
-		$rmax = $rmin + 0.15;
+	if($conf eq "w51") {
+		$rmax = $rmin + 0.051;
 		$detector{"material"}    = "G4_W";
 	}
-
-
-	
 	
 	my $dimen = "$rmin*mm $rmax*mm $length*mm 0*deg 360*deg";
 
@@ -118,6 +65,30 @@ foreach my $conf ( @allConfs )
 	$detector{"visible"}     = 1;
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
+	
+	
+	%detector = init_det();
+	
+	$detector{"name"}        = "bstHeatShield";
+	$detector{"mother"}      = "svt";
+	$detector{"description"} = "bst heat shielding";
+	$detector{"color"}       = "ff8888";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         =  $HSpos ;
+	
+	my $HSrmax = $HSrmin + 2.7;
+	
+	$dimen = "$HSrmin*mm $HSrmax*mm $HSlength*mm 0*deg 360*deg";
+	
+	$detector{"dimensions"}  = $dimen;
+	$detector{"visible"}     = 1;
+	$detector{"style"}       = 1;
+	$detector{"material"}    = "G4_RUBBER_NEOPRENE";
+	print_det(\%configuration, \%detector);
+
+	
 }
+
+
 
 

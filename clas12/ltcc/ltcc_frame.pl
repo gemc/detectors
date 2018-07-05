@@ -146,8 +146,95 @@ sub build_LtccFrame
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
+
 		}
 		
+		if($s == 3 || $s == 5 || $s == 6) {
+			
+			my $nangle = ($s - 1) * 60; # rotation angle of the ltcc frame for each sectors
+
+			my %detector = init_det();
+			$detector{"name"}        = "nose1_s$s";
+			$detector{"mother"}      = "fc";
+			$detector{"description"} = "ltcc nose piece 1 $s";
+			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
+			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
+			$detector{"color"}       = "8888aa";
+			$detector{"type"}        = "CopyOf NFrame";
+			$detector{"material"}    = "G4_Al";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+			
+			%detector = init_det();
+			$detector{"name"}        = "nose2_s$s";
+			$detector{"mother"}      = "fc";
+			$detector{"description"} = "ltcc nose piece 1 $s";
+			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
+			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
+			$detector{"color"}       = "8888aa";
+			$detector{"type"}        = "CopyOf FrontPlate";
+			$detector{"material"}    = "G4_Al";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+
+			%detector = init_det();
+			$detector{"name"}        = "nose3_s$s";
+			$detector{"mother"}      = "fc";
+			$detector{"description"} = "ltcc nose piece 1 $s";
+			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
+			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
+			$detector{"color"}       = "8888aa";
+			$detector{"type"}        = "CopyOf Mount";
+			$detector{"material"}    = "G4_Al";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+
+
+			%detector = init_det();
+			$detector{"name"}        = "nose4_s$s";
+			$detector{"mother"}      = "fc";
+			$detector{"description"} = "ltcc nose piece 1 $s";
+			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
+			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
+			$detector{"color"}       = "8888aa";
+			$detector{"type"}        = "CopyOf Nose";
+			$detector{"material"}    = "G4_Al";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+
+
+			%detector = init_det();
+			$detector{"name"}        = "nose5_s$s";
+			$detector{"mother"}      = "fc";
+			$detector{"description"} = "ltcc nose piece 1 $s";
+			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
+			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
+			$detector{"color"}       = "8888aa";
+			$detector{"type"}        = "CopyOf BottomPlate";
+			$detector{"material"}    = "G4_Al";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+
+
+			%detector = init_det();
+			$detector{"name"}        = "nose6_s$s";
+			$detector{"mother"}      = "fc";
+			$detector{"description"} = "ltcc nose piece 1 $s";
+			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
+			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
+			$detector{"color"}       = "8888aa";
+			$detector{"type"}        = "CopyOf Epoxy";
+			$detector{"material"}    = "G4_CR39";
+			$detector{"style"}       = 1;
+			print_det(\%configuration, \%detector);
+
+
+
+			
+			
+			
+			
+		}
 	}
 	
 }

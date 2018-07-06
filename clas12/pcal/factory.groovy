@@ -7,7 +7,7 @@ import org.jlab.detector.geant4.v2.*;
 import org.jlab.detector.base.DetectorType;
 import org.jlab.detector.base.GeometryFactory;
 
-ConstantProvider cp = GeometryFactory.getConstants(DetectorType.EC)
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.ECAL)
 
 PCALGeant4Factory factory = new PCALGeant4Factory(cp);
 

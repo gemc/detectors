@@ -8,8 +8,8 @@
 	 -->
 
 
-<!--
  <detector name="../ftof/ftof"      factory="TEXT" variation="java"/>
+<!--
  <detector name="../dc/dc"      factory="TEXT" variation="java"/>
  <detector name="../magnets/torus"      factory="TEXT" variation="original"/>
  <detector name="../magnets/solenoid"      factory="TEXT" variation="original"/>

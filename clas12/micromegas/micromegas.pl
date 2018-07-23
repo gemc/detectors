@@ -52,7 +52,7 @@ require "./fmt.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("michel");
+my @allConfs = ("michel", "activeOnly");
 
 foreach my $conf ( @allConfs )
 {

@@ -8,9 +8,14 @@ import org.jlab.detector.units.SystemOfUnits.Length;
 import org.jlab.detector.base.DetectorType;
 import org.jlab.detector.base.GeometryFactory;
 
-// ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF);
-ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, 19, "default");
+import GeoArgParse
+def variation = GeoArgParse.getVariation(args);
+def runNumber = GeoArgParse.getRunNumber(args);
 
+// Why run #19?
+//ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, 19, "default");
+
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, runNumber, variation);
 
 FTOFGeant4Factory factory = new FTOFGeant4Factory(cp);
 

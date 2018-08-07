@@ -8,12 +8,17 @@ import org.jlab.detector.geant4.v2.*;
 import org.jlab.detector.geant4.v2.SVT.*;
 import org.jlab.detector.calib.utils.DatabaseConstantProvider;
 
+import GeoArgParse
+def variation = GeoArgParse.getVariation(args);
+def runNumber = GeoArgParse.getRunNumber(args);
+
 //println "classpath dump:"
 //this.class.classLoader.rootLoader.URLs.each{ println it }
 //System.exit(0);
 
 SVTConstants.VERBOSE = true;
-ConstantProvider cp = new DatabaseConstantProvider(10, "default");
+ConstantProvider cp = new DatabaseConstantProvider(runNumber, variation);
+
 SVTConstants.connect(cp);
 
 SVTVolumeFactory factory = new SVTVolumeFactory( cp, false ); // ideal geometry

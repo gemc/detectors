@@ -6,7 +6,11 @@ import org.jlab.clasrec.utils.*;
 import org.jlab.detector.geant4.v2.*;
 import org.jlab.detector.base.*;
 
-ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC);
+import GeoArgParse
+def variation = GeoArgParse.getVariation(args);
+def runNumber = GeoArgParse.getRunNumber(args);
+
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC,runNumber,variation);
 //cp.show();
 
 DCGeant4Factory factory = new DCGeant4Factory(cp);

@@ -45,7 +45,7 @@ require "./bank.pl";
 require "./hit.pl";
 
 # run PCAL factory from COATJAVA to produce volumes
-system('groovy -cp "../*" factory.groovy');
+system('groovy -cp "../*" factory.groovy --variation default --runnumber 11');
 
 # sensitive geometry
 require "./geometry_java.pl";

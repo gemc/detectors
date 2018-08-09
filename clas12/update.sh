@@ -6,3 +6,7 @@ rm coat*jar jcsg*jar vecmath*jar
 #wget http://userweb.jlab.org/~kenjo/geom/vecmath-1.3.1.jar
 
 wget http://clasweb.jlab.org/clas12maven/org/jlab/coat/coat-libs/5.1-SNAPSHOT/coat-libs-5.1-SNAPSHOT.jar
+
+cd javautil
+./mk.sh
+

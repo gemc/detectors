@@ -683,7 +683,7 @@ sub build_targets
 		$detector{"pos"}         = "0 0 $ZCenter";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm$Rout*mm $ZhalfLength*mm 0*deg 360*deg";
+		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
 		$detector{"material"}    = "G4_Al";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);

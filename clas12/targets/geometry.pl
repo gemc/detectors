@@ -647,7 +647,7 @@ sub build_targets
 		$detector{"pos"}         = "0 0 $ZCenter";
 		$detector{"color"}       = "a00000";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm$Rout*mm $ZhalfLength*mm 0*deg 360*deg";
+		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
 		$detector{"material"}    = "ShimCoil";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
@@ -665,7 +665,7 @@ sub build_targets
 		$detector{"pos"}         = "0 0 $ZCenter";
 		$detector{"color"}       = "a00000";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm$Rout*mm $ZhalfLength*mm 0*deg 360*deg";
+		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
 		$detector{"material"}    = "ShimCoil";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);

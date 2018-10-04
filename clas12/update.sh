@@ -10,6 +10,6 @@ rm coat*jar jcsg*jar vecmath*jar
 #temporary for DC cell shift verion: tag 5c.6.9
 wget http://clas12mon.jlab.org/coat-libs/5.1-SNAPSHOT/5c.6.9/coat-libs-5.1-SNAPSHOT.jar
 
-cd javautil
-./mk.sh
+#cd javautil
+#./mk.sh
 

@@ -1,11 +1,6 @@
 <gcard>
 
-	<detector name="ForwardShield" factory="CAD"/>
-	<detector name="HEC" factory="CAD"/>
-	<detector name="LargeOuterWheel" factory="CAD"/>
-	<detector name="SmallBarrel" factory="CAD"/>
-	<detector name="Toroid" factory="CAD"/>
-	<detector name="TRT" factory="CAD"/>
+	<detector name="cad/" factory="CAD"/>
 
 	<option name="geometry" value="1400x1200"/>
 	

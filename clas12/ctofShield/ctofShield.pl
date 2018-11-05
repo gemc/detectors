@@ -27,7 +27,7 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-my @allConfs = ("w1", "w2", "w3");
+my @allConfs = ("w0.5", "w1", "w2", "w3");
 
 my $rmin   = 240;
 my $length = 420;
@@ -55,6 +55,8 @@ foreach my $conf ( @allConfs )
 		$rmax = $rmin + 2;
 	} elsif($conf eq "w3") {
 		$rmax = $rmin + 3;
+	} elsif($conf eq "w0.5") {
+		$rmax = $rmin + 0.5;
 	}
 	
 	my $dimen = "$rmin*mm $rmax*mm $length*mm 0*deg 360*deg";

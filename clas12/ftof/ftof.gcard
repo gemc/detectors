@@ -1,6 +1,6 @@
 <gcard>
 	<detector name="ftof" factory="TEXT" variation="java"/>
-   <detector name="../fc/forwardCarriage"      factory="TEXT" variation="original"/>
+	<detector name="../fc/forwardCarriage"      factory="TEXT" variation="original"/>
 
 	<option name="geometry" value="1400x1200"/>
 	<option name="INTEGRATEDRAW" value="ftof"/>

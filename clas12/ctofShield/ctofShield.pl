@@ -13,7 +13,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   ctofShield.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 bst shield in various configurations\n";
+ 	print "   Will create the CLAS12 ctof shield in various configurations\n";
 	exit;
 }
 

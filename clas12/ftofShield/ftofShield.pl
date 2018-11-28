@@ -37,14 +37,26 @@ foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
 
-	my $panel1b_mother_dx1 = 4.81343;
-	my $panel1b_mother_dx2 = 81.719055;
-	my $panel1b_mother_dz  = 74.8269;
+	my $panel1b_mother_dx1 = 8.635;
+	my $panel1b_mother_dx2 = 207.1;
+	my $panel1b_mother_dz  = 189.619;
 
-	my $pos = "0*inches 1.33948*inches 0*inches";
+	my $pos = "0*cm -4.0*cm 0*cm";
 
 	# thickness in mm
-	my $panel1b_mother_dy  = 0.2/25.4; # 0.2 mm
+	my $panel1b_mother_dy  = 0.02; # 0.2 mm
+
+	if($conf eq "pb0.5") {
+		$rmax = $rmin + 1;
+	} elsif($conf eq "w2") {
+		$rmax = $rmin + 2;
+	} elsif($conf eq "w3") {
+		$rmax = $rmin + 3;
+	} elsif($conf eq "w0.5") {
+		$rmax = $rmin + 0.5;
+	}
+
+	
 
 	# loop over sectors
 	for (my $isect = 0; $isect < 6; $isect++)
@@ -52,14 +64,14 @@ foreach my $conf ( @allConfs )
 		my $sector = $isect +1;
 
 		my %detector = init_det();
-		$detector{"name"}         = "ftof_shield_sector$sector";
+		$detector{"name"}         = "ftof_p1bshield_sector$sector";
 		$detector{"mother"}       = "ftof_p1b_s$sector";
 		$detector{"description"}  = "Layer of lead - Sector $sector";
 		$detector{"pos"}          = $pos;
 		$detector{"rotation"}     = "0*deg 0*deg 0*deg";
-		$detector{"color"}        = "dc143c";
+		$detector{"color"}        = "222299";
 		$detector{"type"}         = "Trd";
-		$detector{"dimensions"}   = "$panel1b_mother_dx1*inches $panel1b_mother_dx2*inches $panel1b_mother_dy*inches $panel1b_mother_dy*inches $panel1b_mother_dz*inches";
+		$detector{"dimensions"}   = "$panel1b_mother_dx1*cm $panel1b_mother_dx2*cm $panel1b_mother_dy*cm $panel1b_mother_dy*cm $panel1b_mother_dz*cm";
 		$detector{"material"}     = "G4_Pb";
 		$detector{"visible"}      = 1;
 		$detector{"style"}        = 1;

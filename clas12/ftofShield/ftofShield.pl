@@ -27,7 +27,7 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-my @allConfs = ("pb0.2", "pb0.5", "pb1", "pb3");
+my @allConfs = ("pb0.1", "pb0.2", "pb0.5", "pb1");
 
 my $rmin   = 240;
 my $length = 420;
@@ -36,33 +36,30 @@ my $pos    = "0*mm 0*mm -80*mm";
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-
+	
 	my $panel1b_mother_dx1 = 8.635;
 	my $panel1b_mother_dx2 = 207.1;
 	my $panel1b_mother_dz  = 189.619;
-
-	my $pos = "0*cm -4.0*cm 0*cm";
-
-	# thickness in mm
-	my $panel1b_mother_dy  = 0.02; # 0.2 mm
-
-	if($conf eq "pb0.5") {
-		$rmax = $rmin + 1;
-	} elsif($conf eq "w2") {
-		$rmax = $rmin + 2;
-	} elsif($conf eq "w3") {
-		$rmax = $rmin + 3;
-	} elsif($conf eq "w0.5") {
-		$rmax = $rmin + 0.5;
-	}
-
 	
-
+	my $pos = "0*cm -4.0*cm 0*cm";
+	
+	# thickness in mm
+	my $panel1b_mother_dy  = 0.01; # 0.1 mm
+	
+	if($conf eq "pb0.2") {
+		$panel1b_mother_dy = 0.02;
+	} elsif($conf eq "pb0.5") {
+		$panel1b_mother_dy = 0.05;
+	} elsif($conf eq "pb1") {
+		$panel1b_mother_dy = 0.1;
+	}
+	
+	
 	# loop over sectors
 	for (my $isect = 0; $isect < 6; $isect++)
 	{
 		my $sector = $isect +1;
-
+		
 		my %detector = init_det();
 		$detector{"name"}         = "ftof_p1bshield_sector$sector";
 		$detector{"mother"}       = "ftof_p1b_s$sector";

@@ -27,7 +27,8 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-my @allConfs = ("w0.5", "w1", "w2", "w3");
+my @allConfs = ("w0.1");
+#my @allConfs = ("w0.5", "w1", "w2", "w3");
 
 my $rmin   = 240;
 my $length = 420;
@@ -49,7 +50,9 @@ foreach my $conf ( @allConfs )
 
 	my $rmax = 0;
 
-	if($conf eq "w1") {
+	if($conf eq "w0.1") {
+		$rmax = $rmin + 0.1;
+	} elsif($conf eq "w1") {
 		$rmax = $rmin + 1;
 	} elsif($conf eq "w2") {
 		$rmax = $rmin + 2;

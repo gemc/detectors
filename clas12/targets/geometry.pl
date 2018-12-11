@@ -260,7 +260,7 @@ sub build_targets
                 $detector{"name"}        = "LHeVoidFill";
                 $detector{"mother"}      = "PolTarg";
                 $detector{"description"} = "LHe between target cells";
-                $detector{"pos"}         = "0 0 $ZCenter";
+                $detector{"pos"}         = "0 0 $ZCenter*mm";
                 $detector{"color"}       = "0000ff";
                 $detector{"type"}        = "Tube";
                 $detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";

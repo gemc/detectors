@@ -269,14 +269,14 @@ sub build_targets
                 print_det(\%configuration, \%detector);
 		
 		# NH3Targ
-		my $ZCenter = -25;  # center location of target along beam axis
+		$ZCenter = -25;  # center location of target along beam axis
 		$Rout       = 10;  # radius in mm
 		$ZhalfLength  = 9.96;  # half length along beam axis
 		%detector = init_det();
 		$detector{"name"}        = "NH3Targ";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 target cell";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "f000f0";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -292,7 +292,7 @@ sub build_targets
 		$detector{"name"}        = "NH3Cup";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -309,7 +309,7 @@ sub build_targets
 		$detector{"name"}        = "NH3CupDSRing";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup downstream Ring";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -326,7 +326,7 @@ sub build_targets
 		$detector{"name"}        = "NH3CupUSRing";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup Upstream Ring";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -344,7 +344,7 @@ sub build_targets
 		$detector{"name"}        = "NH3CupWindowFrame_20";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup Window frame";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -363,7 +363,7 @@ sub build_targets
 		$detector{"name"}        = "NH3CupUSWindow_20";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup Upstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -380,7 +380,7 @@ sub build_targets
 		$detector{"name"}        = "NH3CupDSWindow";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup Downstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -398,7 +398,7 @@ sub build_targets
 		$detector{"name"}        = "ND3Targ";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Downstream ND3 target cell";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "f000f0";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -414,7 +414,7 @@ sub build_targets
 		$detector{"name"}        = "ND3Cup";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Downstream ND3 Target cup";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -431,7 +431,7 @@ sub build_targets
 		$detector{"name"}        = "ND3CupDSRing";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Downstream ND3 Target cup downstream Ring";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -448,7 +448,7 @@ sub build_targets
 		$detector{"name"}        = "ND3CupUSRing";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Downstrem ND3 Target cup Upstream Ring";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -466,7 +466,7 @@ sub build_targets
 		$detector{"name"}        = "ND3CupWindowFrame_20";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Upstream NH3 Target cup Window frame";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -485,7 +485,7 @@ sub build_targets
 		$detector{"name"}        = "ND3CupUSWindow_20";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Downstream ND3 Target cup Upstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -502,7 +502,7 @@ sub build_targets
 		$detector{"name"}        = "ND3CupDSWindow";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Downstream ND3 Target cup Downstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -519,7 +519,7 @@ sub build_targets
 		$detector{"name"}        = "InsertBathEntranceWindow_7a";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Insert Bath Entrence window part 7 a";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -537,7 +537,7 @@ sub build_targets
 		$detector{"name"}        = "InsertBathEntranceWindow_7b";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Insert Bath Entrence window part 7 b";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -555,7 +555,7 @@ sub build_targets
 		$detector{"name"}        = "InsertBathEntranceWindow_7c";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Insert Bath Entrence window part 7 c";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -573,7 +573,7 @@ sub build_targets
 		$detector{"name"}        = "InsertBathEntranceWindow_7d";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Insert Bath Entrence window part 7 d";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -591,7 +591,7 @@ sub build_targets
 		$detector{"name"}        = "ShimCoilCarrier";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Shim Coil Carrier";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -609,7 +609,7 @@ sub build_targets
 		$detector{"name"}        = "ShimUpUpS";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Shim Coil Up Up stream Coil";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "a00000";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -627,7 +627,7 @@ sub build_targets
 		$detector{"name"}        = "ShimUpS";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Shim Coil Up stream";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "a00000";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -644,7 +644,7 @@ sub build_targets
 		$detector{"name"}        = "ShimDownS";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Shim Coil Down stream";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "a00000";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -662,7 +662,7 @@ sub build_targets
 		$detector{"name"}        = "ShimDownDownS";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "Shim Coil Down Down stream";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "a00000";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -680,7 +680,7 @@ sub build_targets
 		$detector{"name"}        = "HeatShieldTube";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "PolTarg Heat Shield Tube";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
@@ -696,7 +696,7 @@ sub build_targets
 		$detector{"name"}        = "HeatShieldSphere";
 		$detector{"mother"}      = "PolTarg";
 		$detector{"description"} = "PolTarg Heat Shield Exit window Shere";
-		$detector{"pos"}         = "0 0 $ZCenter";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
 		$detector{"color"}       = "aaaaaa";
 		$detector{"type"}        = "Sphere";
 		$detector{"dimensions"}  = "$Rin*mm $Rout*mm 0*deg 360*deg 0*deg 90*deg";
@@ -714,7 +714,7 @@ sub build_targets
 #		$detector{"name"}        = "HeatShieldTubeJoint";
 #		$detector{"mother"}      = "PolTarg";
 #		$detector{"description"} = "PolTarg Heat Tube Joint";
-#		$detector{"pos"}         = "0 0 $ZCenter";
+#		$detector{"pos"}         = "0 0 $ZCenter*mm";
 #		$detector{"color"}       = "aaaaaa";
 #		$detector{"type"}        = "Sphere";
 #		$detector{"dimensions"}  = "$Rin*mm $Rout*mm 0*deg 360*deg 0*deg 90*deg";

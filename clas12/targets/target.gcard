@@ -1,15 +1,15 @@
 <gcard>
   
-   <!-- other variations include: lH2, lD2, ND3, elaborate 
+   <!-- other variations include: lH2, lD2, ND3, elaborate  -->
 
 	<detector name="target" factory="TEXT" variation="cad"/>
 	<detector name="cad/" factory="CAD"/>
--->
 
-    <!-- PolTarg / -->
+
+    <!-- PolTarg
 	<detector name="target" factory="TEXT" variation="PolTarg"/>
 	<detector name="PolTarg/" factory="CAD"/>
-
+ / -->
 	<option name="geometry" value="1400x1200"/>
 	
 	<option name="BEAM_P" value="e-, 11.0*GeV, 0*deg, 0*deg"/>

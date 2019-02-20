@@ -156,7 +156,7 @@ sub materials
 	$mat{"density"}        = $ND3_density ; 
 	$mat{"ncomponents"}   = "2";
 	$mat{"components"}    = "G4_N $NN_mass_fraction G4_H $H2_mass_fraction";
-	print_mat(\%configuration, \%mat);
+		#	print_mat(\%configuration, \%mat);
 
 	# ND3 target with lHe3 coolant
 	#my %mat = init_mat();

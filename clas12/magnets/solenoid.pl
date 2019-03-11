@@ -66,7 +66,7 @@ sub makeSolenoid
 	$detector{"color"}       = "0000ff";
 	$detector{"type"}        = "Polycone";
 	$detector{"dimensions"}	 = "$dimensions";
-	$detector{"material"}    = "G4_Fe";
+	$detector{"material"}    = "G4_Cu";
 	$detector{"visible"}     = 1;
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);

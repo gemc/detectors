@@ -18,7 +18,6 @@ sub help()
 	print "\n Usage: \n";
 	print "   ctof.pl <configuration filename>\n";
  	print "   Will create the CLAS12 CTOF geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -36,8 +35,7 @@ our %configuration = load_configuration($ARGV[0]);
 our %parameters = get_parameters(%configuration);
 
 my $javaCadDir = "javacad";
-system(join(' ', 'groovy -cp "../*:.." factory.groovy --variation default --runnumber 11', $javaCadDir));
-#system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
+system(join(' ', 'groovy -cp "../*:.." factory.groovy --variation rga_fall2018 --runnumber 11', $javaCadDir));
 
 # materials
 require "./materials.pl";
@@ -55,8 +53,7 @@ require "./geometry.pl";
 require "./geometry_java.pl";
 
 # all the scripts must be run for every configuration
-#my @allConfs = ("original", "cad", "java");
-my @allConfs = ("cad", "java");
+my @allConfs = ("cad", "rga_fall2018");
 
 # bank definitions
 define_bank();
@@ -65,7 +62,7 @@ foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
 
-	if($configuration{"variation"} eq "java")
+	if($configuration{"variation"} eq "rga_fall2018")
 	{
 		our @volumes = get_volumes(%configuration);
 

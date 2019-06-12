@@ -19,7 +19,6 @@ sub help()
 	print "\n Usage: \n";
 	print "   pcal.pl <configuration filename>\n";
  	print "   Will create the CLAS12 PCAL geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -32,7 +31,7 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "default" ;
+$configuration{"variation"} = "rga_fall2018" ;
 
 # materials
 require "./materials.pl";
@@ -70,7 +69,7 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 
-	if($configuration{"variation"} eq "java")
+	if($configuration{"variation"} eq "rga_fall2018")
 	{
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);

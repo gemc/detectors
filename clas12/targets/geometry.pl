@@ -8,7 +8,7 @@ sub build_targets
 {
 	my $thisVariation = $configuration{"variation"} ;
 	
-	if($thisVariation eq "lH2" || $thisVariation eq "lD2")
+	if($thisVariation eq "oldlH2" || $thisVariation eq "oldlD2")
 	{
 		# vacuum container
 		my $Rout       = 44;
@@ -81,7 +81,7 @@ sub build_targets
 		$detector{"style"}       = "1";
 		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
 		
-				
+
 		if($thisVariation eq "lH2")
 		{
 			$detector{"material"}    = "G4_lH2";
@@ -138,7 +138,7 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 		
-  		# helium cylinder
+		# helium cylinder
 		$Rout       = 12.62;
 		$length     = 25.10;  # half length
 		%detector = init_det();
@@ -186,11 +186,11 @@ sub build_targets
 	#
 	# EG2p Nuclear Targets Assembly
 	#
-         elsif($thisVariation eq "12C")
+	elsif($thisVariation eq "12C")
 	{
 		
 		#Vacuum Target Container
-                my $nplanes = 4;
+		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
 		my @z_plane  =  ( -145.0,  235.0, 260.0, 370.0);
@@ -209,10 +209,10 @@ sub build_targets
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
 		print_det(\%configuration, \%detector);
-			
+
 		#Upstream Foil
 		my $ZCenter = -25.86;  # center location of target along beam axis
-		my $Rout       = 5;  # 
+		my $Rout       = 5;  #
 		my $length     = 0.86; #(1.72 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "1stNuclearTargFoil";
@@ -228,7 +228,7 @@ sub build_targets
 		
 		#Second Foil
 		$ZCenter = 24.14;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.86; #(1.72 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "2ndNuclearTargFoil";
@@ -244,7 +244,7 @@ sub build_targets
 		
 		#Downstream Foil
 		$ZCenter = 74.14;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.86; #(1.72 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "3rdNuclearTargFoil";
@@ -257,13 +257,13 @@ sub build_targets
 		$detector{"material"}    = "G4_C";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
-						
+
 	}
 	elsif($thisVariation eq "27Al")
 	{
 		
 		#Vacuum Target Container
-                my $nplanes = 4;
+		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
 		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
@@ -282,10 +282,10 @@ sub build_targets
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
 		print_det(\%configuration, \%detector);
-			
+
 		#Upstream Foil
 		my $ZCenter = -25.29;  # center location of target along beam axis
-		my $Rout       = 5;  # 
+		my $Rout       = 5;  #
 		my $length     = 0.29; #(0.58 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "1stNuclearTargFoil";
@@ -301,7 +301,7 @@ sub build_targets
 		
 		#Second Foil
 		$ZCenter = 24.71;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.29; #(0.58 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "2ndNuclearTargFoil";
@@ -317,7 +317,7 @@ sub build_targets
 		
 		#Downstream Foil
 		$ZCenter = 74.71;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.29; #(0.58 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "3rdNuclearTargFoil";
@@ -330,12 +330,12 @@ sub build_targets
 		$detector{"material"}    = "G4_Al";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
-						
+
 	}
-	 elsif($thisVariation eq "63Cu")
+	elsif($thisVariation eq "63Cu")
 	{
 		#Vacuum Target Container
-                my $nplanes = 4;
+		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
 		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
@@ -353,11 +353,11 @@ sub build_targets
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);	
+		print_det(\%configuration, \%detector);
 		
 		#Upstream Foil
 		my $ZCenter = -25.2;  # center location of target along beam axis
-		my $Rout       = 5;  # 
+		my $Rout       = 5;  #
 		my $length     = 0.2; #(0.4 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "1stNuclearTargFoil";
@@ -373,7 +373,7 @@ sub build_targets
 		
 		#Second Foil
 		$ZCenter = 24.8;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.2; #(0.4 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "2ndNuclearTargFoil";
@@ -389,7 +389,7 @@ sub build_targets
 		
 		#Downstream Foil
 		$ZCenter = 74.8;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.2; #(0.4 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "3rdNuclearTargFoil";
@@ -404,10 +404,10 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 		
 	}
-	 elsif($thisVariation eq "118Sn")
+	elsif($thisVariation eq "118Sn")
 	{
-	    	#Vacuum Target Container
-                my $nplanes = 4;
+		#Vacuum Target Container
+		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
 		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
@@ -425,11 +425,11 @@ sub build_targets
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);	
+		print_det(\%configuration, \%detector);
 		
 		#Upstream Foil
 		my $ZCenter = -25.15;  # center location of target along beam axis
-		my $Rout       = 5;  # 
+		my $Rout       = 5;  #
 		my $length     = 0.15; #(0.3 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "1stNuclearTargFoil";
@@ -445,7 +445,7 @@ sub build_targets
 		
 		#Second Foil
 		$ZCenter = 24.85;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.2; #(0.4 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "2ndNuclearTargFoil";
@@ -461,7 +461,7 @@ sub build_targets
 		
 		#Downstream Foil
 		$ZCenter = 74.85;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.2; #(0.4 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "3rdNuclearTargFoil";
@@ -473,13 +473,13 @@ sub build_targets
 		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
 		$detector{"material"}    = "G4_Sn";
 		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);				
+		print_det(\%configuration, \%detector);
 		
 	}
 	elsif($thisVariation eq "208Pb")
 	{
-	    	#Vacuum Target Container
-                my $nplanes = 4;
+		#Vacuum Target Container
+		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
 		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
@@ -502,7 +502,7 @@ sub build_targets
 		
 		#Upstream Foil
 		my $ZCenter = -25.07;  # center location of target along beam axis
-		my $Rout       = 5;  # 
+		my $Rout       = 5;  #
 		my $length     = 0.07; #(0.14 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "1stNuclearTargFoil";
@@ -518,7 +518,7 @@ sub build_targets
 		
 		#Second Foil
 		$ZCenter = 24.93;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.07; #(0.14 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "2ndNuclearTargFoil";
@@ -534,7 +534,7 @@ sub build_targets
 		
 		#Downstream Foil
 		$ZCenter = 74.93;  # center location of target along beam axis
-		$Rout       = 5;  # 
+		$Rout       = 5;  #
 		$length     = 0.07; #(0.14 mm thick)
 		%detector = init_det();
 		$detector{"name"}        = "3rdNuclearTargFoil";
@@ -547,13 +547,13 @@ sub build_targets
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
-						
+
 	}
-		
+
 	# cad variation has two volume:
 	# target container
 	# and inside cell
-	elsif($thisVariation eq "cad")
+	if($thisVariation eq "lH2" || $thisVariation eq "lD2")
 	{
 		my $nplanes = 4;
 
@@ -578,7 +578,7 @@ sub build_targets
 
 
 
- 		$nplanes = 5;
+		$nplanes = 5;
 		my @oradiusT  =  (   2.5,  10.3,  7.3,  5.0,  2.5);
 		my @z_planeT  =  ( -24.2, -21.2, 22.5, 23.5, 24.5);
 
@@ -595,6 +595,9 @@ sub build_targets
 		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_planeT[$i]*mm";}
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "G4_lH2";
+		if($thisVariation eq "lD2") {
+			$detector{"material"}    = "LD2";
+		}
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 
@@ -619,20 +622,20 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 		
 		# LHe fill between targets
-                my $ZCenter = 0;  # center location of target along beam axis
-                $Rout       = 10;  # radius in mm
-                $ZhalfLength  = 14.97;  # half length along beam axis
-                %detector = init_det();
-                $detector{"name"}        = "LHeVoidFill";
-                $detector{"mother"}      = "PolTarg";
-                $detector{"description"} = "LHe between target cells";
-                $detector{"pos"}         = "0 0 $ZCenter*mm";
-                $detector{"color"}       = "0000ff";
-                $detector{"type"}        = "Tube";
-                $detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-                $detector{"material"}    = "lHeCoolant";
-                $detector{"style"}       = "1";
-                print_det(\%configuration, \%detector);
+		my $ZCenter = 0;  # center location of target along beam axis
+		$Rout       = 10;  # radius in mm
+		$ZhalfLength  = 14.97;  # half length along beam axis
+		%detector = init_det();
+		$detector{"name"}        = "LHeVoidFill";
+		$detector{"mother"}      = "PolTarg";
+		$detector{"description"} = "LHe between target cells";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
+		$detector{"color"}       = "0000ff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
+		$detector{"material"}    = "lHeCoolant";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
 		
 		# NH3Targ
 		$ZCenter = -25;  # center location of target along beam axis
@@ -773,7 +776,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 		# NH3Targ Cup
-	        $Rin       = 10.0001;  # radius in mm
+		$Rin       = 10.0001;  # radius in mm
 		$Rout       = 10.03;  # radius in mm
 		$ZhalfLength  = 9.75;  # half length along beam axis
 		%detector = init_det();
@@ -948,7 +951,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 		
 
-           	# Shim Coil Carrier
+		# Shim Coil Carrier
 		$ZCenter                 =-19.3;
 		$Rin                     = 28.8;  # radius in mm
 		$Rout                    = 29.3;  # radius in mm
@@ -966,7 +969,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 
-           	# Shim Up Up stream Coil
+		# Shim Up Up stream Coil
 		$ZCenter                 =43.5;
 		$Rin                     = 29.3;  # radius in mm
 		$Rout                    = 30.0;  # radius in mm
@@ -984,7 +987,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 
-           	# Shim Up stream Coil
+		# Shim Up stream Coil
 		$ZCenter                 =8.5;
 		$Rin                     = 29.3;  # radius in mm
 		$Rout                    = 30.0;  # radius in mm
@@ -1001,7 +1004,7 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
-           	# Shim Down stream Coil
+		# Shim Down stream Coil
 		$ZCenter                 =-8.5;
 		$Rin                     = 29.3;  # radius in mm
 		$Rout                    = 30.0;  # radius in mm
@@ -1019,7 +1022,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 
-           	# Shim Down Down stream Coil
+		# Shim Down Down stream Coil
 		$ZCenter                 =-43.5;
 		$Rin                     = 29.3;  # radius in mm
 		$Rout                    = 30.0;  # radius in mm
@@ -1037,7 +1040,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 		
 
-           	# Heat Shield tube
+		# Heat Shield tube
 		$ZCenter                 =-34.3;
 		$Rin                     = 40.3;  # radius in mm
 		$Rout                    = 41.3;  # radius in mm
@@ -1054,7 +1057,7 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
-           	# Heat Shield Half Sphere
+		# Heat Shield Half Sphere
 		$ZCenter                 = 49.55;
 		$Rin                     = 40.3;  # radius in mm
 		$Rout                    = 41.3;  # radius in mm
@@ -1072,21 +1075,21 @@ sub build_targets
 
 
 		# Heat Shield Tube Joint
-#		$ZCenter                 = -129.5;
-#		$Rin                     = 41.3;  # radius in mm
-#		$Rout                    = 42.4;  # radius in mm
-#		$ZhalfLength             = 13.9;  # half length along beam axis
-#		%detector = init_det();
-#		$detector{"name"}        = "HeatShieldTubeJoint";
-#		$detector{"mother"}      = "PolTarg";
-#		$detector{"description"} = "PolTarg Heat Tube Joint";
-#		$detector{"pos"}         = "0 0 $ZCenter*mm";
-#		$detector{"color"}       = "aaaaaa";
-#		$detector{"type"}        = "Sphere";
-#		$detector{"dimensions"}  = "$Rin*mm $Rout*mm 0*deg 360*deg 0*deg 90*deg";
-#		$detector{"material"}    = "G4_Al";
-#		$detector{"style"}       = "1";
-#		print_det(\%configuration, \%detector);
+		#		$ZCenter                 = -129.5;
+		#		$Rin                     = 41.3;  # radius in mm
+		#		$Rout                    = 42.4;  # radius in mm
+		#		$ZhalfLength             = 13.9;  # half length along beam axis
+		#		%detector = init_det();
+		#		$detector{"name"}        = "HeatShieldTubeJoint";
+		#		$detector{"mother"}      = "PolTarg";
+		#		$detector{"description"} = "PolTarg Heat Tube Joint";
+		#		$detector{"pos"}         = "0 0 $ZCenter*mm";
+		#		$detector{"color"}       = "aaaaaa";
+		#		$detector{"type"}        = "Sphere";
+		#		$detector{"dimensions"}  = "$Rin*mm $Rout*mm 0*deg 360*deg 0*deg 90*deg";
+		#		$detector{"material"}    = "G4_Al";
+		#		$detector{"style"}       = "1";
+		#		print_det(\%configuration, \%detector);
 
 		
 	}

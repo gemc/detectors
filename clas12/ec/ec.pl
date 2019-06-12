@@ -19,7 +19,6 @@ sub help()
 	print "\n Usage: \n";
 	print "   ec.pl <configuration filename>\n";
  	print "   Will create the CLAS12 EC geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -36,7 +35,7 @@ our %configuration = load_configuration($ARGV[0]);
 # Global pars - these should be read by the load_parameters from file or DB
 our %parameters = get_parameters(%configuration);
 
-$configuration{"variation"} = "default" ;
+$configuration{"variation"} = "rga_fall2018" ;
 
 # materials
 require "./materials.pl";
@@ -47,7 +46,7 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# run PCAL factory from COATJAVA to produce volumes
+# run EC factory from COATJAVA to produce volumes
 system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
 
 # sensitive geometry
@@ -73,7 +72,7 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 
-	if($configuration{"variation"} eq "java")
+	if($configuration{"variation"} eq "rga_fall2018")
 	{
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);

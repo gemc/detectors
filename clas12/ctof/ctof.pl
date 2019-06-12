@@ -18,7 +18,6 @@ sub help()
 	print "\n Usage: \n";
 	print "   ctof.pl <configuration filename>\n";
  	print "   Will create the CLAS12 CTOF geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -35,9 +34,10 @@ our %configuration = load_configuration($ARGV[0]);
 # Global pars - these should be read by the load_parameters from file or DB
 our %parameters = get_parameters(%configuration);
 
-$configuration{"variation"} = "default" ;
+$configuration{"variation"} = "rga_fall2018" ;
 
 my $javaCadDir = "javacad";
+
 system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11", $javaCadDir));
 #system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
 
@@ -67,7 +67,7 @@ foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
 
-	if($configuration{"variation"} eq "java")
+	if($configuration{"variation"} eq "rga_fall2018")
 	{
 		our @volumes = get_volumes(%configuration);
 

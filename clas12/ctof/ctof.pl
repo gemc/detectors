@@ -31,10 +31,11 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "default" ;
 
 # Global pars - these should be read by the load_parameters from file or DB
 our %parameters = get_parameters(%configuration);
+
+$configuration{"variation"} = "default" ;
 
 my $javaCadDir = "javacad";
 system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11", $javaCadDir));

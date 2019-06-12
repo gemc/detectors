@@ -30,13 +30,13 @@ factory.BUILDSENSORS = true; // include physical sensors (aka cards)
 factory.HALFBOXES = true; // geant4 wants half dimensions for boxes (but not tube radii)
 factory.makeVolumes();
 
-def outFile = new File("bst__volumes_java.txt");
+def outFile = new File("bst__volumes_"+variation+".txt");
 outFile.newWriter().withWriter{ w -> w << factory; } // groovy does some magic to call factory.toString()
 
 factory.putParameters();
 
 def axisName = ["x", "y", "z"];
-def parFile = new File("bst__parameters_java.txt");
+def parFile = new File("bst__parameters_"+variation+".txt");
 def writer=parFile.newWriter();
 
 for( Map.Entry< String, String > entry : factory.getParameters().entrySet() )

@@ -12,9 +12,9 @@ def runNumber = GeoArgParse.getRunNumber(args);
 
 ConstantProvider cp = GeometryFactory.getConstants(DetectorType.CTOF,runNumber,variation)
 
-CTOFGeant4Factory factory = new CTOFGeant4Factory();//cp);  // FIXME
+CTOFGeant4Factory factory = new CTOFGeant4Factory(cp);
 
-def outFile = new File("ctof__volumes_java.txt");
+def outFile = new File("ctof__volumes_"+variation+".txt");
 outFile.newWriter().withWriter { w ->
 	w<<factory;
 }

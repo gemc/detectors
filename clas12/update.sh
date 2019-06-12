@@ -11,9 +11,11 @@ endif
 
 rm -rf coat*jar jcsg*jar vecmath*jar
 
-set COATJAVA = 5b.7.8
+set COATJAVA = 6b.2.0
 
-$mwget  --trust-server-names https://github.com/JeffersonLab/clas12-offline-software/releases/download/$COATJAVA/coatjava-$COATJAVA".tar.gz" -O coatjava-$COATJAVA".tar.gz"
-tar -zxvf coatjava-$COATJAVA".tar.gz"
+echo Dowloading coatjava version $COATJAVA from: https://github.com/JeffersonLab/clas12-offline-software/releases/download/$COATJAVA/coatjava-$COATJAVA".tar"
+
+$mwget  --trust-server-names https://github.com/JeffersonLab/clas12-offline-software/releases/download/$COATJAVA/coatjava-$COATJAVA".tar" -O coatjava-$COATJAVA".tar"
+tar -xvf coatjava-$COATJAVA".tar"
 cp coatjava/lib/clas/* .
 

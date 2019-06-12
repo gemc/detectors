@@ -15,7 +15,7 @@ ConstantProvider cp = GeometryFactory.getConstants(DetectorType.ECAL,runNumber,v
 
 ECGeant4Factory factory = new ECGeant4Factory(cp);
 
-def outFile = new File("ec__volumes_java.txt");
+def outFile = new File("ec__volumes_"+variation+".txt");
 outFile.newWriter().withWriter { w ->
 	w<<factory;
 }

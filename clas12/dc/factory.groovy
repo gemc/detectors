@@ -15,7 +15,7 @@ ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC,runNumber,var
 
 DCGeant4Factory factory = new DCGeant4Factory(cp);
 
-def outFile = new File("dc__volumes_java.txt");
+def outFile = new File("dc__volumes_"+variation+".txt");
 outFile.newWriter().withWriter { w ->
 	w<<factory;
 }

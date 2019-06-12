@@ -34,8 +34,12 @@ our %configuration = load_configuration($ARGV[0]);
 # Global pars - these should be read by the load_parameters from file or DB
 our %parameters = get_parameters(%configuration);
 
+$configuration{"variation"} = "rga_fall2018" ;
+
 my $javaCadDir = "javacad";
-system(join(' ', 'groovy -cp "../*:.." factory.groovy --variation rga_fall2018 --runnumber 11', $javaCadDir));
+
+system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11", $javaCadDir));
+#system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
 
 # materials
 require "./materials.pl";
@@ -53,7 +57,8 @@ require "./geometry.pl";
 require "./geometry_java.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("cad", "rga_fall2018");
+#my @allConfs = ("original", "cad", "java");
+my @allConfs = ("cad", $configuration{"variation"});
 
 # bank definitions
 define_bank();

@@ -19,18 +19,35 @@ ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, runNumber,
 
 FTOFGeant4Factory factory = new FTOFGeant4Factory(cp);
 
-def outFile = new File("ftof__volumes_java.txt");
+def outFile = new File("ftof__volumes_"+variation+".txt");
 outFile.newWriter().withWriter { w ->
 	w<<factory;
 }
 
 def axisName = ["x", "y", "z"];
-def parFile = new File("ftof__parameters_java.txt");
+def parFile = new File("ftof__parameters_"+variation+".txt");
 def writer=parFile.newWriter();
+
+
+for(panels in factory.getMother().getChildren()) {
+  if(panels.getName().contains("s1")) {
+	writer<<sprintf("%s | %d | %s | %s | %s | %s | %s | %s | %s\n",
+		"ftof.panel"+panels.getName().split("_")[1].substring(1)+".ncounters",	//ncounters
+		panels.getDimensions().size(),									//parameter value
+		"na",														//units
+		"number of counters in panel",									//description
+		factory.getProperty("author"),									//author names
+		factory.getProperty("email"),										//emails
+		factory.getProperty("something"),									//some information
+		factory.getProperty("something"),									//some information
+		factory.getProperty("date")										//date
+	);
+  }
+}
+
 
 //loop over panel volumes
 for(panels in factory.getMother().getChildren()){
-
 	for(int idim = 0; idim < panels.getDimensions().size(); idim++){
 		writer<<sprintf("%s | %.3f | %s | %s | %s | %s | %s | %s | %s\n",
 			panels.getName()+".dimension"+idim,			//dimension0, 1, 2, 3 etc.

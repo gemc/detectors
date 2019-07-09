@@ -5,6 +5,17 @@ our %configuration;
 our $startS;
 our $endS;
 
+our @rga_spring2018_sectorsPresence;
+our @rga_spring2018_materials;
+
+our @rga_fall2018_sectorsPresence;
+our @rga_fall2018_materials;
+
+our @rgb_winter2019_sectorsPresence;
+our @rgb_winter2019_materials;
+
+our @rgb_spring2019_sectorsPresence;
+our @rgb_spring2019_materials;
 
 #
 #  large angle side(top) -->  /\
@@ -84,8 +95,6 @@ sub build_ltcc_box()
 	$detector{"dimensions"}  = "$pDz*mm $pTheta*deg $pPhi*deg $pDy1*mm $pDx1*mm $pDx2*mm $pAlp1*deg $pDy2*mm $pDx3*mm $pDx4*mm $pAlp1*deg";
 	$detector{"material"}    = "Component";
 	print_det(\%configuration, \%detector);
-
-
 
 	# Subtract box at 45ish degrees from the top
 	# The upper coordinate is at:
@@ -242,9 +251,28 @@ sub build_ltcc_box()
 		$detector{"type"}        = "Operation:  ltcc_big_box * trapBox";
 		$detector{"dimensions"}  = "0";
 		$detector{"visible"}     = 0;
-		$detector{"material"}    = "C4F10";
-		print_det(\%configuration, \%detector);
 
+		if($configuration{"variation"} eq "rga_spring2018") {
+			if($rga_spring2018_sectorsPresence[$n - 1] == 1) {
+				$detector{"material"} = $rga_spring2018_materials[$n - 1];
+				print_det(\%configuration, \%detector);
+			}
+		} elsif($configuration{"variation"} eq "rga_fall2018") {
+			if($rga_fall2018_sectorsPresence[$n - 1] == 1) {
+				$detector{"material"} = $rgb_spring2019_sectorsPresence[$n - 1];
+				print_det(\%configuration, \%detector);
+			}
+		} elsif($configuration{"variation"} eq "rgb_winter2019") {
+			if($rgb_winter2019_sectorsPresence[$n - 1] == 1) {
+				$detector{"material"} = $rgb_winter2019_materials[$n - 1];
+				print_det(\%configuration, \%detector);
+			}
+		} elsif($configuration{"variation"} eq "rgb_spring2019") {
+			if($rgb_spring2019_sectorsPresence[$n - 1] == 1) {
+				$detector{"material"} = $rgb_spring2019_materials[$n - 1];
+				print_det(\%configuration, \%detector);
+			}
+		} 
 	}
 
 
@@ -252,7 +280,7 @@ sub build_ltcc_box()
 
 }
 
-
+return 1;
 
 
 

@@ -30,11 +30,6 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "rga_fall2018" ;
-
-# run FTOF factory from COATJAVA to produce volumes
-system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
-#system('~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy');
 
 # materials
 require "./materials.pl";
@@ -49,7 +44,7 @@ require "./hit.pl";
 require "./geometry_java.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original", $configuration{"variation"});
+my @allConfs = ("original", "rga_spring2018", "rga_fall2018");
 
 # bank definitions commong to all variations
 define_banks();
@@ -85,6 +80,9 @@ foreach my $conf ( @allConfs )
 		# make
 		make_pb();
 	} else {
+		# run FTOF factory from COATJAVA to produce volumes
+		system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);
 

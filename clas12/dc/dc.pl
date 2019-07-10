@@ -30,7 +30,6 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "default" ;
 
 # Global pars - these should be read by the load_parameters from file or DB
 
@@ -44,9 +43,6 @@ require "./bank.pl";
 
 # hits definitions
 require "./hit.pl";
-
-# run DC factory from COATJAVA to produce volumes
-system("groovy -cp '..:../*' factory.groovy --variation $configuration{variation} --runnumber 11");
 
 # sensitive geometry
 require "./geometry_java.pl";
@@ -68,7 +64,7 @@ require "./utils.pl";
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
 #my @allConfs = ("ccdb", "cosmicR1", "ddvcs", "java");
-my @allConfs = ($configuration{"variation"});
+my @allConfs = ("default", "rga_spring2018", "rga_fall2018");
 
 # bank definitions commong to all variations
 define_bank();
@@ -97,6 +93,9 @@ foreach my $conf ( @allConfs )
 		make_region3_front_shield();
 		make_region3_back_shield();
 	} else {
+		# run DC factory from COATJAVA to produce volumes
+		system("groovy -cp '..:../*' factory.groovy --variation $configuration{variation} --runnumber 11");
+
 	     # sensitive geometry
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);

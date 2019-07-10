@@ -235,16 +235,16 @@ sub build_ltcc_box()
 	print_det(\%configuration, \%detector);
 
 
-	for(my $n=$startS; $n<=$endS; $n++)
+	for(my $s=$startS; $s<=$endS; $s++)
 	{
 		my $c6toc12Z = 1973;
 		#my $c6toc12Z = 0;
-		my $rotPhi = 90 - ($n-1)*60;
+		my $rotPhi = 90 - ($s-1)*60;
 		# Final box - Big Box * TrapBox
 		%detector = init_det();
-		$detector{"name"}        = "ltccS$n";
+		$detector{"name"}        = "ltccS$s";
 		$detector{"mother"}      = "fc";
-		$detector{"description"} = "ltcc sector $n";
+		$detector{"description"} = "ltcc sector $s";
 		$detector{"pos"}         = "0*mm 0*mm $c6toc12Z*mm";
 		$detector{"rotation"}    = "0*deg 0*deg $rotPhi*deg";
 		$detector{"color"}       = "110088";
@@ -253,23 +253,23 @@ sub build_ltcc_box()
 		$detector{"visible"}     = 0;
 
 		if($configuration{"variation"} eq "rga_spring2018") {
-			if($rga_spring2018_sectorsPresence[$n - 1] == 1) {
-				$detector{"material"} = $rga_spring2018_materials[$n - 1];
+			if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+				$detector{"material"} = $rga_spring2018_materials[$s - 1];
 				print_det(\%configuration, \%detector);
 			}
 		} elsif($configuration{"variation"} eq "rga_fall2018") {
-			if($rga_fall2018_sectorsPresence[$n - 1] == 1) {
-				$detector{"material"} = $rgb_spring2019_sectorsPresence[$n - 1];
+			if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+				$detector{"material"} = $rga_fall2018_materials[$s - 1];
 				print_det(\%configuration, \%detector);
 			}
 		} elsif($configuration{"variation"} eq "rgb_winter2019") {
-			if($rgb_winter2019_sectorsPresence[$n - 1] == 1) {
-				$detector{"material"} = $rgb_winter2019_materials[$n - 1];
+			if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+				$detector{"material"} = $rgb_winter2019_materials[$s - 1];
 				print_det(\%configuration, \%detector);
 			}
 		} elsif($configuration{"variation"} eq "rgb_spring2019") {
-			if($rgb_spring2019_sectorsPresence[$n - 1] == 1) {
-				$detector{"material"} = $rgb_spring2019_materials[$n - 1];
+			if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+				$detector{"material"} = $rgb_spring2019_materials[$s - 1];
 				print_det(\%configuration, \%detector);
 			}
 		} 

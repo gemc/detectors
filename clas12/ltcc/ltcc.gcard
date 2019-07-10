@@ -2,7 +2,7 @@
 	
 	<detector name="experiments/clas12/fc/forwardCarriage"      factory="TEXT" variation="TorusSymmetric"/>
 
-	<detector name="ltcc" factory="TEXT" variation="original"/>
+	<detector name="ltcc" factory="TEXT" variation="rga_fall2018"/>
 	<detector name="cad_cone/" factory="CAD"/>
 	<detector name="cad/" factory="CAD"/>
 

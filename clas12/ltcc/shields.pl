@@ -4,6 +4,18 @@ our $endS;
 our $startN;
 our $endN;
 
+our @rga_spring2018_sectorsPresence;
+our @rga_spring2018_materials;
+
+our @rga_fall2018_sectorsPresence;
+our @rga_fall2018_materials;
+
+our @rgb_winter2019_sectorsPresence;
+our @rgb_winter2019_materials;
+
+our @rgb_spring2019_sectorsPresence;
+our @rgb_spring2019_materials;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
@@ -23,15 +35,10 @@ my @shield_pos_xL = ();
 my @shield_pos_yL = ();
 my @shield_pos_zL = ();
 
-
-
-
-
 sub buildShields
 {
 	calculateShieldPars();
 	build_shields();
-
 }
 
 sub calculateShieldPars
@@ -54,17 +61,13 @@ sub calculateShieldPars
 		# 90 - theta of center of ltcc. segment
 		$segtheta[$n] = 90 - $parameters{"ltcc.s$s"."_theta"};
 
-		#phi rotation angle for pmts, pmt stoppers and shield in sectors ! (calculated using their phi rotation angles in segments)
+		# phi rotation angle for pmts, pmt stoppers and shield in sectors ! (calculated using their phi rotation angles in segments)
 		$segphi[$n] = 90 - $segtheta[$n]; #rotation of pmts in sector
 
-
-
-
-		#To make shields with 1 mm thickness, the boxes with 1 mm smaller are subtracted from the original ones (G4 Box is used)
-
-		$sub_shield_x0[$n] = $shield_x0[$n] - 0.1;
-		$sub_shield_y0[$n] = $shield_y0[$n] - 0.1;
-		$sub_shield_z0[$n] = $shield_z0[$n] + 0.1;
+		# To make shields with 5 mm thickness, the boxes with 1 mm smaller are subtracted from the original ones (G4 Box is used)
+		$sub_shield_x0[$n] = $shield_x0[$n] - 0.5;
+		$sub_shield_y0[$n] = $shield_y0[$n] - 0.5;
+		$sub_shield_z0[$n] = $shield_z0[$n] + 0.5;
 
 	}
 
@@ -73,8 +76,6 @@ sub calculateShieldPars
 
 sub build_shields
 {
-
-
 
 	for(my $n=$startN; $n<=$endN; $n++)
 	{
@@ -85,7 +86,28 @@ sub build_shields
 
 			# Shield dimensions are not real dimension. Their sizes are decreased to avoid overlaps with other geometries and neighbor shields
 
-			if($s != 4 && $s != 1){
+			my $shouldPrintDetector = 0;
+
+			if($configuration{"variation"} eq "rga_spring2018") {
+				if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			} elsif($configuration{"variation"} eq "rga_fall2018") {
+				if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			} elsif($configuration{"variation"} eq "rgb_winter2019") {
+				if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+
+				}
+			} elsif($configuration{"variation"} eq "rgb_spring2019") {
+				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			}
+
+			if($shouldPrintDetector == 1) {
 
 				if($n < $endN){
 
@@ -100,7 +122,7 @@ sub build_shields
 					$detector{"dimensions"}  = "$shield_x0[$n-1]*cm $shield_y0[$n-1]*cm $shield_z0[$n-1]*cm";
 					$detector{"material"}    = "Component";
 					print_det(\%configuration, \%detector);
-	
+
 					%detector = init_det();
 					$detector{"name"}        = "subtraction_shield_s$s"."right_$n";
 					$detector{"mother"}      = "ltccS$s";
@@ -163,9 +185,9 @@ sub build_shields
 					$detector{"material"}    = "G4_Fe";
 					$detector{"style"}       = 1;
 					print_det(\%configuration, \%detector);
-	
-						}
+
 				}
+			}
 
 		}
 

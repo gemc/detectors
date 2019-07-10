@@ -37,7 +37,34 @@ sub build_LtccFrame
 
 	for(my $s=$startS; $s<=$endS; $s++) {
 
-		if($s != 3 && $s != 4 && $s != 1) {
+		my $shouldPrintDetector = 0;
+
+		if($configuration{"variation"} eq "rga_spring2018") {
+			if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+				$shouldPrintDetector = 1;
+			}
+		} elsif($configuration{"variation"} eq "rga_fall2018") {
+			if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+				$shouldPrintDetector = 1;
+			}
+		} elsif($configuration{"variation"} eq "rgb_winter2019") {
+			if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+				$shouldPrintDetector = 1;
+
+			}
+		} elsif($configuration{"variation"} eq "rgb_spring2019") {
+			if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+				$shouldPrintDetector = 1;
+			}
+		}
+
+		# all the hardware STL is in S3 so let's not duplicate that
+		if($s == 3) {
+			$shouldPrintDetector = 0;
+		}
+
+		if($shouldPrintDetector == 1) {
+
 			my %detector = init_det();
 			$detector{"name"}        = "frame1_s$s";
 			$detector{"mother"}      = "fc";
@@ -149,27 +176,8 @@ sub build_LtccFrame
 
 		}
 
-		my $shouldPrintDetector = 0;
 
-		if($configuration{"variation"} eq "rga_spring2018") {
-			if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
-				$shouldPrintDetector = 1;
-			}
-		} elsif($configuration{"variation"} eq "rga_fall2018") {
-			if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
-				$shouldPrintDetector = 1;
-			}
-		} elsif($configuration{"variation"} eq "rgb_winter2019") {
-			if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
-				$shouldPrintDetector = 1;
-
-			}
-		} elsif($configuration{"variation"} eq "rgb_spring2019") {
-			if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
-				$shouldPrintDetector = 1;
-			}
-		}
-
+		# additional nose hardware
 		if($shouldPrintDetector == 1) {
 			
 			my $nangle = ($s - 1) * 60; # rotation angle of the ltcc frame for each sectors
@@ -249,7 +257,6 @@ sub build_LtccFrame
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
 
-			
 		}
 	}
 	

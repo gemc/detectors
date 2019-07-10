@@ -7,6 +7,18 @@ our $endS;
 our $startN;
 our $endN;
 
+our @rga_spring2018_sectorsPresence;
+our @rga_spring2018_materials;
+
+our @rga_fall2018_sectorsPresence;
+our @rga_fall2018_materials;
+
+our @rgb_winter2019_sectorsPresence;
+our @rgb_winter2019_materials;
+
+our @rgb_spring2019_sectorsPresence;
+our @rgb_spring2019_materials;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"};
 
@@ -48,7 +60,6 @@ sub calculateconePars
 		$segphi[$n] = 90 - $segtheta[$n]; #rotation of pmts in sector
 
 	}
-
 }
 
 
@@ -60,14 +71,74 @@ sub build_cones {
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			if($s != 4 && $s != 1) {
+			my $shouldPrintDetector = 0;
+			my $gasMaterial = "C4F10";
 
+			if($configuration{"variation"} eq "rga_spring2018") {
+				if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rga_spring2018_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rga_fall2018") {
+				if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rga_fall2018_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rgb_winter2019") {
+				if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rgb_winter2019_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rgb_spring2019") {
+				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rgb_spring2019_materials[$s - 1];
+				}
+			}
 
-				if($n < 11){
-						
-					if($s == 3){
+			if($shouldPrintDetector == 1) {
 
-					    if($n != 1){
+				# SMALL CONES (Copper)
+				# --------------------
+				if($n < 11) {
+
+					# STL Cone is in S3
+					if($s == 3) {
+
+						# Right one: Copy it if it's not the STL (#1)
+						if($n != 1) {
+							my %detector = init_det();
+							$detector{"name"}        = "cone_s$s"."right_$n";
+							$detector{"mother"}      = "ltccS$s";
+							$detector{"description"} = "cone right $n";
+							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
+							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+							$detector{"color"}       = "aa9999";
+							$detector{"type"}        = "CopyOf WC_S";
+							$detector{"material"}    = "G4_Cu";
+							$detector{"style"}       = "1";
+							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+							$detector{"hit_type"}    = "mirror";
+							print_det(\%configuration, \%detector);
+						}
+
+						my %detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
+						$detector{"mother"}      = "ltccS$s";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+						$detector{"color"}       = "aa9999";
+						$detector{"type"}        = "CopyOf WC_S";
+						$detector{"material"}    = "G4_Cu";
+						$detector{"style"}       = "1";
+						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+						$detector{"hit_type"}    = "mirror";
+						print_det(\%configuration, \%detector);
+					}
+
+					# Not S3, can copy all
+					else {
 						my %detector = init_det();
 						$detector{"name"}        = "cone_s$s"."right_$n";
 						$detector{"mother"}      = "ltccS$s";
@@ -81,29 +152,13 @@ sub build_cones {
 						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 						$detector{"hit_type"}    = "mirror";
 						print_det(\%configuration, \%detector);
-						       }
-					my %detector = init_det();
-					$detector{"name"}        = "cone_s$s"."left_$n";
-					$detector{"mother"}      = "ltccS$s";
-					$detector{"description"} = "cone left $n";
-					$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-					$detector{"color"}       = "aa9999";
-					$detector{"type"}        = "CopyOf WC_S";
-					$detector{"material"}    = "G4_Cu";
-					$detector{"style"}       = "1";
-					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-					$detector{"hit_type"}    = "mirror";
-					print_det(\%configuration, \%detector);
-						    }
-							
-					    else{
-						my %detector = init_det();
-						$detector{"name"}        = "cone_s$s"."right_$n";
+
+						%detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
 						$detector{"mother"}      = "ltccS$s";
-						$detector{"description"} = "cone right $n";
-						$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-						$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
 						$detector{"color"}       = "aa9999";
 						$detector{"type"}        = "CopyOf WC_S";
 						$detector{"material"}    = "G4_Cu";
@@ -111,30 +166,53 @@ sub build_cones {
 						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 						$detector{"hit_type"}    = "mirror";
 						print_det(\%configuration, \%detector);
-					%detector = init_det();
-					$detector{"name"}        = "cone_s$s"."left_$n";
-					$detector{"mother"}      = "ltccS$s";
-					$detector{"description"} = "cone left $n";
-					$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-					$detector{"color"}       = "aa9999";
-					$detector{"type"}        = "CopyOf WC_S";
-					$detector{"material"}    = "G4_Cu";
-					$detector{"style"}       = "1";
-					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-					$detector{"hit_type"}    = "mirror";
-					print_det(\%configuration, \%detector);
-					     }
-						}
+					}
+				}
 
-						
 
-				elsif($n > 10 && $n < 13){
 
+				# Medium CONES (plastic)
+				# ----------------------
+				elsif($n > 10 && $n < 13) {
+
+					# STL Cone is in S3
 					if($s == 3){
 
-					   if($n != 11){
+						# Right one: Copy it if it's not the STL (#11)
+						if($n != 11) {
 
+							my %detector = init_det();
+							$detector{"name"}        = "cone_s$s"."right_$n";
+							$detector{"mother"}      = "ltccS$s";
+							$detector{"description"} = "cone right $n";
+							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
+							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+							$detector{"color"}       = "aa9999";
+							$detector{"type"}        = "CopyOf WC_M";
+							$detector{"material"}    = "G4_PLASTIC_SC_VINYLTOLUENE";
+							$detector{"style"}       = "1";
+							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+							$detector{"hit_type"}    = "mirror";
+							print_det(\%configuration, \%detector);
+						}
+
+						my %detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
+						$detector{"mother"}      = "ltccS$s";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+						$detector{"color"}       = "aa9999";
+						$detector{"type"}        = "CopyOf WC_M";
+						$detector{"material"}    = "G4_PLASTIC_SC_VINYLTOLUENE";
+						$detector{"style"}       = "1";
+						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+						$detector{"hit_type"}    = "mirror";
+						print_det(\%configuration, \%detector);
+					}
+
+					# Not S3, can copy all
+					else {
 						my %detector = init_det();
 						$detector{"name"}        = "cone_s$s"."right_$n";
 						$detector{"mother"}      = "ltccS$s";
@@ -143,75 +221,63 @@ sub build_cones {
 						$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
 						$detector{"color"}       = "aa9999";
 						$detector{"type"}        = "CopyOf WC_M";
-						$detector{"material"}    = "G4_Cu";
+						$detector{"material"}    = "G4_PLASTIC_SC_VINYLTOLUENE";
 						$detector{"style"}       = "1";
 						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 						$detector{"hit_type"}    = "mirror";
 						print_det(\%configuration, \%detector);
-						        }
-					
-					my %detector = init_det();
-					$detector{"name"}        = "cone_s$s"."left_$n";
-					$detector{"mother"}      = "ltccS$s";
-					$detector{"description"} = "cone left $n";
-					$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-					$detector{"color"}       = "aa9999";
-					$detector{"type"}        = "CopyOf WC_M";
-					$detector{"material"}    = "G4_Cu";
-					$detector{"style"}       = "1";
-					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-					$detector{"hit_type"}    = "mirror";
-					print_det(\%configuration, \%detector);
-						}
+						
 
-					   else{
-						my %detector = init_det();
-						$detector{"name"}        = "cone_s$s"."right_$n";
+						%detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
 						$detector{"mother"}      = "ltccS$s";
-						$detector{"description"} = "cone right $n";
-						$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-						$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
 						$detector{"color"}       = "aa9999";
 						$detector{"type"}        = "CopyOf WC_M";
-						$detector{"material"}    = "G4_Cu";
+						$detector{"material"}    = "G4_PLASTIC_SC_VINYLTOLUENE";
 						$detector{"style"}       = "1";
 						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 						$detector{"hit_type"}    = "mirror";
 						print_det(\%configuration, \%detector);
-						
-					
-					%detector = init_det();
-					$detector{"name"}        = "cone_s$s"."left_$n";
-					$detector{"mother"}      = "ltccS$s";
-					$detector{"description"} = "cone left $n";
-					$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-					$detector{"color"}       = "aa9999";
-					$detector{"type"}        = "CopyOf WC_M";
-					$detector{"material"}    = "G4_Cu";
-					$detector{"style"}       = "1";
-					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-					$detector{"hit_type"}    = "mirror";
-					print_det(\%configuration, \%detector);
-					       }
+					}
 
+				}
+
+
+				# Big CONES (copper)
+				# ------------------
+				elsif($n > 12 && $n < $endN) {
+
+					
+					# STL Cone is in S3
+					if($s == 3){
+
+						# Right one: Copy it if it's not the STL (#13)
+						if($n != 13){
+
+							my %detector = init_det();
+							$detector{"name"}        = "cone_s$s"."right_$n";
+							$detector{"mother"}      = "ltccS$s";
+							$detector{"description"} = "cone right $n";
+							$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
+							$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+							$detector{"color"}       = "aa9999";
+							$detector{"type"}        = "CopyOf WC_L";
+							$detector{"material"}    = "G4_Cu";
+							$detector{"style"}       = "1";
+							$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+							$detector{"hit_type"}    = "mirror";
+							print_det(\%configuration, \%detector);
 						}
 
-						
-				       elsif($n > 12 && $n < $endN) {
-
-					
-					  if($s == 3){
-
-					      if($n != 13){
-
 						my %detector = init_det();
-						$detector{"name"}        = "cone_s$s"."right_$n";
+						$detector{"name"}        = "cone_s$s"."left_$n";
 						$detector{"mother"}      = "ltccS$s";
-						$detector{"description"} = "cone right $n";
-						$detector{"pos"}         = "$wc_sec_x_r[$n-1]*cm $wc_sec_y_r[$n-1]*cm $wc_sec_z_r[$n-1]*cm";
-						$detector{"rotation"}    = "$segphi[$n-1]*deg -$tilt[$n-1]*deg $shield_tilt[$n-1]*deg";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
 						$detector{"color"}       = "aa9999";
 						$detector{"type"}        = "CopyOf WC_L";
 						$detector{"material"}    = "G4_Cu";
@@ -219,24 +285,10 @@ sub build_cones {
 						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 						$detector{"hit_type"}    = "mirror";
 						print_det(\%configuration, \%detector);
-							}
-						   
-					my %detector = init_det();
-					$detector{"name"}        = "cone_s$s"."left_$n";
-					$detector{"mother"}      = "ltccS$s";
-					$detector{"description"} = "cone left $n";
-					$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-					$detector{"color"}       = "aa9999";
-					$detector{"type"}        = "CopyOf WC_L";
-					$detector{"material"}    = "G4_Cu";
-					$detector{"style"}       = "1";
-					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-					$detector{"hit_type"}    = "mirror";
-					print_det(\%configuration, \%detector);
 
-						}
+					}
 
+					# Not S3, can copy all
 					else{
 						my %detector = init_det();
 						$detector{"name"}        = "cone_s$s"."right_$n";
@@ -252,31 +304,26 @@ sub build_cones {
 						$detector{"hit_type"}    = "mirror";
 						print_det(\%configuration, \%detector);
 						
-						   
-					%detector = init_det();
-					$detector{"name"}        = "cone_s$s"."left_$n";
-					$detector{"mother"}      = "ltccS$s";
-					$detector{"description"} = "cone left $n";
-					$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
-					$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
-					$detector{"color"}       = "aa9999";
-					$detector{"type"}        = "CopyOf WC_L";
-					$detector{"material"}    = "G4_Cu";
-					$detector{"style"}       = "1";
-					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
-					$detector{"hit_type"}    = "mirror";
-					print_det(\%configuration, \%detector);
 
-						}
+						%detector = init_det();
+						$detector{"name"}        = "cone_s$s"."left_$n";
+						$detector{"mother"}      = "ltccS$s";
+						$detector{"description"} = "cone left $n";
+						$detector{"pos"}         = "$wc_sec_x_l[$n-1]*cm $wc_sec_y_l[$n-1]*cm $wc_sec_z_l[$n-1]*cm";
+						$detector{"rotation"}    = "$segphi[$n-1]*deg $tilt[$n-1]*deg -$shield_tilt[$n-1]*deg";
+						$detector{"color"}       = "aa9999";
+						$detector{"type"}        = "CopyOf WC_L";
+						$detector{"material"}    = "G4_Cu";
+						$detector{"style"}       = "1";
+						$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+						$detector{"hit_type"}    = "mirror";
+						print_det(\%configuration, \%detector);
 
-							}
-
+					}
 				}
 
+			}
 		}
-
-		
-
 	}
 
 }

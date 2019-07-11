@@ -12,11 +12,10 @@ endif
 rm -rf coat*jar jcsg*jar vecmath*jar
 
 
-set USEDEVEL = no
+set USEDEVEL = yes
 
 set COATJAVA = 6b.3.0
-#set COATJAVA = clas12-offline-software
-#set COATJAVA = clas12-offline-software/tree/gemcPrecision
+set BRANCH   = gemcPrecision
 
 if ($USEDEVEL != "yes") then
 
@@ -31,8 +30,12 @@ else
 	echo Cloning https://github.com/jeffersonlab/clas12-offline-software and building coatjava
 
 	# assuming maven is installed
-	git clone https://github.com/jeffersonlab/$COATJAVA
+	git clone https://github.com/JeffersonLab/clas12-offline-software
 	cd clas12-offline-software
+	git checkout $BRANCH
+	echo
+	echo Using branch $BRANCH
+	echo
 	./build-coatjava.sh
 	cp coatjava/lib/clas/* ..
 

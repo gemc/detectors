@@ -45,6 +45,8 @@ sub build_paddles
 		$detector{"pos"}         = $positions->{$vname};
 		$detector{"rotation"}    = $rotations->{$vname};
 
+		$detector{"mother"}    = "";
+
 		$detector{"color"}       = "444444";
 		$detector{"material"}    = "scintillator";
 		$detector{"sensitivity"}    = "ctof";
@@ -75,6 +77,8 @@ sub build_upLightGuides
 		$detector{"pos"}         = $positions->{$vname};
 		$detector{"rotation"}    = $rotations->{$vname};
 
+		$detector{"mother"}    = "";
+
 		$detector{"color"}       = "666666";
 		$detector{"material"}    = "scintillator";
 
@@ -94,6 +98,8 @@ sub build_downLightGuides
 		$detector{"name"}        = $vname;
 		$detector{"pos"}         = $positions->{$vname};
 		$detector{"rotation"}    = $rotations->{$vname};
+
+		$detector{"mother"}    = "";
 
 		$detector{"color"}       = "666666";
 		$detector{"material"}    = "scintillator";

@@ -33,7 +33,7 @@ for(panels in factory.getMother().getChildren()) {
   if(panels.getName().contains("s1")) {
 	writer<<sprintf("%s | %d | %s | %s | %s | %s | %s | %s | %s\n",
 		"ftof.panel"+panels.getName().split("_")[1].substring(1)+".ncounters",	//ncounters
-		panels.getDimensions().size(),									//parameter value
+		panels.getChildren().findAll{it.isSensitive()}.size(),									//parameter value
 		"na",														//units
 		"number of counters in panel",									//description
 		factory.getProperty("author"),									//author names

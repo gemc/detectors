@@ -42,7 +42,8 @@ sub build_mother
 	$detector{"description"} = "Preshower Calorimeter";
 	$detector{"color"}	  = "ff1111";
 	$detector{"material"}    = "G4_AIR";
-	
+	$detector{"visible"}     = 0;
+
 	print_det(\%main::configuration, \%detector);
 }
 

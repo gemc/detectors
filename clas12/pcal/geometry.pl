@@ -482,7 +482,8 @@ sub build_V_mother
 		$detector{"dimensions"}  = "${pDzmom}*mm ${pThetamom}*deg ${pPhimom}*deg ${pDy1mom}*mm ${pDx1mom}*mm ${pDx2mom}*mm ${pAlp1mom}*deg ${ pDy2mom}*mm ${pDx3mom}*mm ${pDx4mom}*mm ${pAlp2mom}*deg";
 		$detector{"material"}    = "G4_TITANIUM_DIOXIDE";
 		$detector{"ncopy"}       = $k;
-		
+		$detector{"visible"}     = 0;
+
 		print_det(\%configuration, \%detector);
 	}
 }

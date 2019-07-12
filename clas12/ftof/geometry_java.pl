@@ -63,7 +63,7 @@ sub build_panel1a_mother
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1;
+	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%main::configuration, \%detector);
 }
@@ -87,7 +87,7 @@ sub build_panel1b_mother
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1;
+	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%main::configuration, \%detector);
 }
@@ -111,7 +111,7 @@ sub build_panel2_mother
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1;
+	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%main::configuration, \%detector);
 }

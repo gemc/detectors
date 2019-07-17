@@ -34,11 +34,6 @@ our %configuration = load_configuration($ARGV[0]);
 # Global pars - these should be read by the load_parameters from file or DB
 our %parameters = get_parameters(%configuration);
 
-$configuration{"variation"} = "rga_fall2018" ;
-
-my $javaCadDir = "javacad";
-
-system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11", $javaCadDir));
 #system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
 
 # materials
@@ -58,7 +53,7 @@ require "./geometry_java.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("original", "cad", "java");
-my @allConfs = ("cad", $configuration{"variation"});
+my @allConfs = ("default", "rga_spring2018", "rga_fall2018");
 
 # bank definitions
 define_bank();
@@ -67,17 +62,12 @@ foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
 
-	if($configuration{"variation"} eq "rga_fall2018")
-	{
-		our @volumes = get_volumes(%configuration);
+	my $javaCadDir = "javacad_$conf";
 
-		coatjava::makeCTOF($javaCadDir);
-	}
-	else
-	{
-		# geometry
-		makeCTOF();
-	}
+	system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11", $javaCadDir));
+
+	our @volumes = get_volumes(%configuration);
+	coatjava::makeCTOF($javaCadDir);
 
 	# materials
 	materials();

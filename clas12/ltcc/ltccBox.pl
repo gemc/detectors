@@ -237,6 +237,7 @@ sub build_ltcc_box()
 
 	for(my $s=$startS; $s<=$endS; $s++)
 	{
+		# this does not include the 5 cm shift for the forward carriage we observed 
 		my $c6toc12Z = 1973;
 		#my $c6toc12Z = 0;
 		my $rotPhi = 90 - ($s-1)*60;
@@ -267,7 +268,7 @@ sub build_ltcc_box()
 				$detector{"material"} = $rgb_winter2019_materials[$s - 1];
 				print_det(\%configuration, \%detector);
 			}
-		} elsif($configuration{"variation"} eq "rgb_spring2019") {
+		} elsif($configuration{"variation"} eq "rgb_spring2019" || $configuration{"variation"} eq "default") {
 			if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
 				$detector{"material"} = $rgb_spring2019_materials[$s - 1];
 				print_det(\%configuration, \%detector);

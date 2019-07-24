@@ -68,7 +68,7 @@ require "./mirrors.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("rga_spring2018", "rga_fall2018",  "rgb_winter2019", "rgb_spring2019");
+my @allConfs = ("rga_spring2018", "rga_fall2018",  "rgb_winter2019", "rgb_spring2019", "default");
 
 # sectors 1 2 3 4 5 6 presence
 our @rga_spring2018_sectorsPresence = (   0,       1,       1,       0,       1,      1);

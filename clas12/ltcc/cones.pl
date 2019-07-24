@@ -89,7 +89,7 @@ sub build_cones {
 					$shouldPrintDetector = 1;
 					$gasMaterial = $rgb_winter2019_materials[$s - 1];
 				}
-			} elsif($configuration{"variation"} eq "rgb_spring2019") {
+			} elsif($configuration{"variation"} eq "rgb_spring2019" || $configuration{"variation"} eq "default") {
 				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
 					$shouldPrintDetector = 1;
 					$gasMaterial = $rgb_spring2019_materials[$s - 1];

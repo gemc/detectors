@@ -1,33 +1,34 @@
 <gcard>
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="../targets/cad/"   factory="CAD"/>
-	<detector name="../targets/target" factory="TEXT" variation="lH2"/>
+	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
+	
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
 
 	
 	<!-- forward carriage -->
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
-	
-	<detector name="../dc/dc"              factory="TEXT" variation="java"/>
-	<detector name="../rich_sector4/rich"          factory="TEXT" variation="java"/>
-        <detector name ="../rich_sector4/javacad/"       factory="CAD"/>
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
+	<detector name="experiments/clas12/dc/dc"                    factory="TEXT" variation="default"/>
+
+	<detector name="rich"         factory="TEXT" variation="java"/>
+        <detector name ="javacad/"    factory="CAD"/>
 
 	
 	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
 	<option name="SCALE_FIELD" value="TorusSymmetric, -1"/>
 	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
 	
-<!-- hall field  -->
-<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
+	<!-- hall field  -->
+	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
 
-<!-- fields, precise mode -->
-<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
-<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
+	<!-- fields, precise mode -->
+	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
+	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
 
 	<!-- beam conditions -->
 	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
 	
 	<option name="SAVE_ALL_MOTHERS" value="0"/>
-	<option name="RECORD_MIRRORS"   value="0"/>
+	<option name="RECORD_OPTICALPHOTONS"   value="0"/>
 	
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 	

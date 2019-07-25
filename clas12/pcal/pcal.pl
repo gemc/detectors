@@ -31,7 +31,6 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "rga_fall2018" ;
 
 # materials
 require "./materials.pl";
@@ -42,9 +41,6 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# run PCAL factory from COATJAVA to produce volumes
-system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
-
 # sensitive geometry
 require "./geometry_java.pl";
 
@@ -54,7 +50,7 @@ require "./geometry.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("original", "java");
-my @allConfs = ($configuration{"variation"});
+my @allConfs = ("default", "rga_fall2018");
 
 # bank definitions commong to all variations
 define_bank();
@@ -69,14 +65,17 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 
-	if($configuration{"variation"} eq "rga_fall2018")
+	if($configuration{"variation"} eq "original")
 	{
+		# geometry
+		makePCAL();
+	} else {
+		# run PCAL factory from COATJAVA to produce volumes
+		system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);
 
 		coatjava::makePCAL();
-	} else {
-		# geometry
-		makePCAL();
 	}
 }

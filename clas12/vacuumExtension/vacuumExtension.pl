@@ -34,7 +34,7 @@ my @allConfs = ( "original");
 
 my $VErmin   = 50.8;
 my $VErmax   = $VErmin + 2;  # 2mm thickness
-my $VElength = 260.0;
+my $VElength = 263.0;
 
 # should start 5cm from downstream end of the scattering chamber
 # so at 350

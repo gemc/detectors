@@ -29,13 +29,16 @@ our %configuration = load_configuration($ARGV[0]);
 
 my @allConfs = ( "original");
 
-my $pos = 625;
 
 # Adding the neoprene insulation Heat Shield
 
 my $VErmin   = 50.8;
 my $VErmax   = $VErmin + 2;  # 2mm thickness
-my $VElength = 250.0;
+my $VElength = 260.0;
+
+# should start 5cm from downstream end of the scattering chamber
+# so at 350
+my $pos = 350 + $VElength ;
 
 foreach my $conf ( @allConfs )
 {
@@ -46,7 +49,7 @@ foreach my $conf ( @allConfs )
 	$detector{"name"}        = "extensionVacuumCarbonShell";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Vacuum extension made of carbon fiber";
-	$detector{"color"}       = "88aaff";
+	$detector{"color"}       = "222222";
 	$detector{"type"}        = "Tube";
 	$detector{"material"}    = "carbonFiber";
 		

@@ -1,22 +1,23 @@
 <gcard>
 
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="../targets/cad/" factory="CAD"/>
-	<detector name="../targets/target" factory="TEXT" variation="cad"/>
+	<detector name="experiments/clas12/targets/cad/" factory="CAD"/>
+	<detector name="..//targets/target" factory="TEXT" variation="lH2"/>
 
-	<detector name="../beamline/beamline" factory="TEXT" variation="FTOn"/>
-	<detector name="../beamline/cadBeamline/" factory="CAD"/>
-	<detector name="../beamline/vacuumline/" factory="CAD"/>
+	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="FTOn"/>
+	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
+	<detector name="experiments/clas12/beamline/vacuumline/" factory="CAD"/>
 
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="original"/>
 
 	<!-- central detectors  -->
-	<detector name="../bst/bst"  factory="TEXT" variation="java"/>
+	<detector name="experiments/clas12/bst/bst"  factory="TEXT" variation="default"/>
 
 	<detector name="vacuumExtension"   factory="TEXT" variation="original"/>
 
 	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="NO_FIELD" value="all"/>
 
 	<detector name="airPipe">
 			<existence exist="no" />

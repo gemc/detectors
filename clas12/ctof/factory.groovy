@@ -28,3 +28,7 @@ factory.getComponents().forEach{ volume ->
 	}
 }
 
+new File(dirName+'_upstream').mkdir();
+factory.getAllVolumes().findAll{it.getType()=='Stl' && it.getName().startsWith('lgd')}.each{
+  it.getPrimitive().toCSG().toStlFile(sprintf("%s_upstream/%s.stl", [dirName, it.getName()]))
+}

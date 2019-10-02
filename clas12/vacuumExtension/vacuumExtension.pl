@@ -32,9 +32,9 @@ my @allConfs = ( "original");
 
 # Adding the neoprene insulation Heat Shield
 
-my $VErmin   = 40;
-my $VErmax   = $VErmin + 10;  # 2mm thickness
-my $VElength = 300.0;
+my $VErmin   = 15;
+my $VErmax   = $VErmin + 6;  # 2mm thickness
+my $VElength = 320.0;
 
 # should start 5cm from downstream end of the scattering chamber
 # so at 350

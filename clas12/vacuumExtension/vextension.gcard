@@ -15,7 +15,7 @@
 	<!-- central detectors  -->
 	<detector name="experiments/clas12/bst/bst"  factory="TEXT" variation="default"/>
 
-	<detector name="vacuumExtension"   factory="TEXT" variation="original"/>
+	<detector name="vacuumExtension"   factory="TEXT" variation="cone21"/>
 
 	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
@@ -25,9 +25,6 @@
 			<existence exist="no" />
 	</detector>
  
-	<detector name="TargetFoam">
-		<existence exist="no" />
-	</detector>
 	<detector name="TargetVacuumWindow50umAl">
 		<existence exist="no" />
 	</detector>

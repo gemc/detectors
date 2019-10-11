@@ -123,7 +123,7 @@ foreach my $conf ( @allConfs )
 		$detector{"color"}       = "99aabb";
 		$detector{"type"}        = "Polycone";
 		$detector{"dimensions"}  = $dimensionsv;
-		$detector{"material"}    = "rohacell";
+		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 
@@ -168,7 +168,7 @@ foreach my $conf ( @allConfs )
 		$detector{"color"}       = "99aabb";
 		$detector{"type"}        = "Polycone";
 		$detector{"dimensions"}  = $dimensionsv;
-		$detector{"material"}    = "rohacell";
+		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 

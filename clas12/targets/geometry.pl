@@ -553,12 +553,18 @@ sub build_targets
 	# cad variation has two volume:
 	# target container
 	# and inside cell
-	if($thisVariation eq "lH2" || $thisVariation eq "lD2")
+	if($thisVariation eq "lH2" || $thisVariation eq "lD2" || $thisVariation eq "lH2e")
 	{
 		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
 		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );
+
+
+		if ($thisVariation eq "lH2e") {
+			@z_plane  =  (  -115.0,  365.0, 390.0, 925.0 );
+		}
+		
 
 		# vacuum target container
 		my %detector = init_det();
@@ -602,6 +608,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 	}
+	
 	# cad variation has two volume:
 	# target container
 	# and inside cell

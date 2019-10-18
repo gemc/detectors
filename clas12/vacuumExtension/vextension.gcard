@@ -1,8 +1,10 @@
 <gcard>
 
+	<option name="geometry" value="1400x1200"/>
+
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="experiments/clas12/targets/cad/" factory="CAD"/>
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
+	<detector name="experiments/clas12/targets/cade/" factory="CAD"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2e"/>
 
 	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
@@ -15,7 +17,6 @@
 	<!-- central detectors  -->
 	<detector name="experiments/clas12/bst/bst"  factory="TEXT" variation="default"/>
 
-	<detector name="vacuumExtension"   factory="TEXT" variation="cone21"/>
 
 	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
@@ -25,12 +26,6 @@
 			<existence exist="no" />
 	</detector>
  
-	<detector name="TargetVacuumWindow50umAl">
-		<existence exist="no" />
-	</detector>
-	<detector name="TargetWindowAdapterTorlon">
-		<existence exist="no" />
-	</detector>
 
 	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
 	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>

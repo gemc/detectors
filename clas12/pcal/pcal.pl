@@ -19,7 +19,6 @@ sub help()
 	print "\n Usage: \n";
 	print "   pcal.pl <configuration filename>\n";
  	print "   Will create the CLAS12 PCAL geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -33,8 +32,6 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
-
-
 # materials
 require "./materials.pl";
 
@@ -43,9 +40,6 @@ require "./bank.pl";
 
 # hits definitions
 require "./hit.pl";
-
-# run PCAL factory from COATJAVA to produce volumes
-system('groovy -cp "../*:.." factory.groovy --variation default --runnumber 11');
 
 # sensitive geometry
 require "./geometry_java.pl";
@@ -56,7 +50,7 @@ require "./geometry.pl";
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("original", "java");
-my @allConfs = ("java");
+my @allConfs = ("default", "rga_fall2018");
 
 # bank definitions commong to all variations
 define_bank();
@@ -71,16 +65,17 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 
-	if($configuration{"variation"} eq "java")
+	if($configuration{"variation"} eq "original")
 	{
+		# geometry
+		makePCAL();
+	} else {
+		# run PCAL factory from COATJAVA to produce volumes
+		system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);
 
 		coatjava::makePCAL();
-	}
-	else
-	{
-		# geometry
-		makePCAL();
 	}
 }

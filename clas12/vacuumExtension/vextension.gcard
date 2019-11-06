@@ -1,27 +1,36 @@
 <gcard>
 
+	<option name="geometry" value="1400x1200"/>
+
 	<!-- target. Notice variation give the target type. Can be: lH2, lD2, ND3 -->
-	<detector name="../targets/cad/" factory="CAD"/>
-	<detector name="../targets/target" factory="TEXT" variation="cad"/>
+	<detector name="experiments/clas12/targets/cade/" factory="CAD"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2e"/>
 
-	<detector name="../beamline/beamline" factory="TEXT" variation="FTOn"/>
-	<detector name="../beamline/cadBeamline/" factory="CAD"/>
-	<detector name="../beamline/vacuumline/" factory="CAD"/>
+	<detector name="experiments/clas12/beamline/beamline" factory="TEXT" variation="FTOn"/>
+	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
+	<detector name="experiments/clas12/beamline/vacuumline/" factory="CAD"/>
 
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/htcc/htcc" factory="TEXT" variation="original"/>
+
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="original"/>
 
 	<!-- central detectors  -->
-	<detector name="../bst/bst"  factory="TEXT" variation="java"/>
+	<detector name="experiments/clas12/bst/bst"  factory="TEXT" variation="default"/>
 
-	<detector name="vacuumExtension"   factory="TEXT" variation="original"/>
 
 	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
 	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="NO_FIELD" value="all"/>
 
 	<detector name="airPipe">
 			<existence exist="no" />
 	</detector>
  
+
+	<option name="SCALE_FIELD" value="clas12-newSolenoid, -1"/>
+	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
+	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
+	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
 
 
 </gcard>

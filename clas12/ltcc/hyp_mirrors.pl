@@ -9,6 +9,18 @@ our $endS;
 our $startN;
 our $endN;
 
+our @rga_spring2018_sectorsPresence;
+our @rga_spring2018_materials;
+
+our @rga_fall2018_sectorsPresence;
+our @rga_fall2018_materials;
+
+our @rgb_winter2019_sectorsPresence;
+our @rgb_winter2019_materials;
+
+our @rgb_spring2019_sectorsPresence;
+our @rgb_spring2019_materials;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
@@ -135,8 +147,6 @@ sub build_hyp_mirrors
 			$dimensions = $dimensions ." $XPOS[$s]*cm";
 		}
 
-
-
 		# hyperbolic shape (full)
 		my %detector = init_det();
 		$detector{"name"}        = "hyperbolic_$n";
@@ -182,45 +192,6 @@ sub build_hyp_mirrors
 		$detector{"material"}    = "Component";
 		print_det(\%configuration, \%detector);
 
-
-		for(my $s=$startS; $s<=$endS; $s++)
-		{
-
-			if($s != 4 && $s != 1){
-			# Subtracting right box - RIGHT MIRROR
-				%detector = init_det();
-				$detector{"name"}        = "hyp_mirror_s$s"."_right_$n";
-				$detector{"mother"}      = "segment_hyp_s$s"."_$n";
-				$detector{"description"} = "LTCC Hyperbolic mirror right $n";
-				$detector{"pos"}         = "$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
-				$detector{"rotation"}    = "0*deg -90*deg 0*deg";
-				$detector{"color"}       = "aaffff";
-				$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-				$detector{"material"}    = "G4_AIR";
-				$detector{"style"}       = 1;
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
-				print_det(\%configuration, \%detector);
-	
-				# Subtracting right box - LEFT MIRROR
-				%detector = init_det();
-				$detector{"name"}        = "hyp_mirror_s$s"."_left_$n";
-				$detector{"mother"}      = "segment_hyp_s$s"."_$n";
-				$detector{"description"} = "LTCC Hyperbolic mirror right $n";
-				$detector{"pos"}         = "-$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
-				$detector{"rotation"}    = "0*deg 90*deg 0*deg";
-				$detector{"color"}       = "aaffff";
-				$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
-				$detector{"material"}    = "G4_AIR";
-				$detector{"style"}       = 1;
-				$detector{"sensitivity"}    = "mirror: ltcc_AlMgF2";
-				$detector{"hit_type"}       = "mirror";
-				print_det(\%configuration, \%detector);
-
-				      }
-		}
-
-
 		# Building the box that contains the mirrors (left and right)
 		# Starts 1mm above x11
 		my $segment_box_length    = $x21[$n-1] + 0.1;
@@ -257,22 +228,84 @@ sub build_hyp_mirrors
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
 
-			my %detector = init_det();
-			$detector{"name"}        = "segment_hyp_s$s"."_$n";
-			$detector{"mother"}      = "ltccS$s";
-			$detector{"description"} = "Light Threshold Cerenkov Counter HYP segment $n";
-			$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
-			$detector{"color"}       = "00ff11";
-			$detector{"type"}        = "Operation: segment_hyp_box_$n - segment_hyp_subtract_box_$n";
-			$detector{"material"}    = "C4F10";
-			$detector{"visible"}     = 0;
-			if($n == 15) { $detector{"pos"} = "0*cm  5*cm 10*cm"; }
-			if($n == 16) { $detector{"pos"} = "0*cm 10*cm 15*cm"; }
-			if($n == 17) { $detector{"pos"} = "0*cm 15*cm 20*cm"; }
-			if($n == 18) { $detector{"pos"} = "0*cm 20*cm 25*cm"; }
+			my $shouldPrintDetector = 0;
+			my $gasMaterial = "C4F10";
 
-			print_det(\%configuration, \%detector);
+			if($configuration{"variation"} eq "rga_spring2018") {
+				if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rga_spring2018_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rga_fall2018") {
+				if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rga_fall2018_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rgb_winter2019") {
+				if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rgb_winter2019_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rgb_spring2019" || $configuration{"variation"} eq "default") {
+				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					$gasMaterial = $rgb_spring2019_materials[$s - 1];
+				}
+			}
+
+			if($shouldPrintDetector == 1) {
+
+
+				# Subtracting right box - RIGHT MIRROR
+				%detector = init_det();
+				$detector{"name"}        = "hyp_mirror_s$s"."_right_$n";
+				$detector{"mother"}      = "segment_hyp_s$s"."_$n";
+				$detector{"description"} = "LTCC Hyperbolic mirror right $n";
+				$detector{"pos"}         = "$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
+				$detector{"rotation"}    = "0*deg -90*deg 0*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
+				$detector{"material"}    = "G4_Al";
+				$detector{"style"}       = 1;
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
+				print_det(\%configuration, \%detector);
+
+				# Subtracting right box - LEFT MIRROR
+				%detector = init_det();
+				$detector{"name"}        = "hyp_mirror_s$s"."_left_$n";
+				$detector{"mother"}      = "segment_hyp_s$s"."_$n";
+				$detector{"description"} = "LTCC Hyperbolic mirror right $n";
+				$detector{"pos"}         = "-$hp_min[$n-1]*cm $YPOS0*cm 0*cm";
+				$detector{"rotation"}    = "0*deg 90*deg 0*deg";
+				$detector{"color"}       = "aaffff";
+				$detector{"type"}        = "Operation: hyperbolix_rbox_$n - right_sbox_$n";
+				$detector{"material"}    = "G4_Al";
+				$detector{"style"}       = 1;
+				$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
+				$detector{"hit_type"}    = "mirror";
+				print_det(\%configuration, \%detector);
+
+				%detector = init_det();
+				$detector{"name"}        = "segment_hyp_s$s"."_$n";
+				$detector{"mother"}      = "ltccS$s";
+				$detector{"description"} = "Light Threshold Cerenkov Counter HYP segment $n";
+				$detector{"rotation"}    = "-$segtheta[$n-1]*deg 0*deg 0*deg";
+				$detector{"color"}       = "00ff11";
+				$detector{"type"}        = "Operation: segment_hyp_box_$n - segment_hyp_subtract_box_$n";
+
+				$detector{"material"}    = $gasMaterial;
+				$detector{"visible"}     = 0;
+				if($n == 15) { $detector{"pos"} = "0*cm  5*cm 10*cm"; }
+				if($n == 16) { $detector{"pos"} = "0*cm 10*cm 15*cm"; }
+				if($n == 17) { $detector{"pos"} = "0*cm 15*cm 20*cm"; }
+				if($n == 18) { $detector{"pos"} = "0*cm 20*cm 25*cm"; }
+
+				print_det(\%configuration, \%detector);
+			}
 		}
+
+
 	}
 }
 

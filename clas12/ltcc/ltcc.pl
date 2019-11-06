@@ -54,21 +54,34 @@ require "./hit.pl";
 
 # Loading LTCC specific subroutines
 #require "./ltcc_box.pl";      # mother volume
-require "./ltccBox.pl";      # mother volume
-require "./ell_mirrors.pl";   # ell mirrors
-require "./hyp_mirrors.pl";   # hyp mirrors
-require "./pmts.pl";          # pmts
+require "./ltccBox.pl";        # mother volume
+require "./ltcc_frame.pl";     # frame
+require "./cyl_mirrors.pl";    # cyl mirrors
+require "./hyp_mirrors.pl";    # hyp mirrors
+require "./ell_mirrors.pl";    # ell mirrors
+require "./pmts.pl";           # pmts
 require "./cones.pl";          # cones
-require "./cyl_mirrors.pl";          # cyl mirrors
-require "./ltcc_frame.pl";          # frame
-require "./shields.pl";          # shields
+require "./shields.pl";        # shields
 
 # mirrors properties
 require "./mirrors.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("rga_spring2018", "rga_fall2018",  "rgb_winter2019", "rgb_spring2019", "default");
+
+# sectors 1 2 3 4 5 6 presence
+our @rga_spring2018_sectorsPresence = (   0,       1,       1,       0,       1,      1);
+our @rga_spring2018_materials       = ("na",    "N2",    "N2",    "na", "C4F10",   "N2");
+
+our @rga_fall2018_sectorsPresence   = (   0,       0,       1,       0,       1,      0);
+our @rga_fall2018_materials         = ("na",    "na", "C4F10",     "na",   "N2",   "na");
+
+our @rgb_winter2019_sectorsPresence = (   0,       0,       1,       0,       1,      0);
+our @rgb_winter2019_materials       = ("na",    "na", "C4F10",    "na", "C4F10",    "na");
+
+our @rgb_spring2019_sectorsPresence = (   0,       0,       1,       0,       1,      0);
+our @rgb_spring2019_materials       = ("na",    "na", "C4F10",    "no", "C4F10",   "na");
 
 # bank definitions commong to all variations
 define_bank();
@@ -86,14 +99,17 @@ foreach my $conf ( @allConfs )
 	# Building LTCC Box
 	build_ltcc_box();
 
-	# Elliptical mirrors
-	buildEllMirrors();
+	# frame
+	buildLtccFrame();
+
+	# Cylindrical mirrors
+	buildCylMirrors();
 
 	# Hyperbolic
 	buildHypMirrors();
 
-	# mirrors surfaces
-	buildMirrorsSurfaces();
+	# Elliptical mirrors
+	buildEllMirrors();
 
 	# PMTs
 	buildPmts();
@@ -101,14 +117,12 @@ foreach my $conf ( @allConfs )
 	# Cones
 	buildCones();
 
-	# Cylindrical mirrors
-	buildCylMirrors();
-
-	# frame
-	buildLtccFrame();
-
 	# Shields
 	buildShields();
+
+	# mirrors surfaces
+	buildMirrorsSurfaces();
+
 }
 
 

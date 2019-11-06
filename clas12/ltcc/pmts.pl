@@ -6,6 +6,18 @@ our $endS;
 our $startN;
 our $endN;
 
+our @rga_spring2018_sectorsPresence;
+our @rga_spring2018_materials;
+
+our @rga_fall2018_sectorsPresence;
+our @rga_fall2018_materials;
+
+our @rgb_winter2019_sectorsPresence;
+our @rgb_winter2019_materials;
+
+our @rgb_spring2019_sectorsPresence;
+our @rgb_spring2019_materials;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
@@ -31,7 +43,7 @@ sub buildPmts
 {
 	calculatePMTPars();
 	build_pmts();
-
+	
 }
 
 sub calculatePMTPars
@@ -39,9 +51,9 @@ sub calculatePMTPars
 	for(my $n=0; $n<$nmirrors ; $n++)
 	{
 		my $s = $n + 1;
-
+		
 		# All variables defined below take their values from ltcc__parameters_original.txt file which can be rewritten by running mirrors.C after adding new variables or editting current variables (one should define them in ltcc.h and io.C and also give the values in ccngeom.dat )
-
+		
 		$x0[$n]   = $parameters{"ltcc.pmt.s$s"."_pmt0x"};
 		$y0[$n]   = $parameters{"ltcc.pmt.s$s"."_pmt0y"};
 		$rad[$n]  = $parameters{"ltcc.pmt.s$s"."_radius"};
@@ -53,28 +65,50 @@ sub calculatePMTPars
 		$segtheta[$n] = 90 - $parameters{"ltcc.s$s"."_theta"};
 		#phi rotation angle for pmts, pmt stoppers and shield in sectors ! (calculated using their phi rotation angles in segments)
 		$segphi[$n] = 90 - $segtheta[$n]; #rotation of pmts in sector
-		$len[$n] = 1;  # Hardcoding pmt length here
+		$len[$n] = 0.1;  # Hardcoding pmt length here
 		$fangle[$s] = ($s - 2) * 60; # rotation angle of the ltcc frame for each sectors
-
+		
 	}
-
+	
 }
 
 
 sub build_pmts
 {
-
-
-
+	
+	
+	
 	for(my $n=$startN; $n<=$endN; $n++)
 	{
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
-
-			# All following geometries are in the LTCC sectors ! Right and Left in names correspond to the specific geometries at right side or left side of the sector's center line
-
-			if($s != 4 && $s != 1) {
-
+			
+			# All following geometries are in the LTCC sectors !
+			# Right and Left in names correspond to the specific geometries at right side or left side of the sector's center line
+			
+			my $shouldPrintDetector = 0;
+			
+			if($configuration{"variation"} eq "rga_spring2018") {
+				if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			} elsif($configuration{"variation"} eq "rga_fall2018") {
+				if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			} elsif($configuration{"variation"} eq "rgb_winter2019") {
+				if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					
+				}
+			} elsif($configuration{"variation"} eq "rgb_spring2019" || $configuration{"variation"} eq "default") {
+				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			}
+			
+			if($shouldPrintDetector == 1) {
+				
 				my %detector = init_det();
 				$detector{"name"}        = "pmt_s$s"."right_$n";
 				$detector{"mother"}      = "ltccS$s";
@@ -90,7 +124,7 @@ sub build_pmts
 				$detector{"hit_type"}    = "ltcc";
 				$detector{"identifiers"} = "sector manual $s side manual 1 segment manual $n";
 				print_det(\%configuration, \%detector);
-
+				
 				%detector = init_det();
 				$detector{"name"}        = "pmt_s$s"."left_$n";
 				$detector{"mother"}      = "ltccS$s";
@@ -106,11 +140,11 @@ sub build_pmts
 				$detector{"hit_type"}    = "ltcc";
 				$detector{"identifiers"} = "sector manual $s side manual 2 segment manual $n";
 				print_det(\%configuration, \%detector);
-
+				
 				# To prevent photons getting trapped inside the pmts smaller cylinders (light stoppers) are placed inside the pmts.
 				# These light stoppers do not have optical properties unlike pmts.
 				my $stopLength = $rad[$n-1] - 0.01;
-
+				
 				%detector = init_det();
 				$detector{"name"}        = "pmt_light_stopper_s$s"."right_$n";
 				$detector{"mother"}      = "pmt_s$s"."right_$n";
@@ -121,7 +155,7 @@ sub build_pmts
 				$detector{"material"}    = "G4_Galactic";
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
-	
+				
 				%detector = init_det();
 				$detector{"name"}        = "pmt_light_stopper_s$s"."left_$n";
 				$detector{"mother"}      = "pmt_s$s"."left_$n";
@@ -132,13 +166,13 @@ sub build_pmts
 				$detector{"material"}    = "G4_Galactic";
 				$detector{"style"}       = 1;
 				print_det(\%configuration, \%detector);
-
-				   }
-
+				
+			}
+			
 		}
-
+		
 	}
-
+	
 }
 
 

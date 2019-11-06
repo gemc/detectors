@@ -12,7 +12,7 @@ sub define_hit
 	$hit{"description"}     = "cnd hit definitions for panel";
 	$hit{"identifiers"}     = "layer paddle";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "5*ns";
+	$hit{"timeWindow"}      = "400*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";

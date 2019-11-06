@@ -11,6 +11,18 @@ our $endS;
 our $startN;
 our $endN;
 
+our @rga_spring2018_sectorsPresence;
+our @rga_spring2018_materials;
+
+our @rga_fall2018_sectorsPresence;
+our @rga_fall2018_materials;
+
+our @rgb_winter2019_sectorsPresence;
+our @rgb_winter2019_materials;
+
+our @rgb_spring2019_sectorsPresence;
+our @rgb_spring2019_materials;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"};
 
@@ -32,7 +44,7 @@ sub buildCylMirrors
 {
 	calculateMirPars();
 	build_cylMir();
-
+	
 }
 
 sub calculateMirPars
@@ -52,9 +64,9 @@ sub calculateMirPars
 		$cyl_tilt_r[$n] = $parameters{"ltcc.cyl.s$s"."_rightAngle"};
 		# 90 - theta of center of ltcc. segment
 		$segtheta[$n] = 90 - $parameters{"ltcc.s$s"."_theta"};
-		#phi rotation angle cylindrical mirrors in sectors ! (calculated using phi rotation angle in segments)
+		# phi rotation angle cylindrical mirrors in sectors ! (calculated using phi rotation angle in segments)
 		$segphi_cyl[$n] = -90 - $segtheta[$n];
-		#cylindrical mirror thickness is 1 mm (G4 Tube is used)
+		# cylindrical mirror thickness is 1 mm (G4 Tube is used)
 		$cyl_inner[$n] = $cyl_outer[$n] - 0.1;
 		$tilt[$n] = $parameters{"ltcc.wc.s$s"."_angle"};
 	}
@@ -65,16 +77,36 @@ sub calculateMirPars
 
 sub build_cylMir
 {
-
+	
 	for(my $n=$startN; $n<=$endN; $n++)
 	{
 		for(my $s=$startS; $s<=$endS; $s++)
 		{
-
-			if($s != 4 && $s != 1){
-
-				if($n < $endN){
+			my $shouldPrintDetector = 0;
 			
+			if($configuration{"variation"} eq "rga_spring2018") {
+				if($rga_spring2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			} elsif($configuration{"variation"} eq "rga_fall2018") {
+				if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			} elsif($configuration{"variation"} eq "rgb_winter2019") {
+				if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+					
+				}
+			} elsif($configuration{"variation"} eq "rgb_spring2019" || $configuration{"variation"} eq "default") {
+				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
+				}
+			}
+			
+			if($shouldPrintDetector == 1) {
+				
+				if($n < $endN) {
+					
 					my %detector = init_det();
 					$detector{"name"}        = "cyl_mirrors_s$s"."right_$n";
 					$detector{"mother"}      = "ltccS$s";
@@ -84,12 +116,12 @@ sub build_cylMir
 					$detector{"color"}       = "aaffff";
 					$detector{"type"}        = "Tube";
 					$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
-					$detector{"material"}    = "G4_AIR";
+					$detector{"material"}    = "G4_Al";
 					$detector{"style"}       = 1;
 					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 					$detector{"hit_type"}    = "mirror";
 					print_det(\%configuration, \%detector);
-
+					
 					%detector = init_det();
 					$detector{"name"}        = "cyl_mirrors_s$s"."left_$n";
 					$detector{"mother"}      = "ltccS$s";
@@ -99,14 +131,14 @@ sub build_cylMir
 					$detector{"color"}       = "aaffff";
 					$detector{"type"}        = "Tube";
 					$detector{"dimensions"}  = "$cyl_inner[$n-1]*cm $cyl_outer[$n-1]*cm 3*cm 0*deg $cyl_ang[$n-1]*deg";
-					$detector{"material"}    = "G4_AIR";
+					$detector{"material"}    = "G4_Al";
 					$detector{"style"}       = 1;
 					$detector{"sensitivity"} = "mirror: ltcc_AlMgF2";
 					$detector{"hit_type"}    = "mirror";
 					print_det(\%configuration, \%detector);
-
-						}
-				    }
+					
+				}
+			}
 		}
 	}
 }

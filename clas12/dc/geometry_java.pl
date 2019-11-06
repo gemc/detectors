@@ -34,7 +34,7 @@ sub make_region
 
 		$detector{"color"}       = "aa0000";
 		$detector{"material"}    = "dcgas";
-		#$detector{"visible"}     = 0;
+		$detector{"visible"}     = 0;
 		print_det(\%main::configuration, \%detector);
 	}
 

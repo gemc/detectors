@@ -25,8 +25,8 @@ sub makeFTOF
 {
 	($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
 
-$panel1a_n = $main::parameters{"ftof.panel1A.ncounters"};
-$panel1b_n = $main::parameters{"ftof.panel1B.ncounters"};
+$panel1a_n = $main::parameters{"ftof.panel1a.ncounters"};
+$panel1b_n = $main::parameters{"ftof.panel1b.ncounters"};
 $panel2_n  = $main::parameters{"ftof.panel2.ncounters"};
 
 	define_mothers();
@@ -63,7 +63,7 @@ sub build_panel1a_mother
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1;
+	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%main::configuration, \%detector);
 }
@@ -87,7 +87,7 @@ sub build_panel1b_mother
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1;
+	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%main::configuration, \%detector);
 }
@@ -111,7 +111,7 @@ sub build_panel2_mother
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1;
+	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%main::configuration, \%detector);
 }

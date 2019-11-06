@@ -18,7 +18,6 @@ sub help()
 	print "\n Usage: \n";
 	print "   dc.pl <configuration filename>\n";
  	print "   Will create the CLAS12 DC geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -31,7 +30,7 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-
+$configuration{"variation"} = "default" ;
 
 # Global pars - these should be read by the load_parameters from file or DB
 
@@ -47,7 +46,7 @@ require "./bank.pl";
 require "./hit.pl";
 
 # run DC factory from COATJAVA to produce volumes
-system('groovy -cp "..:../*" factory.groovy --variation may_2018_engineers --runnumber 11');
+system("groovy -cp '..:../*' factory.groovy --variation $configuration{variation} --runnumber 11");
 
 # sensitive geometry
 require "./geometry_java.pl";
@@ -69,7 +68,7 @@ require "./utils.pl";
 # all the scripts must be run for every configuration
 # Right now run both configurations, later on just ccdb
 #my @allConfs = ("ccdb", "cosmicR1", "ddvcs", "java");
-my @allConfs = ("java");
+my @allConfs = ($configuration{"variation"});
 
 # bank definitions commong to all variations
 define_bank();
@@ -77,7 +76,7 @@ define_bank();
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
 	# materials
 	materials();
 	shield_material();
@@ -86,29 +85,23 @@ foreach my $conf ( @allConfs )
 	define_hit();
 	
 
-	# sensitive geometry
-	if($configuration{"variation"} eq "java")
-	{
-		# Global pars - these should be read by the load_parameters from file or DB
-		our @volumes = get_volumes(%configuration);
-
-		coatjava::makeDC();
-	}
-	else
-	{
+	if($configuration{"variation"} eq "original") {
 		# calculate pars
 		calculate_dc_parameters();
 
 		makeDC_perl();
 		# dc plates
 		make_plates();
-	}
-
-	# region 3 shielding
-	if($configuration{"variation"} eq "ddvcs")
-	{
+	} elsif($configuration{"variation"} eq "ddvcs") {
+	     # region 3 shielding
 		make_region3_front_shield();
 		make_region3_back_shield();
+	} else {
+	     # sensitive geometry
+		# Global pars - these should be read by the load_parameters from file or DB
+		our @volumes = get_volumes(%configuration);
+
+		coatjava::makeDC();
 	}
 }
 

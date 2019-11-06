@@ -1,0 +1,19 @@
+<!--
+
+ The mesh export presents a small overlap between the flanges of the tagger and torus mount.
+ The position is modified by to produce a little gap
+
+ For the FTON configurration the cone is shifted by -238.8mm
+
+ -->
+
+<gxml>
+    <volume name="cryotube"  color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="extensiontube" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="flangespacer" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="flangetube" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="reducer" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="solid021" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="solid022" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+    <volume name="solid023" color="8899dd" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_STAINLESS-STEEL"/>
+</gxml>

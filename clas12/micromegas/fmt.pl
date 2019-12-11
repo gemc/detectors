@@ -11,8 +11,8 @@ my $envelope = 'FMT';
 
 my @starting_point =();
 
-my $fmt_ir 	       	= $parameters{"FMT_mothervol_InnerRadius"};
-my $fmt_or 		= $parameters{"FMT_mothervol_OutRadius"};
+my $fmt_ir 	= $parameters{"FMT_mothervol_InnerRadius"};
+my $fmt_or 	= $parameters{"FMT_mothervol_OutRadius"};
 
 # Mother volume zmin = BMT MV zmax = end of BMT closing plate
 # Mother volume zmax to take into account innerscrews extension downstream D6 (about 3.5 mm) >= FMT_zpos_layer6 + 7.6 + 3.5
@@ -136,11 +136,13 @@ sub rot_support
 
 sub define_fmt
 {
-	make_fmt();
-	
+
+	print "ASSADASD ", $nlayer;
+
 	if( $configuration{"variation"} eq "michel") {
-		
-		
+
+		make_fmt();
+
 		for(my $l = 0; $l < $nlayer; $l++) {
 			place_cuground($l);
 			place_pcbground($l);
@@ -169,16 +171,47 @@ sub define_fmt
 			place_innerscrews($l);
 			if ( $l == 2 || $l == 5) {place_supports36($l);}
 			if ( $l == 0 || $l == 1 || $l == 3 || $l == 4 )  {place_supports1245($l);}
-			if ( $l < 5) {place_spacers($l);}
-			
+			if ( $l < 5) { place_spacers($l); }
 		}
+
+	} elsif( $configuration{"variation"} eq "bonus") {
+
+		make_fmt();
+
+		for($l = 0; $l < $nlayer; $l++) {
+			place_cuground($l);
+			place_pcbground($l);
+			place_innerFR4($l);
+			place_rohacell($l);
+			place_outerFR4($l);
+			place_pcbdetector($l);
+			place_strips($l);
+			place_kapton($l);
+			place_resist($l);
+			place_innerPhRes128($l);
+			place_gas1($l);
+			place_outerPhRes128($l);
+			place_mesh($l);
+			place_innerPhRes64($l);
+			place_outerPhRes64($l);
+			place_innerpeek($l);
+			place_gas2($l);
+			place_outerpeek($l);
+			place_driftcuelectrode($l);
+			place_driftpcb($l);
+			place_driftcuground($l);
+			place_hvcovers($l);
+			place_connectors($l);
+			place_cables($l);
+			place_innerscrews($l);
+			if ( $l == 2 ) {place_supports36($l);}
+			if ( $l == 0 || $l == 1)  {place_supports1245($l);}
+			if ( $l < 2) { place_spacers($l); }
+		}
+
 	}
 	
-	if( $configuration{"variation"} eq "activeOnly") {
-		for(my $l = 0; $l < $nlayer; $l++) {
-			place_gas2($l);
-		}
-	}
+
 	
 	
 }
@@ -1329,7 +1362,8 @@ sub place_spacers
 	my $layer_no       = $l + 1;
 	
 	# units = mm, deg. ;
-	# these spacers ("entretoises") are screwed on the supports; their length is such as to fill the available space between 2 supports = 11.9 - 5 = 6.9 mm (13.9 - 5 = 8.9 mm between D3 and D4 because of extra bolt)
+	# these spacers ("entretoises") are screwed on the supports;
+	# their length is such as to fill the available space between 2 supports = 11.9 - 5 = 6.9 mm (13.9 - 5 = 8.9 mm between D3 and D4 because of extra bolt)
 	# they are placed on top of support elements 2 and 3, which extend 3 mm beyond disk entrance.
 	# 4 identical tubes per layer: 4.6 mm diameter as an average between threaded part at 3 mm and hexagonal head at 6mm ( + 1mm long cylinder at 5mm diameter)
 	# approximate brass by copper

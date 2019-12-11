@@ -32,9 +32,8 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
+#our %parameters    = get_parameters(%configuration);
 
-# To get the parameters proper authentication is needed.
-our %parameters    = get_parameters(%configuration);
 
 
 # materials
@@ -46,30 +45,52 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# sensitive geometry
-require "./bmt.pl";
-require "./fmt.pl";
+
+# bank definitions commong to all variations
+define_bank();
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("michel", "activeOnly");
+my @allConfs = ("michel", "bonus");
 
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-	
+
 	# materials
 	materials();
 	
 	# hits
 	define_hit();
 	
-	# bank definitions
-	define_bank();
-	
-	# geometry
-	define_bmt();
-	define_fmt();
+	if($configuration{"variation"} eq "michel") {
+
+		# loading pars according to variation
+		our %parameters    = get_parameters(%configuration);
+
+
+		# sensitive geometry
+		require "./bmt.pl";
+		require "./fmt.pl";
+
+		# geometry
+		define_bmt();
+		define_fmt();
+
+	} elsif( $configuration{"variation"} eq "bonus") {
+
+		# loading pars according to variation
+		our %parameters    = get_parameters(%configuration);
+
+		# sensitive geometry
+		require "./bmt.pl";
+		require "./fmt.pl";
+
+
+		# geometry
+		define_fmt();
+
+	}
 }
 
 

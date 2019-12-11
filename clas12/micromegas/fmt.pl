@@ -23,14 +23,6 @@ my $fmt_zmin		= $parameters{"FMT_mothervol_zmin"};
 
 #my $Dtheta              = 60.0; # rotation angle of each disk wrt to the preceding one
 
-$starting_point[0] 	= $parameters{"FMT_zpos_layer1"}; 
-# should be FMT_mothervol_zmin + 2 mm (FMT support thickness upstream of D1)
-# then nominally, interdisks space = 11.9 mm except between D3 and D4 13.9 mm.
-$starting_point[1] 	= $parameters{"FMT_zpos_layer2"};
-$starting_point[2] 	= $parameters{"FMT_zpos_layer3"};
-$starting_point[3] 	= $parameters{"FMT_zpos_layer4"};
-$starting_point[4] 	= $parameters{"FMT_zpos_layer5"};
-$starting_point[5] 	= $parameters{"FMT_zpos_layer6"};
 
 my $Det_RMin 	        = $parameters{"FMT_DetInnerRadius"};
 my $Det_RMax 	        = $parameters{"FMT_DetOuterRadius"};
@@ -137,9 +129,19 @@ sub define_fmt
 {
 	our $nlayer	 = $parameters{"FMT_nlayer"};
 
-	print "Number of layers: ", $nlayer, " ", $configuration{"variation"}, "\n";
+	$starting_point[0] 	= $parameters{"FMT_zpos_layer1"};
+	# should be FMT_mothervol_zmin + 2 mm (FMT support thickness upstream of D1)
+	# then nominally, interdisks space = 11.9 mm except between D3 and D4 13.9 mm.
+	$starting_point[1] 	= $parameters{"FMT_zpos_layer2"};
+	$starting_point[2] 	= $parameters{"FMT_zpos_layer3"};
+
+	print "Number of layers: ", $nlayer, " ", $configuration{"variation"}, " First Layer zstart: ", $starting_point[0] , "\n";
 
 	if( $configuration{"variation"} eq "michel") {
+
+		$starting_point[3] 	= $parameters{"FMT_zpos_layer4"};
+		$starting_point[4] 	= $parameters{"FMT_zpos_layer5"};
+		$starting_point[5] 	= $parameters{"FMT_zpos_layer6"};
 
 		make_fmt();
 

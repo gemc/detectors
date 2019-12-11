@@ -57,8 +57,6 @@ foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
 
-	# materials
-	materials();
 	
 	# hits
 	define_hit();
@@ -76,6 +74,10 @@ foreach my $conf ( @allConfs )
 		# geometry
 		define_bmt();
 		define_fmt();
+		
+		# materials
+		materials();
+
 
 	} elsif( $configuration{"variation"} eq "bonus") {
 
@@ -89,6 +91,9 @@ foreach my $conf ( @allConfs )
 
 		# geometry
 		define_fmt();
+
+		# materials
+		materials();
 
 	}
 }

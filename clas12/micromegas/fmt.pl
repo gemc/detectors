@@ -22,7 +22,6 @@ my $fmt_starting        = ($parameters{"FMT_mothervol_zmax"} + $parameters{"FMT_
 my $fmt_zmin		= $parameters{"FMT_mothervol_zmin"};
 
 #my $Dtheta              = 60.0; # rotation angle of each disk wrt to the preceding one
-my $nlayer	      	= $parameters{"FMT_nlayer"};
 
 $starting_point[0] 	= $parameters{"FMT_zpos_layer1"}; 
 # should be FMT_mothervol_zmin + 2 mm (FMT support thickness upstream of D1)
@@ -136,8 +135,9 @@ sub rot_support
 
 sub define_fmt
 {
+	our $nlayer	 = $parameters{"FMT_nlayer"};
 
-	print "ASSADASD ", $nlayer;
+	print "Number of layers: ", $nlayer, " ", $configuration{"variation"}, "\n";
 
 	if( $configuration{"variation"} eq "michel") {
 

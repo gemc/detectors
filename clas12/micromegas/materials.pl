@@ -16,6 +16,16 @@ our %configuration = load_configuration($ARGV[0]);
 
 sub materials
 {
+	
+	if( $configuration{"variation"} eq "michel") {
+	
+		print "Materials: configuration ", $configuration{"variation"}, "\n";
+
+	} elsif( $configuration{"variation"} eq "bonus") {
+	
+		print "Materials: configuration ", $configuration{"variation"}, "\n";
+	}
+
 	my %mat = init_mat();
 	$mat{"name"}          = "myEpoxy";
 	$mat{"description"}   = "micromegas epoxy";

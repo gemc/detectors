@@ -37,6 +37,10 @@ my $innerPeek_RMax 	= $parameters{"FMT_innerPEEKOuterRadius"};
 my $outerPeek_RMin 	= $parameters{"FMT_outerPEEKInnerRadius"};
 my $outerPeek_RMax 	= $parameters{"FMT_outerPEEKOuterRadius"};
 
+my $innerRohacell_RMin 	= 0.0;
+my $innerRohacell_RMax 	= 0.0;
+my $outerRohacell_RMin 	= 0.0;
+my $outerRohacell_RMax 	= 0.0;
 
 my $CuGround_Dz 	= 0.5*$parameters{"FMT_CuGround_Dz"}; # half width
 my $PCBGround_Dz 	= 0.5*$parameters{"FMT_PCBGround_Dz"}; # half width
@@ -70,8 +74,13 @@ my $mesh_material    	= 'myfmtMMMesh';      # inox
 my $air_material	= 'myAir';
 my $kapton_material	= 'myKapton';
 my $rohacell_material 	= 'myRohacell';
+my $epoxy_material      = 'myEpoxy';
+my $flangerohacell_material = 'myFlangeRohacell';
 my $resist_material	= 'myfmtResistPaste'; # for resistive strips
 my $innerscrew_material = 'myfmtInnerScrew' ; # effective screws "in" the inner peek ring
+my $slimelec_material   = 'myfmtSlimElecDrift';
+my $slimground_material   = 'myfmtSlimGroundDrift';
+
 #define myGlue...
 # pillars holding the mesh neglected
 #my $drift_material   	= 'myMMMylar';
@@ -177,7 +186,15 @@ sub define_fmt
 		}
 
 	} elsif( $configuration{"variation"} eq "bonus") {
-
+	    $DriftCuElectrode_Dz = 0.5*$parameters{"FMTSlim_DriftCuElectrode_Dz"}; # half width of slim version
+	    $DriftCuGround_Dz = 0.5*$parameters{"FMTSlim_DriftCuElectrode_Dz"}; # half width of slim version
+	    $DriftPCB_Dz = 0.5*$parameters{"FMTSlim_DriftKapton_Dz"}; # half width of slim version
+	    
+            $innerRohacell_RMin 	= $parameters{"FMT_innerROHACELLInnerRadius"};
+            $innerRohacell_RMax 	= $parameters{"FMT_innerROHACELLOuterRadius"};
+            $outerRohacell_RMin 	= $parameters{"FMT_outerROHACELLInnerRadius"};
+            $outerRohacell_RMax 	= $parameters{"FMT_outerROHACELLOuterRadius"};
+	    
 		make_fmt();
 
 		for($l = 0; $l < $nlayer; $l++) {
@@ -782,6 +799,9 @@ sub place_innerpeek
 	my $tpos      = "0*mm 0*mm";
 	my $PRMin     = $innerPeek_RMin;
 	my $PRMax     = $innerPeek_RMax;
+	if( $configuration{"variation"} eq "bonus") {
+	    $PRMax    = $innerRohacell_RMax;
+	}
 	my $PDz       = $Peek_Dz;
 	
 	my %detector = init_det();
@@ -794,6 +814,9 @@ sub place_innerpeek
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $peek_material;
+	if( $configuration{"variation"} eq "bonus") {
+	    $detector{"material"}    = $flangerohacell_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -857,6 +880,9 @@ sub place_outerpeek
 	my $tpos      = "0*mm 0*mm";
 	my $PRMin     = $outerPeek_RMin;
 	my $PRMax     = $outerPeek_RMax;
+	if( $configuration{"variation"} eq "bonus") {
+	    $PRMin    = $outerRohacell_RMin;
+	}
 	my $PDz       = $Peek_Dz;
 	
 	my %detector = init_det();
@@ -869,6 +895,9 @@ sub place_outerpeek
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $alu_material;
+	if( $configuration{"variation"} eq "bonus") {
+	    $detector{"material"}    = $flangerohacell_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -906,6 +935,9 @@ sub place_driftcuelectrode
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $copper_material;
+	if( $configuration{"variation"} eq "bonus") {
+	    $detector{"material"}    = $slimelec_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -941,6 +973,9 @@ sub place_driftpcb
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $pcb_material;
+	if( $configuration{"variation"} eq "bonus") {
+	    $detector{"material"}    = $kapton_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -976,6 +1011,9 @@ sub place_driftcuground
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $copper_material;
+	if( $configuration{"variation"} eq "bonus") {
+	    $detector{"material"}    = $slimground_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -1027,6 +1065,9 @@ sub place_hvcovers
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
+			if( $configuration{"variation"} eq "bonus") {
+			    $detector{"material"}    = $peek_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1227,6 +1268,9 @@ sub place_innerscrews
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0.0*mm $PRadius*mm $PDz*mm 0.0*deg 360.0*deg";
 			$detector{"material"}    = $innerscrew_material;
+			if( $configuration{"variation"} eq "bonus") {
+			    $detector{"material"}    = $epoxy_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1283,6 +1327,9 @@ sub place_supports36
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
+			if( $configuration{"variation"} eq "bonus") {
+			    $detector{"material"}    = $peek_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1346,6 +1393,9 @@ sub place_supports1245
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
+			if( $configuration{"variation"} eq "bonus") {
+			    $detector{"material"}    = $peek_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;

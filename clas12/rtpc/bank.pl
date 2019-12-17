@@ -4,7 +4,6 @@ use strict;
 use lib ("$ENV{GEMC}/io");
 use utils;
 use bank;
-use materials;
 
 use strict;
 use warnings;
@@ -14,8 +13,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   bank.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 rtpc
- bank\n";
+ 	print "   Will create the CLAS12 BONUS bank\n";
  	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
 	exit;
 }
@@ -53,9 +51,14 @@ sub define_bank
 	
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "CellID",       1, "Di", "Pad CellId");
-	insert_bank_variable(\%configuration, $bankname, "ADC",          2, "Di", "ADC");	
-	insert_bank_variable(\%configuration, $bankname, "Time",         3, "Dd", "Time");
+	insert_bank_variable(\%configuration, $bankname, "Sector",       1, "Di", "Sector == 1");
+    insert_bank_variable(\%configuration, $bankname, "Layer",        2, "Di", "Pad Column");
+    insert_bank_variable(\%configuration, $bankname, "Component",    3, "Di", "Pad Row");
+    insert_bank_variable(\%configuration, $bankname, "Order",        4, "Di", "Order == 0");
+    insert_bank_variable(\%configuration, $bankname, "Time",         5, "Dd", "Time [ns]");
+	insert_bank_variable(\%configuration, $bankname, "ADC",          6, "Dd", "ADC");
+	insert_bank_variable(\%configuration, $bankname, "Ped",          7, "Dd", "Pedestal");
+    insert_bank_variable(\%configuration, $bankname, "TimeShift",    8, "Dd", "Time Shift [ns]");
 	insert_bank_variable(\%configuration, $bankname, "hitn",         99, "Di", "hit number");
 }
 

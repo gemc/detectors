@@ -202,4 +202,16 @@ sub materials
 		$mat{"components"}    = "ND3 $ND3_mass_fraction lHe $lHe_mass_fraction";
 		print_mat(\%configuration, \%mat);
 	}
+    
+    if($thisVariation eq "bonus")
+    {
+        # TargetbonusGas
+        %mat = init_mat();
+        $mat{"name"}          = "bonusTargetGas";
+        $mat{"description"}   = "7 atm deuterium gas";
+        $mat{"density"}       = "0.00126";  # in g/cm3
+        $mat{"ncomponents"}   = "1";
+        $mat{"components"}    = "deuteriumGas 1";
+        print_mat(\%configuration, \%mat);
+    }
 }

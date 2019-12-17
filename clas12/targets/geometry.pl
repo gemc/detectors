@@ -1100,6 +1100,89 @@ sub build_targets
 
 		
 	}
+    
+    elsif($thisVariation eq "bonus")
+    {
+        # bonus root volume
+        my $Rout       = 4;
+        my $length     = 225.0;  # half length
+        my %detector = init_det();
+        $detector{"name"}        = "bonusTarget";
+        $detector{"mother"}      = "root";
+        $detector{"description"} = "BONuS12 RTPC gaseous D2 Target";
+        $detector{"color"}       = "eeeegg";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_He";
+        $detector{"style"}       = "1";
+        $detector{"visible"}     = 0;
+        print_det(\%configuration, \%detector);
+        
+        # bonus target gas volume
+        my $Rin        = 0.0;
+        $Rout       = 3.0;
+        $length     = 223.0;  # half length
+        %detector = init_det();
+        $detector{"name"}        = "gasDeuteriumTarget";
+        $detector{"mother"}      = "bonusTarget";
+        $detector{"description"} = "7 atm deuterium target gas";
+        $detector{"color"}       = "a54382";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "bonusTargetGas";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # bonus target wall
+        $Rin        = 3.01;
+        $Rout       = 3.056;
+        $length     = 223.0;  # half length
+        %detector = init_det();
+        $detector{"name"}        = "bonusTargetWall";
+        $detector{"mother"}      = "bonusTarget";
+        $detector{"description"} = "Bonus Target wall";
+        $detector{"color"}       = "330099";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_KAPTON";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # bonus target downstream aluminum end cap ring
+        $Rin        = 3.0561;
+        $Rout       = 3.1561;
+        $length     = 2.0;  # half length
+        my $zPos       = 221;  # z position
+        %detector = init_det();
+        $detector{"name"}        = "bonusTargetEndCapRing";
+        $detector{"mother"}      = "bonusTarget";
+        $detector{"description"} = "Bonus Target Al end cap ring";
+        $detector{"color"}       = "000000";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # bonus target downstream aluminum end cap ring
+        $Rin        = 0.0;
+        $Rout       = 3.1561;
+        $length     = 0.05;  # half length
+        $zPos       = 223.06;  # z position
+        %detector = init_det();
+        $detector{"name"}        = "bonusTargetEndCapPlate";
+        $detector{"mother"}      = "bonusTarget";
+        $detector{"description"} = "Bonus Target Al end cap wall";
+        $detector{"color"}       = "000000";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+    }
 
 }
 

@@ -59,6 +59,7 @@ foreach my $conf ( @allConfs )
 	# hits
 	define_hit();
 
+	# notice: we do NOT use original, the geometry service uses default
 	if($configuration{"variation"} eq "original")
 	{
 		# Global pars - these should be read by the load_parameters from file or DB

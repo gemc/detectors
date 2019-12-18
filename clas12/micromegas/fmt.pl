@@ -185,7 +185,7 @@ sub define_fmt
 			if ( $l < 5) { place_spacers($l); }
 		}
 
-	} elsif( $configuration{"variation"} eq "bonus") {
+	} elsif( $configuration{"variation"} eq "rgf_spring2020") {
 	    $DriftCuElectrode_Dz = 0.5*$parameters{"FMTSlim_DriftCuElectrode_Dz"}; # half width of slim version
 	    $DriftCuGround_Dz = 0.5*$parameters{"FMTSlim_DriftCuElectrode_Dz"}; # half width of slim version
 	    $DriftPCB_Dz = 0.5*$parameters{"FMTSlim_DriftKapton_Dz"}; # half width of slim version
@@ -799,7 +799,7 @@ sub place_innerpeek
 	my $tpos      = "0*mm 0*mm";
 	my $PRMin     = $innerPeek_RMin;
 	my $PRMax     = $innerPeek_RMax;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $PRMax    = $innerRohacell_RMax;
 	}
 	my $PDz       = $Peek_Dz;
@@ -814,7 +814,7 @@ sub place_innerpeek
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $peek_material;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $detector{"material"}    = $flangerohacell_material;
 	}
 	$detector{"mfield"}      = "no";
@@ -880,7 +880,7 @@ sub place_outerpeek
 	my $tpos      = "0*mm 0*mm";
 	my $PRMin     = $outerPeek_RMin;
 	my $PRMax     = $outerPeek_RMax;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $PRMin    = $outerRohacell_RMin;
 	}
 	my $PDz       = $Peek_Dz;
@@ -895,7 +895,7 @@ sub place_outerpeek
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $alu_material;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $detector{"material"}    = $flangerohacell_material;
 	}
 	$detector{"mfield"}      = "no";
@@ -935,7 +935,7 @@ sub place_driftcuelectrode
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $copper_material;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $detector{"material"}    = $slimelec_material;
 	}
 	$detector{"mfield"}      = "no";
@@ -973,7 +973,7 @@ sub place_driftpcb
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $pcb_material;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $detector{"material"}    = $kapton_material;
 	}
 	$detector{"mfield"}      = "no";
@@ -1011,7 +1011,7 @@ sub place_driftcuground
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $copper_material;
-	if( $configuration{"variation"} eq "bonus") {
+	if( $configuration{"variation"} eq "rgf_spring2020") {
 	    $detector{"material"}    = $slimground_material;
 	}
 	$detector{"mfield"}      = "no";
@@ -1065,7 +1065,7 @@ sub place_hvcovers
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
-			if( $configuration{"variation"} eq "bonus") {
+			if( $configuration{"variation"} eq "rgf_spring2020") {
 			    $detector{"material"}    = $peek_material;
 			}
 			$detector{"mfield"}      = "no";
@@ -1268,7 +1268,7 @@ sub place_innerscrews
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0.0*mm $PRadius*mm $PDz*mm 0.0*deg 360.0*deg";
 			$detector{"material"}    = $innerscrew_material;
-			if( $configuration{"variation"} eq "bonus") {
+			if( $configuration{"variation"} eq "rgf_spring2020") {
 			    $detector{"material"}    = $epoxy_material;
 			}
 			$detector{"mfield"}      = "no";
@@ -1327,7 +1327,7 @@ sub place_supports36
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
-			if( $configuration{"variation"} eq "bonus") {
+			if( $configuration{"variation"} eq "rgf_spring2020") {
 			    $detector{"material"}    = $peek_material;
 			}
 			$detector{"mfield"}      = "no";
@@ -1393,7 +1393,7 @@ sub place_supports1245
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
-			if( $configuration{"variation"} eq "bonus") {
+			if( $configuration{"variation"} eq "rgf_spring2020") {
 			    $detector{"material"}    = $peek_material;
 			}
 			$detector{"mfield"}      = "no";

@@ -1,12 +1,10 @@
 <gcard>
 
 
-	<detector name="micromegas" factory="TEXT" variation="bonus"/>
+	<detector name="micromegas" factory="TEXT" variation="rgf_spring2020"/>
 
 
 	<option name="geometry" value="1400x1200"/>
-
-
 
 	<option name="BEAM_P" value="geantino, 1.0*GeV, 90*deg, 90*deg"/>
 	<option name="BEAM_V" value="(0, 0, 288.5)mm"/>
@@ -14,7 +12,5 @@
 	<option name="OUTPUT" value="evio, out.ev"/>
 
 	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
-
-
 
 </gcard>

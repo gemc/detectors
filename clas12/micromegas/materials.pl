@@ -21,7 +21,7 @@ sub materials
 	
 		print "Materials: configuration ", $configuration{"variation"}, "\n";
 
-	} elsif( $configuration{"variation"} eq "bonus") {
+	} elsif( $configuration{"variation"} eq "rgf_spring2020") {
 	
 		print "Materials: configuration ", $configuration{"variation"}, "\n";
 	}

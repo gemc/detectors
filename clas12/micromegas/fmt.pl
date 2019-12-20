@@ -257,6 +257,28 @@ sub make_fmt
 	$detector{"style"}       = 0;
 	
 	print_det(\%configuration, \%detector);
+
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+
+		my $pvc_supportIR = 240; # mm
+		my $pvc_supportOR = 245; # mm
+		my $pvc_supportDZ = 280; # mm
+
+		%detector = init_det();
+		$detector{"name"}        = "fmt_pvcSupport";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Forward Micromegas Vertex Tracker";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$pvc_supportIR*mm $pvc_supportOR*mm $pvc_supportDZ*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_POLYVINYL_CHLORIDE";
+		$detector{"color"}       = "bbbbff";
+		$detector{"mfield"}      = "no";
+		$detector{"style"}       = 1;
+
+		print_det(\%configuration, \%detector);
+	}
+
 }
 
 sub place_cuground

@@ -38,8 +38,9 @@ our %configuration = load_configuration($ARGV[0]);
 our $inches = 25.4;
 
 # materials [line 39]
-require "./materials.pl";
+# require "./materials.pl";
 # require "./ctof_materials.pl";
+require "./band_materials.pl";
 
 # vacuum line throughout the shields, torus and downstream
 # require "./pipe.pl";
@@ -75,8 +76,10 @@ require "./materials.pl";
 # require "./ctof_pmtshield.pl";
 # require "./ctof_geometry.pl";
 # require "./ctofpmts.pl";
-# require "./cnd_geometry.pl";
+ require "./cnd_geometry.pl";
  require "./ebox.pl";
+ require "./band.pl";
+ require "./geometry.pl";
 
 my @allConfs = ("main");
 
@@ -145,8 +148,10 @@ foreach my $conf ( @allConfs )
 	# makeCTOF();
 	# build_mother();
 	# build_paddles();
-	# makeCND();
+	 makeCND();
 	 build_ebox();
+	 build_bandMother();
+	 geometry();
 
 }
 

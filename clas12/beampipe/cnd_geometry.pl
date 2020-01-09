@@ -128,7 +128,7 @@ sub make_cndMother
 	my $IR = $r0 - $mother_gap1;
 	my $OR = $r1 + $mother_gap2;
 	my $MR = $OR - $dR;
-	my $zpos = $mother_offset + $half_diff;
+	my $zpos = $mother_offset + $half_diff + 140; #                                                              <--------<<
 	
 	my $nplanes = 5; #3
 	my @z_plane = ($momdz-$lengthLGang[0], $momdz, -$mother_dz, $mother_mid, $mother_dz);
@@ -140,6 +140,7 @@ sub make_cndMother
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Central Neutron Detector";
 	$detector{"pos"}         = "0*cm 0*cm $zpos*cm";
+	$detector{"rotation"}    = "180*deg 0*deg 0*deg";
 	$detector{"color"}       = "33bb99";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes*counts";

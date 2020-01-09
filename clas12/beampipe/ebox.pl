@@ -7,7 +7,7 @@ our %configuration;
 my $NUM_BOXES = 6;                 #
 my $theta0    = 360./$NUM_BOXES;                                  # double the angle of one of the trapezoid sides
 my $R         = 370.89;
-my $NUM_FEUS  = 8;
+my $NUM_FEUS  = 9;
 
 sub build_ebox
 {
@@ -15,8 +15,8 @@ sub build_ebox
 	$detector{"name"}        = "ebox";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Electronics box";
-	$detector{"pos"}         = "0*cm 0*cm 0*cm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"pos"}         = "0*cm 0*cm 270*cm";
+	$detector{"rotation"}    = "180*deg 0*deg 0*deg";
 	$detector{"color"}       = "339999";
 	$detector{"type"}        = "Tube"; # Box
 	$detector{"dimensions"}  = "248.5*mm 510*mm 115*mm 0*deg 360*deg"; # 119.39*cm 133*cm 114.62*cm

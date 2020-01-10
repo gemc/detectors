@@ -29,7 +29,7 @@ sub ELMOline()
 
 	# in "root" the first part of the pipe is straight
 	# 1.651mm thick
-	my $pipeLength = ($pipeFirstStep - $shieldStart) / 2.0 - 0.1;
+	my $pipeLength = 800.9;
 	my $zpos = 1455.9;
 	my $firstVacuumIR = 33.28;
 	my $firstVacuumOR = 34.28;
@@ -46,14 +46,89 @@ sub ELMOline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	my $zpos = 885.9;
+	my $pipeLength = 220.;
+	my $firstVacuumIR = 0;
+	my $firstVacuumOR = 33.275;
+
+	my %detector = init_det();
+	$detector{"name"}        = "vacuumInPipe1";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "straightVacuumPipe";
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	my $zpos = 1681.8;
+	my $firstVacuumIR = 30.;
+	my $firstVacuumOR = 33.275;
+	my $pipeLength = 575.;
+	my %detector = init_det();
+	$detector{"name"}        = "InnerWcone";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Tungsten Cone inside beam pipe";
+	$detector{"color"}       = "999966";
+	$detector{"type"}        = "Cons";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "30.0*mm $firstVacuumOR*mm 25.4*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_W";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	my $zpos = 1681.8;
+	my $firstVacuumIR = 25.3;
+	my $firstVacuumOR = 29.9;
+	my $pipeLength = 575.;
+	my %detector = init_det();
+	$detector{"name"}        = "vacuumInPipe1Con2";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "vacuum in Pipe1 cone 2";
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Cons";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "0.*mm $firstVacuumOR*mm 0*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	my $zpos = 2621.735;
+	my $firstVacuumIR = 0.;
+	my $firstVacuumOR = 34.925;
+	my $pipeLength = 132.235;
+	my %detector = init_det();
+	$detector{"name"}        = "vacuumPipe2";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "straightVacuumPipe"
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	my $zpos = 0.
+	my $firstVacuumIR = 0.;
+	my $firstVacuumOR = 33.275;
+	my $pipeLength = 132.235;
+	my %detector = init_det();
+	$detector{"name"}        = "vacuumInPipe2";
+	$detector{"mother"}      = "vacuumPipe2";
+	$detector{"description"} = "straightVacuumPipe"
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_GalacticL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
 
 
-         vacuumPipe1  |                root  |            straightVacuumPipe 2.75 inch OD 0.065 thick  |                               0*mm 0*mm 1455.9*mm  |                                   0 0 0  | aaffff   |                Tube  |                        33.28*mm 34.925*mm 800.9*mm 0*deg 360*deg  |  G4_Al  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
-       vacuumInPipe1  |         root  |            straightVacuumPipe  |                                             0 0 885.9*mm  |                                   0 0 0  | 000000   |                Tube  |                     0*mm 33.275*mm 220.*mm 0*deg 360*deg  |         G4_Galactic  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
-InnerWcone  |                root  |         Tungsten Cone inside beam pipe  |                           0*mm 0.0*mm 1681.8*mm  |                                   0 0 0  | 999966   |                Cons  |                          30.*mm 33.275*mm 25.4*mm 33.275.*mm 575.*mm 0.0*deg 360*deg  |          G4_W  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no
-vacuumInPipe1Con2  |                root  |         Tungsten Cone inside beam pipe  |                           0*mm 0.0*mm 1681.8*mm  |                                   0 0 0  | 000000   |                Cons  |                          0.*mm 29.9*mm 0*mm 25.3.*mm 575.*mm 0.0*deg 360*deg  |          G4_Galactic  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no
-       vacuumPipe2  |                root  |            straightVacuumPipe  |                             0*mm 0*mm 2621.735*mm  |                                   0 0 0  | aaffff   |                Tube  |                     0*mm 34.925*mm 132.235*mm 0*deg 360*deg  |  G4_STAINLESS-STEEL  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
-   vacuumInPipe2  |         vacuumPipe2  |            straightVacuumPipe  |                                             0 0 0  |                                   0 0 0  | 000000   |                Tube  |                     0*mm 33.275*mm 132.235*mm 0*deg 360*deg  |         G4_Galactic  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
+
          vacuumPipe3  |                root  |            straightVacuumPipe  |                              0*mm 0*mm 2451.15*mm  |                                   0 0 0  | aaffff   |                Tube  |                  33.375*mm 34.925*mm 38.15*mm 0*deg 360*deg  |  G4_STAINLESS-STEEL  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
        vacuumInPipe3  |                root  |            straightVacuumPipe  |                              0*mm 0*mm 2451.15*mm  |                                   0 0 0  | 000000   |                Tube  |                        0*mm 28.52*mm 38.15*mm 0*deg 360*deg  |         G4_Galactic  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
           vacuumPipe  |                  fc  |           vacuumPipe beampipe  |                                             0 0 0  |                                   0 0 0  | aaffff   |            Polycone  |0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0*mm 34.925*mm 34.925*mm 63.5*mm 63.5*mm 2754.17*mm 5016*mm 5064*mm 5732*mm  |  G4_STAINLESS-STEEL  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no 
@@ -66,6 +141,5 @@ PbCone2  |                root  |         2nd Moller Shield Cone outside beam pi
 FTPreShieldCylinder  |                root  |         Shield before FT on beamline  |                           0*mm 0.0*mm 2020.*mm  |                                   0 0 0  | 999966   |                Cons  |                          35.*mm 110*mm 35.*mm 110.*mm 241.3*mm 0.0*deg 360*deg  |          G4_W  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no
 FTflangeShieldCylinder  |                root  |         Shield around beam puipe flange  |                           0*mm 0.0*mm 2300.*mm  |                                   0 0 0  | 999966   |                Cons  |                          125.4*mm 130*mm 125.4*mm 130.*mm 41.3*mm 0.0*deg 360*deg  |          G4_Pb  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no
 TorusConnector  |                root  |         Shield around Shield support before FT on beamline  |                           0*mm 0.0*mm 2550.*mm  |                                   0 0 0  | 999966   |                Cons  |                          97*mm 104*mm 97*mm 104.*mm 101.3*mm 0.0*deg 360*deg  |          G4_Pb  |                  no  |     1   |     1   |     1   |   1   |   1   |                  no  |                  no  |                                      no
-
 }
 

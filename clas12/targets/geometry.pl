@@ -742,7 +742,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 		
 		# NH3Targ
-		$ZCenter = 0;  # center location of target along beam axis
+		my $ZCenter = 0;  # center location of target along beam axis
 		$Rout       = 10;  # radius in mm
 		$ZhalfLength  = 24.96;  # half length along beam axis
 		%detector = init_det();

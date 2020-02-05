@@ -278,31 +278,6 @@ sub materials
 	$mat{"components"}    = "NH3 $NH3_mass_fraction lHeCoolant $lHe_mass_fraction";
 	print_mat(\%configuration, \%mat);
 
-	# ND3 , not sure if G4 has H2 material so used H for now
-	#my %mat = init_mat();
-	my $ND3_density = 1.007; 
-	my $NN_mass_fraction=15/21;
-	my $H2_mass_fraction=6/21;
-	$mat{"name"}          = "ND3";
-	$mat{"description"}   = "ND3 material";
-	$mat{"density"}        = $ND3_density ; 
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "G4_N $NN_mass_fraction G4_H $H2_mass_fraction";
-	print_mat(\%configuration, \%mat);
-
-	# ND3 target with lHe3 coolant
-	#my %mat = init_mat();
-	my $ND3targ_density = 0.6*1.007+0.4*0.145; # 60% of ND3 and 40% of liquid-helium
-	my $ND3_mass_fraction=0.6*1.007/$ND3targ_density;
-	my $llHe_mass_fraction=0.4*0.145/$ND3targ_density;
-	$mat{"name"}          = "ND3target";
-	$mat{"description"}   = "solid ND3 target";
-	$mat{"density"}        =  $ND3targ_density;
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "ND3 $ND3_mass_fraction lHeCoolant $llHe_mass_fraction";
-	print_mat(\%configuration, \%mat);
-	
-
 
 	}
 		if($thisVariation eq "APOLLOnd3")
@@ -386,30 +361,7 @@ sub materials
 	$mat{"components"}    = "G4_He 1";
 	print_mat(\%configuration, \%mat);
 
-	# NH3 
-	#my %mat = init_mat();
-	my $NH3_density = 0.867; 
-	my $N_mass_fraction=15/18;
-	my $H_mass_fraction=3/18;
-	$mat{"name"}          = "NH3";
-	$mat{"description"}   = "NH3 material";
-	$mat{"density"}        = $NH3_density ; 
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "G4_N $N_mass_fraction G4_H $H_mass_fraction";
-	print_mat(\%configuration, \%mat);
-
-	# NH3 target with lHe3 coolant
-	#my %mat = init_mat();
-	my $NH3trg_density = 0.6*0.867+0.4*0.145; # 60% of ND3 and 40% of liquid-helium
-	my $NH3_mass_fraction=0.6*0.867/$NH3trg_density ;
-	my $lHe_mass_fraction=0.4*0.145/$NH3trg_density ;
-	$mat{"name"}          = "NH3target";
-	$mat{"description"}   = "solid NH3 target";
-	$mat{"density"}        =  $NH3trg_density;
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "NH3 $NH3_mass_fraction lHeCoolant $lHe_mass_fraction";
-	print_mat(\%configuration, \%mat);
-
+	
 	# ND3 , not sure if G4 has H2 material so used H for now
 	#my %mat = init_mat();
 	my $ND3_density = 1.007; 

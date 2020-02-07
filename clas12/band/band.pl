@@ -15,8 +15,8 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   beampipe.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 beampipe and materials\n";
+	print "   band.pl <configuration filename>\n";
+ 	print "   Will create BAND and materials\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
@@ -38,10 +38,11 @@ our %configuration = load_configuration($ARGV[0]);
 our $inches = 25.4;
 
 # materials
-require "./materials.pl";
+# require "./materials.pl";
+require "./band_materials.pl";
 
+# BAND with frame and shielding upstream of target
 
-# vacuum line throughout the shields, torus and downstream
 require "./geometry.pl";
 
 my @allConfs = ("main");
@@ -54,10 +55,10 @@ foreach my $conf ( @allConfs )
 	# materials
 	materials();
 
+	# BAND, frame, and lead shielding upstream of target
+	# Hole in mother volume allows beampipe to fit through BAND
+	build_bandMother();
 
-	# vacuum line throughout BAND, the CVT ebox, CND, and CTOF upstream of target
-	# temp includes Sarclay target
-	geometry();
 }
 
 

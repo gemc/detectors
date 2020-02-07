@@ -15,8 +15,8 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   beampipe.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 beampipe and materials\n";
+	print "   mvt_ebox.pl <configuration filename>\n";
+ 	print "   Will create MVT crates\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
@@ -40,9 +40,9 @@ our $inches = 25.4;
 # materials
 require "./materials.pl";
 
+# MVT crates upstream of target
 
-# vacuum line throughout the shields, torus and downstream
-require "./geometry.pl";
+require "./ebox.pl";
 
 my @allConfs = ("main");
 
@@ -54,10 +54,10 @@ foreach my $conf ( @allConfs )
 	# materials
 	materials();
 
+	# MVT crates, patch panels, and FEUs upstream of target
+	# Front panel of FEUs approximated by crate
+	build_ebox();
 
-	# vacuum line throughout BAND, the CVT ebox, CND, and CTOF upstream of target
-	# temp includes Sarclay target
-	geometry();
 }
 
 

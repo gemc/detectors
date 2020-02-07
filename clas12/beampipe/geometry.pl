@@ -5,17 +5,14 @@ our %configuration;
 
 sub geometry()
 {
-	# my $START = 1000;
 	build_mother();
 	build_pipe();
-	
-	# $START = 1000;
-	build_sarclay();
+	#build_sarclay();
 }
 
 sub build_mother()
 {
-	my $START = 1000; # 1409
+	my $START = 1409; # Set to 1000 for empty Sarclay target or 1409 without Sarclay target.
 	my %detector = init_det();
 	$detector{"name"}        = "pipe";
 	$detector{"mother"}      = "root";
@@ -46,18 +43,6 @@ sub build_pipe()
 	$detector{"material"}    = "G10";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
-# build_centeringringtube [UNKNOWN]
-#	$detector{"name"}        = "fibercollar";
-#	$detector{"mother"}      = "pipe";
-#	$detector{"description"} = "fibercollar";
-#	$detector{"color"}       = "eecc55";
-#	$detector{"type"}        = "Tube";
-#	$detector{"pos"}         = "0*mm 0*mm 1553.88*mm";
-#	$detector{"dimensions"}  = "13*mm 30*mm 6*mm 0*deg 360*deg";
-#	$detector{"material"}    = "G10";
-#	$detector{"style"}       = 1;
-#	print_det(\%configuration, \%detector);
 
 # condenser
 	$detector{"name"}        = "condenser";
@@ -122,19 +107,6 @@ sub build_pipe()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-# distributiontube001_0 [target]
-	$detector{"name"}        = "distributiontube001_0";
-	$detector{"mother"}      = "pipe";
-	$detector{"description"} = "Distribution tube 001";
-	$detector{"color"}       = "aaaaaa";
-	$detector{"type"}        = "Polycone";
-	$detector{"pos"}         = "0*mm 0*mm 0*mm";
-	$detector{"rotation"}    = "-0.62*deg -0.36*deg 0*deg";
-	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 4.049*mm 4.049*mm 4.762*mm 4.762*mm 1390*mm 1547*mm";
-	$detector{"material"}    = "G4_Al"; #              4.049    4.049    4.762    4.762    1390    1547
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
 # build_distributiontube001_1
 	$detector{"name"}        = "distributiontube001_1";
 	$detector{"mother"}      = "pipe";
@@ -195,8 +167,8 @@ sub build_pipe()
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "23*mm -40*mm 0*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 4.8625*mm 4.8625*mm 4.1275*mm 4.1257*mm 4.1275*mm 4.1275*mm 5.7785*mm 5.7785*mm 5.7785*mm 5.7785*mm 7.0445*mm 7.0445*mm 2217.32*mm 2235.7*mm 2235.7*mm 2241.56*mm 2241.56*mm 2244.1*mm";
-	$detector{"material"}    = "G4_Al";
+	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 4.8625*mm 4.8625*mm 4.1275*mm 4.1257*mm 4.1275*mm 4.1275*mm 5.7785*mm 5.7785*mm 5.7785*mm 5.7785*mm 7.0445*mm 7.0445*mm 2217.32*mm 2235.7*mm 2235.7*mm 2241.56*mm 2241.56*mm 2243.7*mm";
+	$detector{"material"}    = "G4_Al"; #                                                                                                                                                                                           2244.1
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -213,19 +185,6 @@ sub build_pipe()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 ##############################################################################---END_OF_001---
-
-# distributiontube002_0 [target]
-	$detector{"name"}        = "distributiontube002_0";
-	$detector{"mother"}      = "pipe";
-	$detector{"description"} = "Distribution tube 002";
-	$detector{"color"}       = "aaaaaa";
-	$detector{"type"}        = "Polycone";
-	$detector{"pos"}         = "0*mm 0*mm 0*mm";
-	$detector{"rotation"}    = "0*deg 0.72*deg 0*deg";
-	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 4.049*mm 4.049*mm 4.762*mm 4.762*mm 1390*mm 1547*mm";
-	$detector{"material"}    = "G4_Al"; #                                                  1390    1547
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
 # build_distributiontube002_1
 	$detector{"name"}        = "distributiontube002_1";
@@ -287,8 +246,8 @@ sub build_pipe()
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "-46*mm 0*mm 0*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 4.8625*mm 4.8625*mm 4.1275*mm 4.1257*mm 4.1275*mm 4.1275*mm 5.7785*mm 5.7785*mm 5.7785*mm 5.7785*mm 7.0445*mm 7.0445*mm 2217.32*mm 2235.7*mm 2235.7*mm 2241.56*mm 2241.56*mm 2244.1*mm";
-	$detector{"material"}    = "G4_Al";
+	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 4.8625*mm 4.8625*mm 4.1275*mm 4.1257*mm 4.1275*mm 4.1275*mm 5.7785*mm 5.7785*mm 5.7785*mm 5.7785*mm 7.0445*mm 7.0445*mm 2217.32*mm 2235.7*mm 2235.7*mm 2241.56*mm 2241.56*mm 2243.7*mm";
+	$detector{"material"}    = "G4_Al"; #                                                                                                                                                                                           2244.1
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -307,18 +266,6 @@ sub build_pipe()
 ##############################################################################---END_OF_002---
 
 ##############################################################################---START_OF_003---
-# distributiontube003_0 [target]
-	$detector{"name"}        = "distributiontube003_0";
-	$detector{"mother"}      = "pipe";
-	$detector{"description"} = "Distribution tube 003";
-	$detector{"color"}       = "aaaaaa";
-	$detector{"type"}        = "Polycone";
-	$detector{"pos"}         = "0*mm 0*mm 0*mm";
-	$detector{"rotation"}    = "0.62*deg -0.36*deg 0*deg";
-	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 4.049*mm 4.049*mm 4.762*mm 4.762*mm 1390*mm 1547*mm";
-	$detector{"material"}    = "G4_Al"; #                                                  1390    1547
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
 # build_distributiontube003_1
 	$detector{"name"}        = "distributiontube003_1";
@@ -380,8 +327,8 @@ sub build_pipe()
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "23*mm 40*mm 0*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 4.8625*mm 4.8625*mm 4.1275*mm 4.1257*mm 4.1275*mm 4.1275*mm 5.7785*mm 5.7785*mm 5.7785*mm 5.7785*mm 7.0445*mm 7.0445*mm 2217.32*mm 2235.7*mm 2235.7*mm 2241.56*mm 2241.56*mm 2244.1*mm";
-	$detector{"material"}    = "G4_Al";
+	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 4.8625*mm 4.8625*mm 4.1275*mm 4.1257*mm 4.1275*mm 4.1275*mm 5.7785*mm 5.7785*mm 5.7785*mm 5.7785*mm 7.0445*mm 7.0445*mm 2217.32*mm 2235.7*mm 2235.7*mm 2241.56*mm 2241.56*mm 2243.7*mm";
+	$detector{"material"}    = "G4_Al"; #                                                                                                                                                                                           2244.1
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -714,6 +661,45 @@ sub build_sarclay()
 	$detector{"pos"}         = "0*mm 0*mm 0*mm";
 	$detector{"dimensions"}  = "0*deg 360*deg 5*counts 39.6*mm 39.6*mm 39.6*mm 39.6*mm 43.1932*mm 50*mm 50*mm 49.11*mm 49.11*mm 49.11*mm 1067.21*mm 1409.31*mm 1409.31*mm 1413.67*mm 1419.71*mm";
 	$detector{"material"}    = "rohacell";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+# distributiontube001_0 [target]------------------------------------------FROM PIPE----------------------------------------------------------
+	$detector{"name"}        = "distributiontube001_0";
+	$detector{"mother"}      = "pipe";
+	$detector{"description"} = "Distribution tube 001";
+	$detector{"color"}       = "aaaaaa";
+	$detector{"type"}        = "Polycone";
+	$detector{"pos"}         = "0*mm 0*mm 0*mm";
+	$detector{"rotation"}    = "-0.62*deg -0.36*deg 0*deg";
+	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 4.049*mm 4.049*mm 4.762*mm 4.762*mm 1390*mm 1547*mm";
+	$detector{"material"}    = "G4_Al";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+# distributiontube002_0 [target]
+	$detector{"name"}        = "distributiontube002_0";
+	$detector{"mother"}      = "pipe";
+	$detector{"description"} = "Distribution tube 002";
+	$detector{"color"}       = "aaaaaa";
+	$detector{"type"}        = "Polycone";
+	$detector{"pos"}         = "0*mm 0*mm 0*mm";
+	$detector{"rotation"}    = "0*deg 0.72*deg 0*deg";
+	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 4.049*mm 4.049*mm 4.762*mm 4.762*mm 1390*mm 1547*mm";
+	$detector{"material"}    = "G4_Al";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+# distributiontube003_0 [target]
+	$detector{"name"}        = "distributiontube003_0";
+	$detector{"mother"}      = "pipe";
+	$detector{"description"} = "Distribution tube 003";
+	$detector{"color"}       = "aaaaaa";
+	$detector{"type"}        = "Polycone";
+	$detector{"pos"}         = "0*mm 0*mm 0*mm";
+	$detector{"rotation"}    = "0.62*deg -0.36*deg 0*deg";
+	$detector{"dimensions"}  = "0*deg 360*deg 2*counts 4.049*mm 4.049*mm 4.762*mm 4.762*mm 1390*mm 1547*mm";
+	$detector{"material"}    = "G4_Al";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 

@@ -43,8 +43,9 @@ require "./materials.pl";
 
 # vacuum line throughout the shields, torus and downstream
 require "./vacuumLineNew.pl";
+require "./ELMOline.pl";
 
-my @allConfs = ("FTOn", "FTOff");
+my @allConfs = ("FTOn", "FTOff","ELMO");
 
 foreach my $conf ( @allConfs )
 {
@@ -56,8 +57,12 @@ foreach my $conf ( @allConfs )
 
 	# vacuum line throughout the shields, torus and downstream
 	# temp includes the torus back nose
+	if( $configuration{"variation"} eq "FTOff" or $configuration{"variation"} eq "FTOn") {
 	vacuumLine();
-
+	}
+	if( $configuration{"variation"} eq "ELMO") {
+	    ELMOline();
+	}
 }
 
 

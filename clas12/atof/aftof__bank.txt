@@ -1,0 +1,10 @@
+               aftof  |              bankid  |                                     aftof bank ID  | 2200   |                  Di  
+               aftof  |              sector  |                                     sector number  |    1   |                  Di  
+               aftof  |               layer  |                layer number (1: 1A, 2: 1B, 3: 2B)  |    2   |                  Di  
+               aftof  |              paddle  |                                     paddle number  |    3   |                  Di  
+               aftof  |                side  |                        PMT side (0 Left, 1 Right)  |    4   |                  Di  
+               aftof  |                 ADC  |                                               ADC  |    5   |                  Di  
+               aftof  |                 TDC  |                                               TDC  |    6   |                  Di  
+               aftof  |                ADCu  |                                     ADC unsmeared  |    7   |                  Di  
+               aftof  |                TDCu  |                                     TDC unsmeared  |    8   |                  Di  
+               aftof  |                hitn  |                                        hit number  |   99   |                  Di  

@@ -6,11 +6,6 @@
 	<detector name="target" factory="TEXT" variation="lH2"/>
 	<detector name="cade/" factory="CAD"/>
 
-	<!-- PolTarg
-	<detector name="target" factory="TEXT" variation="PolTarg"/>
-	<detector name="PolTarg/" factory="CAD"/>
-	-->
-
 	<option name="BEAM_P" value="e-, 11.0*GeV, 0*deg, 0*deg"/>
 
 	<option name="SPREAD_V" value="(0.01, 0)cm"/>

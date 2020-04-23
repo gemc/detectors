@@ -41,7 +41,7 @@ sub ELMOline()
 	print_det(\%configuration, \%detector);
 
  	$zpos = -570;
-	$pipeLength = 220.;
+	$pipeLength = 800.9;
 	$firstVacuumIR = 0;
 	my $firstVacuumOR = 33.275;
 

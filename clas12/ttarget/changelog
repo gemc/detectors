@@ -1,0 +1,6 @@
+2/29/16
+- added targets.pl script to do geometry, material, banks and hits
+- added elaborate geometry from omairsalam
+
+3/3/15
+- ported from 1.8 - 2 targets, same name different variations: lh2, ld2

@@ -1,7 +1,6 @@
 <gcard>
 	<detector name="example" factory="TEXT" variation="original"/>
 	<option name="geometry" value="600x600"/>
-	<option name="N" value="1"/>
 	
 	<option name="BEAM_P" value="mu-, 140.*MeV, 180*deg, 0*deg"/>
 	<option name="BEAM_V" value="(0, 0., 7.0)cm"/>

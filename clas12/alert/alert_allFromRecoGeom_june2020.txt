@@ -1,0 +1,1858 @@
+   Simulation Conditions, TAG 5:
+   > /jlab/work/myworkGemcDocker/AHDC_ATOF_GeomFromReco_GEMC/AHDC_geom/ahdc  is loaded with factory TEXT, variation default and run number 1
+   > /jlab/work/myworkGemcDocker/AHDC_ATOF_GeomFromReco_GEMC/ATOF_geom/myatof  is loaded with factory TEXT, variation default and run number 1
+   > option ACTIVEFIELDS none
+   > option ALIGN_ZAXIS no
+   > option ALLRAWS no
+   > option BANK_VERBOSITY 1
+   > option BEAM_P e-, 10.0*GeV, 20*deg, 20*deg
+   > option BEAM_V (0, 0, -2.0)cm
+   > option CATCH Maurizio
+   > option CHANGEVOLUMEMATERIALTO none
+   > option CHECK_OVERLAPS 0
+   > option COSMICAREA 0*cm, 0*cm, 0*cm, 50*cm
+   > option COSMICRAYS no
+   > option DATABASE no
+   > option DAWN_N 0
+   > option DBHOST no
+   > option DBPORT 0
+   > option DBPSWD no
+   > option DBUSER gemc
+   > option DEFAULT_MATERIAL none
+   > option DF no
+   > option DIGITIZATION_VARIATION default
+   > option DISPLACE_FIELDMAP no
+   > option ELECTRONICNOISE no
+   > option ENERGY_CUT -1
+   > option EVN 1
+   > option EVTN 1
+   > option EXEC_MACRO no
+   > option FASTMCMODE 0
+   > option FIELDS_FILENAMES none
+   > option FIELD_DIR env
+   > option FIELD_PROPERTIES no
+   > option FIELD_VERBOSITY 0
+   > option FILTER_HADRONS 0
+   > option FILTER_HITS 0
+   > option FILTER_NULL_VARIABLES 0
+   > option FORCE_MUON_RADIATIVE_DECAY 0
+   > option G4FIELDCACHESIZE 
+   > option G4P_VERBOSITY 1
+   > option G4TRACK_VERBOSITY 0
+   > option GEN_VERBOSITY 0
+   > option GEO_VERBOSITY 1
+   > option GUIPOS (150, 150)
+   > option GUI_VERBOSITY 1
+   > option HALL_DIMENSIONS 20*m, 20*m, 20*m
+   > option HALL_FIELD no
+   > option HALL_MATERIAL G4_AIR
+   > option HIGH_RES 1
+   > option HIT_PROCESS_LIST clas12
+   > option HIT_VERBOSITY 1
+   > option INPUT_GEN_FILE gemc_internal
+   > option INTEGRATEDDGT yes
+   > option INTEGRATEDRAW no
+   > option ION_P no
+   > option LOG_MSG 
+   > option LOG_VERBOSITY 0
+   > option LUMI2_EVENT 0, 2*ns
+   > option LUMI2_P proton, 50*GeV, 175*deg, 180*deg
+   > option LUMI2_SPREAD_P 0*GeV, 0*deg, 0*deg
+   > option LUMI2_SPREAD_V (0, 0)cm
+   > option LUMI2_V (4, 0, 50)cm
+   > option LUMI_EVENT 0, 0*ns, 2*ns
+   > option LUMI_P e-, 11*GeV, 0*deg, 0*deg
+   > option LUMI_SPREAD_P 0*GeV, 0*deg, 0*deg
+   > option LUMI_SPREAD_V (0, 0)cm
+   > option LUMI_V (0, 0, -20)cm
+   > option MATERIAL_VERBOSITY 0
+   > option MAX_FIELD_STEP 0
+   > option MAX_X_POS 20000
+   > option MAX_Y_POS 20000
+   > option MAX_Z_POS 20000
+   > option MERGE_BGHITS no
+   > option MERGE_LUND_BG no
+   > option MIRROR_VERBOSITY 0
+   > option N 50
+   > option NGENP 10
+   > option NO_FIELD none
+   > option OUTPUT txt, alert_allFromRecoGeom_june2020.txt
+   > option PARAMETER_VERBOSITY 0
+   > option PHYSICS STD + FTFP_BERT
+   > option PHYS_VERBOSITY 0
+   > option PHY_VERBOSITY 1
+   > option POLAR 100, 0*deg, 0*deg
+   > option PRINT_EVENT 1000
+   > option PRODUCTIONCUT 10
+   > option PRODUCTIONCUTFORVOLUMES no
+   > option PROPAGATE_DVERTEXTIME 0
+   > option QTSTYLE no
+   > option RANDOM TIME
+   > option RECORD_OPTICALPHOTONS 0
+   > option RECORD_PASSBY 0
+   > option REMOVESENSITIVITY none
+   > option RERUN_SELECTED 
+   > option RFSETUP no
+   > option RFSTART 0
+   > option ROTATE_FIELDMAP no
+   > option RUNNO 1
+   > option RUN_WEIGHTS no
+   > option SAVE_ALL_ANCESTORS 0
+   > option SAVE_ALL_MOTHERS 0
+   > option SAVE_SELECTED 
+   > option SCALE_FIELD no, 1
+   > option SHIFT_LUND_VERTEX (0, 0, 0)cm
+   > option SIGNALVT no
+   > option SKIPNGEN 0
+   > option SPREAD_P 2.0*GeV, 20*deg, 180*deg, flat
+   > option SPREAD_V (0.0, 0.0)cm
+   > option STEER_BEAM 0
+   > option SWITCH_MATERIALTO none
+   > option SYNRAD 0
+   > option TSAMPLING 4, 250
+   > option USE_GUI 1
+   > option VTRESOLUTION 0.1
+   > option gcard /jlab/work/myworkGemcDocker/AHDC_ATOF_GeomFromReco_GEMC/alert_allFromRecoGeom.gcard
+   > option geometry 620x620
+   > parameter ahdc.superlayer0.layer0.ncomponents 47
+   > parameter ahdc.superlayer1.layer0.ncomponents 56
+   > parameter ahdc.superlayer1.layer1.ncomponents 56
+   > parameter ahdc.superlayer2.layer0.ncomponents 72
+   > parameter ahdc.superlayer2.layer1.ncomponents 72
+   > parameter ahdc.superlayer3.layer0.ncomponents 87
+   > parameter ahdc.superlayer3.layer1.ncomponents 87
+   > parameter ahdc.superlayer4.layer0.ncomponents 99
+   > parameter atof.sector0.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector0.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector1.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector1.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector10.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector10.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector11.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector11.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector12.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector12.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector13.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector13.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector14.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector14.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector2.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector2.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector3.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector3.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector4.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector4.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector5.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector5.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector6.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector6.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector7.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector7.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector8.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector8.superlayer1.layer9.ncomponents 4
+   > parameter atof.sector9.superlayer0.layer0.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer0.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer1.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer2.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer3.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer4.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer5.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer6.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer7.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer8.ncomponents 4
+   > parameter atof.sector9.superlayer1.layer9.ncomponents 4
+
+   Simulation JSON Conditions:  6:
+{
+  "fields": {
+    "SCALE_FIELD": [
+      {
+        "filename": "no",
+        "scale": 1.0
+      }
+    ]
+  },
+  "generator": {
+    "ALIGN_ZAXIS": [
+      {
+        "to:": "no"
+      }
+    ],
+    "BEAM_P": [
+      {
+        "momentum": 10.0,
+        "particleID": "e-",
+        "phi": 20.0,
+        "theta": 20.0
+      }
+    ],
+    "BEAM_V": [
+      {
+        "unit": "cm",
+        "vx": 0.0,
+        "vy": 0.0,
+        "vz": -2.0
+      }
+    ],
+    "COSMICAREA": [
+      {
+        "radius": 50.0,
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    ],
+    "ION_P": [
+      {
+        "isPrimaryAPion": "no"
+      }
+    ],
+    "LUMI2_SPREAD_P": [
+      {
+        "denergy": 0.0,
+        "dphi": 0.0,
+        "dtheta": 0.0
+      }
+    ],
+    "LUMI_SPREAD_P": [
+      {
+        "denergy": 0.0,
+        "dphi": 0.0,
+        "dtheta": 0.0
+      }
+    ],
+    "MERGE_BGHITS": [
+      {
+        "bgfilename": "no"
+      }
+    ],
+    "MERGE_LUND_BG": [
+      {
+        "bgLundfilename": "no"
+      }
+    ],
+    "POLAR": [
+      {
+        "percentage": 100.0,
+        "phi": 0.0,
+        "theta": 0.0
+      }
+    ],
+    "SHIFT_LUND_VERTEX": [
+      {
+        "svx": 0.0,
+        "svy": 0.0,
+        "svz": 0.0,
+        "unit": "cm"
+      }
+    ],
+    "SPREAD_V": [
+      {
+        "dr": 0.0,
+        "dz": 0.0,
+        "unit": "cm"
+      }
+    ]
+  },
+  "luminosity": {
+    "LUMI2_P": [
+      {
+        "momentum": 50.0,
+        "particleID": "proton",
+        "phi": 180.0,
+        "theta": 175.0
+      }
+    ],
+    "LUMI2_SPREAD_V": [
+      {
+        "denergy": 0.0,
+        "dphi": 0.0,
+        "dtheta": 0.0
+      }
+    ],
+    "LUMI2_V": [
+      {
+        "unit": "cm",
+        "vx": 4.0,
+        "vy": 0.0,
+        "vz": 50.0
+      }
+    ],
+    "LUMI_EVENT": [
+      {
+        "bunchTime": 2.0,
+        "nparticles": "0",
+        "timeWindow": 0.0
+      }
+    ],
+    "LUMI_P": [
+      {
+        "momentum": 11.0,
+        "particleID": "e-",
+        "phi": 0.0,
+        "theta": 0.0
+      }
+    ],
+    "LUMI_SPREAD_V": [
+      {
+        "dr": 0.0,
+        "dz": 0.0,
+        "unit": "cm"
+      }
+    ],
+    "LUMI_V": [
+      {
+        "unit": "cm",
+        "vx": 0.0,
+        "vy": 0.0,
+        "vz": -20.0
+      }
+    ]
+  },
+  "mysql": {
+    "DATABASE": [
+      {
+        "mysqlDatabase": "no"
+      }
+    ],
+    "DBHOST": [
+      {
+        "mysqlServer": "no"
+      }
+    ],
+    "DBPSWD": [
+      {
+        "mysqlUserPwd": "no"
+      }
+    ],
+    "DBUSER": [
+      {
+        "mysqlUserName": "gemc"
+      }
+    ]
+  },
+  "verbosity": {
+    "CATCH": [
+      {
+        "CATCH": "Maurizio"
+      }
+    ]
+  }
+}
+
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	1
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-740.956,-94.5648,8623.43) MeV   -  vert: (0,0,-20) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	2
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	0	1	0	1	0	
+    - (2302, 3) wireNum:	24	30	30	37	36	36	46	46	49	
+    - (2302, 4) adc:	0.000814332	0.00092643	0.000615566	0.000357573	0.000104397	0.000207238	0.000683231	0.000552949	0.00114893	
+    - (2302, 5) time:	0.192142	0.225856	0.248305	0.267412	0.281921	0.304274	0.337826	0.360198	0.393707	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	3	3	3	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	3	4	
+    - (2202, 4) paddle:	16	16	16	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (178.811,5257.14,7291.2) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	3
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	28	35	35	42	42	55	55	57	
+    - (2302, 4) adc:	9.81323e-06	0.000591624	0.000225417	0.00153084	5.73413e-05	1.65588e-05	1.81833e-05	0.00130001	
+    - (2302, 5) time:	0.303795	0.357092	0.392661	0.443694	0.481475	0.534849	0.570576	0.621832	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	2	2	2	1	
+    - (2202, 2) superlayer:	0	1	1	1	1	1	1	
+    - (2202, 3) layer:	0	6	7	8	8	9	8	
+    - (2202, 4) paddle:	10	10	10	10	11	11	8	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	6	7	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2200,3231.78,9864.26) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	4
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	25	31	31	37	37	48	48	50	
+    - (2302, 4) adc:	0.000832633	0.000494161	0.000327655	0.000407826	0.00050926	0.000798227	0.000590921	0.000368694	
+    - (2302, 5) time:	0.212783	0.250079	0.274882	0.312123	0.336926	0.374103	0.398851	0.436026	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	3	3	3	3	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	4	5	4	
+    - (2202, 4) paddle:	15	15	15	16	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (607.431,5467.41,8852.65) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	5
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-29.9561,510.423,8005.19) MeV   -  vert: (0,0,-20) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	6
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	0	
+    - (2302, 3) wireNum:	20	25	25	29	29	39	39	39	38	
+    - (2302, 4) adc:	2.31961e-05	0.00134457	0.00199786	0.0011614	1.73169e-05	0.000483968	0.000535106	0.000280292	0.000349515	
+    - (2302, 5) time:	0.300603	0.351453	0.388282	0.439267	0.47609	0.52899	0.562346	0.594507	0.617396	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	5	5	5	5	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	6	7	8	
+    - (2202, 4) paddle:	21	21	21	21	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1969.1,3097.33,9142) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	7
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	3	3	3	4	4	2	2	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	0	1	1	0	0	0	1	
+    - (2302, 3) wireNum:	27	34	34	40	40	53	53	54	52	52	51	52	51	39	39	
+    - (2302, 4) adc:	0.000100228	0.000271168	0.000781841	0.00125854	0.00165916	0.000471803	8.233e-05	3.05919e-05	0.000301982	0.000379352	0.000343721	0.000206119	0.000643077	0.000871044	0.00131683	
+    - (2302, 5) time:	0.318827	0.374659	0.408015	0.477525	0.50117	0.542206	0.598937	0.655517	0.568182	0.580941	0.612917	0.647723	0.677233	0.596511	0.604211	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	2	2	3	
+    - (2202, 2) superlayer:	0	1	1	1	1	0	
+    - (2202, 3) layer:	0	7	8	9	8	0	
+    - (2202, 4) paddle:	12	12	12	12	11	15	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	6	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (1427.17,2997.22,8853.48) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	8
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	2	3	3	4	2	2	5	5	2	
+    - (2302, 4) adc:	0.00102153	0.00152314	0.000990276	1.05168e-05	0.000844455	0.00204204	0.000326633	0.0004349	0.000297876	
+    - (2302, 5) time:	0.207303	0.244801	0.261308	0.269111	0.305465	0.329722	0.366104	0.390362	0.42671	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	10	10	10	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	4	5	
+    - (2202, 4) paddle:	44	44	44	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1147.11,-5608.51,8936.23) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	9
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	0	1	0	
+    - (2302, 3) wireNum:	27	34	34	40	40	53	54	54	54	
+    - (2302, 4) adc:	3.47537e-05	0.000323827	4.44943e-05	4.25727e-05	0.000244848	0.000352622	0.00030998	0.000758326	3.27101e-05	
+    - (2302, 5) time:	0.337321	0.396436	0.435939	0.495253	0.534841	0.572178	0.594516	0.627873	0.694578	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	2	2	12	2	
+    - (2202, 2) superlayer:	0	1	1	1	1	0	1	
+    - (2202, 3) layer:	0	7	8	9	8	0	9	
+    - (2202, 4) paddle:	12	12	12	12	11	49	11	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	6	7	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (1630.67,3298.48,10466.6) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	10
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (410.633,-651.477,10557.7) MeV   -  vert: (0,0,-20) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	11
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	2	3	3	4	4	
+    - (2302, 2) layer:	0	0	1	0	0	1	0	1	0	0	
+    - (2302, 3) wireNum:	34	43	43	52	51	51	67	67	70	69	
+    - (2302, 4) adc:	1.57969e-05	2.90309e-05	8.24314e-08	0.000479698	9.72879e-05	0.000464534	0.000158127	7.65853e-05	0.000160974	0.000627681	
+    - (2302, 5) time:	0.327421	0.384854	0.423203	0.471513	0.480749	0.519075	0.576887	0.615594	0.651213	0.673789	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	0	0	0	0	0	0	
+    - (2202, 2) superlayer:	0	1	1	1	1	1	
+    - (2202, 3) layer:	0	7	8	9	9	8	
+    - (2202, 4) paddle:	2	2	2	2	3	3	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	6	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (3657.19,546.528,10171.5) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	12
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	19	25	25	27	27	40	40	35	
+    - (2302, 4) adc:	0.000201456	0.00103444	0.0016436	0.000105771	0.001088	0.00034216	0.000780168	0.00101137	
+    - (2302, 5) time:	0.483956	0.544546	0.626707	0.713593	0.76826	0.860363	0.919107	1.0113	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1378.48,1895.02,9881.32) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	13
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	41	50	50	62	62	77	77	85	
+    - (2302, 4) adc:	0.000203573	0.000551726	0.00050178	0.000546306	0.00175481	0.000315799	0.00159858	0.000186604	
+    - (2302, 5) time:	0.176836	0.207812	0.228446	0.259418	0.280035	0.310926	0.331475	0.362322	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	13	13	13	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	3	4	
+    - (2202, 4) paddle:	54	54	54	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (4146.59,-3454.4,6541.91) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	14
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	43	53	53	65	65	82	82	88	
+    - (2302, 4) adc:	0.000475291	0.000318327	0.00131391	0.000422887	0.000109685	0.00200999	0.000328766	0.000598534	
+    - (2302, 5) time:	0.265585	0.312108	0.343143	0.389621	0.420635	0.467106	0.498174	0.544825	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	12	12	12	12	12	
+    - (2202, 2) superlayer:	0	1	1	1	1	
+    - (2202, 3) layer:	0	5	6	7	7	
+    - (2202, 4) paddle:	51	51	51	51	52	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2123.06,-3343.37,8508.02) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	15
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	25	30	31	37	37	47	47	50	
+    - (2302, 4) adc:	0.000648155	0.00026198	0.00172818	0.00157884	9.79206e-06	0.000620103	0.000255635	0.000534256	
+    - (2302, 5) time:	0.205007	0.238637	0.26492	0.300779	0.324697	0.360448	0.38433	0.420134	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	3	3	3	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	4	5	
+    - (2202, 4) paddle:	15	15	15	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (609.243,6281.6,9633.8) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	16
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	2	3	3	
+    - (2302, 2) layer:	0	0	0	1	0	1	1	0	1	
+    - (2302, 3) wireNum:	42	53	54	54	63	63	62	84	84	
+    - (2302, 4) adc:	0.00137321	0.000559595	0.000323577	0.00107188	2.60691e-05	0.000671347	4.45438e-05	0.000186901	0.000360479	
+    - (2302, 5) time:	0.55554	0.633909	0.654307	0.720623	0.821641	0.879777	0.890036	0.994114	1.01372	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (1129.87,-1608.25,9575.86) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	17
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	29	36	36	43	43	56	56	58	
+    - (2302, 4) adc:	0.000323323	0.000581986	0.000734885	0.000228452	0.000425299	0.00112559	0.000817201	0.000343107	
+    - (2302, 5) time:	0.292522	0.342995	0.377166	0.42927	0.463425	0.513927	0.549196	0.600792	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	2	2	
+    - (2202, 2) superlayer:	0	1	1	1	1	
+    - (2202, 3) layer:	0	6	7	8	8	
+    - (2202, 4) paddle:	10	10	10	10	9	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2777.75,3610.11,10993.5) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	18
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	39	48	48	58	58	75	75	79	
+    - (2302, 4) adc:	0.000117955	3.37876e-06	0.00020462	1.98928e-05	4.23246e-05	6.33203e-05	0.000151974	0.00143245	
+    - (2302, 5) time:	0.315415	0.370783	0.40768	0.462967	0.499997	0.555488	0.592675	0.644633	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	14	14	14	14	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	7	8	9	
+    - (2202, 4) paddle:	57	57	57	57	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2813.17,-1288.4,8154.05) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	19
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	2	3	3	3	4	0	
+    - (2302, 2) layer:	0	0	0	1	0	1	1	0	0	1	0	0	
+    - (2302, 3) wireNum:	34	43	44	44	51	51	50	68	69	69	68	33	
+    - (2302, 4) adc:	8.47131e-06	0.00178658	0.000188747	0.000124278	0.000429155	0.000151374	6.38498e-05	0.000496032	0.00033574	0.000577165	0.000317384	0.000336294	
+    - (2302, 5) time:	0.511881	0.531216	0.571061	0.628435	0.715477	0.755565	0.774048	0.860313	0.862925	0.922789	1.01425	0.52651	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	12	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2137.54,285.705,9120.52) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	20
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	13	17	17	19	19	26	26	26	
+    - (2302, 4) adc:	0.00050928	0.000630877	0.00125214	0.00138633	0.0007693	0.00100572	0.000780849	0.000564954	
+    - (2302, 5) time:	0.213023	0.250364	0.275225	0.324831	0.337295	0.37122	0.399331	0.436547	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	7	7	7	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	4	5	
+    - (2202, 4) paddle:	30	30	30	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-4978.9,623.616,8088.18) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	21
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (178.883,68.863,9108.38) MeV   -  vert: (0,0,-20) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	22
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	
+    - (2302, 2) layer:	0	
+    - (2302, 3) wireNum:	27	
+    - (2302, 4) adc:	0.00120132	
+    - (2302, 5) time:	0.998528	
+    - (2302, 99) hitn:	1	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (664.344,801.658,9871.96) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	23
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	
+    - (2302, 2) layer:	0	0	1	1	0	1	
+    - (2302, 3) wireNum:	46	3	3	4	69	69	
+    - (2302, 4) adc:	0.000402991	0.000159715	5.4601e-05	0.000147288	0.000219358	0.000216013	
+    - (2302, 5) time:	0.664407	0.784395	0.822363	0.865526	0.990058	1.00739	
+    - (2302, 99) hitn:	1	2	3	4	5	6	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (11.0564,-1944.97,11393.1) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	24
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	3	3	3	4	4	
+    - (2302, 2) layer:	0	0	1	1	0	1	0	1	1	0	0	
+    - (2302, 3) wireNum:	37	46	46	47	56	56	72	72	73	76	75	
+    - (2302, 4) adc:	7.32591e-05	0.00017538	3.39834e-05	0.000152362	1.75828e-05	0.000301632	0.000228179	4.60279e-05	0.000906689	0.000368585	0.000849199	
+    - (2302, 5) time:	0.347003	0.407963	0.44241	0.448663	0.509627	0.550415	0.611942	0.618338	0.651694	0.681837	0.715051	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	14	14	14	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	8	9	
+    - (2202, 4) paddle:	59	59	59	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2658.91,-662.466,8050.13) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	25
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	1	0	1	1	0	
+    - (2302, 3) wireNum:	27	34	34	40	40	39	53	53	54	53	
+    - (2302, 4) adc:	0.000351587	0.000112264	0.000264363	0.000181735	2.58986e-05	2.63287e-05	7.24037e-05	0.000282389	0.000131232	2.85669e-05	
+    - (2302, 5) time:	0.37146	0.436836	0.480258	0.545806	0.586601	0.589728	0.655689	0.693083	0.700042	0.76418	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	8	9	
+    - (2202, 4) paddle:	12	12	12	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (1348.42,3050.57,10571.5) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	26
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	1	0	
+    - (2302, 3) wireNum:	10	13	13	14	14	20	20	21	19	
+    - (2302, 4) adc:	1.17834e-05	0.00050804	0.000211338	0.000999094	0.00213086	0.00184395	0.000353737	0.000432806	0.000901	
+    - (2302, 5) time:	0.236454	0.277763	0.305306	0.346694	0.371145	0.415597	0.421279	0.443119	0.484463	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	8	8	8	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	5	6	
+    - (2202, 4) paddle:	34	34	34	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-4581.83,-1387.79,8876.49) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	27
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	34	43	43	44	51	51	68	68	68	
+    - (2302, 4) adc:	0.000269693	0.000237476	0.00109106	0.000159049	0.000481556	0.000253003	0.000406489	0.00079496	0.000367754	
+    - (2302, 5) time:	0.456346	0.536762	0.568597	0.590678	0.671968	0.726715	0.808399	0.865264	0.950097	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2905.37,406.704,11622.3) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	28
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	0	1	0	
+    - (2302, 3) wireNum:	10	13	13	14	14	20	21	21	18	
+    - (2302, 4) adc:	0.000478373	0.000708154	0.00016559	0.00133187	0.000574121	0.000603817	0.000185716	0.000595777	0.00048409	
+    - (2302, 5) time:	0.271185	0.318749	0.350353	0.397903	0.429517	0.47219	0.477132	0.508802	0.556539	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	8	8	8	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	6	7	
+    - (2202, 4) paddle:	34	34	34	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-3530.63,-1150.21,8184.36) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	29
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	1	0	1	0	
+    - (2302, 3) wireNum:	41	50	50	62	62	61	77	77	84	
+    - (2302, 4) adc:	0.000927203	0.00107218	0.00151294	0.000716605	0.000696142	4.54355e-05	0.000911559	0.000300347	0.00049815	
+    - (2302, 5) time:	0.217695	0.255865	0.281244	0.319382	0.338988	0.344766	0.382755	0.408093	0.446143	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	13	13	13	13	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	4	5	5	
+    - (2202, 4) paddle:	55	55	55	54	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (4691.9,-3721.84,9948.57) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	30
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	3	4	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	1	0	0	
+    - (2302, 3) wireNum:	39	48	48	58	58	74	74	75	79	78	
+    - (2302, 4) adc:	6.33165e-05	2.319e-05	0.000129709	2.84413e-05	4.96105e-05	0.000109856	0.00079234	0.000182217	0.000589964	0.000384481	
+    - (2302, 5) time:	0.306832	0.360507	0.396333	0.450255	0.483611	0.540081	0.566305	0.576189	0.615436	0.630472	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	14	14	14	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	7	8	
+    - (2202, 4) paddle:	57	57	57	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (3160.8,-1370.49,8790.3) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	31
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	28	35	35	42	42	54	54	57	
+    - (2302, 4) adc:	0.000631847	0.000417882	0.00063418	0.000367496	0.000530331	0.00112731	0.000357077	0.000551771	
+    - (2302, 5) time:	0.242262	0.284703	0.31299	0.355351	0.383617	0.425969	0.454216	0.496683	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	2	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	5	6	6	
+    - (2202, 4) paddle:	11	11	11	10	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2727.76,4310.82,9765.5) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	32
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	4	4	3	3	2	1	1	1	1	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	0	0	1	0	1	1	1	0	0	
+    - (2302, 3) wireNum:	33	41	41	49	49	64	64	66	67	68	65	65	50	40	39	39	38	
+    - (2302, 4) adc:	0.000901686	4.33613e-05	9.58955e-05	0.000185578	5.52818e-05	5.47143e-05	0.000252245	0.000366961	0.000309812	0.000127831	0.000122465	0.00028369	0.000346947	0.000135793	0.000454087	7.00463e-06	2.84423e-05	
+    - (2302, 5) time:	0.321241	0.383179	0.421372	1.3929	1.27179	0.574321	0.612854	0.670797	0.946637	0.956589	1.04326	1.10255	1.22334	1.47103	1.54569	1.5844	1.62837	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	1	1	1	1	0	
+    - (2202, 2) superlayer:	0	1	1	1	0	
+    - (2202, 3) layer:	0	7	8	9	0	
+    - (2202, 4) paddle:	5	5	5	5	4	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (3075.05,1190.68,9025.17) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	33
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	1	0	1	0	
+    - (2302, 3) wireNum:	27	34	34	40	40	39	53	53	53	
+    - (2302, 4) adc:	0.000236287	0.000283632	0.000220363	4.96309e-05	9.03675e-05	0.000308449	6.43908e-05	7.23511e-05	0.000451009	
+    - (2302, 5) time:	0.367466	0.432063	0.475101	0.539878	0.565518	0.583218	0.648465	0.692248	0.75835	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	8	9	
+    - (2202, 4) paddle:	12	12	12	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (974.616,2248.8,7675.26) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	34
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	16	20	20	24	24	31	31	32	
+    - (2302, 4) adc:	0.000751853	0.000580345	0.000174982	0.000188277	0.000468735	0.000381406	0.000448666	0.000434501	
+    - (2302, 5) time:	0.194336	0.228412	0.251077	0.285134	0.307742	0.341675	0.364291	0.398236	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	6	6	6	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	3	4	
+    - (2202, 4) paddle:	26	26	26	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-4583.08,2592.61,7426.39) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	35
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	1	0	1	1	0	1	0	
+    - (2302, 3) wireNum:	2	4	4	5	3	3	2	7	7	2	
+    - (2302, 4) adc:	3.43794e-05	0.000626375	0.000292458	0.00118188	3.9842e-06	0.000570461	0.000421968	4.25194e-05	0.00148863	0.00139925	
+    - (2302, 5) time:	0.295556	0.346232	0.350456	0.381898	0.433744	0.446427	0.468281	0.520188	0.553544	0.605656	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	10	10	10	10	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	6	7	8	
+    - (2202, 4) paddle:	43	43	43	43	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1178.64,-4138.51,10512) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	36
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	34	42	42	51	51	66	66	69	
+    - (2302, 4) adc:	0.000406978	0.00168012	0.000869774	0.0011583	0.000985174	0.00107072	0.000557578	0.000281711	
+    - (2302, 5) time:	0.277503	0.326104	0.358493	0.407108	0.439515	0.488192	0.520722	0.569535	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	0	0	0	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	6	7	
+    - (2202, 4) paddle:	3	3	3	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (4056.76,786.86,9364.53) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	37
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	6	9	9	8	8	14	14	10	
+    - (2302, 4) adc:	4.20795e-05	0.000273889	8.99909e-05	0.000443108	0.00152101	0.000197926	0.000277003	6.56403e-05	
+    - (2302, 5) time:	0.308267	0.362282	0.398319	0.452428	0.521553	0.542766	0.579048	0.633632	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	9	9	9	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	7	8	
+    - (2202, 4) paddle:	39	39	39	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-2096,-2241.28,7874.58) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	38
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	33	41	41	50	50	64	64	68	
+    - (2302, 4) adc:	0.000330024	0.00124095	0.000626245	0.000880667	0.000918839	0.000518676	0.000431256	0.000426937	
+    - (2302, 5) time:	0.267396	0.314181	0.345406	0.392189	0.423415	0.470247	0.501555	0.54851	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	0	0	0	0	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	5	6	7	
+    - (2202, 4) paddle:	4	4	4	4	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (3523.2,1055.56,7965.9) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	39
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	1	0	
+    - (2302, 3) wireNum:	37	46	46	56	56	71	71	72	75	
+    - (2302, 4) adc:	0.00158268	0.000145409	2.61333e-05	0.000248695	0.00102878	0.00106548	2.48402e-05	0.000549793	0.000982219	
+    - (2302, 5) time:	0.298265	0.352515	0.387613	0.440131	0.473487	0.526161	0.531043	0.563199	0.614261	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	14	14	14	14	14	
+    - (2202, 2) superlayer:	0	1	1	1	1	
+    - (2202, 3) layer:	0	6	7	8	7	
+    - (2202, 4) paddle:	59	59	59	59	60	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	5	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (4195.32,-870.759,10649.6) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	40
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	2	
+    - (2302, 2) layer:	0	0	1	0	1	1	
+    - (2302, 3) wireNum:	20	28	28	29	29	28	
+    - (2302, 4) adc:	0.000681368	8.67982e-05	0.00190132	0.000482543	0.000650906	8.70847e-05	
+    - (2302, 5) time:	0.654349	0.772295	0.816366	0.97413	1.00282	1.00784	
+    - (2302, 99) hitn:	1	2	3	4	5	6	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-677.312,1627.75,10167.6) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	41
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	3	4	2	2	2	2	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	0	1	0	0	0	0	0	0	1	0	0	1	0	
+    - (2302, 3) wireNum:	27	34	34	40	40	53	54	54	54	38	37	36	35	34	34	46	47	47	47	
+    - (2302, 4) adc:	0.00144818	1.72352e-05	8.21803e-05	0.000557827	9.15107e-06	0.000152692	0.000942893	3.23426e-05	8.34638e-05	0.000181759	0.00014488	0.000228551	0.000425919	2.77665e-05	0.00169044	0.00201474	0.00031752	0.000620566	0.000902529	
+    - (2302, 5) time:	0.354574	0.416652	0.458192	0.520611	0.562414	0.596774	0.625168	0.667229	0.730728	0.569288	0.618524	0.669842	0.72422	0.724673	0.748142	0.857254	0.870546	0.909088	0.966009	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	2	2	2	3	
+    - (2202, 2) superlayer:	0	1	1	0	
+    - (2202, 3) layer:	0	8	9	0	
+    - (2202, 4) paddle:	12	12	12	16	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (1170.44,2426.21,8103.98) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	42
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (865.087,-315.119,10967.5) MeV   -  vert: (0,0,-20) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	43
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	0	0	1	1	1	2	2	2	3	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	0	0	0	1	0	1	1	0	1	1	0	
+    - (2302, 3) wireNum:	22	31	31	13	12	17	16	16	14	14	13	22	22	21	16	
+    - (2302, 4) adc:	0.000482345	0.000124235	0.000174366	0.000436086	8.79792e-05	0.000432496	4.34921e-05	0.000285993	0.000134244	0.00054621	2.71627e-05	0.000821642	3.22197e-05	5.26319e-05	0.000105455	
+    - (2302, 5) time:	0.83567	0.991162	1.00213	0.803856	0.827664	0.870465	0.878381	0.908049	0.949695	0.973261	0.976858	1.02072	1.02137	1.05	1.09171	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	8	
+    - (2202, 2) superlayer:	0	
+    - (2202, 3) layer:	0	
+    - (2202, 4) paddle:	35	
+    - (2202, 5) adc:	999.999	
+    - (2202, 6) time:	888.888	
+    - (2202, 99) hitn:	1	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-93.6401,1340.54,9898.53) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	44
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	43	52	52	65	65	81	81	88	
+    - (2302, 4) adc:	0.000570464	0.000501778	0.000329632	0.000469478	0.000265058	0.000237786	0.000373853	0.000202972	
+    - (2302, 5) time:	0.219183	0.257666	0.283196	0.321553	0.347128	0.385383	0.410943	0.449221	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	12	12	12	12	
+    - (2202, 2) superlayer:	0	1	1	1	
+    - (2202, 3) layer:	0	4	5	5	
+    - (2202, 4) paddle:	52	52	52	51	
+    - (2202, 5) adc:	999.999	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	4	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (2595.92,-3531.94,7349.74) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	45
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	42	51	51	64	64	79	79	87	
+    - (2302, 4) adc:	0.000905741	0.000206533	0.000423348	0.000170341	0.000943322	0.00184669	0.000264808	0.000997065	
+    - (2302, 5) time:	0.182037	0.214003	0.235231	0.267094	0.288291	0.438625	0.39225	0.373065	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	13	13	13	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	3	4	
+    - (2202, 4) paddle:	53	53	53	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (3463.65,-3917.91,6654.99) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	46
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	1	0	1	0	1	0	
+    - (2302, 3) wireNum:	36	44	44	54	54	68	68	74	
+    - (2302, 4) adc:	0.000630029	0.000459133	0.000225223	0.000503557	0.000911157	0.00063793	0.000291361	0.000383258	
+    - (2302, 5) time:	0.182559	0.214491	0.235789	0.267755	0.288997	0.320878	0.342119	0.373974	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	0	0	0	
+    - (2202, 2) superlayer:	0	1	1	
+    - (2202, 3) layer:	0	3	4	
+    - (2202, 4) paddle:	1	1	1	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (6091.51,-134.16,7784.94) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	47
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	0	1	1	2	2	3	3	3	
+    - (2302, 2) layer:	0	0	0	1	0	1	0	1	1	
+    - (2302, 3) wireNum:	18	17	24	24	25	25	38	38	39	
+    - (2302, 4) adc:	0.000119361	0.000601881	0.000702742	0.000165162	0.000687462	0.000125355	1.34871e-06	0.000622267	0.000311978	
+    - (2302, 5) time:	0.489643	0.535694	0.625766	0.694681	0.791736	0.857103	0.956949	0.966473	1.01532	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (-1724.56,1792.21,11672.8) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	48
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	1	1	1	2	2	3	
+    - (2302, 2) layer:	0	0	1	1	0	1	0	
+    - (2302, 3) wireNum:	44	56	56	1	66	66	1	
+    - (2302, 4) adc:	6.57813e-05	0.00016042	0.000320512	0.000964494	0.00250573	0.00158888	0.000579189	
+    - (2302, 5) time:	0.591055	0.696699	0.740441	0.76795	0.862162	0.88884	1.01124	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (615.147,-1900.08,10377.4) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	49
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (166.976,-360.305,9487.43) MeV   -  vert: (0,0,-20) mm
+ --- End of Generated Particles Bank -- 
+ --- Header Bank -- 
+    - (10, 1) time:	Wed, 06.24.2020 13:36:48
+    - (10, 5) beamPol:	0
+    - (10, 3) evn:	50
+    - (10, 4) evn_type:	-1
+    - (10, 2) runNo:	1
+ --- End of Header Bank -- 
+ --- User Header Bank -- 
+ --- End of User Header Bank -- 
+ --- ahdc  (2300, 0) ---- 
+   -- integrated digitized bank  (2302, 0) -- 
+    - (2302, 1) superlayer:	0	0	1	1	1	2	2	2	3	3	4	
+    - (2302, 2) layer:	0	0	0	1	1	0	1	1	0	1	0	
+    - (2302, 3) wireNum:	39	38	48	48	49	58	58	57	76	76	78	
+    - (2302, 4) adc:	0.000795818	0.000417615	0.000629739	0.000337515	0.00122918	0.001157	0.00053858	0.000143021	0.000566377	0.000366957	0.000378297	
+    - (2302, 5) time:	0.394234	0.41639	0.489589	0.532202	0.538685	0.61242	0.637548	0.661889	0.736605	0.786962	0.861016	
+    - (2302, 99) hitn:	1	2	3	4	5	6	7	8	9	10	11	
+   -- End of integrated digitized bank.
+ --- myatof  (2200, 0) ---- 
+   -- integrated digitized bank  (2202, 0) -- 
+    - (2202, 1) sector:	14	14	14	
+    - (2202, 2) superlayer:	0	1	0	
+    - (2202, 3) layer:	0	9	0	
+    - (2202, 4) paddle:	57	57	58	
+    - (2202, 5) adc:	999.999	999.999	999.999	
+    - (2202, 6) time:	888.888	888.888	888.888	
+    - (2202, 99) hitn:	1	2	3	
+   -- End of integrated digitized bank.
+ --- Generated Particles Bank -- 
+    - Particle 1 pid: 11   -  mom: (1965.47,-914.71,7783.58) MeV   -  vert: (0,0,-20) mm
+    - Hit >na< Has 0 hit    - Hit >na< Has 0 hit --- End of Generated Particles Bank -- 
+ ---- End of Event  ---- 

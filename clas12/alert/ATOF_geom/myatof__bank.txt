@@ -1,0 +1,8 @@
+              myatof  |              bankid  |                                    myatof bank ID  | 2200   |                  Di  
+              myatof  |              sector  |                   sector from 0 to 14, in XY plan  |    1   |                  Di  
+              myatof  |          superlayer  |superlayer from 0 (smallest paddles) to 1 (biggest paddles), circles in XY plan  |    2   |                  Di  
+              myatof  |               layer  |layer 0 for smallest paddles, form 0 to 9 for biggest paddles, in Z axis  |    3   |                  Di  
+              myatof  |              paddle  |paddle number from (sectorId*4+1) to (sectorId*4+4)  |    4   |                  Di  
+              myatof  |                 adc  |                                               ADC  |    5   |                  Dd  
+              myatof  |                time  |                                              time  |    6   |                  Dd  
+              myatof  |                hitn  |                                        hit number  |   99   |                  Di  

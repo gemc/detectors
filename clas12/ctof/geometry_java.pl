@@ -87,8 +87,8 @@ sub build_upLightGuides
 		$detector{"name"}        = $vname;
 		#$detector{"pos"}         = $positions->{$vname};
 		#$detector{"rotation"}    = $rotations->{$vname};
-		$detector{"pos"}         = "0 0 0";
-		$detector{"rotation"}    = "0 0 0";
+		$detector{"pos"}         = "0*cm 0*cm 124.327*cm";
+		$detector{"rotation"}    = "0*deg 180*deg 97.5*deg";
 
 		$detector{"mother"}    = "";
 

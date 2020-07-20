@@ -19,6 +19,7 @@ sub makeCTOF
 
 	my $dirName = shift;
 	build_gxml($dirName);
+	build_upstream_gxml("${dirName}_upstream");
 }
 
 sub build_gxml
@@ -29,6 +30,16 @@ sub build_gxml
 	build_paddles($gxmlFile);
 	#build_upLightGuides($gxmlFile);
 	build_downLightGuides($gxmlFile);
+
+	$gxmlFile->print();
+}
+
+sub build_upstream_gxml
+{
+	my $dirName = shift;
+	my $gxmlFile = new GXML($dirName);
+
+	build_upLightGuides($gxmlFile);
 
 	$gxmlFile->print();
 }
@@ -74,8 +85,10 @@ sub build_upLightGuides
 		my $vname                = sprintf("lgu%02d", $ipaddle);
 
 		$detector{"name"}        = $vname;
-		$detector{"pos"}         = $positions->{$vname};
-		$detector{"rotation"}    = $rotations->{$vname};
+		#$detector{"pos"}         = $positions->{$vname};
+		#$detector{"rotation"}    = $rotations->{$vname};
+		$detector{"pos"}         = "0 0 0";
+		$detector{"rotation"}    = "0 0 0";
 
 		$detector{"mother"}    = "";
 

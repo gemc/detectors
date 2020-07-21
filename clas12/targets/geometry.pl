@@ -7,9 +7,41 @@ our %parameters;
 sub build_targets
 {
 	my $thisVariation = $configuration{"variation"} ;
-	
-	if($thisVariation eq "oldlH2" || $thisVariation eq "oldlD2")
+
+	if($thisVariation eq "pbTest" )
 	{
+		# PB 125 microns
+		my $Rout       = 5;  #
+		my $length     = 0.0625; # (0.125 mm thick)
+		my %detector = init_det();
+		$detector{"name"}        = "testPbTarget";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Pb Foil for Nuclear Targets Test";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Pb";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+
+		# Downstream Foil 50 microns Aluminum at 24.8 cm
+		my $ZCenter = 248 ;  # aluminum foil
+		$Rout       = 5;  #
+		$length     = 0.0025; # (0.050 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "AlTargetFoil";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Aluminum Target Foil during Test ";
+		$detector{"pos"}         = "0 0 $ZCenter*mm";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+	} elsif($thisVariation eq "oldlH2" || $thisVariation eq "oldlD2") {
 		# vacuum container
 		my $Rout       = 44;
 		my $length     = 50;  # half length

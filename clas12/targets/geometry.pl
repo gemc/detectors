@@ -1188,7 +1188,7 @@ sub build_targets
 		
 	}
     
-    elsif($thisVariation eq "bonus")
+    elsif($thisVariation eq "bonus" || $thisVariation eq "bonusb" )
     {
         # bonus root volume
         my $Rout       = 4;

@@ -67,6 +67,18 @@ sub materials
 		print_mat(\%configuration, \%mat);
 
 	}
+
+	if($thisVariation eq "longitudinal")
+	{
+		%mat = init_mat();
+		$mat{"name"}          = "polarizedHe3";
+		$mat{"description"}   = "polarizedHe3 target";
+		$mat{"density"}        = "0.000748";
+		$mat{"ncomponents"}   = "1";
+		$mat{"components"}    = "helium3Gas 1";
+		print_mat(\%configuration, \%mat);
+
+	}
 		
 	if($thisVariation eq "PolTarg")
 	{

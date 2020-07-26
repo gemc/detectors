@@ -4,14 +4,14 @@ Transversely Polarized He-3 Target
 
 <gxml>
 
-    <volume name="deverter"      color="0000ff" position="0*mm 0*mm 185*mm" rotation="0*deg 270*deg 0*deg" material="G4_Al"/>
-    <volume name="flow_entrance"      color="0000ff" position="0*mm 0*mm 9.52*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
-    <volume name="outer_cell"      color="0000ff" position="0*mm 0*mm 19.02*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
-    <volume name="flow_entrance001"      color="0000ff" position="0*mm 0*mm -9.52*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
-    <volume name="exchanger"      color="0000ff" position="0*mm 0*mm -34.92*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
-    <volume name="beam_window"      color="0000ff" position="0*mm 0*mm -34.92*mm" rotation="0*deg 180*deg 0*deg" material="G4_Al"/>
-    <volume name="be"      color="0000ff" position="0*mm 0*mm -5*mm" rotation="90*deg 0*deg 0*deg" material="G4_Al"/>
-    <volume name="al_window"      color="0000ff" position="0*mm 0*mm 192.49*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
-    <volume name="he3"      color="0000ff" position="0*mm 0*mm -4.98*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="deverter"      color="0000ff" position="0*mm 0*mm 92.425*mm" rotation="0*deg 270*deg 0*deg" material="G4_Al"/>
+    <volume name="flow_entrance"      color="0000ff" position="0*mm 0*mm -83.055*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="outer_cell"      color="0000ff" position="0*mm 0*mm -73.555*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="flow_entrance001"      color="0000ff" position="0*mm 0*mm -102.095*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
+    <volume name="exchanger"      color="0000ff" position="0*mm 0*mm -127.495*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
+    <volume name="beam_window"      color="0000ff" position="0*mm 0*mm -127.495*mm" rotation="0*deg 180*deg 0*deg" material="G4_Al"/>
+    <volume name="be"      color="0000ff" position="0*mm 0*mm -97.575*mm" rotation="90*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="al_window"      color="0000ff" position="0*mm 0*mm 99.915*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="he3"      color="0000ff" position="0*mm 0*mm -97.555*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
 
 </gxml>

@@ -651,6 +651,23 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 	}
+
+	if($thisVariation eq "longitudinal") {
+		my %detector = init_det();
+		$detector{"name"}        = "he3target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "5 mm radius he-3 target";
+		$detector{"rotation"}         = "0*deg 0*deg 0*deg";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 5*mm 97.555*mm 0*deg 360*deg";
+		$detector{"material"}    = "polarizedHe3";
+		$detector{"style"}       = "1";
+		$detector{"mfield"}		 = "longitudinal5T";
+		print_det(\%configuration, \%detector);
+
+	}
+
 	
 	# cad variation has two volume:
 	# target container

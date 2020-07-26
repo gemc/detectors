@@ -663,7 +663,6 @@ sub build_targets
 		$detector{"dimensions"}  = "0*mm 5*mm 97.555*mm 0*deg 360*deg";
 		$detector{"material"}    = "polarizedHe3";
 		$detector{"style"}       = "1";
-		$detector{"mfield"}		 = "longitudinal5T";
 		print_det(\%configuration, \%detector);
 
 	}

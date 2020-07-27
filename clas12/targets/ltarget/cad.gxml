@@ -4,13 +4,13 @@ Transversely Polarized He-3 Target
 
 <gxml>
 
-    <volume name="deverter"      color="0000ff" position="0*mm 0*mm 62.425*mm" rotation="0*deg 270*deg 0*deg" material="G4_Al"/>
-    <volume name="flow_entrance"      color="0000ff" position="0*mm 0*mm -113.055*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
-    <volume name="outer_cell"      color="0000ff" position="0*mm 0*mm -103.555*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
-    <volume name="flow_entrance001"      color="0000ff" position="0*mm 0*mm -132.095*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
-    <volume name="exchanger"      color="0000ff" position="0*mm 0*mm -157.495*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
-    <volume name="beam_window"      color="0000ff" position="0*mm 0*mm -157.495*mm" rotation="0*deg 180*deg 0*deg" material="G4_Al"/>
-    <volume name="be"      color="0000ff" position="0*mm 0*mm -127.575*mm" rotation="90*deg 0*deg 0*deg" material="G4_Be"/>
-    <volume name="al_window"      color="0000ff" position="0*mm 0*mm 69.915*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="deverter"  mother="ltarget"    color="0000ff" position="0*mm 0*mm 92.805*mm" rotation="0*deg 270*deg 0*deg" material="G4_Al"/>
+    <volume name="flow_entrance"  mother="ltarget"    color="0000ff" position="0*mm 0*mm -83.285*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="outer_cell"  mother="ltarget"    color="0000ff" position="0*mm 0*mm -73.765*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
+    <volume name="flow_entrance001"  mother="ltarget"    color="0000ff" position="0*mm 0*mm -102.325*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
+    <volume name="exchanger"  mother="ltarget"    color="0000ff" position="0*mm 0*mm -127.725*mm" rotation="0*deg 0*deg 180*deg" material="G4_Al"/>
+    <volume name="beam_window"  mother="ltarget"    color="0000ff" position="0*mm 0*mm -127.725*mm" rotation="0*deg 180*deg 0*deg" material="G4_Al"/>
+    <volume name="be"  mother="ltarget"    color="0000ff" position="0*mm 0*mm -97.805*mm" rotation="90*deg 0*deg 0*deg" material="G4_Be"/>
+    <volume name="al_window"  mother="ltarget"    color="0000ff" position="0*mm 0*mm 99.685*mm" rotation="0*deg 0*deg 0*deg" material="G4_Al"/>
 
 </gxml>

@@ -653,14 +653,36 @@ sub build_targets
 	}
 
 	if($thisVariation eq "longitudinal") {
+		my $nplanes = 5;
+
+		my @oradius  =  (    15,   15,  7.9,  7.9,  7.9 );
+		my @z_plane  =  (  -137.255,  -64.235,  -64.235, 92.195, 405 );	
+
+		# vacuum target container
 		my %detector = init_det();
-		$detector{"name"}        = "he3target";
+		$detector{"name"}        = "ltarget";
 		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "he3target";
+		$detector{"mother"}      = "ltarget";
 		$detector{"description"} = "5 mm radius he-3 target";
 		$detector{"rotation"}         = "0*deg 0*deg 0*deg";
 		$detector{"color"}       = "aa0000";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 5*mm 97.555*mm 0*deg 360*deg";
+		$detector{"dimensions"}  = "0*mm 5*mm 97.785*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm 0*mm";
 		$detector{"material"}    = "polarizedHe3";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);

@@ -40,7 +40,46 @@ sub materials
 	$mat{"components"}    = "G4_C 0.745 epoxy 0.255";
 	print_mat(\%configuration, \%mat);
 	}
-	
+
+	if($thisVariation eq "transverse")
+	{
+		%mat = init_mat();
+		my $H_atomic_weight = 1.00784; 
+		my $D_atomic_weight = 2.014;
+		my $H_mass_fraction = 1.00784/(1.00784+2.014); 
+		my $D_mass_fraction = 2.014/(1.00784+2.014); 
+
+		$mat{"name"}          = "HDIce";
+		$mat{"description"}   = "solid HD ice";
+		$mat{"density"}        = "0.147";
+		$mat{"ncomponents"}   = "2";
+		$mat{"components"}    = "G4_H $H_mass_fraction deuteriumGas $D_mass_fraction";
+		print_mat(\%configuration, \%mat);
+		
+		%mat = init_mat();
+		my $HD_mass_fraction=1 - (0.175-0.147)/(2.7-0.147);
+		my $Al_mass_fraction=(0.175-0.147)/(2.7-0.147);
+		$mat{"name"}          = "solidHD";
+		$mat{"description"}   = "solidHD target";
+		$mat{"density"}        = "0.175";
+		$mat{"ncomponents"}   = "2";
+		$mat{"components"}    = "HDIce $HD_mass_fraction G4_Al $Al_mass_fraction";
+		print_mat(\%configuration, \%mat);
+
+	}
+
+	if($thisVariation eq "longitudinal")
+	{
+		%mat = init_mat();
+		$mat{"name"}          = "polarizedHe3";
+		$mat{"description"}   = "polarizedHe3 target";
+		$mat{"density"}        = "0.000748";
+		$mat{"ncomponents"}   = "1";
+		$mat{"components"}    = "helium3Gas 1";
+		print_mat(\%configuration, \%mat);
+
+	}
+		
 	if($thisVariation eq "PolTarg")
 	{
 

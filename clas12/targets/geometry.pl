@@ -655,8 +655,8 @@ sub build_targets
 	if($thisVariation eq "longitudinal") {
 		my $nplanes = 5;
 
-		my @oradius  =  (    15,   15,  7.9,  7.9,  7.9 );
-		my @z_plane  =  (  -137.255,  -64.235,  -64.235, 92.195, 405 );	
+		my @oradius  =  (    18.76,   18.76,  8.0,  8.0,  3.175 );
+		my @z_plane  =  (  -138,  -64,  -64, 97.785, 100 );	
 
 		# vacuum target container
 		my %detector = init_det();
@@ -678,15 +678,37 @@ sub build_targets
 		$detector{"name"}        = "he3target";
 		$detector{"mother"}      = "ltarget";
 		$detector{"description"} = "5 mm radius he-3 target";
-		$detector{"rotation"}         = "0*deg 0*deg 0*deg";
 		$detector{"color"}       = "aa0000";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm 5*mm 97.785*mm 0*deg 360*deg";
-		$detector{"pos"}         = "0*mm 0*mm 0*mm";
 		$detector{"material"}    = "polarizedHe3";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
+
+		%detector = init_det();
+		$detector{"name"}        = "al_window_entrance";
+		$detector{"mother"}      = "ltarget";
+		$detector{"description"} = "5 mm radius he-3 target";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 5*mm 0.0125*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm -97.7975*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "al_window_exit";
+		$detector{"mother"}      = "ltarget";
+		$detector{"description"} = "1/8 in radius he-3 target";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 3.175*mm 0.0375*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm 99.7225*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
 	}
 
 	

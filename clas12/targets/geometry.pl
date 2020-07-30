@@ -657,13 +657,7 @@ sub build_targets
 		my $nplanes = 4;
 
 		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );
-
-
-		if ($thisVariation eq "lH2e") {
-			@z_plane  =  (  -115.0,  365.0, 390.0, 925.0 );
-		}
-		
+		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );		
 
 		# vacuum target container
 		my %detector = init_det();

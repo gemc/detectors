@@ -697,7 +697,7 @@ sub build_targets
 		%detector = init_det();
 		$detector{"name"}        = "al_window_entrance";
 		$detector{"mother"}      = "ltarget";
-		$detector{"description"} = "5 mm radius he-3 target";
+		$detector{"description"} = "5 mm radius aluminum window upstream";
 		$detector{"color"}       = "aaaaff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm 5*mm 0.0125*mm 0*deg 360*deg";
@@ -709,7 +709,7 @@ sub build_targets
 		%detector = init_det();
 		$detector{"name"}        = "al_window_exit";
 		$detector{"mother"}      = "ltarget";
-		$detector{"description"} = "1/8 in radius aluminum window" ;
+		$detector{"description"} = "1/8 in radius aluminum window downstream" ;
 		$detector{"color"}       = "aaaaff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm 3.175*mm 0.0125*mm 0*deg 360*deg";

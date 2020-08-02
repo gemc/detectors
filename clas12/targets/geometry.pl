@@ -639,8 +639,20 @@ sub build_targets
 
 	if($thisVariation eq "transverse") {
 		my %detector = init_det();
-		$detector{"name"}        = "testTarget";
+		$detector{"name"}        = "ttarget";
 		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Box";
+		$detector{"dimensions"}  = "120*mm 120*mm 800*mm";
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		$detector{"mfield"}		 = "hdicefield";
+		print_det(\%configuration, \%detector);
+
+
+		$detector{"name"}        = "target_HDIce";
+		$detector{"mother"}      = "ttarget";
 		$detector{"description"} = "2 cm radius test target";
 		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
 		$detector{"color"}       = "aa0000";

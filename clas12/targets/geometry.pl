@@ -639,8 +639,20 @@ sub build_targets
 
 	if($thisVariation eq "transverse") {
 		my %detector = init_det();
-		$detector{"name"}        = "testTarget";
+		$detector{"name"}        = "ttarget";
 		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Box";
+		$detector{"dimensions"}  = "120*mm 120*mm 800*mm";
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		$detector{"mfield"}		 = "hdicefield";
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "target_HDIce";
+		$detector{"mother"}      = "ttarget";
 		$detector{"description"} = "2 cm radius test target";
 		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
 		$detector{"color"}       = "aa0000";
@@ -650,21 +662,115 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
-	}
-
-	if($thisVariation eq "longitudinal") {
-		my %detector = init_det();
-		$detector{"name"}        = "he3target";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "5 mm radius he-3 target";
-		$detector{"rotation"}         = "0*deg 0*deg 0*deg";
-		$detector{"color"}       = "aa0000";
+		%detector = init_det();
+		$detector{"name"}        = "MgB2_cylinder";
+		$detector{"mother"}      = "ttarget";
+		$detector{"description"} = "MgB2 superconducting cylinder";
+		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
+		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 5*mm 97.555*mm 0*deg 360*deg";
-		$detector{"material"}    = "polarizedHe3";
+		$detector{"dimensions"}  = "2*cm 2.1*cm 45*mm 0*deg 360*deg";
+		$detector{"material"}    = "MgB2";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
+		%detector = init_det();
+		$detector{"name"}        = "airPipe_inside";
+		$detector{"mother"}      = "ttarget";
+		$detector{"description"} = "airgap between target and shield to limit e- steps";
+		$detector{"pos"}         = "0*mm 0*mm 535.4*mm";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 45*mm 264.6*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_AIR";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "airPipe2_inside";
+		$detector{"mother"}      = "airPipe_inside";
+		$detector{"description"} = "airgap between target and shield to limit e- steps";
+		$detector{"color"}       = "aaffff";
+		$detector{"pos"}         = "0*mm 0*mm 0.5*mm";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 10*mm 264.1*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_AIR";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+
+		%detector = init_det();
+		$detector{"name"}        = "airPipe_outside";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "airgap between target and shield to limit e- steps";
+		$detector{"pos"}         = "0*mm 0*mm 838.4*mm";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 45*mm 38.4*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_AIR";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "airPipe2_outside";
+		$detector{"mother"}      = "airPipe_outside";
+		$detector{"description"} = "airgap between target and shield to limit e- steps";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0*mm 0*mm -0.5*mm";
+		$detector{"dimensions"}  = "0*mm 10*mm 37.1*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_AIR";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+	}
+
+	if($thisVariation eq "longitudinal") {
+
+		my $nplanes = 4;
+
+		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
+		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );		
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "ltarget";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "al_window_entrance";
+		$detector{"mother"}      = "ltarget";
+		$detector{"description"} = "5 mm radius aluminum window upstream";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 5*mm 0.0125*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm -24.2125*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		%detector = init_det();
+		$detector{"name"}        = "al_window_exit";
+		$detector{"mother"}      = "ltarget";
+		$detector{"description"} = "1/8 in radius aluminum window downstream" ;
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm 3.175*mm 0.0125*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm 173.2825*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
 	}
 
 	

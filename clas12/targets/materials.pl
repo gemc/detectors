@@ -43,11 +43,12 @@ sub materials
 
 	if($thisVariation eq "transverse")
 	{
+		#HDIce
 		%mat = init_mat();
 		my $H_atomic_weight = 1.00784; 
 		my $D_atomic_weight = 2.014;
-		my $H_mass_fraction = 1.00784/(1.00784+2.014); 
-		my $D_mass_fraction = 2.014/(1.00784+2.014); 
+		my $H_mass_fraction = $H_atomic_weight/($H_atomic_weight+$D_atomic_weight); 
+		my $D_mass_fraction = $D_atomic_weight/($H_atomic_weight+$D_atomic_weight); 
 
 		$mat{"name"}          = "HDIce";
 		$mat{"description"}   = "solid HD ice";
@@ -56,6 +57,7 @@ sub materials
 		$mat{"components"}    = "G4_H $H_mass_fraction deuteriumGas $D_mass_fraction";
 		print_mat(\%configuration, \%mat);
 		
+		#HDIce+Al
 		%mat = init_mat();
 		my $HD_mass_fraction=1 - (0.175-0.147)/(2.7-0.147);
 		my $Al_mass_fraction=(0.175-0.147)/(2.7-0.147);
@@ -64,6 +66,19 @@ sub materials
 		$mat{"density"}        = "0.175";
 		$mat{"ncomponents"}   = "2";
 		$mat{"components"}    = "HDIce $HD_mass_fraction G4_Al $Al_mass_fraction";
+		print_mat(\%configuration, \%mat);
+
+		#MgB2
+		%mat = init_mat();
+		my $Mg_atomic_weight = 24.305; 
+		my $B_atomic_weight = 10.811;
+		my $Mg_mass_fraction = $Mg_atomic_weight/($Mg_atomic_weight+2*$B_atomic_weight); 
+		my $B_mass_fraction = 2*$B_atomic_weight/($Mg_atomic_weight+2*$B_atomic_weight); 
+		$mat{"name"}          = "MgB2";
+		$mat{"description"}   = "MgB2";
+		$mat{"density"}        = "2.57";
+		$mat{"ncomponents"}   = "2";
+		$mat{"components"}    = "G4_Mg $Mg_mass_fraction G4_B $B_mass_fraction";
 		print_mat(\%configuration, \%mat);
 
 	}

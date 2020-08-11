@@ -654,7 +654,6 @@ sub build_targets
 		$detector{"name"}        = "target_HDIce";
 		$detector{"mother"}      = "ttarget";
 		$detector{"description"} = "2 cm radius test target";
-		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
 		$detector{"color"}       = "aa0000";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm 2*cm 5*cm 0*deg 360*deg";
@@ -666,7 +665,6 @@ sub build_targets
 		$detector{"name"}        = "MgB2_cylinder";
 		$detector{"mother"}      = "ttarget";
 		$detector{"description"} = "MgB2 superconducting cylinder";
-		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "2*cm 2.1*cm 45*mm 0*deg 360*deg";

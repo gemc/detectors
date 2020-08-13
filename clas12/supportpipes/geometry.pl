@@ -23,8 +23,7 @@ sub build_mom()
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"color"}       = "eeeeee";
 	$detector{"type"}        = "Polycone";
-	$detector{"dimensions"}  = "0*deg 360*deg 10*counts 103*mm 103*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 248.4*mm 248.4*mm 248.4*mm 248.4*mm 500*mm 500*mm 1800*mm 1800*mm 800*mm 800*mm $START*mm 2589*mm 2589*mm 2816*mm 2816*mm 3540*mm 3540*mm 3693*mm 3693*mm $END*mm";
-	# $detector{"dimensions"}  = "0*deg 360*deg 2*counts 0*mm 0*mm 150*mm 150*mm 2250*mm 2300*mm";
+	$detector{"dimensions"}  = "0*deg 360*deg 12*counts 103*mm 103*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 248.4*mm 248.4*mm 248.4*mm 248.4*mm 500*mm 500*mm 800*mm 800*mm 1800*mm 1800*mm 800*mm 800*mm $START*mm 2589*mm 2589*mm 2816*mm 2816*mm 3170*mm 3170*mm 3540*mm 3540*mm 3693*mm 3693*mm $END*mm";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
@@ -64,7 +63,7 @@ sub build_SVTpipe()
 
 	$detector{"name"}        = "14_Inch_Tube";
 	$detector{"mother"}      = "mom";
-	$detector{"description"} = "14 Inch Tube and Flange_Cart Side";
+	$detector{"description"} = "14 Inch Tube, flange cart side and forward mounting flange";
 	$detector{"color"}       = "ff7f00";
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "0*mm 0*mm 0*mm";
@@ -97,7 +96,7 @@ sub build_SVTpipe()
 
 	$detector{"name"}        = "10.75_Inch_Tube";
 	$detector{"mother"}      = "mom";
-	$detector{"description"} = "SVT 10.75 Inch Tube, Forward mounting flange, center step flange, and SVT interface flange";
+	$detector{"description"} = "SVT 10.75 Inch Tube, center step flange, and SVT interface flange";
 	$detector{"color"}       = "ff7f00"; #444444
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "0*mm 0*mm 0*mm";
@@ -190,9 +189,9 @@ sub build_SVTcart()
 	$detector{"description"} = "Gusset006";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "304.35*mm -12.144*mm 3222.61*mm";
+	$detector{"pos"}         = "304.35*mm -12.144*mm 3209.91*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "13.15*mm 254*mm 50.8*mm";
+	$detector{"dimensions"}  = "13.15*mm 254*mm 38.1*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -214,9 +213,9 @@ sub build_SVTcart()
 	$detector{"description"} = "Gusset007";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-304.35*mm -12.144*mm 3222.61*mm";
+	$detector{"pos"}         = "-304.35*mm -12.144*mm 3209.91*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "13.15*mm 254*mm 50.8*mm";
+	$detector{"dimensions"}  = "13.15*mm 254*mm 38.1*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -238,7 +237,7 @@ sub build_SVTcart()
 	$detector{"description"} = "Short Strut";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "254*mm -596.4*mm 3816.335*mm";
+	$detector{"pos"}         = "254*mm -596.9*mm 3816.335*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "76.2*mm 76.2*mm 644.525*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -262,7 +261,7 @@ sub build_SVTcart()
 	$detector{"description"} = "Short Strut001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-254*mm -596.4*mm 3816.335*mm";
+	$detector{"pos"}         = "-254*mm -596.9*mm 3816.335*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "76.2*mm 76.2*mm 644.525*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -286,7 +285,7 @@ sub build_SVTcart()
 	$detector{"description"} = "6x6x.25 Square Tube Brace";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -596.4*mm 3883.01*mm";
+	$detector{"pos"}         = "0*mm -596.9*mm 3883.01*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "177.8*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -322,7 +321,7 @@ sub build_SVTcart()
 	$detector{"description"} = "6x6x.25 Square Tube Short001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -596.4*mm 3616.31*mm";
+	$detector{"pos"}         = "0*mm -596.9*mm 3616.31*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "177.8*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";

@@ -656,7 +656,7 @@ sub build_targets
 		$detector{"description"} = "2 cm radius test target";
 		$detector{"color"}       = "aa0000";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 2*cm 5*cm 0*deg 360*deg";
+		$detector{"dimensions"}  = "0*mm 12.5*mm 12.5*mm 0*deg 360*deg";
 		$detector{"material"}    = "solidHD";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
@@ -667,7 +667,7 @@ sub build_targets
 		$detector{"description"} = "MgB2 superconducting cylinder";
 		$detector{"color"}       = "ffffff";
 		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "2*cm 2.1*cm 45*mm 0*deg 360*deg";
+		$detector{"dimensions"}  = "36*mm 43*mm 125*mm 0*deg 360*deg";
 		$detector{"material"}    = "MgB2";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
@@ -720,7 +720,6 @@ sub build_targets
 		$detector{"material"}    = "G4_AIR";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
-
 	}
 
 	if($thisVariation eq "longitudinal") {

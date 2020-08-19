@@ -8,7 +8,7 @@ sub geometry()
 	build_mom();
 	build_MVTpipe();
 	build_SVTpipe();
-	build_SVTcart();
+	#build_SVTcart();
 }
 
 sub build_mom()
@@ -23,7 +23,8 @@ sub build_mom()
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"color"}       = "eeeeee";
 	$detector{"type"}        = "Polycone";
-	$detector{"dimensions"}  = "0*deg 360*deg 12*counts 103*mm 103*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 248.4*mm 248.4*mm 248.4*mm 248.4*mm 500*mm 500*mm 800*mm 800*mm 1800*mm 1800*mm 800*mm 800*mm $START*mm 2589*mm 2589*mm 2816*mm 2816*mm 3170*mm 3170*mm 3540*mm 3540*mm 3693*mm 3693*mm $END*mm";
+	# $detector{"dimensions"}  = "0*deg 360*deg 12*counts 103*mm 103*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 248.4*mm 248.4*mm 248.4*mm 248.4*mm 500*mm 500*mm 800*mm 800*mm 1800*mm 1800*mm 800*mm 800*mm $START*mm 2589*mm 2589*mm 2816*mm 2816*mm 3170*mm 3170*mm 3540*mm 3540*mm 3693*mm 3693*mm $END*mm";
+	$detector{"dimensions"}  = "0*deg 360*deg 6*counts 103*mm 103*mm 152.6*mm 152.6*mm 152.6*mm 152.6*mm 248.4*mm 248.4*mm 248.4*mm 248.4*mm 500*mm 500*mm $START*mm 2589*mm 2589*mm 2816*mm 2816*mm 3146.41*mm";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);

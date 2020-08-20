@@ -4,7 +4,7 @@
 	<!-- detector name="../targets/cad/" factory="CAD"/ -->
 
 
-    <detector name="pip" factory="TEXT"/>
+    <detector name="cnd_upstream" factory="TEXT"/>
     <!-- detector name="cadBeamlineFTOFF/" factory="CAD"/ -->
 
 

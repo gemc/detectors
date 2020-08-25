@@ -90,7 +90,7 @@ sub build_scintillators
 				if($j==$NUM_LAYERS && $i>=16) {$zpos = $zpos + 72;}
 				$detector{"name"}        = "scintillator_$barnum";
 				$detector{"mother"}      = "band";
-				$detector{"description"} = "Scintillator";
+				$detector{"description"} = "Scintillator $barnum";
 				$detector{"pos"}         = "$x*mm $ypos*mm $zpos*mm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 				$detector{"color"}       = $bcolor;
@@ -117,7 +117,7 @@ sub build_scintillators
 						$colour                  = "771111";
 					}
 					$detector{"mother"}      = "band";
-					$detector{"description"} = "Mu metal shield for pmt";
+					$detector{"description"} = "Mu metal shield for pmt $barnum";
 					$detector{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
 					$detector{"rotation"}    = "0*deg 90*deg 0*deg";
 					$detector{"color"}       = $colour;
@@ -146,7 +146,7 @@ sub build_scintillators
 				my $zpo = $z + 72*($j-1);
 				$detector{"name"}        = "scintillator_$barnum B";
 				$detector{"mother"}      = "band";
-				$detector{"description"} = "Short Bars";
+				$detector{"description"} = "Short Bars $barnum B";
 				$detector{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 				$detector{"color"}       = "$bcolor";
@@ -163,7 +163,7 @@ sub build_scintillators
 				$xpo = "-753.5";
 				$detector{"name"}        = "scintillator_$barnum A";
 				$detector{"mother"}      = "band";
-				$detector{"description"} = "Short Bars";
+				$detector{"description"} = "Short Bars $barnum A";
 				$detector{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
 				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 				$detector{"color"}       = "$bcolor";
@@ -198,7 +198,7 @@ sub build_scintillators
 						$colour                  = "111111";
 					}
 					$detector{"mother"}      = "band";
-					$detector{"description"} = "Mu metal shield for pmt";
+					$detector{"description"} = "Mu metal shield for pmt $barnum";
 					$detector{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
 					$detector{"rotation"}    = "0*deg 90*deg 0*deg";
 					$detector{"color"}       = $colour;
@@ -227,7 +227,7 @@ sub build_frame
 		my %detector = init_det();
 		$detector{"name"}        = "support_$qnumber";
 		$detector{"mother"}      = "band";
-		$detector{"description"} = "Vertical support beam of BAND frame";
+		$detector{"description"} = "Vertical support beam of BAND frame $qnumber";
 		$detector{"pos"}         = "$vframepos[$i-1]*mm $yp*mm $zp*mm";
 		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 		$detector{"color"}       = "777777";
@@ -240,7 +240,7 @@ sub build_frame
 		# Inside of support beam
 		$detector{"name"}        = "support_inside_$qnumber";
 		$detector{"mother"}      = "support_$qnumber";
-		$detector{"description"} = "Inside of support beam";
+		$detector{"description"} = "Inside of support beam $qnumber";
 		$detector{"pos"}         = "0*mm 0*mm 0*mm";
 		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 		$detector{"color"}       = "eeeeee";

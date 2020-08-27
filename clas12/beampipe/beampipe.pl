@@ -39,10 +39,14 @@ our $inches = 25.4;
 
 # materials
 require "./materials.pl";
+require "./band_materials.pl";
+require "./Targmaterials.pl";
 
 
 # vacuum line throughout the shields, torus and downstream
 require "./geometry.pl";
+#require "./band.pl";
+#require "./target.pl";
 
 my @allConfs = ("main");
 
@@ -52,12 +56,15 @@ foreach my $conf ( @allConfs )
 	$configuration{"variation"} = $conf ;
 
 	# materials
-	materials();
+	target_materials();
+	band_materials();
 
 
 	# vacuum line throughout BAND, the CVT ebox, CND, and CTOF upstream of target
 	# temp includes Sarclay target
 	geometry();
+	#band();
+	#build_targets();
 }
 
 

@@ -238,8 +238,8 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 					$detector{"visible"}     = 1;
 					$detector{"style"}       = 1;
 					$detector{"ncopy"}       = $i;
-					$detector{"sensitivity"} = "cnd";
-					$detector{"hit_type"}    = "cnd";
+					$detector{"sensitivity"} = "cndlg";
+					$detector{"hit_type"}    = "cndlg";
 					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
 
@@ -260,8 +260,8 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 					$detector{"visible"}     = 1;
 					$detector{"style"}       = 1;
 					$detector{"ncopy"}       = $i;
-					$detector{"sensitivity"} = "cnd";
-					$detector{"hit_type"}    = "cnd";
+					$detector{"sensitivity"} = "cndlg";
+					$detector{"hit_type"}    = "cndlg";
 					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
 
@@ -309,8 +309,8 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 					$detector{"visible"}     = 1;
 					$detector{"style"}       = 1;
 					$detector{"ncopy"}       = $i;
-					$detector{"sensitivity"} = "cnd";
-					$detector{"hit_type"}    = "cnd";
+					$detector{"sensitivity"} = "cndlg";
+					$detector{"hit_type"}    = "cndlg";
 					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
 
@@ -331,8 +331,8 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 					$detector{"visible"}     = 1;
 					$detector{"style"}       = 1;
 					$detector{"ncopy"}       = $i;
-					$detector{"sensitivity"} = "cnd";
-					$detector{"hit_type"}    = "cnd";
+					$detector{"sensitivity"} = "cndlg";
+					$detector{"hit_type"}    = "cndlg";
 					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
 

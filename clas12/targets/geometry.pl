@@ -650,16 +650,16 @@ sub build_targets
 		$detector{"mfield"}		 = "hdicefield";
 		print_det(\%configuration, \%detector);
 
-		%detector = init_det();
-		$detector{"name"}        = "target_HDIce";
-		$detector{"mother"}      = "ttarget";
-		$detector{"description"} = "2 cm radius test target";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 12.5*mm 12.5*mm 0*deg 360*deg";
-		$detector{"material"}    = "solidHD";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
+		# %detector = init_det();
+		# $detector{"name"}        = "target_HDIce";
+		# $detector{"mother"}      = "ttarget";
+		# $detector{"description"} = "2 cm radius test target";
+		# $detector{"color"}       = "aa0000";
+		# $detector{"type"}        = "Tube";
+		# $detector{"dimensions"}  = "0*mm 12.5*mm 12.5*mm 0*deg 360*deg";
+		# $detector{"material"}    = "solidHD";
+		# $detector{"style"}       = "1";
+		# print_det(\%configuration, \%detector);
 
 		%detector = init_det();
 		$detector{"name"}        = "MgB2_cylinder";

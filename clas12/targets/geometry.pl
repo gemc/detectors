@@ -671,55 +671,6 @@ sub build_targets
 		$detector{"material"}    = "MgB2";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe_inside";
-		$detector{"mother"}      = "ttarget";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"pos"}         = "0*mm 0*mm 535.4*mm";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 45*mm 264.6*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe2_inside";
-		$detector{"mother"}      = "airPipe_inside";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"color"}       = "aaffff";
-		$detector{"pos"}         = "0*mm 0*mm 0.5*mm";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 10*mm 264.1*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe_outside";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"pos"}         = "0*mm 0*mm 838.4*mm";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 45*mm 38.4*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe2_outside";
-		$detector{"mother"}      = "airPipe_outside";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Tube";
-		$detector{"pos"}         = "0*mm 0*mm -0.5*mm";
-		$detector{"dimensions"}  = "0*mm 10*mm 37.1*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
 	}
 
 	if($thisVariation eq "longitudinal") {

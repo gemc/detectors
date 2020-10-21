@@ -6,6 +6,8 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
+use hit;
+use bank;
 use math;
 use materials;
 
@@ -38,14 +40,22 @@ our %configuration = load_configuration($ARGV[0]);
 our $inches = 25.4;
 
 # materials
-# require "./materials.pl";
 require "./band_materials.pl";
+
+# banks definitions
+require "./bank.pl";
+
+# hits definitions
+require "./hit.pl";
 
 # BAND with frame and shielding upstream of target
 
 require "./geometry.pl";
 
 my @allConfs = ("main");
+
+# bank definitions commong to all variations
+define_bank();
 
 foreach my $conf ( @allConfs )
 {
@@ -54,6 +64,9 @@ foreach my $conf ( @allConfs )
 
 	# materials
 	materials();
+
+	# hits
+	define_hit();
 
 	# BAND, frame, and lead shielding upstream of target
 	# Hole in mother volume allows beampipe to fit through BAND

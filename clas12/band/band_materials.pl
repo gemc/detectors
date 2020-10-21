@@ -5,13 +5,13 @@ our %configuration;
 
 sub materials
 {	
-	# EJ-200 Scintillant
+	# EJ-200 or BC-408 Scintillant
 	my %mat = init_mat();
 	$mat{"name"}          = "ej200";
 	$mat{"description"}   = "band scintillator material";
 	$mat{"density"}       = "1.023"; # g/cm^3 or g/cc
 	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "G4_C 0.524 G4_H 0.476";	
+	$mat{"components"}    = "G4_C 0.915 G4_H 0.085";	
 	print_mat(\%configuration, \%mat);
 
 #####
@@ -40,7 +40,7 @@ sub materials
 	$mat{"description"}   = "pmt shield material";
 	$mat{"density"}       = "8.7";  # 0.316 lb/in3 ~ 18.4375 g/cm3
 	$mat{"ncomponents"}   = "6";
-	$mat{"components"}    = "G4_Ni 0.806 G4_Fe 0.14 G4_Mo 0.0449 G4_Si 0.004 G4_Mn 0.005 G4_C 0.0001";
+	$mat{"components"}    = "G4_Ni 0.79080 G4_Fe 0.13069 G4_Mo 0.07202 G4_Si 0.00188 G4_Mn 0.00459 G4_C 0.00002";
 	print_mat(\%configuration, \%mat);
 
 #####
@@ -50,7 +50,7 @@ sub materials
 	$mat{"description"}   = "target  rohacell scattering chamber material";
 	$mat{"density"}       = "0.1";  # 100 mg/cm3
 	$mat{"ncomponents"}   = "4";
-	$mat{"components"}    = "G4_C 0.6465 G4_H 0.0784 G4_N 0.0839 G4_O 0.1912";
+	$mat{"components"}    = "G4_C 0.6429 G4_H 0.0065 G4_N 0.0973 G4_O 0.2533";
 	print_mat(\%configuration, \%mat);
 
 	# epoxy
@@ -76,8 +76,8 @@ sub materials
 	$mat{"name"}          = "G10";
 	$mat{"description"}   = "G10 - 1.70 g/cm3";
 	$mat{"density"}       = "1.70";
-	$mat{"ncomponents"}   = "4";  # 1 Si atom, 2 Oxygen, 3 Carbon, and 3 Hydrogen
-	$mat{"components"}    = "G4_Si 0.283 G4_O 0.323  G4_C 0.364  G4_H 0.030";
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "G4_SILICON_DIOXIDE 0.60 epoxy 0.40";
 	print_mat(\%configuration, \%mat);
 
 	# lHe gas
@@ -96,7 +96,7 @@ sub materials
 	$mat{"description"}   = "MuShield magnetic shielding material";
 	$mat{"density"}       = "8.747";  # 0.316 lb/in^3 ~ 8747 kg/m^3
 	$mat{"ncomponents"}   = "6";
-	$mat{"components"}    = "G4_C 0.0002 G4_Ni 0.8000 G4_Mn 0.0050 G4_Mo 0.0420 G4_Si 0.0035 G4_Fe 0.1493";
+	$mat{"components"}    = "G4_C 0.00004 G4_Ni 0.78654 G4_Mn 0.00460 G4_Mo 0.06751 G4_Si 0.00165 G4_Fe 0.13966";
 	print_mat(\%configuration, \%mat);
 
 	# MuMETAL(R) 

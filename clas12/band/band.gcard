@@ -15,6 +15,10 @@
         <detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  /> 
 </detector>
 
+        <!--  BAND (if necessary) shifted upstream by 30 mm -->
+        <detector name="band">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  /> 
+</detector>
+
     <!-- detector name="cadBeamlineFTOFF/" factory="CAD"/ -->
 
 

@@ -16,12 +16,40 @@ our %configuration = load_configuration($ARGV[0]);
 
 sub materials
 {
+	
+	if( $configuration{"variation"} eq "michel") {
+	
+		print "Materials: configuration ", $configuration{"variation"}, "\n";
+
+	} elsif( $configuration{"variation"} eq "rgf_spring2020") {
+	
+		print "Materials: configuration ", $configuration{"variation"}, "\n";
+	}
+
 	my %mat = init_mat();
 	$mat{"name"}          = "myEpoxy";
 	$mat{"description"}   = "micromegas epoxy";
 	$mat{"density"}       = "1.16";
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "C 15 H 32 N 2 O 4"; #not sure about the formula... old...
+	print_mat(\%configuration, \%mat);
+
+	%mat = init_mat();
+	my $fmtGroundDriftTransparency_Density = 0.0784*8.96; # for fmt
+	$mat{"name"}          = "myfmtSlimGroundDrift";
+	$mat{"description"}   = "micromegas fmt slim ground drift are copper grid";
+	$mat{"density"}       = "$fmtGroundDriftTransparency_Density";
+	$mat{"ncomponents"}   = "1";
+	$mat{"components"}    = "G4_Cu 1";
+	print_mat(\%configuration, \%mat);
+
+	%mat = init_mat();
+	my $fmtElecDriftTransparency_Density = 0.75*8.96; # for fmt
+	$mat{"name"}          = "myfmtSlimElecDrift";
+	$mat{"description"}   = "micromegas fmt slim elec drift are copper grid";
+	$mat{"density"}       = "$fmtElecDriftTransparency_Density";
+	$mat{"ncomponents"}   = "1";
+	$mat{"components"}    = "G4_Cu 1";
 	print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
@@ -149,7 +177,7 @@ sub materials
 	$mat{"description"}   = "micromegas fmt neon ethane CF4 gas";
 	$mat{"density"}       = "0.00117";
 	$mat{"ncomponents"}   = "4";
-	$mat{"components"}    = "G4_Ne 0.79 G4_H 0.022121 G4_C 0.101529 G4_F 0.08635";
+	$mat{"components"}    = "G4_Ar 0.79 G4_H 0.022121 G4_C 0.101529 G4_F 0.08635";
 	print_mat(\%configuration, \%mat);
 
 	%mat = init_mat();
@@ -195,6 +223,15 @@ sub materials
 	$mat{"name"}          = "myRohacell"; # found in gemc materials database as rohacell31... not sure if it is the good model
 	$mat{"description"}   = "Rohacell";
 	$mat{"density"}       = "$fmtCompressedRohacellDensity";
+	$mat{"ncomponents"}   = "4";
+	$mat{"components"}    = "G4_C 0.6463 G4_H 0.0784 G4_N 0.0839 G4_O 0.1914";
+	print_mat(\%configuration, \%mat);
+
+	%mat = init_mat();
+	my $fmtFlangeRohacellDensity = 0.071; # Rohacell 71XT (message du labo Rui le 13/06/2016).
+	$mat{"name"}          = "myFlangeRohacell"; # found in gemc materials database as rohacell31... not sure if it is the good model
+	$mat{"description"}   = "Rohacell to seal the gas";
+	$mat{"density"}       = "$fmtFlangeRohacellDensity";
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "G4_C 0.6463 G4_H 0.0784 G4_N 0.0839 G4_O 0.1914";
 	print_mat(\%configuration, \%mat);

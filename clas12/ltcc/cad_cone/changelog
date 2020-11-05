@@ -1,8 +1,0 @@
-3/2/16
-- added mirror surfaces and reflectivity
-- changed mirrors to latest gemc mirror definitions
-- elliptical mirrors finalized
-- added pmts
-
-3/1/16
-- added ltcc.pl script to do geometry, material, banks and hits

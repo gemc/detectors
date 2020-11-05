@@ -1,7 +1,7 @@
 <gcard>
 
-	<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
-	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
+	<detector name="experiments/clas12/targets/cade/"   factory="CAD"/>
+	<detector name="experiments/clas12/targets/target"  factory="TEXT" variation="lH2"/>
 
 
 	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOn"/>

@@ -14,7 +14,7 @@ sub define_hit
 	$hit{"description"}     = "ltcc hit definitions";
 	$hit{"identifiers"}     = "sector side segment nphe";
 	$hit{"signalThreshold"} = "0.5*MeV";
-	$hit{"timeWindow"}      = "5*ns";
+	$hit{"timeWindow"}      = "50*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "1*cm";
 	$hit{"delay"}           = "50*ns";

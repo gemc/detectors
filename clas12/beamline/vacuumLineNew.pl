@@ -210,13 +210,11 @@ sub vacuumLine()
 	print_det(\%configuration, \%detector);
 
 
-	my $gapZpos = 376;
-	my $gapLength = 249;
+	my $gapZpos = 271.8;
+	my $gapLength = 302;
 
-
-	if ($configuration{"variation"} eq "FTOff")
-	{
-		$gapLength = 39;
+	if ($configuration{"variation"} eq "FTOff") {
+		$gapLength = 92.5;
 	}
 
 	my $gapLengthm = $gapLength + 1;

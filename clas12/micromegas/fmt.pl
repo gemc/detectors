@@ -11,8 +11,8 @@ my $envelope = 'FMT';
 
 my @starting_point =();
 
-my $fmt_ir 	       	= $parameters{"FMT_mothervol_InnerRadius"};
-my $fmt_or 		= $parameters{"FMT_mothervol_OutRadius"};
+my $fmt_ir 	= $parameters{"FMT_mothervol_InnerRadius"};
+my $fmt_or 	= $parameters{"FMT_mothervol_OutRadius"};
 
 # Mother volume zmin = BMT MV zmax = end of BMT closing plate
 # Mother volume zmax to take into account innerscrews extension downstream D6 (about 3.5 mm) >= FMT_zpos_layer6 + 7.6 + 3.5
@@ -22,16 +22,7 @@ my $fmt_starting        = ($parameters{"FMT_mothervol_zmax"} + $parameters{"FMT_
 my $fmt_zmin		= $parameters{"FMT_mothervol_zmin"};
 
 #my $Dtheta              = 60.0; # rotation angle of each disk wrt to the preceding one
-my $nlayer	      	= $parameters{"FMT_nlayer"};
 
-$starting_point[0] 	= $parameters{"FMT_zpos_layer1"}; 
-# should be FMT_mothervol_zmin + 2 mm (FMT support thickness upstream of D1)
-# then nominally, interdisks space = 11.9 mm except between D3 and D4 13.9 mm.
-$starting_point[1] 	= $parameters{"FMT_zpos_layer2"};
-$starting_point[2] 	= $parameters{"FMT_zpos_layer3"};
-$starting_point[3] 	= $parameters{"FMT_zpos_layer4"};
-$starting_point[4] 	= $parameters{"FMT_zpos_layer5"};
-$starting_point[5] 	= $parameters{"FMT_zpos_layer6"};
 
 my $Det_RMin 	        = $parameters{"FMT_DetInnerRadius"};
 my $Det_RMax 	        = $parameters{"FMT_DetOuterRadius"};
@@ -46,6 +37,10 @@ my $innerPeek_RMax 	= $parameters{"FMT_innerPEEKOuterRadius"};
 my $outerPeek_RMin 	= $parameters{"FMT_outerPEEKInnerRadius"};
 my $outerPeek_RMax 	= $parameters{"FMT_outerPEEKOuterRadius"};
 
+my $innerRohacell_RMin 	= 0.0;
+my $innerRohacell_RMax 	= 0.0;
+my $outerRohacell_RMin 	= 0.0;
+my $outerRohacell_RMax 	= 0.0;
 
 my $CuGround_Dz 	= 0.5*$parameters{"FMT_CuGround_Dz"}; # half width
 my $PCBGround_Dz 	= 0.5*$parameters{"FMT_PCBGround_Dz"}; # half width
@@ -79,8 +74,13 @@ my $mesh_material    	= 'myfmtMMMesh';      # inox
 my $air_material	= 'myAir';
 my $kapton_material	= 'myKapton';
 my $rohacell_material 	= 'myRohacell';
+my $epoxy_material      = 'myEpoxy';
+my $flangerohacell_material = 'myFlangeRohacell';
 my $resist_material	= 'myfmtResistPaste'; # for resistive strips
 my $innerscrew_material = 'myfmtInnerScrew' ; # effective screws "in" the inner peek ring
+my $slimelec_material   = 'myfmtSlimElecDrift';
+my $slimground_material   = 'myfmtSlimGroundDrift';
+
 #define myGlue...
 # pillars holding the mesh neglected
 #my $drift_material   	= 'myMMMylar';
@@ -136,11 +136,24 @@ sub rot_support
 
 sub define_fmt
 {
-	make_fmt();
-	
+	our $nlayer	 = $parameters{"FMT_nlayer"};
+
+	$starting_point[0] 	= $parameters{"FMT_zpos_layer1"};
+	# should be FMT_mothervol_zmin + 2 mm (FMT support thickness upstream of D1)
+	# then nominally, interdisks space = 11.9 mm except between D3 and D4 13.9 mm.
+	$starting_point[1] 	= $parameters{"FMT_zpos_layer2"};
+	$starting_point[2] 	= $parameters{"FMT_zpos_layer3"};
+
+	print "Number of layers: ", $nlayer, " ", $configuration{"variation"}, " First Layer zstart: ", $starting_point[0] , "\n";
+
 	if( $configuration{"variation"} eq "michel") {
-		
-		
+
+		$starting_point[3] 	= $parameters{"FMT_zpos_layer4"};
+		$starting_point[4] 	= $parameters{"FMT_zpos_layer5"};
+		$starting_point[5] 	= $parameters{"FMT_zpos_layer6"};
+
+		make_fmt();
+
 		for(my $l = 0; $l < $nlayer; $l++) {
 			place_cuground($l);
 			place_pcbground($l);
@@ -169,16 +182,55 @@ sub define_fmt
 			place_innerscrews($l);
 			if ( $l == 2 || $l == 5) {place_supports36($l);}
 			if ( $l == 0 || $l == 1 || $l == 3 || $l == 4 )  {place_supports1245($l);}
-			if ( $l < 5) {place_spacers($l);}
-			
+			if ( $l < 5) { place_spacers($l); }
 		}
+
+	} elsif( $configuration{"variation"} eq "rgf_spring2020") {
+	    $DriftCuElectrode_Dz = 0.5*$parameters{"FMTSlim_DriftCuElectrode_Dz"}; # half width of slim version
+	    $DriftCuGround_Dz = 0.5*$parameters{"FMTSlim_DriftCuElectrode_Dz"}; # half width of slim version
+	    $DriftPCB_Dz = 0.5*$parameters{"FMTSlim_DriftKapton_Dz"}; # half width of slim version
+	    
+            $innerRohacell_RMin 	= $parameters{"FMT_innerROHACELLInnerRadius"};
+            $innerRohacell_RMax 	= $parameters{"FMT_innerROHACELLOuterRadius"};
+            $outerRohacell_RMin 	= $parameters{"FMT_outerROHACELLInnerRadius"};
+            $outerRohacell_RMax 	= $parameters{"FMT_outerROHACELLOuterRadius"};
+	    
+		make_fmt();
+
+		for($l = 0; $l < $nlayer; $l++) {
+			place_cuground($l);
+			place_pcbground($l);
+			place_innerFR4($l);
+			place_rohacell($l);
+			place_outerFR4($l);
+			place_pcbdetector($l);
+			place_strips($l);
+			place_kapton($l);
+			place_resist($l);
+			place_innerPhRes128($l);
+			place_gas1($l);
+			place_outerPhRes128($l);
+			place_mesh($l);
+			place_innerPhRes64($l);
+			place_outerPhRes64($l);
+			place_innerpeek($l);
+			place_gas2($l);
+			place_outerpeek($l);
+			place_driftcuelectrode($l);
+			place_driftpcb($l);
+			place_driftcuground($l);
+			place_hvcovers($l);
+			place_connectors($l);
+			place_cables($l);
+			place_innerscrews($l);
+			if ( $l == 2 ) {place_supports36($l);}
+			if ( $l == 0 || $l == 1)  {place_supports1245($l);}
+			if ( $l < 2) { place_spacers($l); }
+		}
+
 	}
 	
-	if( $configuration{"variation"} eq "activeOnly") {
-		for(my $l = 0; $l < $nlayer; $l++) {
-			place_gas2($l);
-		}
-	}
+
 	
 	
 }
@@ -205,6 +257,28 @@ sub make_fmt
 	$detector{"style"}       = 0;
 	
 	print_det(\%configuration, \%detector);
+
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+
+		my $pvc_supportIR = 240; # mm
+		my $pvc_supportOR = 245; # mm
+		my $pvc_supportDZ = 280; # mm
+
+		%detector = init_det();
+		$detector{"name"}        = "fmt_pvcSupport";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Forward Micromegas Vertex Tracker";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "$pvc_supportIR*mm $pvc_supportOR*mm $pvc_supportDZ*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_POLYVINYL_CHLORIDE";
+		$detector{"color"}       = "bbbbff";
+		$detector{"mfield"}      = "no";
+		$detector{"style"}       = 1;
+
+		print_det(\%configuration, \%detector);
+	}
+
 }
 
 sub place_cuground
@@ -747,6 +821,9 @@ sub place_innerpeek
 	my $tpos      = "0*mm 0*mm";
 	my $PRMin     = $innerPeek_RMin;
 	my $PRMax     = $innerPeek_RMax;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $PRMax    = $innerRohacell_RMax;
+	}
 	my $PDz       = $Peek_Dz;
 	
 	my %detector = init_det();
@@ -759,6 +836,9 @@ sub place_innerpeek
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $peek_material;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $detector{"material"}    = $flangerohacell_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -822,6 +902,9 @@ sub place_outerpeek
 	my $tpos      = "0*mm 0*mm";
 	my $PRMin     = $outerPeek_RMin;
 	my $PRMax     = $outerPeek_RMax;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $PRMin    = $outerRohacell_RMin;
+	}
 	my $PDz       = $Peek_Dz;
 	
 	my %detector = init_det();
@@ -834,6 +917,9 @@ sub place_outerpeek
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $alu_material;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $detector{"material"}    = $flangerohacell_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -871,6 +957,9 @@ sub place_driftcuelectrode
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $copper_material;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $detector{"material"}    = $slimelec_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -906,6 +995,9 @@ sub place_driftpcb
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $pcb_material;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $detector{"material"}    = $kapton_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -941,6 +1033,9 @@ sub place_driftcuground
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm 0*deg 360*deg";
 	$detector{"material"}    = $copper_material;
+	if( $configuration{"variation"} eq "rgf_spring2020") {
+	    $detector{"material"}    = $slimground_material;
+	}
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = 1;
 	$detector{"pMany"}       = 1;
@@ -992,6 +1087,9 @@ sub place_hvcovers
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
+			if( $configuration{"variation"} eq "rgf_spring2020") {
+			    $detector{"material"}    = $peek_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1192,6 +1290,9 @@ sub place_innerscrews
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "0.0*mm $PRadius*mm $PDz*mm 0.0*deg 360.0*deg";
 			$detector{"material"}    = $innerscrew_material;
+			if( $configuration{"variation"} eq "rgf_spring2020") {
+			    $detector{"material"}    = $epoxy_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1248,6 +1349,9 @@ sub place_supports36
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
+			if( $configuration{"variation"} eq "rgf_spring2020") {
+			    $detector{"material"}    = $peek_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1311,6 +1415,9 @@ sub place_supports1245
 			$detector{"type"}        = "Tube";
 			$detector{"dimensions"}  = "$PRMin*mm $PRMax*mm $PDz*mm $Stheta*deg $Dtheta*deg";
 			$detector{"material"}    = $alu_material;
+			if( $configuration{"variation"} eq "rgf_spring2020") {
+			    $detector{"material"}    = $peek_material;
+			}
 			$detector{"mfield"}      = "no";
 			$detector{"ncopy"}       = 1;
 			$detector{"pMany"}       = 1;
@@ -1329,7 +1436,8 @@ sub place_spacers
 	my $layer_no       = $l + 1;
 	
 	# units = mm, deg. ;
-	# these spacers ("entretoises") are screwed on the supports; their length is such as to fill the available space between 2 supports = 11.9 - 5 = 6.9 mm (13.9 - 5 = 8.9 mm between D3 and D4 because of extra bolt)
+	# these spacers ("entretoises") are screwed on the supports;
+	# their length is such as to fill the available space between 2 supports = 11.9 - 5 = 6.9 mm (13.9 - 5 = 8.9 mm between D3 and D4 because of extra bolt)
 	# they are placed on top of support elements 2 and 3, which extend 3 mm beyond disk entrance.
 	# 4 identical tubes per layer: 4.6 mm diameter as an average between threaded part at 3 mm and hexagonal head at 6mm ( + 1mm long cylinder at 5mm diameter)
 	# approximate brass by copper

@@ -24,7 +24,7 @@ my @vinframe  = ($vframe_x/2-0.25, $vframe_y/2, $vframe_z/2-0.25);
 my @vframepos = ($band_xpos - 1078.9, $band_xpos - 448.3, $band_xpos + 448.3, $band_xpos + 1078.9);
 my $align_x = 0;               # mm
 my $align_y = 0;               # mm
-my $align_z = 3608.71;         # mm
+my $align_z = -2308.71;        # mm
 
 my $STARTcart = -462.3;
 
@@ -35,7 +35,7 @@ sub build_bandMother
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Mother volume of BAND";
 	$detector{"pos"}         = "$align_x*mm $align_y*mm $align_z*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"rotation"}    = "0*deg 180*deg 0*deg";
 	$detector{"color"}       = "339999";
 	$detector{"type"}        = "Pgon";
 	$detector{"dimensions"}  = "-45*deg 360*deg 4*counts 3*counts 160*mm 160*mm 160*mm 1500*mm 1500*mm 1500*mm -462.3*mm 0*mm 900*mm";
@@ -57,17 +57,20 @@ sub build_scintillators
 		{
 			my $barnum      = 100*$j + $i;
 
-			my %detector = init_det();
+			my %detector125 = init_det();
 			# positioning
 			my $x      = $band_xpos;
 			my $y      = $band_ypos;
 			my $z      = $band_zpos;
 			my $xpos = $x;
-			my $ypos = $y - 73.69*($i-1);
+			my $ypos = $y - 73.03*($i-1);
 			my $zpos = $z - 76.75*($j-1);
 			my $xdim = $lbar_length/2;
 			my $ydim = 36;
 			my $zdim = 36;
+			my $sector = 0;
+			my $component = 0;
+			my $layer = $j;
 			$bcolor  = '007fff';
 
 			if($i<=10 || $i>=17) # long bars
@@ -86,19 +89,35 @@ sub build_scintillators
 						{$bcolor = '008000';}
 				}
 
+				if($i>3 && $i<=10)
+				{
+					$sector = 2;
+					$component = $i-3;
+				}
+				if($i>16)
+				{
+					$sector = 5;
+					$component = $i-16;
+				}
+
 				if($j==5 && $i>=16) {next;}
 				if($j==$NUM_LAYERS && $i>=16) {$zpos = $zpos + 72;}
-				$detector{"name"}        = "scintillator_$barnum";
-				$detector{"mother"}      = "band";
-				$detector{"description"} = "Scintillator $barnum";
-				$detector{"pos"}         = "$x*mm $ypos*mm $zpos*mm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = $bcolor;
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "$xdim*mm $ydim*mm $zdim*mm";
-				$detector{"material"}    = "ej200";
-				$detector{"style"}       = 1;
-				print_det(\%configuration, \%detector);
+				$detector125{"name"}        = "scintillator_$barnum";
+				$detector125{"mother"}      = "band";
+				$detector125{"description"} = "Scintillator $barnum";
+				$detector125{"pos"}         = "$x*mm $ypos*mm $zpos*mm";
+				$detector125{"rotation"}    = "0*deg 0*deg 0*deg";
+				$detector125{"color"}       = $bcolor;
+				$detector125{"type"}        = "Box";
+				$detector125{"dimensions"}  = "$xdim*mm $ydim*mm $zdim*mm";
+				$detector125{"material"}    = "ej200";
+				$detector125{"style"}       = 1;
+				#$detector125{"ncopy"}       = $barnum;
+				$detector125{"sensitivity"} = "band";
+				$detector125{"hit_type"}    = "band";
+				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
+				$detector125{"identifiers"} = $id_string;
+				print_det(\%configuration, \%detector125);
 
 				for(my $k=1; $k<=2; $k++) # pmt shields
 				{
@@ -107,25 +126,26 @@ sub build_scintillators
 						{$dx = 947.4;}
 					my $xp = $x - $dx;
 
-					$detector{"name"}        = "pmtshield_$barnum L";
+					my %detectors1      = init_det();
+					$detectors1{"name"}        = "pmtshield_$barnum L";
 					my $colour               = "111111";
 					if($k==2)
 					{
 						if($j==$NUM_LAYERS) {last;}
 						$xp = $x + $dx;
-						$detector{"name"}        = "pmtshield_$barnum R";
+						$detectors1{"name"}        = "pmtshield_$barnum R";
 						$colour                  = "771111";
 					}
-					$detector{"mother"}      = "band";
-					$detector{"description"} = "Mu metal shield for pmt $barnum";
-					$detector{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
-					$detector{"rotation"}    = "0*deg 90*deg 0*deg";
-					$detector{"color"}       = $colour;
-					$detector{"type"}        = "Tube";
-					$detector{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
-					$detector{"material"}    = "conetic";
-					$detector{"style"}       = 1;
-					print_det(\%configuration, \%detector);
+					$detectors1{"mother"}      = "band";
+					$detectors1{"description"} = "Mu metal shield for pmt $barnum";
+					$detectors1{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
+					$detectors1{"rotation"}    = "0*deg 90*deg 0*deg";
+					$detectors1{"color"}       = $colour;
+					$detectors1{"type"}        = "Tube";
+					$detectors1{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
+					$detectors1{"material"}    = "mushield";
+					$detectors1{"style"}       = 1;
+					print_det(\%configuration, \%detectors1);
 				} # pmt shields
 
 			} # long bars
@@ -144,69 +164,84 @@ sub build_scintillators
 				my $xpo = "753.5";
 				my $ypo = 200 - 72*$i;
 				my $zpo = $z + 72*($j-1);
-				$detector{"name"}        = "scintillator_$barnum B";
-				$detector{"mother"}      = "band";
-				$detector{"description"} = "Short Bars $barnum B";
-				$detector{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "$bcolor";
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "255*mm 36*mm $zdim*mm";
-				$detector{"material"}    = "ej200";
-				$detector{"style"}       = 1;
-				print_det(\%configuration, \%detector);
+				$sector = 3;
+				$component = $i-10;;
+				my %detector3 = init_det();
+				$detector3{"name"}        = "scintillator_$barnum B";
+				$detector3{"mother"}      = "band";
+				$detector3{"description"} = "Short Bars $barnum B";
+				$detector3{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
+				$detector3{"rotation"}    = "0*deg 0*deg 0*deg";
+				$detector3{"color"}       = "$bcolor";
+				$detector3{"type"}        = "Box";
+				$detector3{"dimensions"}  = "255*mm 36*mm $zdim*mm";
+				$detector3{"material"}    = "ej200";
+				$detector3{"style"}       = 1;
+				$detector3{"sensitivity"} = "band";
+				$detector3{"hit_type"}    = "band";
+				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
+				$detector3{"identifiers"} = $id_string;
+				print_det(\%configuration, \%detector3);
 			
 				$bcolor = '32cd32';
 				if($j==$NUM_LAYERS)
 					{$bcolor = '007fff';}
 				# Short Bars
 				$xpo = "-753.5";
-				$detector{"name"}        = "scintillator_$barnum A";
-				$detector{"mother"}      = "band";
-				$detector{"description"} = "Short Bars $barnum A";
-				$detector{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
-				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector{"color"}       = "$bcolor";
-				$detector{"type"}        = "Box";
-				$detector{"dimensions"}  = "255*mm 36*mm $zdim*mm";
-				$detector{"material"}    = "ej200";
-				$detector{"style"}       = 1;
-				print_det(\%configuration, \%detector);
+				$sector = 4;
+				$component = $i-10;;
+				my %detector4 = init_det();
+				$detector4{"name"}        = "scintillator_$barnum A";
+				$detector4{"mother"}      = "band";
+				$detector4{"description"} = "Short Bars $barnum A";
+				$detector4{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
+				$detector4{"rotation"}    = "0*deg 0*deg 0*deg";
+				$detector4{"color"}       = "$bcolor";
+				$detector4{"type"}        = "Box";
+				$detector4{"dimensions"}  = "255*mm 36*mm $zdim*mm";
+				$detector4{"material"}    = "ej200";
+				$detector4{"style"}       = 1;
+				$detector4{"sensitivity"} = "band";
+				$detector4{"hit_type"}    = "band";
+				$id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
+				$detector4{"identifiers"} = $id_string;
+				print_det(\%configuration, \%detector4);
 
 				for(my $k=1; $k<=4; $k++) # pmt shields
 				{
 					if($k>=3 && $j==$NUM_LAYERS){last;}
 					my $xp = $x - 1138.74;
-					$detector{"name"}        = "pmtshield_$barnum Lout";
+					my %detectors2 = init_det();
+					$detectors2{"name"}        = "pmtshield_$barnum Lout";
 					my $colour               = "111111";
 					if($k==2)
 					{
 						$xp = $x + 1138.74;
-						$detector{"name"}        = "pmtshield_$barnum Rout";
+						$detectors2{"name"}        = "pmtshield_$barnum Rout";
 						$colour                  = "771111";
 					}
 					if($k==3)
 					{
 						$xp = $x - 368.263;
-						$detector{"name"}        = "pmtshield_$barnum Rin";
+						$detectors2{"name"}        = "pmtshield_$barnum Rin";
 						$colour                  = "771111";
 					}
 					if($k==4)
 					{
 						$xp = $x + 368.263;
-						$detector{"name"}        = "pmtshield_$barnum Lin";
+						$detectors2{"name"}        = "pmtshield_$barnum Lin";
 						$colour                  = "111111";
 					}
-					$detector{"mother"}      = "band";
-					$detector{"description"} = "Mu metal shield for pmt $barnum";
-					$detector{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
-					$detector{"rotation"}    = "0*deg 90*deg 0*deg";
-					$detector{"color"}       = $colour;
-					$detector{"type"}        = "Tube";
-					$detector{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
-					$detector{"material"}    = "conetic";
-					$detector{"style"}       = 1;
-					print_det(\%configuration, \%detector);
+					$detectors2{"mother"}      = "band";
+					$detectors2{"description"} = "Mu metal shield for pmt $barnum";
+					$detectors2{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
+					$detectors2{"rotation"}    = "0*deg 90*deg 0*deg";
+					$detectors2{"color"}       = $colour;
+					$detectors2{"type"}        = "Tube";
+					$detectors2{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
+					$detectors2{"material"}    = "mushield";
+					$detectors2{"style"}       = 1;
+					print_det(\%configuration, \%detectors2);
 				} # pmt shields
 
 			} # short bars
@@ -238,17 +273,18 @@ sub build_frame
 		print_det(\%configuration, \%detector);
 
 		# Inside of support beam
-		$detector{"name"}        = "support_inside_$qnumber";
-		$detector{"mother"}      = "support_$qnumber";
-		$detector{"description"} = "Inside of support beam $qnumber";
-		$detector{"pos"}         = "0*mm 0*mm 0*mm";
-		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-		$detector{"color"}       = "eeeeee";
-		$detector{"type"}        = "Box";
-		$detector{"dimensions"}  = "$vinframe[0]*inches $vinframe[1]*mm $vinframe[2]*inches";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
+		my %detector2 = init_det();
+		$detector2{"name"}        = "support_inside_$qnumber";
+		$detector2{"mother"}      = "support_$qnumber";
+		$detector2{"description"} = "Inside of support beam";
+		$detector2{"pos"}         = "0*mm 0*mm 0*mm";
+		$detector2{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector2{"color"}       = "eeeeee";
+		$detector2{"type"}        = "Box";
+		$detector2{"dimensions"}  = "$vinframe[0]*inches $vinframe[1]*mm $vinframe[2]*inches";
+		$detector2{"material"}    = "G4_AIR";
+		$detector2{"style"}       = 1;
+		print_det(\%configuration, \%detector2);
 	}
 }
 
@@ -281,17 +317,18 @@ sub build_shielding
 		$detector{"style"}       = 0;
 		print_det(\%configuration, \%detector);
 
-		$detector{"name"}        = "leadblock_$q";
-		$detector{"mother"}      = "leadshield_$q";
-		$detector{"description"} = "Lead block inside shield $q";
-		$detector{"pos"}         = "0*mm 0*mm 0*mm";
-		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-		$detector{"color"}       = "555555";
-		$detector{"type"}        = "Box";
-		$detector{"dimensions"}  = "$sd*inches $sy*inches $sb*inches";
-		$detector{"material"}    = "G4_Pb";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
+		my %detector2 = init_det();
+		$detector2{"name"}        = "leadblock_$q";
+		$detector2{"mother"}      = "leadshield_$q";
+		$detector2{"description"} = "Lead block inside shield $q";
+		$detector2{"pos"}         = "0*mm 0*mm 0*mm";
+		$detector2{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector2{"color"}       = "555555";
+		$detector2{"type"}        = "Box";
+		$detector2{"dimensions"}  = "$sd*inches $sy*inches $sb*inches";
+		$detector2{"material"}    = "G4_Pb";
+		$detector2{"style"}       = 1;
+		print_det(\%configuration, \%detector2);
 
 	}
 }

@@ -1,16 +1,25 @@
 <gcard>
-	<detector name="pcal" factory="TEXT" variation="original"/>
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
 	
+	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
+	<detector name="pcal" factory="TEXT" variation="default"/>
+
+
 	<option name="geometry" value="1400x1200"/>
+
+	<option name="INTEGRATEDRAW"          value="ftof"/>
+
+
+	<option name="BEAM_P"        value="pi-, 6*GeV, 22.5*deg, 0*deg"/>
+	<option name="SPREAD_P"      value="4*GeV, 10*deg, 180*deg"/>
+	<option name="BEAM_V"        value="(0,0,0)cm"/>
+	<option name="SPREAD_V"      value="(0,2.5)cm"/>
+
+	<option name="SCALE_FIELD" value="TorusSymmetric, -1"/>
+
+
+	<option name="OUTPUT"        value="evio, out.ev"/>
 	
-	<option name="INTEGRATEDRAW" value="pcal"/>
-	
-	<option name="BEAM_P"   value="e-, 8.0*GeV, 20*deg, 6*deg"/>
-	<option name="SPREAD_P" value="0.0*GeV, 0*deg, 180*deg"/>
-	
-	<option name="OUTPUT" value="evio, out.ev"/>
-	<option name="SAVE_ALL_MOTHERS" value="1"/>
-	
-	<option name="PHYSICS" value="STD + FTFP_BERT"/>
+	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
 </gcard>
+

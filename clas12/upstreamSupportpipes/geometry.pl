@@ -4,6 +4,7 @@ use warnings;
 our %configuration;
 
 my $shift = 130;
+my $STARTcart = -462.3;
 
 sub geometry()
 {
@@ -112,38 +113,40 @@ sub build_SVTpipe()
 
 sub build_SVTcart()
 {
+	my $zcart = $STARTcart + 381;
 	my %detector = init_det();
 
 	$detector{"name"}        = "mounting_tube_plate"; #############MOUNTING_TUBE#############################
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Mounting Tube Plate";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -272.494*mm 3527.41*mm";
+	$detector{"pos"}         = "0*mm -272.494*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "317.5*mm 6.35*mm 381*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 12.7;
 	$detector{"name"}        = "mounting_tube_plate001";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Mounting Tube Plate001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -221.694*mm 3159.11*mm"; #y=-12.144
+	$detector{"pos"}         = "0*mm -221.694*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "177.8*mm 44.45*mm 12.7*mm"; #x=317.5 y=254
+	$detector{"dimensions"}  = "177.8*mm 44.45*mm 12.7*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
 	$detector{"name"}        = "mounting_tube_plate001alex";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Mounting Tube Plate001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "247.65*mm -12.144*mm 3159.11*mm";
+	$detector{"pos"}         = "247.65*mm -12.144*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "69.85*mm 254*mm 12.7*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -151,24 +154,24 @@ sub build_SVTcart()
 	print_det(\%configuration, \%detector);
 
 	$detector{"name"}        = "mounting_tube_plate001james";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Mounting Tube Plate001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-247.65*mm -12.144*mm 3159.11*mm";
+	$detector{"pos"}         = "-247.65*mm -12.144*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "69.85*mm 254*mm 12.7*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-
+	$zcart = $STARTcart + 393.7; #
 	$detector{"name"}        = "adjustment_plate";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Adjustment Plate";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -514.35*mm 3540.11*mm";
+	$detector{"pos"}         = "0*mm -514.35*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "317.5*mm 6.35*mm 368.3*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -180,67 +183,72 @@ sub build_SVTcart()
 	$detector{"description"} = "Adjustment Plate hole";
 	$detector{"color"}       = "eeeeee";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm 0*mm -254*mm"; # z=3286.11
+	$detector{"pos"}         = "0*mm 0*mm -254*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "165.1*mm 6.35*mm 114.3*mm";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 63.5; 
 	$detector{"name"}        = "gusset006vert"; #################GUSSET
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset006";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "304.35*mm -12.144*mm 3209.91*mm";
+	$detector{"pos"}         = "304.35*mm -12.144*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 254*mm 38.1*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 431.8; 
 	$detector{"name"}        = "gusset006hori";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset006";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "304.35*mm -228.044*mm 3578.21*mm";
+	$detector{"pos"}         = "304.35*mm -228.044*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 38.1*mm 330.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 63.5; 
 	$detector{"name"}        = "gusset007vert";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset007";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-304.35*mm -12.144*mm 3209.91*mm";
+	$detector{"pos"}         = "-304.35*mm -12.144*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 254*mm 38.1*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 431.8; 
 	$detector{"name"}        = "gusset007hori";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset007";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-304.35*mm -228.044*mm 3578.21*mm";
+	$detector{"pos"}         = "-304.35*mm -228.044*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 38.1*mm 330.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 669.925; 
 	$detector{"name"}        = "shortstrut"; ###########################################SQUARETUBES======================================
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Short Strut";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "254*mm -596.9*mm 3816.335*mm";
+	$detector{"pos"}         = "254*mm -596.9*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "76.2*mm 76.2*mm 644.525*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -260,11 +268,11 @@ sub build_SVTcart()
 	print_det(\%configuration, \%detector);
 
 	$detector{"name"}        = "shortstrut001";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "Short Strut001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-254*mm -596.9*mm 3816.335*mm";
+	$detector{"pos"}         = "-254*mm -596.9*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "76.2*mm 76.2*mm 644.525*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -283,12 +291,13 @@ sub build_SVTcart()
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 736.6; 
 	$detector{"name"}        = "6x6x.25squaretubebrace";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "6x6x.25 Square Tube Brace";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -596.9*mm 3883.01*mm";
+	$detector{"pos"}         = "0*mm -596.9*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "177.8*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -319,12 +328,13 @@ sub build_SVTcart()
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 
+	$zcart = $STARTcart + 469.9; 
 	$detector{"name"}        = "6x6x.25squaretubeshort001";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "6x6x.25 Square Tube Short001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -596.9*mm 3616.31*mm";
+	$detector{"pos"}         = "0*mm -596.9*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "177.8*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -344,11 +354,11 @@ sub build_SVTcart()
 	print_det(\%configuration, \%detector);
 
 	$detector{"name"}        = "secondbeamds";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "second beam ds";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "908.05*mm -647.7*mm 3616.31*mm";
+	$detector{"pos"}         = "908.05*mm -647.7*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "577.85*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -368,11 +378,11 @@ sub build_SVTcart()
 	print_det(\%configuration, \%detector);
 
 	$detector{"name"}        = "secondbeamds001";
-	$detector{"mother"}      = "mom";
+	$detector{"mother"}      = "band";
 	$detector{"description"} = "second beam ds001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-908.05*mm -647.7*mm 3616.31*mm";
+	$detector{"pos"}         = "-908.05*mm -647.7*mm $zcart*mm";
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "577.85*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";

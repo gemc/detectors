@@ -7,6 +7,8 @@
     <detector name="supportpipes" factory="TEXT"/>
     <!-- detector name="cadBeamlineFTOFF/" factory="CAD"/ -->
 
+	<!--  Target and central detectors are all shifted upstream by 30 mm -->
+	<detector name="mom">    <position x="0*cm"  y="0*cm"  z="-3.00*cm"  />
 
 	<!-- detector name="vacuumline/" factory="CAD"/ -->
 

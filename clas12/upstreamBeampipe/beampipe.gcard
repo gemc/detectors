@@ -1,0 +1,24 @@
+<gcard>
+
+	<!-- detector name="../targets/target" factory="TEXT" variation="cad"/ -->
+	<!-- detector name="../targets/cad/" factory="CAD"/ -->
+
+
+    <detector name="beampipe" factory="TEXT"/>
+    <!-- detector name="cadBeamlineFTOFF/" factory="CAD"/ -->
+
+	<!--  Target and central detectors are all shifted upstream by 30 mm -->
+	<detector name="pipe">    <position x="0.12*cm"  y="0.11*cm"  z="-3.00*cm"  />
+
+	<!-- detector name="vacuumline/" factory="CAD"/ -->
+
+     <!-- detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/ -->
+
+	<!--
+    <detector name="../magnets/cad/" factory="CAD"/>
+	-->
+	
+    <option name="geometry" value="1300x800"/>
+
+
+</gcard>

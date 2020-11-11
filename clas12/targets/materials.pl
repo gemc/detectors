@@ -81,6 +81,19 @@ sub materials
 		$mat{"components"}    = "G4_Mg $Mg_mass_fraction G4_B $B_mass_fraction";
 		print_mat(\%configuration, \%mat);
 
+		#CTFE = C_2ClF_3
+		%mat = init_mat();
+		my $my_density = 2.135; # 2 C, 3 F, 1 Cl
+		my $C_mass_fraction=2*12/(2*12+3*19+35);
+		my $F_mass_fraction=3*19/(2*12+3*19+35);
+		my $Cl_mass_fraction=35/(2*12+3*19+35);
+		$mat{"name"}          = "Kel-F";
+		$mat{"description"}   = "Kel-F PCTFE target walls C_2ClF_3";
+		$mat{"density"}        = $my_density;  #2.10-2.17 g/cm3  has a dipole moment <—————————————
+		$mat{"ncomponents"}   = "3";
+		$mat{"components"}    = "G4_C $C_mass_fraction G4_Cl $Cl_mass_fraction G4_F $F_mass_fraction";
+		print_mat(\%configuration, \%mat);
+
 	}
 
 	if($thisVariation eq "longitudinal")

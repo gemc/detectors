@@ -1,6 +1,5 @@
 <gcard>
-	<detector name="bst" factory="TEXT" variation="java"/>
-	<detector name="../targets/target" factory="TEXT" variation="lH2"/>
+	<detector name="bst" factory="TEXT" variation="default"/>
 
 	<option name="geometry" value="1400x1200"/>
 
@@ -15,7 +14,7 @@
 	<option name="COSMICAREA" value="0*cm, 0*cm, 0*cm, 60*cm"/>
 	-->
 
-	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="OUTPUT" value="hipo,out.hipo"/>
 
 
 	<!-- hall field  -->

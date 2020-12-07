@@ -41,7 +41,7 @@ sub materials
 	print_mat(\%configuration, \%mat);
 	}
 
-	if($thisVariation eq "transverse")
+	if($thisVariation eq "hdIce")
 	{
 		#HDIce
 		%mat = init_mat();
@@ -89,10 +89,23 @@ sub materials
 		my $Cl_mass_fraction=35/(2*12+3*19+35);
 		$mat{"name"}          = "Kel-F";
 		$mat{"description"}   = "Kel-F PCTFE target walls C_2ClF_3";
-		$mat{"density"}        = $my_density;  #2.10-2.17 g/cm3  has a dipole moment <—————————————
+		$mat{"density"}        = $my_density;
 		$mat{"ncomponents"}   = "3";
 		$mat{"components"}    = "G4_C $C_mass_fraction G4_Cl $Cl_mass_fraction G4_F $F_mass_fraction";
 		print_mat(\%configuration, \%mat);
+
+		#Alloy of Cu-Ni
+		%mat = init_mat();
+		my $my_density = 8.95;
+		my $Cu_mass_fraction=0.7;
+		my $Ni_mass_fraction=0.3;
+		$mat{"name"}          = "Cu70Ni30";
+		$mat{"description"}   = "Cupronickel 70-30";
+		$mat{"density"}        = $my_density;
+		$mat{"ncomponents"}   = "2";
+		$mat{"components"}    = "G4_Cu $Cu_mass_fraction G4_Ni $Ni_mass_fraction";
+		print_mat(\%configuration, \%mat);
+
 
 	}
 

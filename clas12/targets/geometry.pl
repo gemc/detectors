@@ -637,40 +637,19 @@ sub build_targets
 
 	}
 
-	if($thisVariation eq "transverse") {
+	if($thisVariation eq "hdIce") {
 		my %detector = init_det();
-		$detector{"name"}        = "ttarget";
+		$detector{"name"}        = "hdIce_mother";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Target Container";
 		$detector{"color"}       = "22ff22";
 		$detector{"type"}        = "Box";
-		$detector{"dimensions"}  = "120*mm 120*mm 800*mm";
+		$detector{"dimensions"}  = "160*mm 160*mm 800*mm";
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
 		$detector{"mfield"}		 = "hdicefield";
 		print_det(\%configuration, \%detector);
 
-		# %detector = init_det();
-		# $detector{"name"}        = "target_HDIce";
-		# $detector{"mother"}      = "ttarget";
-		# $detector{"description"} = "2 cm radius test target";
-		# $detector{"color"}       = "aa0000";
-		# $detector{"type"}        = "Tube";
-		# $detector{"dimensions"}  = "0*mm 12.5*mm 12.5*mm 0*deg 360*deg";
-		# $detector{"material"}    = "solidHD";
-		# $detector{"style"}       = "1";
-		# print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "MgB2_cylinder";
-		$detector{"mother"}      = "ttarget";
-		$detector{"description"} = "MgB2 superconducting cylinder";
-		$detector{"color"}       = "ffffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "36*mm 43*mm 125*mm 0*deg 360*deg";
-		$detector{"material"}    = "MgB2";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
 	}
 
 	if($thisVariation eq "longitudinal") {

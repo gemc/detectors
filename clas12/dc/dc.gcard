@@ -1,7 +1,7 @@
 <gcard>
 
-	<detector name="dc" factory="TEXT" variation="java"/>
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="original"/>
+	<detector name="dc" factory="TEXT" variation="default"/>
+	<detector name="../fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
 
    <option name="geometry" value="1400x1000"/>
 	
@@ -9,7 +9,7 @@
 <!--	<option name="SPREAD_P"   value="1.0*GeV, 15*deg, 180*deg"/> -->
 	<option name="INTEGRATEDRAW" value="dc"/>
 	
-	<option name="OUTPUT" value="evio, out.ev"/>
+	<option name="OUTPUT" value="hipo, out.hipo"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
 

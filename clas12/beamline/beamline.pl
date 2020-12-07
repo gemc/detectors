@@ -43,7 +43,7 @@ require "./materials.pl";
 
 # vacuum line throughout the shields, torus and downstream
 require "./vacuumLineNew.pl";
-require "./ELMOlineNew.pl";
+require "./ELMOline.pl";
 require "./rghline.pl";
 
 my @allConfs = ("FTOn", "FTOff","ELMO","rghFTOut","rghFTOn");

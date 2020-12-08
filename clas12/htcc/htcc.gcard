@@ -11,4 +11,7 @@
 	<option name="OUTPUT" value="hipo, out.hipo"/>
 
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
+	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
+
 </gcard>

@@ -27,10 +27,10 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "Always 1");
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "paddle number");
 	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "side of PMT");
-	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC value");
 	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "tdc*24.0/1000");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     6, "Di", "pedestal");
 	insert_bank_variable(\%configuration, $bankname, "TDC_order",    7, "Di", "side of PMT + 2");
-	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      8, "Di", "TDC");
+	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      8, "Di", "TDC value");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }

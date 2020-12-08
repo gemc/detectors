@@ -23,14 +23,19 @@ sub define_bank
 {
 
 	# uploading the hit definition
-	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "clas12 sector");
-	insert_bank_variable(\%configuration, $bankname, "side",         2, "Di", "left or right index");
-	insert_bank_variable(\%configuration, $bankname, "segment",      3, "Di", "segment");
-	insert_bank_variable(\%configuration, $bankname, "adc",          4, "Di", "adc");
-	insert_bank_variable(\%configuration, $bankname, "time",         5, "Dd", "average time of the hit");
-	insert_bank_variable(\%configuration, $bankname, "nphe",         6, "Di", "number of photoelectrons arrived");
-	insert_bank_variable(\%configuration, $bankname, "npheD",        7, "Di", "number of photoelectrons detected");
+	insert_bank_variable(\%configuration, $bankname, "bankid",   $bankId, "Di", "$bankname bank ID");
+
+	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector (1-6)");
+	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "half sector (1 or 2)");
+	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "pmt (1-18)");
+	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "always 0");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC integral from pulse fit");
+	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "time from pulse fit");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis");
+	insert_bank_variable(\%configuration, $bankname, "TDC_order",    8, "Di", "always 0");
+	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      9, "Di", "TDC value");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
+
+
 }
 

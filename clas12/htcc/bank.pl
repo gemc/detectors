@@ -36,6 +36,5 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      9, "Di", "TDC value");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 
-
 }
 

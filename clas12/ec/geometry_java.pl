@@ -230,8 +230,8 @@ sub build_strips
 		$detector{"color"}       = $colors[$iview-1];
 		$detector{"material"}    = "scintillator";
 		$detector{"style"}       = 1;
-		$detector{"sensitivity"} = "ec";
-		$detector{"hit_type"}    = "ec";
+		$detector{"sensitivity"} = "ecal";
+		$detector{"hit_type"}    = "ecal";
 		$detector{"identifiers"} = "sector manual $sector layer manual $hipoLayer strip manual $istrip";
 
 		print_det(\%main::configuration, \%detector);

@@ -17,7 +17,7 @@ our %configuration;
 # d for doubles
 
 my $bankId   = 1600;
-my $bankname = "ec";
+my $bankname = "ecal";
 
 sub define_bank
 {

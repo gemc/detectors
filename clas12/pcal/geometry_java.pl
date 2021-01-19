@@ -161,8 +161,8 @@ sub build_U_single_strips
 					$strip_id = $idouble + $nsingles;
 				}
 
-				$detector{"sensitivity"} = "pcal";
-				$detector{"hit_type"}    = "pcal";
+				$detector{"sensitivity"} = "ecal";
+				$detector{"hit_type"}    = "ecal";
 				$detector{"ncopy"}	  = $strip_no;
 				$detector{"identifiers"} = "sector manual $sector layer manual 1 strip manual $strip_id";
 			}
@@ -219,8 +219,8 @@ sub build_V_single_strips
 					$strip_id = $strip-$ncouples;
 				}
 
-				$detector{"sensitivity"} = "pcal";
-				$detector{"hit_type"}    = "pcal";
+				$detector{"sensitivity"} = "ecal";
+				$detector{"hit_type"}    = "ecal";
 				$detector{"ncopy"}	  = $strip_no;
 				$detector{"identifiers"} = "sector manual $sector layer manual 2 strip manual $strip_id";
 			}
@@ -301,8 +301,8 @@ sub build_W_single_strips
 					$strip_id = $strip-$ncouples;
 				}
 
-				$detector{"sensitivity"} = "pcal";
-				$detector{"hit_type"}    = "pcal";
+				$detector{"sensitivity"} = "ecal";
+				$detector{"hit_type"}    = "ecal";
 				$detector{"ncopy"}	  = $strip_no;
 				$detector{"identifiers"} = "sector manual $sector layer manual 3 strip manual $strip_id";
 			}

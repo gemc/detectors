@@ -93,6 +93,10 @@ sub define_Ulayers
 	}
 }
 
+# hipo:
+# layer=1-3 (PCAL) 4-9 (ECAL)
+# view: u,v,w = 1,2,3. This also correspond to layer number
+
 ### U Layers ###
 sub build_U_mother
 {
@@ -160,7 +164,7 @@ sub build_U_single_strips
 				$detector{"sensitivity"} = "pcal";
 				$detector{"hit_type"}    = "pcal";
 				$detector{"ncopy"}	  = $strip_no;
-				$detector{"identifiers"} = "sector manual $sector module manual 1 view manual 1 strip manual $strip_id";
+				$detector{"identifiers"} = "sector manual $sector layer manual 1 strip manual $strip_id";
 			}
 			print_det(\%main::configuration, \%detector);
 		}
@@ -218,7 +222,7 @@ sub build_V_single_strips
 				$detector{"sensitivity"} = "pcal";
 				$detector{"hit_type"}    = "pcal";
 				$detector{"ncopy"}	  = $strip_no;
-				$detector{"identifiers"} = "sector manual $sector module manual 1 view manual 2 strip manual $strip_id";
+				$detector{"identifiers"} = "sector manual $sector layer manual 2 strip manual $strip_id";
 			}
 			print_det(\%main::configuration, \%detector);
 		}
@@ -300,7 +304,7 @@ sub build_W_single_strips
 				$detector{"sensitivity"} = "pcal";
 				$detector{"hit_type"}    = "pcal";
 				$detector{"ncopy"}	  = $strip_no;
-				$detector{"identifiers"} = "sector manual $sector module manual 1 view manual 3 strip manual $strip_id";
+				$detector{"identifiers"} = "sector manual $sector layer manual 3 strip manual $strip_id";
 			}
 			print_det(\%main::configuration, \%detector);
 		}

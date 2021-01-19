@@ -197,6 +197,20 @@ sub build_strips
 	my $iview = ($ilayer-1)%3 + 1;
 	my $uvw = substr("UVW", $iview-1, 1);
 
+	# Notice:
+	# $ilayer is the scintillator layer, goes from 1 to 39
+	# Original identifier:
+	# $detector{"identifiers"} = "sector manual $sector stack manual $istack view manual $iview strip manual $istrip";
+
+	#
+	# hipo:
+	# layer=1-3 (PCAL) 4-9 (ECAL)
+	# hipoADC.setByte("layer", counter, (byte) (view+stack*3));
+	# view: u,v,w = 1,2,3
+	# stack: Inner / Outer = 1,2
+
+	my $hipoLayer = $iview + $istack * 3;
+
 	#array of colors for strip volumes of U, V, W views respectively
 	my @colors = ("ff6633", "6600ff", "6600ff");
 
@@ -218,7 +232,7 @@ sub build_strips
 		$detector{"style"}       = 1;
 		$detector{"sensitivity"} = "ec";
 		$detector{"hit_type"}    = "ec";
-		$detector{"identifiers"} = "sector manual $sector stack manual $istack view manual $iview strip manual $istrip";
+		$detector{"identifiers"} = "sector manual $sector layer manual $hipoLayer strip manual $istrip";
 
 		print_det(\%main::configuration, \%detector);
 	}

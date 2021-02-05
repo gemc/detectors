@@ -1,8 +1,8 @@
 # Configuration file for the CLAS 12 beam pipe
 
 # Detector name and variation
-detector_name: band
-variation:     original
+detector_name: beampipe
+variation:     noft
 
 # Factory can be MYQL or TEXT
 factory:       TEXT 

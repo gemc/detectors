@@ -9,8 +9,8 @@ my $NUM_BARS   = 18;
 my $NUM_SHDS   = 3;
 
 my $band_xpos  = 0;
-my $band_ypos  = 900;
-my $band_zpos  = 655;
+my $band_ypos  = 900; #
+my $band_zpos  = 655; #
 
 my $bcolor = 'aaaaaa';
 my $mbar_length = 1637;  # mm
@@ -22,20 +22,20 @@ my $vframe_z  = 6;       # inches
 my @vframe    = ($vframe_x/2, $vframe_y/2, $vframe_z/2);
 my @vinframe  = ($vframe_x/2-0.25, $vframe_y/2, $vframe_z/2-0.25);
 my @vframepos = ($band_xpos - 1078.9, $band_xpos - 448.3, $band_xpos + 448.3, $band_xpos + 1078.9);
-my $align_x = 0;               # mm
-my $align_y = 0;               # mm
-my $align_z = -2308.71;        # mm
+my $align_x = 0; # mm 565.66 - 560.57  -5.09
+my $align_y = 0; # mm 227.70 - 210.48   21.50077
+my $align_z = 3608.71;            # mm 3378.60 3500
 
-my $STARTcart = -462.3;
+my $STARTcart = -462.3; #3146.41
 
-sub build_bandMother
+sub band()
 {
 	my %detector = init_det();
 	$detector{"name"}        = "band";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Mother volume of BAND";
 	$detector{"pos"}         = "$align_x*mm $align_y*mm $align_z*mm";
-	$detector{"rotation"}    = "0*deg 180*deg 0*deg";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"color"}       = "339999";
 	$detector{"type"}        = "Pgon";
 	$detector{"dimensions"}  = "-45*deg 360*deg 4*counts 3*counts 160*mm 160*mm 160*mm 1500*mm 1500*mm 1500*mm -462.3*mm 0*mm 900*mm";
@@ -43,12 +43,77 @@ sub build_bandMother
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 
+	#build_measurements();
 	build_scintillators();
 	build_frame();
 	build_shielding();
 	build_cart();
 }
 
+sub build_measurements
+{
+	my %detector = init_det();
+	$detector{"name"}        = "point7";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Point 7";
+	$detector{"pos"}         = "-140.07*mm 227.71*mm 4041.71*mm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "ff0000";
+	$detector{"type"}        = "Box";
+	$detector{"dimensions"}  = "100*mm 10*mm 100*mm";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	$detector{"name"}        = "point6";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Point 6";
+	$detector{"pos"}         = "-132.27*mm -210.48*mm 4027.95*mm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "ff0000";
+	$detector{"type"}        = "Box";
+	$detector{"dimensions"}  = "100*mm 10*mm 100*mm";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	$detector{"name"}        = "point2";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Point 2";
+	$detector{"pos"}         = "-854.3*mm 850.23*mm 4139.72*mm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "ff0000";
+	$detector{"type"}        = "Box";
+	$detector{"dimensions"}  = "5*mm 20*mm 5*mm";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	$detector{"name"}        = "point8";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Point 8";
+	$detector{"pos"}         = "846.05*mm 839.47*mm 4139.52*mm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "ff9900";
+	$detector{"type"}        = "Box";
+	$detector{"dimensions"}  = "5*mm 20*mm 5*mm";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	$detector{"name"}        = "point1";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Point 1";
+	$detector{"pos"}         = "-1042.56*mm -349.15*mm 4157.40*mm";
+	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+	$detector{"color"}       = "ff0000";
+	$detector{"type"}        = "Box";
+	$detector{"dimensions"}  = "5*mm 20*mm 20*mm";
+	$detector{"material"}    = "G4_STAINLESS-STEEL";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+}
 sub build_scintillators
 {
 	for(my $j=1; $j<=$NUM_LAYERS; $j++)
@@ -57,20 +122,17 @@ sub build_scintillators
 		{
 			my $barnum      = 100*$j + $i;
 
-			my %detector125 = init_det();
+			my %detector = init_det();
 			# positioning
 			my $x      = $band_xpos;
 			my $y      = $band_ypos;
 			my $z      = $band_zpos;
 			my $xpos = $x;
-			my $ypos = $y - 73.03*($i-1);
+			my $ypos = $y - 73.03*($i-1); # 73.69
 			my $zpos = $z - 76.75*($j-1);
 			my $xdim = $lbar_length/2;
 			my $ydim = 36;
 			my $zdim = 36;
-			my $sector = 0;
-			my $component = 0;
-			my $layer = $j;
 			$bcolor  = '007fff';
 
 			if($i<=10 || $i>=17) # long bars
@@ -85,41 +147,23 @@ sub build_scintillators
 				{
 					$xdim = $mbar_length/2;
 					$bcolor = 'ff00ff';
-					$sector = 1;
-					$component = $i;
 					if($j==$NUM_LAYERS)
 						{$bcolor = '008000';}
 				}
 
-				if($i>3 && $i<=10)
-				{
-					$sector = 2;
-					$component = $i-3;
-				}
-				if($i>16)
-				{
-					$sector = 5;
-					$component = $i-16;
-				}
-
 				if($j==5 && $i>=16) {next;}
 				if($j==$NUM_LAYERS && $i>=16) {$zpos = $zpos + 72;}
-				$detector125{"name"}        = "scintillator_$barnum";
-				$detector125{"mother"}      = "band";
-				$detector125{"description"} = "Scintillator $barnum";
-				$detector125{"pos"}         = "$x*mm $ypos*mm $zpos*mm";
-				$detector125{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector125{"color"}       = $bcolor;
-				$detector125{"type"}        = "Box";
-				$detector125{"dimensions"}  = "$xdim*mm $ydim*mm $zdim*mm";
-				$detector125{"material"}    = "ej200";
-				$detector125{"style"}       = 1;
-				#$detector125{"ncopy"}       = $barnum;
-				$detector125{"sensitivity"} = "band";
-				$detector125{"hit_type"}    = "band";
-				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
-				$detector125{"identifiers"} = $id_string;
-				print_det(\%configuration, \%detector125);
+				$detector{"name"}        = "scintillator_$barnum";
+				$detector{"mother"}      = "band";
+				$detector{"description"} = "Scintillator";
+				$detector{"pos"}         = "$x*mm $ypos*mm $zpos*mm";
+				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+				$detector{"color"}       = $bcolor;
+				$detector{"type"}        = "Box";
+				$detector{"dimensions"}  = "$xdim*mm $ydim*mm $zdim*mm";
+				$detector{"material"}    = "ej200";
+				$detector{"style"}       = 0;
+				print_det(\%configuration, \%detector);
 
 				for(my $k=1; $k<=2; $k++) # pmt shields
 				{
@@ -128,26 +172,25 @@ sub build_scintillators
 						{$dx = 947.4;}
 					my $xp = $x - $dx;
 
-					my %detectors1      = init_det();
-					$detectors1{"name"}        = "pmtshield_$barnum L";
+					$detector{"name"}        = "pmtshield_$barnum L";
 					my $colour               = "111111";
 					if($k==2)
 					{
 						if($j==$NUM_LAYERS) {last;}
 						$xp = $x + $dx;
-						$detectors1{"name"}        = "pmtshield_$barnum R";
+						$detector{"name"}        = "pmtshield_$barnum R";
 						$colour                  = "771111";
 					}
-					$detectors1{"mother"}      = "band";
-					$detectors1{"description"} = "Mu metal shield for pmt $barnum";
-					$detectors1{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
-					$detectors1{"rotation"}    = "0*deg 90*deg 0*deg";
-					$detectors1{"color"}       = $colour;
-					$detectors1{"type"}        = "Tube";
-					$detectors1{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
-					$detectors1{"material"}    = "mushield";
-					$detectors1{"style"}       = 1;
-					print_det(\%configuration, \%detectors1);
+					$detector{"mother"}      = "band";
+					$detector{"description"} = "Mu metal shield for pmt";
+					$detector{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
+					$detector{"rotation"}    = "0*deg 90*deg 0*deg";
+					$detector{"color"}       = $colour;
+					$detector{"type"}        = "Tube";
+					$detector{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
+					$detector{"material"}    = "conetic";
+					$detector{"style"}       = 0;
+					print_det(\%configuration, \%detector);
 				} # pmt shields
 
 			} # long bars
@@ -166,84 +209,69 @@ sub build_scintillators
 				my $xpo = "753.5";
 				my $ypo = 200 - 72*$i;
 				my $zpo = $z + 72*($j-1);
-				$sector = 3;
-				$component = $i-10;;
-				my %detector3 = init_det();
-				$detector3{"name"}        = "scintillator_$barnum B";
-				$detector3{"mother"}      = "band";
-				$detector3{"description"} = "Short Bars $barnum B";
-				$detector3{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
-				$detector3{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector3{"color"}       = "$bcolor";
-				$detector3{"type"}        = "Box";
-				$detector3{"dimensions"}  = "255*mm 36*mm $zdim*mm";
-				$detector3{"material"}    = "ej200";
-				$detector3{"style"}       = 1;
-				$detector3{"sensitivity"} = "band";
-				$detector3{"hit_type"}    = "band";
-				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
-				$detector3{"identifiers"} = $id_string;
-				print_det(\%configuration, \%detector3);
+				$detector{"name"}        = "scintillator_$barnum B";
+				$detector{"mother"}      = "band";
+				$detector{"description"} = "Short Bars";
+				$detector{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
+				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+				$detector{"color"}       = "$bcolor";
+				$detector{"type"}        = "Box";
+				$detector{"dimensions"}  = "255*mm 36*mm $zdim*mm";
+				$detector{"material"}    = "ej200";
+				$detector{"style"}       = 0;
+				print_det(\%configuration, \%detector);
 			
 				$bcolor = '32cd32';
 				if($j==$NUM_LAYERS)
 					{$bcolor = '007fff';}
 				# Short Bars
 				$xpo = "-753.5";
-				$sector = 4;
-				$component = $i-10;;
-				my %detector4 = init_det();
-				$detector4{"name"}        = "scintillator_$barnum A";
-				$detector4{"mother"}      = "band";
-				$detector4{"description"} = "Short Bars $barnum A";
-				$detector4{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
-				$detector4{"rotation"}    = "0*deg 0*deg 0*deg";
-				$detector4{"color"}       = "$bcolor";
-				$detector4{"type"}        = "Box";
-				$detector4{"dimensions"}  = "255*mm 36*mm $zdim*mm";
-				$detector4{"material"}    = "ej200";
-				$detector4{"style"}       = 1;
-				$detector4{"sensitivity"} = "band";
-				$detector4{"hit_type"}    = "band";
-				$id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
-				$detector4{"identifiers"} = $id_string;
-				print_det(\%configuration, \%detector4);
+				$detector{"name"}        = "scintillator_$barnum A";
+				$detector{"mother"}      = "band";
+				$detector{"description"} = "Short Bars";
+				$detector{"pos"}         = "$xpo*mm $ypos*mm $zpos*mm";
+				$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+				$detector{"color"}       = "$bcolor";
+				$detector{"type"}        = "Box";
+				$detector{"dimensions"}  = "255*mm 36*mm $zdim*mm";
+				$detector{"material"}    = "ej200";
+				$detector{"style"}       = 0;
+				print_det(\%configuration, \%detector);
 
 				for(my $k=1; $k<=4; $k++) # pmt shields
 				{
 					if($k>=3 && $j==$NUM_LAYERS){last;}
 					my $xp = $x - 1138.74;
-					my %detectors2 = init_det();
-					$detectors2{"name"}        = "pmtshield_$barnum Lout";
+					$detector{"name"}        = "pmtshield_$barnum Lout";
 					my $colour               = "111111";
 					if($k==2)
 					{
 						$xp = $x + 1138.74;
-						$detectors2{"name"}        = "pmtshield_$barnum Rout";
+						$detector{"name"}        = "pmtshield_$barnum Rout";
 						$colour                  = "771111";
 					}
 					if($k==3)
 					{
 						$xp = $x - 368.263;
-						$detectors2{"name"}        = "pmtshield_$barnum Rin";
+						$detector{"name"}        = "pmtshield_$barnum Rin";
 						$colour                  = "771111";
 					}
 					if($k==4)
 					{
 						$xp = $x + 368.263;
-						$detectors2{"name"}        = "pmtshield_$barnum Lin";
+						$detector{"name"}        = "pmtshield_$barnum Lin";
 						$colour                  = "111111";
 					}
-					$detectors2{"mother"}      = "band";
-					$detectors2{"description"} = "Mu metal shield for pmt $barnum";
-					$detectors2{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
-					$detectors2{"rotation"}    = "0*deg 90*deg 0*deg";
-					$detectors2{"color"}       = $colour;
-					$detectors2{"type"}        = "Tube";
-					$detectors2{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
-					$detectors2{"material"}    = "mushield";
-					$detectors2{"style"}       = 1;
-					print_det(\%configuration, \%detectors2);
+					$detector{"mother"}      = "band";
+					$detector{"description"} = "Mu metal shield for pmt";
+					$detector{"pos"}         = "$xp*mm $ypos*mm $zpos*mm";
+					$detector{"rotation"}    = "0*deg 90*deg 0*deg";
+					$detector{"color"}       = $colour;
+					$detector{"type"}        = "Tube";
+					$detector{"dimensions"}  = "30.035*mm 32.725*mm 88.9*mm 0*deg 360*deg";
+					$detector{"material"}    = "conetic";
+					$detector{"style"}       = 0;
+					print_det(\%configuration, \%detector);
 				} # pmt shields
 
 			} # short bars
@@ -264,7 +292,7 @@ sub build_frame
 		my %detector = init_det();
 		$detector{"name"}        = "support_$qnumber";
 		$detector{"mother"}      = "band";
-		$detector{"description"} = "Vertical support beam of BAND frame $qnumber";
+		$detector{"description"} = "Vertical support beam of BAND frame";
 		$detector{"pos"}         = "$vframepos[$i-1]*mm $yp*mm $zp*mm";
 		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 		$detector{"color"}       = "777777";
@@ -275,18 +303,17 @@ sub build_frame
 		print_det(\%configuration, \%detector);
 
 		# Inside of support beam
-		my %detector2 = init_det();
-		$detector2{"name"}        = "support_inside_$qnumber";
-		$detector2{"mother"}      = "support_$qnumber";
-		$detector2{"description"} = "Inside of support beam";
-		$detector2{"pos"}         = "0*mm 0*mm 0*mm";
-		$detector2{"rotation"}    = "0*deg 0*deg 0*deg";
-		$detector2{"color"}       = "eeeeee";
-		$detector2{"type"}        = "Box";
-		$detector2{"dimensions"}  = "$vinframe[0]*inches $vinframe[1]*mm $vinframe[2]*inches";
-		$detector2{"material"}    = "G4_AIR";
-		$detector2{"style"}       = 1;
-		print_det(\%configuration, \%detector2);
+		$detector{"name"}        = "support_inside_$qnumber";
+		$detector{"mother"}      = "support_$qnumber";
+		$detector{"description"} = "Inside of support beam";
+		$detector{"pos"}         = "0*mm 0*mm 0*mm";
+		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector{"color"}       = "eeeeee";
+		$detector{"type"}        = "Box";
+		$detector{"dimensions"}  = "$vinframe[0]*inches $vinframe[1]*mm $vinframe[2]*inches";
+		$detector{"material"}    = "G4_AIR";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
 	}
 }
 
@@ -319,18 +346,17 @@ sub build_shielding
 		$detector{"style"}       = 0;
 		print_det(\%configuration, \%detector);
 
-		my %detector2 = init_det();
-		$detector2{"name"}        = "leadblock_$q";
-		$detector2{"mother"}      = "leadshield_$q";
-		$detector2{"description"} = "Lead block inside shield $q";
-		$detector2{"pos"}         = "0*mm 0*mm 0*mm";
-		$detector2{"rotation"}    = "0*deg 0*deg 0*deg";
-		$detector2{"color"}       = "555555";
-		$detector2{"type"}        = "Box";
-		$detector2{"dimensions"}  = "$sd*inches $sy*inches $sb*inches";
-		$detector2{"material"}    = "G4_Pb";
-		$detector2{"style"}       = 1;
-		print_det(\%configuration, \%detector2);
+		$detector{"name"}        = "leadblock_$q";
+		$detector{"mother"}      = "leadshield_$q";
+		$detector{"description"} = "Lead block inside shield $q";
+		$detector{"pos"}         = "0*mm 0*mm 0*mm";
+		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector{"color"}       = "555555";
+		$detector{"type"}        = "Box";
+		$detector{"dimensions"}  = "$sd*inches $sy*inches $sb*inches";
+		$detector{"material"}    = "G4_Pb";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
 
 	}
 }
@@ -345,7 +371,7 @@ sub build_cart()
 	$detector{"description"} = "Mounting Tube Plate";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -272.494*mm $zcart*mm";
+	$detector{"pos"}         = "0*mm -272.494*mm $zcart*mm"; #3527.41
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "317.5*mm 6.35*mm 381*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -358,9 +384,9 @@ sub build_cart()
 	$detector{"description"} = "Mounting Tube Plate001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -221.694*mm $zcart*mm";
+	$detector{"pos"}         = "0*mm -221.694*mm $zcart*mm"; #y=-12.144 z=3159.11
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"dimensions"}  = "177.8*mm 44.45*mm 12.7*mm";
+	$detector{"dimensions"}  = "177.8*mm 44.45*mm 12.7*mm"; #x=317.5 y=254
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -370,7 +396,7 @@ sub build_cart()
 	$detector{"description"} = "Mounting Tube Plate001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "247.65*mm -12.144*mm $zcart*mm";
+	$detector{"pos"}         = "247.65*mm -12.144*mm $zcart*mm"; #3159.11
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "69.85*mm 254*mm 12.7*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -382,12 +408,13 @@ sub build_cart()
 	$detector{"description"} = "Mounting Tube Plate001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-247.65*mm -12.144*mm $zcart*mm";
+	$detector{"pos"}         = "-247.65*mm -12.144*mm $zcart*mm"; #3159.11
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "69.85*mm 254*mm 12.7*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
+
 
 	$zcart = $STARTcart + 393.7; #
 	$detector{"name"}        = "adjustment_plate";
@@ -395,7 +422,7 @@ sub build_cart()
 	$detector{"description"} = "Adjustment Plate";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -514.35*mm $zcart*mm";
+	$detector{"pos"}         = "0*mm -514.35*mm $zcart*mm"; #3540.11
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "317.5*mm 6.35*mm 368.3*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -407,7 +434,7 @@ sub build_cart()
 	$detector{"description"} = "Adjustment Plate hole";
 	$detector{"color"}       = "eeeeee";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm 0*mm -254*mm";
+	$detector{"pos"}         = "0*mm 0*mm -254*mm"; # z=3286.11
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "165.1*mm 6.35*mm 114.3*mm";
 	$detector{"material"}    = "G4_AIR";
@@ -420,7 +447,7 @@ sub build_cart()
 	$detector{"description"} = "Gusset006";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "304.35*mm -12.144*mm $zcart*mm";
+	$detector{"pos"}         = "304.35*mm -12.144*mm $zcart*mm"; #3209.91
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 254*mm 38.1*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -433,7 +460,7 @@ sub build_cart()
 	$detector{"description"} = "Gusset006";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "304.35*mm -228.044*mm $zcart*mm";
+	$detector{"pos"}         = "304.35*mm -228.044*mm $zcart*mm"; #3578.21
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 38.1*mm 330.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -446,7 +473,7 @@ sub build_cart()
 	$detector{"description"} = "Gusset007";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-304.35*mm -12.144*mm $zcart*mm";
+	$detector{"pos"}         = "-304.35*mm -12.144*mm $zcart*mm"; #3209.91
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 254*mm 38.1*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -459,7 +486,7 @@ sub build_cart()
 	$detector{"description"} = "Gusset007";
 	$detector{"color"}       = "555555";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-304.35*mm -228.044*mm $zcart*mm";
+	$detector{"pos"}         = "-304.35*mm -228.044*mm $zcart*mm"; #3578.21
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "13.15*mm 38.1*mm 330.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -472,7 +499,7 @@ sub build_cart()
 	$detector{"description"} = "Short Strut";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "254*mm -596.9*mm $zcart*mm";
+	$detector{"pos"}         = "254*mm -596.9*mm $zcart*mm"; #3816.335
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "76.2*mm 76.2*mm 644.525*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -496,7 +523,7 @@ sub build_cart()
 	$detector{"description"} = "Short Strut001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-254*mm -596.9*mm $zcart*mm";
+	$detector{"pos"}         = "-254*mm -596.9*mm $zcart*mm"; #3816.335
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "76.2*mm 76.2*mm 644.525*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -521,7 +548,7 @@ sub build_cart()
 	$detector{"description"} = "6x6x.25 Square Tube Brace";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -596.9*mm $zcart*mm";
+	$detector{"pos"}         = "0*mm -596.9*mm $zcart*mm"; #3883.01
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "177.8*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -558,7 +585,7 @@ sub build_cart()
 	$detector{"description"} = "6x6x.25 Square Tube Short001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "0*mm -596.9*mm $zcart*mm";
+	$detector{"pos"}         = "0*mm -596.9*mm $zcart*mm"; #3616.31
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "177.8*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -582,7 +609,7 @@ sub build_cart()
 	$detector{"description"} = "second beam ds";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "908.05*mm -647.7*mm $zcart*mm";
+	$detector{"pos"}         = "908.05*mm -647.7*mm $zcart*mm"; #3616.31
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "577.85*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
@@ -606,7 +633,7 @@ sub build_cart()
 	$detector{"description"} = "second beam ds001";
 	$detector{"color"}       = "ff00ff";
 	$detector{"type"}        = "Box";
-	$detector{"pos"}         = "-908.05*mm -647.7*mm $zcart*mm";
+	$detector{"pos"}         = "-908.05*mm -647.7*mm $zcart*mm"; #3616.31
 	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
 	$detector{"dimensions"}  = "577.85*mm 76.2*mm 76.2*mm";
 	$detector{"material"}    = "G4_STAINLESS-STEEL";

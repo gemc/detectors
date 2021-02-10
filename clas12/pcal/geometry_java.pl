@@ -32,12 +32,12 @@ sub build_mother
 	my %detector = init_det();
 	my $vname = "pcal_s${sector}";
 
-	$detector{"name"}	   = $vname;
-	$detector{"mother"}	 = $mothers->{$vname};
-	$detector{"pos"}	    = $positions->{$vname};
-	$detector{"rotation"}    = $rotations->{$vname};
-	$detector{"type"}	   = $types->{$vname};
-	$detector{"dimensions"}  = $dimensions->{$vname};
+	$detector{"name"}	      = $vname;
+	$detector{"mother"}	   = $mothers->{$vname};
+	$detector{"pos"}	      = $positions->{$vname};
+	$detector{"rotation"}   = $rotations->{$vname};
+	$detector{"type"}	      = $types->{$vname};
+	$detector{"dimensions"} = $dimensions->{$vname};
 
 	$detector{"description"} = "Preshower Calorimeter";
 	$detector{"color"}	  = "ff1111";
@@ -66,12 +66,12 @@ sub build_lead
 		my %detector = init_det();
 		my $vname = "PCAL_Lead_Layer_${i}_s${sector}";
 
-		$detector{"name"}	   = $vname;
+		$detector{"name"}	      = $vname;
 		$detector{"mother"}	   = $mothers->{$vname};
-		$detector{"pos"}	   = $positions->{$vname};
-		$detector{"rotation"}  = $rotations->{$vname};
-		$detector{"type"}	   = $types->{$vname};
-		$detector{"dimensions"}= $dimensions->{$vname};
+		$detector{"pos"}	      = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}	      = $types->{$vname};
+		$detector{"dimensions"} = $dimensions->{$vname};
 
 		$detector{"description"} = "Preshower Calorimeter lead layer ${i}";
 		$detector{"color"}	  = "66ff33";
@@ -107,12 +107,12 @@ sub build_U_mother
 		my %detector = init_det();
 		my $vname = "U-view-scintillator_${k}_s${sector}";
 
-		$detector{"name"}	   = $vname;
+		$detector{"name"}	      = $vname;
 		$detector{"mother"}	   = $mothers->{$vname};
-		$detector{"pos"}	   = $positions->{$vname};
-		$detector{"rotation"}  = $rotations->{$vname};
-		$detector{"type"}	   = $types->{$vname};
-		$detector{"dimensions"}= $dimensions->{$vname};
+		$detector{"pos"}	      = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}	      = $types->{$vname};
+		$detector{"dimensions"} = $dimensions->{$vname};
 
 		$detector{"description"} = "Preshower Calorimeter";
 		$detector{"color"}	  = "ff6633";
@@ -138,14 +138,14 @@ sub build_U_single_strips
 			my %detector = init_det();
 			my $vname = "U-view_single_strip_${iview}_${strip}_s${sector}";
 
-			$detector{"name"}	   = $vname;
-			$detector{"mother"}    = $mothers->{$vname};
-			$detector{"pos"}	   = $positions->{$vname};
-			$detector{"rotation"}  = $rotations->{$vname};
-			$detector{"type"}	   = $types->{$vname};
-			$detector{"dimensions"}= $dimensions->{$vname};
+			$detector{"name"}	      = $vname;
+			$detector{"mother"}	   = $mothers->{$vname};
+			$detector{"pos"}	      = $positions->{$vname};
+			$detector{"rotation"}   = $rotations->{$vname};
+			$detector{"type"}	      = $types->{$vname};
+			$detector{"dimensions"} = $dimensions->{$vname};
 
-			$detector{"description"} = "Preshower Calorimeter scintillator layer";
+			$detector{"description"} = "Preshower Calorimeter scintillator layer 1 strip";
 			$detector{"color"}	  = "ff6633";
 			$detector{"material"}    = "scintillator";
 
@@ -195,14 +195,14 @@ sub build_V_single_strips
 			my %detector = init_det();
 			my $vname = "V-view_single_strip_${iview}_${strip}_s${sector}";
 
-			$detector{"name"}	   = $vname;
-			$detector{"mother"}    = $mothers->{$vname};
-			$detector{"pos"}	   = $positions->{$vname};
-			$detector{"rotation"}  = $rotations->{$vname};
-			$detector{"type"}	   = $types->{$vname};
-			$detector{"dimensions"}= $dimensions->{$vname};
+			$detector{"name"}	      = $vname;
+			$detector{"mother"}	   = $mothers->{$vname};
+			$detector{"pos"}	      = $positions->{$vname};
+			$detector{"rotation"}   = $rotations->{$vname};
+			$detector{"type"}	      = $types->{$vname};
+			$detector{"dimensions"} = $dimensions->{$vname};
 
-			$detector{"description"} = "Preshower Calorimeter scintillator layer";
+			$detector{"description"} = "Preshower Calorimeter scintillator layer 2 strip";
 			$detector{"color"}	  = "6600ff";
 			$detector{"material"}    = "scintillator";
 
@@ -237,12 +237,12 @@ sub build_V_mother
 		my %detector = init_det();
 		my $vname = "V-view-scintillator_${k}_s${sector}";
 
-		$detector{"name"}	   = $vname;
+		$detector{"name"}	      = $vname;
 		$detector{"mother"}	   = $mothers->{$vname};
-		$detector{"pos"}	   = $positions->{$vname};
-		$detector{"rotation"}  = $rotations->{$vname};
-		$detector{"type"}	   = $types->{$vname};
-		$detector{"dimensions"}= $dimensions->{$vname};
+		$detector{"pos"}	      = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}	      = $types->{$vname};
+		$detector{"dimensions"} = $dimensions->{$vname};
 
 		$detector{"description"} = "Preshower Calorimeter";
 		$detector{"color"}	  = "33ffcc";
@@ -277,14 +277,14 @@ sub build_W_single_strips
 			my %detector = init_det();
 			my $vname = "W-view_single_strip_${iview}_${strip}_s${sector}";
 
-			$detector{"name"}	   = $vname;
-			$detector{"mother"}    = $mothers->{$vname};
-			$detector{"pos"}	   = $positions->{$vname};
-			$detector{"rotation"}  = $rotations->{$vname};
-			$detector{"type"}	   = $types->{$vname};
-			$detector{"dimensions"}= $dimensions->{$vname};
+			$detector{"name"}	      = $vname;
+			$detector{"mother"}	   = $mothers->{$vname};
+			$detector{"pos"}	      = $positions->{$vname};
+			$detector{"rotation"}   = $rotations->{$vname};
+			$detector{"type"}	      = $types->{$vname};
+			$detector{"dimensions"} = $dimensions->{$vname};
 
-			$detector{"description"} = "Preshower Calorimeter scintillator layer";
+			$detector{"description"} = "Preshower Calorimeter scintillator layer 3 strip";
 			$detector{"color"}	  = "6600ff";
 			$detector{"material"}    = "scintillator";
 
@@ -319,12 +319,12 @@ sub build_W_mother
 		my %detector = init_det();
 		my $vname = "W-view-scintillator_${k}_s${sector}";
 
-		$detector{"name"}	   = $vname;
+		$detector{"name"}	      = $vname;
 		$detector{"mother"}	   = $mothers->{$vname};
-		$detector{"pos"}	   = $positions->{$vname};
-		$detector{"rotation"}  = $rotations->{$vname};
-		$detector{"type"}	   = $types->{$vname};
-		$detector{"dimensions"}= $dimensions->{$vname};
+		$detector{"pos"}	      = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}	      = $types->{$vname};
+		$detector{"dimensions"} = $dimensions->{$vname};
 
 		$detector{"description"} = "Preshower Calorimeter";
 		$detector{"color"}	  = "33ffcc";

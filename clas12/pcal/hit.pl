@@ -8,13 +8,13 @@ sub define_hit
 {
 	# uploading the hit definition
 	my %hit = init_hit();
-	$hit{"name"}            = "pcal";
-	$hit{"description"}     = "pcal hit definitions for panel 1A";
-	$hit{"identifiers"}     = "sector module view strip";
+	$hit{"name"}            = "ecal";
+	$hit{"description"}     = "ecal hit definitions";
+	$hit{"identifiers"}     = "sector layer strip";
 	$hit{"signalThreshold"} = "0.5*MeV";
 	$hit{"timeWindow"}      = "400*ns";
-	$hit{"prodThreshold"}   = "1*mm";
-	$hit{"maxStep"}         = "1*cm";
+	$hit{"prodThreshold"}   = "1.0*mm";
+	$hit{"maxStep"}         = "1.0*cm";
 	$hit{"delay"}           = "50*ns";
 	$hit{"riseTime"}        = "1*ns";
 	$hit{"fallTime"}        = "2*ns";

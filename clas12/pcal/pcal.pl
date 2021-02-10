@@ -41,6 +41,10 @@ require "./geometry_java.pl";
 # original geometry: deprecated
 # equire "./geometry.pl";
 
+# hits definitions
+# these include the pcal now
+require "./hit.pl";
+
 # all the scripts must be run for every configuration
 my @allConfs = ("default", "rga_fall2018");
 
@@ -53,6 +57,9 @@ foreach my $conf ( @allConfs )
 
 	# materials
 	materials();
+
+	# hits
+	define_hit();
 
 	# run PCAL factory from COATJAVA to produce volumes
 	system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");

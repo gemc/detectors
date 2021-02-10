@@ -1,14 +1,21 @@
 <gcard>
+
 	<option name="geometry" value="1400x1200"/>
 
 	<!-- other variations include: lH2, lD2, ND3, "elaborate"  -->
 
 	<detector name="target" factory="TEXT" variation="lH2"/>
-	<detector name="cad/" factory="CAD"/>
+	<detector name="cad/"   factory="CAD"/>
 
 	<option name="BEAM_P" value="e-, 11.0*GeV, 0*deg, 0*deg"/>
-
 	<option name="SPREAD_V" value="(0.01, 0)cm"/>
 	<option name="BEAM_V" value="(0, 0, -4.5)cm"/>
+
+	<option name="OUTPUT"                  value="hipo, out.hipo"/>
+	<option name="PHYSICS"                 value="FTFP_BERT + STD"/>
+	<option name="RUNNO"                   value="11" />
+	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
+	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
+
 
 </gcard>

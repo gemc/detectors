@@ -13,7 +13,7 @@ sub define_hit
 	$hit{"identifiers"}     = "sector layer strip";
 	$hit{"signalThreshold"} = "0.5*MeV";
 	$hit{"timeWindow"}      = "400*ns";
-	$hit{"prodThreshold"}   = "5.0*mm";
+	$hit{"prodThreshold"}   = "1.0*mm";
 	$hit{"maxStep"}         = "1.0*cm";
 	$hit{"delay"}           = "50*ns";
 	$hit{"riseTime"}        = "1*ns";

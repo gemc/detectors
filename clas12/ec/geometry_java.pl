@@ -31,12 +31,12 @@ sub build_mother
 	my %detector = init_det();
 	my $vname = "ec_s".$sector;
 
-	$detector{"name"}		= $vname;
-	$detector{"mother"}		= $mothers->{$vname};
-	$detector{"pos"}		= $positions->{$vname};
-	$detector{"rotation"}	= $rotations->{$vname};
-	$detector{"type"}		= $types->{$vname};
-	$detector{"dimensions"}	= $dimensions->{$vname};
+	$detector{"name"}	      = $vname;
+	$detector{"mother"}	   = $mothers->{$vname};
+	$detector{"pos"}	      = $positions->{$vname};
+	$detector{"rotation"}   = $rotations->{$vname};
+	$detector{"type"}	      = $types->{$vname};
+	$detector{"dimensions"} = $dimensions->{$vname};
 
 	$detector{"description"} = "Forward Calorimeter - Sector ".$sector;
 	$detector{"color"}       = "ff1111";
@@ -62,12 +62,12 @@ sub build_lids
 	my %detector = init_det();
 	my $vname = "eclid1_s".$sector;
 
-	$detector{"name"}		= $vname;
-	$detector{"mother"}		= $mothers->{$vname};
-	$detector{"pos"}		= $positions->{$vname};
-	$detector{"rotation"}	= $rotations->{$vname};
-	$detector{"type"}		= $types->{$vname};
-	$detector{"dimensions"}	= $dimensions->{$vname};
+	$detector{"name"}	      = $vname;
+	$detector{"mother"}	   = $mothers->{$vname};
+	$detector{"pos"}	      = $positions->{$vname};
+	$detector{"rotation"}   = $rotations->{$vname};
+	$detector{"type"}	      = $types->{$vname};
+	$detector{"dimensions"} = $dimensions->{$vname};
 
 	$detector{"description"} = "Stainless Steel Skin 1";
 	$detector{"color"}       = "FCFFF0";
@@ -80,12 +80,12 @@ sub build_lids
 	%detector = init_det();
 	$vname = "eclid2_s".$sector;
 
-	$detector{"name"}		= $vname;
-	$detector{"mother"}		= $mothers->{$vname};
-	$detector{"pos"}		= $positions->{$vname};
-	$detector{"rotation"}	= $rotations->{$vname};
-	$detector{"type"}		= $types->{$vname};
-	$detector{"dimensions"}	= $dimensions->{$vname};
+	$detector{"name"}	      = $vname;
+	$detector{"mother"}	   = $mothers->{$vname};
+	$detector{"pos"}	      = $positions->{$vname};
+	$detector{"rotation"}   = $rotations->{$vname};
+	$detector{"type"}	      = $types->{$vname};
+	$detector{"dimensions"} = $dimensions->{$vname};
 
 	$detector{"description"} = "Last-a-Foam";
 	$detector{"color"}       = "EED18C";
@@ -99,12 +99,12 @@ sub build_lids
 	%detector = init_det();
 	$vname = "eclid3_s".$sector;
 
-	$detector{"name"}		= $vname;
-	$detector{"mother"}		= $mothers->{$vname};
-	$detector{"pos"}		= $positions->{$vname};
-	$detector{"rotation"}	= $rotations->{$vname};
-	$detector{"type"}		= $types->{$vname};
-	$detector{"dimensions"}	= $dimensions->{$vname};
+	$detector{"name"}	      = $vname;
+	$detector{"mother"}	   = $mothers->{$vname};
+	$detector{"pos"}	      = $positions->{$vname};
+	$detector{"rotation"}   = $rotations->{$vname};
+	$detector{"type"}	      = $types->{$vname};
+	$detector{"dimensions"} = $dimensions->{$vname};
 
 	$detector{"description"} = "Stainless Steel Skin 2";
 	$detector{"color"}       = "FCFFF0";
@@ -139,12 +139,12 @@ sub build_leadlayers
 		my %detector = init_det();
 		my $vname = "lead_$ilayer"."_s".$sector."_view_$iview"."_stack_$istack";
 
-		$detector{"name"}		= $vname;
-		$detector{"mother"}		= $mothers->{$vname};
-		$detector{"pos"}		= $positions->{$vname};
-		$detector{"rotation"}	= $rotations->{$vname};
-		$detector{"type"}		= $types->{$vname};
-		$detector{"dimensions"}	= $dimensions->{$vname};
+		$detector{"name"}	      = $vname;
+		$detector{"mother"}	   = $mothers->{$vname};
+		$detector{"pos"}	      = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}	      = $types->{$vname};
+		$detector{"dimensions"} = $dimensions->{$vname};
 
 		$detector{"description"} = "Forward Calorimeter lead layer ${ilayer}";
 		$detector{"color"}       = "7CFC00";
@@ -171,12 +171,12 @@ sub build_scintlayers
 		my %detector = init_det();
 		my $vname = "$uvw-scintillator_$ilayer"."_s".$sector."_view_$iview"."_stack_$istack";
 	
-		$detector{"name"}		= $vname;
-		$detector{"mother"}		= $mothers->{$vname};
-		$detector{"pos"}		= $positions->{$vname};
-		$detector{"rotation"}	= $rotations->{$vname};
-		$detector{"type"}		= $types->{$vname};
-		$detector{"dimensions"}	= $dimensions->{$vname};
+		$detector{"name"}	      = $vname;
+		$detector{"mother"}	   = $mothers->{$vname};
+		$detector{"pos"}	      = $positions->{$vname};
+		$detector{"rotation"}   = $rotations->{$vname};
+		$detector{"type"}	      = $types->{$vname};
+		$detector{"dimensions"} = $dimensions->{$vname};
 
 		$detector{"description"} ="Forward Calorimeter scintillator layer ${ilayer}";
 		$detector{"color"}       = $colors[$iview-1];
@@ -219,11 +219,11 @@ sub build_strips
 		my %detector = init_det();
 		my $vname = "${uvw}_strip_${ilayer}_${istrip}_s${sector}_stack_${istack}";
 	
-		$detector{"name"}		= $vname;
+		$detector{"name"}		   = $vname;
 		$detector{"mother"}		= $mothers->{$vname};
-		$detector{"pos"}		= $positions->{$vname};
+		$detector{"pos"}		   = $positions->{$vname};
 		$detector{"rotation"}	= $rotations->{$vname};
-		$detector{"type"}		= $types->{$vname};
+		$detector{"type"}		   = $types->{$vname};
 		$detector{"dimensions"}	= $dimensions->{$vname};
 
 		$detector{"description"} = "Forward Calorimeter scintillator layer ${ilayer} strip ${istrip} view ${iview}";

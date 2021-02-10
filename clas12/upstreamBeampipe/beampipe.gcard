@@ -1,5 +1,7 @@
 <gcard>
 
+	<option name="geometry" value="1400x1200"/>
+
 	<!-- detector name="../targets/target" factory="TEXT" variation="cad"/ -->
 	<!-- detector name="../targets/cad/" factory="CAD"/ -->
 
@@ -18,7 +20,12 @@
     <detector name="../magnets/cad/" factory="CAD"/>
 	-->
 	
-    <option name="geometry" value="1300x800"/>
+
+	 <option name="OUTPUT"                  value="hipo, out.hipo"/>
+	 <option name="PHYSICS"                 value="FTFP_BERT + STD"/>
+	 <option name="RUNNO"                   value="11" />
+	 <option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
+	 <option name="RECORD_OPTICALPHOTONS"   value="1"/>
 
 
 </gcard>

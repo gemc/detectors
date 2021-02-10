@@ -19,7 +19,6 @@
 
 
 	<option name="BEAM_P" value="e-, 2.0*GeV, 20*deg, 10*deg"/>
-	<option name="OUTPUT" value="evio, out.ev"/>
 	<option name="NO_FIELD" value="all"/>
 
 	<detector name="airPipe">
@@ -31,6 +30,12 @@
 	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
 	<option name="FIELD_PROPERTIES" value="TorusSymmetric,     2*mm, G4ClassicalRK4, linear"/>
 	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
+
+	<option name="OUTPUT"                  value="hipo, out.hipo"/>
+	<option name="PHYSICS"                 value="FTFP_BERT + STD"/>
+	<option name="RUNNO"                   value="11" />
+	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
+	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
 
 
 </gcard>

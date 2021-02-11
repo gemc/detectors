@@ -166,7 +166,7 @@ sub build_scintillators
 				my $xpo = "753.5";
 				my $ypo = 200 - 72*$i;
 				my $zpo = $z + 72*($j-1);
-				$sector = 3;
+				$sector = 4;
 				$component = $i-10;;
 				my %detector3 = init_det();
 				$detector3{"name"}        = "scintillator_$barnum B";
@@ -190,7 +190,7 @@ sub build_scintillators
 					{$bcolor = '007fff';}
 				# Short Bars
 				$xpo = "-753.5";
-				$sector = 4;
+				$sector = 3;
 				$component = $i-10;;
 				my %detector4 = init_det();
 				$detector4{"name"}        = "scintillator_$barnum A";

@@ -315,7 +315,7 @@ sub build_shielding
 		#long blocks (group 2): bottom of bar row 10: 228mm + 362mm/2 (wall height (2.85inch*10) / 2)
 		my @lypo = (230.1, 590, 230.1);
 		#zpos center calculated from CAD file[mm]
-		my @lzpo = (1025, 293, 1025);
+		my @lzpo = (102.5, 29.3, 102.5);
 		#number of blocks in each group (short, long, short)
 		my @lnum = (18, 10, 18);
 		#0.5*Aluminium length in inch:

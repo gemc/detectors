@@ -708,8 +708,8 @@ sub build_targets
 		#	Al foils: 25 um thick
 
 		my $ttlength = 14.2;   # half length
-		my $ttid     = 12.5;
-		my $ttod     = 13.5;
+		my $ttid     = 13.5;
+		my $ttod     = 14.5;
 		my $ttfoil   = 0.0125; # half length
 
 
@@ -723,7 +723,7 @@ sub build_targets
 		$detector{"dimensions"}  = "0*mm $ttod*mm $ttlength*mm 0*deg 360*deg";
 		$detector{"material"}    = "Kel-F";
 		$detector{"style"}       = 1;
-		print_det(\%configuration, \%detector);
+		#print_det(\%configuration, \%detector);
 
 		# cell
 		my %detector = init_det();

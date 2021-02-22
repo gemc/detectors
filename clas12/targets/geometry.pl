@@ -733,7 +733,7 @@ sub build_targets
 		$detector{"color"}       = "994422";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm $ttid*mm $ttlength*mm 0*deg 360*deg";
-		$detector{"material"}    = "NH3";
+		$detector{"material"}    = "NH3target";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 

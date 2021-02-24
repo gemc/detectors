@@ -160,7 +160,7 @@ sub materials
 
 		# NH3 target with lHe3 coolant
 		%mat = init_mat();
-		my $NH3trg_density = 0.6*0.867+0.4*0.145; # 60% of ND3 and 40% of liquid-helium
+		my $NH3trg_density = 0.6*0.867+0.4*0.145; # 60% of NH3 and 40% of liquid-helium
 		my $NH3_mass_fraction=0.6*0.867/$NH3trg_density ;
 		my $lHe_mass_fraction=0.4*0.145/$NH3trg_density ;
 		$mat{"name"}          = "NH3target";

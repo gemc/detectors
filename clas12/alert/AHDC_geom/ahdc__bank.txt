@@ -1,0 +1,31 @@
+                ahdc  |              bankid  |                                      ahdc bank ID  | 2300   |                  Di  
+                ahdc  |          superlayer  |      superlayer number from 0 to 4, circles in XY  |    1   |                  Di  
+                ahdc  |               layer  |                             layer number (0 or 1)  |    2   |                  Di  
+                ahdc  |                wire  |                     the AHDC cell number, from 1!  |    3   |                  Di  
+                ahdc  |                doca  |                                        DOCA in mm  |    4   |                  Dd  
+                ahdc  |             subcell  |  subcell 1 or 2, right or left of the signal wire  |    5   |                  Di  
+                ahdc  |          adc_energy  |                                 ADC energy in MeV  |    6   |                  Dd  
+                ahdc  |         wire_energy  |                      wire deposited energy in MeV  |    7   |                  Dd  
+                ahdc  |          totEdep_MC  |                           MC truth totEdep in MeV  |    8   |                  Dd  
+                ahdc  |              signal  |                                            signal  |    9   |                  Dd  
+                ahdc  |                time  |                                              time  |   10   |                  Dd  
+                ahdc  |                hitn  |                                        hit number  |   99   |                  Di  
+              myatof  |              bankid  |                                    myatof bank ID  | 2200   |                  Di  
+              myatof  |              sector  |                   sector from 0 to 14, in XY plan  |    1   |                  Di  
+              myatof  |          superlayer  |superlayer from 0 (smallest paddles) to 1 (biggest paddles), circles in XY plan  |    2   |                  Di  
+              myatof  |               layer  |layer 0 for smallest paddles, form 0 to 9 for biggest paddles, in Z axis  |    3   |                  Di  
+              myatof  |              paddle  |paddle number from (sectorId*4+1) to (sectorId*4+4)  |    4   |                  Di  
+              myatof  |           adc_front  |                           ADC SiPM front end, SL0  |    5   |                  Dd  
+              myatof  |            adc_back  |                            ADC SiPM back end, SL0  |    6   |                  Dd  
+              myatof  |             adc_top  |                            ADC SiPM top side, SL1  |    7   |                  Dd  
+              myatof  |           tdc_front  |                           TDC SiPM front end, SL0  |    8   |                  Dd  
+              myatof  |            tdc_back  |                            TDC SiPM back end, SL0  |    9   |                  Dd  
+              myatof  |             tdc_top  |                            TDC SiPM top side, SL1  |   10   |                  Dd  
+              myatof  |          time_front  |                          Time SiPM front end, SL0  |   11   |                  Dd  
+              myatof  |           time_back  |                           Time SiPM back end, SL0  |   12   |                  Dd  
+              myatof  |            time_top  |                           Time SiPM top side, SL1  |   13   |                  Dd  
+              myatof  |         E_tot_Front  |                E deposit into SiPM front end, SL0  |   14   |                  Dd  
+              myatof  |          E_tot_Back  |                 E deposit into SiPM back end, SL0  |   15   |                  Dd  
+              myatof  |           E_tot_Top  |                 E deposit into SiPM top side, SL1  |   16   |                  Dd  
+              myatof  |          totEdep_MC  |                                 MC totEdep output  |   17   |                  Dd  
+              myatof  |                hitn  |                                        hit number  |   99   |                  Di  

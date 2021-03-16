@@ -30,31 +30,32 @@ sub makeATOF
 #$npaddles = $main::parameters{"atof.sector0.superlayer0.layer0.ncomponents"};
 #$npaddles = 4;
 
-	build_mother();
+	#build_mother();
 	build_sectors();
 }
 
 
-sub build_mother
-{
+#sub build_mother
+#{
 	
-	my %detector = init_det();
+#	my %detector = init_det();
 	# dimension and position adjusted to englobe the whole ATOF
-	my $vname                = "atof_mother";
-	$detector{"name"}        = $vname;
-	$detector{"mother"}      = "root";
-	$detector{"pos"}         = "0.0*mm 0.0*mm 127.7*mm";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "7.6*cm 10.7*cm 14.0*cm 0.*deg 360.*deg";
-	$detector{"description"} = "Alert Time of flight mother";
-	$detector{"color"}       = "aa00ff";
-	$detector{"material"}    = "G4_AIR";
-	$detector{"mfield"}      = "no";
-	$detector{"ncopy"}       = "1";
-	$detector{"visible"}     = 1; # 0 or 1, 1 for debugging is better
-	$detector{"style"}       = 0;
-	print_det(\%main::configuration, \%detector);
-}
+#	my $vname                = "atof_mother";
+#	$detector{"name"}        = $vname;
+#	$detector{"mother"}      = "root";
+#	$detector{"pos"}         = "0.0*mm 0.0*mm 127.7*mm";
+#	$detector{"type"}        = "Tube";
+#	$detector{"dimensions"}  = "7.6*cm 10.7*cm 14.0*cm 0.*deg 360.*deg";
+#	$detector{"description"} = "Alert Time of flight mother";
+#	$detector{"color"}       = "aa00ff";
+#	$detector{"material"}    = "G4_AIR";
+#	$detector{"mfield"}      = "no";
+#	$detector{"ncopy"}       = "1";
+#	$detector{"visible"}     = 1; # 0 or 1, 1 for debugging is better
+#	$detector{"style"}       = 0;
+#	print_det(\%main::configuration, \%detector);
+#}
+
 
 # Sectors/superlayers/layers
 sub build_sectors
@@ -89,7 +90,8 @@ sub build_paddles
 	my $sector = shift;
 	my $superlayer = shift;
 	my $layer = shift;
-	my $mother = "atof_mother";
+	#my $mother = "atof_mother";
+	my $mother = "ahdc_mother";
 	
 	for(my $n=($sector*4+1); $n<=($sector*4+$npaddles); $n++)
 	{

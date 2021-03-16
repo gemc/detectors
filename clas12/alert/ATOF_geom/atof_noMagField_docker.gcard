@@ -8,14 +8,14 @@
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 	<option name="SAVE_ALL_MOTHERS" value="0"/>
 	
-	<option name="BEAM_P" value="e-, 10.0*GeV, 20*deg, 20*deg"/>
-	<option name="SPREAD_P" value="2.0*GeV, 20*deg, 180*deg, flat"/>
+	<option name="BEAM_P" value="proton, 2.0*GeV, 30*deg, 30*deg"/>
+	<option name="SPREAD_P" value="1.0*GeV, 20*deg, 180*deg, flat"/>
 	
-	<option name="BEAM_V" value="(0, 0, -2.0)cm"/>
-	<option name="SPREAD_V" value="(0.0, 0.0)cm"/>
+	<option name="BEAM_V" value="(0, 0, 5.0)cm"/>
+	<option name="SPREAD_V" value="(0.0, 12.0)cm"/>
 	
-	<option name="OUTPUT" value="txt, myatof_test_juin2020.txt"/>
-	<!-- <option name="OUTPUT" value="evio, myatof_test_juin2020.ev"/>  -->
-	<option name="N" value="50"/>
+	<!-- <option name="OUTPUT" value="txt, myatof_protons_noMagField_28Sept2020.txt"/>  -->
+	<option name="OUTPUT" value="evio, myatof_protons_noMagField_29Sept2020.ev"/>
+	<option name="N" value="10000"/>
 
 </gcard>

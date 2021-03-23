@@ -4,12 +4,18 @@
 
 	<!-- other variations include: lH2, lD2, ND3, "elaborate"  -->
 
-<!--
 	<detector name="target" factory="TEXT" variation="transverse"/>
 	<detector name="transverseTargetCad/"   factory="CAD"/>
--->
+<!--
 	<detector name="target" factory="TEXT" variation="lH2"/>
 	<detector name="cad/"   factory="CAD"/>
+-->
+
+	<!-- hall field  -->
+	<option name="HALL_FIELD"  value="transverseNewMagnet"/>
+	<option name="SCALE_FIELD" value="transverseNewMagnet, 1.0"/>
+	<option name="FIELD_PROPERTIES" value="transverseNewMagnet, 1*mm, G4ClassicalRK4, linear"/>
+
 
 	<option name="BEAM_P" value="e-, 11.0*GeV, 0*deg, 0*deg"/>
 	<option name="SPREAD_V" value="(0.01, 0)cm"/>

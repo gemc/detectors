@@ -45,14 +45,22 @@ my %materials = ("silicon","G4_Si",
                  "epoxy","tdr1100",
                  "rail","G4_Cu",
                  "pad","BusCableCopperAndNickelAndGold",
-                 "wirebond","svtwirebond");
+                 "wirebond","svtwirebond",
+		 "mylar", "G4_MYLAR",
+		 "rohacell110","rohacell110",
+                 "neoprene", "G4_RUBBER_NEOPRENE", 
+		 "Component","Component");
 
 my %colors = ("silicon","ccffff",
               "heatSink","ffcc00",
               "carbonFiber","333333",
               "busCable","666666",
               "pcBoard","ffff99",
-              "chip","cccc00");
+              "chip","cccc00",
+	      "peek","bbbbbb",
+	      "rohacell110", "ffffcc",
+	      "neoprene", "ff8888",
+	      "mylar", "bbbbcc");
 
 my $btestone = 0;
 
@@ -76,7 +84,7 @@ sub makeBST
     }
 
     build_mother();
-    
+    build_cage();
     for(my $r=1; $r<=$nregions; $r++ )
     {
         $nsectors[$r-1] = $main::parameters{"nsectors_r".$r};
@@ -98,6 +106,19 @@ sub build_mother
     print_det(\%main::configuration, \%detector);
 }
 
+sub build_cage
+{
+    my @names = ("Inner", "Outer",       "Cap",         "Insulation");
+    my @mats  = ("mylar", "carbonFiber", "rohacell110", "neoprene");
+    for(my $i=0; $i<4; $i++ )
+    {
+        my $vname = "faradayCage".$names[$i];
+        my $vdesc = "Faraday Cage ".$names[$i];
+	my $mat   = $mats[$i];
+	build_passive($vname, $vdesc, $mat);
+    }	
+}
+
 sub build_region
 {
     my $r = shift;
@@ -116,6 +137,8 @@ sub build_region
     {
         build_sector($r,$s);
     }
+
+    build_peek_support($r);
 }
 
 sub build_sector
@@ -274,6 +297,24 @@ sub build_sensor_physical
 #    $detector{"material"} = $materials{"silicon"};
 #    print_det(\%main::configuration, \%detector);
 #}
+
+sub build_peek_support
+  {
+    my $r = shift;
+    
+    my $vname = "peek_polyhedra_r".$r;
+    my $vdesc = "SVT Region Peek Polyhedra ".$r;
+    my $mat   = "Component";
+    build_passive($vname, $vdesc, $mat);
+    $vname = "peek_tube_r".$r;
+    $vdesc = "SVT Region Peek Tube ".$r;
+    $mat   = "Component";
+    build_passive($vname, $vdesc, $mat);
+    $vname = "peek_r".$r;
+    $vdesc = "SVT Region Peek Support ".$r;    
+    $mat = "peek";
+    build_passive($vname, $vdesc, $mat);
+}
 
 sub build_heat_sink
 {

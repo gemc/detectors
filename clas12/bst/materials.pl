@@ -60,6 +60,15 @@ sub materials
 	$mat{"components"}    = "G4_C 0.6465 G4_H 0.0784 G4_N 0.0839 G4_O 0.1912";
 	print_mat(\%configuration, \%mat);
     
+	# Rohacell110
+	%mat = init_mat();
+	$mat{"name"}          = "rohacell110";
+	$mat{"description"}   = "faraday cage rohacell material";
+	$mat{"density"}       = "0.11";
+	$mat{"ncomponents"}   = "4";
+	$mat{"components"}    = "G4_C 0.6465 G4_H 0.0784 G4_N 0.0839 G4_O 0.1912";
+	print_mat(\%configuration, \%mat);
+    
 	# wirebonds
 	%mat = init_mat();
 	$mat{"name"}          = "svtwirebond";

@@ -35,6 +35,7 @@ require "./materials.pl";
 
 # sensitive geometry
 require "./geometry.pl";
+require "./apollo.pl";
 
 
 # all the scripts must be run for every configuration
@@ -49,8 +50,12 @@ foreach my $conf ( @allConfs )
 	materials();
 		
 	# geometry
-	build_targets();
-	
+	if( $configuration{"variation"} eq "APOLLOnh3" || $configuration{"variation"} eq "APOLLOnd3") {
+	    apollo();
+	}
+	else {
+	  build_targets();
+	}
 }
 
 

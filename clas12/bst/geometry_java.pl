@@ -48,7 +48,7 @@ my %materials = ("silicon","G4_Si",
                  "wirebond","svtwirebond",
 		 "mylar", "G4_MYLAR",
 		 "rohacell110","rohacell110",
-                 "neoprene", "G4_RUBBER_NEOPRENE", 
+                 "neoprene", "neoprene", 
 		 "Component","Component");
 
 my %colors = ("silicon","ccffff",

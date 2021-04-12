@@ -42,6 +42,15 @@ sub materials
 	$mat{"components"}    = "G4_C 0.745 tdr1100 0.255";
 	print_mat(\%configuration, \%mat);
 	
+	# Neoprene foam
+	%mat = init_mat();
+	$mat{"name"}          = "neoprene";
+	$mat{"description"}   = "faraday cage neoprene material";
+	$mat{"density"}       = "0.1";
+	$mat{"ncomponents"}   = "3";
+	$mat{"components"}    = "G4_H 0.05692 G4_C 0.542646 G4_Cl 0.400434";
+	print_mat(\%configuration, \%mat);
+
 	# PC Board
 	%mat = init_mat();
 	$mat{"name"}          = "pcBoardMaterial";

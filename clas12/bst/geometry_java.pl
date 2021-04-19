@@ -35,32 +35,32 @@ my $bsensors;
 
 # will move materials to CCDB later
 my %materials = ("silicon","G4_Si",
-                 "heatSink","G4_Cu",
-                 "rohacell","rohacell",
-                 "carbonFiber","carbonFiber",
-                 "busCable","BusCable",
-                 "pitchAdaptor","G4_SILICON_DIOXIDE",
-                 "pcBoard","pcBoardMaterial",
-                 "chip","pcBoardMaterial",
-                 "epoxy","tdr1100",
-                 "rail","G4_Cu",
-                 "pad","BusCableCopperAndNickelAndGold",
-                 "wirebond","svtwirebond",
-		 "mylar", "G4_MYLAR",
-		 "rohacell110","rohacell110",
-                 "neoprene", "neoprene", 
-		 "Component","Component");
+					  "heatSink","G4_Cu",
+					  "rohacell","rohacell",
+					  "carbonFiber","carbonFiber",
+					  "busCable","BusCable",
+					  "pitchAdaptor","G4_SILICON_DIOXIDE",
+					  "pcBoard","pcBoardMaterial",
+					  "chip","pcBoardMaterial",
+					  "epoxy","tdr1100",
+					  "rail","G4_Cu",
+					  "pad","BusCableCopperAndNickelAndGold",
+					  "wirebond","svtwirebond",
+					  "mylar", "G4_MYLAR",
+					  "rohacell110","rohacell110",
+					  "neoprene", "neoprene",
+					  "Component","Component");
 
 my %colors = ("silicon","ccffff",
-              "heatSink","ffcc00",
-              "carbonFiber","333333",
-              "busCable","666666",
-              "pcBoard","ffff99",
-              "chip","cccc00",
-	      "peek","bbbbbb",
-	      "rohacell110", "ffffcc",
-	      "neoprene", "ff8888",
-	      "mylar", "bbbbcc");
+				  "heatSink","ffcc00",
+				  "carbonFiber","333333",
+				  "busCable","666666",
+				  "pcBoard","ffff99",
+				  "chip","cccc00",
+				  "peek","bbbbbb",
+				  "rohacell110", "ffffcc",
+				  "neoprene", "ff8888",
+				  "mylar", "bbbbcc");
 
 my $btestone = 0;
 
@@ -68,178 +68,166 @@ sub makeBST
 {
 	($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
 
-    $nregions     = $main::parameters{"nregions"};
-    $nmodules     = $main::parameters{"nmodules"};
-    $nsensors     = $main::parameters{"nsensors"};
-    $npads        = $main::parameters{"npads"};
-    
-    $bsensorzones = $main::parameters{"bsensorzones"};
-    $bsensors     = $main::parameters{"bsensors"};
+	$nregions     = $main::parameters{"nregions"};
+	$nmodules     = $main::parameters{"nmodules"};
+	$nsensors     = $main::parameters{"nsensors"};
+	$npads        = $main::parameters{"npads"};
 
-    if($btestone)
-    {
-        $nregions = 1;
-        #$nmodules = 1;
-        #$nsensors = 1;
-    }
+	$bsensorzones = $main::parameters{"bsensorzones"};
+	$bsensors     = $main::parameters{"bsensors"};
 
-    build_mother();
-    build_cage();
-    for(my $r=1; $r<=$nregions; $r++ )
-    {
-        $nsectors[$r-1] = $main::parameters{"nsectors_r".$r};
-        if($btestone){ $nsectors[0] = 1; }
-        build_region($r);
-    }
+	if($btestone)
+	{
+		$nregions = 1;
+		#$nmodules = 1;
+		#$nsensors = 1;
+	}
+
+	build_mother();
+	build_cage();
+	for(my $r=1; $r<=$nregions; $r++ )
+	{
+		$nsectors[$r-1] = $main::parameters{"nsectors_r".$r};
+		if($btestone){ $nsectors[0] = 1; }
+
+		# 4 regions
+		build_region($r);
+	}
 }
 
 sub build_mother
 {
-    my $vname = "svt";
-    my $vdesc = "SVT Mother";
-    
-    my %detector = init_det();
-    %detector = setup_detector( $vname, \%detector );
-    %detector = setup_detector_passive($vdesc, \%detector );
-    $detector{"mother"} = "root"; # overwrite mother from file
-    $detector{"visible"} = 0;
-    print_det(\%main::configuration, \%detector);
+	my $vname = "svt";
+	my $vdesc = "SVT Mother";
+
+	my %detector = init_det();
+	%detector = setup_detector( $vname, \%detector );
+	%detector = setup_detector_passive($vdesc, \%detector );
+	$detector{"mother"} = "root"; # overwrite mother from file
+	$detector{"visible"} = 0;
+	print_det(\%main::configuration, \%detector);
 }
 
 sub build_cage
 {
-    my @names = ("Inner", "Outer",       "Cap",         "Insulation");
-    my @mats  = ("mylar", "carbonFiber", "rohacell110", "neoprene");
-    for(my $i=0; $i<4; $i++ )
-    {
-        my $vname = "faradayCage".$names[$i];
-        my $vdesc = "Faraday Cage ".$names[$i];
-	my $mat   = $mats[$i];
-	build_passive($vname, $vdesc, $mat);
-    }	
+	my @names = ("Inner", "Outer",       "Cap",         "Insulation");
+	my @mats  = ("mylar", "carbonFiber", "rohacell110", "neoprene");
+	for(my $i=0; $i<4; $i++ )
+	{
+		my $vname = "faradayCage".$names[$i];
+		my $vdesc = "Faraday Cage ".$names[$i];
+		my $mat   = $mats[$i];
+		build_passive($vname, $vdesc, $mat);
+	}
 }
 
+# 3 regions 1 to 3
+# build_region($r);
 sub build_region
 {
-    my $r = shift;
-    my $vname = "region".$r;
-    my $vdesc = "SVT Region ".$r;
+	my $r = shift;
+	my $vname = "region".$r;
+	my $vdesc = "SVT Region ".$r;
 
-    #print "Hello from ".$vdesc."\n";
+	#print "Hello from ".$vdesc."\n";
 
-    my %detector = init_det();
-    %detector = setup_detector( $vname, \%detector );
-    %detector = setup_detector_passive( $vdesc, \%detector );
-    $detector{"visible"} = 0;
-    print_det(\%main::configuration, \%detector);
+	my %detector = init_det();
+	%detector = setup_detector( $vname, \%detector );
+	%detector = setup_detector_passive( $vdesc, \%detector );
+	$detector{"visible"} = 0;
+	print_det(\%main::configuration, \%detector);
 
-    for(my $s=1; $s<=$nsectors[$r-1]; $s++ )
-    {
-        build_sector($r,$s);
-    }
+	# number of regions depends on sector
+	# starts at 1
+	for(my $s=1; $s<=$nsectors[$r-1]; $s++ ) {
+		build_sector($r, $s);
+	}
 
-    build_peek_support($r);
+	build_peek_support($r);
 }
 
+# 3 regions 1 to 3
+# build_region($r);
+# number of sector depends on regions, starts at 1
+# build_sector($r, $s)
 sub build_sector
 {
-    my $r = shift;
-    my $s = shift;
-    my $vname = "sector".$s."_r".$r;
-    my $vdesc = "SVT Sector ".$s.", Region ".$r;
+	my $r = shift;
+	my $s = shift;
+	my $vname = "sector".$s."_r".$r;
+	my $vdesc = "SVT Sector ".$s.", Region ".$r;
 
-    #print "Hello from ".$vdesc."\n";
+	#print "Hello from ".$vdesc."\n";
 
-    my %detector = init_det();
-    %detector = setup_detector( $vname, \%detector );
-    %detector = setup_detector_passive( $vdesc, \%detector );
-    $detector{"visible"} = 0;
-    print_det(\%main::configuration, \%detector);
+	my %detector = init_det();
+	%detector = setup_detector( $vname, \%detector );
+	%detector = setup_detector_passive( $vdesc, \%detector );
+	$detector{"visible"} = 0;
+	print_det(\%main::configuration, \%detector);
 
-    for(my $m=1; $m<=$nmodules; $m++ )
-    {
-        build_module($r,$s,$m);
-        build_passive_in_module($r,$s,$m,"pitchAdaptor","SVT Pitch Adaptor");
-        build_carbon_fiber($r,$s,$m);
-        build_bus_cable($r,$s,$m);
-        build_pc_board_and_chips($r,$s,$m);
-        build_epoxy_and_rail_and_pads($r,$s,$m);
-    }
+	for(my $m=1; $m<=$nmodules; $m++ ) {
+		build_module($r, $s, $m);
+		build_passive_in_module($r,$s,$m,"pitchAdaptor","SVT Pitch Adaptor");
+		build_carbon_fiber($r,$s,$m);
+		build_bus_cable($r, $s, $m);
+		build_pc_board_and_chips($r,$s,$m);
+		build_epoxy_and_rail_and_pads($r,$s,$m);
+	}
 
-    build_passive_in_sector($r,$s,"rohacell","SVT Rohacell Support");
-    build_heat_sink($r,$s);
+	build_passive_in_sector($r,$s,"rohacell","SVT Rohacell Support");
+	build_heat_sink($r,$s);
 }
 
+
+# 3 regions 1 to 3
+# build_region($r);
+# number of sector depends on regions, starts at 1
+# build_sector($r, $s)
+# 2 modules $m, bottom = 1 and top = 2
+# build_module($r, $s, $m);
+# 3 sensors $sp = 1,2,3
 sub build_module
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
-    
-    my $name = "module";
-    my $desc = "SVT Module";
-    my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
 
-    #print "Hello from ".$vdesc."\n";
+	my $name = "module";
+	my $desc = "SVT Module";
+	my ($vname,$vdesc) = setup_name_in_module($r, $s, $m, $name, $desc);
 
-    #if( $bsensors )
-    #{
-        
-        build_passive($vname,$vdesc,$name,1); # hide container volume
-    
-        for(my $sp=1; $sp<=$nsensors; $sp++ )
-        {
-            build_sensor_physical($r,$s,$m,$sp);
-        }
-    #}
-    #else
-    #{
-    #    my %detector = init_det();
-    #    %detector = setup_detector( $vname, \%detector );
-    #    #$detector{"mother"} = "root"; # overwrite mother from file
-    #    %detector = setup_detector_active( $vdesc, \%detector );
-    #    $detector{"ncopy"} = $sp;
-    #    $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1"; # cannot do! need 3 physical sensors!
-    #    print_det(\%main::configuration, \%detector);
-    #}
+
+	build_passive($vname,$vdesc,$name,1); # hide container volume
+
+	for(my $sp=1; $sp<=$nsensors; $sp++ ) {
+		build_sensor_physical($r, $s, $m, $sp);
+	}
 }
 
+# 3 regions 1 to 3
+# build_region($r);
+# number of sector depends on regions, starts at 1
+# build_sector($r, $s)
+# 2 modules $m, bottom and top
+# build_module($r, $s, $m);
+# 3 sensors $sp
 sub build_sensor_physical
 {
-    my $r  = shift;
-    my $s  = shift;
-    my $m  = shift;
-    my $sp = shift;
-    my $name = "sensorPhysical";
-    my $desc = "SVT Physical Sensor";
-    my $vname = $name.$sp."_m".$m."_s".$s."_r".$r;
-    my $vdesc = $desc." ".$sp.", Module ".$m.", Sector ".$s.", Region ".$r;
+	my $r  = shift;
+	my $s  = shift;
+	my $m  = shift;
+	my $sp = shift;
+	my $name = "sensorPhysical";
+	my $desc = "SVT Physical Sensor";
+	my $vname = $name.$sp."_m".$m."_s".$s."_r".$r;
+	my $vdesc = $desc." ".$sp.", Module ".$m.", Sector ".$s.", Region ".$r;
 
-    #print "Hello from ".$vdesc."\n";
-
-#    if( $bsensorzones )
-#    {        
-#        build_sensor_active($r,$s,$m,$sp);
-#        build_sensor_dead_len($r,$s,$m,$sp,1);
-#        build_sensor_dead_len($r,$s,$m,$sp,2);
-#        build_sensor_dead_wid($r,$s,$m,$sp,3);
-#        build_sensor_dead_wid($r,$s,$m,$sp,4);
-#
-#        my %detector = init_det();
-#        %detector = setup_detector( $vname, \%detector );
-#        %detector = setup_detector_passive( $vdesc, \%detector );
-#        $detector{"visible"} = 0;
-#        print_det(\%main::configuration, \%detector);
-#    }
-#    else
-#    {
-        my %detector = init_det();
-        %detector = setup_detector( $vname, \%detector );
-        %detector = setup_detector_active( $vdesc, \%detector );
-        $detector{"identifiers"} = "superlayer manual $r type manual $m segment manual $s module manual $sp strip manual 1";
-        $detector{"color"}       = $colors{"silicon"};
-        print_det(\%main::configuration, \%detector);
-#    }
+	my %detector = init_det();
+	%detector = setup_detector( $vname, \%detector );
+	%detector = setup_detector_active( $vdesc, \%detector );
+	$detector{"identifiers"} = "region manual $r module manual $m sector manual $s sensor manual $sp strip manual 1";
+	$detector{"color"}       = $colors{"silicon"};
+	print_det(\%main::configuration, \%detector);
 }
 
 #sub build_sensor_active
@@ -299,265 +287,265 @@ sub build_sensor_physical
 #}
 
 sub build_peek_support
-  {
-    my $r = shift;
-    
-    my $vname = "peek_polyhedra_r".$r;
-    my $vdesc = "SVT Region Peek Polyhedra ".$r;
-    my $mat   = "Component";
-    build_passive($vname, $vdesc, $mat);
-    $vname = "peek_tube_r".$r;
-    $vdesc = "SVT Region Peek Tube ".$r;
-    $mat   = "Component";
-    build_passive($vname, $vdesc, $mat);
-    $vname = "peek_r".$r;
-    $vdesc = "SVT Region Peek Support ".$r;    
-    $mat = "peek";
-    build_passive($vname, $vdesc, $mat);
+{
+	my $r = shift;
+
+	my $vname = "peek_polyhedra_r".$r;
+	my $vdesc = "SVT Region Peek Polyhedra ".$r;
+	my $mat   = "Component";
+	build_passive($vname, $vdesc, $mat);
+	$vname = "peek_tube_r".$r;
+	$vdesc = "SVT Region Peek Tube ".$r;
+	$mat   = "Component";
+	build_passive($vname, $vdesc, $mat);
+	$vname = "peek_r".$r;
+	$vdesc = "SVT Region Peek Support ".$r;
+	$mat = "peek";
+	build_passive($vname, $vdesc, $mat);
 }
 
 sub build_heat_sink
 {
-    my $r = shift;
-    my $s = shift;
-    my $desc = "SVT Upstream Support";
+	my $r = shift;
+	my $s = shift;
+	my $desc = "SVT Upstream Support";
 
-    my $mat = "heatSink";
-    my $name = $mat;
-    my ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
-    #build_passive($vname,$vdesc,$mat,1); # hide container volume
+	my $mat = "heatSink";
+	my $name = $mat;
+	my ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
+	#build_passive($vname,$vdesc,$mat,1); # hide container volume
 
-    $name = $mat."Cu";
-    ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."Cu";
+	($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $name = $mat."Ridge";
-    ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."Ridge";
+	($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 }
 
 sub build_carbon_fiber
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
-    my $desc = "SVT Carbon Fiber";
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
+	my $desc = "SVT Carbon Fiber";
 
-    my $mat = "carbonFiber";
-    my $name = $mat;
-    my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat,1); # hide container volume
+	my $mat = "carbonFiber";
+	my $name = $mat;
+	my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat,1); # hide container volume
 
-    $name = $mat."Cu";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."Cu";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $name = $mat."Pk";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."Pk";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 }
 
 sub build_bus_cable
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
-    my $desc = "SVT Bus Cable";
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
+	my $desc = "SVT Bus Cable";
 
-    my $mat = "busCable";
-    my $name = $mat;
-    my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat,1); # hide container volume
+	my $mat = "busCable";
+	my $name = $mat;
+	my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat,1); # hide container volume
 
-    $name = $mat."Cu";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."Cu";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $name = $mat."Pk";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."Pk";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 }
 
 sub build_pc_board_and_chips
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
-    my $desc = "SVT HFCB"; # Hybrid Flex Circuit Board
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
+	my $desc = "SVT HFCB"; # Hybrid Flex Circuit Board
 
-    my $mat = "pcBoardAndChips";
-    my $name = $mat;
-    my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat,1); # hide container volume
+	my $mat = "pcBoardAndChips";
+	my $name = $mat;
+	my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat,1); # hide container volume
 
-    $mat = "pcBoard";
-    $name = $mat;
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$mat = "pcBoard";
+	$name = $mat;
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $mat = "chip";
-    $name = $mat."L";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$mat = "chip";
+	$name = $mat."L";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $name = $mat."R";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$name = $mat."R";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 }
 
 sub build_epoxy_and_rail_and_pads
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
 
-    my $desc = "SVT Epoxy Glue and HV Rail and Pads"; # High Voltage
-    my $mat = "epoxyAndRailAndPads";
-    my $name = $mat;
-    my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat,1); # hide container volume
+	my $desc = "SVT Epoxy Glue and HV Rail and Pads"; # High Voltage
+	my $mat = "epoxyAndRailAndPads";
+	my $name = $mat;
+	my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat,1); # hide container volume
 
-    $mat = "epoxy";
-    $name = $mat."MajorCu";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
-    $name = $mat."MinorCu";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
-    $name = $mat."MajorPk";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
-    $name = $mat."MinorPk";
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$mat = "epoxy";
+	$name = $mat."MajorCu";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
+	$name = $mat."MinorCu";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
+	$name = $mat."MajorPk";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
+	$name = $mat."MinorPk";
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $mat = "rail";
-    $name = $mat;
-    ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$mat);
+	$mat = "rail";
+	$name = $mat;
+	($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$mat);
 
-    $mat = "pad";
-    for(my $p=01; $p<=$npads; $p++ )
-    {
-        #$name = $mat.$p;
-        $name = $mat.($p-1);
-        ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-        build_passive($vname,$vdesc,$mat);
-    }
+	$mat = "pad";
+	for(my $p=01; $p<=$npads; $p++ )
+	{
+		#$name = $mat.$p;
+		$name = $mat.($p-1);
+		($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+		build_passive($vname,$vdesc,$mat);
+	}
 }
 
 sub build_passive_in_module
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
-    my $name = shift;
-    my $desc = shift;
-    my $invisible = shift; # optional argument
-    my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
-    build_passive($vname,$vdesc,$name,$invisible);
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
+	my $name = shift;
+	my $desc = shift;
+	my $invisible = shift; # optional argument
+	my ($vname,$vdesc) = setup_name_in_module($r,$s,$m,$name,$desc);
+	build_passive($vname,$vdesc,$name,$invisible);
 }
 
 sub build_passive_in_sector
 {
-    my $r = shift;
-    my $s = shift;
-    my $name = shift;
-    my $desc = shift;
-    my $invisible = shift; # optional argument
-    my ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
-    build_passive($vname,$vdesc,$name,$invisible);
+	my $r = shift;
+	my $s = shift;
+	my $name = shift;
+	my $desc = shift;
+	my $invisible = shift; # optional argument
+	my ($vname,$vdesc) = setup_name_in_sector($r,$s,$name,$desc);
+	build_passive($vname,$vdesc,$name,$invisible);
 }
 
 sub setup_name_in_sector
 {
-    my $r = shift;
-    my $s = shift;
-    my $name = shift;
-    my $desc = shift;
-    my $vname = $name."_s".$s."_r".$r;
-    my $vdesc = $desc.", Sector ".$s.", Region ".$r;
-    return ($vname,$vdesc);
+	my $r = shift;
+	my $s = shift;
+	my $name = shift;
+	my $desc = shift;
+	my $vname = $name."_s".$s."_r".$r;
+	my $vdesc = $desc.", Sector ".$s.", Region ".$r;
+	return ($vname,$vdesc);
 }
 
 sub setup_name_in_module
 {
-    my $r = shift;
-    my $s = shift;
-    my $m = shift;
-    my $name = shift;
-    my $desc = shift;
-    my $vname = $name."_m".$m."_s".$s."_r".$r;
-    my $vdesc = $desc." ".$m.", Sector ".$s.", Region ".$r;
-    return ($vname,$vdesc);
+	my $r = shift;
+	my $s = shift;
+	my $m = shift;
+	my $name = shift;
+	my $desc = shift;
+	my $vname = $name."_m".$m."_s".$s."_r".$r;
+	my $vdesc = $desc." ".$m.", Sector ".$s.", Region ".$r;
+	return ($vname,$vdesc);
 }
 
 sub build_passive
 {
-    my $vname = shift;
-    my $vdesc = shift;
-    my $mat = shift;
-    my $invisible = shift;
-    
-    my %detector = init_det();
-    %detector = setup_detector( $vname, \%detector );
-    %detector = setup_detector_passive( $vdesc, \%detector );
-    if( defined $materials{$mat}){ $detector{"material"} = $materials{$mat}; }
-    if( defined $colors{$mat} ){ $detector{"color"} = $colors{$mat}; }
-    if( $invisible ){ $detector{"visible"} = 0; }
-    print_det(\%main::configuration, \%detector);
+	my $vname = shift;
+	my $vdesc = shift;
+	my $mat = shift;
+	my $invisible = shift;
+
+	my %detector = init_det();
+	%detector = setup_detector( $vname, \%detector );
+	%detector = setup_detector_passive( $vdesc, \%detector );
+	if( defined $materials{$mat}){ $detector{"material"} = $materials{$mat}; }
+	if( defined $colors{$mat} ){ $detector{"color"} = $colors{$mat}; }
+	if( $invisible ){ $detector{"visible"} = 0; }
+	print_det(\%main::configuration, \%detector);
 }
 
 sub setup_detector_active
 {
-    my $description = shift;
-    my %detector = %{shift()};
+	my $description = shift;
+	my %detector = %{shift()};
 
-    $detector{"description"} = $description;
+	$detector{"description"} = $description;
 	$detector{"color"}       = "0000ff";
 	$detector{"mfield"}      = "no";
-    $detector{"ncopy"}       = "1";
+	$detector{"ncopy"}       = "1";
 	$detector{"visible"}     = 1;
-    $detector{"style"}       = 1; # 0 = wireframe, 1 = solid
-    
-    $detector{"material"}    = "G4_Si";
+	$detector{"style"}       = 1; # 0 = wireframe, 1 = solid
+
+	$detector{"material"}    = "G4_Si";
 	$detector{"sensitivity"} = "bst";
 	$detector{"hit_type"}    = "bst";
 	
-    return %detector;
+	return %detector;
 }
 
 sub setup_detector_passive
 {
-    my $description = shift;
-    my %detector = %{shift()};
-    
-    $detector{"description"} = $description;
+	my $description = shift;
+	my %detector = %{shift()};
+
+	$detector{"description"} = $description;
 	$detector{"color"}       = "cccccc";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"mfield"}      = "no";
 	$detector{"ncopy"}       = "1";
 	$detector{"visible"}     = 1;
 	$detector{"style"}       = 1; # 0 = wireframe, 1 = solid
-    
-    return %detector;
+
+	return %detector;
 }
 
 sub setup_detector
 {
-    my $vname = shift;
-    my %detector = %{shift()};
+	my $vname = shift;
+	my %detector = %{shift()};
 
-    if( not defined $mothers->{$vname} ){ die "unknown volume: \"".$vname."\"\n"; }
-    
-    $detector{"name"}        = $vname;
-	$detector{"mother"}      = $mothers->{$vname};    
+	if( not defined $mothers->{$vname} ){ die "unknown volume: \"".$vname."\"\n"; }
+
+	$detector{"name"}        = $vname;
+	$detector{"mother"}      = $mothers->{$vname};
 	$detector{"pos"}         = $positions->{$vname};
 	$detector{"rotation"}    = $rotations->{$vname};
 	$detector{"type"}        = $types->{$vname};
 	$detector{"dimensions"}  = $dimensions->{$vname};
-    
-    return %detector;
+
+	return %detector;
 }
 
 1;

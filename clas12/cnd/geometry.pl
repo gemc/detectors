@@ -214,7 +214,7 @@ ver4 = "^"
 					
 					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);		
 					my $desc_string = join('','Central Neutron Detector, S ',$i,', L ',$j,', C ',$k);		
-					my $id_string = join('','sector manual ',$i,' layer manual ',$j,' component manual ',$k);							
+					my $id_string = join('','sector manual ',$i,' layer manual ',$j,' component manual ',$k, ' direct manual 0');
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
@@ -232,9 +232,7 @@ ver4 = "^"
 					$detector{"hit_type"}    = "cnd";
 					$detector{"identifiers"} = $id_string;
 					print_det(\%configuration, \%detector);
-				}
-				else
-				{				
+				} else {				
 					#required vertices
 					my $ver1x = -$bottom_x;
 					my $ver1y = $innerRadius;
@@ -249,7 +247,7 @@ ver4 = "^"
 					
 					my $name_string = join('','CND_S',$i,'_L',$j,'_C',$k);	
 					my $desc_string = join('','Central Neutron Detector, S ',$i,', L ',$j,', C ',$k);		
-					my $id_string = join('','sector manual ',$i,' layer manual ',$j,' component manual ',$k);							
+					my $id_string = join('','sector manual ',$i,' layer manual ',$j,' component manual ',$k, ' direct manual 0');
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;

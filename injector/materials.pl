@@ -34,11 +34,11 @@ sub print_materials
     
     # Nitrous Oxide
     my %mat = init_mat();
-    $mat{"name"}          = "N2O";
+    $mat{"name"}          = "C3F8";
     $mat{"description"}   = "Chamber active fluid material";
-    $mat{"density"}       = "0.846";
+    $mat{"density"}       = "1.350";
     $mat{"ncomponents"}   = "2";
-    $mat{"components"}    = "N 2 O 1";	
+    $mat{"components"}    = "C 3 F 8";	
     print_mat(\%configuration, \%mat);
     
 }

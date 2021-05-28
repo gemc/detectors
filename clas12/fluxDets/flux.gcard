@@ -2,8 +2,8 @@
 	
 	<option name="geometry" value="1400x1200"/>
 	
-	<detector name="fluxDet" factory="TEXT" variation="original"/>
-	<detector name="../targets/target" factory="TEXT" variation="lH2"/>
+	<detector name="fluxDets" factory="TEXT" variation="beamline"/>
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lH2"/>
 	<option name="geometry" value="1400x1200"/>
 	
 	<option name="INTEGRATEDRAW" value="flux"/>

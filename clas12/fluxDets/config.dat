@@ -1,7 +1,7 @@
 # Configuration file for clas flux detector
 
 # Detector name and variation
-detector_name: fluxDet
+detector_name: fluxDets
 variation:     original
 
 # Factory can be MYQL or TEXT

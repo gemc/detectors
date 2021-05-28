@@ -35,7 +35,7 @@ require "./geometry.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("original");
+my @allConfs = ("beamline");
 
 
 foreach my $conf ( @allConfs )

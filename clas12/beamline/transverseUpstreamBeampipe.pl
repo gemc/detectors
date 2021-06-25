@@ -21,5 +21,6 @@ sub transverseUpstreamBeampipe()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	print "remember to rename the geometry to beamline2, this steps will be eliminated once we have the real geo\n"
 }
 

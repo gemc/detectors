@@ -8,8 +8,8 @@ my $NUM_LAYERS = 6;
 my $NUM_BARS   = 18;
 my $NUM_SHDS   = 3;
 
-my $band_xpos  = 0;
-my $band_ypos  = 900;
+my $band_xpos  = 0; 
+my $band_ypos  = 921.2;
 my $band_zpos  = 655;
 
 my $bcolor = 'aaaaaa';
@@ -21,10 +21,15 @@ my $vframe_y  = 1541.33; # mm
 my $vframe_z  = 6;       # inches
 my @vframe    = ($vframe_x/2, $vframe_y/2, $vframe_z/2);
 my @vinframe  = ($vframe_x/2-0.25, $vframe_y/2, $vframe_z/2-0.25);
-my @vframepos = ($band_xpos - 1078.9, $band_xpos - 448.3, $band_xpos + 448.3, $band_xpos + 1078.9);
-my $align_x = 0;               # mm
+my @vframepos = ($band_xpos - 1078.9, $band_xpos - 486.4, $band_xpos + 486.4, $band_xpos + 1078.9);
+my $align_x = 2;               # mm
 my $align_y = 0;               # mm
 my $align_z = -2308.71;        # mm
+
+# These are delta z between each layer:
+# (79.4, 76.2, 79.4, 76.2, 73.0)
+# But we want the cumulative delta z:
+my @delta_z = (0.0, 79.4, 155.6, 235.0, 311.2, 384.2);
 
 my $STARTcart = -462.3;
 
@@ -63,11 +68,15 @@ sub build_scintillators
 			my $y      = $band_ypos;
 			my $z      = $band_zpos;
 			my $xpos = $x;
-			my $ypos = $y - 73.03*($i-1);
-			my $zpos = $z - 76.75*($j-1);
+			my $ypos = $y - 73.0*($i-1);
+			#my $zpos = $z - 76.75*($j-1);
+			my $zpos = $z - $delta_z[$j-1];
 			my $xdim = $lbar_length/2;
 			my $ydim = 36;
 			my $zdim = 36;
+			my $sector = 0;
+			my $component = 0;
+			my $layer = $j;
 			$bcolor  = '007fff';
 
 			if($i<=10 || $i>=17) # long bars
@@ -82,6 +91,8 @@ sub build_scintillators
 				{
 					$xdim = $mbar_length/2;
 					$bcolor = 'ff00ff';
+					$sector = 1;
+					$component = $i;
 					if($j==$NUM_LAYERS)
 						{$bcolor = '008000';}
 				}
@@ -159,9 +170,7 @@ sub build_scintillators
 				if($j==$NUM_LAYERS && $i>=16) {$zpos = $zpos + 72;}
 				# Short Bars
 				my $xpo = "753.5";
-				my $ypo = 200 - 72*$i;
-				my $zpo = $z + 72*($j-1);
-				$sector = 3;
+				$sector = 4;
 				$component = $i-10;;
 				my %detector3 = init_det();
 				$detector3{"name"}        = "scintillator_$barnum B";
@@ -179,13 +188,13 @@ sub build_scintillators
 				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
 				$detector3{"identifiers"} = $id_string;
 				print_det(\%configuration, \%detector3);
-			
+
 				$bcolor = '32cd32';
 				if($j==$NUM_LAYERS)
 					{$bcolor = '007fff';}
 				# Short Bars
 				$xpo = "-753.5";
-				$sector = 4;
+				$sector = 3;
 				$component = $i-10;;
 				my %detector4 = init_det();
 				$detector4{"name"}        = "scintillator_$barnum A";
@@ -251,7 +260,7 @@ sub build_frame
 	for(my $i=1; $i<=4; $i++)
 	{
 		my $qnumber     = cnumber($i-1, 10);
-		
+
 		# positioning
 		my $yp     = $band_ypos - 575.715;
 		my $zp     = $band_zpos - 533;
@@ -288,17 +297,40 @@ sub build_frame
 sub build_shielding
 {
 	my $q=0;
+
+	#3 groups of lead shielding, shorter ones 2x18 left and right side, and longer ones 1x10 in the center top
+	#lead is covered with Aluminium along x and z. Represent lead wall with two boxes of Aluminium and lead for each group
+	#index 1: short ones to beam right:
+	#Lead thickness x height x length: 0.79'' x 2.85'' x 20.7''
+	#Aluminium: length = 21.7'' (0.5'' extra on each side compared to lead length)
+	#index 1: long ones center top:
+	#Lead thickness x height x length: 0.79'' x 2.85'' x 38.3''
+	#Aluminium: length = 39.3'' (0.5'' extra on each side compared to lead length)
+	#index 3: short ones to beam left:
+	#Lead thickness x height x length: 0.79'' x 2.85'' x 20.7''
+	#Aluminium: length = 21.7''	(0.5'' extra on each side compared to lead length)
 	for(my $n=1; $n<=$NUM_SHDS; $n++)
 	{
 		$q = $q + $n;
-		my @lxpo = ($band_xpos - 763.065, $band_xpos - 0, $band_xpos + 763.065);
-		my @lypo = ($band_ypos - 652.850, $band_ypos - 367.6000, $band_ypos - 652.850);
-		my @lzpo = ($band_zpos - 556.097, $band_zpos - 629.3285, $band_zpos - 556.097);
-		my @lnum = (19, 10, 19);
-		my @sx   = (21.60/2, 39.30/2, 21.60/2);
+		#xpos center [mm] for short bars: between frame 0.5*(1040.8+486.4)mm, long bars in the center
+		my @lxpo = ($band_xpos - 763.6, $band_xpos - 0, $band_xpos + 763.6);
+		#ypos center [mm]
+		#short blocks (group 1 and 3): bottom of frame -419.1mm + 1298.4mm/2 (wall height (2.85inch*18) / 2)
+		#long blocks (group 2): bottom of bar row 10: 228mm + 362mm/2 (wall height (2.85inch*10) / 2)
+		my @lypo = (230.1, 590, 230.1);
+		#zpos center calculated from CAD file[mm]
+		my @lzpo = (102.5, 29.3, 102.5);
+		#number of blocks in each group (short, long, short)
+		my @lnum = (18, 10, 18);
+		#0.5*Aluminium length in inch:
+		my @sx   = (21.70/2, 39.30/2, 21.70/2);
+		#0.5*thickness in inch of lead + aluminium from CAD drawings
 		my @sz   = (1.102/2, 1.11/2, 1.102/2);
-		my $sy   = 2.83*$lnum[$n-1]/2;
+		#0.5*Height of lead in inch given by number of blocks times height
+		my $sy   = 2.85*$lnum[$n-1]/2;
+		#0.5* length of lead in inch, shorten by 1 inch compared to Aluminium
 		my $sd   = $sx[$n-1] - 1/2;
+		#1/2 thickness of blocks in inch
 		my $sb   = 0.79/2;
 
 		my %detector = init_det();
@@ -409,7 +441,7 @@ sub build_cart()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 63.5; 
+	$zcart = $STARTcart + 63.5;
 	$detector{"name"}        = "gusset006vert"; #################GUSSET
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset006";
@@ -422,7 +454,7 @@ sub build_cart()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 431.8; 
+	$zcart = $STARTcart + 431.8;
 	$detector{"name"}        = "gusset006hori";
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset006";
@@ -435,7 +467,7 @@ sub build_cart()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 63.5; 
+	$zcart = $STARTcart + 63.5;
 	$detector{"name"}        = "gusset007vert";
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset007";
@@ -448,7 +480,7 @@ sub build_cart()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 431.8; 
+	$zcart = $STARTcart + 431.8;
 	$detector{"name"}        = "gusset007hori";
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "Gusset007";
@@ -461,7 +493,7 @@ sub build_cart()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 669.925; 
+	$zcart = $STARTcart + 669.925;
 	$detector{"name"}        = "shortstrut"; ###########################################SQUARETUBES======================================
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "Short Strut";
@@ -510,7 +542,7 @@ sub build_cart()
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 736.6; 
+	$zcart = $STARTcart + 736.6;
 	$detector{"name"}        = "6x6x.25squaretubebrace";
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "6x6x.25 Square Tube Brace";
@@ -547,7 +579,7 @@ sub build_cart()
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
 
-	$zcart = $STARTcart + 469.9; 
+	$zcart = $STARTcart + 469.9;
 	$detector{"name"}        = "6x6x.25squaretubeshort001";
 	$detector{"mother"}      = "band";
 	$detector{"description"} = "6x6x.25 Square Tube Short001";

@@ -1,7 +1,7 @@
-# Configuration file for the CLAS 12 beam pipe
+# Configuration file for the BAND detector
 
 # Detector name and variation
-detector_name: beampipe
+detector_name: band
 variation:     noft
 
 # Factory can be MYQL or TEXT
@@ -15,7 +15,7 @@ rmax:       10000
 dbhost: clasdb.jlab.org
 
 # Comments/Description
-comment:       This is the first implementation of the beamline
+comment:       This is the first implementation of the band
 
 # Verbosity controls the perl script output
 verbosity: 0

@@ -16,8 +16,8 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   beamline.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 beamline and materials\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
+	print "   Will create the CLAS12 beamline and materials\n";
+	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -40,16 +40,15 @@ our $inches = 25.4;
 # materials
 require "./materials.pl";
 
-
 # vacuum line throughout the shields, torus and downstream
 require "./vacuumLineNew.pl";
 require "./ELMOline.pl";
 require "./rghline.pl";
+require "./transverseUpstreamBeampipe.pl";
 
-my @allConfs = ("FTOn", "FTOff","ELMO","rghFTOut","rghFTOn");
+my @allConfs = ("FTOn", "FTOff", "ELMO", "rghFTOut", "rghFTOn", "TransverseUpstreamBeampipe");
 
-foreach my $conf ( @allConfs )
-{
+foreach my $conf ( @allConfs ) {
 
 	$configuration{"variation"} = $conf ;
 
@@ -59,13 +58,13 @@ foreach my $conf ( @allConfs )
 	# vacuum line throughout the shields, torus and downstream
 	# temp includes the torus back nose
 	if( $configuration{"variation"} eq "FTOff" or $configuration{"variation"} eq "FTOn") {
-	vacuumLine();
-	}
-	if( $configuration{"variation"} eq "ELMO") {
-	    ELMOline();
-	}
-	if( $configuration{"variation"} eq "rghFTOut" or $configuration{"variation"} eq "rghFTOn") {
-	    rghline();
+		vacuumLine();
+	} elsif( $configuration{"variation"} eq "ELMO") {
+		ELMOline();
+	} elsif( $configuration{"variation"} eq "TransverseUpstreamBeampipe") {
+		transverseUpstreamBeampipe();
+	} elsif( $configuration{"variation"} eq "rghFTOut" or $configuration{"variation"} eq "rghFTOn") {
+		rghline();
 	}
 
 }

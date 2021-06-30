@@ -773,8 +773,8 @@ sub build_targets
 	{
 		my $nplanes = 4;
 
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );
+		my @oradius  =  (    50.3,   50.3,  21.1,  21.1 );
+		my @z_plane  =  (  -140.0,  265.0, 280.0, 280.0 );
 
 
 		if ($thisVariation eq "lH2e") {

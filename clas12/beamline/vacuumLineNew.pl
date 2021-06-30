@@ -124,44 +124,44 @@ sub vacuumLine()
 	# in "fc" the pipe gets bigger after the torus
 	# 1.651mm thick
 
-    my $nplanes = 4;
+	my $nplanes = 4;
 
 	#                        inside torus------------downstream
-    my @iradius_vbeam  =  (  33.274,      33.274,         60.325        , 60.325);
-    my @oradius_vbeam  =  (  34.925,      34.925,         63.5          , 63.5);
+	my @iradius_vbeam  =  (  33.274,      33.274,         60.325        , 60.325);
+	my @oradius_vbeam  =  (  34.925,      34.925,         63.5          , 63.5);
 	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $bigPipeBegins, $pipeEnds );
 
-    # sst pipe
+	# sst pipe
 	%detector = init_det();
-    $detector{"name"}        = "vacuumPipe";
-    $detector{"mother"}      = "fc";
-    $detector{"description"} = "vacuumPipe beampipe";
-    $detector{"color"}       = "aaffff";
-    $detector{"type"}        = "Polycone";
-    my $dimen = "0.0*deg 360*deg $nplanes*counts";
-    for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-    for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius_vbeam[$i]*mm";}
-    for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_vbeam[$i]*mm";}
-    $detector{"dimensions"}  = $dimen;
+	$detector{"name"}        = "vacuumPipe";
+	$detector{"mother"}      = "fc";
+	$detector{"description"} = "vacuumPipe beampipe";
+	$detector{"color"}       = "aaffff";
+	$detector{"type"}        = "Polycone";
+	my $dimen = "0.0*deg 360*deg $nplanes*counts";
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius_vbeam[$i]*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_vbeam[$i]*mm";}
+	$detector{"dimensions"}  = $dimen;
 	$detector{"material"}    = "G4_STAINLESS-STEEL";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
-    
-    # vacuum inside
-    %detector = init_det();
-    $detector{"name"}        = "vacuumInPipe";
-    $detector{"mother"}      = "vacuumPipe";
-    $detector{"description"} = "vacuum inside vacuumPipe";
-    $detector{"color"}       = "000000";
-    $detector{"type"}        = "Polycone";
-    $dimen = "0.0*deg 360*deg $nplanes*counts";
-    for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-    for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius_vbeam[$i]*mm";}
-    for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_vbeam[$i]*mm";}
-    $detector{"dimensions"}  = $dimen;
-    $detector{"material"}    = "G4_Galactic";
-    $detector{"style"}       = 1;
-    print_det(\%configuration, \%detector);
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+	# vacuum inside
+	%detector = init_det();
+	$detector{"name"}        = "vacuumInPipe";
+	$detector{"mother"}      = "vacuumPipe";
+	$detector{"description"} = "vacuum inside vacuumPipe";
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Polycone";
+	$dimen = "0.0*deg 360*deg $nplanes*counts";
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius_vbeam[$i]*mm";}
+	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_vbeam[$i]*mm";}
+	$detector{"dimensions"}  = $dimen;
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
 
 	# pipe to alcove
 	$pipeLength = ($alcovePipeEnds - $alcovePipeStarts) / 2.0 - 0.1;
@@ -210,18 +210,23 @@ sub vacuumLine()
 	print_det(\%configuration, \%detector);
 
 
-	my $gapZpos = 271.8;
-	my $gapLength = 302;
+	my $gapZpos = 283;
+	my $gapLength = 295;
 
 	if ($configuration{"variation"} eq "FTOff") {
 		$gapLength = 92.5;
 	}
 
 	my $gapLengthm = $gapLength + 1;
-	my $ztart = $gapZpos + $gapLength;
+	my $ztart = $gapZpos ;
 
 
-	# airgap still needed
+	# airpipes to account for change in volume size from target to "root" within a magnetic field
+	#
+	#
+	my @oradius_airpipe  =  (  28,      50);
+	my @z_plane_airpipe  =  (  0, 2*$gapLength );
+
 	%detector = init_det();
 	$detector{"name"}        = "airPipe";
 	$detector{"mother"}      = "root";
@@ -229,19 +234,25 @@ sub vacuumLine()
 	$detector{"color"}       = "aaffff";
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm $ztart*mm";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm 45*mm $gapLengthm*mm 0*deg 360*deg";
+	$detector{"type"}        = "Polycone";
+	$dimen = "0.0*deg 360*deg 2*counts";
+	for(my $i = 0; $i <2; $i++) {$dimen = $dimen ." 0.0*mm";}
+	for(my $i = 0; $i <2; $i++) {$dimen = $dimen ." $oradius_airpipe[$i]*mm";}
+	for(my $i = 0; $i <2; $i++) {$dimen = $dimen ." $z_plane_airpipe[$i]*mm";}
+	$detector{"dimensions"}  = $dimen;
 	$detector{"style"}       = 1;
 	$detector{"material"}    = "G4_AIR";
 	print_det(\%configuration, \%detector);
 
+	my $innerAirpipeDimension = $gapLength - 0.2;
 	%detector = init_det();
 	$detector{"name"}        = "airPipe2";
 	$detector{"mother"}      = "airPipe";
 	$detector{"description"} = "airgap between target and shield to limit e- steps";
 	$detector{"color"}       = "aaffff";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm 10*mm $gapLength*mm 0*deg 360*deg";
+	$detector{"pos"}         = "0*mm 0*mm  $innerAirpipeDimension*mm";
+	$detector{"dimensions"}  = "0*mm 10*mm $innerAirpipeDimension*mm 0*deg 360*deg";
 	$detector{"style"}       = 1;
 	$detector{"material"}    = "G4_AIR";
 	print_det(\%configuration, \%detector);

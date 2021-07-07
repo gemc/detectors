@@ -5,14 +5,31 @@ our %configuration;
 
 sub transverseUpstreamBeampipe()
 {
-	my $pipeLength = 1000;
-	my $zpos = -1025;
+	my $pipeLength = 500;
+	my $zpos = -858;
 	my $firstVacuumOR = 35;
 
 	my %detector = init_det();
-	$detector{"name"}        = "upstreamTransverseMagnetVacuumPipe";
+	$detector{"name"}        = "upstreamTransverseMagnetVacuumPipe1";
 	$detector{"mother"}      = "root";
-	$detector{"description"} = "upstreamTransverseMagnetVacuumPipe";
+	$detector{"description"} = "upstreamTransverseMagnetVacuumPipe1";
+	$detector{"color"}       = "334488";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "0*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
+
+	my $pipeLength = 148;
+	my $zpos = -204;
+	my $firstVacuumOR = 35;
+
+	my %detector = init_det();
+	$detector{"name"}        = "upstreamTransverseMagnetVacuumPipe2";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "upstreamTransverseMagnetVacuumPipe2";
 	$detector{"color"}       = "334488";
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";

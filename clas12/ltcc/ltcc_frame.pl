@@ -56,6 +56,10 @@ sub build_LtccFrame
 			if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
 				$shouldPrintDetector = 1;
 			}
+		} elsif($configuration{"variation"} eq "rgm" ) {
+			if($rgm_sectorsPresence[$s - 1] == 1) {
+				$shouldPrintDetector = 1;
+			}
 		}
 
 		# all the hardware STL is in S3 so let's not duplicate that

@@ -21,6 +21,9 @@ our @rgb_winter2019_materials;
 our @rgb_spring2019_sectorsPresence;
 our @rgb_spring2019_materials;
 
+our @rgm_sectorsPresence;
+our @rgm_materials;
+
 # number of mirrors
 my $nmirrors = $parameters{"nmirrors"} ;
 
@@ -250,6 +253,10 @@ sub build_hyp_mirrors
 				if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
 					$shouldPrintDetector = 1;
 					$gasMaterial = $rgb_spring2019_materials[$s - 1];
+				}
+			} elsif($configuration{"variation"} eq "rgm" ) {
+				if($rgm_sectorsPresence[$s - 1] == 1) {
+					$shouldPrintDetector = 1;
 				}
 			}
 

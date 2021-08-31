@@ -3,7 +3,7 @@
 	<option name="geometry" value="1400x1200"/>
 
 	<detector name="../fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
-	<detector name="ltcc"      factory="TEXT" variation="rga_spring2018"/>
+	<detector name="ltcc"      factory="TEXT" variation="rgm"/>
 	<detector name="cad_cone/" factory="CAD"/>
 	<detector name="cad/"      factory="CAD"/>
 

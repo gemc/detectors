@@ -41,7 +41,7 @@ sub build_MESH
 {
 	my $gxmlFile = shift;
 #	my @allMeshes =("OpticalGasVolume", "Aluminum","AerogelTiles","CFRP","Glass","TedlarWrapping","SphericalMirrors");
-	my @allMeshes =("RICH_s4","Aluminum","CFRP","TedlarWrapping","MirrorSupport");
+	my @allMeshes =("RICH_s4","Al_Base","Al_BottomFrame","Al_TopFrame","Al_TopLeft","Al_TopRight","CFRP","MirrorSupport");
 	foreach my $mesh (@allMeshes)
 	{
 		my %detector = init_det();
@@ -59,15 +59,45 @@ sub build_MESH
             $detector{"material"}    = "Air_Opt";
         }
         
-		elsif($mesh eq "Aluminum"){
+        
+		elsif($mesh eq "Al_Base"){
 			$detector{"color"}       = "4444ff";
 			$detector{"material"}    = "G4_Al";
 			$detector{"identifiers"} ="aluminum";
             $detector{"mother"}      = "RICH_s4";
-
-        
 		}
 		
+   
+        elsif($mesh eq "Al_BottomFrame"){
+            $detector{"color"}       = "4444ff";
+            $detector{"material"}    = "G4_Al";
+            $detector{"identifiers"} ="aluminum";
+            $detector{"mother"}      = "RICH_s4";
+        }
+        
+        elsif($mesh eq "Al_TopFrame"){
+            $detector{"color"}       = "4444ff";
+            $detector{"material"}    = "G4_Al";
+            $detector{"identifiers"} ="aluminum";
+            $detector{"mother"}      = "RICH_s4";
+        }
+        
+        elsif($mesh eq "Al_TopLeft"){
+            $detector{"color"}       = "4444ff";
+            $detector{"material"}    = "G4_Al";
+            $detector{"identifiers"} ="aluminum";
+            $detector{"mother"}      = "RICH_s4";
+        }
+        
+        elsif($mesh eq "Al_TopRight"){
+            $detector{"color"}       = "4444ff";
+            $detector{"material"}    = "G4_Al";
+            $detector{"identifiers"} ="aluminum";
+            $detector{"mother"}      = "RICH_s4";
+        }
+        
+        
+        
 		elsif($mesh eq "CFRP"){
 			$detector{"color"}       = "44ff44";
 			$detector{"material"}    = "CarbonFiber";
@@ -75,12 +105,7 @@ sub build_MESH
             $detector{"mother"}      = "RICH_s4";
 		}
 		
-		elsif($mesh eq "TedlarWrapping"){
-			$detector{"color"}       = "444444";
-			$detector{"material"}    = "G4_AIR";
-			$detector{"identifiers"}    = "CarbonFiber";
-            $detector{"mother"}      = "RICH_s4";
-		}
+    
 
         elsif($mesh eq "MirrorSupport"){
             $detector{"color"}       = "E9C45D";
@@ -100,9 +125,44 @@ sub build_Elements
     my $Max_Layer201=16;
     my $Max_Layer202=22;
     my $Max_Layer203=32;
-    my $Max_Layer204=31;
+    my $Max_Layer204=32;
     my $Max_Layer301=7;
     my $Max_Layer302=10;
+    
+    my $Max_Tedlar_H= 47;
+    my $Max_Tedlar_V= 23;
+    
+    for (my $Component=1; $Component <= $Max_Tedlar_H; $Component++) {
+        my $mesh = 'Tedlar_H'.$Component;
+        my %detector = init_det();
+        my $vname                = $mesh;
+        $detector{"name"}        = $vname;
+        $detector{"pos"}         = $positions->{$vname};
+        $detector{"rotation"}    = $rotations->{$vname};
+        $detector{"mother"}      = $mothers->{$vname};
+        $detector{"color"}       = "444444";
+        $detector{"material"}    = "G4_AIR";
+        $detector{"identifiers"}    = "CarbonFiber";
+        $detector{"mother"}      = "RICH_s4";
+        $gxmlFile->add(\%detector);
+    }
+    
+    
+    for (my $Component=1; $Component <= $Max_Tedlar_V; $Component++) {
+        my $mesh = 'Tedlar_V'.$Component;
+        my %detector = init_det();
+        my $vname                = $mesh;
+        $detector{"name"}        = $vname;
+        $detector{"pos"}         = $positions->{$vname};
+        $detector{"rotation"}    = $rotations->{$vname};
+        $detector{"mother"}      = $mothers->{$vname};
+        $detector{"color"}       = "444444";
+        $detector{"material"}    = "G4_AIR";
+        $detector{"identifiers"}    = "CarbonFiber";
+        $detector{"mother"}      = "RICH_s4";
+        $gxmlFile->add(\%detector);
+    }
+    
     
     my $Layer=201;
     for (my $Component=1; $Component <= $Max_Layer201; $Component++) {

@@ -67,14 +67,21 @@ sub build_MESH
 		}
 		
    
-        elsif($mesh eq "Al_BottomFrame"){
+        elsif($mesh eq "AluminumMirrors"){
             $detector{"color"}       = "4444ff";
             $detector{"material"}    = "G4_Al";
             $detector{"identifiers"} ="aluminum";
             $detector{"mother"}      = "RICH_s4";
         }
         
-        elsif($mesh eq "Al_TopFrame"){
+        elsif($mesh eq "AluminumLeft"){
+            $detector{"color"}       = "4444ff";
+            $detector{"material"}    = "G4_Al";
+            $detector{"identifiers"} ="aluminum";
+            $detector{"mother"}      = "RICH_s4";
+        }
+	
+	elsif($mesh eq "AluminumRight"){
             $detector{"color"}       = "4444ff";
             $detector{"material"}    = "G4_Al";
             $detector{"identifiers"} ="aluminum";

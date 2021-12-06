@@ -41,13 +41,12 @@ sub build_MESH
 {
 	my $gxmlFile = shift;
 #	my @allMeshes =("OpticalGasVolume", "Aluminum","AerogelTiles","CFRP","Glass","TedlarWrapping","SphericalMirrors");
-	my @allMeshes =("RICH_s4","Al_Base","Al_BottomFrame","Al_TopFrame","Al_TopLeft","Al_TopRight","CFRP","MirrorSupport");
+	my @allMeshes =("RICH_s4","TedlarWrapping","Al_Base","AluminumMirrors","AluminumLeft","AluminumRight","Al_TopLeft","Al_TopRight","CFRP","MirrorSupport");
 	foreach my $mesh (@allMeshes)
 	{
 		my %detector = init_det();
 
 		my $vname                = $mesh;
-
 		$detector{"name"}        = $vname;
 		$detector{"pos"}         = $positions->{$vname};
 		$detector{"rotation"}    = $rotations->{$vname};
@@ -96,7 +95,12 @@ sub build_MESH
             $detector{"mother"}      = "RICH_s4";
         }
         
-        
+        elsif($mesh eq "TedlarWrapping"){
+            $detector{"color"}       = "444444";
+            $detector{"material"}    = "G4_AIR";
+            $detector{"identifiers"}    = "CarbonFiber";
+            $detector{"mother"}      = "RICH_s4";
+        }
         
 		elsif($mesh eq "CFRP"){
 			$detector{"color"}       = "44ff44";
@@ -105,8 +109,6 @@ sub build_MESH
             $detector{"mother"}      = "RICH_s4";
 		}
 		
-    
-
         elsif($mesh eq "MirrorSupport"){
             $detector{"color"}       = "E9C45D";
             $detector{"material"}    = "CarbonFiber";
@@ -128,40 +130,6 @@ sub build_Elements
     my $Max_Layer204=32;
     my $Max_Layer301=7;
     my $Max_Layer302=10;
-    
-    my $Max_Tedlar_H= 47;
-    my $Max_Tedlar_V= 23;
-    
-    for (my $Component=1; $Component <= $Max_Tedlar_H; $Component++) {
-        my $mesh = 'Tedlar_H'.$Component;
-        my %detector = init_det();
-        my $vname                = $mesh;
-        $detector{"name"}        = $vname;
-        $detector{"pos"}         = $positions->{$vname};
-        $detector{"rotation"}    = $rotations->{$vname};
-        $detector{"mother"}      = $mothers->{$vname};
-        $detector{"color"}       = "444444";
-        $detector{"material"}    = "G4_AIR";
-        $detector{"identifiers"}    = "CarbonFiber";
-        $detector{"mother"}      = "RICH_s4";
-        $gxmlFile->add(\%detector);
-    }
-    
-    
-    for (my $Component=1; $Component <= $Max_Tedlar_V; $Component++) {
-        my $mesh = 'Tedlar_V'.$Component;
-        my %detector = init_det();
-        my $vname                = $mesh;
-        $detector{"name"}        = $vname;
-        $detector{"pos"}         = $positions->{$vname};
-        $detector{"rotation"}    = $rotations->{$vname};
-        $detector{"mother"}      = $mothers->{$vname};
-        $detector{"color"}       = "444444";
-        $detector{"material"}    = "G4_AIR";
-        $detector{"identifiers"}    = "CarbonFiber";
-        $detector{"mother"}      = "RICH_s4";
-        $gxmlFile->add(\%detector);
-    }
     
     
     my $Layer=201;

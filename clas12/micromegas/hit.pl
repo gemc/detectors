@@ -36,7 +36,7 @@ sub define_BMT_hit
 	$hit{"signalThreshold"} = "2.0*KeV";
 	$hit{"timeWindow"}      = "132*ns";
 	$hit{"prodThreshold"}   = "1*mm";
-	$hit{"maxStep"}         = "270*um";
+	$hit{"maxStep"}         = "100*um";
 	$hit{"delay"}           = "50*ns";
 	$hit{"riseTime"}        = "1*ns";
 	$hit{"fallTime"}        = "2*ns";

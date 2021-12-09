@@ -2,6 +2,7 @@
      In spring 18 HTCC was shifted 1cm upstream so to match it here we shift it by 0.94cm -->
 
 <gxml>
-	<volume name="htccMollerCone" color="888888" material="rohacell31" position="0*cm 0*cm 0.94*cm" rotation="0*deg 180*deg 0*deg" />
-	<volume name="htccCone"       color="888888" material="rohacell31" position="0*cm 0*cm 0.94*cm" rotation="0*deg 180*deg 0*deg" />
+	<volume name="htccMollerConeExt" color="888888" material="rohacell31" position="0*cm 0*cm 0.94*cm" rotation="0*deg 180*deg 0*deg" />
+	<volume name="htccMollerCone"    color="888888" material="rohacell31" position="0*cm 0*cm 0.94*cm" rotation="0*deg 180*deg 0*deg" />
+	<volume name="htccCone"          color="888888" material="rohacell31" position="0*cm 0*cm 0.94*cm" rotation="0*deg 180*deg 0*deg" />
 </gxml>

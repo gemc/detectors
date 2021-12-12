@@ -45,7 +45,7 @@ sub rghline()
 	$firstVacuumIR = 0.;
 	$firstVacuumOR = 34.925;
 
-	my %detector = init_det();
+	%detector = init_det();
 	$detector{"name"}        = "vacuumPipe1_2";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "straightVacuumPipe 2.75 inch OD 0.065 thick ";
@@ -61,7 +61,7 @@ sub rghline()
  	$zpos = 0;
 	$pipeLength = 72.5;
 	$firstVacuumIR = 0;
-	my $firstVacuumOR = 33.325;
+	$firstVacuumOR = 33.325;
 
 	%detector = init_det();
 	$detector{"name"}        = "vacuumInPipe1_1";

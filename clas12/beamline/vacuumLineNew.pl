@@ -224,7 +224,7 @@ sub vacuumLine()
 	# airpipes to account for change in volume size from target to "root" within a magnetic field
 	#
 	#
-	my @oradius_airpipe  =  (  28,      50);
+	my @oradius_airpipe  =  (  20,      55);
 	my @z_plane_airpipe  =  (  0, 2*$gapLength );
 
 	%detector = init_det();

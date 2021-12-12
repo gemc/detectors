@@ -41,12 +41,13 @@ sub build_MESH
 {
 	my $gxmlFile = shift;
 #	my @allMeshes =("OpticalGasVolume", "Aluminum","AerogelTiles","CFRP","Glass","TedlarWrapping","SphericalMirrors");
-	my @allMeshes =("RICH_s4","TedlarWrapping","Al_Base","AluminumMirrors","AluminumLeft","AluminumRight","Al_TopLeft","Al_TopRight","CFRP","MirrorSupport");
+	my @allMeshes =("RICH_s4","Aluminum","CFRP","TedlarWrapping","MirrorSupport");
 	foreach my $mesh (@allMeshes)
 	{
 		my %detector = init_det();
 
 		my $vname                = $mesh;
+
 		$detector{"name"}        = $vname;
 		$detector{"pos"}         = $positions->{$vname};
 		$detector{"rotation"}    = $rotations->{$vname};
@@ -58,57 +59,15 @@ sub build_MESH
             $detector{"material"}    = "Air_Opt";
         }
         
-        
-		elsif($mesh eq "Al_Base"){
+		elsif($mesh eq "Aluminum"){
 			$detector{"color"}       = "4444ff";
 			$detector{"material"}    = "G4_Al";
 			$detector{"identifiers"} ="aluminum";
             $detector{"mother"}      = "RICH_s4";
+
+        
 		}
 		
-   
-        elsif($mesh eq "AluminumMirrors"){
-            $detector{"color"}       = "4444ff";
-            $detector{"material"}    = "G4_Al";
-            $detector{"identifiers"} ="aluminum";
-            $detector{"mother"}      = "RICH_s4";
-        }
-        
-        elsif($mesh eq "AluminumLeft"){
-            $detector{"color"}       = "4444ff";
-            $detector{"material"}    = "G4_Al";
-            $detector{"identifiers"} ="aluminum";
-            $detector{"mother"}      = "RICH_s4";
-        }
-	
-	elsif($mesh eq "AluminumRight"){
-            $detector{"color"}       = "4444ff";
-            $detector{"material"}    = "G4_Al";
-            $detector{"identifiers"} ="aluminum";
-            $detector{"mother"}      = "RICH_s4";
-        }
-        
-        elsif($mesh eq "Al_TopLeft"){
-            $detector{"color"}       = "4444ff";
-            $detector{"material"}    = "G4_Al";
-            $detector{"identifiers"} ="aluminum";
-            $detector{"mother"}      = "RICH_s4";
-        }
-        
-        elsif($mesh eq "Al_TopRight"){
-            $detector{"color"}       = "4444ff";
-            $detector{"material"}    = "G4_Al";
-            $detector{"identifiers"} ="aluminum";
-            $detector{"mother"}      = "RICH_s4";
-        }
-        
-        elsif($mesh eq "TedlarWrapping"){
-            $detector{"color"}       = "444444";
-            $detector{"material"}    = "G4_AIR";
-            $detector{"identifiers"}    = "CarbonFiber";
-            $detector{"mother"}      = "RICH_s4";
-        }
-        
 		elsif($mesh eq "CFRP"){
 			$detector{"color"}       = "44ff44";
 			$detector{"material"}    = "CarbonFiber";
@@ -116,6 +75,13 @@ sub build_MESH
             $detector{"mother"}      = "RICH_s4";
 		}
 		
+		elsif($mesh eq "TedlarWrapping"){
+			$detector{"color"}       = "444444";
+			$detector{"material"}    = "G4_AIR";
+			$detector{"identifiers"}    = "CarbonFiber";
+            $detector{"mother"}      = "RICH_s4";
+		}
+
         elsif($mesh eq "MirrorSupport"){
             $detector{"color"}       = "E9C45D";
             $detector{"material"}    = "CarbonFiber";
@@ -137,7 +103,6 @@ sub build_Elements
     my $Max_Layer204=32;
     my $Max_Layer301=7;
     my $Max_Layer302=10;
-    
     
     my $Layer=201;
     for (my $Component=1; $Component <= $Max_Layer201; $Component++) {

@@ -39,7 +39,7 @@ sub make_ExitWindow
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm  $zpos*mm";
 	$detector{"dimensions"}  = "$inner_radius*mm $outer_Radius*mm $windowThickness*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Galactic";
+	$detector{"material"}    = "HTCCCompositeWindow";
 	$detector{"style"}       = "1";
 	print_det(\%configuration, \%detector);
 }
@@ -66,7 +66,7 @@ sub make_EntryWindow
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm  $zpos*mm";
 	$detector{"dimensions"}  = "$inner_radius*mm $outer_Radius*mm $windowThickness*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Galactic";
+	$detector{"material"}    = "HTCCCompositeWindow";
 	$detector{"style"}       = "1";
 	print_det(\%configuration, \%detector);
 }

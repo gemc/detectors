@@ -1,7 +1,7 @@
 <!--
-	Default Variation
 	The cad model refers to the HTCC at the target center
-  -->
+	1mm added to htccMollerConeExt to avoid overlaps with htccMollerCone
+-->
 
 <gxml>
 	<volume name="htccMollerConeExt" color="888888" material="rohacell31" position="0*cm 0*cm 0.1*cm" rotation="0*deg 180*deg 0*deg" />

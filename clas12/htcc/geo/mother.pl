@@ -19,6 +19,59 @@ sub make_BigGasVolume
 	print_det(\%configuration, \%detector);
 }
 
+sub make_ExitWindow
+{
+	# these dimensions are from the NIM paper
+	# thickness is 38 + 75 + 38 microns tedlar mylar tedlar = 151 microns = 0.151 mm
+	my $windowThickness = 0.151/2.0;
+	# inner radius 10.93'' = 277.622 mm
+	# outer radius 9.5'    = 2895.6 mm
+	# 2 mm added to avoid overlaps
+	my $inner_radius    = 277.622/2.0 + 1.5;
+	my $outer_Radius    = 2895.6/2.0;
+	my $zpos            = 1750;
+
+	my %detector = init_det();
+	$detector{"name"}        = "htccExitWindow";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "htcc Exit Window";
+	$detector{"color"}       = "666655";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm  $zpos*mm";
+	$detector{"dimensions"}  = "$inner_radius*mm $outer_Radius*mm $windowThickness*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = "1";
+	print_det(\%configuration, \%detector);
+}
+
+sub make_EntryWindow
+{
+
+	# these dimensions are from the NIM paper
+	# thickness is 38 + 75 + 38 microns tedlar mylar tedlar = 151 microns = 0.151 mm
+	my $windowThickness = 0.151/2;
+	# inner radius 1.75'' = 44.45 mm
+	# outer radius 2.5'   = 762 mm
+	# however the 2 dimenions above do not match the htcc cone
+	# so they are adjusted by hand below
+	my $inner_radius    = 33;
+	my $outer_Radius    = 278;
+	my $zpos            = 380;
+
+	my %detector = init_det();
+	$detector{"name"}        = "htccEntryWindow";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "htcc Entry Window";
+	$detector{"color"}       = "666655";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm  $zpos*mm";
+	$detector{"dimensions"}  = "$inner_radius*mm $outer_Radius*mm $windowThickness*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = "1";
+	print_det(\%configuration, \%detector);
+}
+
+
 
 # Entry Dish Volume
 my $entrydishNumZplanes = 17;
@@ -107,9 +160,9 @@ sub make_GasVolumeFinal
 	$detector{"color"}       = "0000ff3"; # add a 4 or 5 at the end to make transparent (change visibility above too)
 	$detector{"type"}        = "Operation:@ htccBigGasVolume - htccEntryDishCone";
 	$detector{"dimensions"}  = "0";
-	$detector{"visible"}        = "0";
+	$detector{"visible"}     = "0";
 	$detector{"material"}    = "HTCCgas";
-    $detector{"style"}       = "1";
+	$detector{"style"}       = "1";
 	print_det(\%configuration, \%detector);
 }
 
@@ -122,5 +175,7 @@ sub build_mother()
 	make_entryconevolume();
 	make_EntryDishPlusCone();
 	make_GasVolumeFinal();
+	make_ExitWindow();
+	make_EntryWindow();
 }
 

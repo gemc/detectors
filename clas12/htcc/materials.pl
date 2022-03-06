@@ -145,8 +145,28 @@ sub materials
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "G4_C 0.6463 G4_H 0.0784 G4_N 0.0839 G4_O 0.1914";
 	print_mat(\%configuration, \%mat);
-	
-	
+
+	# tedlar
+	%mat = init_mat();
+	$mat{"name"}         = "HTCCTedlar";
+	$mat{"description"}  = "tedlar material used in the composite window";
+	$mat{"density"}      = "1.43";
+	$mat{"ncomponents"}  = "3";
+	$mat{"components"}   = "G4_C 0.33 G4_F 0.33 G4_H 0.34";
+	print_mat(\%configuration, \%mat);
+
+
+	# composite window
+	# Mylar density is 1.4 tedlar is 1.43. Using 1.415 as the average
+	%mat = init_mat();
+	$mat{"name"}         = "HTCCCompositeWindow";
+	$mat{"description"}  = "composite window material";
+	$mat{"density"}      = "1.415";
+	$mat{"ncomponents"}  = "2";
+	$mat{"components"}   = "HTCCTedlar 0.5 G4_MYLAR 0.5";
+	print_mat(\%configuration, \%mat);
+
+
 	# Quartz window of HTCC PMT:
 	# - refractive index (required for tracking of optical photons)
 	# - efficiency (for quantum efficiency of photocathode)

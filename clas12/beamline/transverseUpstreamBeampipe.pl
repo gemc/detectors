@@ -22,11 +22,11 @@ sub transverseUpstreamBeampipe()
 	print_det(\%configuration, \%detector);
 
 
-	my $pipeLength = 148;
-	my $zpos = -204;
-	my $firstVacuumOR = 35;
+	$pipeLength = 148;
+	$zpos = -204;
+	$firstVacuumOR = 35;
 
-	my %detector = init_det();
+	%detector = init_det();
 	$detector{"name"}        = "upstreamTransverseMagnetVacuumPipe2";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "upstreamTransverseMagnetVacuumPipe2";
@@ -38,6 +38,6 @@ sub transverseUpstreamBeampipe()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	print "remember to rename the geometry to beamline2, this steps will be eliminated once we have the real geo\n"
+	print "for transverseUpstreamBeampipe, remember to rename the geometry to beamline2, this steps will be eliminated once we have the real geo\n"
 }
 

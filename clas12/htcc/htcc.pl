@@ -18,7 +18,7 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   cnd.pl <configuration filename>\n";
+	print "   htcc.pl <configuration filename>\n";
  	print "   Will create the CLAS12 HTCC geometry, mirrors materials, bank and hit definitions\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;

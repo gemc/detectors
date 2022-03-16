@@ -29,7 +29,7 @@ sub define_FMT_bank
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "strip number");
 	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "always 0");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC");
-	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "always 0");
+	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "time");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "always 0");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
@@ -46,7 +46,7 @@ sub define_BMT_bank
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "strip number");
 	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "always 0");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC");
-	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "always 0");
+	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "time");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "always 0");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }

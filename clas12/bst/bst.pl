@@ -18,8 +18,8 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   bst.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
+	print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
+	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
 }
 
@@ -48,9 +48,6 @@ require "./hit.pl";
 #my @allConfs = ("original", "java");
 my @allConfs = ($configuration{"variation"}); # java variation only, for testing
 
-# bank definitions commong to all variations
-define_bank();
-
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf;
@@ -64,21 +61,20 @@ foreach my $conf ( @allConfs )
 	# bank definitions
 	define_bank();
 
-    if($configuration{"variation"} eq "original")
-    {
-        # Global pars - these should be read by the load_parameters from file or DB
-        our %parameters = get_parameters(%configuration);
-        
-        require "./geometry.pl";
-        makeBST();
-    } else {
-        system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
-        
-        # Global pars - these should be read by the load_parameters from file or DB
-        our %parameters = get_parameters(%configuration);
+	if($configuration{"variation"} eq "original") {
+		# Global pars - these should be read by the load_parameters from file or DB
+		our %parameters = get_parameters(%configuration);
+
+		require "./geometry.pl";
+		makeBST();
+	} else {
+		system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+
+		# Global pars - these should be read by the load_parameters from file or DB
+		our %parameters = get_parameters(%configuration);
 		our @volumes = get_volumes(%configuration);
-        
-        require "./geometry_java.pl";
+
+		require "./geometry_java.pl";
 		coatjava::makeBST();
-    }	
+	}
 }

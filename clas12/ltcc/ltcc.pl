@@ -68,7 +68,7 @@ require "./mirrors.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("rga_spring2018", "rga_fall2018",  "rgb_winter2019", "rgb_spring2019", "default");
+my @allConfs = ("rga_spring2018", "rga_fall2018",  "rgb_winter2019", "rgb_spring2019", "rgm", "default");
 
 # sectors 1 2 3 4 5 6 presence
 our @rga_spring2018_sectorsPresence = (   0,       1,       1,       0,       1,      1);
@@ -82,6 +82,9 @@ our @rgb_winter2019_materials       = ("na",    "na", "C4F10",    "na", "C4F10",
 
 our @rgb_spring2019_sectorsPresence = (   0,       0,       1,       0,       1,      0);
 our @rgb_spring2019_materials       = ("na",    "na", "C4F10",    "no", "C4F10",   "na");
+
+our @rgm_sectorsPresence            = (   0,       1,       1,       0,       1,      1);
+our @rgm_materials                  = ("na",    "N2",    "N2",    "na",    "N2",   "N2");
 
 # bank definitions commong to all variations
 define_bank();

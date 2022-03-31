@@ -637,90 +637,17 @@ sub build_targets
 
 	}
 
-	if($thisVariation eq "transverse") {
+	if($thisVariation eq "hdIce") {
 		my %detector = init_det();
-		$detector{"name"}        = "ttarget";
+		$detector{"name"}        = "hdIce_mother";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Target Container";
 		$detector{"color"}       = "22ff22";
 		$detector{"type"}        = "Box";
-		$detector{"dimensions"}  = "120*mm 120*mm 800*mm";
+		$detector{"dimensions"}  = "160*mm 160*mm 800*mm";
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
 		$detector{"mfield"}		 = "hdicefield";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "target_HDIce";
-		$detector{"mother"}      = "ttarget";
-		$detector{"description"} = "2 cm radius test target";
-		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 2*cm 5*cm 0*deg 360*deg";
-		$detector{"material"}    = "solidHD";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "MgB2_cylinder";
-		$detector{"mother"}      = "ttarget";
-		$detector{"description"} = "MgB2 superconducting cylinder";
-		$detector{"rotation"}         = "90*deg 0*deg 0*deg";
-		$detector{"color"}       = "ffffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "2*cm 2.1*cm 45*mm 0*deg 360*deg";
-		$detector{"material"}    = "MgB2";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe_inside";
-		$detector{"mother"}      = "ttarget";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"pos"}         = "0*mm 0*mm 535.4*mm";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 45*mm 264.6*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe2_inside";
-		$detector{"mother"}      = "airPipe_inside";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"color"}       = "aaffff";
-		$detector{"pos"}         = "0*mm 0*mm 0.5*mm";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 10*mm 264.1*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe_outside";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"pos"}         = "0*mm 0*mm 838.4*mm";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm 45*mm 38.4*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		%detector = init_det();
-		$detector{"name"}        = "airPipe2_outside";
-		$detector{"mother"}      = "airPipe_outside";
-		$detector{"description"} = "airgap between target and shield to limit e- steps";
-		$detector{"color"}       = "aaffff";
-		$detector{"type"}        = "Tube";
-		$detector{"pos"}         = "0*mm 0*mm -0.5*mm";
-		$detector{"dimensions"}  = "0*mm 10*mm 37.1*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_AIR";
-		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
 	}
@@ -773,7 +700,72 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 	}
 
-	
+	if($thisVariation eq "transverse") {
+
+		#	Length: 28.4 mm
+		#	ID: 27.0 mm
+		#	OD: 29.0
+		#	Al foils: 25 um thick
+
+		my $ttlength = 14.2;   # half length
+		my $ttid     = 13.5;
+		my $ttod     = 14.5;
+		my $ttfoil   = 0.0125; # half length
+
+
+		# cell frame
+		my %detector = init_det();
+		$detector{"name"}        = "ttargetCellFrame";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "222222";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $ttod*mm $ttlength*mm 0*deg 360*deg";
+		$detector{"material"}    = "Kel-F";
+		$detector{"style"}       = 1;
+		#print_det(\%configuration, \%detector);
+
+		# cell
+		my %detector = init_det();
+		$detector{"name"}        = "ttargetCell";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "994422";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $ttid*mm $ttlength*mm 0*deg 360*deg";
+		$detector{"material"}    = "NH3target";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+
+		# downstream al window
+		my $zpos = $ttlength + $ttfoil;
+		%detector = init_det();
+		$detector{"name"}        = "al_window_entrance";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "25 mm thick aluminum window upstream";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $ttid*mm $ttfoil*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# upstream al window
+		$zpos = -$ttlength - $ttfoil;
+		%detector = init_det();
+		$detector{"name"}        = "al_window_exit";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "25 mm thick aluminum window upstream";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $ttid*mm $ttfoil*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
+
 	# cad variation has two volume:
 	# target container
 	# and inside cell
@@ -781,8 +773,8 @@ sub build_targets
 	{
 		my $nplanes = 4;
 
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );
+		my @oradius  =  (    50.3,   50.3,  21.1,  21.1 );
+		my @z_plane  =  (  -140.0,  265.0, 280.0, 280.0 );
 
 
 		if ($thisVariation eq "lH2e") {
@@ -1407,564 +1399,6 @@ sub build_targets
         print_det(\%configuration, \%detector);
         
     }
-	elsif($thisVariation eq "APOLLOnh3")
-	{
-		# vacuum container
-		my $Rout         = 44;
-		my $ZhalfLength  = 130;  # half length along beam axis
-		my %detector = init_det();
-		$detector{"name"}        = "PolTarg";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "PolTarg Region";
-		$detector{"color"}       = "aaaaaa9";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		# NH3Targ
-		my $ZCenter = 0;  # center location of target along beam axis
-		$Rout       = 10;  # radius in mm
-		$ZhalfLength  = 24.96;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "NH3Targ";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "NH3 target cell";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "f000f0";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "NH3target";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		# NH3Targ Cup
-		my $Rin       = 10.0001;  # radius in mm
-		$Rout       = 10.03;  # radius in mm
-		$ZhalfLength  = 25;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "NH3Cup";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "NH3 Target cup 2 mm thick LHe batch at beam exit";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "ffffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "AmmoniaCellWalls";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		# NH3Targ Cup Up Stream Window
-		$ZCenter                 =-25;
-		$Rin                     = 0.0;  # radius in mm
-		$Rout                    = 10;  # radius in mm
-		$ZhalfLength             = 0.025;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "NH3CupUSWindow_20";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "NH3 Target cup Upstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		# NH3Targ Cup Downstream Stream Window
-		$ZCenter                 =25;
-		$Rin                     = 0.0;  # radius in mm
-		$Rout                    = 10;  # radius in mm
-		$ZhalfLength             = 0.025;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "NH3CupDSWindow";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "NH3 Target cup Downstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-
-		# Insert Bath Entrance window part 7 a
-		$ZCenter                 =-25.56;
-		$Rin                     = 10.1;  # radius in mm
-		$Rout                    = 11.5;  # radius in mm
-		$ZhalfLength             = 0.605;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7a";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 a";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		# Insert Bath Entrance window part 7 b
-		$ZCenter                 =-65.28;
-		$Rin                     = 11.0;  # radius in mm
-		$Rout                    = 11.5;  # radius in mm
-		$ZhalfLength             = 39.1;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7b";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 b";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		# Insert Bath Entrance window part 7 c
-		$ZCenter                 =-106.5;
-		$Rin                     = 11.5001;  # radius in mm
-		$Rout                    = 14.4;  # radius in mm
-		$ZhalfLength             = 3.17;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7c";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 c";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		# Insert Bath Entrance window part 7 d
-		$ZCenter                 =-110.34;
-		$Rin                     = 11.0;  # radius in mm
-		$Rout                    = 14.96;  # radius in mm
-		$ZhalfLength             = 0.66;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7d";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 d";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-
-           	# Shim Coil Carrier
-		$ZCenter                 =-19.3;
-		$Rin                     = 28.8;  # radius in mm
-		$Rout                    = 29.3;  # radius in mm
-		$ZhalfLength             = 80.95;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimCoilCarrier";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Carrier";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-           	# Shim Up Up stream Coil
-		$ZCenter                 =43.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimUpUpS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Up Up stream Coil";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-           	# Shim Up stream Coil
-		$ZCenter                 =8.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimUpS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Up stream";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-           	# Shim Down stream Coil
-		$ZCenter                 =-8.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimDownS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Down stream";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-           	# Shim Down Down stream Coil
-		$ZCenter                 =-43.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimDownDownS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Down Down stream";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-
-           	# Heat Shield tube
-		$ZCenter                 =-34.3;
-		$Rin                     = 40.3;  # radius in mm
-		$Rout                    = 41.3;  # radius in mm
-		$ZhalfLength             = 83.85;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "HeatShieldTube";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "PolTarg Heat Shield Tube";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-           	# Heat Shield Half Sphere
-		$ZCenter                 = 49.55;
-		$Rin                     = 40.3;  # radius in mm
-		$Rout                    = 41.3;  # radius in mm
-		%detector = init_det();
-		$detector{"name"}        = "HeatShieldSphere";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "PolTarg Heat Shield Exit window Shere";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Sphere";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm 0*deg 360*deg 0*deg 90*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-	}
-	elsif($thisVariation eq "APOLLOnd3")
-	{
-		# vacuum container
-		my $Rout         = 44;
-		my $ZhalfLength  = 130;  # half length along beam axis
-		my %detector = init_det();
-		$detector{"name"}        = "PolTarg";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "PolTarg Region";
-		$detector{"color"}       = "aaaaaa9";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		# ND3Targ
-		my $ZCenter = 0;  # center location of target along beam axis
-		$Rout       = 10;  # radius in mm
-		$ZhalfLength  = 24.96;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ND3Targ";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "ND3 target cell";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "f000f0";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ND3target";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		# ND3Targ Cup
-		my $Rin       = 10.0001;  # radius in mm
-		$Rout       = 10.03;  # radius in mm
-		$ZhalfLength  = 25;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ND3Cup";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "ND3 Target cup 2 mm thick LHe batch at beam exit";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "ffffff";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "AmmoniaCellWalls";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		# ND3Targ Cup Up Stream Window
-		$ZCenter                 =-25;
-		$Rin                     = 0.0;  # radius in mm
-		$Rout                    = 10;  # radius in mm
-		$ZhalfLength             = 0.025;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ND3CupUSWindow_20";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "ND3 Target cup Upstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-		# ND3Targ Cup Downstream Stream Window
-		$ZCenter                 =25;
-		$Rin                     = 0.0;  # radius in mm
-		$Rout                    = 10;  # radius in mm
-		$ZhalfLength             = 0.025;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ND3CupDSWindow";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "ND3 Target cup Downstream Window";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-
-		# Insert Bath Entrance window part 7 a
-		$ZCenter                 =-25.56;
-		$Rin                     = 10.1;  # radius in mm
-		$Rout                    = 11.5;  # radius in mm
-		$ZhalfLength             = 0.605;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7a";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 a";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		# Insert Bath Entrance window part 7 b
-		$ZCenter                 =-65.28;
-		$Rin                     = 11.0;  # radius in mm
-		$Rout                    = 11.5;  # radius in mm
-		$ZhalfLength             = 39.1;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7b";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 b";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		# Insert Bath Entrance window part 7 c
-		$ZCenter                 =-106.5;
-		$Rin                     = 11.5001;  # radius in mm
-		$Rout                    = 14.4;  # radius in mm
-		$ZhalfLength             = 3.17;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7c";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 c";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-		# Insert Bath Entrance window part 7 d
-		$ZCenter                 =-110.34;
-		$Rin                     = 11.0;  # radius in mm
-		$Rout                    = 14.96;  # radius in mm
-		$ZhalfLength             = 0.66;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "InsertBathEntranceWindow_7d";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Insert Bath Entrence window part 7 d";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-
-           	# Shim Coil Carrier
-		$ZCenter                 =-19.3;
-		$Rin                     = 28.8;  # radius in mm
-		$Rout                    = 29.3;  # radius in mm
-		$ZhalfLength             = 80.95;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimCoilCarrier";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Carrier";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-           	# Shim Up Up stream Coil
-		$ZCenter                 =43.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimUpUpS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Up Up stream Coil";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-           	# Shim Up stream Coil
-		$ZCenter                 =8.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimUpS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Up stream";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-           	# Shim Down stream Coil
-		$ZCenter                 =-8.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimDownS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Down stream";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-
-           	# Shim Down Down stream Coil
-		$ZCenter                 =-43.5;
-		$Rin                     = 29.3;  # radius in mm
-		$Rout                    = 30.0;  # radius in mm
-		$ZhalfLength             = 6.0;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "ShimDownDownS";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "Shim Coil Down Down stream";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "a00000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "ShimCoil";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-
-           	# Heat Shield tube
-		$ZCenter                 =-34.3;
-		$Rin                     = 40.3;  # radius in mm
-		$Rout                    = 41.3;  # radius in mm
-		$ZhalfLength             = 83.85;  # half length along beam axis
-		%detector = init_det();
-		$detector{"name"}        = "HeatShieldTube";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "PolTarg Heat Shield Tube";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm $ZhalfLength*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-           	# Heat Shield Half Sphere
-		$ZCenter                 = 49.55;
-		$Rin                     = 40.3;  # radius in mm
-		$Rout                    = 41.3;  # radius in mm
-		%detector = init_det();
-		$detector{"name"}        = "HeatShieldSphere";
-		$detector{"mother"}      = "PolTarg";
-		$detector{"description"} = "PolTarg Heat Shield Exit window Shere";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aaaaaa";
-		$detector{"type"}        = "Sphere";
-		$detector{"dimensions"}  = "$Rin*mm $Rout*mm 0*deg 360*deg 0*deg 90*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-	}
 
 }
 

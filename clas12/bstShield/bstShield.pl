@@ -66,27 +66,6 @@ foreach my $conf ( @allConfs )
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 	
-	
-	%detector = init_det();
-	
-	$detector{"name"}        = "bstHeatShield";
-	$detector{"mother"}      = "svt";
-	$detector{"description"} = "bst heat shielding";
-	$detector{"color"}       = "ff8888";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         =  $HSpos ;
-	
-	my $HSrmax = $HSrmin + 2.7;
-	
-	$dimen = "$HSrmin*mm $HSrmax*mm $HSlength*mm 0*deg 360*deg";
-	
-	$detector{"dimensions"}  = $dimen;
-	$detector{"visible"}     = 1;
-	$detector{"style"}       = 1;
-	$detector{"material"}    = "G4_RUBBER_NEOPRENE";
-	print_det(\%configuration, \%detector);
-
-	
 }
 
 

@@ -16,7 +16,7 @@ rm -rf coat*jar jcsg*jar vecmath*jar
 
 set USEDEVEL = "no"
 
-set COATJAVA = 6.5.6
+set COATJAVA = 6.6.1
 set BRANCH   = gemcPrecision
 rm -rf clas12-offline-software
 

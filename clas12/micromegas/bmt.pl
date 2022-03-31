@@ -182,7 +182,7 @@ my $SL_z  = -$bmt_z; # center of superlayer wrt BMT  mother volume
 
 sub define_bmt
 {
-	if( $configuration{"variation"} eq "michel") {
+	if( $configuration{"variation"} eq "michel" || $configuration{"variation"} eq "slim") {
 		make_bmt();
 		#	make_sl(1);
 		#	make_sl(2);

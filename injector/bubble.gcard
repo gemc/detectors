@@ -9,7 +9,7 @@
 	<!--  Will print message every 10 events -->
 	<option name="PRINT_EVENT"    value="1" />
 
-	<option name="OUTPUT" value="evio, /scratch/suleiman/out.ev"/>
+	<option name="OUTPUT" value="evio, out.ev"/>
 
 
 	<!-- PhysListEmLivermore -->

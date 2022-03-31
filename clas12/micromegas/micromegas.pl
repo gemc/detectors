@@ -51,7 +51,7 @@ define_bank();
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("michel", "rgf_spring2020");
+my @allConfs = ("michel", "rgf_spring2020", "slim");
 
 foreach my $conf ( @allConfs )
 {
@@ -90,6 +90,23 @@ foreach my $conf ( @allConfs )
 
 
 		# geometry
+		define_fmt();
+
+		# materials
+		materials();
+
+	} elsif( $configuration{"variation"} eq "slim") {
+
+		# loading pars according to variation
+		our %parameters    = get_parameters(%configuration);
+
+		# sensitive geometry
+		require "./bmt.pl";
+		require "./fmt.pl";
+
+
+		# geometry
+		define_bmt();
 		define_fmt();
 
 		# materials

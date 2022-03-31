@@ -17,6 +17,9 @@ our @rgb_winter2019_materials;
 our @rgb_spring2019_sectorsPresence;
 our @rgb_spring2019_materials;
 
+our @rgm_sectorsPresence;
+our @rgm_materials;
+
 #
 #  large angle side(top) -->  /\
 #                             \ \
@@ -273,7 +276,12 @@ sub build_ltcc_box()
 				$detector{"material"} = $rgb_spring2019_materials[$s - 1];
 				print_det(\%configuration, \%detector);
 			}
-		} 
+		} elsif($configuration{"variation"} eq "rgm" ) {
+			if($rgm_sectorsPresence[$s - 1] == 1) {
+				$detector{"material"} = $rgm_materials[$s - 1];
+				print_det(\%configuration, \%detector);
+			}
+		}
 	}
 
 

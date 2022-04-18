@@ -81,6 +81,9 @@ sub makeBST
 		$nregions = 1;
 		#$nmodules = 1;
 		#$nsensors = 1;
+	} else {
+		# overwriting nregions as it comes out from the service as 4
+		$nregions = 3;
 	}
 
 	build_mother();
@@ -90,7 +93,7 @@ sub makeBST
 		$nsectors[$r-1] = $main::parameters{"nsectors_r".$r};
 		if($btestone){ $nsectors[0] = 1; }
 
-		# 4 regions
+		# 3 regions
 		build_region($r);
 	}
 }

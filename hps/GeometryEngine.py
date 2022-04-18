@@ -162,7 +162,7 @@ class Geometry():
                 conv_dict['m']=1.
                 conv_dict['inch']=0.0254
             elif u == "inch":
-                print "Warning: Base Units of Inches is not recommended for GEANT4"
+                print ("Warning: Base Units of Inches is not recommended for GEANT4")
                 trans_dict['mm'] = trans_dict['cm'] = trans_dict['m'] = trans_dict['inch'] = u
                 conv_dict['mm']=0.1/2.54
                 conv_dict['cm']=1./2.54

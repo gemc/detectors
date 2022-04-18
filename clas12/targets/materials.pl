@@ -96,7 +96,7 @@ sub materials
 
 		#Alloy of Cu-Ni
 		%mat = init_mat();
-		my $my_density = 8.95;
+		$my_density = 8.95;
 		my $Cu_mass_fraction=0.7;
 		my $Ni_mass_fraction=0.3;
 		$mat{"name"}          = "Cu70Ni30";

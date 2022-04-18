@@ -726,7 +726,7 @@ sub build_targets
 		#print_det(\%configuration, \%detector);
 
 		# cell
-		my %detector = init_det();
+		%detector = init_det();
 		$detector{"name"}        = "ttargetCell";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Target Container";

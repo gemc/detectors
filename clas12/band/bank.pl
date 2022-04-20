@@ -26,12 +26,11 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "sector",         1, "Di", "sector number");
 	insert_bank_variable(\%configuration, $bankname, "layer",          2, "Di", "layer number");
 	insert_bank_variable(\%configuration, $bankname, "component",      3, "Di", "component number");
-	insert_bank_variable(\%configuration, $bankname, "ADCL",            4, "Di", "ADC");
-	insert_bank_variable(\%configuration, $bankname, "amplitudeL",      5, "Di", "amplitude");
-	insert_bank_variable(\%configuration, $bankname, "ADCtimeL",        6, "Dd", "time from FADC");
-	insert_bank_variable(\%configuration, $bankname, "TDCL",            7, "Di", "time from TDC");
-	insert_bank_variable(\%configuration, $bankname, "ADCR",            8, "Di", "ADC");
-	insert_bank_variable(\%configuration, $bankname, "amplitudeR",      9, "Di", "amplitude");
-	insert_bank_variable(\%configuration, $bankname, "ADCtimeR",        10, "Dd", "time from FADC");
-	insert_bank_variable(\%configuration, $bankname, "TDCR",            11, "Di", "time from TDC");
-	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");}
+	insert_bank_variable(\%configuration, $bankname, "ADC_order",      4, "Di", "side of PMT L or R");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",        5, "Di", "ADC value");
+	insert_bank_variable(\%configuration, $bankname, "ADC_amplitude",  6, "Di", "amplitude");
+	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,      7, "Dd", "flash adc time");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,       8, "Di", "pedestal");
+	insert_bank_variable(\%configuration, $bankname, "TDC_order",      9, "Di", "side of PMT + 2");
+	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",       10, "Di", "TDC value");
+	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");

@@ -8,8 +8,11 @@
 
 	<detector name="../targets/target"  factory="TEXT" variation="lH2"/>
 
-	<detector name="../upstreamBeampipe/upstreamBeampipe"         factory="TEXT" variation="main"/>
-	<detector name="../upstreamSupportpipes/upstreamSupportpipes" factory="TEXT" variation="main"/>
+<!--	<detector name="../upstreamBeampipe/upstreamBeampipe"         factory="TEXT" variation="main"/>-->
+<!--	<detector name="../upstreamSupportpipes/upstreamSupportpipes" factory="TEXT" variation="main"/>-->
+
+	<option name="BEAM_P" value="neutron, 1.0*GeV, 170*deg, 10*deg"/>
+	<option name="SPREAD_P"  value="0.0*GeV, 10*deg, 180*deg"/>
 
 
 	<!--  Target and central detectors are all shifted upstream by 30 mm -->

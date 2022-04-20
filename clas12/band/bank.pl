@@ -34,3 +34,4 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "TDC_order",      9, "Di", "side of PMT + 2");
 	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",       10, "Di", "TDC value");
 	insert_bank_variable(\%configuration, $bankname, "hitn",          99, "Di", "hit number");
+}

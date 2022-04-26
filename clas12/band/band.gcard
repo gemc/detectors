@@ -22,7 +22,7 @@
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />	</detector>
 	<detector name="band">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />	</detector>
 
-	<option name="OUTPUT"                  value="evio, out.evio"/>
+	<option name="OUTPUT"                  value="hipo, out.hipo"/>
 	<option name="PHYSICS"                 value="STD + FTFP_BERT"/>
 	<option name="RUNNO"                   value="11" />
 	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />

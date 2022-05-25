@@ -495,7 +495,7 @@ sub make_ft_cal_mother_volume
 sub make_ft_cal_crystals_volume
 {
 	my %detector = init_det();
-	$detector{"name"}        = "ft_cal_crystal_volume";
+	$detector{"name"}        = "ft_calCrystalsMother";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft calorimeter crystal volume";
 	$detector{"color"}       = "1437f4";
@@ -534,9 +534,9 @@ sub make_ft_cal_crystals
 			{
 				# crystal mother volume
 				my %detector = init_det();
-				$detector{"name"}        = "ft_cr_volume_" . $iX . "_" . $iY ;
-				$detector{"mother"}      = "ft_cal_crystal_volume";
-				$detector{"description"} = "ft crystal mother volume (h:" . $iX . ", v:" . $iY . ")";
+				$detector{"name"}        = "ft_cal_cr_motherVolume_h" . $iX . "_v" . $iY ;
+				$detector{"mother"}      = "ft_calCrystalsMother";
+				$detector{"description"} = "Mother Volume for crystal h:" . $iX . ", v:" . $iY;
 				$locZ=$Vfront+$Vlength/2.;
 				$detector{"pos"}         = "$locX*mm $locY*mm $locZ*mm";
 				$detector{"color"}       = "838EDE";
@@ -550,9 +550,9 @@ sub make_ft_cal_crystals
 				
 				# APD housing
 				%detector = init_det();
-				$detector{"name"}        = "ft_cr_apd_" . $iX . "_" . $iY ;
-				$detector{"mother"}      = "ft_cal_crystal_volume";
-				$detector{"description"} = "ft crystal apd (h:" . $iX . ", v:" . $iY . ")";
+				$detector{"name"}        = "ft_cal_cr_apd_h" . $iX . "_v" . $iY ;
+				$detector{"mother"}      = "ft_calCrystalsMother";
+				$detector{"description"} = "apd for crystal h:" . $iX . ", v:" . $iY;
 				$locZ=$Sfront+$Slength/2.;
 				$detector{"pos"}         = "$locX*mm $locY*mm $locZ*mm";
 				$detector{"color"}       = "99CC66";
@@ -567,9 +567,9 @@ sub make_ft_cal_crystals
 				
 				# Wrapping Volume;
 				%detector = init_det();
-				$detector{"name"}        = "ft_cr_wr_" . $iX . "_" . $iY ;
-				$detector{"mother"}      = "ft_cr_volume_" . $iX . "_" . $iY ;
-				$detector{"description"} = "ft wrapping (h:" . $iX . ", v:" . $iY . ")";
+				$detector{"name"}        = "ft_cal_cr_wrap_h" . $iX . "_v" . $iY ;
+				$detector{"mother"}      = "ft_cal_cr_motherVolume_h" . $iX . "_v" . $iY ;
+				$detector{"description"} = "wrapping for crystal h:" . $iX . ", v:" . $iY;
 				$locX=0.;
 				$locY=0.;
 				$locZ=0.;
@@ -586,9 +586,9 @@ sub make_ft_cal_crystals
 				
 				# PbWO4 Crystal;
 				%detector = init_det();
-				$detector{"name"}        = "ft_cr_" . $iX . "_" . $iY ;
-				$detector{"mother"}      = "ft_cr_wr_" . $iX . "_" . $iY ;
-				$detector{"description"} = "ft crystal (h:" . $iX . ", v:" . $iY . ")";
+				$detector{"name"}        = "ft_cal_cr_h" . $iX . "_v" . $iY ;
+				$detector{"mother"}      = "ft_cal_cr_wrap_h" . $iX . "_v" . $iY ;
+				$detector{"description"} = "PbWO4 crystal h:" . $iX . ", v:" . $iY;
 				$locX=0.;
 				$locY=0.;
 				$locZ=$Flength/2.;
@@ -608,9 +608,9 @@ sub make_ft_cal_crystals
 				
 				# LED housing
 				%detector = init_det();
-				$detector{"name"}        = "ft_cr_led_" . $iX . "_" . $iY ;
-				$detector{"mother"}      = "ft_cr_wr_" . $iX . "_" . $iY ;
-				$detector{"description"} = "ft crystal led (h:" . $iX . ", v:" . $iY . ")";
+				$detector{"name"}        = "ft_cal_cr_ledHousing_h" . $iX . "_v" . $iY ;
+				$detector{"mother"}      = "ft_cal_cr_wrap_h" . $iX . "_v" . $iY ;
+				$detector{"description"} = "Led Housing for crystal h:" . $iX . ", v:" . $iY;
 				$locX=0.;
 				$locY=0.;
 				$locZ=-$Vlength/2.+$Flength/2.;
@@ -641,9 +641,9 @@ sub make_ft_cal_flux
 	my $Flux_Z =  $Vfront+$Vlength+$Flux_TN;
 	my %detector = init_det();
 	$detector{"name"}        = "ft_cal_flux";
-	$detector{"mother"}      = "ft_cal_crystal_volume";
+	$detector{"mother"}      = "ft_calCrystalsMother";
 	$detector{"description"} = "ft flux";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $Flux_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $Flux_Z*mm";
 	$detector{"color"}       = "aa0088";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$Flux_IR*mm $Flux_OR*mm $Flux_TN*mm 0.*deg 360.*deg";
@@ -691,9 +691,9 @@ sub make_ft_cal_copper
 	# back
 	my %detector = init_det();
 	$detector{"name"}        = "ft_cal_back_copper";
-	$detector{"mother"}      = "ft_cal_crystal_volume";
+	$detector{"mother"}      = "ft_calCrystalsMother";
 	$detector{"description"} = "ft back_copper";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $Bdisk_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $Bdisk_Z*mm";
 	$detector{"color"}       = "CC6600";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$Bdisk_IR*mm $Bdisk_OR*mm $Bdisk_TN*mm 0.*deg 360.*deg";
@@ -703,9 +703,9 @@ sub make_ft_cal_copper
 	# front
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_front_copper";
-	$detector{"mother"}      = "ft_cal_crystal_volume";
+	$detector{"mother"}      = "ft_calCrystalsMother";
 	$detector{"description"} = "ft front_copper";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $Fdisk_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $Fdisk_Z*mm";
 	$detector{"color"}       = "CC6600";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$Fdisk_IR*mm $Fdisk_OR*mm $Fdisk_TN*mm 0.*deg 360.*deg";
@@ -715,9 +715,9 @@ sub make_ft_cal_copper
 	# inner
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_inner_copper";
-	$detector{"mother"}      = "ft_cal_crystal_volume";
+	$detector{"mother"}      = "ft_calCrystalsMother";
 	$detector{"description"} = "ft inner_copper";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $Idisk_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $Idisk_Z*mm";
 	$detector{"color"}       = "CC6600";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$Idisk_IR*mm $Idisk_OR*mm $Idisk_LT*mm 0.*deg 360.*deg";
@@ -727,9 +727,9 @@ sub make_ft_cal_copper
 	# outer
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_outer_copper";
-	$detector{"mother"}      = "ft_cal_crystal_volume";
+	$detector{"mother"}      = "ft_calCrystalsMother";
 	$detector{"description"} = "ft outer_copper";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $Odisk_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $Odisk_Z*mm";
 	$detector{"color"}       = "CC6600";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$Odisk_IR*mm $Odisk_OR*mm $Odisk_LT*mm 0.*deg 360.*deg";
@@ -740,9 +740,9 @@ sub make_ft_cal_copper
 	# Preamp Space
 	%detector = init_det();
 	$detector{"name"}        = "ft_cal_back_plate";
-	$detector{"mother"}      = "ft_cal_crystal_volume";
+	$detector{"mother"}      = "ft_calCrystalsMother";
 	$detector{"description"} = "ft back_plate";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $BPlate_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $BPlate_Z*mm";
 	$detector{"color"}       = "7F9A65";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$BPlate_IR*mm $BPlate_OR*mm $BPlate_TN*mm 0.*deg 360.*deg";
@@ -762,7 +762,7 @@ sub make_ft_cal_motherboard
 	$detector{"name"}        = "ft_cal_back_mtb";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft back_mtb disk";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $Bmtb_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $Bmtb_Z*mm";
 	$detector{"color"}       = "0B3B0B";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$Bmtb_IR*mm $Bmtb_OR*mm $Bmtb_TN*mm 0.*deg 360.*deg";
@@ -774,7 +774,7 @@ sub make_ft_cal_motherboard
 		my $Bmtb_hear_DX = ($Bmtb_OR+$Bmtb_hear_LN-$Bmtb_hear_D0)*cos($Bmtb_angle[$i]/$degrad);
 		my $Bmtb_hear_DY =-($Bmtb_OR+$Bmtb_hear_LN-$Bmtb_hear_D0)*sin($Bmtb_angle[$i]/$degrad);
 		%detector = init_det();
-		$detector{"name"}        = "ft_back_mtb_h$i";
+		$detector{"name"}        = "ft_cal_back_mtb_h$i";
 		$detector{"mother"}      = "ft_cal";
 		$detector{"description"} = "ft back_mtb hear$i";
 		$detector{"pos"}         = "$Bmtb_hear_DX*mm $Bmtb_hear_DY*mm $Bmtb_Z*mm";
@@ -797,7 +797,7 @@ sub make_ft_cal_led
 	$detector{"name"}        = "ft_cal_led";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft led";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $LED_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $LED_Z*mm";
 	$detector{"color"}       = "333333";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$LED_IR*mm $LED_OR*mm $LED_TN*mm 0.*deg 360.*deg";
@@ -904,7 +904,7 @@ sub make_ft_cal_insulation
 	$detector{"name"}        = "ft_cal_inner_ins";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft inner_ins";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $I_Ins_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $I_Ins_Z*mm";
 	$detector{"color"}       = "F5F6CE";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$I_Ins_IR*mm $I_Ins_OR*mm $I_Ins_LT*mm 0.*deg 360.*deg";

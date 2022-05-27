@@ -1213,7 +1213,7 @@ sub make_ft_cal_beamline
 	$detector{"name"}        = "ft_cal_al_bline";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft aluminum beam line";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $AL_BLine_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $AL_BLine_Z*mm";
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$AL_BLine_IR*mm $AL_BLine_OR*mm $AL_BLine_LT*mm 0.*deg 360.*deg";
@@ -1225,7 +1225,7 @@ sub make_ft_cal_beamline
 	$detector{"name"}        = "ft_cal_al_bline_vacuum";
 	$detector{"mother"}      = "ft_cal";
 	$detector{"description"} = "ft aluminum beam line vacuum";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $AL_BLine_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $AL_BLine_Z*mm";
 	$detector{"color"}       = "F2F2F2";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0.0*mm $AL_BLine_IR*mm $AL_BLine_LT*mm 0.*deg 360.*deg";
@@ -1267,7 +1267,7 @@ sub make_ft_hodo
 	$detector{"name"}        = "ft_hodo";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "ft scintillation hodoscope";
-	$detector{"pos"}         = "0.0*cm 0.0*cm 0.0*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm 0.0*mm";
 	$detector{"color"}       = "3399FF";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $VETO_nplanes*counts";
@@ -1283,7 +1283,7 @@ sub make_ft_hodo
 	$detector{"name"}        = "ft_hodo_innervol";
 	$detector{"mother"}      = "ft_hodo";
 	$detector{"description"} = "ft scintillation hodoscope inner volume";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $VETO_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $VETO_Z*mm";
 	$detector{"color"}       = "3399FF";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$VETO_RING_OR*mm $VETO_OR*mm $VETO_TN*mm 0.*deg 360.*deg";
@@ -1295,7 +1295,7 @@ sub make_ft_hodo
 	$detector{"name"}        = "ft_hodo_ring";
 	$detector{"mother"}      = "ft_hodo";
 	$detector{"description"} = "ft hodoscope support ring";
-	$detector{"pos"}         = "0.0*cm 0.0*cm $VETO_RING_Z*mm";
+	$detector{"pos"}         = "0.0*mm 0.0*mm $VETO_RING_Z*mm";
 	$detector{"color"}       = "cccccc";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$VETO_RING_IR*mm $VETO_RING_OR*mm $VETO_RING_TN*mm 0.*deg 360.*deg";
@@ -1313,7 +1313,7 @@ sub make_ft_hodo
 		$detector{"name"}        = "ft_hodo_L$L";
 		$detector{"mother"}      = "ft_hodo_innervol";
 		$detector{"description"} = "ft_hodo layer $L support";
-		$detector{"pos"}         = "0.0*cm 0.0*cm $LS_Z*mm";
+		$detector{"pos"}         = "0.0*mm 0.0*mm $LS_Z*mm";
 		$detector{"color"}       = "EFEFFB";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "$VETO_RING_OR*mm $VETO_OR*mm $LS_TN*mm 0.*deg 360.*deg";

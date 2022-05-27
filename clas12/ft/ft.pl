@@ -51,7 +51,7 @@ define_banks();
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("FTOn", "FTOff", "WithInnerSST", "WithInnerShield", "NotUsedWithInnerSST", "NotUsedWithInnerShield");
-my @allConfs = ("FTOn", "FTOff", "KPP");
+my @allConfs = ("FTOn", "FTOff", "KPP", "FTOn_debug", "FTOff_debug", "KPP_debug",);
 
 foreach my $conf ( @allConfs )
 {
@@ -62,14 +62,14 @@ foreach my $conf ( @allConfs )
     
     define_ft_hits();
     
-    #    make_ft_shield();
-    if($configuration{"variation"} eq "KPP") {
+    #  make_ft_shield();
+    if($configuration{"variation"} eq "KPP" || $configuration{"variation"} eq "KPP_debug") {
         make_ft_pipe();
     }
     else {
         make_ft_cal();
         make_ft_hodo();
-        if($configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "WithInnerSST" || $configuration{"variation"} eq "WithInnerShield" ) {
+        if($configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "FTOn_debug" ) {
             make_ft_trk();
         }
     }

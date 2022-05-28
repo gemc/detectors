@@ -1132,23 +1132,22 @@ sub make_ft_cal_beamline
 	my @oradius_TPlate = ($TPlate_OR, $TPlate_OR, $TPlate_OR);
 	my @iradius_TPlate = ($TPlate_IR, $TPlate_IR, $TPlate_MR);
 	
-	if($configuration{"variation"} ne "KPP" && $configuration{"variation"} ne "KPP_debug") {
-		# tungsten plate on the back of the calorimeter
-		%detector = init_det();
-		$detector{"name"}        = "ft_cal_tplate";
-		$detector{"mother"}      = "ft_cal";
-		$detector{"description"} = "ft tungsten plate";
-		$detector{"color"}       = "ff0000";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
-		for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $iradius_TPlate[$i]*mm";}
-		for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $oradius_TPlate[$i]*mm";}
-		for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $z_plane_TPlate[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "ft_W";
-		$detector{"style"}       = 1;
-		print_det(\%configuration, \%detector);
-	}
+	# tungsten plate on the back of the calorimeter
+	%detector = init_det();
+	$detector{"name"}        = "ft_cal_tplate";
+	$detector{"mother"}      = "ft_cal";
+	$detector{"description"} = "ft tungsten plate";
+	$detector{"color"}       = "ff0000";
+	$detector{"type"}        = "Polycone";
+	my $dimen = "0.0*deg 360*deg $nplanes_TPlate*counts";
+	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $iradius_TPlate[$i]*mm";}
+	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $oradius_TPlate[$i]*mm";}
+	for(my $i = 0; $i <$nplanes_TPlate ; $i++) {$dimen = $dimen ." $z_plane_TPlate[$i]*mm";}
+	$detector{"dimensions"}  = $dimen;
+	$detector{"material"}    = "ft_W";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
 	
 	
 	
@@ -1241,10 +1240,8 @@ sub make_ft_cal
 	make_ft_cal_crystals_volume();
 	make_ft_cal_crystals();
 
-	if( $configuration{"variation"} eq "FTOn_debug" || $configuration{"variation"} eq "FTOff_debug" || $configuration{"variation"} eq "KPP_debug" ) {
-		make_ft_cal_flux();
-		make_ft_moellerdisk();
-	}
+	make_ft_cal_flux();
+	make_ft_moellerdisk();
 
 	make_ft_cal_copper();
 	make_ft_cal_motherboard();
@@ -2214,49 +2211,48 @@ sub make_ft_trk_fee_boxes
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 		
-		if( $configuration{"variation"} eq "FTOn_debug" || $configuration{"variation"} eq "FTOff_debug" || $configuration{"variation"} eq "KPP_debug" ) {
 
-			my $flux_FEE_TN = 0.5;
-			my $flux_FEE_HT = $FEE_A_HT - 2.*$flux_FEE_TN;
-			my $flux_FEE_WD = $FEE_A_WD - 2.*$flux_FEE_TN;
-			my $flux_FEE_LN = $flux_FEE_TN;
-			my $flux_FEE_Z  = -$FEE_A_LN + $flux_FEE_TN;
-			%detector = init_det();
-			$detector{"name"}        = "ft_trk_fee_flux_1_$i";
-			$detector{"mother"}      = "ft_trk_fee_air_$i";
-			$detector{"description"} = "ft-trk fee flux 1";
-			$detector{"pos"}         = "0.*mm 0.*mm $flux_FEE_Z*mm";
-			$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-			$detector{"color"}       = "aa0088";
-			$detector{"type"}        = "Box";
-			$detector{"dimensions"}  = "$flux_FEE_HT*mm $flux_FEE_WD*mm $flux_FEE_LN*mm";
-			$detector{"material"}    = "G4_Galactic";
-			$detector{"style"}       = 1;
-			$detector{"sensitivity"} = "flux";
-			$detector{"hit_type"}    = "flux";
-			$detector{"identifiers"} = "id manual 4";
-			print_det(\%configuration, \%detector);
+		my $flux_FEE_TN = 0.5;
+		my $flux_FEE_HT = $FEE_A_HT - 2.*$flux_FEE_TN;
+		my $flux_FEE_WD = $FEE_A_WD - 2.*$flux_FEE_TN;
+		my $flux_FEE_LN = $flux_FEE_TN;
+		my $flux_FEE_Z  = -$FEE_A_LN + $flux_FEE_TN;
+		%detector = init_det();
+		$detector{"name"}        = "ft_trk_fee_flux_1_$i";
+		$detector{"mother"}      = "ft_trk_fee_air_$i";
+		$detector{"description"} = "ft-trk fee flux 1";
+		$detector{"pos"}         = "0.*mm 0.*mm $flux_FEE_Z*mm";
+		$detector{"rotation"}    = "0*deg 0*deg 0*deg";
+		$detector{"color"}       = "aa0088";
+		$detector{"type"}        = "Box";
+		$detector{"dimensions"}  = "$flux_FEE_HT*mm $flux_FEE_WD*mm $flux_FEE_LN*mm";
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 1;
+		$detector{"sensitivity"} = "flux";
+		$detector{"hit_type"}    = "flux";
+		$detector{"identifiers"} = "id manual 4";
+		print_det(\%configuration, \%detector);
+		
+		$flux_FEE_HT = $FEE_A_HT - 2.*$flux_FEE_TN;
+		$flux_FEE_WD = $flux_FEE_TN;
+		$flux_FEE_LN = $FEE_A_LN - 2.*$flux_FEE_TN;
+		my $flux_FEE_Y  = - $FEE_WD*0.6;
+		%detector = init_det();
+		$detector{"name"}        = "ft_trk_fee_flux_2_$i";
+		$detector{"mother"}      = "ft_trk_fee_air_$i";
+		$detector{"description"} = "ft-trk fee flux 2";
+		$detector{"pos"}         = "0.*mm $flux_FEE_Y*mm 0.*mm";
+		$detector{"rotation"}    = "0*deg 0.*deg 0*deg";
+		$detector{"color"}       = "aa0088";
+		$detector{"type"}        = "Box";
+		$detector{"dimensions"}  = "$flux_FEE_HT*mm $flux_FEE_WD*mm $flux_FEE_LN*mm";
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 1;
+		$detector{"sensitivity"} = "flux";
+		$detector{"hit_type"}    = "flux";
+		$detector{"identifiers"} = "id manual 5";
+		print_det(\%configuration, \%detector);
 
-			$flux_FEE_HT = $FEE_A_HT - 2.*$flux_FEE_TN;
-			$flux_FEE_WD = $flux_FEE_TN;
-			$flux_FEE_LN = $FEE_A_LN - 2.*$flux_FEE_TN;
-			my $flux_FEE_Y  = - $FEE_WD*0.6;
-			%detector = init_det();
-			$detector{"name"}        = "ft_trk_fee_flux_2_$i";
-			$detector{"mother"}      = "ft_trk_fee_air_$i";
-			$detector{"description"} = "ft-trk fee flux 2";
-			$detector{"pos"}         = "0.*mm $flux_FEE_Y*mm 0.*mm";
-			$detector{"rotation"}    = "0*deg 0.*deg 0*deg";
-			$detector{"color"}       = "aa0088";
-			$detector{"type"}        = "Box";
-			$detector{"dimensions"}  = "$flux_FEE_HT*mm $flux_FEE_WD*mm $flux_FEE_LN*mm";
-			$detector{"material"}    = "G4_Galactic";
-			$detector{"style"}       = 1;
-			$detector{"sensitivity"} = "flux";
-			$detector{"hit_type"}    = "flux";
-			$detector{"identifiers"} = "id manual 5";
-			print_det(\%configuration, \%detector);
-		}
 
 		my $dose_FEE_TN=5.;
 		my $dose_FEE_HT = $FEE_A_HT - $dose_FEE_TN;

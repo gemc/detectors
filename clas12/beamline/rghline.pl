@@ -278,7 +278,7 @@ sub rghline()
 	$detector{"color"}       = "aaffff";
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "0*mm 0*mm 0*mm";
-	$detector{"dimensions"}  = "0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0mm 30.*mm 30*mm 25.46*mm 41.2*mm 280.71*mm 384.98*mm 384.98*mm 570*mm";
+	$detector{"dimensions"}  = "0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0*mm 30.*mm 30*mm 25.46*mm 41.2*mm 280.71*mm 384.98*mm 384.98*mm 570*mm";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);

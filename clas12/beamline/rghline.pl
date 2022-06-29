@@ -331,7 +331,7 @@ sub rghline()
 	$detector{"color"}       = "dd8648";
 	$detector{"type"}        = "Cons";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "47.62*mm 98.64*mm 47.62*mm 109.76*mm 63.55.*mm 0.0*deg 360*deg";
+	$detector{"dimensions"}  = "47.62*mm 98.64*mm 47.62*mm 109.76*mm 63.55*mm 0.0*deg 360*deg";
 	$detector{"material"}    = "G4_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -345,7 +345,7 @@ sub rghline()
 		$detector{"color"}       = "c57742";
 		$detector{"type"}        = "Cons";
 		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76.*mm 444.155.*mm 0.0*deg 360*deg";
+		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76*mm 444.155*mm 0.0*deg 360*deg";
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -371,7 +371,7 @@ sub rghline()
 		$detector{"color"}       = "945931";
 		$detector{"type"}        = "Cons";
 		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-		$detector{"dimensions"}  = "35.*mm 108.5*mm 35.*mm 108.5.*mm 241.135*mm 0.0*deg 360*deg";
+		$detector{"dimensions"}  = "35.*mm 108.5*mm 35.*mm 108.5*mm 241.135*mm 0.0*deg 360*deg";
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -400,7 +400,7 @@ sub rghline()
 		$detector{"color"}       = "c57742";
 		$detector{"type"}        = "Cons";
 		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76.*mm 203.2*mm 0.0*deg 360*deg";
+		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76*mm 203.2*mm 0.0*deg 360*deg";
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);

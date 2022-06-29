@@ -232,7 +232,6 @@ sub vacuumLine()
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "airgap between target and shield to limit e- steps";
 	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm $ztart*mm";
 	$detector{"type"}        = "Polycone";
 	$dimen = "0.0*deg 360*deg 2*counts";

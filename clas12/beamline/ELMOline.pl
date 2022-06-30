@@ -153,6 +153,22 @@ sub ELMOline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zpos = 0;
+	$firstVacuumIR = 0;
+	$firstVacuumOR = 64;
+	$pipeLength = 1829.4;
+	%detector = init_det();
+	$detector{"name"}        = "vacuumInPipeToAlcove";
+	$detector{"mother"}      = "vacuumPipeToAlcove";
+	$detector{"description"} = "vacuumInPipeToAlcove";
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
 	$zpos = 6372;
 	$firstVacuumIR = 140;
 	$firstVacuumOR = 190;
@@ -169,21 +185,6 @@ sub ELMOline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zpos = 0;
-	$firstVacuumIR = 0;
-	$firstVacuumOR = 64;
-	$pipeLength = 1829.4;
-	%detector = init_det();
-	$detector{"name"}        = "vacuumInPipeToAlcove";
-	$detector{"mother"}      = "vacuumPipeToAlcove";
-	$detector{"description"} = "vacuumInPipeToAlcove";
-	$detector{"color"}       = "000000";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Galactic";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
 
 	# shield is a tapered pipe (G4 polycone)

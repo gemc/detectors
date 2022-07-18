@@ -99,13 +99,13 @@ sub materials
     $mat{"components"}    = "G4_Cu 1";
     print_mat(\%configuration, \%mat);
     
-    %mat = init_mat();
-    $mat{"name"}          = "myKapton"; # found in gemc materials database.
-    $mat{"description"}   = "Kapton";
-    $mat{"density"}       = "1.42";
-    $mat{"ncomponents"}   = "4";
-    $mat{"components"}    = "G4_H 0.026362 G4_C 0.691133 G4_N 0.073270 G4_O 0.209235";
-    print_mat(\%configuration, \%mat);
+#    %mat = init_mat();
+#    $mat{"name"}          = "myKapton"; # found in gemc materials database.
+#    $mat{"description"}   = "Kapton";
+#    $mat{"density"}       = "1.42";
+#    $mat{"ncomponents"}   = "4";
+#    $mat{"components"}    = "G4_H 0.026362 G4_C 0.691133 G4_N 0.073270 G4_O 0.209235";
+#    print_mat(\%configuration, \%mat);
     
     # resistive strips
     %mat = init_mat();

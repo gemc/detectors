@@ -79,6 +79,10 @@ sub build_fc
 	$detector{"mfield"}      = "TorusSymmetric";
 	print_det(\%configuration, \%detector);
 
+	$configuration{"variation"} = "default" ;
+	$detector{"mfield"}      = "no";
+	print_det(\%configuration, \%detector);
+
 }
 
 

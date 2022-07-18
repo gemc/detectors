@@ -62,14 +62,14 @@ foreach my $conf ( @allConfs )
     
     define_ft_hits();
     
-    #    make_ft_shield();
+    #  make_ft_shield();
     if($configuration{"variation"} eq "KPP") {
         make_ft_pipe();
     }
     else {
         make_ft_cal();
         make_ft_hodo();
-        if($configuration{"variation"} eq "FTOn" || $configuration{"variation"} eq "WithInnerSST" || $configuration{"variation"} eq "WithInnerShield" ) {
+        if($configuration{"variation"} eq "FTOn" ) {
             make_ft_trk();
         }
     }

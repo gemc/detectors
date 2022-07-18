@@ -123,7 +123,7 @@ sub build_scintillators
 				#$detector125{"ncopy"}       = $barnum;
 				$detector125{"sensitivity"} = "band";
 				$detector125{"hit_type"}    = "band";
-				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
+				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component, ' side manual 0');
 				$detector125{"identifiers"} = $id_string;
 				print_det(\%configuration, \%detector125);
 
@@ -185,7 +185,7 @@ sub build_scintillators
 				$detector3{"style"}       = 1;
 				$detector3{"sensitivity"} = "band";
 				$detector3{"hit_type"}    = "band";
-				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
+				my $id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component, ' side manual 0');
 				$detector3{"identifiers"} = $id_string;
 				print_det(\%configuration, \%detector3);
 
@@ -209,7 +209,7 @@ sub build_scintillators
 				$detector4{"style"}       = 1;
 				$detector4{"sensitivity"} = "band";
 				$detector4{"hit_type"}    = "band";
-				$id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component);
+				$id_string = join('','sector manual ',$sector,' layer manual ',$layer,' component manual ',$component, ' side manual 0');
 				$detector4{"identifiers"} = $id_string;
 				print_det(\%configuration, \%detector4);
 

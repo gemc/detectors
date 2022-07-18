@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # Author: Maurik Holtrop (UNH)
 # Date: February 24, 2014
@@ -58,7 +58,7 @@ def main(argv=None):
     args = parser.parse_args(argv[1:])
 
     if args.debug:
-        print "Debug level is: "+str(args.debug)
+        print ("Debug level is: "+str(args.debug))
 
     if not args.variation:
         if args.fast:
@@ -82,9 +82,9 @@ def main(argv=None):
 
     if not args.quiet:
         if args.multi:
-            print "Creating multiple tables for the detectors with variation label = "+args.variation + " and id ="+str(args.identity)
+            print ("Creating multiple tables for the detectors with variation label = "+args.variation + " and id ="+str(args.identity))
         else:
-            print "Creating tables for detector name = "+args.name + " with variation label = "+args.variation + " and id ="+str(args.identity)
+            print ("Creating tables for detector name = "+args.name + " with variation label = "+args.variation + " and id ="+str(args.identity))
         
  
     from GeometryEngine import Geometry, GeometryEngine, Sensitive_Detector
@@ -97,7 +97,7 @@ def main(argv=None):
     import Write_HPS_beamline
 
     if args.shift:
-        print "Shifting Geometry."
+        print ("Shifting Geometry.")
         Write_HPS_beamline.Alignment_Choice=1
 
     import Write_HPS_ecal
@@ -169,12 +169,12 @@ def main(argv=None):
 
     for g in gen:
         if args.mysql:
-            if not args.quiet: print "Writing tables to MySQL for "+g._Detector+" with variation="+args.variation
+            if not args.quiet: print ("Writing tables to MySQL for "+g._Detector+" with variation="+args.variation)
             g.MySQL_OpenDB(args.host,args.user,args.passwd,args.database)
             g.MySQL_Write()
 
         if args.txt:
-            if not args.quiet: print "Writing tables to TEXT for "+g._Detector+" with variation="+args.variation
+            if not args.quiet: print ("Writing tables to TEXT for "+g._Detector+" with variation="+args.variation)
             g.TXT_Write()
 
 

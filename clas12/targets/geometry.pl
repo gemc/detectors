@@ -235,8 +235,7 @@ sub build_targets
 		$detector{"color"}       = "aaaaaa3";
 		$detector{"type"}        = "Tube";
 		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		#$detector{"material"}    = "G4_He";
-		$detector{"material"}    = "G4_Galactic";#temporaly replacing with vacuum
+		$detector{"material"}    = "G4_He";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 		
@@ -261,7 +260,7 @@ sub build_targets
 		$detector{"name"}        = $thisVariation;
 		$detector{"mother"}      = "plasticCell";
 		$detector{"description"} = "clas12 $thisVariation target";
-		$detector{"color"}       = "ee8811Q";
+		$detector{"color"}       = "ee8811";
 		$detector{"type"}        = "Tube";
 		$detector{"style"}       = "1";
 		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
@@ -726,7 +725,7 @@ sub build_targets
 		#print_det(\%configuration, \%detector);
 
 		# cell
-		my %detector = init_det();
+		%detector = init_det();
 		$detector{"name"}        = "ttargetCell";
 		$detector{"mother"}      = "root";
 		$detector{"description"} = "Target Container";

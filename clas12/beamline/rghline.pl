@@ -154,10 +154,6 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zpos = 2451.15;
-	$firstVacuumIR = 0.;
-	$firstVacuumOR = 28.52;
-	$pipeLength = 38.15;
 	%detector = init_det();
 	$detector{"name"}        = "vacuumInPipe3";
 	$detector{"mother"}      = "root";
@@ -165,7 +161,7 @@ sub rghline()
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"dimensions"}  = "0*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
 	$detector{"material"}    = "G4_Galactic";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);

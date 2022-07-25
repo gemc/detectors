@@ -187,16 +187,15 @@ public String gemcString(int superlayer, int layer, Component comp) {
 		}
 		else
 		{
-			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_0, top_y_0));
 			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_3, top_y_3));
 			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_4, top_y_4));
 			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_5, top_y_5));
+			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_0, top_y_0));
 			
-		
-			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_6, bottom_y_6));
 			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_9, bottom_y_9));
 			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_10, bottom_y_10));
 			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_11, bottom_y_11));
+			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_6, bottom_y_6));
 		}
 		// currently only writing the component id but should save all necessary identifiers according to detector definition
         	str.append(" | ");

@@ -143,6 +143,7 @@ sub build_LtccFrame
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
 
+			# temp removed, giving overlaps
 			%detector = init_det();
 			$detector{"name"}        = "frame7_s$s";
 			$detector{"mother"}      = "fc";
@@ -153,7 +154,7 @@ sub build_LtccFrame
 			$detector{"type"}        = "CopyOf S1-TRB";
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
+			# print_det(\%configuration, \%detector);
 
 			%detector = init_det();
 			$detector{"name"}        = "frame8_s$s";

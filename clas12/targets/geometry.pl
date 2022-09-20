@@ -8,6 +8,26 @@ sub build_targets
 {
 	my $thisVariation = $configuration{"variation"} ;
 
+	
+	my %detector = init_det();
+	my $TTIR = 400;
+	my $TTOR = $TTIR + 1;
+
+#	$detector{"name"}        = "targetFlux";
+#	$detector{"mother"}      = "root";
+#	$detector{"description"} = "Flux for testing generator";
+#	$detector{"color"}       = "aa0000";
+#	$detector{"type"}        = "Sphere";
+#	$detector{"dimensions"}  = "$TTIR*mm $TTOR*mm 0*deg 360*deg 0*deg 180*deg";
+#	$detector{"material"}    = "G4_Galactic";
+#	$detector{"sensitivity"} = "flux";
+#	$detector{"hit_type"}    = "flux";
+#	$detector{"identifiers"} = "id manual 1";
+#	print_det(\%configuration, \%detector);
+#	exit;
+
+	
+	
 	if($thisVariation eq "pbTest" )
 	{
 		# mother is a helium bag 293.26 mm long. Its center is 40.85 mm
@@ -169,11 +189,11 @@ sub build_targets
 		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
 		
 
-		if($thisVariation eq "lH2")
+		if($thisVariation eq "oldlH2")
 		{
 			$detector{"material"}    = "G4_lH2";
 		}
-		if($thisVariation eq "lD2")
+		if($thisVariation eq "oldlD2")
 		{
 			$detector{"material"}    = "LD2";
 		}
@@ -822,6 +842,9 @@ sub build_targets
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 
+		
+			
+		
 	}
 	
 	# cad variation has two volume:

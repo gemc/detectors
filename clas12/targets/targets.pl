@@ -39,7 +39,7 @@ require "./apollo.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("lH2", "lD2", "ND3", "PolTarg", "APOLLOnh3", "APOLLOnd3", "12C", "63Cu", "118Sn", "208Pb", "27Al", "lH2e", "bonus", "pbTest", "bonusb", "hdIce", "longitudinal", "transverse");
+my @allConfs = ("lH2", "lD2", "ND3", "PolTarg", "APOLLOnh3", "APOLLOnd3", "12C", "63Cu", "118Sn", "208Pb", "27Al", "lH2e", "bonus", "pbTest", "bonusb", "hdIce", "longitudinal", "transverse", "RGM_2_C", "RGM_2_Sn", "RGM_8_C_S", "RGM_8_C_L", "RGM_8_Sn_S", "RGM_8_Sn_L", "RGM_Ca");
 
 
 foreach my $conf ( @allConfs )

@@ -3,23 +3,6 @@ use warnings;
 
 our %configuration;
 
-
-my $shieldStart = 963; # start of vacuum pipe is 1mm downstream of target vac extension
-my $pipeFirstStep = 2413;
-my $torusStart    = 2754.17 ;
-my $mediumPipeEnd = 5016; # added by hand by shooting geantino vertically to locate the point
-my $bigPipeBegins = 5064; # added by hand by shooting geantino vertically to locate the point
-my $pipeEnds      = 5732;
-my $alcovePipeStarts = 5741;
-my $alcovePipeEnds   = 9400;
-my $mediumStarts  = $pipeFirstStep + 76.5; # added by hand by shooting geantino vertically to locate the point
-
-# apex cad model not filled with lead.
-my $apexIR = 140;
-my $apexOR = 190;
-my $apexLength = 1000;
-my $apexPos = 5372;
-
 sub rghline()
 {
 
@@ -40,6 +23,23 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
+	$zpos = 0;
+	$pipeLength = 72.5;
+	$firstVacuumIR = 0;
+	$firstVacuumOR = 33.325;
+	
+	%detector = init_det();
+	$detector{"name"}        = "vacuumInPipe1_1";
+	$detector{"mother"}      = "vacuumPipe1_1";
+	$detector{"description"} = "straightVacuumPipe";
+	$detector{"color"}       = "000000";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_Galactic";
+	$detector{"style"}       = 1;
+	print_det(\%configuration, \%detector);
+
 	$pipeLength = 728.4;
 	$zpos = 1528.4;
 	$firstVacuumIR = 0.;
@@ -57,24 +57,7 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-
- 	$zpos = 0;
-	$pipeLength = 72.5;
-	$firstVacuumIR = 0;
-	$firstVacuumOR = 33.325;
-
-	%detector = init_det();
-	$detector{"name"}        = "vacuumInPipe1_1";
-	$detector{"mother"}      = "vacuumPipe1_1";
-	$detector{"description"} = "straightVacuumPipe";
-	$detector{"color"}       = "000000";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Galactic";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
+ 
  	$zpos = 0;
 	$pipeLength = 728.4;
 	$firstVacuumIR = 0;
@@ -171,10 +154,6 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zpos = 2451.15;
-	$firstVacuumIR = 0.;
-	$firstVacuumOR = 28.52;
-	$pipeLength = 38.15;
 	%detector = init_det();
 	$detector{"name"}        = "vacuumInPipe3";
 	$detector{"mother"}      = "root";
@@ -182,7 +161,7 @@ sub rghline()
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+	$detector{"dimensions"}  = "0*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
 	$detector{"material"}    = "G4_Galactic";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -278,7 +257,7 @@ sub rghline()
 	$detector{"color"}       = "aaffff";
 	$detector{"type"}        = "Polycone";
 	$detector{"pos"}         = "0*mm 0*mm 0*mm";
-	$detector{"dimensions"}  = "0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0mm 30.*mm 30*mm 25.46*mm 41.2*mm 280.71*mm 384.98*mm 384.98*mm 570*mm";
+	$detector{"dimensions"}  = "0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0*mm 30.*mm 30*mm 25.46*mm 41.2*mm 280.71*mm 384.98*mm 384.98*mm 570*mm";
 	$detector{"material"}    = "G4_AIR";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -331,7 +310,7 @@ sub rghline()
 	$detector{"color"}       = "dd8648";
 	$detector{"type"}        = "Cons";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "47.62*mm 98.64*mm 47.62*mm 109.76*mm 63.55.*mm 0.0*deg 360*deg";
+	$detector{"dimensions"}  = "47.62*mm 98.64*mm 47.62*mm 109.76*mm 63.55*mm 0.0*deg 360*deg";
 	$detector{"material"}    = "G4_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -345,7 +324,7 @@ sub rghline()
 		$detector{"color"}       = "c57742";
 		$detector{"type"}        = "Cons";
 		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76.*mm 444.155.*mm 0.0*deg 360*deg";
+		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76*mm 444.155*mm 0.0*deg 360*deg";
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -371,7 +350,7 @@ sub rghline()
 		$detector{"color"}       = "945931";
 		$detector{"type"}        = "Cons";
 		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-		$detector{"dimensions"}  = "35.*mm 108.5*mm 35.*mm 108.5.*mm 241.135*mm 0.0*deg 360*deg";
+		$detector{"dimensions"}  = "35.*mm 108.5*mm 35.*mm 108.5*mm 241.135*mm 0.0*deg 360*deg";
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
@@ -400,7 +379,7 @@ sub rghline()
 		$detector{"color"}       = "c57742";
 		$detector{"type"}        = "Cons";
 		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76.*mm 203.2*mm 0.0*deg 360*deg";
+		$detector{"dimensions"}  = "47.63*mm 109.76*mm 47.63*mm 109.76*mm 203.2*mm 0.0*deg 360*deg";
 		$detector{"material"}    = "G4_Pb";
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);

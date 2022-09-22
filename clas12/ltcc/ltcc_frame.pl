@@ -69,6 +69,7 @@ sub build_LtccFrame
 
 		if($shouldPrintDetector == 1) {
 
+			# temp removing back panel
 			my %detector = init_det();
 			$detector{"name"}        = "frame1_s$s";
 			$detector{"mother"}      = "fc";
@@ -79,7 +80,7 @@ sub build_LtccFrame
 			$detector{"type"}        = "CopyOf S1-BW";
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
+			#print_det(\%configuration, \%detector);
 
 			%detector = init_det();
 			$detector{"name"}        = "frame2_s$s";
@@ -105,6 +106,7 @@ sub build_LtccFrame
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
 
+			# temp removing side panels
 			%detector = init_det();
 			$detector{"name"}        = "frame4_s$s";
 			$detector{"mother"}      = "fc";
@@ -115,7 +117,7 @@ sub build_LtccFrame
 			$detector{"type"}        = "CopyOf S1-LW ";
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
+			#print_det(\%configuration, \%detector);
 
 			%detector = init_det();
 			$detector{"name"}        = "frame5_s$s";
@@ -127,7 +129,7 @@ sub build_LtccFrame
 			$detector{"type"}        = "CopyOf S1-RW";
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
+			#print_det(\%configuration, \%detector);
 
 			%detector = init_det();
 			$detector{"name"}        = "frame6_s$s";
@@ -141,6 +143,7 @@ sub build_LtccFrame
 			$detector{"style"}       = 1;
 			print_det(\%configuration, \%detector);
 
+			# temp removed, giving overlaps
 			%detector = init_det();
 			$detector{"name"}        = "frame7_s$s";
 			$detector{"mother"}      = "fc";
@@ -151,7 +154,7 @@ sub build_LtccFrame
 			$detector{"type"}        = "CopyOf S1-TRB";
 			$detector{"material"}    = "G4_STAINLESS-STEEL";
 			$detector{"style"}       = 1;
-			print_det(\%configuration, \%detector);
+			# print_det(\%configuration, \%detector);
 
 			%detector = init_det();
 			$detector{"name"}        = "frame8_s$s";
@@ -182,7 +185,8 @@ sub build_LtccFrame
 
 
 		# additional nose hardware
-		if($shouldPrintDetector == 1) {
+		# temp removed
+		if($shouldPrintDetector == 1 && 0) {
 			
 			my $nangle = ($s - 1) * 60; # rotation angle of the ltcc frame for each sectors
 

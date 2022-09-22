@@ -1,0 +1,26 @@
+<gcard>
+
+	<option name="HIT_PROCESS_LIST" value="BDX"/>
+	<detector name="pim_abs" factory="TEXT" variation="default"/>
+	<option name="INTEGRATEDRAW" value="flux"/>
+	<option name="OUTPUT" value="evio, out.evio"/>
+	
+	<option name="RECORD_PASSBY" value="1" />
+	
+	<!--
+	<option name="PHYSICS"   value="FTFP_BERT_HP + STD + HP" />
+	<option name="PHYSICS"   value="QGSP_BERT_HP + STD + HP " />
+	-->
+	
+	<option name="PHYSICS"   value="QGSP_BERT + STD + HP " />
+
+	<option name="BEAM_P" value="e-, 11*GeV, 0*deg, 0*deg"/>
+
+	<option name="BEAM_V" value="(0., 0., -210)cm"/>
+	
+
+	<option name="PRODUCTIONCUTFORVOLUMES" value="BeamDump,  20" />
+
+	
+	
+</gcard>

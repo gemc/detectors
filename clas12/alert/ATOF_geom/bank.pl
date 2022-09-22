@@ -33,6 +33,13 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "tdc_front",	8, "Dd", " TDC SiPM front end, SL0");
 	insert_bank_variable(\%configuration, $bankname, "tdc_back",	9, "Dd", " TDC SiPM back end, SL0");
 	insert_bank_variable(\%configuration, $bankname, "tdc_top",	10, "Dd", " TDC SiPM top side, SL1"); 
+	insert_bank_variable(\%configuration, $bankname, "time_front",	11, "Dd", " Time SiPM front end, SL0");
+	insert_bank_variable(\%configuration, $bankname, "time_back",	12, "Dd", " Time SiPM back end, SL0");
+	insert_bank_variable(\%configuration, $bankname, "time_top",	13, "Dd", " Time SiPM top side, SL1");
+	insert_bank_variable(\%configuration, $bankname, "E_tot_Front",	14, "Dd", " E deposit into SiPM front end, SL0");
+	insert_bank_variable(\%configuration, $bankname, "E_tot_Back",	15, "Dd", " E deposit into SiPM back end, SL0");
+	insert_bank_variable(\%configuration, $bankname, "E_tot_Top",	16, "Dd", " E deposit into SiPM top side, SL1"); 
+	insert_bank_variable(\%configuration, $bankname, "totEdep_MC",	17, "Dd", " MC totEdep output"); 
 	insert_bank_variable(\%configuration, $bankname, "hitn",	99, "Di", "hit number");
 }
 

@@ -398,7 +398,7 @@ $z0[1]     = $z0[0] + 2.*$zrel[9] + 2.*$AssemblyRing3_Dz;
 my $epoxy_material       = 'epoxy';
 my $pcboard_material     = 'myFR4';
 my $strips_material      = 'mmstrips';
-my $kapton_material      = 'myKapton';
+my $kapton_material      = 'G4_KAPTON';
 my $resistive_material   = 'ResistPaste';
 my $gas_material         = 'mmgas';
 my $mesh_material        = 'mmmesh';
@@ -1163,7 +1163,7 @@ sub make_ft_cal_beamline
 	$detector{"description"} = "ft beam collar";
 	$detector{"color"}       = "cccccc";
 	$detector{"type"}        = "Polycone";
-	my $dimen = "0.0*deg 360*deg $nplanes_TCollar*counts";
+	$dimen = "0.0*deg 360*deg $nplanes_TCollar*counts";
 	for(my $i = 0; $i <$nplanes_TCollar ; $i++) {$dimen = $dimen ." $iradius_TCollar[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TCollar ; $i++) {$dimen = $dimen ." $oradius_TCollar[$i]*mm";}
 	for(my $i = 0; $i <$nplanes_TCollar ; $i++) {$dimen = $dimen ." $z_plane_TCollar[$i]*mm";}

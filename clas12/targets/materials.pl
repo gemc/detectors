@@ -600,15 +600,37 @@ sub materials
 		print_mat(\%configuration, \%mat);
 	}
 
-	if($thisVariation eq "bonus")
+	if($thisVariation eq "bonusD2")
 	{
-		# TargetbonusGas
-		%mat = init_mat();
-		$mat{"name"}          = "bonusTargetGas";
-		$mat{"description"}   = "7 atm deuterium gas";
-		$mat{"density"}       = "0.00126";  # in g/cm3
-		$mat{"ncomponents"}   = "1";
-		$mat{"components"}    = "deuteriumGas 1";
-		print_mat(\%configuration, \%mat);
+        # TargetbonusGas
+        %mat = init_mat();
+        $mat{"name"}          = "bonusTargetGas_D2";
+        $mat{"description"}   = "5.6 atm deuterium gas";
+        $mat{"density"}       = "0.000937";  # in g/cm3
+        $mat{"ncomponents"}   = "1";
+        $mat{"components"}    = "deuteriumGas 1";
+        print_mat(\%configuration, \%mat);
 	}
+    if($thisVariation eq "bonusH2")
+    {
+        # TargetbonusGas
+        %mat = init_mat();
+        $mat{"name"}          = "bonusTargetGas_H2";
+        $mat{"description"}   = "5.6 atm hydrogen gas";
+        $mat{"density"}       = "0.000469";  # in g/cm3
+        $mat{"ncomponents"}   = "1";
+        $mat{"components"}    = "Hgas 1";
+        print_mat(\%configuration, \%mat);
+    }
+    if($thisVariation eq "bonusHe")
+    {
+        # TargetbonusGas
+        %mat = init_mat();
+        $mat{"name"}          = "bonusTargetGas_He";
+        $mat{"description"}   = "5.6 atm helium gas";
+        $mat{"density"}       = "0.000931";  # in g/cm3
+        $mat{"ncomponents"}   = "1";
+        $mat{"components"}    = "G4_He 1";
+        print_mat(\%configuration, \%mat);
+    }
 }

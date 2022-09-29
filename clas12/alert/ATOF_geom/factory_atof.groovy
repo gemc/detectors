@@ -20,7 +20,7 @@ DatabaseConstantProvider cp = new DatabaseConstantProvider(runNumber, variation)
 //ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, runNumber, variation);
 
 //MYFactory_ATOF factory = new MYFactory_ATOF();
-MYFactory_ATOF_NewV2 factory = new MYFactory_ATOF_NewV2();
+AlertTOFFactory factory = new AlertTOFFactory();
 Detector atof = factory.createDetectorCLAS(cp);
 
 def parFile = new File("atof__parameters_"+variation+".txt");

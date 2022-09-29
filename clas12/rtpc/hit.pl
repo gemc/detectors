@@ -26,7 +26,8 @@ if( scalar @ARGV != 1)
 }
 
 # Loading configuration file and paramters
-our %configuration = load_configuration($ARGV[0]);
+#our %configuration = load_configuration($ARGV[0]);
+our %configuration;
 
 # One can change the "variation" here if one is desired different from the config.dat
 # $configuration{"variation"} = "myvar";
@@ -41,7 +42,7 @@ sub define_hit
 	$hit{"signalThreshold"} = "73*eV";
 	$hit{"timeWindow"}      = "120*ns";  #0.1*ns
 	$hit{"prodThreshold"}   = "5*mm";  #0.1*mm
-	$hit{"maxStep"}         = "30*mm";    #"0.2*mm";
+	$hit{"maxStep"}         = "0.6*mm";    #kp: 2*mm; it was 30*mm; #"0.2*mm";
 	$hit{"delay"}           = "1*ns";
 	$hit{"riseTime"}        = "1*ns";
 	$hit{"fallTime"}        = "2*ns";

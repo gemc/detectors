@@ -1,7 +1,7 @@
 # Configuration file for ATOF
 
 # Detector name and variation
-detector_name: myatof
+detector_name: atof
 variation:     default
 
 # Factory can be MYQL or TEXT

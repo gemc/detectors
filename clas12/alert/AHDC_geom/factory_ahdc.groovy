@@ -19,7 +19,7 @@ DatabaseConstantProvider cp = new DatabaseConstantProvider(runNumber, variation)
 //provider.loadTable("/geometry/cnd/cndgeom");
 //ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, runNumber, variation);
 
-MYFactory_ALERTDCWire factory = new MYFactory_ALERTDCWire();
+AlertDCFactory factory = new AlertDCFactory();
 Detector ahdc = factory.createDetectorCLAS(cp);
 
 def parFile = new File("ahdc__parameters_"+variation+".txt");

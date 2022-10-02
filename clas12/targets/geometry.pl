@@ -1498,7 +1498,7 @@ sub build_targets
 	#offset to "zero" the center of the target.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation); #Set Y=0 to be center on target.
-	my $offset_z = -($row[1] + $row[2])/2; #Set Z=0 to be between flags 1 and 2. (first flag is flag 0)
+	my $offset_z = (0.625 - (($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2); #0.625 from magic? (first flag is flag 0)
 	
 	#Adjusted position of the rows for the flag poles.
 	my $row_pole = ($row[3] + $offset_z);
@@ -1692,7 +1692,7 @@ sub build_targets
 	#offset to "zero" the center of the target.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation); #Set Y=0 to be center on target.
-	my $offset_z = -($row[1] + $row[2])/2; #Set Z=0 to be between flags 1 and 2. (first flag is flag 0)
+	my $offset_z = (0.625 - (($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2); #0.625 from magic? (first flag is flag 0)
 	
 	#Adjusted position of the rows for the flag poles.
 	my $row_pole = ($row[3] + $offset_z);
@@ -1886,7 +1886,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2104,7 +2104,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2320,7 +2320,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2539,7 +2539,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2764,11 +2764,11 @@ sub build_targets
 	
 	
 
-	my $Ca_tar_rel_wall = 13.445;																																					#Distance from the beginning of the cell wall to the front of the Calcium target (cm).
+	my $Ca_tar_rel_wall = 14.385;#Distance from the beginning of the cell wall to the front of the Calcium target (cm).
 
 	my $offset_x = 0;
 	my $offset_y = 0;
-	my $offset_z = (-2*(-$Ca_tar_rel_wall + $Cell_wall[2]) - $Ca_target[2]);																										#offsets so that the middle of the target is on "0".
+	my $offset_z = ($Ca_tar_rel_wall - $Cell_wall[2] + $Ca_target[2]); #offsets so that the middle of the target is on "0".
 
 	#Cell Wall Position (cm)
 	my @Cell_wall_pos = ($offset_x, $offset_y, $offset_z);																															#x,y,z position

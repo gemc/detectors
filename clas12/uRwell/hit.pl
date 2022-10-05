@@ -7,8 +7,8 @@ sub define_hit
 {
 	# uploading the hit definition
 	my %hit = init_hit();
-	$hit{"name"}            = "uRwell";
-	$hit{"description"}     = "uRwell hit definitions ";
+	$hit{"name"}            = "urwell";
+	$hit{"description"}     = "urwell hit definitions ";
 	$hit{"identifiers"}     = "sector chamber layer component";
 	$hit{"signalThreshold"} = "2*KeV";
 	$hit{"timeWindow"}      = "500*ns";

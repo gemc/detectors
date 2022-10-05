@@ -175,7 +175,7 @@ sub make_layers{
     if($layer eq "cathode" && $material eq "gas" ){
         $detector{"sensitivity"} = "uRwell";
         $detector{"hit_type"} = "uRwell";
-        $detector{"identifiers"} ="sector manual $isector chamber maual $nChamber layer manual 1 component maual 1";
+        $detector{"identifiers"} ="sector manual $isector chamber manual $nChamber layer manual 1 component manual 1";
     }
     $detector{"style"}       = 1;
     $detector{"visible"}     = 1;

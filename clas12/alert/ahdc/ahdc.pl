@@ -17,7 +17,7 @@ sub help()
 {
 	print "\n Usage: \n";
 	print "   ahdc.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 AHDC simple geometry, materials, bank and hit definitions\n";
+	print "   Will create the CLAS12 AHDC simple geometry, materials, bank and hit definitions\n";
 	exit;
 }
 
@@ -52,43 +52,43 @@ define_banks();
 foreach my $conf ( @allConfs )
 {
 	$configuration{"variation"} = $conf ;
-
+	
 	# materials
 	materials();
 	
 	# hits
 	define_hit();
-
+	
 	# notice: we do NOT use original, the geometry service uses default
 	if($configuration{"variation"} eq "original")
 	{
 		# Global pars - these should be read by the load_parameters from file or DB
 		our %parameters = get_parameters(%configuration);
-
+		
 		# calculate the parameters
 		require "./utils.pl";
-
+		
 		# sensitive geometry
 		require "./geometry.pl";
-
+		
 		# calculate pars
 		calculate_ahdc_parameters();
-
+		
 		# volumes
 		makeAHDC();
-
+		
 		# make
 		#make_pb();
 	} else {
 		# run AHDC factory from COATJAVA to produce volumes
-		#system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
-
+		system("groovy -cp '../../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+		
 		# Global pars - these should be read by the load_parameters from file or DB
 		our %parameters = get_parameters(%configuration);
-
+		
 		# Global pars - these should be read by the load_parameters from file or DB
 		our @volumes = get_volumes(%configuration);
-
+		
 		coatjava::makeAHDC();
 	}
 }

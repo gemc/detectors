@@ -8,8 +8,8 @@ sub define_ahdc_hit
 	# uploading the hit definition
 	# keeping "ftof" to be able to run gemc simulation for a check
 	my %hit = init_hit();
-	$hit{"name"}            = "ahdc";
-	$hit{"description"}     = "ahdc hit definitions ";
+	$hit{"name"}            = "alrtdc";
+	$hit{"description"}     = "alert ahdc hit definitions ";
 	$hit{"identifiers"}     = "superlayer layer ahdccell";
 	$hit{"signalThreshold"} = "0.5*MeV";
 	$hit{"timeWindow"}      = "400*ns";

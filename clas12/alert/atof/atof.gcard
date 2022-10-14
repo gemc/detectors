@@ -1,8 +1,9 @@
 <gcard>
 
 	<!-- Implementation ATOF alone, example -->
-	<detector name="/jlab/work/myworkGemcDocker/AHDC_ATOF_GeomFromReco_GEMC/ATOF_geom/myatof" factory="TEXT" variation="default"/>
-	
+	<detector name="atof" factory="TEXT" variation="default"/>
+	<detector name="../ahdc/ahdc" factory="TEXT" variation="default"/>
+
 	<option name="INTEGRATEDRAW" value="myatof"/>
 
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
@@ -14,8 +15,6 @@
 	<option name="BEAM_V" value="(0, 0, 5.0)cm"/>
 	<option name="SPREAD_V" value="(0.0, 12.0)cm"/>
 	
-	<!-- <option name="OUTPUT" value="txt, myatof_protons_noMagField_28Sept2020.txt"/>  -->
-	<option name="OUTPUT" value="evio, myatof_protons_noMagField_29Sept2020.ev"/>
-	<option name="N" value="10000"/>
+	<option name="OUTPUT" value="hipo, out.hipo"/>
 
 </gcard>

@@ -95,15 +95,15 @@ Sector numbering increases clockwise from 1-24.
 ####################################################################################
 
 
-sub makeCND
+sub build_cndUpstream
 {
-	make_cndMother();
-	make_lightguidesNEW();
+	build_cndMother();
+	build_lightguides();
 }
 
 
 # Mother Volume
-sub make_cndMother
+sub build_cndMother
 {
 	my $longest_half1 = 100.;
 	my $longest_half2 = 0.;
@@ -136,7 +136,7 @@ sub make_cndMother
 	my @iradius = (               $IR+60.80,        $IR,    $IR);
 
 	my %detector = init_det();
-	$detector{"name"}        = "cndlg";
+	$detector{"name"}        = "cndUpstream";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Central Neutron Detector";
 	$detector{"pos"}         = "0*cm 0*cm $zpos*cm";
@@ -155,7 +155,7 @@ sub make_cndMother
 }
 
 # Lightguides ************************************************
-sub make_lightguidesNEW
+sub build_lightguides
 {
 
 	for(my $i=1; $i<=$sectors; $i++){ # ##########################################################################################35555555555
@@ -227,7 +227,7 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
-					$detector{"mother"}      = "cndlg";
+					$detector{"mother"}      = "cndUpstream";
 					$detector{"description"} = $desc_string;
 					$detector{"pos"}         = "0*cm 0*cm $z_final*cm";
 					$detector{"color"}       = $lcolor[$j-1];                        # <--------<<
@@ -249,7 +249,7 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 
 					# my %detector = init_det();
 					$detector{"name"}        = $name_string;
-					$detector{"mother"}      = "cndlg";
+					$detector{"mother"}      = "cndUpstream";
 					$detector{"description"} = $desc_string;
 					$detector{"pos"}         = "0*cm 0*cm $z_fin*cm";
 					$detector{"color"}       = 991111; # $lcolor[$j-1];                        # <--------<<
@@ -298,7 +298,7 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 
 					my %detector = init_det();
 					$detector{"name"}        = $name_string;
-					$detector{"mother"}      = "cndlg";
+					$detector{"mother"}      = "cndUpstream";
 					$detector{"description"} = $desc_string;
 					$detector{"pos"}         = "0*cm 0*cm $z_final*cm";
 					$detector{"color"}       = $lcolor[$j-1];
@@ -320,7 +320,7 @@ Vertex positions to use in lightguide creation can be found above in paddle crea
 
 					# my %detector = init_det(); #########################################ANGLED LIGHT GUIDES
 					$detector{"name"}        = $name_string;
-					$detector{"mother"}      = "cndlg";
+					$detector{"mother"}      = "cndUpstream";
 					$detector{"description"} = $desc_string;
 					$detector{"pos"}         = "0*cm 0*cm $z_fin*cm"; # ($z_final-$lengthLG[$j-1]/2)*cm";
 					$detector{"color"}       = 777777; # $lcolor[$j-1];                        # <--------<<

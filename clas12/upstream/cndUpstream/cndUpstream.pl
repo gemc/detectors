@@ -15,7 +15,7 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   cnd_upstream.pl <configuration filename>\n";
+	print "   cndUpstream.pl <configuration filename>\n";
  	print "   Will create the upstream CND light guides\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
@@ -56,7 +56,7 @@ foreach my $conf ( @allConfs )
 	# materials();
 
 	# CND light guides upstream of target
-	make_cndMother();
+	build_cndUpstream();
 
 }
 

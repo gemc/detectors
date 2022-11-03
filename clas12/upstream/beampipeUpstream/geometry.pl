@@ -5,7 +5,7 @@ our %configuration;
 
 my $shift = 126;
 
-sub geometry()
+sub build_beampipeUpstream()
 {
 	build_mother();
 	build_pipe();
@@ -16,7 +16,7 @@ sub build_mother()
 {
 	my $START = 1409; # Set to 1000 for empty Sarclay target or 1409 without Sarclay target.
 	my %detector = init_det();
-	$detector{"name"}        = "pipe";
+	$detector{"name"}        = "beampipeUpstream";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Beampipe mother volume";
 	$detector{"pos"}         = "0*cm 0*cm $shift*cm";
@@ -36,7 +36,7 @@ sub build_pipe()
 	my %detector = init_det();
 # centeringring
 	$detector{"name"}        = "centeringring";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "centeringring";
 	$detector{"color"}       = "eecc55";
 	$detector{"type"}        = "Polycone";
@@ -48,7 +48,7 @@ sub build_pipe()
 
 # condenser
 	$detector{"name"}        = "condenser";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Condenser";
 	$detector{"color"}       = "cc5500";
 	$detector{"type"}        = "Polycone";
@@ -60,7 +60,7 @@ sub build_pipe()
 
 # build_condenserpipe_001
 	$detector{"name"}        = "condenserpipe001";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Condenser piping attached to cell adapter 001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -73,7 +73,7 @@ sub build_pipe()
 
 # build_condenserpipe_002
 	$detector{"name"}        = "condenserpipe002";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Condenser piping attached to cell adapter 002";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -86,7 +86,7 @@ sub build_pipe()
 
 # build_condenserpipe_003
 	$detector{"name"}        = "condenserpipe003";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Condenser piping attached to cell adapter 003";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -99,7 +99,7 @@ sub build_pipe()
 
 # cryotube
 	$detector{"name"}        = "cryotube";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cryotube";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -111,7 +111,7 @@ sub build_pipe()
 
 # build_distributiontube001_1
 	$detector{"name"}        = "distributiontube001_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 001";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -124,7 +124,7 @@ sub build_pipe()
 
 # build_distributiontube001_2
 	$detector{"name"}        = "distributiontube001_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 001";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -137,7 +137,7 @@ sub build_pipe()
 
 # build_distributiontube001_3
 	$detector{"name"}        = "distributiontube001_3";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution Tube 001";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -150,7 +150,7 @@ sub build_pipe()
 
 # build_celladapter001_1
 	$detector{"name"}        = "celladapter001_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 001";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -163,7 +163,7 @@ sub build_pipe()
 
 # build_celladapter001_2
 	$detector{"name"}        = "celladapter001_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 001";
 	$detector{"color"}       = "999999";
 	$detector{"type"}        = "Polycone";
@@ -176,7 +176,7 @@ sub build_pipe()
 
 # build_celladapter001_nut
 	$detector{"name"}        = "celladapter001_nut";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 001 nut";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -190,7 +190,7 @@ sub build_pipe()
 
 # build_distributiontube002_1
 	$detector{"name"}        = "distributiontube002_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 002";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -203,7 +203,7 @@ sub build_pipe()
 
 # build_distributiontube002_2
 	$detector{"name"}        = "distributiontube002_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 002";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -216,7 +216,7 @@ sub build_pipe()
 
 # build_distributiontube002_3
 	$detector{"name"}        = "distributiontube002_3";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 002";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -229,7 +229,7 @@ sub build_pipe()
 
 # build_celladapter002_1
 	$detector{"name"}        = "celladapter002_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 002";
 	$detector{"color"}       = "999999";
 	$detector{"type"}        = "Polycone";
@@ -242,7 +242,7 @@ sub build_pipe()
 
 # build_celladapter002_2
 	$detector{"name"}        = "celladapter002_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 002";
 	$detector{"color"}       = "999999";
 	$detector{"type"}        = "Polycone";
@@ -255,7 +255,7 @@ sub build_pipe()
 
 # build_celladapter002_nut
 	$detector{"name"}        = "celladapter002_nut";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 002 nut";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -271,7 +271,7 @@ sub build_pipe()
 
 # build_distributiontube003_1
 	$detector{"name"}        = "distributiontube003_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 003";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -284,7 +284,7 @@ sub build_pipe()
 
 # build_distributiontube003_2
 	$detector{"name"}        = "distributiontube003_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 003";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -297,7 +297,7 @@ sub build_pipe()
 
 # build_distributiontube003_3
 	$detector{"name"}        = "distributiontube003_3";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution Tube 003";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -310,7 +310,7 @@ sub build_pipe()
 
 # build_celladapter003_1
 	$detector{"name"}        = "celladapter003_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 003";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -323,7 +323,7 @@ sub build_pipe()
 
 # build_celladapter003_2
 	$detector{"name"}        = "celladapter003_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 003";
 	$detector{"color"}       = "999999";
 	$detector{"type"}        = "Polycone";
@@ -336,7 +336,7 @@ sub build_pipe()
 
 # build_celladapter003_nut
 	$detector{"name"}        = "celladapter003_nut";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell adapter 003 nut";
 	$detector{"color"}       = "777777";
 	$detector{"type"}        = "Polycone";
@@ -350,7 +350,7 @@ sub build_pipe()
 
 # extensiontube
 	$detector{"name"}        = "extensiontube";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Extension Tube";
 	$detector{"color"}       = "aaaaaa"; #00aaaa
 	$detector{"type"}        = "Polycone";
@@ -362,7 +362,7 @@ sub build_pipe()
 
 # flange
 	$detector{"name"}        = "flange";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Flange";
 	$detector{"color"}       = "aaaaaa"; #aa00aa
 	$detector{"type"}        = "Tube";
@@ -374,7 +374,7 @@ sub build_pipe()
 
 # flangespacer
 	$detector{"name"}        = "flangespacer";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Flange Spacer";
 	$detector{"color"}       = "aaaaaa"; #aaaa00
 	$detector{"type"}        = "Polycone";
@@ -386,7 +386,7 @@ sub build_pipe()
 
 # flangetube
 	$detector{"name"}        = "flangetube";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Flangetube";
 	$detector{"color"}       = "aaaaaa"; #0000aa
 	$detector{"type"}        = "Polycone";
@@ -398,7 +398,7 @@ sub build_pipe()
 
 # manifoldsupportring
 	$detector{"name"}        = "manifoldsupportring";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Manifold Support Ring";
 	$detector{"color"}       = "aaaaaa"; #00aa00
 	$detector{"type"}        = "Polycone";
@@ -410,7 +410,7 @@ sub build_pipe()
 
 # solid024
 	$detector{"name"}        = "solid024";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid 024";
 	$detector{"color"}       = "aaaaaa"; #aa0000
 	$detector{"type"}        = "Polycone";
@@ -422,7 +422,7 @@ sub build_pipe()
 
 # reducer
 	$detector{"name"}        = "reducer";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Reducer";
 	$detector{"color"}       = "777777"; #770000
 	$detector{"type"}        = "Polycone";
@@ -434,7 +434,7 @@ sub build_pipe()
 
 # reduceradapter
 	$detector{"name"}        = "reduceradapter";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "reducer adaptor";
 	$detector{"color"}       = "aaaaaa"; #007700aaaaaa
 	$detector{"type"}        = "Polycone";
@@ -447,7 +447,7 @@ sub build_pipe()
 # reduceradapter001
 # build_reduceradapter001_1
 	$detector{"name"}        = "reduceradapter001_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "reducer adaptor001_1";
 	$detector{"color"}       = "aaaaaa"; #000077aaaaaa
 	$detector{"type"}        = "Polycone";
@@ -459,7 +459,7 @@ sub build_pipe()
 
 # build_reduceradapter001_2
 	$detector{"name"}        = "reduceradapter001_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "reducer adaptor001_2";
 	$detector{"color"}       = "aaaaaa"; #777700aaaaaa
 	$detector{"type"}        = "Polycone";
@@ -471,7 +471,7 @@ sub build_pipe()
 
 # solid019
 	$detector{"name"}        = "solid019";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid019";
 	$detector{"color"}       = "aaaaaa"; #770077
 	$detector{"type"}        = "Tube";
@@ -483,7 +483,7 @@ sub build_pipe()
 
 # solid020
 	$detector{"name"}        = "solid020";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid020";
 	$detector{"color"}       = "aaaaaa"; #007777
 	$detector{"type"}        = "Polycone";
@@ -500,7 +500,7 @@ sub build_sarclay()
 # 50micron [target]
 	my %detector = init_det();
 	$detector{"name"}        = "50micron";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "50 micron Al foil on Solid022";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Tube";
@@ -512,7 +512,7 @@ sub build_sarclay()
 
 # basecone [target]
 	$detector{"name"}        = "basecone";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Base cone";
 	$detector{"color"}       = "eecc55";
 	$detector{"type"}        = "Polycone";
@@ -524,7 +524,7 @@ sub build_sarclay()
 
 # build_cellwall [target]
 	$detector{"name"}        = "cellwall";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell wall";
 	$detector{"color"}       = "aa4400";
 	$detector{"type"}        = "Polycone";
@@ -536,7 +536,7 @@ sub build_sarclay()
 
 # cellendcap [target]
 	$detector{"name"}        = "cellendcap";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Cell end cap";
 	$detector{"color"}       = "aa4400";
 	$detector{"type"}        = "Polycone";
@@ -548,7 +548,7 @@ sub build_sarclay()
 
 # basering [target]
 	$detector{"name"}        = "basering";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Base Ring";
 	$detector{"color"}       = "eecc55";
 	$detector{"type"}        = "Polycone";
@@ -560,7 +560,7 @@ sub build_sarclay()
 
 # build_basering2 [target]
 	$detector{"name"}        = "basering2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Base Ring inner tube";
 	$detector{"color"}       = "eecc55";
 	$detector{"type"}        = "Polycone";
@@ -572,7 +572,7 @@ sub build_sarclay()
 
 # basetube [target]
 	$detector{"name"}        = "basetube";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Basetube";
 	$detector{"color"}       = "ee3344";
 	$detector{"type"}        = "Polycone";
@@ -584,7 +584,7 @@ sub build_sarclay()
 
 # build_quartzglasstube [target]
 	$detector{"name"}        = "quartzglasstube";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Quartz Glass Tube";
 	$detector{"color"}       = "eeeeee";
 	$detector{"type"}        = "Polycone";
@@ -596,7 +596,7 @@ sub build_sarclay()
 
 # forwardretainingring [target]
 	$detector{"name"}        = "forwardretainingring";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "forwardretainingring";
 	$detector{"color"}       = "eecc55";
 	$detector{"type"}        = "Polycone";
@@ -608,7 +608,7 @@ sub build_sarclay()
 
 # build_fibercollar [target]
 	$detector{"name"}        = "fibercollar";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "fibercollar";
 	$detector{"color"}       = "eecc55";
 	$detector{"type"}        = "Polycone";
@@ -620,7 +620,7 @@ sub build_sarclay()
 
 # solid022 [target]
 	$detector{"name"}        = "solid022";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid022 minus face 2";
 	$detector{"color"}       = "eecccc";
 	$detector{"type"}        = "Sphere";
@@ -632,7 +632,7 @@ sub build_sarclay()
 
 # build_solid022_1 [target]
 	$detector{"name"}        = "solid022_1";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid022 face 7";
 	$detector{"color"}       = "eecccc";
 	$detector{"type"}        = "Polycone";
@@ -644,7 +644,7 @@ sub build_sarclay()
 
 # build_solid022_2 [target]
 	$detector{"name"}        = "solid022_2";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid022 face 7 inside";
 	$detector{"color"}       = "eecccc";
 	$detector{"type"}        = "Polycone";
@@ -656,7 +656,7 @@ sub build_sarclay()
 
 # solid023 [target]
 	$detector{"name"}        = "solid023";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Solid023, Solid021, Solid022 face 2";
 	$detector{"color"}       = "eecccc";
 	$detector{"type"}        = "Polycone";
@@ -668,7 +668,7 @@ sub build_sarclay()
 
 # distributiontube001_0 [target]------------------------------------------FROM PIPE----------------------------------------------------------
 	$detector{"name"}        = "distributiontube001_0";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 001";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -681,7 +681,7 @@ sub build_sarclay()
 
 # distributiontube002_0 [target]
 	$detector{"name"}        = "distributiontube002_0";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 002";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";
@@ -694,7 +694,7 @@ sub build_sarclay()
 
 # distributiontube003_0 [target]
 	$detector{"name"}        = "distributiontube003_0";
-	$detector{"mother"}      = "pipe";
+	$detector{"mother"}      = "beampipeUpstream";
 	$detector{"description"} = "Distribution tube 003";
 	$detector{"color"}       = "aaaaaa";
 	$detector{"type"}        = "Polycone";

@@ -1,3 +1,4 @@
+
 use strict;
 use warnings;
 
@@ -15,12 +16,12 @@ our %configuration;
 # i for integers
 # d for doubles
 
-my $bankId   = 2300;
-my $bankname = "uRwell";
+my $bankID   = 2300;
+my $bankname = "urwell";
 
 sub define_bank
 {
-	# uploading the hit definition
+    # uploading the hit definition
     insert_bank_variable(\%configuration, $bankname, "bankid",   $bankID, "Di", "$bankname bank ID");
     insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector number");
     insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "layer number");

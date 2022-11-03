@@ -45,7 +45,8 @@ require "./bank.pl";
 require "./hit.pl";
 
 # run DC factory from COATJAVA to produce volumes
-system("run-groovy factory.groovy --variation $configuration{variation} --runnumber 11");
+
+system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
 
 # sensitive geometry
 require "./geometry_java.pl";

@@ -1339,63 +1339,110 @@ sub build_targets
 		
 	}
     
-    elsif($thisVariation eq "bonus" || $thisVariation eq "bonusb" )
+    elsif($thisVariation eq "bonusD2" || $thisVariation eq "bonusH2" || $thisVariation eq "bonusHe")
     {
         # bonus root volume
-        my $Rout       = 4;
-        my $length     = 225.0;  # half length
+		my $motherGap  = 0.00001; # unphysical gap 
+		my $target_length = 256.56;
+		my $targetWall_radOut = 3.063;
+		  # Straw
+        my $Rout_straw   = $targetWall_radOut + $motherGap;
+        my $length_straw = $target_length + $motherGap;  # half length
         my %detector = init_det();
-        $detector{"name"}        = "bonusTarget";
+        $detector{"name"}        = "targetStraw";
         $detector{"mother"}      = "root";
-        $detector{"description"} = "BONuS12 RTPC gaseous D2 Target";
-        $detector{"color"}       = "eeeegg";
+        $detector{"description"} = "Target straw";
+        $detector{"color"}       = "9ffbb9";
         $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"dimensions"}  = "0*mm $Rout_straw*mm $length_straw*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm 0*mm";
+        $detector{"material"}    = "Component";
+        $detector{"style"}       = "1";
+        $detector{"visible"}     = "1";
+        print_det(\%configuration, \%detector);
+
+		  # End cap
+        my $Rout_endCap   = $targetWall_radOut + 0.1 + 0.0001 + $motherGap;
+        my $length_endCap = 2.05005 + $motherGap;  # half length
+        %detector = init_det();
+        $detector{"name"}        = "targetEndCap";
+        $detector{"mother"}      = "root";
+        $detector{"description"} = "Target end cap";
+        $detector{"color"}       = "a0a2fa";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "0*mm $Rout_endCap*mm $length_endCap*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm 254.61005*mm";
+        $detector{"material"}    = "Component";
+        $detector{"style"}       = "1";
+        $detector{"visible"}     = "1";
+        print_det(\%configuration, \%detector);
+
+		  # Final union
+        %detector = init_det();
+        $detector{"name"}        = "target";
+        $detector{"mother"}      = "root";
+        $detector{"description"} = "BONuS12 RTPC gaseous $thisVariation Target";
+        $detector{"color"}       = "fad1a0";
+        $detector{"type"}        = "Operation:@ targetStraw + targetEndCap";
+        $detector{"dimensions"}  = "0";
         $detector{"material"}    = "G4_He";
         $detector{"style"}       = "1";
-        $detector{"visible"}     = 0;
+        $detector{"visible"}     = "0";
         print_det(\%configuration, \%detector);
         
         # bonus target gas volume
         my $Rin        = 0.0;
-        $Rout       = 3.0;
-        $length     = 223.0;  # half length
+        my $Rout       = 3.0 - 0.0001;
+        my $length     = $target_length;  # half length
         %detector = init_det();
-        $detector{"name"}        = "gasDeuteriumTarget";
-        $detector{"mother"}      = "bonusTarget";
-        $detector{"description"} = "7 atm deuterium target gas";
-        $detector{"color"}       = "a54382";
+        $detector{"name"}        = "TargetGas";
+        $detector{"mother"}      = "target";
+        $detector{"description"} = "5.6 atm $thisVariation target gas";
+        $detector{"color"}       = "72d3fa";
         $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm 0*mm";
         $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
-        $detector{"material"}    = "bonusTargetGas";
         $detector{"style"}       = "1";
+
+		if($thisVariation eq "bonusD2")
+		{
+        	$detector{"material"}    = "bonusTargetGas_D2";
+		}
+		if($thisVariation eq "bonusH2")
+		{
+        	$detector{"material"}    = "bonusTargetGas_H2";
+		}
+		if($thisVariation eq "bonusHe")
+		{
+        	$detector{"material"}    = "bonusTargetGas_He";
+		}
+
         print_det(\%configuration, \%detector);
         
         # bonus target wall
-        $Rin        = 3.01;
-        $Rout       = 3.056;
-        $length     = 223.0;  # half length
+        $Rin        = 3.0;
         %detector = init_det();
         $detector{"name"}        = "bonusTargetWall";
-        $detector{"mother"}      = "bonusTarget";
+        $detector{"mother"}      = "target";
         $detector{"description"} = "Bonus Target wall";
         $detector{"color"}       = "330099";
         $detector{"type"}        = "Tube";
-        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"pos"}         = "0*mm 0*mm 0*mm";
+        $detector{"dimensions"}  = "$Rin*mm $targetWall_radOut*mm $target_length*mm 0*deg 360*deg";
         $detector{"material"}    = "G4_KAPTON";
         $detector{"style"}       = "1";
         print_det(\%configuration, \%detector);
         
         # bonus target downstream aluminum end cap ring
-        $Rin        = 3.0561;
-        $Rout       = 3.1561;
+        $Rin        = $targetWall_radOut + 0.0001;
+        $Rout       = $Rin + 0.1;
         $length     = 2.0;  # half length
-        my $zPos       = 221;  # z position
+        my $zPos       = $target_length - $length;  # z position
         %detector = init_det();
         $detector{"name"}        = "bonusTargetEndCapRing";
-        $detector{"mother"}      = "bonusTarget";
+        $detector{"mother"}      = "target";
         $detector{"description"} = "Bonus Target Al end cap ring";
-        $detector{"color"}       = "000000";
+        $detector{"color"}       = "C4C4C4";
         $detector{"type"}        = "Tube";
         $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
         $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
@@ -1405,14 +1452,14 @@ sub build_targets
         
         # bonus target downstream aluminum end cap ring
         $Rin        = 0.0;
-        $Rout       = 3.1561;
+        $Rout       = $targetWall_radOut + 0.1 + 0.0001;
         $length     = 0.05;  # half length
-        $zPos       = 223.06;  # z position
+        $zPos       = $target_length + $length + 0.0001;  # z position
         %detector = init_det();
         $detector{"name"}        = "bonusTargetEndCapPlate";
-        $detector{"mother"}      = "bonusTarget";
+        $detector{"mother"}      = "target";
         $detector{"description"} = "Bonus Target Al end cap wall";
-        $detector{"color"}       = "000000";
+        $detector{"color"}       = "C4C4C4";
         $detector{"type"}        = "Tube";
         $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
         $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
@@ -1451,7 +1498,7 @@ sub build_targets
 	#offset to "zero" the center of the target.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation); #Set Y=0 to be center on target.
-	my $offset_z = -($row[1] + $row[2])/2; #Set Z=0 to be between flags 1 and 2. (first flag is flag 0)
+	my $offset_z = (0.625 - (($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2); #0.625 from magic? (first flag is flag 0)
 	
 	#Adjusted position of the rows for the flag poles.
 	my $row_pole = ($row[3] + $offset_z);
@@ -1645,7 +1692,7 @@ sub build_targets
 	#offset to "zero" the center of the target.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation); #Set Y=0 to be center on target.
-	my $offset_z = -($row[1] + $row[2])/2; #Set Z=0 to be between flags 1 and 2. (first flag is flag 0)
+	my $offset_z = (0.625 - (($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2); #0.625 from magic? (first flag is flag 0)
 	
 	#Adjusted position of the rows for the flag poles.
 	my $row_pole = ($row[3] + $offset_z);
@@ -1839,7 +1886,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2057,7 +2104,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2273,7 +2320,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2492,7 +2539,7 @@ sub build_targets
 	#offset to "zero" everything where I want.
 	my $offset_x = 0.0;
 	my $offset_y = -(2*$Sn_flag_pole[2] + $flag_shaft[1] + $Sn_target[1] + $separation);
-	my $offset_z = -($row[1] + $row[2])/2;
+	my $offset_z = -(($row[1] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ) + ($row[2] - $Sn_flag_pole[1] + 2*$Sn_flag[2] + $Sn_target[2] ))/2;
 	
 	#Adjusted position of the rows for the flag poles.
 	my @row_pole = ($row[0] + $offset_z, $row[1] + $offset_z, $row[2] + $offset_z, $row[3] + $offset_z);
@@ -2717,11 +2764,11 @@ sub build_targets
 	
 	
 
-	my $Ca_tar_rel_wall = 13.445;																																					#Distance from the beginning of the cell wall to the front of the Calcium target (cm).
+	my $Ca_tar_rel_wall = 14.385;#Distance from the beginning of the cell wall to the front of the Calcium target (cm).
 
 	my $offset_x = 0;
 	my $offset_y = 0;
-	my $offset_z = (-2*(-$Ca_tar_rel_wall + $Cell_wall[2]) - $Ca_target[2]);																										#offsets so that the middle of the target is on "0".
+	my $offset_z = ($Ca_tar_rel_wall - $Cell_wall[2] + $Ca_target[2]); #offsets so that the middle of the target is on "0".
 
 	#Cell Wall Position (cm)
 	my @Cell_wall_pos = ($offset_x, $offset_y, $offset_z);																															#x,y,z position

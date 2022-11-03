@@ -1,9 +1,8 @@
 <gcard>
 
-	<!-- Implementation ahdc and atof, example -->
-	<detector name="/jlab/work/myworkGemcDocker/AHDC_ATOF_GeomFromReco_GEMC/AHDC_geom/ahdc" factory="TEXT" variation="default"/>
-	
-	<option name="INTEGRATEDRAW" value="ahdc"/>
+	<detector name="ahdc" factory="TEXT" variation="default"/>
+
+	<option name="INTEGRATEDRAW" value="alrtdc"/>
 
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 	<option name="SAVE_ALL_MOTHERS" value="0"/>

@@ -74,7 +74,7 @@ my $z_half_ribs = 165.0;
 #	$detector{"type"}        = "Tube";
 #	$detector{"dimensions"}  = "27.0*mm 210.0*mm 200.0*mm 0*deg 360*deg";
 #	$detector{"material"}    = "G4_He";
-	#$detector{"visible"}     = 1;
+#$detector{"visible"}     = 1;
 #	$detector{"visible"}     = 0;
 #	print_det(\%configuration, \%detector);
 #}
@@ -82,13 +82,13 @@ my $z_half_ribs = 165.0;
 # ATOF module fixing part
 sub make_ATOFfixAl
 {
-        my $rmin = 120.0;
+	my $rmin = 120.0;
 	my $rmax  = 124.692;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24001);
-
+	
 	$detector{"name"} = "ATOFfixAl";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -100,18 +100,18 @@ sub make_ATOFfixAl
 	$detector{"style"}       = 1;
 	$detector{"identifiers"} = $id_string;
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_ATOFfixPCB
 {
-        my $rmin = 124.692;
+	my $rmin = 124.692;
 	my $rmax  = 127.027;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24002);
-
+	
 	$detector{"name"} = "ATOFfixPCB";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -123,19 +123,19 @@ sub make_ATOFfixPCB
 	$detector{"style"}       = 1;
 	$detector{"identifiers"} = $id_string;
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_ATOFfixSSteel
 {
-        my $rmin = 127.027;
+	my $rmin = 127.027;
 	my $rmax  = 127.476;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	#my $mate  = "stainless_steel";
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24003);
-
+	
 	$detector{"name"} = "ATOFfixSSteel";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -149,19 +149,19 @@ sub make_ATOFfixSSteel
 	$detector{"style"}       = 1;
 	$detector{"identifiers"} = $id_string;
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_ATOFfixCarbon
 {
-        my $rmin = 127.476;
+	my $rmin = 127.476;
 	my $rmax  = 133.990;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	#my $mate  = "He4_gas_3atm";
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24004);
-
+	
 	$detector{"name"} = "ATOFfixCarbon";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -173,19 +173,19 @@ sub make_ATOFfixCarbon
 	$detector{"style"}       = 1;
 	$detector{"identifiers"} = $id_string;
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_ATOFfixASteel
 {
-        my $rmin = 133.990;
+	my $rmin = 133.990;
 	my $rmax  = 134.211;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	#my $mate  = "alloy_steel";
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24005);
-
+	
 	$detector{"name"} = "ATOFfixASteel";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -198,19 +198,19 @@ sub make_ATOFfixASteel
 	$detector{"style"}       = 1;
 	$detector{"identifiers"} = $id_string;
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_ATOFfixBrass
 {
-        my $rmin = 134.211;
+	my $rmin = 134.211;
 	my $rmax  = 134.225;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	#my $mate  = "alloy_steel";
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',240051);
-
+	
 	$detector{"name"} = "ATOFfixBrass";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -223,19 +223,19 @@ sub make_ATOFfixBrass
 	$detector{"style"}       = 1;
 	$detector{"identifiers"} = $id_string;
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 # AL ribs for ATOF sustain
 sub make_ribs
 {
-        my $rmin = 147.078;
+	my $rmin = 147.078;
 	my $rmax  = 150.000;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24006);
-
+	
 	$detector{"name"} = "ribs";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -250,21 +250,21 @@ sub make_ribs
 	#$detector{"sensitivity"}  = "alertshell"; # name of the hit
 	#$detector{"hit_type"}     = "alertshell"; # name of the hit
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 # Front plates, downstream
 sub make_frontcarbon_1
 {
-        my $rmin = 74.000;
+	my $rmin = 74.000;
 	my $rmax  = 150.000;
 	my $half_thickness  = 9.384/2.0; 
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $position = $z_half_ribs+$half_thickness;
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24007);
-
+	
 	$detector{"name"} = "frontcarbon1";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -279,21 +279,21 @@ sub make_frontcarbon_1
 	#$detector{"sensitivity"}  = "alertshell"; # name of the hit
 	#$detector{"hit_type"}     = "alertshell"; # name of the hit
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_frontmacor
 {
-        my $rmin = 28.000;
+	my $rmin = 28.000;
 	my $rmax  = 86.916;
 	my $half_thickness  = 5.000/2.0;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	#my $mate  = "MACOR";
 	my %detector = init_det();
 	my $position = $z_half_ribs+9.384+$half_thickness;
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24008);
-
+	
 	$detector{"name"} = "frontmacor";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -309,21 +309,21 @@ sub make_frontmacor
 	#$detector{"sensitivity"}  = "alertshell"; # name of the hit
 	##$detector{"hit_type"}     = "alertshell"; # name of the hit
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 # this part of front C plate is with MACOR plate inside
 sub make_frontcarbon_2
 {
-        my $rmin = 86.916;
+	my $rmin = 86.916;
 	my $rmax  = 150.000;
 	my $half_thickness  = 5.000/2.0;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $position = $z_half_ribs+9.384+$half_thickness;
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',24009);
-
+	
 	$detector{"name"} = "frontcarbon2";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -338,21 +338,21 @@ sub make_frontcarbon_2
 	#$detector{"sensitivity"}  = "alertshell"; # name of the hit
 	#$detector{"hit_type"}     = "alertshell"; # name of the hit
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 sub make_frontAlPins
 {
-        my $rmin = 32.000;
+	my $rmin = 32.000;
 	my $rmax  = 68.000;
 	my $half_thickness  = 0.637/2.0;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $position = $z_half_ribs+9.384+5.000+$half_thickness;
 	#my $position = 180.384+2.0;
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',240010);
-
+	
 	$detector{"name"} = "frontAlPins";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";
@@ -367,7 +367,7 @@ sub make_frontAlPins
 	#$detector{"sensitivity"}  = "alertshell"; # name of the hit
 	#$detector{"hit_type"}     = "alertshell"; # name of the hit
 	print_det(\%configuration, \%detector);
-
+	
 }
 
 # Back AL plate, upstream
@@ -377,12 +377,12 @@ sub make_backAl
 	my $rmin  = 75.000;
 	my $rmax  = 205.000;
 	my $half_thickness  = 10.364/2.0;
-        my $phistart = 0;
+	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
 	my $position = -1*($half_thickness+$z_half_ribs);
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',240011);
-
+	
 	$detector{"name"} = "backAl";
 	#$detector{"mother"}      = "mother_shell";
 	$detector{"mother"}      = "ahdc_mother";

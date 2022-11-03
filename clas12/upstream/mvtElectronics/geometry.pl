@@ -9,10 +9,10 @@ my $theta0    = 360./$NUM_BOXES;
 my $R         = 370.89;
 my $NUM_FEUS  = 9;
 
-sub build_ebox
+sub build_mvtElectronics
 {
 	my %detector = init_det();
-	$detector{"name"}        = "ebox";
+	$detector{"name"}        = "mvtElectronics";
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "Electronics box";
 	$detector{"pos"}         = "0*cm 0*cm 270*cm";
@@ -47,7 +47,7 @@ sub build_crate
 		my $ypos = $y - 174.9*cos(rad($theta));
 		my $zpos = $z + 74.6;
 		$detector{"name"}        = "crate_$pnumber";
-		$detector{"mother"}      = "ebox";
+		$detector{"mother"}      = "mvtElectronics";
 		$detector{"description"} = "MVT Crate";
 		$detector{"pos"}         = "$x*mm $y*mm $z*mm";
 		$detector{"rotation"}    = "0*deg 0*deg -$theta*deg";
@@ -59,7 +59,7 @@ sub build_crate
 		print_det(\%configuration, \%detector);
 
 		$detector{"name"}        = "patch_panel_$pnumber";
-		$detector{"mother"}      = "ebox";
+		$detector{"mother"}      = "mvtElectronics";
 		$detector{"description"} = "Patch panel for MVT crate";
 		$detector{"pos"}         = "$xpos*mm $ypos*mm $zpos*mm";
 		$detector{"rotation"}    = "0*deg 0*deg -$theta*deg";

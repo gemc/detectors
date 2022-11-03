@@ -15,7 +15,7 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   mvt_ebox.pl <configuration filename>\n";
+	print "   mvtElectronics.pl <configuration filename>\n";
  	print "   Will create MVT crates\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
@@ -42,7 +42,7 @@ require "./materials.pl";
 
 # MVT crates upstream of target
 
-require "./ebox.pl";
+require "./geometry.pl";
 
 my @allConfs = ("main");
 
@@ -56,7 +56,7 @@ foreach my $conf ( @allConfs )
 
 	# MVT crates, patch panels, and FEUs upstream of target
 	# Front panel of FEUs approximated by crate
-	build_ebox();
+	build_mvtElectronics();
 
 }
 

@@ -1,8 +1,8 @@
-# Configuration file for the CLAS 12 beam pipe
+# Configuration file for the MVT electronics boxes
 
 # Detector name and variation
-detector_name: beampipe
-variation:     noft
+detector_name: mvtElectronics
+variation:     original
 
 # Factory can be MYQL or TEXT
 factory:       TEXT 
@@ -15,7 +15,7 @@ rmax:       10000
 dbhost: clasdb.jlab.org
 
 # Comments/Description
-comment:       This is the first implementation of the beamline
+comment:       This is the first implementation of the MVT electronics
 
 # Verbosity controls the perl script output
 verbosity: 0

@@ -15,7 +15,7 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   beampipe.pl <configuration filename>\n";
+	print "   beampipeUpstream.pl <configuration filename>\n";
  	print "   Will create the CLAS12 beampipe and materials\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
@@ -55,7 +55,7 @@ foreach my $conf ( @allConfs )
 
 	# vacuum line throughout BAND, the CVT ebox, CND, and CTOF upstream of target
 	# temp includes Sarclay target
-	geometry();
+	build_beampipeUpstream();
 }
 
 

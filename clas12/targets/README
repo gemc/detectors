@@ -45,13 +45,40 @@ Experiment Description: Measure the structure function F2 of the neutron by tagg
 
 Author:
 
-Experiment Description:
+Experiment Description: Short Range Correlations & Electrons for Neutrinos experiment 
 
 
-### Variations:
+### Variations: 
+Liquid Targets
+lH2
+lD2
 
+Solid Targets
+RGM_2_C - single foil carbon target in beamline
+RGM_2_Sn - single foil tin target in beamline
+
+RGM_8_C_L - 4-foil carbon target in beamline. Large carbon target option.
+RGM_8_Sn_L - 4-foil tin target in beamline. Large tin target option.
+
+RGM_8_C_S - 4-foil carbon target in beamline. Small carbon target option.
+RGM_8_Sn_S - 4-foil tin target in beamline. Small tin target option.
+
+RGM_Ca - Calcium target cell
+
+Scattering chamber variations
+cad - standard scattering chamber and liquid cell target wall entrance and exit material
+cadrgm - standard scattering chamber without liquid cell wall and upstream window, only downstream window and pipe included (use with solid targets)
 ### Files used
 
 
 ### How to use it in the gcard
+Liquid Targets
+Use cad variation with all liquid targets
+<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
+<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2"/>
+
+Solid Targets
+Use cadrgm variation with all solid targets
+<detector name="experiments/clas12/targets/cadrgm/"   factory="CAD"/>
+<detector name="experiments/clas12/targets/target" factory="TEXT" variation="RGM_2_C"/>
 

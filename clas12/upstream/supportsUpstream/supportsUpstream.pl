@@ -15,7 +15,7 @@ use Math::Trig;
 sub help()
 {
 	print "\n Usage: \n";
-	print "   supportpipes.pl <configuration filename>\n";
+	print "   supportsUpstream.pl <configuration filename>\n";
  	print "   Will create the CLAS12 supportpipes and materials\n";
  	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
 	exit;
@@ -57,7 +57,7 @@ foreach my $conf ( @allConfs )
 
 	# support pipes for MVT and SVT, plus top of SVT cart
 	# temp includes Sarclay target
-	geometry();
+	build_supportsUpstream();
 }
 
 

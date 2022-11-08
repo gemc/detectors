@@ -43,15 +43,16 @@ Experiment Description: Measure the structure function F2 of the neutron by tagg
 
 ## RGM: Sept 20 2022
 
-Author:
+Author: Justin Estee
 
 Experiment Description: Short Range Correlations & Electrons for Neutrinos experiment 
 
 
 ### Variations: 
-Liquid Targets
-lH2
-lD2
+Liquid Targets (Standard 5cm liquid cell)
+lH2 - liquid Hydrogen
+lD2 - liquid Deuterium
+lHe - liquid Helium
 
 Solid Targets
 RGM_2_C - single foil carbon target in beamline
@@ -73,12 +74,12 @@ cadrgm - standard scattering chamber without liquid cell wall and upstream windo
 
 ### How to use it in the gcard
 Liquid Targets
-Use cad variation with all liquid targets
+Use "cad" variation with all liquid targets
 <detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
 <detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2"/>
 
 Solid Targets
-Use cadrgm variation with all solid targets
+Use "cadrgm" variation with all solid targets
 <detector name="experiments/clas12/targets/cadrgm/"   factory="CAD"/>
 <detector name="experiments/clas12/targets/target" factory="TEXT" variation="RGM_2_C"/>
 

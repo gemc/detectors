@@ -788,7 +788,7 @@ sub build_targets
 	# cad variation has two volume:
 	# target container
 	# and inside cell
-	if($thisVariation eq "lH2" || $thisVariation eq "lD2" || $thisVariation eq "lH2e")
+	if($thisVariation eq "lH2" || $thisVariation eq "lD2" || $thisVariation eq "lH2e" || $thisVariation eq "lHe")
 	{
 		my $nplanes = 4;
 
@@ -839,6 +839,10 @@ sub build_targets
 		if($thisVariation eq "lD2") {
 			$detector{"material"}    = "LD2";
 		}
+		if($thisVariation eq "lHe") {
+			$detector{"material"}    = "lHe";
+		}
+
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 

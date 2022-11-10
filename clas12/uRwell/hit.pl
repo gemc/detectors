@@ -11,7 +11,7 @@ sub define_hit
 	$hit{"description"}     = "urwell hit definitions ";
 	$hit{"identifiers"}     = "sector chamber layer component";
 	$hit{"signalThreshold"} = "2*KeV";
-	$hit{"timeWindow"}      = "500*ns";
+	$hit{"timeWindow"}      = "50*ns";
 	$hit{"prodThreshold"}   = "1*mm";
 	$hit{"maxStep"}         = "100*um";
 	$hit{"delay"}           = "50*ns";

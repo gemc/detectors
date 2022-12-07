@@ -27,7 +27,7 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "CND sector (paddle id");
 	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "CND layer");
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "always 1");
-	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "0 = direct, 2 = indirect hit");
+	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "0 = left side, 1 = right side");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC value");
 	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "same as TDC");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal");

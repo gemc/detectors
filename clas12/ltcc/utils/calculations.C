@@ -204,13 +204,13 @@ void integrate_yield() {
          << "  pmt: " << pmtname[PMT] << " wc: " << wcname[WC] << endl;
 
     if (PART == 0) {
-      electron_n[i] = ngammas[i];
+      electron_n[i] = 4*ngammas[i];
     }
     if (PART == 1) {
-      pion_n[i] = ngammas[i];
+      pion_n[i] = 4*ngammas[i];
     }
     if (PART == 2) {
-      kaon_n[i] = ngammas[i];
+      kaon_n[i] = 4*ngammas[i];
     }
   }
 }
@@ -294,8 +294,7 @@ void simulateResponse() {
   double mean7 = 9;
   double means[MNP];
 
-  double
-      pion_ratio_1[MNP]; // no changes: same mirror, same PMT, same wc (so-so)
+  double pion_ratio_1[MNP]; // no changes: same mirror, same PMT, same wc (so-so)
   double pion_ratio_2[MNP]; // recoated mirror, same PMT, same wc (so-so)
   double pion_ratio_3[MNP]; // recoated mirror, improved PMT, same wc (so-so)
   double pion_ratio_4[MNP]; // recoated mirror, improved PMT, coated wc (good)

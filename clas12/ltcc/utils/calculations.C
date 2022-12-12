@@ -170,6 +170,8 @@ void integrate_yield() {
   double* mom;
 
   TF2* momF;
+	
+	double normalizationFactor = 3.6;
 
   if (PART == 0) {
     mom = electron_m;
@@ -204,13 +206,13 @@ void integrate_yield() {
          << "  pmt: " << pmtname[PMT] << " wc: " << wcname[WC] << endl;
 
     if (PART == 0) {
-      electron_n[i] = 4*ngammas[i];
+      electron_n[i] = normalizationFactor*ngammas[i];
     }
     if (PART == 1) {
-      pion_n[i] = 4*ngammas[i];
+      pion_n[i] = normalizationFactor*ngammas[i];
     }
     if (PART == 2) {
-      kaon_n[i] = 4*ngammas[i];
+      kaon_n[i] = normalizationFactor*ngammas[i];
     }
   }
 }

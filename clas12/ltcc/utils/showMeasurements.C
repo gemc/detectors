@@ -16,7 +16,7 @@ void draw_qes()
 
   TCanvas* QE = new TCanvas("QE", "Quantum Efficiencies", 800, 600);
 
-  TGraph* stdg = new TGraph(NP, lambda, stdPmt_qe);
+  TGraph* stdg = new TGraph(NP, , stdPmt_qe);
   TGraph* uvgg = new TGraph(NP, lambda, uvgPmt_qe);
   TGraph* qtzg = new TGraph(NP, lambda, qtzPmt_qe);
 

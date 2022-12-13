@@ -171,7 +171,7 @@ void integrate_yield() {
 
   TF2* momF;
 	
-	double normalizationFactor = 3.6;
+	double normalizationFactor = 3.8;
 
   if (PART == 0) {
     mom = electron_m;

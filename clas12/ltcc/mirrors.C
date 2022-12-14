@@ -33,8 +33,7 @@ void mirrors() {
 
   simulateResponse();
 
-  TControlBar* bar =
-      new TControlBar("vertical", "LTCC Segments  by Maurizio Ungaro");
+  TControlBar* bar = new TControlBar("vertical", "LTCC Segments  by Maurizio Ungaro");
   bar->AddButton("", "");
   bar->AddButton("Show Photon Yield", "draw_W()");
   bar->AddButton("", "");
@@ -60,5 +59,4 @@ void mirrors() {
   bar->AddButton("", "");
   bar->Show();
 
-  // that's all!
 }

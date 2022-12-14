@@ -12,12 +12,17 @@ double hpim[NM]  = { 0.00,  0.00,  0.10,  0.75,  0.92,  0.92,  0.92,  0.92,  0.9
 double hkaon[NM] = { 0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.10,  0.75,  0.92};
 
 
+double ltccPionsRejection[NM];
 double ltccKaonRejection[NM];
 double ltccProtonRejection[NM];
 
 double htccPionsRejection[NM];
 double htccKaonRejection[NM];
 double htccProtonRejection[NM];
+
+double ccPionsRejection[NM];
+double ccKaonRejection[NM];
+double ccProtonRejection[NM];
 
 
 void ltccHtcc() {
@@ -31,15 +36,13 @@ void ltccHtcc() {
     gStyle->SetPadLeftMargin(0.15);
 
     // print momentum and efficiency
-    cout << "Momentum" << "\t" << "Electron" << "\t" << "Pion" << "\t" << "Kaon" << endl;
+    cout << "Momentum" << "\t L Electron"   << "\t L Pion" << "\t\t L Kaon"
+                       << "\t\t H Electron" << "\t H Pion" << "\t\t  H Kaon" << endl;
     for (int i=0; i<NM; i++) {
-        cout << mom[i] << "\t" << lele[i] << "\t" << lpim[i] << "\t" << lkaon[i] << endl;
+        cout << mom[i] << "\t\t "
+        << lele[i] << "\t\t " << lpim[i] << "\t\t " << lkaon[i] << "\t\t "
+        << hele[i] << "\t\t " << hpim[i] << "\t\t " << hkaon[i] << endl;
     }
-
-//    // create graphs
-//    TGraph *gele  = new TGraph(NM, mom, ele);
-//    TGraph *gpim  = new TGraph(NM, mom, pim);
-//    TGraph *gkaon = new TGraph(NM, mom, kaon);
 
     // created 2D histograms
     TH2F *hltcc = new TH2F("hltcc", "LTCC", 13, 0., 21, 9, 0.5, 9.5);
@@ -80,29 +83,46 @@ void ltccHtcc() {
     // new canvas
     gStyle->SetPadBottomMargin(0.15);
     gStyle->SetPadLeftMargin(0.3);
-    TCanvas *c2 = new TCanvas("c2", "c2", 800, 600);
+
 
     // created 2D histograms
-    TH2F *rejections = new TH2F("rejections", "rejections", 13, 0., 21, 8, 0.5, 8.5);
+    TH2F *rejections = new TH2F("rejections", "rejections", 13, 0., 21, 9, 0.5, 9.5);
     // set max to 1
     rejections->SetMaximum(1.0);
     rejections->SetMinimum(0.0);
     // set title
     rejections->SetTitle("LTCC / HTCC Efficiency * Rejection Factors");
 
+
+    // created 2D histograms
+    TH2F *arejections = new TH2F("arejections", "rejections", 13, 0., 21, 5, 0.5, 5.5);
+    // set max to 1
+    arejections->SetMaximum(1.0);
+    arejections->SetMinimum(0.0);
+    // set title
+    arejections->SetTitle("LTCC + HTCC Efficiency * Rejection Factors");
+
+
     // fill 2D histograms bins
     for (int i=0; i<NM; i++) {
-        ltccKaonRejection[i] = 0;
+        ltccPionsRejection[i]  = 0;
+        ltccKaonRejection[i]   = 0;
         ltccProtonRejection[i] = 0;
-        htccKaonRejection[i] = 0;
+        htccPionsRejection[i]  = 0;
+        htccKaonRejection[i]   = 0;
+        htccProtonRejection[i] = 0;
+        ccPionsRejection[i]    = 0;
+        ccKaonRejection[i]     = 0;
+        ccProtonRejection[i]   = 0;
 
+
+        if (lpim[i] == 0 && lele[i] > 0) {
+            ltccPionsRejection[i] =  lele[i] ;
+        }
 
         if (lkaon[i] == 0 && lpim[i] > 0) {
             ltccKaonRejection[i] =  lpim[i] ;
         }
-//        if (lkaon[i] > 0 && lpim[i] > 0) {
-//            ltccKaonRejection[i] =  lpim[i] - lkaon[i];
-//        }
         if (lkaon[i] > 0 ) {
             ltccProtonRejection[i] = lkaon[i];
         }
@@ -117,7 +137,12 @@ void ltccHtcc() {
             htccProtonRejection[i] =  hkaon[i] ;
         }
 
+        ccPionsRejection[i] = 1 - ( 1 - ltccPionsRejection[i]  ) * ( 1 - htccPionsRejection[i]  );
+        ccKaonRejection[i]  = 1 - ( 1 - ltccKaonRejection[i]   ) * ( 1 - htccKaonRejection[i]   );
+        ccProtonRejection[i]= 1 - ( 1 - ltccProtonRejection[i] ) * ( 1 - htccProtonRejection[i] );
 
+
+        rejections->Fill(mom[i], 8, ltccPionsRejection[i]);
         rejections->Fill(mom[i], 7, ltccKaonRejection[i]);
         rejections->Fill(mom[i], 6, ltccProtonRejection[i]);
 
@@ -125,9 +150,14 @@ void ltccHtcc() {
         rejections->Fill(mom[i], 3, htccKaonRejection[i]);
         rejections->Fill(mom[i], 2, htccProtonRejection[i]);
 
+        arejections->Fill(mom[i], 4, ccPionsRejection[i]);
+        arejections->Fill(mom[i], 3, ccKaonRejection[i]);
+        arejections->Fill(mom[i], 2, ccProtonRejection[i]);
+
 
     }
 
+    TCanvas *c2 = new TCanvas("c2", "c2", 800, 600);
     // draw 2D histograms
     rejections->Draw("colz");
 
@@ -140,12 +170,29 @@ void ltccHtcc() {
 
     // label y axis as particle type
     rejections->GetYaxis()->SetTitleSize(0.18);
+    rejections->GetYaxis()->SetBinLabel(8, "Pions from Electrons");
     rejections->GetYaxis()->SetBinLabel(7, "Kaons from Pions");
     rejections->GetYaxis()->SetBinLabel(6, "Protons from Kaons");
     rejections->GetYaxis()->SetBinLabel(4, "Pions from Electrons");
     rejections->GetYaxis()->SetBinLabel(3, "Kaons from Pions");
     rejections->GetYaxis()->SetBinLabel(2, "Protons from Kaons");
 
+    TCanvas *c3 = new TCanvas("c3", "c3", 800, 600);
 
+    // draw 2D histograms
+    arejections->Draw("colz");
+
+    // label x axis as momentum
+    arejections->GetXaxis()->SetTitle("Momentum (GeV/c)");
+    // increase label size
+    arejections->GetXaxis()->SetTitleSize(0.06);
+    // increase label offset
+    arejections->GetYaxis()->SetLabelSize(0.06);
+
+    // label y axis as particle type
+    arejections->GetYaxis()->SetTitleSize(0.18);
+    arejections->GetYaxis()->SetBinLabel(4, "Pions from Electrons");
+    arejections->GetYaxis()->SetBinLabel(3, "Kaons from Pions");
+    arejections->GetYaxis()->SetBinLabel(2, "Protons from Kaons");
 
 }

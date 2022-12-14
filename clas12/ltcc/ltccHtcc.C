@@ -170,12 +170,12 @@ void ltccHtcc() {
 
     // label y axis as particle type
     rejections->GetYaxis()->SetTitleSize(0.18);
-    rejections->GetYaxis()->SetBinLabel(8, "Pions from Electrons");
-    rejections->GetYaxis()->SetBinLabel(7, "Kaons from Pions");
-    rejections->GetYaxis()->SetBinLabel(6, "Protons from Kaons");
-    rejections->GetYaxis()->SetBinLabel(4, "Pions from Electrons");
-    rejections->GetYaxis()->SetBinLabel(3, "Kaons from Pions");
-    rejections->GetYaxis()->SetBinLabel(2, "Protons from Kaons");
+    rejections->GetYaxis()->SetBinLabel(8, "Pure Electrons");
+    rejections->GetYaxis()->SetBinLabel(7, "Pure Pions");
+    rejections->GetYaxis()->SetBinLabel(6, "Pure Kaons");
+    rejections->GetYaxis()->SetBinLabel(4, "Pure Electrons");
+    rejections->GetYaxis()->SetBinLabel(3, "Pure Pions");
+    rejections->GetYaxis()->SetBinLabel(2, "Pure Kaons");
 
     TCanvas *c3 = new TCanvas("c3", "c3", 800, 600);
 
@@ -191,8 +191,8 @@ void ltccHtcc() {
 
     // label y axis as particle type
     arejections->GetYaxis()->SetTitleSize(0.18);
-    arejections->GetYaxis()->SetBinLabel(4, "Pions from Electrons");
-    arejections->GetYaxis()->SetBinLabel(3, "Kaons from Pions");
-    arejections->GetYaxis()->SetBinLabel(2, "Protons from Kaons");
+    arejections->GetYaxis()->SetBinLabel(4, "Pure Electrons");
+    arejections->GetYaxis()->SetBinLabel(3, "Pure Pions");
+    arejections->GetYaxis()->SetBinLabel(2, "Pure Kaons");
 
 }

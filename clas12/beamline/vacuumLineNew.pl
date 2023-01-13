@@ -39,25 +39,17 @@ sub vacuumLine()
 	# vacuum inside
 	if( $configuration{"variation"} eq "rgfFTOff") {
 		# create a empty space in the vacuumPipe1 to accommodate the helium pipe in rgf.
-	# in "root" the first part of the pipe is straight
-	# 1.651mm thick
-	#	my $pipeLength = ($pipeFirstStep - $shieldStart) / 2.0 - 0.1;
-	#my $zpos = $shieldStart + $pipeLength ;
-	#my $firstVacuumIR = 26.924;
-	#my $firstVacuumOR = 28.52;
+		$detector{"name"}        = "vacuumPipe1";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "straightVacuumPipe";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+		$detector{"material"}    = "Component";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
 
-	$detector{"name"}        = "vacuumPipe1";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "straightVacuumPipe";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "0*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "Component";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
-	# vacuum inside
 		%detector = init_det();
 		$detector{"name"}        = "vacuumInPipe1";
 		$detector{"mother"}      = "vacuumPipe1";
@@ -70,12 +62,9 @@ sub vacuumLine()
 		print_det(\%configuration, \%detector);
 		
 		$shieldStart = 503;
-		my $emptyPipeLength = (794.3658 - $shieldStart)/2.0; # 794.3658(mother volume end of snout)
+		my $emptyPipeLength = (794.3658 - $shieldStart)/2.0; # 794.3658(mother volume end of the helium extension)
 		my $empty_zpos = $shieldStart + $emptyPipeLength;
-		#my $empty_zpos = -$zpos + $shieldStart + $emptyPipeLength;
-		$emptyPipeLength = (794.3658 - $shieldStart)/2.0 + 0.001;
-
-		print "empty z_pos = $empty_zpos, pipeLength = $emptyPipeLength\n";
+		$emptyPipeLength = (794.3658 - $shieldStart)/2.0 + 0.005;
 	
 		%detector = init_det();
 		$detector{"name"}        = "emptyInPipe1_1";
@@ -92,7 +81,7 @@ sub vacuumLine()
 		$empty_zpos = $empty_zpos - $zpos;
 		%detector = init_det();
 		$detector{"name"}        = "emptyInPipe1_2";
-		$detector{"mother"}      = "vacuumPipe1_rgf";
+		$detector{"mother"}      = "vacuumPipe1";
 		$detector{"description"} = "empty space inside the VacuumPipe";
 		$detector{"color"}       = "ff3349";
 		$detector{"type"}        = "Tube";
@@ -102,17 +91,17 @@ sub vacuumLine()
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 
-	%detector = init_det();
-	$detector{"name"}        = "vacuumPipe1_rgf";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "straightVacuumPipe";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Operation:@ vacuumPipe1 - emptyInPipe1_1";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "0";
-	$detector{"material"}    = "G4_STAINLESS-STEEL";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+		%detector = init_det();
+		$detector{"name"}        = "vacuumPipe1_rgf";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "straightVacuumPipe";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Operation:@ vacuumPipe1 - emptyInPipe1_1";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"dimensions"}  = "0";
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
 
 		# substract vacuumInPipe1
 		%detector = init_det();
@@ -128,16 +117,16 @@ sub vacuumLine()
 	}
 	else {
 
-	$detector{"name"}        = "vacuumPipe1";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "straightVacuumPipe";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "0*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_STAINLESS-STEEL";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
+		$detector{"name"}        = "vacuumPipe1";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "straightVacuumPipe";
+		$detector{"color"}       = "aaffff";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_STAINLESS-STEEL";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
 
 		%detector = init_det();
 		$detector{"name"}        = "vacuumInPipe1";
@@ -150,7 +139,7 @@ sub vacuumLine()
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 	}
-
+	
 	# in "root" the second part of the pipe is straight until torus
 	$pipeLength = ($torusStart - $mediumStarts) / 2.0 - 0.1;
 	$zpos = $mediumStarts + $pipeLength ;

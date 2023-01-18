@@ -1,13 +1,17 @@
 <gcard>
 
 	<option name="geometry" value="1400x1200"/>
-
-	<detector name="ddvcs"        factory="TEXT" variation="mucalActive"/>
+	
+	<detector name="../targets/cad/"    factory="CAD"/>
 	<detector name="../targets/target"        factory="TEXT" variation="lH2"/>
 
+	
+<!--	<detector name="ddvcs"     factory="TEXT" variation="mucalActive"/>-->
+	<detector name="./cad/"    factory="CAD"/>
 
-	<option name="HALL_FIELD" value="clas12-solenoid"/>
-	<option name="FIELD_PROPERTIES" value="clas12-solenoid, 0.1*mm, G4HelixSimpleRunge, linear"/>
+
+	<option name="HALL_FIELD" value="clas12-newSolenoid"/>
+	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
 
 
 	<!-- don't track particles beyod certain limits -->

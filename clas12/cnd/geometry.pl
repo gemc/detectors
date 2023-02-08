@@ -134,6 +134,27 @@ sub make_cndMother
 	$detector{"visible"}     = 0;
 	$detector{"style"}       = 0;
 	print_det(\%configuration, \%detector);
+	
+	%detector = init_det();
+	$detector{"name"}        = "cdFlux";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "Flux for Central Detector";
+	$detector{"color"}       = "33bb99";
+	$detector{"type"}        = "Tube";
+	$detector{"pos"}         = "0*cm 0*cm -30*cm";
+	$detector{"dimensions"}  = "388*mm 389*mm 700*mm 0*deg 360*deg";
+	$detector{"material"}    = "G4_AIR";
+	$detector{"visible"}     = 1;
+	$detector{"style"}       = 1;
+	$detector{"sensitivity"} = "flux";
+	$detector{"hit_type"}    = "flux";
+	$detector{"identifiers"} = "id manual 42";
+#	print_det(\%configuration, \%detector);
+	
+	
+	
+	
+	
 }
 
 # Paddles

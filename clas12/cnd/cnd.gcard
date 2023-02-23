@@ -26,11 +26,6 @@
 
 	<!-- CLAS12 Binary Fields from David Heddle cMag  -->
 	<option name="HALL_FIELD"  value="c12BinaryTorusSymmSolenoid2018"/>
-	
-
-	
-	<!-- fields, precise mode -->
-	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
 
 
 	<option name="OUTPUT"                  value="hipo, out.hipo"/>

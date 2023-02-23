@@ -10,8 +10,9 @@
 	<detector name="./cad/"    factory="CAD"/>
 
 
-	<option name="HALL_FIELD" value="clas12-newSolenoid"/>
-	<option name="FIELD_PROPERTIES" value="clas12-newSolenoid, 1*mm, G4ClassicalRK4, linear"/>
+
+	<!-- CLAS12 Binary Fields from David Heddle cMag  -->
+	<option name="HALL_FIELD"  value="c12BinaryTorusSymmSolenoid2018"/>
 
 
 	<!-- don't track particles beyod certain limits -->

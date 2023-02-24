@@ -3,8 +3,8 @@
 	<option name="geometry" value="1400x1200"/>
 	
 	
-	<detector name="ddvcs"     factory="TEXT" variation="newScattChamber"/>
-	<detector name="./cad/"    factory="CAD"/>
+	<detector name="experiments/clas12/ddvcs/ddvcs"     factory="TEXT" variation="newScattChamber"/>
+	<detector name="experiments/clas12/ddvcs/cad/"    factory="CAD"/>
 
 	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOff"/>

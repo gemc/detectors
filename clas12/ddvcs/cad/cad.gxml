@@ -10,9 +10,9 @@
 <gxml>
 
 	<!-- upstream of the target -->
-	<volume name="moeller_cone"         mother="root" color="222288" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_W"/>
-	<volume name="crystal_shell"        mother="root" color="882222" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_W"/>
-	<volume name="layout_calorimeter"   mother="root" color="444444" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_W"/>
+	<volume name="moeller_cone"         mother="root" color="222288" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="beamline_W"/>
+	<volume name="crystal_shell"        mother="root" color="882222" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="G4_PbWO4"/>
+	<volume name="layout_calorimeter"   mother="root" color="444444" position="0*mm 0*mm 0*mm" rotation="0*deg 180*deg 0*deg" material="beamline_W"/>
 
 
 </gxml>

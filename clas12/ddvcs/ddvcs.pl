@@ -92,9 +92,10 @@ require "./beamSupport.pl";
 require "./scorer.pl";
 require "./hit.pl";
 require "./bank.pl";
+require "./scattChamber.pl";
 
 # all the scripts must be run for every configuration
-my @allConfs = ("30_cm_TST", "scorer", "mucalActive");
+my @allConfs = ("30_cm_TST", "scorer", "mucalActive", "newScattChamber");
 
 foreach my $conf ( @allConfs )
 {
@@ -103,18 +104,17 @@ foreach my $conf ( @allConfs )
 	# materials
 	materials();
 
-	if($configuration{"variation"} ne "scorer")
-	{
+	if($configuration{"variation"} eq "30_cm_TST" or $configuration{"variation"} eq "mucalActive") {
 		# geometry
 		make_mu_cal();
 		buildBeamPipe();
 		buildBeamShield();
 		define_mucal_bank();
 		define_mucal_hit();
-	}
-	else
-	{
+	} elsif($configuration{"variation"} eq "scorer") {
 		makeScorer();
+	} else {
+		make_scatt_chambers();
 	}
 
 }

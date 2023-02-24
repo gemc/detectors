@@ -17,6 +17,14 @@ sub materials
    $mat{"components"}    = "G4_Fe 0.08 G4_W 0.92";
    print_mat(\%configuration, \%mat);
 
+	# rohacell
+	$mat{"name"}          = "rohacell";
+	$mat{"description"}   = "target  rohacell scattering chamber material";
+	$mat{"density"}       = "0.1";  # 100 mg/cm3
+	$mat{"ncomponents"}   = "4";
+	$mat{"components"}    = "G4_C 0.6465 G4_H 0.0784 G4_N 0.0839 G4_O 0.1912";
+	print_mat(\%configuration, \%mat);
+
 }
 
 

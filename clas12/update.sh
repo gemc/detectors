@@ -21,7 +21,7 @@ set USEDEVEL = "yes"
 set BRANCH   = development
 
 # coajava distribution
-set COATJAVA = 6.6.1
+set COATJAVA = 8.7.1
 
 
 rm -rf clas12-offline-software

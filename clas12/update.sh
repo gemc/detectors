@@ -1,8 +1,11 @@
 #!/bin/tcsh -f
 
 # Notice: no need to set COATJAVA env as the groovy script will pick up the relative location
-# To install maven: brew install maven (it will instal openjdk 19 and other dependencies)
-# 
+# To install maven: brew install maven
+# To install java: https://www.java.com/en/download/
+# The latest java as of April 2023 returns:
+# java -version
+# java version "1.8.0_371"
 
 # Linux: -c = do not get file if already done.
 if (`uname` == "Linux") then
@@ -15,14 +18,12 @@ endif
 
 rm -rf coat*jar jcsg*jar vecmath*jar
 
-
 # development. Set to no to use coajava distribution instead
 set USEDEVEL = "yes"
 set BRANCH   = development
 
 # coajava distribution
 set COATJAVA = 8.7.1
-
 
 rm -rf clas12-offline-software
 

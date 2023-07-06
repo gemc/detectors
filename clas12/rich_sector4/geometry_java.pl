@@ -203,7 +203,7 @@ sub build_PMTs{
 	for(my $irow=0; $irow<$PMT_rows; $irow++){
 		my $nPMTInARow = 6 + $irow;
 
-		for(my $ipmt=0; $ipmt<$nPMTInARow; $ipmt++){
+		for(my $ipmt=$nPMTInARow-1; $ipmt>=0; $ipmt--){
 			my $vname = sprintf("MAPMT_${irow}_${ipmt}");
 			my %detector = init_det();
       

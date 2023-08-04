@@ -30,7 +30,7 @@ if( scalar @ARGV != 1)
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "default" ;
+#$configuration{"variation"} = "default" ;
 
 # Global pars - these should be read by the load_parameters from file or DB
 
@@ -44,9 +44,10 @@ require "./bank.pl";
 # hits definitions
 require "./hit.pl";
 
-# run DC factory from COATJAVA to produce volumes
 
-system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+
+# run DC factory from COATJAVA to produce volumes
+system("run-groovy factory.groovy --variation $configuration{variation} --runnumber 11 --number_of_Region $configuration{number_of_Region}");
 
 # sensitive geometry
 require "./geometry_java.pl";
@@ -75,7 +76,23 @@ foreach my $conf ( @allConfs )
 	# Global pars - these should be read by the load_parameters from file or DB
 	our @volumes = get_volumes(%configuration);
 
-	coatjava::makeURWELL();
-	
+#	coatjava::makeURWELL();
+
+
+    if ($configuration{"variation"} eq "proto")
+{
+        print "variation proto\n";
+        coatjava::makeURWELL_PROTO($configuration{"number_of_Region"});
+              
+}
+    elsif ($configuration{"variation"} ne "proto")
+    {
+       
+        print "variation default\n";
+        print "configuration{$configuration{variation})\n";
+        coatjava::makeURWELL($configuration{"number_of_Region"});
+       
+    }
+    
 }
 

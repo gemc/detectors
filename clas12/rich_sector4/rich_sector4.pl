@@ -36,7 +36,7 @@ our %configuration = load_configuration($ARGV[0]);
 #our %parameters    = get_parameters(%configuration);
 
 my $javaCadDir = "javacad";
-system(join(' ', 'groovy -cp "../*" factory.groovy', $javaCadDir));
+system(join(' ', 'groovy -cp "/group/clas12/packages/coatjava/9.0.0/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir));
 
 # materials
 require "./materials.pl";

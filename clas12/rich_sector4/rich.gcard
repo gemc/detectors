@@ -34,11 +34,11 @@
 	<option name="SPREAD_P"   value="1*GeV, 0.0*deg, 1*deg"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="0"/>
-	<option name="RECORD_OPTICALPHOTONS"   value="0"/>
+	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
 	
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
 	
-	<option name="OUTPUT"   value="evio, out.ev"/>
+	<option name="OUTPUT"   value="hipo, out.hipo"/>
 	
 	<!--  Will print message every 10 events -->
 	<option name="PRINT_EVENT"    value="10" />

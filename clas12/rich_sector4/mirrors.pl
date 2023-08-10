@@ -32,7 +32,6 @@ my $reflectivity =
 
 sub buildMirrorsSurfaces
 {
-    # htcc gas is 100% CO2 with optical properties
 	my %mat = init_mir();
 	$mat{"name"}         = "rich_AlMgF2";
 	$mat{"description"}  = "rich mirror reflectivity";
@@ -43,6 +42,196 @@ sub buildMirrorsSurfaces
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;	
 	print_mir(\%configuration, \%mat);
+
+        %mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_1";
+        $mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+        $mat{"border"}       = "SkinSurface";
+        $mat{"photonEnergy"} = $penergy ;
+        $mat{"reflectivity"} = $reflectivity ;
+        print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_2";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_3";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_4";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_5";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_6";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_planar_comp_7";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+
+        %mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_1";
+        $mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+        $mat{"border"}       = "SkinSurface";
+        $mat{"photonEnergy"} = $penergy ;
+        $mat{"reflectivity"} = $reflectivity ;
+        print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_1B";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_1C";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_1D";
+	$mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+	$mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+
+        %mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_2";
+        $mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+        $mat{"border"}       = "SkinSurface";
+        $mat{"photonEnergy"} = $penergy ;
+        $mat{"reflectivity"} = $reflectivity ;
+        print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_2B";
+        $mat{"description"}  = "rich mirror reflectivity";
+	$mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+	$mat{"model"}        = "unified";
+        $mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+        %mat = init_mir();
+	$mat{"name"}         = "rich_mirror_spherical_2C";
+        $mat{"description"}  = "rich mirror reflectivity";
+	$mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+	$mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+        %mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_3";
+        $mat{"description"}  = "rich mirror reflectivity";
+        $mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+        $mat{"model"}        = "unified";
+        $mat{"border"}       = "SkinSurface";
+        $mat{"photonEnergy"} = $penergy ;
+        $mat{"reflectivity"} = $reflectivity ;
+        print_mir(\%configuration, \%mat);
+
+	%mat = init_mir();
+        $mat{"name"}         = "rich_mirror_spherical_3B";
+        $mat{"description"}  = "rich mirror reflectivity";
+	$mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+	$mat{"model"}        = "unified";
+        $mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
+        %mat = init_mir();
+	$mat{"name"}         = "rich_mirror_spherical_3C";
+        $mat{"description"}  = "rich mirror reflectivity";
+	$mat{"type"}         = "dielectric_metal";
+        $mat{"finish"}       = "polished";
+	$mat{"model"}        = "unified";
+	$mat{"border"}       = "SkinSurface";
+	$mat{"photonEnergy"} = $penergy ;
+	$mat{"reflectivity"} = $reflectivity ;
+	print_mir(\%configuration, \%mat);
+
 }
 
 buildMirrorsSurfaces();

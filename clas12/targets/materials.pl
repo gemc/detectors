@@ -633,4 +633,16 @@ sub materials
         $mat{"components"}    = "G4_He 1";
         print_mat(\%configuration, \%mat);
     }
+    if($thisVariation eq "lHe")
+    {
+	# lHe target
+	%mat = init_mat();
+	$mat{"name"}          = "lHeTarget";
+	$mat{"description"}   = "liquid He target";
+	$mat{"density"}       = "0.125";  # 0.125 g/cm3 <—————————————
+	$mat{"ncomponents"}   = "1";
+	$mat{"components"}    = "G4_He 1";
+	print_mat(\%configuration, \%mat);
+    }
+
 }

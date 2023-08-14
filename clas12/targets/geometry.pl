@@ -840,7 +840,7 @@ sub build_targets
 			$detector{"material"}    = "LD2";
 		}
 		if($thisVariation eq "lHe") {
-			$detector{"material"}    = "lHe";
+			$detector{"material"}    = "lHeTarget";
 		}
 
 		$detector{"style"}       = 1;

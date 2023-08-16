@@ -5,24 +5,6 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use materials;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   materials.pl <configuration filename>\n";
- 	print "   Will create rich materials\n";
-	exit;
-}
-
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
-
-
 # Loading configuration file from argument
 our %configuration = load_configuration($ARGV[0]);
 
@@ -47,21 +29,23 @@ my @penergy = ( "1.3778*eV",  "1.3933*eV",  "1.4091*eV",  "1.4253*eV",  "1.4419*
 # ------- H8500/12700 window optical properties ------
 
 # Index of refraction of the pmt window
-my @irefr_window_h8500 = ( 1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49,  1.49,  1.49,  1.49,  1.49,
-			   1.49 );
+# for borosilicate it should be 1.473, put 1.40 to avoid internal reflections
+# Mirazita
+my @irefr_window_h8500 = ( 1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473,  1.473,  1.473,  1.473,  1.473,
+1.473 );
 
 
 # Absorption coefficient for H8500 window glass
@@ -81,26 +65,6 @@ my @abslength_window_h8500 = ( "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.000
 			       "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.0000*m",
 			       "42.0000*m" );
 
-# ------- gas in gap optical properties ---------
-
-# Index of refraction of air:
-my @irefr_gas_in_gap = ( 1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00,  1.00,  1.00,  1.00,  1.00,
-			     1.00 );
-
-# absorption is the same of the window
 
 # -------- aerogel properties ----------
 
@@ -140,10 +104,13 @@ my @abslength_aerogel = ( "29.2394*cm",   "28.9562*cm",   "28.6784*cm",   "26.89
 			  "0.242124*cm" );
 
 
-sub print_materials
+
+sub define_aerogel
 {
+    
     # typical index of refraction of an aerogel tile
 	my %mat = init_mat();
+	$mat{"name"}          = "aerogel";
 	$mat{"name"}          = "aerogel";
 	$mat{"description"}   = "typical aerogel properties";
 	$mat{"density"}       = "0.24";
@@ -154,19 +121,192 @@ sub print_materials
 	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);
 	print_mat(\%configuration, \%mat);
 
-	%mat = init_mat();
-	$mat{"name"}          = "rohacell31";
-	$mat{"description"}   = "htcc gas is 100% CO2 with optical properties";
-	$mat{"density"}       = "0.032";
-	$mat{"ncomponents"}   = "4";
-	$mat{"components"}    = "G4_C 0.6463 G4_H 0.0784 G4_N 0.0839 G4_O 0.1914";
+
+
+
+}
+
+sub define_aerogels
+{
+    my %mat = init_mat();
+    my $n400Fit = 1.0494;
+
+    # Computing the wavelength in microns from the energy
+    my @wavelength;
+    my $arrSize = @penergy;
+    my $conversion = 1.2305;
+    for(my $i=0; $i < $arrSize; $i++){
+	my @array = split(/\*/, $penergy[$i]);
+	my $lambda = $conversion / $array[0];
+	$wavelength[$i] = $lambda;
+	#printf(" E=%s   lambda=%f\n", $penergy[$i], $lambda);
+    }
+    
+    my $AerogelTable = "Aerogels.txt";
+    open (INFILE, "<$AerogelTable");
+    my $j = 1;
+    while (<INFILE>) {
+
+        chomp;
+	my @array = split(/ /);
+
+	my $sector = $array[0];
+	my $layer = $array[1];
+	my $component = $array[2];
+	#printf(" layer %d  comp %d   rho=%f\n", $layer, $component, $density);
+
+	my $n400 = $array[4];
+	my $density = ($n400 * $n400  - 1) / 0.438;
+
+	# refractive index calculation
+	my $p1 = $array[5];
+	my $p2 = $array[6];
+	#printf("J=%d   n400=%f   p1=%f  p2=%f\n", $j, $n400, $p1, $p2);
+	# RECALCULATE here the array irefr_aerogel using these parameters
+	my @irefr_aerogel2;
+	for(my $i=0; $i < $arrSize; $i++){
+	    if ($p1 != 0 && $p2 != 0) {
+		my $lambda = $wavelength[$i] * 1000;
+		$irefr_aerogel2[$i] = $n400/$n400Fit * sqrt (1. + ($p1*$lambda*$lambda) / ($lambda*$lambda-$p2*$p2));
+	    }
+	    else {
+		$irefr_aerogel2[$i] = 1.;
+	    }
+	}
+
+	# transparency calculation
+	my $thickness = $array[3];
+	my $A0 = $array[7];
+	my $Clarity = $array[9];
+	# RECALCULATE here the array abslength_aerogel using these prameters
+	my @abslength_aerogel2;
+	for(my $i=0; $i < $arrSize; $i++){
+	    if ($thickness != 0 && $A0 != 0 && $Clarity != 0) {
+		my $lambda = $wavelength[$i];
+		my $L = ($lambda*$lambda*$lambda*$lambda) / $Clarity;
+		#if ($j == 100) {
+		 #   printf("lambda=%f  C=%f   L=%f   Lref=%s\n", $lambda, $Clarity, $L, $abslength_aerogel[$i]);
+		#}
+		$abslength_aerogel2[$i] = $L . "*cm";
+	    }
+	    else {
+		$abslength_aerogel2[$i] = "0*cm";
+	    }
+	}
+    
+    # typical index of refraction of an aerogel tile
+#	my %mat = init_mat();
+	$mat{"name"}          = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
+	$mat{"description"}   = "Aerogel tile " . $j;
+	$mat{"density"}       = $density;
+        #$mat{"density"}       = "0.24";
+	$mat{"ncomponents"}   = "1";
+        #$mat{"components"}    = "G4_CARBON_DIOXIDE 1.0";
+	$mat{"components"}    = "G4_SILICON_DIOXIDE 1.0";
+	$mat{"photonEnergy"}      = arrayToString(@penergy);
+	$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel2);
+	#$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel);
+	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel2);
+        #$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);
 	print_mat(\%configuration, \%mat);
+
+	$j = $j + 1;
+    }
+    close(INFILE);
+
 
 }
 
 
-sub define_material
+sub define_MAPMT
 {
+
+	my %mat = init_mat();
+	# materials for the H8500 window - BoromTriOxide
+	$mat{"name"}          = "BoromTriOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "2.55";  # in g/cm3
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "B 2 O 3";
+	print_mat(\%configuration, \%mat);
+
+	# materials for the H8500 window - MagnesiumOxide
+	%mat = init_mat();
+	$mat{"name"}          = "MagnesiumOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "3.58";  # in g/cm3
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "Mg 1 O 1";
+	print_mat(\%configuration, \%mat);
+
+	# materials for the H8500 window - IronTriOxide
+	%mat = init_mat();
+	$mat{"name"}          = "IronTriOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "5.242";  # in g/cm3
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "Fe 1 O 3";
+	print_mat(\%configuration, \%mat);
+
+	# materials for the H8500 window - SilicOxide
+	%mat = init_mat();
+	$mat{"name"}          = "SilicOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "2.00";  # in g/cm3 --> CHECK THE DENSITY: questa me la sono inventata io!
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "Si 1 O 1";
+	print_mat(\%configuration, \%mat);
+
+
+	# materials for the H8500 window - SodMonOxide
+	%mat = init_mat();
+	$mat{"name"}          = "SodMonOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "2.00";  # in g/cm3 --> CHECK THE DENSITY: questa me la sono inventata io!
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "N 1 O 1";
+	print_mat(\%configuration, \%mat);
+
+	# materials for the H8500 window - CalciumOxide
+	%mat = init_mat();
+	$mat{"name"}          = "CalciumOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "3.3";  # in g/cm3 
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "Ca 1 O 1";
+	print_mat(\%configuration, \%mat);
+
+	# materials for the H8500 window - AluminiumOxide
+	%mat = init_mat();
+	$mat{"name"}          = "AluminiumOxide";
+	$mat{"description"}   = "MAPMT window component";
+	$mat{"density"}       = "3.97";  # in g/cm3
+	$mat{"ncomponents"}   = "2";
+	$mat{"components"}    = "Al 2 O 3";
+	print_mat(\%configuration, \%mat);
+
+
+	# h8500 windows
+	%mat = init_mat();
+	$mat{"name"}          = "Glass_H8500";
+	$mat{"description"}   = "MAPMT window";
+	$mat{"density"}       = "2.76";  # in g/cm3
+	$mat{"ncomponents"}   = "8";
+	$mat{"components"}    = "G4_SILICON_DIOXIDE 0.8071 G4_BORON_OXIDE 0.126 G4_SODIUM_MONOXIDE 0.042 G4_ALUMINUM_OXIDE 0.022 G4_CALCIUM_OXIDE 0.001 G4_Cl 0.001 G4_MAGNESIUM_OXIDE 0.0005 G4_FERRIC_OXIDE 0.0004";
+	$mat{"photonEnergy"}      = arrayToString(@penergy);
+        $mat{"indexOfRefraction"} = arrayToString(@irefr_window_h8500);
+        $mat{"absorptionLength"}  = arrayToString(@abslength_window_h8500);
+ 	print_mat(\%configuration, \%mat);
+
+}
+
+
+# To define an EFFECTIVE CFRP for Spherical Mirrors
+
+
+sub define_CFRP
+{
+  #To verify
 
         my %mat = init_mat();
 
@@ -180,6 +320,8 @@ sub define_material
 	
 	
 	# carbon fiber
+  
+  #to check with Sandro and Dario about the material (comment done on June 2017
 	%mat = init_mat();
 	$mat{"name"}          = "CarbonFiber";
 	$mat{"description"}   = "ft carbon fiber material is epoxy and carbon - 1.75g/cm3";
@@ -188,116 +330,15 @@ sub define_material
 	$mat{"components"}    = "G4_C 0.745 epoxy 0.255";
 	print_mat(\%configuration, \%mat);
 
-
-        # gas_ingap
-	%mat = init_mat();
-        $mat{"name"}          = "Gas_inGap";
-        $mat{"description"}   = "gas in gap";
-        $mat{"density"}       = "0.00129";  # in g/cm3
-        $mat{"ncomponents"}   = "2";
-        $mat{"components"}    = "C 1 O 2";
-        $mat{"photonEnergy"}      = arrayToString(@penergy);
-        $mat{"indexOfRefraction"} = arrayToString(@irefr_gas_in_gap);
-        $mat{"absorptionLength"}  = arrayToString(@abslength_window_h8500);
-        print_mat(\%configuration, \%mat);
-
-	# h8500 windows
-	%mat = init_mat();
-	$mat{"name"}          = "Glass_H8500";
-	$mat{"description"}   = "Glass_H8500";
-	$mat{"density"}       = "2.76";  # in g/cm3
-	$mat{"ncomponents"}   = "8";
-	$mat{"components"}    = "G4_SILICON_DIOXIDE 0.8071 G4_BORON_OXIDE 0.126 G4_SODIUM_MONOXIDE 0.042 G4_ALUMINUM_OXIDE 0.022 G4_CALCIUM_OXIDE 0.001 G4_Cl 0.001 G4_MAGNESIUM_OXIDE 0.0005 G4_FERRIC_OXIDE 0.0004";
-	$mat{"photonEnergy"}      = arrayToString(@penergy);
-        $mat{"indexOfRefraction"} = arrayToString(@irefr_window_h8500);
-        $mat{"absorptionLength"}  = arrayToString(@abslength_window_h8500);
- 	print_mat(\%configuration, \%mat);
-
-	# NOV105_2cm_cern6_tile1
-	%mat = init_mat();
-	$mat{"name"}          = "NOV105_2cm_cern6_tile1";
-	$mat{"description"}   = "NOV105_2cm_cern6_tile1";
-	$mat{"density"}       = "0.24";  # in g/cm3
-	$mat{"ncomponents"}   = "1";
-#	$mat{"components"}    = "AerogelQuartz 97.0 H2O 3";
-	$mat{"components"}    = "G4_SILICON_DIOXIDE 1.0";
-	print_mat(\%configuration, \%mat);
-
 }
 
 
-sub define_photocatode_materials
-{
 
-	my %mat = init_mat();
-	# materials for the H8500 window - BoromTriOxide
-	$mat{"name"}          = "BoromTriOxide";
-	$mat{"description"}   = "BoromTriOxide";
-	$mat{"density"}       = "2.55";  # in g/cm3
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "B 2 O 3";
-	print_mat(\%configuration, \%mat);
+#define_aerogel();
+#define_aerogels();
 
-	# materials for the H8500 window - MagnesiumOxide
-	%mat = init_mat();
-	$mat{"name"}          = "MagnesiumOxide";
-	$mat{"description"}   = "MagnesiumOxide";
-	$mat{"density"}       = "3.58";  # in g/cm3
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "Mg 1 O 1";
-	print_mat(\%configuration, \%mat);
+#define_MAPMT();
 
-	# materials for the H8500 window - IronTriOxide
-	%mat = init_mat();
-	$mat{"name"}          = "IronTriOxide";
-	$mat{"description"}   = "IronTriOxide";
-	$mat{"density"}       = "5.242";  # in g/cm3
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "Fe 1 O 3";
-	print_mat(\%configuration, \%mat);
+#define_CFRP();
 
-	# materials for the H8500 window - SilicOxide
-	%mat = init_mat();
-	$mat{"name"}          = "SilicOxide";
-	$mat{"description"}   = "SilicOxide";
-	$mat{"density"}       = "2.00";  # in g/cm3 --> CHECK THE DENSITY: questa me la sono inventata io!
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "Si 1 O 1";
-	print_mat(\%configuration, \%mat);
-
-
-	# materials for the H8500 window - SodMonOxide
-	%mat = init_mat();
-	$mat{"name"}          = "SodMonOxide";
-	$mat{"description"}   = "SodMonOxide";
-	$mat{"density"}       = "2.00";  # in g/cm3 --> CHECK THE DENSITY: questa me la sono inventata io!
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "N 1 O 1";
-	print_mat(\%configuration, \%mat);
-
-	# materials for the H8500 window - CalciumOxide
-	%mat = init_mat();
-	$mat{"name"}          = "CalciumOxide";
-	$mat{"description"}   = "CalciumOxide";
-	$mat{"density"}       = "3.3";  # in g/cm3 
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "Ca 1 O 1";
-	print_mat(\%configuration, \%mat);
-
-	# materials for the H8500 window - AluminiumOxide
-	%mat = init_mat();
-	$mat{"name"}          = "AluminiumOxide";
-	$mat{"description"}   = "AluminiumOxide";
-	$mat{"density"}       = "3.97";  # in g/cm3
-	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "Al 2 O 3";
-	print_mat(\%configuration, \%mat);
-
-
-}
-
-define_material();
-
-print_materials();
-
-define_photocatode_materials();
+1;

@@ -51,5 +51,6 @@ sub define_hit
 	print_hit(\%configuration, \%hit);
 }
 
-define_hit();
+#define_hit();
 
+1;

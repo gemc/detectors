@@ -138,7 +138,7 @@ sub build_Elements
     
     my $Layer=201;
     for (my $Component=1; $Component <= $Max_Layer201; $Component++) {
-        my $MaterialName='aerogel_sector4_layer'.$Layer.'_component'.$Component;
+        my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
         my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
         my %detector = init_det();
         my $vname                = $mesh;
@@ -157,7 +157,7 @@ sub build_Elements
 
  $Layer=202;
 for (my $Component=1; $Component <= $Max_Layer202; $Component++) {
-    my $MaterialName='aerogel_sector4_layer'.$Layer.'_component'.$Component;
+    my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;
@@ -175,7 +175,7 @@ for (my $Component=1; $Component <= $Max_Layer202; $Component++) {
 
 $Layer=203;
 for (my $Component=1; $Component <= $Max_Layer203; $Component++) {
-    my $MaterialName='aerogel_sector4_layer'.$Layer.'_component'.$Component;
+    my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;
@@ -193,7 +193,7 @@ for (my $Component=1; $Component <= $Max_Layer203; $Component++) {
 
 $Layer=204;
 for (my $Component=1; $Component <= $Max_Layer204; $Component++) {
-    my $MaterialName='aerogel_sector4_layer'.$Layer.'_component'.$Component;
+    my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;
@@ -209,7 +209,7 @@ for (my $Component=1; $Component <= $Max_Layer204; $Component++) {
     
 $Layer=301;
 for (my $Component=1; $Component <= $Max_Layer301 ; $Component++) {
-    my $MaterialName='mirror_sector4_layer'.$Layer.'_component'.$Component;
+    my $MaterialName='mirror_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;

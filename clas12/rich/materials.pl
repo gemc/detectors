@@ -128,8 +128,10 @@ sub define_aerogel
 
 sub define_aerogels
 {
+    my $sector = shift;
+    my $sectorsuffix = "_s" . $sector;
     my %mat = init_mat();
-    my $n400Fit = 1.0494;
+    my $n400Fit = 1.0494; #TODO: do we still use this, or just refr. index from updated tables?
 
     # Computing the wavelength in microns from the energy
     my @wavelength;
@@ -141,9 +143,16 @@ sub define_aerogels
 	$wavelength[$i] = $lambda;
 	#printf(" E=%s   lambda=%f\n", $penergy[$i], $lambda);
     }
-    
-    my $AerogelTable = "Aerogels.txt";
-    open (INFILE, "<$AerogelTable");
+
+    if($sector eq "1"){   
+	my $AerogelTable = "Aerogel_module2.txt";
+	open (INFILE, "<$AerogelTable");
+    }
+    else{
+        my $AerogelTable = "Aerogel_module1.txt";
+        open (INFILE, "<$AerogelTable");
+    }
+
     my $j = 1;
     while (<INFILE>) {
 

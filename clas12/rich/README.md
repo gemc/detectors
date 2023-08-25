@@ -1,13 +1,26 @@
-# Simulation of RICH  
+# CLAS12 RICH gemc geometry
 
-The RICH_sector 4 is a combination of STL volumes (stored in coatjava) and G4 native volumes.
+RICH geometry constructed as a combination of stl (stored in coatjava) and geant4 volumes.
 
-Aerogel Tiles (indicaded by layer 200) and passive material are STL file generated in the reference frame of the center of CLAS12, for this one these volumes can apply only at the rich of sector 4.
+STL (generated in CLAS12 reference frame for sector 4, rotate 180*deg around z for sector1):
+RICH_s*: mother volume (original now edited to properly contain all optical equipment)
+Layer 20*: aerogel tiles
+Layer 30*: planar mirrors
+Additional material budget: mirror support, wrapping, etc.
 
-PMTs and spherical Mirrors are generated starting from G4 native volumes. 
+geant4 volumes:
+PMTs and spherical Mirrors
 
-Scripts executed with
-'perl rich_sector4.pl config.dat'
+Execute with
+./rich_sector4.pl config.dat
 
-Environment variable 'COATJAVA' must be set, pointing to coatjava>6b.3.0
+Generates two configurations:
+	  - sector4: RICH only in sector4 (run groups prior to summer 2023)
+	  - sector4and1: RICH in both sector 4 and 1
 
+Cad files for the two sectors currently stored separately, so cad and geometry files are imported in gcard as:
+        <detector name="rich"         factory="TEXT" variation="sector4and1"/>
+        <detector name ="cad_sector4/"    factory="CAD"/>
+        <detector name ="cad_sector1/"    factory="CAD"/>
+
+ 

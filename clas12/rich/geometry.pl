@@ -220,7 +220,7 @@ for (my $Component=1; $Component <= $Max_Layer301 ; $Component++) {
     $detector{"color"}       = "cc99ff";
     $detector{"material"}    = "G4_Pyrex_Glass";
     $detector{"hitType"}    = 'mirror';
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_planar_comp_".$Component;
     $detector{"identifiers"} = 'sector manual '.$Component;
     $gxmlFile->add(\%detector);
   }
@@ -360,7 +360,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 122*deg 12.25*deg 75.0*deg 15.0*deg";
     $detector{"material"}    = "CarbonFiber";
     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1B";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 10";
     print_det(\%main::configuration, \%detector);
@@ -377,7 +377,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 122*deg 12.25*deg 90.0*deg 15.0*deg";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1C";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 11";
     print_det(\%main::configuration, \%detector);
@@ -420,7 +420,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 134.25*deg 11.5*deg 81.0*deg 18.0*deg";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_2B";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 12";
     print_det(\%main::configuration, \%detector);
@@ -463,7 +463,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 145.75*deg 11.25*deg 81.0*deg 18.0*deg";
     $detector{"material"}    = "CarbonFiber";
     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3B";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 13";
     print_det(\%main::configuration, \%detector);
@@ -519,7 +519,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1D";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 15";
     print_det(\%main::configuration, \%detector);
@@ -536,7 +536,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_2C";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 16";
     print_det(\%main::configuration, \%detector);
@@ -553,7 +553,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3C";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 17";
     print_det(\%main::configuration, \%detector);
@@ -570,7 +570,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 18";
     print_det(\%main::configuration, \%detector);
@@ -587,7 +587,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_2";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 19";
     print_det(\%main::configuration, \%detector);
@@ -604,7 +604,7 @@ sub build_SphericalMirrors
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_AlMgF2 ";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 20";
     print_det(\%main::configuration, \%detector);

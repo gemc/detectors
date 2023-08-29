@@ -72,7 +72,7 @@ require "./mirrors.pl";
 my @allConfs = ("sector4","sector4and1");
 
 # bank definitions
-define_bank();
+#define_bank();
 
 $configuration{"variation"} = "sector4";
 define_aerogels("4");

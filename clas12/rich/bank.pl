@@ -57,7 +57,7 @@ sub define_bank
 	insert_bank_variable(\%configuration, $bankname, "layer",          2, "Di", "tile id");
 	insert_bank_variable(\%configuration, $bankname, "component",        3, "Di", "maroc channel id");
 	insert_bank_variable(\%configuration, $bankname, "TDC_order",     4, "Di", "order: 2 - TDCL , 3 - TDCR");
-	insert_bank_variable(\%configuration, $bankname, "TDC_tdc",          5, "Di", "TDC value");	
+	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",          5, "Di", "TDC value");	
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
 

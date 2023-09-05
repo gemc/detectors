@@ -2,7 +2,7 @@
 
 # Detector name and variation
 detector_name: rich
-variation:     original
+variation:     java
 
 # Factory can be MYQL or TEXT
 factory:       TEXT
@@ -18,6 +18,6 @@ dbhost: clasdb.jlab.org
 comment:       This is the first implementation of the Rich detector
 
 # Verbosity controls the perl script output
-verbosity: 1
+verbosity: 0
 
 

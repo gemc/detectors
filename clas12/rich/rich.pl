@@ -5,7 +5,11 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
+use hit;
+use bank;
+use mirrors;
 use math;
+use materials;
 use POSIX;
 
 # Help Message
@@ -28,29 +32,82 @@ if( scalar @ARGV != 1)
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
+# geometry                                                                                                                                                                    
+require "./geometry.pl";
 
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
+our @volumes = get_volumes(%configuration);
 
-# To get the parameters proper authentication is needed.
-our %parameters    = get_parameters(%configuration);
+my $javaCadDir = "cad_sector1";
+my $sector = 1;
+system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir, $sector));
+coatjava::makeRICHcad($javaCadDir,$sector);
 
-# Loading RICH specific subroutines
-require "./geometry/box.pl";
-require "./geometry/frontal_system.pl";
-require "./geometry/pmt.pl";
 
-build_rich();
+$javaCadDir = "cad_sector4";
+$sector = 4;
+system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir, $sector));
+coatjava::makeRICHcad($javaCadDir,$sector);
 
-sub build_rich
-{
-	for(my $s=4; $s<=4; $s++)
-	{
+# materials
+require "./materials.pl";
 
-		build_rich_box($s);
-		build_frontal_system_bottom($s);
-		build_frontal_system_top($s);
-		build_pmts($s);
+# banks definitions
+require "./bank.pl";
 
-	}
-}
+# hits definitions
+require "./hit.pl";
+
+#mirror material
+require "./mirrors.pl";
+
+# Loading RICH specific subroutines for original geometry
+#require "./geometry/box.pl";
+#require "./geometry/frontal_system.pl";
+#require "./geometry/pmt.pl";
+
+# java geometry
+#require "./geometry.pl";
+
+# all the scripts must be run for every configuration
+my @allConfs = ("sector4","sector4and1");
+
+# bank definitions
+#define_bank();
+
+$configuration{"variation"} = "sector4";
+define_aerogels("4");
+define_MAPMT();
+define_CFRP();
+define_hit();
+buildMirrorsSurfaces("4");
+coatjava::makeRICHtext("4");
+
+$configuration{"variation"} = "sector4and1";
+define_aerogels("4");
+define_aerogels("1");
+define_MAPMT();
+define_CFRP();
+define_hit();
+buildMirrorsSurfaces("4");
+buildMirrorsSurfaces("1");
+coatjava::makeRICHtext("1");
+coatjava::makeRICHtext("4");
+
+
+#foreach my $conf ( @allConfs )
+#{
+#    my $sector = shift
+        #materials();
+	#define_aerogels();
+	#define_MAPMT();
+	#define_hit();
+#	$configuration{"variation"} = $conf;
+	#our @volumes = get_volumes(%configuration);
+#	coatjava::makeRICHtext($javaCadDir,$sector);
+
+	# materials
+	#materials();
+	
+	# hits
+    #define_hit();
+#}

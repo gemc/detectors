@@ -54,16 +54,10 @@ sub define_bank
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "clas12 sector");
-	insert_bank_variable(\%configuration, $bankname, "pmt",          2, "Di", "pmt number");
-	insert_bank_variable(\%configuration, $bankname, "pixel",        3, "Di", "pixel");
-	insert_bank_variable(\%configuration, $bankname, "nphotons",     4, "Di", "number of photons");
-	insert_bank_variable(\%configuration, $bankname, "npe",          5, "Di", "number of detected photoelectrons");
-	insert_bank_variable(\%configuration, $bankname, "nphotonsU",    6, "Di", "number of unconverted photons");
-	insert_bank_variable(\%configuration, $bankname, "nphotonsO",    7, "Di", "number of out of QE range photons");
-	insert_bank_variable(\%configuration, $bankname, "nphotonsD",    8, "Di", "number of dead area photons");
-	insert_bank_variable(\%configuration, $bankname, "TDC1",         9, "Di", "TDC leading edge");
-	insert_bank_variable(\%configuration, $bankname, "TDC2",        10, "Di", "TDC trailing edge");
- 	insert_bank_variable(\%configuration, $bankname, "ADC",         11, "Di", "ADC analog");
+	insert_bank_variable(\%configuration, $bankname, "layer",          2, "Di", "tile id");
+	insert_bank_variable(\%configuration, $bankname, "component",        3, "Di", "maroc channel id");
+	insert_bank_variable(\%configuration, $bankname, "TDC_order",     4, "Di", "order: 2 - TDCL , 3 - TDCR");
+	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",          5, "Di", "TDC value");	
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 }
 

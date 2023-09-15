@@ -35,16 +35,16 @@ our %configuration = load_configuration($ARGV[0]);
 # geometry                                                                                                                                                                    
 require "./geometry.pl";
 
-our @volumes = get_volumes(%configuration);
 
-my $javaCadDir = "cad_sector1";
-my $sector = 1;
+my $javaCadDir = "cad_sector4";
+my $sector = 4;
 system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir, $sector));
+our @volumes = get_volumes(%configuration);
 coatjava::makeRICHcad($javaCadDir,$sector);
 
 
-$javaCadDir = "cad_sector4";
-$sector = 4;
+$javaCadDir = "cad_sector1";
+$sector = 1;
 system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir, $sector));
 coatjava::makeRICHcad($javaCadDir,$sector);
 
@@ -60,14 +60,6 @@ require "./hit.pl";
 #mirror material
 require "./mirrors.pl";
 
-# Loading RICH specific subroutines for original geometry
-#require "./geometry/box.pl";
-#require "./geometry/frontal_system.pl";
-#require "./geometry/pmt.pl";
-
-# java geometry
-#require "./geometry.pl";
-
 # all the scripts must be run for every configuration
 my @allConfs = ("sector4","sector4and1");
 
@@ -75,6 +67,7 @@ my @allConfs = ("sector4","sector4and1");
 #define_bank();
 
 $configuration{"variation"} = "sector4";
+
 define_aerogels("4");
 define_MAPMT();
 define_CFRP();
@@ -92,22 +85,3 @@ buildMirrorsSurfaces("4");
 buildMirrorsSurfaces("1");
 coatjava::makeRICHtext("1");
 coatjava::makeRICHtext("4");
-
-
-#foreach my $conf ( @allConfs )
-#{
-#    my $sector = shift
-        #materials();
-	#define_aerogels();
-	#define_MAPMT();
-	#define_hit();
-#	$configuration{"variation"} = $conf;
-	#our @volumes = get_volumes(%configuration);
-#	coatjava::makeRICHtext($javaCadDir,$sector);
-
-	# materials
-	#materials();
-	
-	# hits
-    #define_hit();
-#}

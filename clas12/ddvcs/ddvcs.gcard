@@ -31,19 +31,23 @@
 
 	
 	
-	<!-- CLAS12 Binary Fields from David Heddle cMag  -->
-	<option name="HALL_FIELD"  value="c12BinaryTorusSymmSolenoid2018"/>
+	<!-- you can scale the fields here. Remember torus -1 means e- INBENDING  -->
+	<option name="SCALE_FIELD" value="binary_torus, -1"/>
+	<option name="SCALE_FIELD" value="binary_solenoid, -1"/>
+
+	<!-- hall field  -->
+	<option name="HALL_FIELD"  value="Symm_solenoid_r601_phi1_z1201_13June2018:Full_torus_r251_phi181_z251_25Jan2021"/>
 
 
 	<!-- don't track particles beyod certain limits -->
-	<option name="MAX_X_POS"  value="1000" />
-	<option name="MAX_Y_POS"  value="1000" />
-	<option name="MAX_Z_POS"  value="1000" />
+	<option name="MAX_X_POS"  value="8000" />
+	<option name="MAX_Y_POS"  value="8000" />
+	<option name="MAX_Z_POS"  value="8000" />
 	<option name="HALL_MATERIAL" value="Vacuum"/>
 
 
 	<option name="INTEGRATEDRAW" value="ft_cal"/>
-	<option name="RECORD_PASSBY" value="1"/>
+	<option name="RECORD_PASSBY" value="0"/>
 
 	<option name="BEAM_P"    value="e-, 11*GeV, 0*deg, 0*deg" />
 <!--	<option name="SPREAD_P"  value="1*GeV, 10*deg, 180*deg" />-->

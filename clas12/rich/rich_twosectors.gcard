@@ -10,10 +10,11 @@
 	
 	<!-- forward carriage -->
 	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
-	<detector name="experiments/clas12/dc/dc"                    factory="TEXT" variation="default"/>
+<!--	<detector name="experiments/clas12/dc/dc"                    factory="TEXT" variation="default"/> -->
 
-	<detector name="rich"         factory="TEXT" variation="java"/>
-	<detector name ="javacad/"    factory="CAD"/>
+        <detector name="rich"         factory="TEXT" variation="sector4and1"/>
+        <detector name ="cad_sector4/"    factory="CAD"/>
+        <detector name ="cad_sector1/"    factory="CAD"/>
 <!--	<detector name="../ftof/ftof" factory="TEXT" variation="rga_fall2018"/>-->
 <!--	<detector name="../pcal/pcal" factory="TEXT" variation="rga_fall2018"/>-->
 <!--	<detector name="../ec/ec" factory="TEXT" variation="rga_fall2018"/>-->

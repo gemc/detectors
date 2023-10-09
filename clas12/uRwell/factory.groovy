@@ -9,12 +9,16 @@ import org.jlab.detector.base.*;
 import GeoArgParse
 def variation = GeoArgParse.getVariation(args);
 def runNumber = GeoArgParse.getRunNumber(args);
+def NRegion = GeoArgParse.getNumberOfRegion(args);
+boolean isProto = false;
 
-ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC,runNumber,variation);
+if(variation == "proto") isProto = true;
+
+ConstantProvider cp = GeometryFactory.getConstants(DetectorType.DC,runNumber,"default");
 //cp.show();
 
-//GEMGeant4Factory factory = new GEMGeant4Factory(cp);
-URWellGeant4Factory factory = new URWellGeant4Factory(cp);
+
+URWellGeant4Factory factory = new URWellGeant4Factory(cp, isProto, NRegion);
 
 def outFile = new File("uRwell__volumes_"+variation+".txt");
 outFile.newWriter().withWriter { w ->

@@ -880,7 +880,23 @@ sub build_targets
 
 
 
-			
+	    # scattering chambers al window
+	    $zpos = 277;
+		$radius =12;
+		$thickness=0.025;
+		%detector = init_det();
+		$detector{"name"}        = "al_window_scexit";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "50 mm thick aluminum window downstream";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+
 		
 	}
 	

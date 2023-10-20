@@ -848,7 +848,7 @@ sub build_targets
 
 		# upstream al window
 		my $zpos = -24.6;
-		my $radius = 5;
+		my $radius = 4.9;
 		my $thickness=0.015;
 		%detector = init_det();
 		$detector{"name"}        = "al_window_entrance";

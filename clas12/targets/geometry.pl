@@ -842,11 +842,44 @@ sub build_targets
 		if($thisVariation eq "lHe") {
 			$detector{"material"}    = "lHeTarget";
 		}
-
 		$detector{"style"}       = 1;
 		print_det(\%configuration, \%detector);
 
-		
+
+		# upstream al window
+		my $zpos = -24.6;
+		my $radius = 5;
+		my $thickness=0.015;
+		%detector = init_det();
+		$detector{"name"}        = "al_window_entrance";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "30 mm thick aluminum window upstream";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+	    # downstream al window
+	    $zpos = 24.6;
+		$radius = 5;
+		$thickness=0.015;
+		%detector = init_det();
+		$detector{"name"}        = "al_window_exit";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "30 mm thick aluminum window downstream";
+		$detector{"color"}       = "aaaaff";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+
+
 			
 		
 	}

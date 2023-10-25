@@ -793,7 +793,7 @@ sub build_targets
 		my $nplanes = 4;
 
 		my @oradius  =  (    50.3,   50.3,  21.1,  21.1 );
-		my @z_plane  =  (  -140.0,  265.0, 280.0, 288.0 );
+		my @z_plane  =  (  -140.0,  265.0, 280.0, 280.0 );
 
 
 		if ($thisVariation eq "lH2e") {
@@ -898,8 +898,8 @@ sub build_targets
 
 
 	    # scattering chambers al window
-	    # note: the eng. position is 1017.27 - here it is placed 8mm upstream to place it within the
-	    $zpos = $eng_shift - 1017.27;
+	    # note: the eng. position is 1017.27 - here it is placed 8mm upstream to place it within the mother scattering chamber
+	    $zpos = $eng_shift - 1025.27;
 		$radius = 12;
 		$thickness=0.025;
 		%detector = init_det();

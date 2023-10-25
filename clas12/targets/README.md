@@ -1,25 +1,20 @@
 
-CLAS12 TARGETS README
+# CLAS12 TARGETS
 
---------------------------------------------------
-
-There are two variations of the LH2 target.
-"original", that has a simple model of the cell and scattering chambers
-"elaborate", that produces a target according to drawings
+The engineering models are kept on 
+the [engineering wiki](https://wiki.jlab.org/Hall-B/engineering/hallb_eng_wiki/index.php/Main_Page).
 
 
-In MYSQL mode, before building the geometry one must
-upload the parameters onto the DB.
+## Windows
 
-The commands to build the geometry, banks, hit defs
-and materials are:
 
-upload_parameters.pl config.dat   < only for MYSQL factory
+## Geometry
+
+To build the geometry, run the following command:
 
 ./targets.pl config.dat
 
-
-
+---
 
 # Experiments:
 
@@ -28,7 +23,8 @@ upload_parameters.pl config.dat   < only for MYSQL factory
 
 Author: Yu-Chun Hung
 
-Experiment Description: Measure the structure function F2 of the neutron by tagging the spectator proton in the RTPC detector. Deuterium, hydrogen, and helium gas are used at 5.6 atm pressure.
+Experiment Description: Measure the structure function F2 of the neutron by 
+tagging the spectator proton in the RTPC detector. Deuterium, hydrogen, and helium gas are used at 5.6 atm pressure.
 
 ### Variations: bonusD2, bounsH2, bonusHe
 

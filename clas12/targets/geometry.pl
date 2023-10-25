@@ -793,7 +793,7 @@ sub build_targets
 		my $nplanes = 4;
 
 		my @oradius  =  (    50.3,   50.3,  21.1,  21.1 );
-		my @z_plane  =  (  -140.0,  265.0, 280.0, 280.0 );
+		my @z_plane  =  (  -140.0,  265.0, 280.0, 288.0 );
 
 
 		if ($thisVariation eq "lH2e") {
@@ -846,8 +846,9 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 
-		# upstream al window
-		my $zpos = -24.6;
+		# upstream al window. zpos comes from engineering model, has the shift of 1273.27 mm + 30 due to the new engineering center
+	    my $eng_shift = 1303.27 ;
+		my $zpos = $eng_shift - 1328.27;
 		my $radius = 4.9;
 		my $thickness=0.015;
 		%detector = init_det();
@@ -863,7 +864,7 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 
 	    # downstream al window
-	    $zpos = 24.6;
+	    $zpos = $eng_shift - 1278.27;
 		$radius = 5;
 		$thickness=0.015;
 		%detector = init_det();
@@ -878,11 +879,28 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
+	    # cell barrier
+	    $zpos = $eng_shift - 1248.27;
+		$radius = 5;
+		$thickness=0.025;
+		%detector = init_det();
+		$detector{"name"}        = "al_window_mli_barrier";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "15 mm thick aluminum mli barrier";
+		$detector{"color"}       = "bb99aa";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
 
 
 	    # scattering chambers al window
-	    $zpos = 277;
-		$radius =12;
+	    # note: the eng. position is 1017.27 - here it is placed 8mm upstream to place it within the
+	    $zpos = $eng_shift - 1017.27;
+		$radius = 12;
 		$thickness=0.025;
 		%detector = init_det();
 		$detector{"name"}        = "al_window_scexit";

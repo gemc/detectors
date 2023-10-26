@@ -125,7 +125,7 @@ sub vacuumLine()
 	# vacuum line al window
 	my $zpos = 962.5;
 	my $radius =30;
-	my $thickness=0.025;
+	my $thickness=0.0375;
 	%detector = init_det();
 	$detector{"name"}        = "al_window_vacuum_entrance";
 	$detector{"mother"}      = "root";

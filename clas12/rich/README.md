@@ -12,15 +12,15 @@ geant4 volumes:
 PMTs and spherical Mirrors
 
 Execute with
-./rich_sector4.pl config.dat
+./rich.pl config.dat
+($COATJAVA must be set)
 
-Generates two configurations:
-	  - sector4: RICH only in sector4 (run groups prior to summer 2023)
-	  - sector4and1: RICH in both sector 4 and 1
-
-Cad files for the two sectors currently stored separately, so cad and geometry files are imported in gcard as:
-        <detector name="rich"         factory="TEXT" variation="sector4and1"/>
-        <detector name ="cad_sector4/"    factory="CAD"/>
-        <detector name ="cad_sector1/"    factory="CAD"/>
+Generates three configurations:
+	  - default: RICH in sector 1 and sector 4, nominal positions
+	  - rga_fall2018: RICH in sector 1, +5cm shift in z
+	  - rgc_summer2022: RICH in sector 1 and sector 4, +5cm shift in z
+Cad and geometry files are imported in gcard as:
+        <detector name="rich"         factory="TEXT" variation="default"/>
+        <detector name ="cad_default/"    factory="CAD"/>
 
  

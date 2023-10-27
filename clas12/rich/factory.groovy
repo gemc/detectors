@@ -8,36 +8,41 @@ import org.jlab.detector.geant4.v2.RICHGeant4Factory;
 RICHGeant4Factory factory = new RICHGeant4Factory();
 
 
-def sector = args[1];
+//def sector = args[1];
 
-def name = "rich__volumes.txt"
-println(sector)
-if(sector=='4'){
-	name = "rich__volumes_sector4.txt";
-}
-else{
-    name = "rich__volumes_sector4and1.txt";
-}
+def variation = args[0];
 
+def name = sprintf("rich__volumes_%s.txt", [variation]);
+System.out.print("making volumes and copying stls, variation: ");
+System.out.println(variation);
 
 def outFile = new File(name);
 outFile.newWriter().withWriter { w ->
         		w<<factory;
 			}				       
 
-
-
-def dirName = args[0];
+def dirName = sprintf("cad_%s",[variation]);
 new File(dirName).mkdir();
 
 factory.getAllVolumes().forEach{ volume ->
 	if(volume.getType()=="Stl"){
 		if(volume.getName() == "RICH_s4"){
-		        volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s"+sector]));
+			if(variation == "default" || variation == "rgc_summer2022"){
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s1"]));
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
+			}
+			else if(variation == "rga_fall2018"){
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
+			}
 		}
 		else{
-			volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s"+sector]));
-
+			if(variation == "default" || variation == "rgc_summer2022"){
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s1"]));
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s4"]));
+			}
+			else if(variation == "rga_fall2018"){
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s4"]));
+			}
 		}
 	}
 }

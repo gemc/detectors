@@ -36,17 +36,17 @@ our %configuration = load_configuration($ARGV[0]);
 require "./geometry.pl";
 
 
-my $javaCadDir = "cad_sector4";
-my $sector = 4;
-system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir, $sector));
-our @volumes = get_volumes(%configuration);
-coatjava::makeRICHcad($javaCadDir,$sector);
+#my $javaCadDir = "cad_sector4";
+#my $sector = 4;
+#system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $sector));
+#our @volumes = get_volumes(%configuration);
+#coatjava::makeRICHcad($javaCadDir,$sector);
 
 
-$javaCadDir = "cad_sector1";
-$sector = 1;
-system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $javaCadDir, $sector));
-coatjava::makeRICHcad($javaCadDir,$sector);
+#$javaCadDir = "cad_sector1";
+#$sector = 1;
+
+#coatjava::makeRICHcad($javaCadDir,$sector);
 
 # materials
 require "./materials.pl";
@@ -60,28 +60,55 @@ require "./hit.pl";
 #mirror material
 require "./mirrors.pl";
 
-# all the scripts must be run for every configuration
-my @allConfs = ("sector4","sector4and1");
+my @allConfs = ("default","rga_fall2018","rgc_summer2022");
+foreach my $variation (@allConfs){
+    print("variation: " );
+    print($variation);
+    print("\n");
 
-# bank definitions
-#define_bank();
+    $configuration{"variation"} = $variation;
+    system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $variation));
+    our @volumes = get_volumes(%configuration);    
 
-$configuration{"variation"} = "sector4";
+    coatjava::makeRICHcad($variation);
 
-define_aerogels("4");
-define_MAPMT();
-define_CFRP();
-define_hit();
-buildMirrorsSurfaces("4");
-coatjava::makeRICHtext("4");
+    my @sectors = ();
+    if ($variation eq "rga_fall2018"){
+        push(@sectors,"4");
+    }
+    if ($variation eq "default"){
+        push(@sectors,("1","4"));
+    }
+    if ($variation eq "rgc_summer2022"){
+        push(@sectors,("1","4"));
+    }
+    define_MAPMT();
+    define_CFRP();
+    define_hit();
+    foreach my $sector (@sectors){
+	define_aerogels($sector);
+	buildMirrorsSurfaces($sector);
+	coatjava::makeRICHtext($sector);
+    }
+}
 
-$configuration{"variation"} = "sector4and1";
-define_aerogels("4");
-define_aerogels("1");
-define_MAPMT();
-define_CFRP();
-define_hit();
-buildMirrorsSurfaces("4");
-buildMirrorsSurfaces("1");
-coatjava::makeRICHtext("1");
-coatjava::makeRICHtext("4");
+
+#$configuration{"variation"} = "sector4";
+
+#define_aerogels("4");
+#define_MAPMT();
+#define_CFRP();
+#define_hit();
+#buildMirrorsSurfaces("4");
+#coatjava::makeRICHtext("4");
+
+#$configuration{"variation"} = "sector4and1";
+#define_aerogels("4");
+#define_aerogels("1");
+#define_MAPMT();
+#define_CFRP();
+#define_hit();
+#buildMirrorsSurfaces("4");
+#buildMirrorsSurfaces("1");
+#coatjava::makeRICHtext("1");
+#coatjava::makeRICHtext("4");

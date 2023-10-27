@@ -35,19 +35,6 @@ our %configuration = load_configuration($ARGV[0]);
 # geometry                                                                                                                                                                    
 require "./geometry.pl";
 
-
-#my $javaCadDir = "cad_sector4";
-#my $sector = 4;
-#system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $sector));
-#our @volumes = get_volumes(%configuration);
-#coatjava::makeRICHcad($javaCadDir,$sector);
-
-
-#$javaCadDir = "cad_sector1";
-#$sector = 1;
-
-#coatjava::makeRICHcad($javaCadDir,$sector);
-
 # materials
 require "./materials.pl";
 
@@ -67,7 +54,7 @@ foreach my $variation (@allConfs){
     print("\n");
 
     $configuration{"variation"} = $variation;
-    system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/coat-libs-9.0.0-SNAPSHOT.jar" factory.groovy', $variation));
+    system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/*" factory.groovy', $variation));
     our @volumes = get_volumes(%configuration);    
 
     coatjava::makeRICHcad($variation);
@@ -92,23 +79,3 @@ foreach my $variation (@allConfs){
     }
 }
 
-
-#$configuration{"variation"} = "sector4";
-
-#define_aerogels("4");
-#define_MAPMT();
-#define_CFRP();
-#define_hit();
-#buildMirrorsSurfaces("4");
-#coatjava::makeRICHtext("4");
-
-#$configuration{"variation"} = "sector4and1";
-#define_aerogels("4");
-#define_aerogels("1");
-#define_MAPMT();
-#define_CFRP();
-#define_hit();
-#buildMirrorsSurfaces("4");
-#buildMirrorsSurfaces("1");
-#coatjava::makeRICHtext("1");
-#coatjava::makeRICHtext("4");

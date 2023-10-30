@@ -121,8 +121,28 @@ sub vacuumLine()
 	print_det(\%configuration, \%detector);
 
 
+
+	# vacuum line al window
+	my $zpos = 962.5;
+	my $radius =30;
+	my $thickness=0.0375;
+	%detector = init_det();
+	$detector{"name"}        = "al_window_vacuum_entrance";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "50 mm thick aluminum window downstream";
+	$detector{"color"}       = "aaaaff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"material"}    = "G4_Al";
+	$detector{"style"}       = "1";
+	print_det(\%configuration, \%detector);
+
+
 	# in "fc" the pipe gets bigger after the torus
 	# 1.651mm thick
+
+
 
 	my $nplanes = 4;
 

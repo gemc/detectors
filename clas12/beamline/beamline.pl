@@ -46,7 +46,7 @@ require "./ELMOline.pl";
 require "./rghline.pl";
 require "./transverseUpstreamBeampipe.pl";
 
-my @allConfs = ("FTOn", "FTOff", "ELMO", "rghFTOut", "rghFTOn", "TransverseUpstreamBeampipe");
+my @allConfs = ("FTOn", "FTOff", "ELMO", "rghFTOut", "rghFTOn", "TransverseUpstreamBeampipe", "rgfFTOff");
 
 foreach my $conf ( @allConfs ) {
 
@@ -57,7 +57,7 @@ foreach my $conf ( @allConfs ) {
 
 	# vacuum line throughout the shields, torus and downstream
 	# temp includes the torus back nose
-	if( $configuration{"variation"} eq "FTOff" or $configuration{"variation"} eq "FTOn") {
+	if( $configuration{"variation"} eq "FTOff" or $configuration{"variation"} eq "FTOn" or $configuration{"variation"} eq "rgfFTOff") {
 		vacuumLine();
 	} elsif( $configuration{"variation"} eq "ELMO") {
 		ELMOline();

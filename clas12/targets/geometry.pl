@@ -879,10 +879,10 @@ sub build_targets
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
-	    # cell barrier
+	    # cell barrier is 15 microns
 	    $zpos = $eng_shift - 1248.27;
 		$radius = 5;
-		$thickness=0.025;
+		$thickness=0.0075;
 		%detector = init_det();
 		$detector{"name"}        = "al_window_mli_barrier";
 		$detector{"mother"}      = "target";
@@ -897,11 +897,11 @@ sub build_targets
 
 
 
-	    # scattering chambers al window
+	    # scattering chambers al window, 75 microns
 	    # note: the eng. position is 1017.27 - here it is placed 8mm upstream to place it within the mother scattering chamber
 	    $zpos = $eng_shift - 1025.27;
 		$radius = 12;
-		$thickness=0.025;
+		$thickness=0.0375;
 		%detector = init_det();
 		$detector{"name"}        = "al_window_scexit";
 		$detector{"mother"}      = "target";

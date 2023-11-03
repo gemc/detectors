@@ -46,7 +46,7 @@ If any particle will hit the cyliner, then hit details will be written into ``MC
 we want to write only events containing this bank.
 The filtering command looks like:
 ```
-hipo-utils -filter -b "MC::True" -e "MC::True" -o ./Data/filtered_XXXMicron.hipo ./Data/out_outXXXmicrons.hipo
+hipo-utils -filter -b "MC::True" -e "MC::True" -o ./Data/filtered_XXXMicron.hipo ./Data/out_XXXmicrons.hipo
 ```
 Here again ``XXX`` is the target thickness in units of microns.
 

@@ -40,7 +40,7 @@ require "./geometry.pl";
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("10microns", "20microns", "100microns");
+my @allConfs = ("1microns", "10microns", "20microns", "100microns", "180microns", "360microns");
 
 
 foreach my $conf ( @allConfs )

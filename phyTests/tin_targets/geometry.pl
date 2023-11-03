@@ -17,8 +17,19 @@ sub make_test_geo
     } else {
         if ($thisVariation eq "100microns") {
             $target_thickess="0.1";
-        }
-    }
+        } else {
+		if( $thisVariation eq "180microns"){	
+			$target_thickess="0.18";
+		} else {
+			if( $thisVariation eq "360microns"){
+                        	$target_thickess="0.36";
+                	} elsif( $thisVariation eq "1microns" ) {
+				$target_thickess="0.001";
+			}
+		}
+	}
+    }  
+
 
 	
 	my %detector = init_det();

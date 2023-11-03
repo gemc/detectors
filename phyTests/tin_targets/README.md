@@ -54,6 +54,9 @@ Here again ``XXX`` is the target thickness in units of microns.
 ## Running the analysis
 Now we are ready to run the analysis script, which will fill histograms with different variables (energy, polar and azimuthal angles) for
 photons and electrons.
+In order to create the executable, please compile the code ``PhotonStudy.cc`` through the command in the 
+file ``compile_PhotonStudy.sh``
+Make sure the the enviromental variable $HIPO is set correctly.
 ```
 ./PhotonStudy.exe XXX
 ```

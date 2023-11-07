@@ -60,7 +60,7 @@ sub build_gxml
 	    build_MESH($gxmlFile,$sector,$variation);
 	    build_Elements($gxmlFile,$sector,$variation);	
 	    my $sectorsuffix = "_s" . $sector;
-	    my @files = ($dirName.'/Layer_302_component_1'.$sectorsuffix.'stl', $dirName.'/Layer_302_component_2'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_3'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_4'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_5'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_6'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_7'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_8'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_9'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_10'.$sectorsuffix.'.stl');
+	    my @files = ($dirName.'/Layer_302_component_1'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_2'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_3'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_4'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_5'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_6'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_7'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_8'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_9'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_10'.$sectorsuffix.'.stl');
 	    my $removed = unlink(@files);
 	    print "Removed  $removed files from $dirName. (Spherical Mirrors STLs)\n";		
 	}	 

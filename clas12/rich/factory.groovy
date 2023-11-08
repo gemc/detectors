@@ -3,7 +3,7 @@
 //============================================================
 import org.jlab.geom.base.*;
 import org.jlab.detector.geant4.v2.RICHGeant4Factory;
-
+import java.nio.file.Files;
 
 RICHGeant4Factory factory = new RICHGeant4Factory();
 
@@ -27,13 +27,14 @@ new File(dirName).mkdir();
 factory.getAllVolumes().forEach{ volume ->
 	if(volume.getType()=="Stl"){
 		if(volume.getName() == "RICH_s4"){
-			if(variation == "default" || variation == "rgc_summer2022"){
-				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s1"]));
-				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
-			}
-			else if(variation == "rga_fall2018"){
-				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
-			}
+			System.out.println("Skipping download of mother volume stl file (temporary)");
+			//if(variation == "default" || variation == "rgc_summer2022"){
+			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s1"]));
+			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
+			//}
+			//else if(variation == "rga_fall2018"){
+			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
+			//}
 		}
 		else{
 			if(variation == "default" || variation == "rgc_summer2022"){

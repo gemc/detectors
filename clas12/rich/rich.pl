@@ -11,7 +11,7 @@ use mirrors;
 use math;
 use materials;
 use POSIX;
-
+use File::Copy;
 # Help Message
 sub help()
 {
@@ -76,6 +76,9 @@ foreach my $variation (@allConfs){
 	define_aerogels($sector);
 	buildMirrorsSurfaces($sector);
 	coatjava::makeRICHtext($sector);
+	print("temporary: copying RICH mother volume stl file \n");
+	copy("cadTemp/RICH_mother_corrected.stl","cad_".$variation."/RICH_s".$sector.".stl");
+
     }
 }
 

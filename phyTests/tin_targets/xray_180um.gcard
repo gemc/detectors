@@ -1,0 +1,25 @@
+<gcard>
+
+	<detector name="xray_flux" factory="TEXT" variation="180microns"/>
+	<option name="INTEGRATEDRAW" value="*"/>
+	<option name="OUTPUT" value="hipo, ./Data/out_180microns.hipo"/>
+	
+	<option name="RECORD_PASSBY" value="1" />
+	
+
+	<option name="PHYSICS"   value="QGSP_BERT + EMZ + Optical" />
+
+	<option name="BEAM_P" value="e-, 10.6*GeV, 0*deg, 0*deg"/>
+
+	<option name="BEAM_V" value="(0., 0., -10)cm"/>
+	<option name="HALL_MATERIAL" value="G4_Galactic"/>
+
+
+
+	<option name="MAX_Z_POS" value="200"/>
+	<option name="MAX_Y_POS" value="200"/>
+	<option name="MAX_Z_POS" value="200"/>
+	<option name="SAVE_ALL_MOTHERS" value="1"/>
+
+
+</gcard>

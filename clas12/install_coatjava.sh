@@ -25,6 +25,13 @@ fi
 if [[ $1 == "-t" ]]; then
   COATJAVA_TAG=$2
 fi
+
+# if the -g option is given, set the github url accordingly
+if [[ $1 == "-g" ]]; then
+  githubRepo=$2
+  USEDEVEL="custom"
+fi
+
 tag_gz="https://github.com/JeffersonLab/coatjava/releases/tag/$COATJAVA_TAGtar.gz"
 
 # print help if -h is given
@@ -32,6 +39,7 @@ if [[ $1 == "-h" ]]; then
   echo "Usage: update.sh [-d] [-t tag]"
   echo "  -d: use coatjava development version"
   echo "  -t tag: use coatjava tag version"
+  echo "  -g github_url: use a custom github url"
   exit 0
 fi
 
@@ -43,6 +51,15 @@ if [[ $USEDEVEL == "yes" ]]; then
   echo "Cloning $githubRepo and building coatjava"
   echo
   git clone $githubRepo
+  cd coatjava
+  ./build-coatjava.sh
+  cp coatjava/lib/clas/* ..
+
+elif [[ $USEDEVEL == "custom" ]]; then
+  echo
+  echo "Cloning user defined $githubRepo and building coatjava"
+  echo
+  git clone $githubRepo coatjava
   cd coatjava
   ./build-coatjava.sh
   cp coatjava/lib/clas/* ..

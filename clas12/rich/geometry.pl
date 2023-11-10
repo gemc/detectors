@@ -1,4 +1,4 @@
-# Written by Giovanni Angelini (gangel@gwu.edu) and Andrey Kim (kenjo@jlab.org)
+# Written by Giovanni Angelini (gangel@gwu.edu), Andrey Kim (kenjo@jlab.org) and Connor Pecar (cmp115@duke.edu)
 package coatjava;
 
 use strict;
@@ -20,9 +20,9 @@ sub makeRICHcad
 {
     
     ($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
-    my $dirName = shift;
-    my $sector = shift;
-    build_gxml($dirName,$sector);
+    my $variation = shift;
+    #my $sector = shift;
+    build_gxml($variation);
 }
 sub makeRICHtext
 {
@@ -34,36 +34,54 @@ sub makeRICHtext
 
 sub build_gxml
 {       
-	my $dirName = shift;
-	my $sector = shift;
-	my $sectorsuffix = "_s" . $sector;
+        my $variation = shift;
+	my @sectors = ();
+	if ($variation eq "rga_fall2018"){	    
+	    push(@sectors,"4");
+	}
+	if ($variation eq "default"){
+	    push(@sectors,"4");
+	    push(@sectors,"1");
+        }
+        if ($variation eq "rgc_summer2022"){
+	    push(@sectors,"4");
+	    push(@sectors,"1");
+        }
+	print join(", ", @sectors);
+	print("\n");
+	my $dirName = "cad_" . $variation;
 	my $gxmlFile = new GXML($dirName);
 
-	build_MESH($gxmlFile,$sector);
-	build_Elements($gxmlFile,$sector);
-	$gxmlFile->print();
 	#remove the Spherical Mirror STL
-	my @files = ($dirName.'/Layer_302_component_1'.$sectorsuffix.'stl', $dirName.'/Layer_302_component_2'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_3'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_4'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_5'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_6'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_7'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_8'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_9'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_10'.$sectorsuffix.'.stl');
-	my $removed = unlink(@files);
-	print "Removed  $removed files from $dirName. (Spherical Mirrors STLs)\n";
-	
-	
+	foreach my $sector (@sectors){
+	    print("on sector: ");
+	    print($sector);
+	    print("\n");
+	    build_MESH($gxmlFile,$sector,$variation);
+	    build_Elements($gxmlFile,$sector,$variation);	
+	    my $sectorsuffix = "_s" . $sector;
+	    my @files = ($dirName.'/Layer_302_component_1'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_2'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_3'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_4'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_5'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_6'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_7'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_8'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_9'.$sectorsuffix.'.stl',$dirName.'/Layer_302_component_10'.$sectorsuffix.'.stl');
+	    my $removed = unlink(@files);
+	    print "Removed  $removed files from $dirName. (Spherical Mirrors STLs)\n";		
+	}	 
+	if (scalar @sectors > 0){
+	    $gxmlFile->print();
+	}
 }
 sub build_text
 {
     my $sector = shift;
     build_SphericalMirrors($sector);
-    build_PMTs($sector);
-    
+    build_PMTs($sector);    
 }
 
 sub build_MESH
 {
 	my $gxmlFile = shift;
 	my $sector = shift;
+	my $variation = shift;
 	my $sectorsuffix = "_s" . $sector;
 	
-#	my @allMeshes =("OpticalGasVolume", "Aluminum","AerogelTiles","CFRP","Glass","TedlarWrapping","SphericalMirrors");
 	my @allMeshes =("RICH_s4","Aluminum","CFRP","TedlarWrapping","MirrorSupport");
 	foreach my $mesh (@allMeshes)
 	{
@@ -73,11 +91,12 @@ sub build_MESH
 		$detector{"name"}        = $vname . $sectorsuffix;
 		if($mesh eq "RICH_s4"){
 		    $detector{"name"} = "RICH" . $sectorsuffix;
-		}
+		}		
 		$detector{"pos"}         = $positions->{$vname};
-
+		if($mesh eq "RICH_s4" and ($variation eq "rga_fall2018" or $variation eq "rgc_summer2022")){
+		    $detector{"pos"} = "0*cm 0*cm 5*cm";
+		}
 		#rotate mesh for sector 1 180 deg. around z
-
 		$detector{"rotation"}    = $rotations->{$vname};
 
 		if($sector eq '1' and $mesh eq "RICH_s4"){
@@ -128,6 +147,7 @@ sub build_Elements
 {
     my $gxmlFile = shift;
     my $sector = shift;
+    my $variation = shift;
     my $sectorsuffix = "_s" . $sector;
     my $Max_Layer201=16;
     my $Max_Layer202=22;

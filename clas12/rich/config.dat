@@ -2,7 +2,7 @@
 
 # Detector name and variation
 detector_name: rich
-variation:     sector4
+variation:     default
 
 # Factory can be MYQL or TEXT
 factory:       TEXT

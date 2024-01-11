@@ -72,7 +72,12 @@ foreach my $conf ( @allConfs )
 	our @volumes = get_volumes(%configuration);
 
 	coatjava::makeEC();
+}
 
+for my $r (11 )
+{
+	build_mother($s);
+	build_lids($s);
 }
 
 

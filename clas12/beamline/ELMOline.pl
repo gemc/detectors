@@ -304,7 +304,8 @@ sub ELMOline()
 	my $nplanes_apipe = 4;
 	my @zplane_apipe  =  ( 54, 385, 385, $zplane_ttip[0]);
 	my @iradius_apipe  = (  0,   0,   0, 0);
-	my @oradius_apipe  = ( 30,  30,  25.46, $oradius_ttip[0]);
+#	my @oradius_apipe  = ( 30,  30,  25.46, $oradius_ttip[0]);
+	my @oradius_apipe  = ( 10,  10,  25.46, $oradius_ttip[0]);
 	%detector = init_det();
 	$detector{"name"}        = "ElmoAirPipe";
 	$detector{"mother"}      = "root";

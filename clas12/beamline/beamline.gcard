@@ -2,10 +2,10 @@
 
 	<option name="geometry" value="1400x1200"/>
 
-	<!-- Beamline configuration Nominal	-->
+	<!-- Beamline configuration Nominal
 	<detector name="../targets/cad/"    factory="CAD"/>
 	<detector name="../targets/target"  factory="TEXT" variation="lH2"/>
-
+	-->
 
 	<!-- Beamline FTOn configuration
 	<detector name="../ft/ft"                 factory="TEXT" variation="FTOn"/>
@@ -21,17 +21,18 @@
 	END of rghFTOut -->
 
 	<!-- Beamline configuration ELMO: Comment out the unused configurations -->
+	<detector name="transverseTargetMagnets/noWedges/"           factory="CAD" />
 
-	<detector name="../beamline/transverseTargetMagnets/forwardWedges/"     factory="CAD" />
 	<!--
-	<detector name="../beamline/transverseTargetMagnets/midpointWedges/"     factory="CAD" />
-	<detector name="../beamline/transverseTargetMagnets/noWedges/"           factory="CAD" />
+	<detector name="transverseTargetMagnets/forwardWedges/"     factory="CAD" />
+	<detector name="transverseTargetMagnets/midpointWedges/"     factory="CAD" />
 	 -->
 
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="transverse"/>
+
 	<detector name="experiments/clas12/beamline/cadBeamlineELMO/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/vacuumLine/"  factory="CAD"/>
-	<detector name="experiments/clas12/beamline/beamline"     factory="TEXT" variation="ELMO"/>
+	<detector name="beamline"     factory="TEXT" variation="ELMO"/>
 	<detector name="connectUpstreamToTorusPipe">
 		<existence exist="no" />
 	</detector>

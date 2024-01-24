@@ -23,6 +23,10 @@
 	<!-- Beamline configuration ELMO: Comment out the unused configurations -->
 	<detector name="transverseTargetMagnets/noWedges/"           factory="CAD" />
 
+	<!-- transverse composite hall field
+	<option name="HALL_FIELD"  value="Full_transsolenoid_x161_y161_z321_March2021:Symm_torus_r2501_phi16_z251_24Apr2018"/>
+ 	-->
+
 	<!--
 	<detector name="transverseTargetMagnets/forwardWedges/"     factory="CAD" />
 	<detector name="transverseTargetMagnets/midpointWedges/"     factory="CAD" />

@@ -2,20 +2,19 @@
 
 # Detector name and variation
 detector_name: ec
-variation:     original
+variation:     default
 
 # Factory can be MYQL or TEXT
-factory:       TEXT
+factory: TEXT
 
 # run ranges and variation will apply to geometry, materials and parameters
-rmin:       1
-rmax:       10000
+run_number: 12
 
 # MYSQL server and databse if MYSQL factory is selected
-dbhost: localhost
+dbhost: ../clas12.sqlite
 
 # Comments/Description
-comment:       This is the first implementation of the FTOF
+comment: CLAS12 EC detector
 
 # Verbosity controls the perl script output
 verbosity: 0

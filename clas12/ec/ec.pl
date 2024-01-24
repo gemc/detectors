@@ -3,6 +3,7 @@
 
 use strict;
 use lib ("$ENV{GEMC}/api/perl");
+use warnings;
 use utils;
 use parameters;
 use geometry;
@@ -14,8 +15,7 @@ use materials;
 use Math::Trig;
 
 # Help Message
-sub help()
-{
+sub help() {
 	print "\n Usage: \n";
 	print "   ec.pl <configuration filename>\n";
 	print "   Will create the CLAS12 EC geometry, materials, bank and hit definitions\n";
@@ -23,8 +23,7 @@ sub help()
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
+if( scalar @ARGV != 1) {
 	help();
 	exit;
 }
@@ -33,7 +32,8 @@ if( scalar @ARGV != 1)
 our %configuration = load_configuration($ARGV[0]);
 
 # Global pars - these should be read by the load_parameters from file or DB
-our %parameters = get_parameters(%configuration);
+# line commented out as parameters mechanism is not used for EC
+#our %parameters = get_parameters(%configuration);
 
 # materials
 require "./materials.pl";
@@ -48,16 +48,15 @@ require "./hit.pl";
 # sensitive geometry
 require "./geometry_java.pl";
 
-# all the scripts must be run for every configuration
-my @allConfs = ("default", "rga_fall2018");
-
 # bank definitions
 # these include the pcal now
 define_bank();
 
-foreach my $conf ( @allConfs )
+# subroutines create_ec with arguments (variation, run number)
+sub create_ec
 {
-	$configuration{"variation"} = $conf ;
+	my $variation = shift;
+	my $runNumber = shift;
 
 	# materials
 	materials();
@@ -66,7 +65,7 @@ foreach my $conf ( @allConfs )
 	define_hit();
 
 	# run EC factory from COATJAVA to produce volumes
-	system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
+	system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
 
 	# Global pars - these should be read by the load_parameters from file or DB
 	our @volumes = get_volumes(%configuration);
@@ -74,10 +73,25 @@ foreach my $conf ( @allConfs )
 	coatjava::makeEC();
 }
 
-for my $r (11 )
-{
-	build_mother($s);
-	build_lids($s);
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
+my @allConfs = ("default", "rga_fall2018");
+my $runNumber = 11;
+
+foreach my $conf ( @allConfs ) {
+	$configuration{"variation"} = $conf ;
+	create_ec($conf, $runNumber);
+}
+
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+my $variation = "default";
+my @runs = (11, 12);
+
+foreach my $run ( @runs ) {
+	$configuration{"variation"} = $variation ;
+	$configuration{"run_number"} = $run ;
+	create_ec($variation, $runNumber);
 }
 
 

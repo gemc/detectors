@@ -13,6 +13,7 @@ To compare the two databases (TEXT and SQLITE) the
 script ` $GEMC/api/perl/db_compare.py` can be used. For example:
 
 ````
-$GEMC/api/perl/db_compare.py fc__geometry_default.txt ../clas12.sqlite fc 11 default
+$GEMC/api/perl/db_compare.py forwardCarriage__geometry_default.txt        ../clas12.sqlite fc 11 default
+$GEMC/api/perl/db_compare.py forwardCarriage__geometry_TorusSymmetric.txt ../clas12.sqlite fc 11 TorusSymmetric
 ````
 

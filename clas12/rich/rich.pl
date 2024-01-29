@@ -29,6 +29,16 @@ if( scalar @ARGV != 1)
 	exit;
 }
 
+# stop and exit if $COATJAVA env variable is not set
+if( !defined $ENV{COATJAVA} ) {
+    print "\n*** ERROR *** ERROR *** ERROR *** ERROR *** ERROR *** ERROR ***\n";
+    print "FATAL: COATJAVA environment variable is not set. \n";
+    print "Please set the COATJAVA variable to the coatjava installation directory.\n";
+    print "Example: export COATJAVA=../coatjava \n";
+    print "*** ERROR *** ERROR *** ERROR *** ERROR *** ERROR *** ERROR ***\n\n";
+    exit;
+}
+
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 

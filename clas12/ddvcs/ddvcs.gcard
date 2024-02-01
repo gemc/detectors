@@ -5,6 +5,8 @@
 	
 	<detector name="experiments/clas12/ddvcs/ddvcs"     factory="TEXT" variation="newScattChamber"/>
 	<detector name="experiments/clas12/ddvcs/cad/"    factory="CAD"/>
+    <detector name="experiments/clas12/ddvcs/ecal/ddvcs_ecal" factory="TEXT" variation="default"/>
+    <detector name="experiments/clas12/ddvcs/bigcone/ddvcs_bigcone" factory="TEXT" variation="default"/>
 
 	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOff"/>

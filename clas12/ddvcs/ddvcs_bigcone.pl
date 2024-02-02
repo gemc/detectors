@@ -12,23 +12,7 @@ use hit;
 
 use Math::Trig;
 
-# Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   geometry.pl <configuration filename>\n";
- 	print "   Will create the DDVS setup using the variation specified in the configuration file\n";
- 	print "   Note: The passport and .visa files must be present to connect to MYSQL. \n\n";
-	exit;
-}
 
-# Make sure the argument list is correct
-# If not pring the help
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
-}
 
 our $pi    = 3.141592653589793238;
 our $toRad = $pi/180.0;
@@ -37,16 +21,8 @@ our $toRad = $pi/180.0;
 # Loading configuration file from argument
 our %configuration = load_configuration($ARGV[0]);
 
-# materials
-require "./materials.pl";
 
-
-# materials
-materials();
-
-buildEcal_motherVolume();
-
-sub buildEcal_motherVolume
+sub buildBigCone_motherVolume
 {
  
     my $nplanes = 6;
@@ -80,6 +56,10 @@ sub buildEcal_motherVolume
     
 }
 
+sub makeBigCone {
+    
+    buildBigCone_motherVolume();
+}
 
 
 

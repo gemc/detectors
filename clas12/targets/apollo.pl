@@ -6,13 +6,13 @@ our %parameters;
 
 my $VolumeLength = 77;
 my $TargetLength = 50; #length of the NH3 target
-my $TargetRadius = 10; #radius of the NH3 target
+my $TargetRadius = 7.5; #radius of the NH3 target
 my $TargetCenter = 0;  #center of the NH3 target
 my $TargetWindowThickness = 0.02;
-my $VacuumRadius          = 51;
+my $VacuumRadius          = 51; #XXXX
 my $BeamWindowThickness   = 0.13;
 my $BathHalfLength        = ($TargetLength+$TargetWindowThickness)/2;
-my $BathWallThickness     = 0.25;
+my $BathWallThickness     = 0.76;
 my $BathWindowThickness   = 0.13;
 my $BathWallZ0            = $TargetLength/2+$TargetWindowThickness+4+$BathWindowThickness;              
 my $BathDx                = 25/2;
@@ -20,19 +20,19 @@ my $BathDy                = 45/2;
 my $BathDz                = ($BathWallZ0+$VolumeLength)/2;
 my $BathZ0                = ($BathWallZ0-$VolumeLength)/2;
 my $ShimCoilsMandrelRin   = 29; 
-my $ShimCoilsMandrelRout  = 29.25;
+my $ShimCoilsMandrelRout  = 29.63;
 my $ShimCoilsLength       = 12; 
 my $ShimCoilsThickness    = 0.7;
 my $ShimCoilsWindow       = 0.02;
 my $PumpingVolumeRin      = 35.5;
 my $PumpingVolumeRout     = 36.0;
-my $PumpingVolumeWindow   = 0.13;
+my $PumpingVolumeWindow   = 0.075;
 my $HeatShieldRin         = 40.75;
 my $HeatShieldRout        = 41.25;
 my $HeatShieldWindow      = 0.02;
 my $VacuumCanRin          = $VacuumRadius - 1.0;
 my $VacuumCanRout         = $VacuumRadius;
-my $VacuumCanWindow       = 0.13;
+my $VacuumCanWindow       = 0.075;
 my $SpheresCenter         = $BathWallZ0+3;  
 
 sub apollo
@@ -259,7 +259,7 @@ sub apollo
 	# Heat Shield volume
 	spheretube($HeatShieldRin,$HeatShieldRout,$HeatShieldWindow,"HeathShield","G4_Al","404040");
 	# Vacuum can
-	spheretube($VacuumCanRin,$VacuumCanRout,$VacuumCanWindow,"VacuumCan","G4_Al","0d0d0d");
+	spheretube($VacuumCanRin,$VacuumCanRout,$VacuumCanWindow,"VacuumCan","carbonFiber","0d0d0d");
 }
 
 

@@ -61,7 +61,7 @@ sub create_ec {
     define_hit();
 
     # run EC factory from COATJAVA to produce volumes
-    system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
+   system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
 
     # Global pars - these should be read by the load_parameters from file or DB
     our @volumes = get_volumes(%configuration);

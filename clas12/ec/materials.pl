@@ -11,7 +11,7 @@ sub materials
 	$mat{"description"}   = "ec scintillator material";
 	$mat{"density"}       = "1.032";
 	$mat{"ncomponents"}   = "2";
-	$mat{"components"}    = "C 9 H 10";	
+	$mat{"components"}    = "C 9 H 10";
 	print_mat(\%configuration, \%mat);
 
 	
@@ -27,6 +27,5 @@ sub materials
 	$mat{"ncomponents"}   = "4";
 	$mat{"components"}    = "G4_C 0.4045 G4_H 0.0786 G4_N 0.1573 G4_O 0.3596";
 	print_mat(\%configuration, \%mat);
-	
 }
 

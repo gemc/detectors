@@ -37,7 +37,7 @@
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 
 	<!--  Run Number 11, picked up by digitization routines. This also overwrites run_number entries in <detector> -->
-	<option name="RUNNO" value="11"/>
+	<option name="RUNNO" value="112"/>
 	<option name="DIGITIZATION_VARIATION" value="rga_fall2018_mc"/>
 
 </gcard>

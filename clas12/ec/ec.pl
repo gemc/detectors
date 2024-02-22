@@ -45,9 +45,6 @@ require "./hit.pl";
 # sensitive geometry
 require "./geometry_java.pl";
 
-# bank definitions
-# these include the pcal now
-define_bank();
 
 # subroutines create_ec with arguments (variation, run number)
 sub create_ec {
@@ -71,16 +68,20 @@ sub create_ec {
 
 # TEXT Factory
 $configuration{"factory"} = "TEXT";
+define_bank();
+
 my @variations = ("default", "rga_fall2018");
+my $runNumber = 11;
 
 foreach my $variation (@variations) {
-    my $runNumber = 11;
     $configuration{"variation"} = $variation;
-    create_ec($variation, $runNumber);
+   # create_ec($variation, $runNumber);
 }
 
 # SQLITE Factory
 $configuration{"factory"} = "SQLITE";
+define_bank();
+
 my $variation = "default";
 my @runs = (11, 101);
 

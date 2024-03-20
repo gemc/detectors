@@ -56,5 +56,5 @@ sub define_bank
 }
 
 sub define_banks {
-	define_bank("alrttof", 2500);
+	define_bank("atof", 22500);
 }

@@ -1,4 +1,6 @@
-#commands to generate text files for alert.gcard
+# commands to generate text files for alert.gcard
+# copy and paste in your terminal all lines that do not start with:
+# this should be done from the directory where this file is located 
 cd ../targets
 ./targets.pl config.dat
 cd ../alert/ahdc

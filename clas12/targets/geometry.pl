@@ -1540,6 +1540,124 @@ sub build_targets
         
     }
 
+    # ALERT target 
+    elsif($thisVariation eq "alert")
+    {
+	# adapted from bonus case
+        # alert tg root volume
+        my $Rout       = 4;
+        my $length     = 155.0;  # mm!
+        my %detector = init_det();
+        $detector{"name"}        = "alertTarget";
+        $detector{"mother"}      = "root";
+        $detector{"description"} = "ALERT gaseous D2 Target";
+        $detector{"color"}       = "eeeegg";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_He";
+        $detector{"style"}       = "1";
+        $detector{"visible"}     = 0;
+        print_det(\%configuration, \%detector);
+        
+        # ALERT target gas volume
+        my $Rin        = 0.0;
+        $Rout       = 3.0;
+        $length     = 150.0;  
+        %detector = init_det();
+        $detector{"name"}        = "gasDeuteriumTarget";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "5 atm deuterium target gas";
+        $detector{"color"}       = "ffff00";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "alertTargetGas";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # ALERT target wall
+        $Rin        = 3.0; 
+        $Rout       = 3.060; 
+        $length     = 150.0;  
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetWall";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target wall";
+        $detector{"color"}       = "0000ff";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_KAPTON";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+
+	# ALERT target upstream aluminum end ring and window
+	$Rin        = 3.061;
+        $Rout       = 3.1561;
+        $length     = 2.0;  # half length
+        my $zPos       = -148.0;  # mm z position
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetUpEndCapRing";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al upstream end cap ring";
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+	
+	$Rin        = 0.0;
+        $Rout       = 3.1561;
+        $length     = 0.015;  # half length
+        $zPos       = -150.015;
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetUpEndCapPlate";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al upstream end cap wall";
+        $detector{"color"}       = "0af131";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+	
+        # ALERT target downstream aluminum end ring
+        $Rin        = 3.061;
+        $Rout       = 3.1561;
+        $length     = 2.0;  # half length
+        my $zPos       = 148;  # mm z position
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetEndCapRing";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al end cap ring";
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # ALERT target downstream aluminum end window
+        $Rin        = 0.0;
+        $Rout       = 3.1561;
+        $length     = 0.015;  # half length
+        $zPos       = 150.015;
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetEndCapPlate";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al end cap wall";
+        $detector{"color"}       = "0af131";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+    }
+
     #small targets
     if($thisVariation eq "RGM_2_Sn")
     {

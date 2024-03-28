@@ -644,5 +644,16 @@ sub materials
 	$mat{"components"}    = "G4_He 1";
 	print_mat(\%configuration, \%mat);
     }
+    if($thisVariation eq "alert")
+    {
+        # TargetALERTGas
+        %mat = init_mat();
+        $mat{"name"}          = "alertTargetGas";
+        $mat{"description"}   = "5 atm deuterium gas";
+        $mat{"density"}       = "0.0009";  # in g/cm3
+        $mat{"ncomponents"}   = "1";
+        $mat{"components"}    = "deuteriumGas 1";
+        print_mat(\%configuration, \%mat);
+    }
 
 }

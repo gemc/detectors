@@ -26,8 +26,42 @@ my $reflectivity =
 "  0.8941976     0.8948479     0.8877356     0.9026919     0.8999685 " .
 "  0.9101617     0.8983005     0.8991694     0.8990987     0.9000493 " .
 "  0.9065833     0.9028855     0.8985184     0.9009736     0.9086968 " .
-"  0.9015145     0.8914838     0.8816829     0.8666895     0.8452400" .
+"  0.9015145     0.8914838     0.8816829     0.8666895     0.8452400 " .
 "  0.8293650     0.8095238     0.7857142     0.7579365 ";
+
+my $specularspike =
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+"  1.0     1.0     1.0     1.0     1.0 " .
+    "  1.0     1.0     1.0     1.0 ";
+my $specularlobe =
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+    "  0.0     0.0     0.0     0.0 ";
+my $backscatter =
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+"  0.0     0.0     0.0     0.0     0.0 " .
+    "  0.0     0.0     0.0     0.0 ";
 
 my $sigmaAlphaPlanar = 0.05;
 
@@ -52,84 +86,105 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_1";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = $penergy ;
         $mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_2";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polished";
+	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_3";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polished";
+	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_4";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polished";
+	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_5";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polished";
+	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_6";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polished";
+	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_7";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "polished";
+	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 

@@ -29,9 +29,11 @@ my $reflectivity =
 "  0.9015145     0.8914838     0.8816829     0.8666895     0.8452400" .
 "  0.8293650     0.8095238     0.7857142     0.7579365 ";
 
+my $sigmaAlphaPlanar = 0.05;
 
 sub buildMirrorsSurfaces
 {
+
         my $sector = shift;
         my $sectorsuffix = "_s" . $sector;
 
@@ -55,6 +57,7 @@ sub buildMirrorsSurfaces
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = $penergy ;
         $mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -66,6 +69,7 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -77,6 +81,7 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -88,6 +93,7 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -99,6 +105,7 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -110,6 +117,7 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -121,6 +129,7 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	print_mir(\%configuration, \%mat);
 
 

@@ -64,6 +64,37 @@ my @abslength_window_h8500 = ( "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.000
 			       "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.0000*m",
 			       "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.0000*m",  "42.0000*m",
 			       "42.0000*m" );
+# Absorption coefficient for H8500 photocathode
+my @abslength_cathode_h8500 = ( "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm",  "1*mm",  "1*mm",  "1*mm",  "1*mm",
+			       "1*mm" );
+my @efficiency_cathode_h8500 = ( 1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+                               1.,  1.,  1.,  1.,  1.,
+				1. );
 
 
 # -------- aerogel properties ----------
@@ -131,8 +162,8 @@ sub define_aerogels
     my $sector = shift;
     my $sectorsuffix = "_s" . $sector;
     my %mat = init_mat();
-    my $n400Fit = 1.0494; #TODO: do we still use this, or just refr. index from updated tables?
-
+    #my $n400Fit = 1.0494; #TODO: do we still use this, or just refr. index from updated tables?
+    my $n400Fit = 1.0501;
     # Computing the wavelength in microns from the energy
     my @wavelength;
     my $arrSize = @penergy;
@@ -143,7 +174,8 @@ sub define_aerogels
 	$wavelength[$i] = $lambda;
 	#printf(" E=%s   lambda=%f\n", $penergy[$i], $lambda);
     }
-
+    #print join(", ", @wavelength);
+    #print "\n";
     if($sector eq "1"){   
 	my $AerogelTable = "Aerogel_module2.txt";
 	open (INFILE, "<$AerogelTable");
@@ -186,9 +218,12 @@ sub define_aerogels
 	# transparency calculation
 	my $thickness = $array[3];
 	my $A0 = $array[7];
+	my $L400 = $array[8];
 	my $Clarity = $array[9];
-	# RECALCULATE here the array abslength_aerogel using these prameters
+	# RECALCULATE here the array abslengt_aerogel using these prameters
+	# then, calculate scattering length as a function of energy 
 	my @abslength_aerogel2;
+	my @scattlength_aerogel;
 	for(my $i=0; $i < $arrSize; $i++){
 	    if ($thickness != 0 && $A0 != 0 && $Clarity != 0) {
 		my $lambda = $wavelength[$i];
@@ -197,12 +232,15 @@ sub define_aerogels
 		 #   printf("lambda=%f  C=%f   L=%f   Lref=%s\n", $lambda, $Clarity, $L, $abslength_aerogel[$i]);
 		#}
 		$abslength_aerogel2[$i] = $L . "*cm";
+		$scattlength_aerogel[$i] = $L400*($lambda*$lambda*$lambda*$lambda*1000*1000*1000*1000)/(400*400*400*400) . "*mm";
 	    }
 	    else {
-		$abslength_aerogel2[$i] = "0*cm";
+		$scattlength_aerogel[$i] = "10000*mm";
+		$abslength_aerogel2[$i] = "0*mm";
 	    }
 	}
-    
+	#print join(", ", @scattlength_aerogel);
+	#print "\n";
     # typical index of refraction of an aerogel tile
 #	my %mat = init_mat();
 	$mat{"name"}          = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
@@ -215,12 +253,26 @@ sub define_aerogels
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
 	$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel2);
 	#$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel);
-	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel2);
+	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel2);	
         #$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);
+	$mat{"rayleigh"} = arrayToString(@scattlength_aerogel);
 	print_mat(\%configuration, \%mat);
 
 	$j = $j + 1;
     }
+
+    my %mir = init_mir();
+    $mir{"name"} = "aerogel_surface_roughness";
+    $mir{"description"} = "rough surface";
+    $mir{"type"} = "dielectric_dielectric";
+    $mir{"finish"} = "ground";
+    $mir{"model"} = "unified";
+    $mir{"border"} = "SkinSurface";
+    #$mir{"maptOptProps"} = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
+    $mir{"photonEnergy"} = arrayToString(@penergy);
+    $mir{"sigmaAlhpa"} = 0.05;
+    print_mir(\%configuration, \%mir);
+
     close(INFILE);
 
 
@@ -305,6 +357,20 @@ sub define_MAPMT
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
         $mat{"indexOfRefraction"} = arrayToString(@irefr_window_h8500);
         $mat{"absorptionLength"}  = arrayToString(@abslength_window_h8500);
+ 	print_mat(\%configuration, \%mat);
+
+	print("making photocathode material \n");
+	# h8500 photocathode
+	%mat = init_mat();
+	$mat{"name"}          = "Photocathode_H8500";
+	$mat{"description"}   = "MAPMT photocathode";
+	$mat{"density"}       = "2.";  # in g/cm3
+	$mat{"ncomponents"}   = "3";
+	$mat{"components"}    = "K 1 Cs 1 Sb 1";
+	#$mat{"photonEnergy"}      = arrayToString(@penergy);
+        #$mat{"absorptionLength"}  = arrayToString(@abslength_cathode_h8500);
+        #$mat{"indexOfRefraction"} = arrayToString(@efficiency_cathode_h8500);
+	#$mat{"efficiency"} = arrayToString(@efficiency_cathode_h8500);
  	print_mat(\%configuration, \%mat);
 
 }

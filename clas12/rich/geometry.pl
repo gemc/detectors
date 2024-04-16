@@ -159,7 +159,8 @@ sub build_Elements
     my $Layer=201;
     for (my $Component=1; $Component <= $Max_Layer201; $Component++) {
         my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
-        my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
+        my $Sensitivity = 'mirror: aerogel_surface_roughness';
+	my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
         my %detector = init_det();
         my $vname                = $mesh;
         $detector{"name"}        = $vname.$sectorsuffix;
@@ -168,6 +169,8 @@ sub build_Elements
         $detector{"mother"}      = $mothers->{$vname};
         $detector{"color"}       = "4444ff";
         $detector{"material"}    = $MaterialName;
+	$detector{"sensitivity"} = $Sensitivity;
+	$detector{"hitType"}    =  "mirror";
         $detector{"identifiers"}    = "aerogel";
         $detector{"mother"}      = "RICH" . $sectorsuffix;
         $gxmlFile->add(\%detector);
@@ -178,6 +181,7 @@ sub build_Elements
  $Layer=202;
 for (my $Component=1; $Component <= $Max_Layer202; $Component++) {
     my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
+    my $Sensitivity = 'mirror: aerogel_surface_roughness';
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;
@@ -187,6 +191,8 @@ for (my $Component=1; $Component <= $Max_Layer202; $Component++) {
     $detector{"mother"}      = $mothers->{$vname};
     $detector{"color"}       = "4444ff";
     $detector{"material"}    = $MaterialName;
+    $detector{"sensitivity"} = $Sensitivity;
+    $detector{"hitType"}    =  "mirror";
     $detector{"identifiers"}    = "aerogel";
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $gxmlFile->add(\%detector);
@@ -196,6 +202,7 @@ for (my $Component=1; $Component <= $Max_Layer202; $Component++) {
 $Layer=203;
 for (my $Component=1; $Component <= $Max_Layer203; $Component++) {
     my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
+    my $Sensitivity = 'mirror: aerogel_surface_roughness';
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;
@@ -205,6 +212,8 @@ for (my $Component=1; $Component <= $Max_Layer203; $Component++) {
     $detector{"mother"}      = $mothers->{$vname};
     $detector{"color"}       = "4444ff";
     $detector{"material"}    = $MaterialName;
+    $detector{"sensitivity"} = $Sensitivity;
+    $detector{"hitType"}    =  "mirror";
     $detector{"identifiers"}    = "aerogel";
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $gxmlFile->add(\%detector);
@@ -214,6 +223,7 @@ for (my $Component=1; $Component <= $Max_Layer203; $Component++) {
 $Layer=204;
 for (my $Component=1; $Component <= $Max_Layer204; $Component++) {
     my $MaterialName='aerogel_sector'.$sector.'_layer'.$Layer.'_component'.$Component;
+    my $Sensitivity = 'mirror: aerogel_surface_roughness';
     my $mesh = 'Layer_'.$Layer.'_component_'.$Component;
     my %detector = init_det();
     my $vname                = $mesh;
@@ -223,6 +233,8 @@ for (my $Component=1; $Component <= $Max_Layer204; $Component++) {
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"color"}       = "4444ff";
     $detector{"material"}    = $MaterialName;
+    $detector{"sensitivity"} = $Sensitivity;
+    $detector{"hitType"}    =  "mirror";
     $detector{"identifiers"}    = "aluminum";
     $gxmlFile->add(\%detector);
 }
@@ -338,7 +350,7 @@ sub build_PMTs{
 	    $detector{"color"}       = "999966";
 	    $detector{"type"}        = $types->{$Photocathode};
 	    $detector{"dimensions"}  = $dimensions->{$Photocathode};
-	    $detector{"material"}    = "Air_Opt";
+	    $detector{"material"}    = "Air_Opt";#"Photocathode_H8500";
 	    $detector{"sensitivity"} = "rich";
 	    $detector{"hit_type"}    = "rich";
 	    $detector{"identifiers"} = "sector manual $sector pad manual $nPMTS pixel manual 1";

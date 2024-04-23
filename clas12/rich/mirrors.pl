@@ -63,7 +63,8 @@ my $backscatter =
 "  0.0     0.0     0.0     0.0     0.0 " .
     "  0.0     0.0     0.0     0.0 ";
 
-my $sigmaAlphaPlanar = 0.005;
+my $sigmaAlphaPlanar = 0.00025;
+my $sigmaAlphaSpherical = 0.00025;
 
 sub buildMirrorsSurfaces
 {
@@ -197,6 +198,10 @@ sub buildMirrorsSurfaces
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = $penergy ;
         $mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -208,6 +213,10 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -219,6 +228,10 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -230,6 +243,10 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 
@@ -242,6 +259,10 @@ sub buildMirrorsSurfaces
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = $penergy ;
         $mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -253,6 +274,10 @@ sub buildMirrorsSurfaces
         $mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
         %mat = init_mir();
@@ -264,6 +289,10 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
         %mat = init_mir();
@@ -275,6 +304,10 @@ sub buildMirrorsSurfaces
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = $penergy ;
         $mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -286,6 +319,10 @@ sub buildMirrorsSurfaces
         $mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
         %mat = init_mir();
@@ -297,6 +334,10 @@ sub buildMirrorsSurfaces
 	$mat{"border"}       = "SkinSurface";
 	$mat{"photonEnergy"} = $penergy ;
 	$mat{"reflectivity"} = $reflectivity ;
+	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
+	$mat{"specularspike"} = $specularspike;
+	$mat{"specularlobe"} = $specularlobe;
+	$mat{"backscatter"} = $backscatter;
 	print_mir(\%configuration, \%mat);
 
 }

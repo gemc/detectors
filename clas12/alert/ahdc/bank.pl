@@ -40,10 +40,15 @@ sub define_ahdc_bank
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "set to 0");
 	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "hipo layer is superlayer*10 + layer");
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "wire number");
-	insert_bank_variable(\%configuration, $bankname, "TDC_order",    4, "Di", "set to 0");
-	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      5, "Di", "TDC integral from pulse fit");
-	insert_bank_variable(\%configuration, $bankname, "TDC_ped" ,     6, "Di", "pedestal from pulse analysis - currently set to doca");
+	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "set to 0");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC integral from pulse fit");
+	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Di", "adc time from pulse fit");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis - currently set to doca");
+#	insert_bank_variable(\%configuration, $bankname, "TDC_order",    4, "Di", "set to 0");
+#	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      5, "Di", "TDC integral from pulse fit");
+#	insert_bank_variable(\%configuration, $bankname, "TDC_ped" ,     6, "Di", "pedestal from pulse analysis - currently set to doca");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
+
 
 	
 

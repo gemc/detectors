@@ -98,20 +98,6 @@ sub make_scatt_chambers
 	$detector{"pos"}         = "0 0 $wzpos*mm";
 	print_det(\%configuration, \%detector);
 
-	$wzpos = $wzpos + 10;
-	$worad = $worad + 7;
-	
-	%detector = init_det();
-	$detector{"name"}        = "vacuumEntryWindow";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "Vacuum exit window";
-	$detector{"color"}       = "aaaaff";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm $worad*mm 0.05*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Al";
-	$detector{"pos"}         = "0 0 $wzpos*mm";
-	print_det(\%configuration, \%detector);
-
 }
 
 

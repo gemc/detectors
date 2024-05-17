@@ -134,7 +134,18 @@ my @abslength_aerogel = ( "29.2394*cm",   "28.9562*cm",   "28.6784*cm",   "26.89
 			  "0.753044*cm",  "0.630981*cm",  "0.516107*cm",  "0.409999*cm",  "0.314334*cm",
 			  "0.242124*cm" );
 
-
+my @mielength_aerogel = ("15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
+			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm"
+    );
+my $mieforward_aerogel = 0.99965; # is this 1mrad? estimated from mean of \theta_Mie as parameterized in G4 
+my $miebackward_aerogel = 1.0;
+my $mieratio_aerogel = 1;
 
 sub define_aerogel
 {
@@ -162,8 +173,8 @@ sub define_aerogels
     my $sector = shift;
     my $sectorsuffix = "_s" . $sector;
     my %mat = init_mat();
-    #my $n400Fit = 1.0494; #TODO: do we still use this, or just refr. index from updated tables?
-    my $n400Fit = 1.0501;
+    my $n400Fit = 1.0494; #TODO: do we still use this, or just refr. index from updated tables?
+    #my $n400Fit = 1.0501;
     # Computing the wavelength in microns from the energy
     my @wavelength;
     my $arrSize = @penergy;
@@ -256,6 +267,10 @@ sub define_aerogels
 	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel2);	
         #$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);
 	$mat{"rayleigh"} = arrayToString(@scattlength_aerogel);
+	$mat{"mie"} = arrayToString(@mielength_aerogel);
+	$mat{"mieforward"} = $mieforward_aerogel;
+	$mat{"miebackward"} = $miebackward_aerogel;
+	$mat{"mieratio"} = $mieratio_aerogel;
 	print_mat(\%configuration, \%mat);
 
 	$j = $j + 1;
@@ -270,7 +285,7 @@ sub define_aerogels
     $mir{"border"} = "SkinSurface";
     #$mir{"maptOptProps"} = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
     $mir{"photonEnergy"} = arrayToString(@penergy);
-    $mir{"sigmaAlhpa"} = 0.05;
+    $mir{"sigmaAlhpa"} = 0.02;
     print_mir(\%configuration, \%mir);
 
     close(INFILE);

@@ -95,19 +95,9 @@ lD2CuSn - Empty lD2 cell + 63Cu and 120Sn in series in the beamline
 
 ### How to use it in the gcard
 1. For lD2 variations:
- 1.1 Set it as: (see clas12_lD2-RGD.gcard)
-<detector name="experiments/clas12/targets/cad/"   factory="CAD"/>
-<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2"/>
- 1.2 Shift the target upstream by 50 mm: 
-<detector name="target">    <position x="0.0*cm"  y="0.0*cm"  z="-5.0*cm"  />  </detector>
+Set it up as in "clas12_lD2-RGD.gcard", and
+shift the target upstream by 50 mm, see  "clas12_lD2-RGD.gcard".
 2. Solid Targets:
- 2.1.
-   i. Set it for lD2CxC variation as: (see clas12_12C-RGD.gcard)
-<detector name="experiments/clas12/targets/flagCad/" factory="CAD"/>
-<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2CxC"/>
- 2.1
-  ii. Set it for lD2CuSn variation as: (see clas12_120Sn-RGD.gcard or clas12_63Cu-RGD.gcard)
-<detector name="experiments/clas12/targets/flagCad/" factory="CAD"/>
-<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2CuSn"/>
- 2.2 Shift the target upstream by 50 mm by 150 mm to get the two solid foils @ -7.5 cm and -2.5 cm, as the entrance and exit windows for the lD2 case:
+Set it up for lD2CxC/lD2CuSn variation as in "clas12_12C-RGD.gcard/clas12_120Sn-RGD.gcard or clas12_63Cu-RGD.gcard", and 
+shift the whole target assembly upstream by 150 mm to get the two solid foils @ -7.5 cm and -2.5 cm, as the entrance and exit windows for the lD2 case; see the mentioned three solid-foil gcards.
 <detector name="target">    <position x="0.0*cm"  y="0.0*cm"  z="-15.0*cm"  />  </detector>

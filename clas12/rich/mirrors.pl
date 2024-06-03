@@ -91,7 +91,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanA3);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanA3);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -106,7 +111,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanB1);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanB1);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         $mat{"specularspike"} = arrayToString(@specularspike);
         $mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -121,7 +131,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanB2);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanB2);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         $mat{"specularspike"} = arrayToString(@specularspike);
         $mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -136,7 +151,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanA2R);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanA2R);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         $mat{"specularspike"} = arrayToString(@specularspike);
         $mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -151,7 +171,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanA2L);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanA2L);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         $mat{"specularspike"} = arrayToString(@specularspike);
         $mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -166,7 +191,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanA1R);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanA1R);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         $mat{"specularspike"} = arrayToString(@specularspike);
         $mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -181,7 +211,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-        $mat{"reflectivity"} = arrayToString(@reflPlanA1L);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflPlanA1L);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflPlanAvg);
+	}
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
         $mat{"specularspike"} = arrayToString(@specularspike);
         $mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -198,7 +233,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe1);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe1);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -213,7 +253,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe2);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe2);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -228,7 +273,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe3);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe3);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -243,7 +293,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe4);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe4);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -258,7 +313,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe2C);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe2C);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -273,7 +333,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe3C);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe3C);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -288,7 +353,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe4C);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe4C);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -303,7 +373,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe5);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe5);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -318,7 +393,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe5C);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe5C);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);
@@ -333,7 +413,12 @@ sub buildMirrorsSurfaces
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-        $mat{"reflectivity"} = arrayToString(@reflSphe6);
+	if($sector eq '1'){
+	    $mat{"reflectivity"} = arrayToString(@reflSphe6);
+	}
+	else{
+	    $mat{"reflectivity"} = arrayToString(@reflSpheAvg);
+	}
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
 	$mat{"specularspike"} = arrayToString(@specularspike);
 	$mat{"specularlobe"} = arrayToString(@specularlobe);

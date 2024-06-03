@@ -10,7 +10,19 @@ sub read_array{
     
     while (my $line = <$fh>) {
         chomp $line;
-        push @array, $line;
+        push @array, sprintf("%.5f", $line);
+    }
+    close($fh);
+    return @array;
+}
+sub read_energy_array{
+    my ($filename) = @_;
+    open(my $fh, '<', $filename);
+    my @array;
+    
+    while (my $line = <$fh>) {
+        chomp $line;
+        push @array, sprintf("%.5f*eV", $line);
     }
     close($fh);
     return @array;
@@ -19,7 +31,7 @@ sub read_array{
 # read in reflectivities
 # sector 1 - individual mirror measurements
 # sector 4 - use average of sector 1 mirror measurements
-my @penergy = read_array("reflectivities/phot_ene.txt");
+my @penergy = read_energy_array("reflectivities/phot_ene.txt");
 
 my @reflPlanAvg = read_array("reflectivities/refl_plan_avg.txt");
 my @reflSpheAvg = read_array("reflectivities/refl_sphe_avg.txt");
@@ -53,7 +65,9 @@ my $sigmaAlphaSpherical = 0.00025;
 
 sub buildMirrorsSurfaces
 {
-
+    #print @specularspike;
+    #print @reflSphe1;
+    
         my $sector = shift;
         my $sectorsuffix = "_s" . $sector;
 
@@ -76,12 +90,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanA3;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanA3);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(arrayToString(@backscatter));
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -91,12 +105,12 @@ sub buildMirrorsSurfaces
 	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanB1;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanB1);
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-        $mat{"specularspike"} = @specularspike;
-        $mat{"specularlobe"} = @specularlobe;
-        $mat{"backscatter"} = @backscatter;
+        $mat{"specularspike"} = arrayToString(@specularspike);
+        $mat{"specularlobe"} = arrayToString(@specularlobe);
+        $mat{"backscatter"} = arrayToString(@backscatter);
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -106,12 +120,12 @@ sub buildMirrorsSurfaces
 	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanB2;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanB2);
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-        $mat{"specularspike"} = @specularspike;
-        $mat{"specularlobe"} = @specularlobe;
-        $mat{"backscatter"} = @backscatter;
+        $mat{"specularspike"} = arrayToString(@specularspike);
+        $mat{"specularlobe"} = arrayToString(@specularlobe);
+        $mat{"backscatter"} = arrayToString(@backscatter);
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -121,12 +135,12 @@ sub buildMirrorsSurfaces
 	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanA2R;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanA2R);
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-        $mat{"specularspike"} = @specularspike;
-        $mat{"specularlobe"} = @specularlobe;
-        $mat{"backscatter"} = @backscatter;
+        $mat{"specularspike"} = arrayToString(@specularspike);
+        $mat{"specularlobe"} = arrayToString(@specularlobe);
+        $mat{"backscatter"} = arrayToString(@backscatter);
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -136,12 +150,12 @@ sub buildMirrorsSurfaces
 	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanA2L;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanA2L);
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-        $mat{"specularspike"} = @specularspike;
-        $mat{"specularlobe"} = @specularlobe;
-        $mat{"backscatter"} = @backscatter;
+        $mat{"specularspike"} = arrayToString(@specularspike);
+        $mat{"specularlobe"} = arrayToString(@specularlobe);
+        $mat{"backscatter"} = arrayToString(@backscatter);
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -151,12 +165,12 @@ sub buildMirrorsSurfaces
 	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanA1R;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanA1R);
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-        $mat{"specularspike"} = @specularspike;
-        $mat{"specularlobe"} = @specularlobe;
-        $mat{"backscatter"} = @backscatter;
+        $mat{"specularspike"} = arrayToString(@specularspike);
+        $mat{"specularlobe"} = arrayToString(@specularlobe);
+        $mat{"backscatter"} = arrayToString(@backscatter);
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -166,12 +180,12 @@ sub buildMirrorsSurfaces
 	$mat{"finish"}       = "ground";#"polished";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy;
-        $mat{"reflectivity"} = @reflPlanA1L;
+        $mat{"photonEnergy"} = arrayToString(@penergy);
+        $mat{"reflectivity"} = arrayToString(@reflPlanA1L);
         $mat{"sigmaAlhpa"} = $sigmaAlphaPlanar;
-        $mat{"specularspike"} = @specularspike;
-        $mat{"specularlobe"} = @specularlobe;
-        $mat{"backscatter"} = @backscatter;
+        $mat{"specularspike"} = arrayToString(@specularspike);
+        $mat{"specularlobe"} = arrayToString(@specularlobe);
+        $mat{"backscatter"} = arrayToString(@backscatter);
 	print_mir(\%configuration, \%mat);
 
 	### Spherical mirror properties ###
@@ -183,12 +197,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe1;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe1);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -198,12 +212,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe2;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe2);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -213,12 +227,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe3;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe3);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -228,12 +242,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe4;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe4);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -243,12 +257,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe2C;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe2C);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -258,12 +272,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe3C;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe3C);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -273,12 +287,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe4C;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe4C);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -288,12 +302,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe5;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe5);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -303,12 +317,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe5C;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe5C);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
@@ -318,12 +332,12 @@ sub buildMirrorsSurfaces
         $mat{"finish"}       = "polished";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
-        $mat{"photonEnergy"} = @penergy ;
-        $mat{"reflectivity"} = @reflSphe6;
+        $mat{"photonEnergy"} = arrayToString(@penergy) ;
+        $mat{"reflectivity"} = arrayToString(@reflSphe6);
 	$mat{"sigmaAlhpa"} = $sigmaAlphaSpherical;
-	$mat{"specularspike"} = @specularspike;
-	$mat{"specularlobe"} = @specularlobe;
-	$mat{"backscatter"} = @backscatter;
+	$mat{"specularspike"} = arrayToString(@specularspike);
+	$mat{"specularlobe"} = arrayToString(@specularlobe);
+	$mat{"backscatter"} = arrayToString(@backscatter);
         print_mir(\%configuration, \%mat);
 
 }

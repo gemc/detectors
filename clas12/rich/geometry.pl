@@ -372,7 +372,7 @@ sub build_SphericalMirrors
     my %detector = init_det();
     # Spherical Mirror 1 Component
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror1" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror3PreShift" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"description"} = "Spherical Mirror 1 component";
     $detector{"type"}        = "Sphere";
@@ -380,133 +380,133 @@ sub build_SphericalMirrors
     $detector{"material"}    = "Component";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 1B
+    # Spherical Mirror 6
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror1B" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror6" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm ";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "SphericalMirror1B ";
+    $detector{"description"} = "SphericalMirror6 ";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 122*deg 12.25*deg 75.0*deg 15.0*deg";
     $detector{"material"}    = "CarbonFiber";
     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1B";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_6";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 10";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 1C
+    # Spherical Mirror 7
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror1C" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror7" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm ";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "SphericalMirror1C ";
+    $detector{"description"} = "SphericalMirror7 ";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 122*deg 12.25*deg 90.0*deg 15.0*deg";
     $detector{"material"}    = "CarbonFiber";
-     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1C";
+    $detector{"style"}    = "1";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_7";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 11";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 1D
+    # Spherical Mirror 4 pre shift
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror1D" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror4PreShift" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "0*mm 0*mm  0*mm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    $detector{"description"} = "SphericalMirror1D";
+    $detector{"description"} = "SphericalMirror4PreShift";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 122*deg 12.25*deg 105.0*deg 15.0*deg";
     $detector{"material"}    = "Component";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 2
+    # Spherical Mirror 8 pre shift
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror2" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror8PreShift" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "0*mm 0*mm  0*mm ";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    $detector{"description"} = "SphericalMirror2";
+    $detector{"description"} = "SphericalMirror8PreShift";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 134.25*deg 11.5*deg 60.0*deg 21.0*deg";
     $detector{"material"}    = "Component";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 2B
+    # Spherical Mirror 9
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror2B" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror9" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "SphericalMirror2B";
+    $detector{"description"} = "SphericalMirror9";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 134.25*deg 11.5*deg 81.0*deg 18.0*deg";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_2B";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_9";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 12";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 2C
+    # Spherical Mirror 10 (3C) pre shift
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror2C" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror10PreShift" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "0*mm 0*mm  0*mm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";    
-    $detector{"description"} = "SphericalMirror2C";
+    $detector{"description"} = "SphericalMirror10PreShift";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 134.25*deg 11.5*deg 99.0*deg 21.0*deg";
     $detector{"material"}    = "Component";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 3
+    # Spherical Mirror 1 before shift
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror3" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror1PreShift" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "0*mm 0*mm  0*mm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    $detector{"description"} = "SphericalMirror3";
+    $detector{"description"} = "SphericalMirror1PreShift";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 145.75*deg 11.25*deg 60.0*deg 21.0*deg";
     $detector{"material"}    = "Component";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 3B
+    # Spherical Mirror 5
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror3B" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror5" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "SphericalMirror3B";
+    $detector{"description"} = "SphericalMirror5";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 145.75*deg 11.25*deg 81.0*deg 18.0*deg";
     $detector{"material"}    = "CarbonFiber";
     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3B";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_5";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 13";
     print_det(\%main::configuration, \%detector);
     
-    # Spherical Mirror 3C
+    # Spherical Mirror 2 pre shift
     %detector = init_det();
-    $detector{"name"}        = "SphericalMirror3C" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror2PreShift" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "0*mm 0*mm  0*mm";
     $detector{"rotation"}    = "0*deg 0*deg 0*deg";
-    $detector{"description"} = "SphericalMirror3C";
+    $detector{"description"} = "SphericalMirror2PreShift";
     $detector{"color"}       = "696277";
     $detector{"type"}        = "Sphere";
     $detector{"dimensions"}  = "$RadiusSphere*mm $RadiusSphereFinal*mm 145.75*deg 11.25*deg 99.0*deg 21.0*deg";
@@ -539,104 +539,104 @@ sub build_SphericalMirrors
     $detector{"material"}    = "Component";
     print_det(\%main::configuration, \%detector);
     
-    # New Mirror 4
+    # Spherical Mirror 4
     %detector = init_det();
-    $detector{"name"}        = "NewMirror4" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror4" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm";    
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "subtraction mirror1-plane";
+    $detector{"description"} = "subtraction mirror4-plane";
     $detector{"color"}       = "696277";
-    $detector{"type"}        = "Operation:@ SphericalMirror1D".$sectorsuffix." - TiltedPlane1".$sectorsuffix;
+    $detector{"type"}        = "Operation:@ SphericalMirror4PreShift".$sectorsuffix." - TiltedPlane1".$sectorsuffix;
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1D";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_4";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 15";
     print_det(\%main::configuration, \%detector);
     
-    # New Mirror 6
+    # SphericalMirror 10
     %detector = init_det();
-    $detector{"name"}        = "NewMirror6" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror10" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm ";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";    
     $detector{"description"} = "subtraction mirror4-plane";
     $detector{"color"}       = "696277";
-    $detector{"type"}        = "Operation:@ SphericalMirror2C".$sectorsuffix." - TiltedPlane1".$sectorsuffix;
+    $detector{"type"}        = "Operation:@ SphericalMirror10PreShift".$sectorsuffix." - TiltedPlane1".$sectorsuffix;
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_2C";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_10";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 16";
     print_det(\%main::configuration, \%detector);
     
-    # New Mirror 2
+    # Spherical mirror 2
     %detector = init_det();
-    $detector{"name"}        = "NewMirror2" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror2" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm ";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";    
     $detector{"description"} = "subtraction mirror";
     $detector{"color"}       = "696277";
-    $detector{"type"}        = "Operation:@ SphericalMirror3C".$sectorsuffix." - TiltedPlane1".$sectorsuffix;
-    $detector{"dimensions"}  = "0";
-    $detector{"material"}    = "CarbonFiber";
-     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3C";
-    $detector{"hit_type"}    = "mirror";
-    $detector{"identifiers"} = "id manual 17";
-    print_det(\%main::configuration, \%detector);
-    
-    # New Mirror 3
-    %detector = init_det();
-    $detector{"name"}        = "NewMirror3" . $sectorsuffix;
-    $detector{"mother"}      = "RICH" . $sectorsuffix;
-    $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm ";
-    $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "subtraction mirror 3";
-    $detector{"color"}       = "696277";
-    $detector{"type"}        = "Operation:@ SphericalMirror1".$sectorsuffix." - TiltedPlane2".$sectorsuffix;
-    $detector{"dimensions"}  = "0";
-    $detector{"material"}    = "CarbonFiber";
-     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1";
-    $detector{"hit_type"}    = "mirror";
-    $detector{"identifiers"} = "id manual 18";
-    print_det(\%main::configuration, \%detector);
-    
-    # New Mirror 5
-    %detector = init_det();
-    $detector{"name"}        = "NewMirror5" . $sectorsuffix;
-    $detector{"mother"}      = "RICH" . $sectorsuffix;
-    $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm";
-    $detector{"rotation"}    = "90*deg 0*deg -90*deg";
-    $detector{"description"} = "subtraction mirror 5";
-    $detector{"color"}       = "696277";
-    $detector{"type"}        = "Operation:@ SphericalMirror2".$sectorsuffix." - TiltedPlane2".$sectorsuffix;
+    $detector{"type"}        = "Operation:@ SphericalMirror2PreShift".$sectorsuffix." - TiltedPlane1".$sectorsuffix;
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
      $detector{"style"}    = "1";
     $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_2";
     $detector{"hit_type"}    = "mirror";
+    $detector{"identifiers"} = "id manual 17";
+    print_det(\%main::configuration, \%detector);
+    
+    # Spherical Mirror 3
+    %detector = init_det();
+    $detector{"name"}        = "SphericalMirror3" . $sectorsuffix;
+    $detector{"mother"}      = "RICH" . $sectorsuffix;
+    $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm ";
+    $detector{"rotation"}    = "90*deg 0*deg -90*deg";
+    $detector{"description"} = "subtraction mirror 3";
+    $detector{"color"}       = "696277";
+    $detector{"type"}        = "Operation:@ SphericalMirror3PreShift".$sectorsuffix." - TiltedPlane2".$sectorsuffix;
+    $detector{"dimensions"}  = "0";
+    $detector{"material"}    = "CarbonFiber";
+     $detector{"style"}    = "1";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3";
+    $detector{"hit_type"}    = "mirror";
+    $detector{"identifiers"} = "id manual 18";
+    print_det(\%main::configuration, \%detector);
+    
+    # Spherical Mirror 8
+    %detector = init_det();
+    $detector{"name"}        = "SphericalMirror8" . $sectorsuffix;
+    $detector{"mother"}      = "RICH" . $sectorsuffix;
+    $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm";
+    $detector{"rotation"}    = "90*deg 0*deg -90*deg";
+    $detector{"description"} = "subtraction mirror 5";
+    $detector{"color"}       = "696277";
+    $detector{"type"}        = "Operation:@ SphericalMirror8PreShift".$sectorsuffix." - TiltedPlane2".$sectorsuffix;
+    $detector{"dimensions"}  = "0";
+    $detector{"material"}    = "CarbonFiber";
+     $detector{"style"}    = "1";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_8";
+    $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 19";
     print_det(\%main::configuration, \%detector);
     
-    # New Mirror 1
+    # SphericalMirror1
     %detector = init_det();
-    $detector{"name"}        = "NewMirror1" . $sectorsuffix;
+    $detector{"name"}        = "SphericalMirror1" . $sectorsuffix;
     $detector{"mother"}      = "RICH" . $sectorsuffix;
     $detector{"pos"}         = "-458.68*mm 0*mm  3919.77*mm";
     $detector{"rotation"}    = "90*deg 0*deg -90*deg";    
     $detector{"description"} = "subtraction mirror 1";
     $detector{"color"}       = "696277";
-    $detector{"type"}        = "Operation:@ SphericalMirror3".$sectorsuffix." - TiltedPlane2".$sectorsuffix;
+    $detector{"type"}        = "Operation:@ SphericalMirror1PreShift".$sectorsuffix." - TiltedPlane2".$sectorsuffix;
     $detector{"dimensions"}  = "0";
     $detector{"material"}    = "CarbonFiber";
-     $detector{"style"}    = "1";
-    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_3";
+    $detector{"style"}    = "1";
+    $detector{"sensitivity"} = "mirror: rich_s".$sector."_mirror_spherical_1";
     $detector{"hit_type"}    = "mirror";
     $detector{"identifiers"} = "id manual 20";
     print_det(\%main::configuration, \%detector);

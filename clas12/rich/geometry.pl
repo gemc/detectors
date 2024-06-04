@@ -152,7 +152,10 @@ sub build_Elements
     my $Max_Layer201=16;
     my $Max_Layer202=22;
     my $Max_Layer203=32;
-    my $Max_Layer204=31;
+    my $Max_Layer204 = 31;
+    if($sector eq '1'){
+	$Max_Layer204=32;
+    }
     my $Max_Layer301=7;
     my $Max_Layer302=10;
     

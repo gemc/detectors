@@ -143,10 +143,13 @@ my @mielength_aerogel = ("15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "
 			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
 			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm"
     );
-my $mieforward_aerogel = 0.99965; # is this 1mrad? estimated from mean of \theta_Mie as parameterized in G4 
+#Mie scattering parameters
+my $mieforward_aerogel = 0.99988; # avg. scattering 1mrad, estimated from mean of \theta_Mie as parameterized in G4 
 my $miebackward_aerogel = 1.0;
 my $mieratio_aerogel = 1;
 
+#Roughness
+my $aerogelSigmaAlpha = 0.0168;
 sub define_aerogel
 {
     
@@ -285,7 +288,7 @@ sub define_aerogels
     $mir{"border"} = "SkinSurface";
     #$mir{"maptOptProps"} = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
     $mir{"photonEnergy"} = arrayToString(@penergy);
-    $mir{"sigmaAlhpa"} = 0.02;
+    $mir{"sigmaAlhpa"} = $aerogelSigmaAlpha;
     print_mir(\%configuration, \%mir);
 
     close(INFILE);

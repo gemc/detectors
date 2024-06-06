@@ -149,7 +149,7 @@ my $miebackward_aerogel = 1.0;
 my $mieratio_aerogel = 1;
 
 #Roughness
-my $aerogelSigmaAlpha = 0.0168;
+my $aerogelSigmaAlpha = 0.02;
 sub define_aerogel
 {
     

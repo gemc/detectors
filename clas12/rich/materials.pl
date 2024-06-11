@@ -144,7 +144,7 @@ my @mielength_aerogel = ("15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "
 			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm"
     );
 #Mie scattering parameters
-my $mieforward_aerogel = 0.99988; # avg. scattering 1mrad, estimated from mean of \theta_Mie as parameterized in G4 
+my $mieforward_aerogel = 0.999; # \sigma ~ 1mrad
 my $miebackward_aerogel = 1.0;
 my $mieratio_aerogel = 1;
 

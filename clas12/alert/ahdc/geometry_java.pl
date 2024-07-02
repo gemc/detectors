@@ -111,13 +111,13 @@ sub build_ncells_0
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -153,13 +153,13 @@ sub build_ncells_1
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -195,13 +195,13 @@ sub build_ncells_2
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -237,13 +237,13 @@ sub build_ncells_3
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";

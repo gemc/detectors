@@ -29,11 +29,11 @@ sub makeAHDC
 {
 	($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
 	
-	$ncells_0 = $main::parameters{"ahdc.superlayer0.layer0.ncomponents"};
-	$ncells_1 = $main::parameters{"ahdc.superlayer1.layer0.ncomponents"};
-	$ncells_2 = $main::parameters{"ahdc.superlayer2.layer0.ncomponents"};
-	$ncells_3 = $main::parameters{"ahdc.superlayer3.layer0.ncomponents"};
-	$ncells_4 = $main::parameters{"ahdc.superlayer4.layer0.ncomponents"};
+	$ncells_0 = $main::parameters{"ahdc.superlayer1.layer1.ncomponents"};
+	$ncells_1 = $main::parameters{"ahdc.superlayer2.layer1.ncomponents"};
+	$ncells_2 = $main::parameters{"ahdc.superlayer3.layer1.ncomponents"};
+	$ncells_3 = $main::parameters{"ahdc.superlayer4.layer1.ncomponents"};
+	$ncells_4 = $main::parameters{"ahdc.superlayer5.layer1.ncomponents"};
 	
 	build_mother();
 	build_superlayers();
@@ -66,25 +66,25 @@ sub build_mother
 # Superlayers
 sub build_superlayers
 {
-	for(my $s=0; $s<1; $s++)
+	for(my $s=1; $s<=1; $s++)
 	{	
 		build_ncells_0($s);
 	}
 	
-	for(my $s=0; $s<$nlayers; $s++)
+	for(my $s=1; $s<=$nlayers; $s++)
 	{
 		build_ncells_1($s);
 	}
-	for(my $s=0; $s<$nlayers; $s++)
+	for(my $s=1; $s<=$nlayers; $s++)
 	{
 		build_ncells_2($s);
 	}
-	for(my $s=0; $s<$nlayers; $s++)
+	for(my $s=1; $s<=$nlayers; $s++)
 	{
 		build_ncells_3($s);
 	}
 	
-	for(my $s=0; $s<1; $s++)
+	for(my $s=1; $s<=1; $s++)
 	{
 		build_ncells_4($s);
 	}
@@ -102,7 +102,7 @@ sub build_ncells_0
 		{
 			my %detector = init_det();
 			
-			my $vname                 = "superlayer0_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
+			my $vname                 = "superlayer1_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
 			$detector{"name"}         = $vname;
 			$detector{"mother"}       = $mother;
 			$detector{"pos"}          = "0.0*mm 0.0*mm 0.0*mm";
@@ -111,13 +111,13 @@ sub build_ncells_0
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -127,7 +127,7 @@ sub build_ncells_0
 			$detector{"sensitivity"}  = "ahdc";
 			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
-			$detector{"identifiers"}  = "superlayer manual 0 layer manual $layer ahdccell manual $n side manual 0 ";
+			$detector{"identifiers"}  = "superlayer manual 1 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
 		}
 	}
@@ -144,7 +144,7 @@ sub build_ncells_1
 		{
 			my %detector = init_det();
 			
-			my $vname                 = "superlayer1_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
+			my $vname                 = "superlayer2_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
 			$detector{"name"}         = $vname;
 			$detector{"mother"}       = $mother;
 			$detector{"pos"}          = "0.0*mm 0.0*mm 0.0*mm";
@@ -153,13 +153,13 @@ sub build_ncells_1
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -169,7 +169,7 @@ sub build_ncells_1
 			$detector{"sensitivity"}  = "ahdc";
 			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
-			$detector{"identifiers"}  = "superlayer manual 1 layer manual $layer ahdccell manual $n side manual 0 ";
+			$detector{"identifiers"}  = "superlayer manual 2 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
 		}
 	}
@@ -186,7 +186,7 @@ sub build_ncells_2
 		{
 			my %detector = init_det();
 			
-			my $vname                 = "superlayer2_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
+			my $vname                 = "superlayer3_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
 			$detector{"name"}         = $vname;
 			$detector{"mother"}       = $mother;
 			$detector{"pos"}          = "0.0*mm 0.0*mm 0.0*mm";
@@ -195,13 +195,13 @@ sub build_ncells_2
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -211,7 +211,7 @@ sub build_ncells_2
 			$detector{"sensitivity"}  = "ahdc";
 			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
-			$detector{"identifiers"}  = "superlayer manual 2 layer manual $layer ahdccell manual $n side manual 0 ";
+			$detector{"identifiers"}  = "superlayer manual 3 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
 		}
 	}
@@ -228,7 +228,7 @@ sub build_ncells_3
 		{
 			my %detector = init_det();
 			
-			my $vname                 = "superlayer3_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
+			my $vname                 = "superlayer4_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
 			$detector{"name"}         = $vname;
 			$detector{"mother"}       = $mother;
 			$detector{"pos"}          = "0.0*mm 0.0*mm 0.0*mm";
@@ -237,13 +237,13 @@ sub build_ncells_3
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -253,7 +253,7 @@ sub build_ncells_3
 			$detector{"sensitivity"}  = "ahdc";
 			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
-			$detector{"identifiers"}  = "superlayer manual 3 layer manual $layer ahdccell manual $n side manual 0 ";
+			$detector{"identifiers"}  = "superlayer manual 4 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
 		}
 	}
@@ -270,7 +270,7 @@ sub build_ncells_4
 		{
 			my %detector = init_det();
 			
-			my $vname                 = "superlayer4_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
+			my $vname                 = "superlayer5_layer".$layer."_ahdccell".$n."_subcell".$subcell; 
 			$detector{"name"}         = $vname;
 			$detector{"mother"}       = $mother;
 			$detector{"pos"}          = "0.0*mm 0.0*mm 0.0*mm";
@@ -279,13 +279,13 @@ sub build_ncells_4
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "AHDCcell $n Subcell $subcell";
 			
-			if($layer==0)
+			if($layer==1)
 			{
 				$detector{"color"}        = "aa00ff";
 			} 
 			else 
 			{
-				if($layer==1) {$detector{"color"}        = "ff11aa";}
+				if($layer==2) {$detector{"color"}        = "ff11aa";}
 			}
 			
 			$detector{"material"}     = "AHDCgas";
@@ -295,7 +295,7 @@ sub build_ncells_4
 			$detector{"sensitivity"}  = "ahdc";
 			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
-			$detector{"identifiers"}  = "superlayer manual 4 layer manual $layer ahdccell manual $n side manual 0 ";
+			$detector{"identifiers"}  = "superlayer manual 5 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
 		}
 	}

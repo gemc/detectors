@@ -199,7 +199,7 @@ public String gemcString(int superlayer, int layer, Component comp) {
 		}
 		// currently only writing the component id but should save all necessary identifiers according to detector definition
         	str.append(" | ");
-        	str.append(String.format(" %d %d %d", superlayer, layer, (comp.getComponentId()+1)));
+        	str.append(String.format(" %d %d %d", superlayer, layer, (comp.getComponentId())));
 
 		str.append("\n");
 	}

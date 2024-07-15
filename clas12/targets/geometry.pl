@@ -1546,7 +1546,7 @@ sub build_targets
 	# adapted from bonus case
         # alert tg root volume
         my $Rout       = 4;
-        my $length     = 386.5;  # mm!
+        my $length     = 322.27;  # mm!
         my %detector = init_det();
         $detector{"name"}        = "alertTarget";
         $detector{"mother"}      = "root";

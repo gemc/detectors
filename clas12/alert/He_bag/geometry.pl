@@ -17,9 +17,9 @@ sub make_Hebag_mother
 	$detector{"mother"}      = "root";
 	$detector{"description"} = "ALERT He bag mother";
 	$detector{"color"}       = "eeeegg";
-	$detector{"pos"}         = "0*mm 0*mm 682.741*mm";
+	$detector{"pos"}         = "0*mm 0*mm 646.135*mm";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0.0*mm 20.0*mm 296.83*mm 0*deg 360*deg";
+	$detector{"dimensions"}  = "0.0*mm 20.0*mm 323.865*mm 0*deg 360*deg";
 	$detector{"material"}    = "HECO2";
 	#$detector{"material"}    = "HeBagGas";
 	#$detector{"visible"}     = 1;
@@ -40,8 +40,9 @@ sub make_Hebag_tube
 	$detector{"mother"}      = "mother_Hebag";
 	$detector{"description"} = "He bag for ALERT";
 	$detector{"color"}       = "00ff00";
+	$detector{"pos"}	 = "0*mm 0*mm -0.015*mm";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$rmin*mm $rmax*mm 296.8*mm $phistart*deg $pspan*deg";
+	$detector{"dimensions"}  = "$rmin*mm $rmax*mm 323.85*mm $phistart*deg $pspan*deg";
 	$detector{"material"}    = "G4_KAPTON";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
@@ -61,7 +62,7 @@ sub make_Hebag_downstream_window
 	$detector{"mother"}      = "mother_Hebag";
 	$detector{"description"} = "He bag downstream window";
 	$detector{"color"}       = "00ff00";
-	$detector{"pos"}         = "0*mm 0*mm 296.815*mm";
+	$detector{"pos"}         = "0*mm 0*mm 323.865*mm";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "$rmin*mm $rmax*mm 0.015*mm $phistart*deg $pspan*deg";
 	$detector{"material"}    = "G4_KAPTON";
@@ -83,8 +84,9 @@ sub make_Hebag_gas
 	$detector{"mother"}      = "mother_Hebag";
 	$detector{"description"} = "He bag gas for ALERT";
 	$detector{"color"}       = "ffff00";
+	$detector{"pos"}	 = "0*mm 0*mm -0.015*mm";
 	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "$rmin*mm $rmax*mm 296.8*mm $phistart*deg $pspan*deg";
+	$detector{"dimensions"}  = "$rmin*mm $rmax*mm 323.85*mm $phistart*deg $pspan*deg";
 	$detector{"material"}    = "HECO2";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);

@@ -1055,12 +1055,12 @@ sub make_EpoxyRib10
 sub make_frontGasRing
 {
 	my $rmin = 219.075;
-	my $rmax = 258.914;
-	my $half_thickness = 12.55/2.0;
+	my $rmax = 250.851;
+	my $half_thickness = 16.0/2.0;
 	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
-	my $position = -1*(10.364+$z_half_al_ribs)+349.25;
+	my $position = -1*(10.364+$z_half_al_ribs)+257.5+$half_thickness+6.275;
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual',240012);
 
 	$detector{"name"} = "frontGasRing";
@@ -1079,31 +1079,6 @@ sub make_frontGasRing
 
 }
 
-
-sub make_middleGasRing
-{
-        my $rmin = 219.074;
-        my $rmax = 234.95;
-        my $half_thickness = 12.55/2.0;
-        my $phistart = 0;
-        my $pspan = 360;
-        my %detector = init_det();
-	my $position = -1*(10.364+$z_half_al_ribs)+174.625;
-        my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual',240013);
-
-	$detector{"name"} = "middleGasRing";     
-        #$detector{"mother"}    = "mother_shell";
-	$detector{"mother"}      = "ahdc_mother";
-        $detector{"description"} = "Middle Gas Ring";
-        $detector{"color"}       = "fffb00";
-        $detector{"pos"}         = "0*mm 0*mm $position*mm ";
-        $detector{"type"}        = "Tube";       
-        $detector{"dimensions"}  = "$rmin*mm $rmax*mm $half_thickness*mm $phistart*deg $pspan*deg";
-        $detector{"material"}    = "EpoxyFiberGlass";
-        $detector{"style"}       = 1;           
-        $detector{"identifiers"} = $id_string;
-        print_det(\%configuration, \%detector);
-}
 
 
 sub make_backGasRing
@@ -1141,7 +1116,7 @@ sub make_epoxyring
 	my $phistart = 0;
 	my $pspan = 360;
 	my %detector = init_det();
-	my $position = -1*(10.364+$z_half_al_ribs)+349.25+197.025;
+	my $position = 304.27+$half_thickness;
 	my $id_string = join('','sector manual ',0, ' superlayer manual ',0,' layer manual ',0,' component manual ',240043);
 
         $detector{"name"} = "epoxyring";
@@ -1407,7 +1382,6 @@ make_EpoxyRib9();
 make_EpoxyRib10();
 
 make_frontGasRing();
-make_middleGasRing();
 make_backGasRing();
 make_epoxyring();
 

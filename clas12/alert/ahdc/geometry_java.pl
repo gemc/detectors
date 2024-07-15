@@ -53,7 +53,7 @@ sub build_mother
 	$detector{"type"}        = "Tube";
 	#$detector{"dimensions"}  = "2.5*cm 7.3*cm 15.0*cm 0.*deg 360.*deg";
 	#$detector{"dimensions"}  = "2.5*cm 21.0*cm 20.0*cm 0.*deg 360.*deg";
-	$detector{"dimensions"}  = "0.4*cm 23.5*cm 38.643*cm 0.*deg 360.*deg";
+	$detector{"dimensions"}  = "0.4*cm 23.5*cm 32.227*cm 0.*deg 360.*deg";
 	$detector{"description"} = "Alert mother";
 	$detector{"color"}       = "aa00ff";
 	$detector{"material"}    = "AHDCgas";

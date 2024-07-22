@@ -2,7 +2,6 @@
 
 use strict;
 use lib ("$ENV{GEMC}/io");
-use utils;
 use hit;
 
 use strict;

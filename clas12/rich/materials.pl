@@ -2,7 +2,6 @@
 
 use strict;
 use lib ("$ENV{GEMC}/api/perl");
-use utils;
 use materials;
 
 # Loading configuration file from argument
@@ -98,42 +97,6 @@ my @efficiency_cathode_h8500 = ( 1.,  1.,  1.,  1.,  1.,
 
 
 # -------- aerogel properties ----------
-
-# Index of refraction of the pmt window
-my @irefr_aerogel = ( 1.04709, 1.0471 , 1.04712, 1.04713, 1.04715,
-		      1.04717, 1.04718, 1.0472 , 1.04722 ,1.04723,
-		      1.04725, 1.04727 ,1.04729, 1.04731 ,1.04733 ,
-		      1.04735 ,1.04737 ,1.04739 ,1.04741 ,1.04743 ,
-		      1.04746 ,1.04748 ,1.04751 ,1.04753 ,1.04756 ,
-		      1.04759 ,1.04761 ,1.04764 ,1.04768 ,1.04771 ,
-		      1.04774 ,1.04778 ,1.04781 ,1.04785 ,1.04789 ,
-		      1.04794 ,1.04798 ,1.04803 ,1.04808 ,1.04813 ,
-		      1.04819 ,1.04825 ,1.04831 ,1.04838 ,1.04845 ,
-		      1.04853 ,1.04861 ,1.0487  ,1.04879 ,1.04889 ,
-		      1.049   ,1.04912 ,1.04925 ,1.04939 ,1.04954 ,
-		      1.04971 ,1.04989 ,1.05009 ,1.05031 ,1.05056 ,
-		      1.05084 ,1.05115 ,1.0515  ,1.0519  ,1.05236 ,
-		      1.05289 ,1.0535  ,1.05422 ,1.05508 ,1.05611 ,
-		      1.05737 ) ;
-
-
-# Absorption coefficient for aerogel
-my @abslength_aerogel = ( "29.2394*cm",   "28.9562*cm",   "28.6784*cm",   "26.8925*cm",   "27.8637*cm",
-			  "28.062*cm",    "27.7242*cm",   "27.1399*cm",   "26.7512*cm",   "26.2139*cm",
-			  "26.0152*cm",   "25.4976*cm",   "25.0999*cm",   "24.6385*cm",   "24.2303*cm",
-			  "23.7303*cm",   "23.2742*cm",   "22.696*cm",    "22.0729*cm",   "21.5874*cm",
-			  "21.2631*cm",   "20.7086*cm",   "20.1605*cm",   "19.6154*cm",   "19.061*cm",
-			  "18.4774*cm",   "17.8838*cm",   "17.2989*cm",   "16.6933*cm",   "16.0711*cm",
-			  "15.4677*cm",   "14.8278*cm",   "14.2079*cm",   "13.5876*cm",   "12.9715*cm",
-			  "12.372*cm",    "11.757*cm",    "11.1353*cm",   "10.5343*cm",   "9.94904*cm",
-			  "9.45342*cm",   "9.01897*cm",   "8.3964*cm",    "7.8098*cm",    "7.32422*cm",
-			  "6.91571*cm",   "6.45606*cm",   "5.98628*cm",   "5.54014*cm",   "5.11227*cm",
-			  "4.69784*cm",   "4.3044*cm",    "3.93536*cm",   "3.58572*cm",   "3.24993*cm",
-			  "2.93707*cm",   "2.64329*cm",   "2.36809*cm",   "2.10761*cm",   "1.86117*cm",
-			  "1.62074*cm",   "1.40979*cm",   "1.21606*cm",   "1.04008*cm",   "0.887008*cm",
-			  "0.753044*cm",  "0.630981*cm",  "0.516107*cm",  "0.409999*cm",  "0.314334*cm",
-			  "0.242124*cm" );
-
 my @mielength_aerogel = ("15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
 			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
 			 "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm",
@@ -146,38 +109,18 @@ my @mielength_aerogel = ("15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "15*cm", "
 #Mie scattering parameters
 my $mieforward_aerogel = 0.999; # \sigma ~ 1mrad
 my $miebackward_aerogel = 1.0;
-my $mieratio_aerogel = 1;
+my $mieratio_aerogel = 1; #100% forward scattering
 
 #Roughness
-my $aerogelSigmaAlpha = 0.02;
-sub define_aerogel
-{
-    
-    # typical index of refraction of an aerogel tile
-	my %mat = init_mat();
-	$mat{"name"}          = "aerogel";
-	$mat{"name"}          = "aerogel";
-	$mat{"description"}   = "typical aerogel properties";
-	$mat{"density"}       = "0.24";
-	$mat{"ncomponents"}   = "1";
-	$mat{"components"}    = "G4_CARBON_DIOXIDE 1.0";
-	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel);
-	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);
-	print_mat(\%configuration, \%mat);
-
-
-
-
-}
+my $aerogelSigmaAlpha = 0.006;
 
 sub define_aerogels
 {
     my $sector = shift;
     my $sectorsuffix = "_s" . $sector;
     my %mat = init_mat();
-    my $n400Fit = 1.0494; #TODO: do we still use this, or just refr. index from updated tables?
-    #my $n400Fit = 1.0501;
+    my $n400Fit = 1.0494;
+    
     # Computing the wavelength in microns from the energy
     my @wavelength;
     my $arrSize = @penergy;
@@ -188,8 +131,8 @@ sub define_aerogels
 	$wavelength[$i] = $lambda;
 	#printf(" E=%s   lambda=%f\n", $penergy[$i], $lambda);
     }
-    #print join(", ", @wavelength);
-    #print "\n";
+    
+    # read in aerogel tile passports
     if($sector eq "1"){   
 	my $AerogelTable = "Aerogel_module2.txt";
 	open (INFILE, "<$AerogelTable");
@@ -208,24 +151,24 @@ sub define_aerogels
 	my $sector = $array[0];
 	my $layer = $array[1];
 	my $component = $array[2];
-	#printf(" layer %d  comp %d   rho=%f\n", $layer, $component, $density);
 
 	my $n400 = $array[4];
+	# density / n relationship from DOI 10.1140/epja/i2016-16023-4
 	my $density = ($n400 * $n400  - 1) / 0.438;
 
 	# refractive index calculation
+	# p1, p2: from fit for n(\lambda)
 	my $p1 = $array[5];
 	my $p2 = $array[6];
-	#printf("J=%d   n400=%f   p1=%f  p2=%f\n", $j, $n400, $p1, $p2);
-	# RECALCULATE here the array irefr_aerogel using these parameters
-	my @irefr_aerogel2;
+	# calculate here the array irefr_aerogel using these parameters
+	my @irefr_aerogel;
 	for(my $i=0; $i < $arrSize; $i++){
 	    if ($p1 != 0 && $p2 != 0) {
 		my $lambda = $wavelength[$i] * 1000;
-		$irefr_aerogel2[$i] = $n400/$n400Fit * sqrt (1. + ($p1*$lambda*$lambda) / ($lambda*$lambda-$p2*$p2));
+		$irefr_aerogel[$i] = $n400/$n400Fit * sqrt (1. + ($p1*$lambda*$lambda) / ($lambda*$lambda-$p2*$p2));
 	    }
 	    else {
-		$irefr_aerogel2[$i] = 1.;
+		$irefr_aerogel[$i] = 1.;
 	    }
 	}
 
@@ -234,23 +177,21 @@ sub define_aerogels
 	my $A0 = $array[7];
 	my $L400 = $array[8];
 	my $Clarity = $array[9];
-	# RECALCULATE here the array abslengt_aerogel using these prameters
-	# then, calculate scattering length as a function of energy 
-	my @abslength_aerogel2;
+
+	# calculate absorption length from clarity
+	# scale scattering length by wavelength
+	my @abslength_aerogel; 
 	my @scattlength_aerogel;
 	for(my $i=0; $i < $arrSize; $i++){
 	    if ($thickness != 0 && $A0 != 0 && $Clarity != 0) {
 		my $lambda = $wavelength[$i];
 		my $L = ($lambda*$lambda*$lambda*$lambda) / $Clarity;
-		#if ($j == 100) {
-		 #   printf("lambda=%f  C=%f   L=%f   Lref=%s\n", $lambda, $Clarity, $L, $abslength_aerogel[$i]);
-		#}
-		$abslength_aerogel2[$i] = $L . "*cm";
+		$abslength_aerogel[$i] = $L . "*cm";
 		$scattlength_aerogel[$i] = $L400*($lambda*$lambda*$lambda*$lambda*1000*1000*1000*1000)/(400*400*400*400) . "*mm";
 	    }
 	    else {
 		$scattlength_aerogel[$i] = "10000*mm";
-		$abslength_aerogel2[$i] = "0*mm";
+		$abslength_aerogel[$i] = "0*mm";
 	    }
 	}
 	#print join(", ", @scattlength_aerogel);
@@ -265,10 +206,8 @@ sub define_aerogels
         #$mat{"components"}    = "G4_CARBON_DIOXIDE 1.0";
 	$mat{"components"}    = "G4_SILICON_DIOXIDE 1.0";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
-	$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel2);
-	#$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel);
-	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel2);	
-        #$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);
+	$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel);
+	$mat{"absorptionLength"}  = arrayToString(@abslength_aerogel);	
 	$mat{"rayleigh"} = arrayToString(@scattlength_aerogel);
 	$mat{"mie"} = arrayToString(@mielength_aerogel);
 	$mat{"mieforward"} = $mieforward_aerogel;

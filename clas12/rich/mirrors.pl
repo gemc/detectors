@@ -229,7 +229,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_1";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -249,7 +249,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_2";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -269,7 +269,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_3";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -289,7 +289,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_4";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -309,7 +309,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_5";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -329,7 +329,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_6";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -349,7 +349,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_7";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -369,7 +369,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_8";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -389,7 +389,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_9";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
@@ -409,7 +409,7 @@ sub buildMirrorsSurfaces
         $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_10";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;

@@ -65,33 +65,19 @@ my $sigmaAlphaSpherical = 0.00025;
 
 sub buildMirrorsSurfaces
 {
-    #print @specularspike;
-    #print @reflSphe1;
-    
-        my $sector = shift;
-        my $sectorsuffix = "_s" . $sector;
-
-	#my %mat = init_mir();
-	#$mat{"name"}         = "rich_AlMgF2";
-	#$mat{"description"}  = "rich mirror reflectivity";
-	#$mat{"type"}         = "dielectric_metal";
-	#$mat{"finish"}       = "polished";
-	#$mat{"model"}        = "unified";
-	#$mat{"border"}       = "SkinSurface";
-	#$mat{"photonEnergy"} = @penergy ;
-	#$mat{"reflectivity"} = @creflectivity ;	
-	#print_mir(\%configuration, \%mat);
+        my $module = shift;
+        my $modulesuffix = "_m" . $module;
 
 	### Planar mirror properties ###
         my %mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_1";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_1";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-        $mat{"finish"}       = "ground";#"polished";
+        $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanA3);
 	}
 	else{
@@ -104,14 +90,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_2";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_2";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "ground";#"polished";
+	$mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanB1);
 	}
 	else{
@@ -124,14 +110,14 @@ sub buildMirrorsSurfaces
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_3";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_3";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "ground";#"polished";
+	$mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanB2);
 	}
 	else{
@@ -144,14 +130,14 @@ sub buildMirrorsSurfaces
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_4";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_4";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "ground";#"polished";
+	$mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanA2R);
 	}
 	else{
@@ -164,14 +150,14 @@ sub buildMirrorsSurfaces
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_5";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_5";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "ground";#"polished";
+	$mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanA2L);
 	}
 	else{
@@ -184,14 +170,14 @@ sub buildMirrorsSurfaces
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_6";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_6";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "ground";#"polished";
+	$mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanA1R);
 	}
 	else{
@@ -204,14 +190,14 @@ sub buildMirrorsSurfaces
 	print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_planar_comp_7";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_planar_comp_7";
 	$mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
-	$mat{"finish"}       = "ground";#"polished";
+	$mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
 	$mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy);
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflPlanA1L);
 	}
 	else{
@@ -226,14 +212,14 @@ sub buildMirrorsSurfaces
 	### Spherical mirror properties ###
 	
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_1";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_1";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe1);
 	}
 	else{
@@ -246,14 +232,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_2";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_2";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe2);
 	}
 	else{
@@ -266,14 +252,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_3";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_3";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe3);
 	}
 	else{
@@ -286,14 +272,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_4";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_4";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe4);
 	}
 	else{
@@ -306,14 +292,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_5";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_5";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe2C);
 	}
 	else{
@@ -326,14 +312,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_6";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_6";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe3C);
 	}
 	else{
@@ -346,14 +332,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_7";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_7";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe4C);
 	}
 	else{
@@ -366,14 +352,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_8";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_8";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe5);
 	}
 	else{
@@ -386,14 +372,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_9";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_9";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe5C);
 	}
 	else{
@@ -406,14 +392,14 @@ sub buildMirrorsSurfaces
         print_mir(\%configuration, \%mat);
 
 	%mat = init_mir();
-        $mat{"name"}         = "rich".$sectorsuffix."_mirror_spherical_10";
+        $mat{"name"}         = "rich".$modulesuffix."_mirror_spherical_10";
         $mat{"description"}  = "rich mirror reflectivity";
         $mat{"type"}         = "dielectric_metal";
         $mat{"finish"}       = "ground";
         $mat{"model"}        = "unified";
         $mat{"border"}       = "SkinSurface";
         $mat{"photonEnergy"} = arrayToString(@penergy) ;
-	if($sector eq '1'){
+	if($module eq '2'){
 	    $mat{"reflectivity"} = arrayToString(@reflSphe6);
 	}
 	else{

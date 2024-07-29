@@ -116,8 +116,8 @@ my $aerogelSigmaAlpha = 0.006;
 
 sub define_aerogels
 {
-    my $sector = shift;
-    my $sectorsuffix = "_s" . $sector;
+    my $module = shift;
+    my $modulesuffix = "_m" . $module;
     my %mat = init_mat();
     my $n400Fit = 1.0494;
     
@@ -133,15 +133,9 @@ sub define_aerogels
     }
     
     # read in aerogel tile passports
-    if($sector eq "1"){   
-	my $AerogelTable = "Aerogel_module2.txt";
-	open (INFILE, "<$AerogelTable");
-    }
-    else{
-        my $AerogelTable = "Aerogel_module1.txt";
-        open (INFILE, "<$AerogelTable");
-    }
-
+    my $AerogelTable = "Aerogel_module".$module.".txt";
+    open (INFILE, "<$AerogelTable");
+    
     my $j = 1;
     while (<INFILE>) {
 
@@ -198,7 +192,7 @@ sub define_aerogels
 	#print "\n";
     # typical index of refraction of an aerogel tile
 #	my %mat = init_mat();
-	$mat{"name"}          = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
+	$mat{"name"}          = "aerogel_module" . $module . "_layer" . $layer . "_component" . $component;
 	$mat{"description"}   = "Aerogel tile " . $j;
 	$mat{"density"}       = $density;
         #$mat{"density"}       = "0.24";
@@ -225,7 +219,6 @@ sub define_aerogels
     $mir{"finish"} = "ground";
     $mir{"model"} = "unified";
     $mir{"border"} = "SkinSurface";
-    #$mir{"maptOptProps"} = "aerogel_sector" . $sector . "_layer" . $layer . "_component" . $component;
     $mir{"photonEnergy"} = arrayToString(@penergy);
     $mir{"sigmaAlhpa"} = $aerogelSigmaAlpha;
     print_mir(\%configuration, \%mir);

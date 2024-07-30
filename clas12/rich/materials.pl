@@ -124,7 +124,7 @@ sub define_aerogels
     # Computing the wavelength in microns from the energy
     my @wavelength;
     my $arrSize = @penergy;
-    my $conversion = 1.2305;
+    my $conversion = 1.2398;
     for(my $i=0; $i < $arrSize; $i++){
 	my @array = split(/\*/, $penergy[$i]);
 	my $lambda = $conversion / $array[0];
@@ -163,10 +163,10 @@ sub define_aerogels
 	}
 
 	# transparency calculation
-	my $thickness = $array[3];
-	my $A0 = $array[7];
-	my $L400 = $array[8];
-	my $Clarity = $array[9];
+	my $thickness = $array[3]; #mm
+	my $A0 = $array[7]; # absoprtion coeff.
+	my $L400 = $array[8]; #mm
+	my $Clarity = $array[9]; # um^4 / cm
 
 	# calculate absorption length from clarity
 	# scale scattering length by wavelength
@@ -179,7 +179,8 @@ sub define_aerogels
 		# L_A = t / -ln(A_0)
 		my $L = $thickness / (-log($A0));
 		$abslength_aerogel[$i] = $L . "*mm";
-		$scattlength_aerogel[$i] = ($Clarity / (($lambda*1000)**4)) . "*mm";
+		$scattlength_aerogel[$i] = ( (($lambda)**4) / $Clarity  ) . "*cm";
+		#printf(" lambda=%f   Lscatt=%s cm\n", $lambda,$scattlength_aerogel[$i]);		
 	    }
 	    else {
 		$scattlength_aerogel[$i] = "10000*mm";

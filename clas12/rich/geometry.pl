@@ -10,13 +10,14 @@ use GXML;
 my ($mothers, $positions, $rotations, $types, $dimensions, $ids);
 
 
-sub makeRICHtext
-{
+#sub makeRICHtext
+#{
 
-    ($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
-    my $module = shift;
-    build_text($module);
-}
+#    ($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
+#    my $module = shift;
+#    my $sector = shift;
+#    build_text($module,$sector);
+#}
 
 sub makeRICHcad
 {
@@ -46,11 +47,13 @@ sub makeRICHcad
 	$gxmlFile->print();
     }
 }
-sub build_text
+sub makeRICHtext
 {
+    ($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
     my $module = shift;
+    my $sector = shift;
     build_SphericalMirrors($module);
-    build_PMTs($module);    
+    build_PMTs($module,$sector);    
 }
 
 sub build_MESH
@@ -62,7 +65,15 @@ sub build_MESH
 	my $modulesuffix = "_m" . $module;
 
 	my $sector_val = $sector + 0;
-	my $sectorRotation = ($sector_val-1)*60;
+	my %rotation_angles = (
+	    1 => 180,
+	    2 => 240,
+	    3 => 300,
+	    4 => 0,
+	    5 => 60,
+	    6 => 120,
+	    );	
+	my $sectorRotation = $rotation_angles{$sector_val};
 	my @allMeshes =("RICH_s4","Aluminum","CFRP","TedlarWrapping","MirrorSupport");
 	foreach my $mesh (@allMeshes)
 	{
@@ -248,6 +259,7 @@ sub build_PMTs{
 
     my $module = shift;
     my $modulesuffix = "_m" . $module;
+    my $sector = shift;
     
     my $PMT_rows = 23;
     for(my $irow=0; $irow<$PMT_rows; $irow++){
@@ -334,7 +346,7 @@ sub build_PMTs{
 	    $detector{"material"}    = "Air_Opt";#"Photocathode_H8500";
 	    $detector{"sensitivity"} = "rich";
 	    $detector{"hit_type"}    = "rich";
-	    $detector{"identifiers"} = "module manual $module pad manual $nPMTS pixel manual 1";
+	    $detector{"identifiers"} = "module sector $sector pad manual $nPMTS pixel manual 1";
 	    print_det(\%main::configuration, \%detector);
 	    
 	}

@@ -97,14 +97,14 @@ my @efficiency_cathode_h8500 = ( 1.,  1.,  1.,  1.,  1.,
 
 
 # -------- aerogel properties ----------
-my @mielength_aerogel = ("13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm",
-			 "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm", "13.44*cm"
+my @mielength_aerogel = ("15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm",
+			 "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm", "15.12*cm"
     );
 #Mie scattering parameters
 my $mieforward_aerogel = 0.999; # \sigma ~ 1mrad
@@ -154,16 +154,12 @@ sub define_aerogels
 	# p1, p2: from fit for n(\lambda)
 	my $p1 = $array[5];
 	my $p2 = $array[6];
-	# calculate here the array irefr_aerogel using these parameters
+
+	# calculate refractive index as a function of wavelength based on fit to beam test measurements
 	my @irefr_aerogel;
 	for(my $i=0; $i < $arrSize; $i++){
-	    if ($p1 != 0 && $p2 != 0) {
-		my $lambda = $wavelength[$i] * 1000;
-		$irefr_aerogel[$i] = $n400/$n400Fit * sqrt (1. + ($p1*$lambda*$lambda) / ($lambda*$lambda-$p2*$p2));
-	    }
-	    else {
-		$irefr_aerogel[$i] = 1.;
-	    }
+	    my $lambda = $wavelength[$i] * 1000;
+	    $irefr_aerogel[$i] = $n400/$n400Fit * sqrt (1. + ($p1*$lambda*$lambda) / ($lambda*$lambda-$p2*$p2));
 	}
 
 	# transparency calculation
@@ -179,25 +175,21 @@ sub define_aerogels
 	for(my $i=0; $i < $arrSize; $i++){
 	    if ($thickness != 0 && $A0 != 0 && $Clarity != 0) {
 		my $lambda = $wavelength[$i];
-		my $L = ($lambda*$lambda*$lambda*$lambda) / $Clarity;
-		$abslength_aerogel[$i] = $L . "*cm";
-		$scattlength_aerogel[$i] = $L400*($lambda*$lambda*$lambda*$lambda*1000*1000*1000*1000)/(400*400*400*400) . "*mm";
+		
+		# L_A = t / -ln(A_0)
+		my $L = $thickness / (-log($A0));
+		$abslength_aerogel[$i] = $L . "*mm";
+		$scattlength_aerogel[$i] = ($Clarity / (($lambda*1000)**4)) . "*mm";
 	    }
 	    else {
 		$scattlength_aerogel[$i] = "10000*mm";
-		$abslength_aerogel[$i] = "0*mm";
+		$abslength_aerogel[$i] = "10000*mm";
 	    }
 	}
-	#print join(", ", @scattlength_aerogel);
-	#print "\n";
-    # typical index of refraction of an aerogel tile
-#	my %mat = init_mat();
 	$mat{"name"}          = "aerogel_module" . $module . "_layer" . $layer . "_component" . $component;
 	$mat{"description"}   = "Aerogel tile " . $j;
 	$mat{"density"}       = $density;
-        #$mat{"density"}       = "0.24";
 	$mat{"ncomponents"}   = "1";
-        #$mat{"components"}    = "G4_CARBON_DIOXIDE 1.0";
 	$mat{"components"}    = "G4_SILICON_DIOXIDE 1.0";
 	$mat{"photonEnergy"}      = arrayToString(@penergy);
 	$mat{"indexOfRefraction"} = arrayToString(@irefr_aerogel);
@@ -356,14 +348,5 @@ sub define_CFRP
 	print_mat(\%configuration, \%mat);
 
 }
-
-
-
-#define_aerogel();
-#define_aerogels();
-
-#define_MAPMT();
-
-#define_CFRP();
 
 1;

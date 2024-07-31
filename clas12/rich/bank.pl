@@ -3,7 +3,6 @@
 use strict;
 use lib ("$ENV{GEMC}/io");
 use lib ("$ENV{GEMC}/api/perl");
-use utils;
 use bank;
 
 use strict;

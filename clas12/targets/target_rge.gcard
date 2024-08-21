@@ -1,18 +1,17 @@
 <gcard>
 	<option name="geometry" value="1400x1200"/>
 	
-	<!-- Variations include: "2cm-lD2-full", "2cm-lD2-empty"-->
-	<detector name="target"         factory="TEXT" variation="2cm-lD2-full"/>
-	<detector name="rge-dt/others/"           factory="CAD"/>
+	<!-- Variations include: "2cm-lD2"-->
+	<detector name="target"         factory="TEXT" variation="2cm-lD2"/>
+	<detector name="rge-dt/common/"           factory="CAD"/>
 
-	<!--change solid target here: C, Al, Cu, Sn, Pb, Empty-->
+	<!--Change solid target here by choosing a subdirectory. Possible options: C, Al, Cu, Sn, Pb, Empty-->
 	<detector name="rge-dt/C/"  factory="CAD"/>
 
 	<!-- uncomment to change the material of the target to empty-->
 	<!-- <option name="CHANGEVOLUMEMATERIALTO" value="LD2, G4_Galactic"/>-->
 
-	<detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/>
-	<detector name="experiments/clas12/bstShield/bstShield"               factory="TEXT" variation="w51"/>
+	<!-- <detector name="experiments/clas12/bstShield/bstShield"               factory="TEXT" variation="w51"/> -->
 
 	<option name="BEAM_P" value="e-, 10.5*GeV, 0*deg, 0*deg"/>
 	<option name="BEAM_V" value="(0, 0, -30)cm"/>

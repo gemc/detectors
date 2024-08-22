@@ -3087,7 +3087,7 @@ if($thisVariation eq "2cm-lD2")
 
 		my $nplanes = 4;
 		my @oradius  =  (    52.5,   52.5,  45,  21 );
-		my @z_plane  =  (  -180.0,  200.0, 215.0, 235.0 );
+		my @z_plane  =  (  -210.0,  170.0, 185.0, 205.0 );
 
 		# vacuum target container
 		my %detector = init_det();
@@ -3107,7 +3107,7 @@ if($thisVariation eq "2cm-lD2")
 
 		$nplanes = 5;
 		my @oradiusT  =  (   2.5,  8.44,  7.3, 5.0,  2.5);
-		my @z_planeT  =  ( -39.2, -36.2, -22.5, -21.5, -20.5);
+		my @z_planeT  =  ( -69.2, -66.2, -52.5, -51.5, -50.5);
 
 		# actual lD2 target
 		%detector = init_det();
@@ -3127,8 +3127,8 @@ if($thisVariation eq "2cm-lD2")
 
 		# reference foil
 		my $thickness  = 0.01/2.;
-		my $zpos       = 0;
-		my $radius     = 7.3;
+		my $zpos       = -30;
+		my $radius     = 10;
 		$detector{"name"}        = "refFoil";
 		$detector{"mother"}      = "target";
 		$detector{"description"} = "aluminum refernence foil";
@@ -3145,7 +3145,7 @@ if($thisVariation eq "2cm-lD2")
 		my $shthickness = 0.051/2.;
 		my $outradius 	= $shradius + $shthickness;
 		my $lenght 		= 180;
-		my $shzpos      = 5;
+		my $shzpos      = -25;
 		$detector{"name"}        = "Wshield";
 		$detector{"mother"}      = "target";
 		$detector{"description"} = "bst tungsten shield";

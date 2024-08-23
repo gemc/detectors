@@ -656,7 +656,7 @@ sub materials
         print_mat(\%configuration, \%mat);
     }
 
-	if($thisVariation eq "2cm-lD2-full" || $thisVariation eq "2cm-lD2-empty")
+	if($thisVariation eq "2cm-lD2")
 	{
 		# epoxy
 		%mat = init_mat();

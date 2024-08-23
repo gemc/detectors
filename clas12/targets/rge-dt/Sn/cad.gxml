@@ -1,8 +1,8 @@
 <gxml>
 	<!-- Structure -->
 	<volume name="Tracks" mother="target" color="1a1305" position="0*mm 0*mm -328.04*mm" rotation="0*deg 0*deg 240*deg" material="torlon4435" identifiers="id manual 3 ID"/>
-	<volume name="Rods" mother="target" color="000000" position="0*mm 0*mm -328.0*4mm" rotation="0*deg 0*deg 240*deg" material="carbonFiber" identifiers="id manual 3 ID"/>
-	<volume name="Rings" mother="target" color="c7bf58" position="0*mm 0*mm -328.0*4mm" rotation="0*deg 0*deg 240*deg" material="torlon4203" identifiers="id manual 3 ID"/>
+	<volume name="Rods" mother="target" color="000000" position="0*mm 0*mm -328.04*mm" rotation="0*deg 0*deg 240*deg" material="carbonFiber" identifiers="id manual 3 ID"/>
+	<volume name="Rings" mother="target" color="c7bf58" position="0*mm 0*mm -328.04*mm" rotation="0*deg 0*deg 240*deg" material="torlon4203" identifiers="id manual 3 ID"/>
 
 	<!-- Band -->
 	<volume name="Band" mother="target" color="BB6622" position="0*mm 0*mm -328.04*mm" rotation="0*deg 0*deg 240*deg" material="band" identifiers="id manual 3 ID"/>

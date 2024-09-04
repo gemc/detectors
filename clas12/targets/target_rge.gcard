@@ -12,7 +12,7 @@
 	<!-- <option name="CHANGEVOLUMEMATERIALTO" value="LD2, G4_Galactic"/>-->
 
 	<!--  <detector name="experiments/clas12/bst/bst"               factory="TEXT" variation="default"/> -->
-	<!-- <detector name="experiments/clas12/bstShield/bstShield"               factory="TEXT" variation="w51"/> -->
+	 <detector name="experiments/clas12/bstShield/bstShield"               factory="TEXT" variation="w51-rge"/> 
 
 	<option name="BEAM_P" value="e-, 10.5*GeV, 0*deg, 0*deg"/>
 	<option name="BEAM_V" value="(0, 0, -30)cm"/>

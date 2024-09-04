@@ -3139,24 +3139,6 @@ if($thisVariation eq "2cm-lD2")
 		$detector{"material"}    = "G4_Al";
 		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
-
-		# bst tungsten shield
-		my $shradius 	= 104/2;
-		my $shthickness = 0.051/2.;
-		my $outradius 	= $shradius + $shthickness;
-		my $lenght 		= 180;
-		my $shzpos      = -25;
-		$detector{"name"}        = "Wshield";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "bst tungsten shield";
-		$detector{"color"}       = "606564";
-		$detector{"type"}        = "Tube";
-		$detector{"pos"}         = "0 0 $shzpos*mm";
-		$detector{"dimensions"}  = "$shradius*mm $outradius*mm $lenght*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_W";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
 	}
 
 }

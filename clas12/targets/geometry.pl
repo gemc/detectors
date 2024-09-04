@@ -3141,6 +3141,45 @@ if($thisVariation eq "2cm-lD2")
 		print_det(\%configuration, \%detector);
 	}
 
+if($thisVariation eq "2cm-lD2-empty")
+	{
+		my $nplanes = 4;
+		my @oradius  =  (    52.5,   52.5,  45,  21 );
+		my @z_plane  =  (  -210.0,  170.0, 185.0, 205.0 );
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		# reference foil
+		my $thickness  = 0.01/2.;
+		my $zpos       = -30;
+		my $radius     = 10;
+		$detector{"name"}        = "refFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "aluminum refernence foil";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
+
+
 }
 
 1;

@@ -2,7 +2,7 @@
 	<option name="geometry" value="1400x1200"/>
 	
 	<!-- Variations include: "2cm-lD2"-->
-	<detector name="target"         factory="TEXT" variation="2cm-lD2-empty"/>
+	<detector name="target"         factory="TEXT" variation="2cm-lD2"/>
 	<detector name="rge-dt/common/"           factory="CAD"/>
 
 	<!--Change solid target here by choosing a subdirectory. Possible options: C, Al, Cu, Sn, Pb, Empty-->

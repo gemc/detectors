@@ -1,13 +1,11 @@
 <gxml>
 
 	<!-- upstream of the target -->
-	<volume name="TargetBaseTubeTorlon"      mother="target" color="444444" position="0*mm 0*mm 1218.26*mm" rotation="0*deg 180*deg 0*deg" material="G4_KAPTON"/>
+	<volume name="TargetBaseTubeTorlon"      mother="target" color="444444" position="0*mm 0*mm 1217.5*mm" rotation="0*deg 180*deg 0*deg" material="G4_KAPTON"/>
 
 	<!-- target itself-->
-	<volume name="TargetAlWindowD"           mother="target" color="aaaaff" position="0*mm 0*mm 1208.26*mm" rotation="0*deg 180*deg 0*deg" material="G4_Al"/>
-	<volume name="TargetAlWindowU"           mother="target" color="aaaaff" position="0*mm 0*mm 1218.26*mm" rotation="0*deg 180*deg 0*deg" material="G4_Al"/>
-	<volume name="TargetWallKapton"          mother="target" color="ffaaaa" position="0*mm 0*mm 1208.26*mm" rotation="0*deg 180*deg 0*deg" material="G4_KAPTON"/>
-	<volume name="TargetEndCapKapton"        mother="target" color="ffaaaa" position="0*mm 0*mm 1208.26*mm" rotation="0*deg 180*deg 0*deg" material="G4_KAPTON"/>
+	<volume name="TargetWallKapton"          mother="target" color="ffaaaa" position="0*mm 0*mm 1208.8*mm" rotation="0*deg 180*deg 0*deg" material="G4_KAPTON"/>
+	<volume name="TargetEndCapKapton"        mother="target" color="ffaaaa" position="0*mm 0*mm 1208.8*mm" rotation="0*deg 180*deg 0*deg" material="G4_KAPTON"/>
 	
 	<!-- carbon fiber chamber-->
 	<volume name="ScatteringChamberC"         mother="target" color="2e2e2e" position="0*mm 0*mm -24.34*mm" rotation="0*deg 0*deg 0*deg" material="carbonFiber"/>

@@ -3105,11 +3105,40 @@ if($thisVariation eq "2cm-lD2")
 		$detector{"style"}       = 0;
 		print_det(\%configuration, \%detector);
 
-		$nplanes = 5;
-		my @oradiusT  =  (   2.5,  8.44,  7.3, 5.0,  2.5);
-		my @z_planeT  =  ( -69.2, -66.2, -52.5, -51.5, -50.5);
+		# Liquid target cell upstream window
+		my $thicknessU  = 0.015/2.;
+		my $zposU       = -70.35;
+		my $radiusU     = 5;
+		$detector{"name"}        = "LD2CellWindowU";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell upstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposU*mm";
+		$detector{"dimensions"}  = "0*mm $radiusU*mm $thicknessU*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessD  = 0.015/2.;
+		my $zposD       = -50.34;
+		my $radiusD     = 5;
+		$detector{"name"}        = "LD2CellWindowD";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell downstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposD*mm";
+		$detector{"dimensions"}  = "0*mm $radiusD*mm $thicknessD*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
 
 		# actual lD2 target
+		$nplanes = 6;
+		my @oradiusT  =  (   2.5, 7.0,  8.44,  7.3, 5.6,  2.5);
+		my @z_planeT  =  ( -70.34, -68.0, -66.2, -52.5, -51.0, -50.35);
 		%detector = init_det();
 		$detector{"name"}        = "lD2";
 		$detector{"mother"}      = "target";
@@ -3161,6 +3190,36 @@ if($thisVariation eq "2cm-lD2-empty")
 		$detector{"dimensions"}  = $dimen;
 		$detector{"material"}    = "G4_Galactic";
 		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessU  = 0.015/2.;
+		my $zposU       = -70.35;
+		my $radiusU     = 5;
+		$detector{"name"}        = "LD2CellWindowU";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell upstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposU*mm";
+		$detector{"dimensions"}  = "0*mm $radiusU*mm $thicknessU*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessD  = 0.015/2.;
+		my $zposD       = -50.34;
+		my $radiusD     = 5;
+		$detector{"name"}        = "LD2CellWindowD";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell downstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposD*mm";
+		$detector{"dimensions"}  = "0*mm $radiusD*mm $thicknessD*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
 		print_det(\%configuration, \%detector);
 
 		# reference foil

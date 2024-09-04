@@ -115,7 +115,7 @@
 
 	<!--  Target and central detectors are all shifted upstream by 30 mm -->
 	<detector name="svt">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
-	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="2.50*cm"  />  </detector>
+	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="3.0*cm"  />  </detector>
 	<detector name="BMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="FMT">       <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>
 	<detector name="ctof">      <position x="0*cm"     y="0*cm"     z="-3.00*cm"  />  </detector>

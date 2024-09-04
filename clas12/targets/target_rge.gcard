@@ -19,5 +19,5 @@
 	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
 	<option name="RECORD_OPTICALPHOTONS"   value="1"/>
 
-	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="2.50*cm"  />  </detector>
+	<detector name="bstShield"> <position x="0*cm"     y="0*cm"     z="2.0*cm"  />  </detector>
 </gcard>

@@ -3087,7 +3087,7 @@ if($thisVariation eq "2cm-lD2")
 
 		my $nplanes = 4;
 		my @oradius  =  (    52.5,   52.5,  45,  21 );
-		my @z_plane  =  (  -210.0,  170.0, 185.0, 205.0 );
+		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
 
 		# vacuum target container
 		my %detector = init_det();
@@ -3127,7 +3127,7 @@ if($thisVariation eq "2cm-lD2")
 
 		# reference foil
 		my $thickness  = 0.01/2.;
-		my $zpos       = -30;
+		my $zpos       = -30.33;
 		my $radius     = 10;
 		$detector{"name"}        = "refFoil";
 		$detector{"mother"}      = "target";
@@ -3145,7 +3145,7 @@ if($thisVariation eq "2cm-lD2-empty")
 	{
 		my $nplanes = 4;
 		my @oradius  =  (    52.5,   52.5,  45,  21 );
-		my @z_plane  =  (  -210.0,  170.0, 185.0, 205.0 );
+		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
 
 		# vacuum target container
 		my %detector = init_det();
@@ -3165,7 +3165,7 @@ if($thisVariation eq "2cm-lD2-empty")
 
 		# reference foil
 		my $thickness  = 0.01/2.;
-		my $zpos       = -30;
+		my $zpos       = -30.33;
 		my $radius     = 10;
 		$detector{"name"}        = "refFoil";
 		$detector{"mother"}      = "target";

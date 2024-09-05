@@ -49,7 +49,7 @@ sub buildBigCone_motherVolume
     my $Y=0.;
     my $Z=0.;
     $detector{"pos"}         =  "$X*mm $Y*mm $Z*mm ";
-    $detector{"material"}    = "G4_W";
+    $detector{"material"}    = "beamline_W";
     $detector{"style"}       = "1";
     print_det(\%configuration, \%detector);
 
@@ -82,7 +82,7 @@ sub buildMollerCone
     my $Y=0.;
     my $Z=0.;
     $detector{"pos"}         =  "$X*mm $Y*mm $Z*mm ";
-    $detector{"material"}    = "G4_W";
+    $detector{"material"}    = "beamline_W";
     $detector{"style"}       = "1";
     print_det(\%configuration, \%detector);
 

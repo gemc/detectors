@@ -17,7 +17,7 @@ my $fmt_or 	= $parameters{"FMT_mothervol_OutRadius"};
 # Mother volume zmin = BMT MV zmax = end of BMT closing plate
 # Mother volume zmax to take into account innerscrews extension downstream D6 (about 3.5 mm) >= FMT_zpos_layer6 + 7.6 + 3.5
 # Mother volume half-length and middle position: 
-my $fmt_dz              = ($parameters{"FMT_mothervol_zmax"} - $parameters{"FMT_mothervol_zmin"})/2.0;
+my $fmt_dz              = ($parameters{"FMT_mothervol_zmax"} - $parameters{"FMT_mothervol_zmin"})/2.0 + 1.9;
 my $fmt_starting        = ($parameters{"FMT_mothervol_zmax"} + $parameters{"FMT_mothervol_zmin"})/2.0;
 my $fmt_zmin		= $parameters{"FMT_mothervol_zmin"};
 
@@ -646,7 +646,7 @@ sub place_gas1
 	my $tpos       = "0*mm 0*mm";
 	my $PRMin     = $innerPhRes_RMax;
 	my $PRMax     = $outerPhRes_RMin;
-	my $PDz       = $PhRes128_Dz;
+	my $PDz       = $PhRes128_Dz + 0.001;
 	
 	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";
@@ -864,7 +864,7 @@ sub place_gas2
 	my $tpos       = "0*mm 0*mm";
 	my $PRMin     = $innerPeek_RMax;
 	my $PRMax     = $outerPeek_RMin;
-	my $PDz       = $Peek_Dz;
+	my $PDz       = $Peek_Dz + 0.001;
 	
 	my %detector = init_det();
 	$detector{"name"}        = "$vname$layer_no";

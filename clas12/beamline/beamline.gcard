@@ -14,11 +14,13 @@
 
 	<detector name="../ft/ft" factory="TEXT" variation="FTOff"/>
 	<detector name="cadBeamlineFTOFF/" factory="CAD"/>
+	<detector name="cad_downstream_beamline/" factory="CAD"/>
+	<detector name="beamline" factory="TEXT" variation="FTOff"/>
 	<detector name="beamline" factory="TEXT" variation="FTOff"/>
 
 
 	<!-- vacuumline is common to all configurations -->
-	<detector name="../beamline/vacuumLine/" factory="CAD"/>
+	<detector name="../magnets/torus" factory="TEXT" variation="original"/>
 
 	<!-- Beamline rghFTOut configuration
 		<detector name="../beamline/cadBeamline/" factory="CAD"/>

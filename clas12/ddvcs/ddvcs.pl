@@ -93,6 +93,8 @@ require "./scorer.pl";
 require "./hit.pl";
 require "./bank.pl";
 require "./scattChamber.pl";
+require "./ddvcs_ecal.pl";
+require "./ddvcs_bigcone.pl";
 
 # all the scripts must be run for every configuration
 my @allConfs = ("30_cm_TST", "scorer", "mucalActive", "newScattChamber");
@@ -113,9 +115,11 @@ foreach my $conf ( @allConfs )
 		define_mucal_hit();
 	} elsif($configuration{"variation"} eq "scorer") {
 		makeScorer();
-	} else {
+	} else{
 		make_scatt_chambers();
-	}
+        makeBigCone();
+        makeEcal();
+    }
 
 }
 

@@ -56,7 +56,7 @@ foreach my $conf ( @allConfs )
 	
 	if($conf eq "w51") {
 		$rmax = $rmin + 0.051;
-		$detector{"material"}    = "G4_W";
+		$detector{"material"}    = "beamline_W";
 	}
 	
 	my $dimen = "$rmin*mm $rmax*mm $length*mm 0*deg 360*deg";

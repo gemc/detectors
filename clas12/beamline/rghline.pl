@@ -271,7 +271,7 @@ sub rghline()
 	$detector{"type"}        = "Cons";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
 	$detector{"dimensions"}  = "39*mm 41.2*mm 39*mm 54.02*mm 73.21*mm 0.0*deg 360*deg";
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -284,7 +284,7 @@ sub rghline()
 	$detector{"type"}        = "Cons";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
 	$detector{"dimensions"}  = "38.1*mm 54.02*mm 38.1*mm 61.3313*mm 41.79*mm 0.0*deg 360*deg";
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -297,7 +297,7 @@ sub rghline()
 	$detector{"type"}        = "Cons";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
 	$detector{"dimensions"}  = "38.1*mm 61.3313*mm 38.1*mm 98.64*mm 213.25*mm 0.0*deg 360*deg";
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
@@ -311,7 +311,7 @@ sub rghline()
 	$detector{"type"}        = "Cons";
 	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
 	$detector{"dimensions"}  = "47.62*mm 98.64*mm 47.62*mm 109.76*mm 63.55*mm 0.0*deg 360*deg";
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "beamline_W";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 

@@ -119,8 +119,8 @@ sub build_paddles
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
 			$detector{"style"}        = 1;
-			$detector{"sensitivity"}  = "alrttof";
-			$detector{"hit_type"}     = "alrttof";
+			$detector{"sensitivity"}  = "atof";
+			$detector{"hit_type"}     = "atof";
 			# set the identifiers
 			$detector{"identifiers"}  = "sector manual $sector superlayer manual $superlayer layer manual $layer paddle manual $n order manual 0";
 			print_det(\%main::configuration, \%detector);	

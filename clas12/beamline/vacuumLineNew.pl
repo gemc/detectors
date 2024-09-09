@@ -24,7 +24,7 @@ sub vacuumLine()
 {
 
 	if( $configuration{"variation"} eq "FTOff") {
-		$shieldStart = 503;
+		$shieldStart = 503; # 46 cm shift
 	}
 
 
@@ -201,8 +201,32 @@ sub vacuumLine()
 	print_det(\%configuration, \%detector);
 
 
+
+	# vacuum line al window
+	my $zpos = 962.5;
+		if( $configuration{"variation"} eq "FTOff") {
+		$zpos = 502.5; # 46 cm shift
+	}
+
+	my $radius =30;
+	my $thickness=0.0375;
+	%detector = init_det();
+	$detector{"name"}        = "al_window_vacuum_entrance";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "50 mm thick aluminum window downstream";
+	$detector{"color"}       = "aaaaff";
+	$detector{"type"}        = "Tube";
+	$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
+	$detector{"material"}    = "G4_Al";
+	$detector{"style"}       = "1";
+	print_det(\%configuration, \%detector);
+
+
 	# in "fc" the pipe gets bigger after the torus
 	# 1.651mm thick
+
+
 
 	my $nplanes = 4;
 
@@ -294,7 +318,7 @@ sub vacuumLine()
 	my $gapLength = 295;
 
 	if ($configuration{"variation"} eq "FTOff") {
-		$gapLength = 92.5;
+		$gapLength = 86.5;
 	}
 
 	my $gapLengthm = $gapLength + 1;
@@ -306,6 +330,8 @@ sub vacuumLine()
 	#
 	my @oradius_airpipe  =  (  20,      55);
 	my @z_plane_airpipe  =  (  0, 2*$gapLength );
+
+
 
 	%detector = init_det();
 	$detector{"name"}        = "airPipe";

@@ -5,9 +5,13 @@ use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
+use hit;
+use bank;
+use mirrors;
 use math;
+use materials;
 use POSIX;
-
+use File::Copy;
 # Help Message
 sub help()
 {
@@ -25,32 +29,66 @@ if( scalar @ARGV != 1)
 	exit;
 }
 
+# stop and exit if $COATJAVA env variable is not set
+if( !defined $ENV{COATJAVA} ) {
+    print "\n*** ERROR *** ERROR *** ERROR *** ERROR *** ERROR *** ERROR ***\n";
+    print "FATAL: COATJAVA environment variable is not set. \n";
+    print "Please set the COATJAVA variable to the coatjava installation directory.\n";
+    print "Example: export COATJAVA=../coatjava \n";
+    print "*** ERROR *** ERROR *** ERROR *** ERROR *** ERROR *** ERROR ***\n\n";
+    exit;
+}
+
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
 
+# geometry                                                                                                                                                                    
+require "./geometry.pl";
 
-# One can change the "variation" here if one is desired different from the config.dat
-# $configuration{"variation"} = "myvar";
+# materials
+require "./materials.pl";
 
-# To get the parameters proper authentication is needed.
-our %parameters    = get_parameters(%configuration);
+# banks definitions
+require "./bank.pl";
 
-# Loading RICH specific subroutines
-require "./geometry/box.pl";
-require "./geometry/frontal_system.pl";
-require "./geometry/pmt.pl";
+# hits definitions
+require "./hit.pl";
 
-build_rich();
+#mirror material
+require "./mirrors.pl";
 
-sub build_rich
-{
-	for(my $s=4; $s<=4; $s++)
-	{
+my @allConfs = ("default","rga_fall2018","rgc_summer2022");
+foreach my $variation (@allConfs){
+    print("variation: " );
+    print($variation);
+    print("\n");
 
-		build_rich_box($s);
-		build_frontal_system_bottom($s);
-		build_frontal_system_top($s);
-		build_pmts($s);
+    $configuration{"variation"} = $variation;
+    system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/*" factory.groovy', $variation));
+    our @volumes = get_volumes(%configuration);    
 
-	}
+    coatjava::makeRICHcad($variation);
+
+    my @sectors = ();
+    if ($variation eq "rga_fall2018"){
+        push(@sectors,"4");
+    }
+    if ($variation eq "default"){
+        push(@sectors,("1","4"));
+    }
+    if ($variation eq "rgc_summer2022"){
+        push(@sectors,("1","4"));
+    }
+    define_MAPMT();
+    define_CFRP();
+    define_hit();
+    foreach my $sector (@sectors){
+	define_aerogels($sector);
+	buildMirrorsSurfaces($sector);
+	coatjava::makeRICHtext($sector);
+	print("temporary: copying RICH mother volume stl file \n");
+	copy("cadTemp/RICH_mother_corrected.stl","cad_".$variation."/RICH_s".$sector.".stl");
+
+    }
 }
+

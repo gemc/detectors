@@ -1,0 +1,21 @@
+<!--
+
+See CLAS note:
+
+-->
+
+<gxml>
+	<volume name="Apex_Shield_Lead_Fill"             color="8899dd"  material="G4_Pb"/>
+	<volume name="Apex_Shield_PCAL_Hub001"           color="999999"  material=""/>
+	<volume name="Downstream_Beam_tube_Segment_003"  color="aa8888"  material=""/>
+	<volume name="Downstream_Beam_tube_Segment_004"  color="992222"  material=""/>
+	<volume name="Torus_Beam_Tube_Reducer_003"       color="992222"  material=""/>
+	<volume name="Torus_Beam_Tube_Reducer_004"       color="992222"  material=""/>
+	<volume name="Torus_Beam_Tube_Segment_003"       color="992222"  material=""/>
+	<volume name="Torus_Beam_Tube_Segment_004"       color="992222"  material=""/>
+	<volume name="Torus_Beam_Tube_Window001"         color="992222"  material="G4_Al"/>
+	<volume name="Torus_Exit_Shield_Casing001"       color="992222"  material=""/>
+	<volume name="Torus_Exit_Shield_Lead_Fill001"    color="992222"  material=""/>
+	<volume name="Torus_Hub_Pass_Through001"         color="992222"  material=""/>
+	<volume name="Tungsten_Segment_Shielding001"     color="bb1111"  material=""/>
+</gxml>

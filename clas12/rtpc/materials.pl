@@ -60,7 +60,7 @@ sub materials
     my $CO2_dens = 0.0018233;
     my $He_fractionMass = ($He_prop*$He_dens)/($He_prop*$He_dens + $CO2_prop*$CO2_dens);
     my $CO2_fractionMass = ($CO2_prop*$CO2_dens)/($He_prop*$He_dens + $CO2_prop*$CO2_dens);
-    my $bonusGas_Density = $He_prop*$He_dens+$CO2_prop*$CO2_dens;
+    my $bonusGas_Density = $He_fractionMass*$He_dens+$CO2_fractionMass*$CO2_dens;
     $mat{"name"}          = "BONuSGas";
     $mat{"description"}   = "80:20 He:CO2 Drift region BONuS12 Gas at 1atm,293.15K";
     $mat{"density"}       = $bonusGas_Density;  # in g/cm3

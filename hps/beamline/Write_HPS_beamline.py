@@ -865,7 +865,7 @@ def calculate_target_geometry(g_en,mother="ps_field",origin=[0,0,0],radlen=0.125
           g4type='Tube',
           dimensions=[0,10.,thickness,0,360],
           dims_units=['mm', 'mm', 'mm','deg','deg'],
-          material="G4_W",
+          material="beamline_W",
           visible=1,
           style=1,
           sensitivity=sensitivity,

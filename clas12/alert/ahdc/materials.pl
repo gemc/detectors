@@ -14,7 +14,11 @@ sub materials
 	my $CO2_prop = 0.2;
 	my $He_dens = 0.0001664;
 	my $CO2_dens = 0.00184212;
-	my $AHDCGas_Density = $He_prop*$He_dens+$CO2_prop*$CO2_dens;
+	my $He_molarmass = 4.002602;
+	my $CO2_molarmass = 44.0087;
+	my $MolarVolume = 23890.; # in cm3 mol-1
+	#my $AHDCGas_Density = $He_prop*$He_dens+$CO2_prop*$CO2_dens;
+	my $AHDCGas_Density = ($He_prop*$He_molarmass+$CO2_prop*$CO2_molarmass)/($CO2_prop/$CO2_molarmass+$He_prop/$He_molarmass)/$MolarVolume;
 	$mat{"name"}          = "AHDCgas";
 	$mat{"description"}   = "80:20 He:CO2 drift region gas taken from bonus12";
 	$mat{"density"}       = $AHDCGas_Density; # in g/cm3

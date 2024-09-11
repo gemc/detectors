@@ -214,21 +214,6 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zpos = 6372;
-	$firstVacuumIR = 140;
-	$firstVacuumOR = 190;
-	$pipeLength = 1000;
-	%detector = init_det();
-	$detector{"name"}        = "leadInsideApex";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "lead inside apex";
-	$detector{"color"}       = "4499ff";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Pb";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
 	$zpos = 0;
 	$firstVacuumIR = 0;

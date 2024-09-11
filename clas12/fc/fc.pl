@@ -30,7 +30,7 @@ our %configuration = load_configuration($ARGV[0]);
 
 my $microgap = 0.1;
 my $torusZstart = 2754.17 - $microgap; # from drawings
-my $fcend = 9500;
+my $fcend = 14000;
 my $fcMaxRadius = 5000;
 my $nplanes_Cone = 6;
 

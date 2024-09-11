@@ -2,8 +2,8 @@
 
 	<option name="geometry" value="1400x1200"/>
 
+	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="APOLLOnh3"/>
 
-	<detector name="../targets/target" factory="TEXT" variation="APOLLOnh3"/>
 
 	<!-- Beamline FTOff configuration -->
 	<detector name="experiments/clas12/ft/ft"  factory="TEXT" variation="FTOff"/>
@@ -20,10 +20,6 @@
 	<option name="PHYSICS" value="STD + FTFP_BERT"/>
 	<option name="RUNNO" value="11"/>
 	<option name="DIGITIZATION_VARIATION" value="rga_fall2018_mc"/>
-
-	<detector name="connectUpstreamToTorusPipe">
-	 	<existence exist="no" />
-	</detector>
 
 
 	<!--  Target and central detectors are all shifted upstream by 30 mm -->

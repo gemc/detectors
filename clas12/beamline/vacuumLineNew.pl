@@ -7,8 +7,9 @@ our %configuration;
 my $shieldStart = 963; # start of vacuum pipe is 1mm downstream of target vac extension
 my $pipeFirstStep = 2413;
 my $torusStart    = 2754.17 ;
-my $mediumPipeEnd = 5016; # added by hand by shooting geantino vertically to locate the point
-my $bigPipeBegins = 5064; # added by hand by shooting geantino vertically to locate the point
+my $mediumPipeEnd = 5006; # added by hand by shooting geantino vertically to locate the point
+my $bigPipeBegins = 5062; # added by hand by shooting geantino vertically to locate the point. Corrected by 1mm to match the CAD import of downstream beamline
+my $connectThickness = 7; # added by hand by shooting geantino vertically to locate the point. Corrected by 1mm to match the CAD import of downstream beamline
 my $pipeEnds      = 5732;
 my $alcovePipeStarts = 5741;
 my $alcovePipeEnds   = 9400;
@@ -146,12 +147,13 @@ sub vacuumLine()
 	# in "fc" the pipe gets bigger after the torus
 	# 1.651mm thick
 
-	my $nplanes = 5;
+	my $nplanes = 7;
 
 	# vacuum inside fc. To be extended upstream when FC is removed
 	# the end of the line coordinate is eyeballed
-	my @iradius_vbeam  =  (  33.274,      33.274,         59.8        ,  59.8,    63.7);
-	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $bigPipeBegins, $pipeEnds, 13900);
+	# b
+	my @iradius_vbeam  =  (  33.274     , 33.274        , 32.2            , 32.2                                ,  59.8         ,  59.8     ,  63.7);
+	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $mediumPipeEnd, $mediumPipeEnd + $connectThickness,  $bigPipeBegins, $pipeEnds, 13900);
 
 	%detector = init_det();
 	$detector{"name"}        = "fc_beam_vacuum";

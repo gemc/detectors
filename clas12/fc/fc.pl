@@ -16,6 +16,7 @@ sub help() {
     print "\n Usage: \n";
     print "   fc.pl <configuration filename>\n";
     print "   Will create the CLAS12 forward carriage envelope that contains the various detectors\n";
+    print "   Note: if the sqlite file does not exist, create one with:  $GEMC/api/perl/sqlite.py -n clas12.sqlite\n";
     exit;
 }
 

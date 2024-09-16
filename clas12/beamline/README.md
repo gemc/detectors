@@ -1,6 +1,13 @@
 # CLAS12 Beamline
 
 
+## Manpower
+
+FTOn, FTOff: Raffa, Mauri
+RGH: 
+Elmo: 
+TransverseMagnet: 
+
 ## GCards
 
 - beamline_FTOn.gcard

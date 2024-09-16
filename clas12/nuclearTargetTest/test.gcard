@@ -24,7 +24,6 @@
 	<!-- Beamline configuration: FT is used -->
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
-	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
 
 	<!-- forward carriage -->

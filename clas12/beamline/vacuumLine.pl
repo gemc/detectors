@@ -7,8 +7,9 @@ our %configuration;
 my $shieldStart = 963; # start of vacuum pipe is 1mm downstream of target vac extension
 my $pipeFirstStep = 2413;
 my $torusStart    = 2754.17 ;
-my $mediumPipeEnd = 5016; # added by hand by shooting geantino vertically to locate the point
-my $bigPipeBegins = 5064; # added by hand by shooting geantino vertically to locate the point
+my $mediumPipeEnd = 5006; # added by hand by shooting geantino vertically to locate the point
+my $bigPipeBegins = 5062; # added by hand by shooting geantino vertically to locate the point. Corrected by 1mm to match the CAD import of downstream beamline
+my $connectThickness = 7; # added by hand by shooting geantino vertically to locate the point. Corrected by 1mm to match the CAD import of downstream beamline
 my $pipeEnds      = 5732;
 my $alcovePipeStarts = 5741;
 my $alcovePipeEnds   = 9400;
@@ -26,7 +27,6 @@ sub vacuumLine()
 	if( $configuration{"variation"} eq "FTOff") {
 		$shieldStart = 503; # 46 cm shift
 	}
-
 
 	# in "root" the first part of the pipe is straight
 	# 1.651mm thick
@@ -123,7 +123,7 @@ sub vacuumLine()
 
 
 	# vacuum line al window
-	my $zpos = 962.5;
+	$zpos = 962.5;
 		if( $configuration{"variation"} eq "FTOff") {
 		$zpos = 502.5; # 46 cm shift
 	}
@@ -146,39 +146,21 @@ sub vacuumLine()
 	# in "fc" the pipe gets bigger after the torus
 	# 1.651mm thick
 
+	my $nplanes = 7;
 
+	# vacuum inside fc. To be extended upstream when FC is removed
+	# the end of the line coordinate is eyeballed
+	# b
+	my @iradius_vbeam  =  (  33.274     , 33.274        , 32.2            , 32.2                                ,  59.8         ,  59.8     ,  63.7);
+	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $mediumPipeEnd, $mediumPipeEnd + $connectThickness,  $bigPipeBegins, $pipeEnds, 13900);
 
-	my $nplanes = 4;
-
-	#                        inside torus------------downstream
-	my @iradius_vbeam  =  (  33.274,      33.274,         60.325        , 60.325);
-	my @oradius_vbeam  =  (  34.925,      34.925,         63.5          , 63.5);
-	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $bigPipeBegins, $pipeEnds );
-
-	# sst pipe
 	%detector = init_det();
-	$detector{"name"}        = "vacuumPipe";
+	$detector{"name"}        = "fc_beam_vacuum";
 	$detector{"mother"}      = "fc";
-	$detector{"description"} = "vacuumPipe beampipe";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Polycone";
-	my $dimen = "0.0*deg 360*deg $nplanes*counts";
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius_vbeam[$i]*mm";}
-	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_vbeam[$i]*mm";}
-	$detector{"dimensions"}  = $dimen;
-	$detector{"material"}    = "G4_STAINLESS-STEEL";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
-	# vacuum inside
-	%detector = init_det();
-	$detector{"name"}        = "vacuumInPipe";
-	$detector{"mother"}      = "vacuumPipe";
-	$detector{"description"} = "vacuum inside vacuumPipe";
+	$detector{"description"} = "vacuum line inside fc";
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Polycone";
-	$dimen = "0.0*deg 360*deg $nplanes*counts";
+	my $dimen = "0.0*deg 360*deg $nplanes*counts";
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $iradius_vbeam[$i]*mm";}
 	for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane_vbeam[$i]*mm";}
@@ -187,52 +169,10 @@ sub vacuumLine()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	# pipe to alcove
-	$pipeLength = ($alcovePipeEnds - $alcovePipeStarts) / 2.0 - 0.1;
-	$zpos = $alcovePipeStarts + $pipeLength ;
-	my $thirdPipeIR = 64;
-	my $thirdPipeOR = 68;
-
-	%detector = init_det();
-	$detector{"name"}        = "vacuumPipeToAlcove";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "straightVacuumPipe";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "0*mm $thirdPipeOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_STAINLESS-STEEL";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
-	# vacuum inside,  this is inside ROOT
-	%detector = init_det();
-	$detector{"name"}        = "vacuumInPipeToAlcove";
-	$detector{"mother"}      = "vacuumPipeToAlcove";
-	$detector{"description"} = "vacuumInPipeToAlcove";
-	$detector{"color"}       = "000000";
-	$detector{"type"}        = "Tube";
-	$detector{"dimensions"}  = "0*mm $thirdPipeIR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Galactic";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
 
 
 	# lead inside apex
 	$zpos = $apexPos + $apexLength;
-
-	%detector = init_det();
-	$detector{"name"}        = "leadInsideApex";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "lead inside apex";
-	$detector{"color"}       = "4499ff";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$apexIR*mm $apexOR*mm $apexLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Pb";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
 
 	my $gapZpos = 283;
 	my $gapLength = 295;

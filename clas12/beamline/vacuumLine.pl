@@ -28,7 +28,6 @@ sub vacuumLine()
 		$shieldStart = 503; # 46 cm shift
 	}
 
-
 	# in "root" the first part of the pipe is straight
 	# 1.651mm thick
 	my $pipeLength = ($pipeFirstStep - $shieldStart) / 2.0 - 0.1;

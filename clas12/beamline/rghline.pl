@@ -198,39 +198,6 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-	$zpos = 7570.4;
-	$firstVacuumIR = 0.;
-	$firstVacuumOR = 68.;
-	$pipeLength = 1829.4;
-	%detector = init_det();
-	$detector{"name"}        = "vacuumPipeToAlcove";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "straightVacuumPipe";
-	$detector{"color"}       = "aaffff";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_STAINLESS-STEEL";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
-
-	$zpos = 0;
-	$firstVacuumIR = 0;
-	$firstVacuumOR = 64;
-	$pipeLength = 1829.4;
-	%detector = init_det();
-	$detector{"name"}        = "vacuumInPipeToAlcove";
-	$detector{"mother"}      = "vacuumPipeToAlcove";
-	$detector{"description"} = "vacuumInPipeToAlcove";
-	$detector{"color"}       = "000000";
-	$detector{"type"}        = "Tube";
-	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-	$detector{"dimensions"}  = "$firstVacuumIR*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-	$detector{"material"}    = "G4_Galactic";
-	$detector{"style"}       = 1;
-	print_det(\%configuration, \%detector);
-
 	# $zpos = 796;
 	# $firstVacuumIR = 0;
 	# $firstVacuumOR = 64;

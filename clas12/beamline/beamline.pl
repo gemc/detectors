@@ -41,7 +41,7 @@ our $inches = 25.4;
 require "./materials.pl";
 
 # vacuum line throughout the shields, torus and downstream
-require "./vacuumLineNew.pl";
+require "./vacuumLine.pl";
 require "./ELMOline.pl";
 require "./rghline.pl";
 require "./transverseUpstreamBeampipe.pl";

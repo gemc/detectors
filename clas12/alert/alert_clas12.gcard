@@ -1,7 +1,7 @@
 <gcard>
 	
 	<!-- target. ALERT target -->
-	<detector name="../targets/target" factory="TEXT" variation="alertD2"/> 
+	<detector name="../targets/target" factory="TEXT" variation="alert"/> 
 		
 	<!-- Implementation ATOF, ahdc -->
 	<detector name="atof/atof" factory="TEXT" variation="default"/>
@@ -25,10 +25,10 @@
 
 
 	<!-- Beamline configuration: FT is used -->
-	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cadBeamline/"    factory="CAD"/>
+	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOff"/>
+	<detector name="experiments/clas12/beamline/cadBeamlineFTOFF/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/vacuumLine/"       factory="CAD"/>
-	<detector name="../beamline/beamline"                          factory="TEXT" variation="FTALERT"/>
+	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOff"/>
 	<!-- <detector name="airPipe">  -->
 	<!-- 	<existence exist="no" />  -->
 	<!-- </detector> -->
@@ -57,6 +57,8 @@
 	<!-- <option name="MAX_FIELD_STEP" value="10" /> -->
 	
 	<option name="PHYSICS" value="FTFP_BERT + STD + Optical"/>
+
+	<option name="OUTPUT"   value="evio, alert_simulation.ev"/>
 
 	<option name="INTEGRATEDRAW" value="*"/>
 

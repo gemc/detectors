@@ -17,4 +17,15 @@ sub materials
 	$mat{"components"}    = "G4_He 1";
 	print_mat(\%configuration, \%mat);
 
+
+
+	#HECO2
+	%mat = init_mat();
+	$mat{"name"}          ="HECO2";
+	$mat{"description"}   = "Wires layer gas";
+	$mat{"density"}       = "0.000487";  # in g/cm3
+	$mat{"ncomponents"}   = "3";
+	$mat{"components"}    = "He 1 C 1 O 2";
+	print_mat(\%configuration, \%mat);
+
 }

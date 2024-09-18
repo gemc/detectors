@@ -41,10 +41,12 @@ our $inches = 25.4;
 require "./materials.pl";
 
 # vacuum line throughout the shields, torus and downstream
-require "./vacuumLineNew.pl";
+require "./vacuumLine.pl";
 require "./ELMOline.pl";
 require "./rghline.pl";
 require "./transverseUpstreamBeampipe.pl";
+
+# require "./torusShielding.pl";
 
 my @allConfs = ("FTOn", "FTOff", "ELMO", "rghFTOut", "rghFTOn", "TransverseUpstreamBeampipe");
 
@@ -67,6 +69,7 @@ foreach my $conf ( @allConfs ) {
 		rghline();
 	}
 
+	# torusShield();
 }
 
 

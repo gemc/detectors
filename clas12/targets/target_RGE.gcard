@@ -1,4 +1,3 @@
-<!-- GEMC 5.10 -->
 <gcard>
 
 	<!-- targets -->
@@ -30,11 +29,10 @@
 
 
 	<!-- Beamline configuration: FT is used -->
-	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOn"/>
-	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
+	<detector name="experiments/clas12/ft/ft"                 factory="TEXT" variation="FTOff"/>
+	<detector name="experiments/clas12/beamline/cadBeamlineFTOFF/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/vacuumLine/"  factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"     factory="TEXT" variation="FTOn"/>
-
 
 	
 	<!-- forward carriage -->
@@ -60,7 +58,7 @@
 
 
 	<!-- beam conditions -->
-	<option name="BEAM_P"   value="e-, 10.6*GeV, 0.0*deg, 0*deg"/>
+	<option name="BEAM_P"   value="e-, 10.5473*GeV, 0.0*deg, 0*deg"/>
 	<option name="BEAM_V"    value="(0, 0, -3)cm"/>
 	<option name="SPREAD_V"  value="(0.0, 2.5)cm"/>
 

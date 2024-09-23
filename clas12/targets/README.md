@@ -102,7 +102,7 @@ Set it up for lD2CxC/lD2CuSn variation as in "clas12_12C-RGD.gcard/clas12_120Sn-
 shift the whole target assembly upstream by 150 mm to get the two solid foils @ -7.5 cm and -2.5 cm, as the entrance and exit windows for the lD2 case; see the mentioned three solid-foil gcards.
 <detector name="target">    <position x="0.0*cm"  y="0.0*cm"  z="-15.0*cm"  />  </detector>
 
-## RG-E: Sep 5th, 2024
+## RG-E: Sep 23th, 2024
 
 Author: Antonio Radic
 
@@ -131,6 +131,9 @@ Set it up in "clas12-RGE.gcard" to choose full or empty deuterium cell"
 2. Choose Solid Target:
 Change solid target in "clas12-RGE.gcard" by choosing a subdirectory that contains CAD models for the requiered solid target configuration:
 <detector name="experiments/clas12/targets/rge-dt/C/"  factory="CAD"/>
+
+### Notes
+clas12-RGE.gcard is an example of an RG-E gcard. It could be updated later depending on the GEMC updates and releases. Please verify it before using.
 
 ### Run numbers for each configuration
 | Run number  | Configuration | Torus polarization |

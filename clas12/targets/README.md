@@ -132,8 +132,15 @@ Set it up in "clas12-RGE.gcard" to choose full or empty deuterium cell"
 Change solid target in "clas12-RGE.gcard" by choosing a subdirectory that contains CAD models for the requiered solid target configuration:
 <detector name="experiments/clas12/targets/rge-dt/C/"  factory="CAD"/>
 
+### gcard name format:
+Format of the included gcards for RGE have the following format:
+
+clas12-RGE_[liquid-target]-[solid-target]-[magnetic-field].gcard
+
+Where [magnetic-field] corresponds to Inbending (In), Outbending (Out), or Zero field (Zero).
+
 ### Notes
-clas12-RGE.gcard is an example of an RG-E gcard. It could be updated later depending on the GEMC updates and releases. Please verify it before using.
+clas12-RGE_example.gcard is just an example of an RG-E gcard. It could be updated later depending on the GEMC updates and releases. Please verify it before using.
 
 ### Run numbers for each configuration
 | Run number  | Configuration | Torus polarization |

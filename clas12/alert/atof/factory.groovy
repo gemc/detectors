@@ -33,25 +33,30 @@ def writer2=outFile.newWriter();
 // may want to add mother volume
 int nsectors = atof.getNumSectors();
 
+//println "Nsectors = ${nsectors}"
 
 //double ATOF_Z_length = 279.7; // mm, atof paddles total lenght in z
 
-for(int isec=0; isec<nsectors; isec++) 
+for(int isec=1; isec<=nsectors; isec++) 
 {
 	int nsuperlayers = atof.getSector(isec).getNumSuperlayers();
-	for(int isl=0; isl<nsuperlayers; isl++) 
+	//println "sector = ${isec}, nsuperlayers = ${nsuperlayers}"
+	for(int isl=1; isl<=nsuperlayers; isl++) 
 	{
 		int nlayers = atof.getSector(isec).getSuperlayer(isl).getNumLayers();
-		for(int ilay=0; ilay<nlayers; ilay++) 
+		//println "sector = ${isec}, superlayer = ${isl}, nlayers = ${nlayers}"
+		for(int ilay=1; ilay<=nlayers; ilay++) 
 		{
 			int ncomponents = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getNumComponents();
+			//println "sector = ${isec}, superlayer = ${isl}, layer = ${ilay}, ncomponents = ${ncomponents}"
 			//if(isec==0 && isl==0 && ilay==0) writer1 << "ahdc.layer.ncomponents | " << ncomponents << "\n"; 
 			if(ncomponents!=0) 
 			{
 				writer1 << "atof.sector" << isec << ".superlayer"<< isl << ".layer"<< ilay <<".ncomponents | " << ncomponents << "| na | number of counters in module | sergeyeva | sergeyeva@ipno.in2p3.fr | none | none | 15 June 2020 \n";
 
-				for(int icomp=isec*4; icomp<isec*4+ncomponents; icomp++) 
+				for(int icomp=(isec-1)*4; icomp<(isec-1)*4+ncomponents; icomp++) 
 				{
+					//println "sector = ${isec}, superlayer = ${isl}, layer = ${ilay}, icomp = ${icomp}"
 					Component comp = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getComponent(icomp);
 					writer2<< gemcString(isec, isl, ilay, comp);
 				}
@@ -102,16 +107,16 @@ public String gemcString(int sector, int superlayer,int layer, Component comp) {
 	double bottom_y_7 = p7.y();
 
 		// component name should be added
-        	str.append(String.format("sector%d_superlayer%d_layer%d_paddle%d | root", sector, superlayer, layer, (comp.getComponentId()+1)));
+        	str.append(String.format("sector%d_superlayer%d_layer%d_paddle%d | root", sector, superlayer, layer, (comp.getComponentId())));
 		
 		// Giving the origin point of coordinate system in which the trapezoide vertices are defined
 		//str.append(String.format("| %8.4f*mm %8.4f*mm %8.4f*mm | ", 0.0, 0.0, ((comp.getLine().midpoint().z()-15.0)-150.0+15.0))); // in mm
 		
-		if(superlayer == 0)
+		if(superlayer == 1)
 		{
 			str.append(String.format("| %8.4f*mm %8.4f*mm %8.4f*mm | ", 0.0, 0.0, ((comp.getLine().midpoint().z() - 279.7/2)))); // in mm
 		}
-		if(superlayer == 1)
+		if(superlayer == 2)
 		{
 			str.append(String.format("| %8.4f*mm %8.4f*mm %8.4f*mm | ", 0.0, 0.0, ((comp.getLine().midpoint().z() - 279.7/2)))); // in mm
 		}
@@ -127,11 +132,11 @@ public String gemcString(int sector, int superlayer,int layer, Component comp) {
 		String type = "G4GenericTrap"
         	str.append(String.format("| %8s |", type));
 		// to add the half-length in Z axis, coatjava class dimensions are in mm!
-		if(superlayer == 0)
+		if(superlayer == 1)
 		{
 			str.append(String.format(" %8.4f*mm ", 279.7/2.0));	
 		}
-		if(superlayer == 1)
+		if(superlayer == 2)
 		{
 			str.append(String.format(" %8.4f*mm ", 27.7/2.0));	
 		}
@@ -150,7 +155,7 @@ public String gemcString(int sector, int superlayer,int layer, Component comp) {
 	
 		// currently only writing the component id but should save all necessary identifiers according to detector definition
         	str.append(" | ");
-        	str.append(String.format("%d %d %d %d", sector, superlayer, layer, (comp.getComponentId()+1)));
+        	str.append(String.format("%d %d %d %d", sector, superlayer, layer, (comp.getComponentId())));
 
 		str.append("\n");
         

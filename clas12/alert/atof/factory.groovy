@@ -54,7 +54,7 @@ for(int isec=1; isec<=nsectors; isec++)
 			{
 				writer1 << "atof.sector" << isec << ".superlayer"<< isl << ".layer"<< ilay <<".ncomponents | " << ncomponents << "| na | number of counters in module | sergeyeva | sergeyeva@ipno.in2p3.fr | none | none | 15 June 2020 \n";
 
-				for(int icomp=(isec-1)*4; icomp<(isec-1)*4+ncomponents; icomp++) 
+				for(int icomp=(isec-1)*4+1; icomp<=(isec-1)*4+ncomponents; icomp++) 
 				{
 					//println "sector = ${isec}, superlayer = ${isl}, layer = ${ilay}, icomp = ${icomp}"
 					Component comp = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getComponent(icomp);

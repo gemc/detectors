@@ -93,7 +93,7 @@ sub build_paddles
 	#my $mother = "atof_mother";
 	my $mother = "ahdc_mother";
 	
-	for(my $n=( ($sector-1) *4); $n<( ($sector-1) *4+$npaddles); $n++)
+	for(my $n=( ($sector-1) *4)+1; $n<=( ($sector-1) *4+$npaddles); $n++)
 	{
 			my %detector = init_det();
 

@@ -1563,7 +1563,7 @@ sub build_targets
         # made this the mother volume instead
         my $Rin        = 0.0;
         my $Rout       = 3.0;
-        my $length     = 187.7;  
+        my $length     = 255;  
         my %detector = init_det();
         $detector{"name"}        = "gasTargetalert";
         $detector{"mother"}      = "alertTarget";
@@ -1571,7 +1571,6 @@ sub build_targets
         $detector{"color"}       = "ffff00";
         $detector{"type"}        = "Tube";
         $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
-       # $detector{"material"}    = "alertTargetGas";
         $detector{"style"}       = "1";
         
 		if($thisVariation eq "alertD2")
@@ -1592,7 +1591,7 @@ sub build_targets
         # ALERT target wall
         $Rin        = 3.0; 
         $Rout       = 3.060; 
-        $length     = 187.7;  
+        $length     = 255;  
         %detector = init_det();
         $detector{"name"}        = "alertTargetWall";
         $detector{"mother"}      = "alertTarget";
@@ -1608,7 +1607,7 @@ sub build_targets
 	$Rin        = 3.061;
         $Rout       = 3.1561;
         $length     = 2.0;  # half length
-        my $zPos       = -185.67;  # mm z position
+        my $zPos       = -262.3;  # mm z position
         %detector = init_det();
         $detector{"name"}        = "alertTargetUpEndCapRing";
         $detector{"mother"}      = "alertTarget";
@@ -1624,7 +1623,7 @@ sub build_targets
 	$Rin        = 0.0;
         $Rout       = 3.1561;
         $length     = 0.015;  # half length
-        $zPos       = -187.685;
+        $zPos       = -262.315;
         %detector = init_det();
         $detector{"name"}        = "alertTargetUpEndCapPlate";
         $detector{"mother"}      = "alertTarget";

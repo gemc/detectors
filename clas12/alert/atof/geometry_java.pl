@@ -61,21 +61,21 @@ sub makeATOF
 sub build_sectors
 {
 	# loop for sectors
-	for(my $s=0; $s<$nsectors; $s++)
+	for(my $s=1; $s<=$nsectors; $s++)
 	{
 		# loop for superlayers in Z
-		for(my $z=0; $z<$nsuperlayers; $z++)
+		for(my $z=1; $z<=$nsuperlayers; $z++)
 		{
-			if($z == 0)
+			if($z == 1)
 			{
 				$nlayers = 1;
 			}
-			if($z == 1)
+			if($z == 2)
 			{
 				$nlayers = 10;
 			}
 			# loop for layers in XY
-			for(my $l=0; $l<$nlayers; $l++)	
+			for(my $l=1; $l<=$nlayers; $l++)	
 			{	
 				$npaddles = $main::parameters{"atof.sector$s.superlayer$z.layer$l.ncomponents"};				
 				build_paddles($s,$z,$l);
@@ -93,7 +93,7 @@ sub build_paddles
 	#my $mother = "atof_mother";
 	my $mother = "ahdc_mother";
 	
-	for(my $n=($sector*4+1); $n<=($sector*4+$npaddles); $n++)
+	for(my $n=( ($sector-1) *4)+1; $n<=( ($sector-1) *4+$npaddles); $n++)
 	{
 			my %detector = init_det();
 
@@ -106,13 +106,13 @@ sub build_paddles
 			$detector{"dimensions"}   = $dimensions->{$vname};
 			$detector{"description"}  = "ATOFpaddle$n sector$sector superlayer$superlayer layer$layer";
 
-			if($superlayer==0)
+			if($superlayer==1)
 			{
 				$detector{"color"}        = "ff11aa";
 			} 
 			else 
 			{
-				if($superlayer==1) {$detector{"color"}        = "00aa00";}
+				if($superlayer==2) {$detector{"color"}        = "00aa00";}
 			}
 
 			$detector{"material"}     = "scintillator";

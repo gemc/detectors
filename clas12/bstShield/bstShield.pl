@@ -30,7 +30,7 @@ our %configuration = load_configuration($ARGV[0]);
 my @allConfs = ( "w51", "w51-rge");
 
 my $rmin   = 51;
-my $rmin_rge   = 52;
+my $rmin_rge   = 52.1;
 my $length = 180;
 my $pos    = "0*mm 0*mm -50*mm";
 
@@ -61,7 +61,8 @@ foreach my $conf ( @allConfs )
 	}
 
 	elsif($conf eq "w51-rge") {
-		$rmax = $rmin_rge + 0.051;
+		$rmin = $rmin_rge;
+		$rmax = $rmin + 0.051;
 		$detector{"material"}    = "G4_W";
 	}
 	

@@ -3086,7 +3086,7 @@ if($thisVariation eq "2cm-lD2")
 	{
 
 		my $nplanes = 4;
-		my @oradius  =  (    52.5,   52.5,  45,  21 );
+		my @oradius  =  (    52,   52,  45,  21 );
 		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
 
 		# vacuum target container
@@ -3173,7 +3173,7 @@ if($thisVariation eq "2cm-lD2")
 if($thisVariation eq "2cm-lD2-empty")
 	{
 		my $nplanes = 4;
-		my @oradius  =  (    52.5,   52.5,  45,  21 );
+		my @oradius  =  (    52,   52,  45,  21 );
 		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
 
 		# vacuum target container

@@ -2,8 +2,8 @@
 
 <!-- RGE target -->
 <!-- Liquid target. Variations include: "2cm-lD2", "2cm-lD2-empty"-->
-<detector name="target"             factory="TEXT" variation="2cm-lD2"/>
-<detector name="rge-dt/Al/"  
+<detector name="target"             factory="TEXT" variation="2cm-lD2-empty"/>
+<detector name="rge-dt/Sn/"  
 factory="CAD"/>
 <detector name="rge-dt/common/"
 factory="CAD"/>

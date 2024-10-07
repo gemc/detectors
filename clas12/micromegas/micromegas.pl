@@ -51,7 +51,7 @@ define_bank();
 
 
 # all the scripts must be run for every configuration
-my @allConfs = ("michel", "rgf_spring2020", "slim");
+my @allConfs = ("michel", "rgf_spring2020", "slim", "michel_9mmcopper", "michel_9mmcoppers");
 
 foreach my $conf ( @allConfs )
 {

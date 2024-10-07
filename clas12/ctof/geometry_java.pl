@@ -15,8 +15,6 @@ sub makeCTOF
 {
 	($mothers, $positions, $rotations, $types, $dimensions, $ids) = @main::volumes;
 
-	build_fake_mother();
-
 	my $dirName = shift;
 	build_gxml($dirName);
 	build_upstream_gxml("${dirName}_upstream");
@@ -122,26 +120,5 @@ sub build_downLightGuides
 }
 
 
-sub build_fake_mother
-{
-	my %detector = init_det();
-	
-	$detector{"name"}        = "ctof";
-	$detector{"mother"}      = "root";
-	$detector{"description"} = "Central TOF Mother Volume";
-	$detector{"pos"}         = "0*cm 0.0*cm 0*mm";
-	$detector{"rotation"}    = "0*deg 0*deg 0*deg";
-	$detector{"color"}       = "000000";
-	$detector{"type"}        = "Tube";
-	
-	$detector{"dimensions"}  = "25*cm 28.2226*cm 40.34155*cm 0*deg 360*deg";
-	$detector{"material"}    = "G4_AIR";
-	$detector{"mfield"}      = "no";
-	$detector{"visible"}     = 0;
-	$detector{"style"}       = 1;
-	$detector{"exist"}       = 0;
-
-	print_det(\%main::configuration, \%detector);
-}
 
 1;

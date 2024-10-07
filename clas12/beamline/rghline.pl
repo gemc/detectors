@@ -175,16 +175,16 @@ sub rghline()
 
 	my $nplanes = 7;
 
-	# vacuum inside fc. To be extended upstream when FC is removed
+	# vacuum inside torus. To be extended upstream
 	# the end of the line coordinate is eyeballed
 	# b
 	my @iradius_vbeam  =  (  33.274     , 33.274        , 32.2            , 32.2                                ,  59.8         ,  59.8     ,  63.7);
 	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $mediumPipeEnd, $mediumPipeEnd + $connectThickness,  $bigPipeBegins, $pipeEnds, 13900);
 
 	%detector = init_det();
-	$detector{"name"}        = "fc_beam_vacuum";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "vacuum line inside fc";
+	$detector{"name"}        = "beam_vacuum";
+	$detector{"mother"}      = "";
+	$detector{"description"} = "vacuum line inside torus";
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes*counts";

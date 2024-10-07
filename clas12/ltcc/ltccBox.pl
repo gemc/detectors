@@ -247,7 +247,7 @@ sub build_ltcc_box()
 		# Final box - Big Box * TrapBox
 		%detector = init_det();
 		$detector{"name"}        = "ltccS$s";
-		$detector{"mother"}      = "fc";
+		$detector{"mother"}      = "root";
 		$detector{"description"} = "ltcc sector $s";
 		$detector{"pos"}         = "0*mm 0*mm $c6toc12Z*mm";
 		$detector{"rotation"}    = "0*deg 0*deg $rotPhi*deg";

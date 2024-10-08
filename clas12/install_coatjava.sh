@@ -34,7 +34,7 @@ fi
 
 # print help if -h is given
 if [[ $1 == "-h" ]]; then
-	echo "Usage: update.sh [-d] [-t tag]"
+	echo "Usage: install_coatjava.sh [-d] [-t tag]"
 	echo "  -d: use coatjava development version"
 	echo "  -t tag: use coatjava tag version"
 	echo "  -g github_url: use a custom github url"

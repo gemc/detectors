@@ -42,13 +42,18 @@ sub define_ahdc_bank
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "wire number");
 	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "set to 1");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC integral from pulse fit");
-	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Di", "adc time from pulse fit");
-	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis - currently set to doca");
+	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "adc time from pulse fit");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis - currently set to noise level");
+	insert_bank_variable(\%configuration, $bankname, "ADC_integral" ,8, "Di", "integral");
+	insert_bank_variable(\%configuration, $bankname, "ADC_timestamp",9, "Dd", "currently set to t_start");
+	insert_bank_variable(\%configuration, $bankname, "ADC_t_cfd",10, "Dd", "time from constant fraction discriminator");
+	insert_bank_variable(\%configuration, $bankname, "ADC_mctime",11, "Dd", "mc time - weighted average with Edep");
+	insert_bank_variable(\%configuration, $bankname, "ADC_nsteps",12, "Di", "nsteps");
+	insert_bank_variable(\%configuration, $bankname, "ADC_mcEtot",13, "Dd", "mcEtot");
 #	insert_bank_variable(\%configuration, $bankname, "TDC_order",    4, "Di", "set to 0");
 #	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      5, "Di", "TDC integral from pulse fit");
 #	insert_bank_variable(\%configuration, $bankname, "TDC_ped" ,     6, "Di", "pedestal from pulse analysis - currently set to doca");
-	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
-
+	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");	
 
 	
 

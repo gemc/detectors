@@ -81,7 +81,7 @@ foreach my $conf ( @allConfs )
 		#make_pb();
 	} else {
 		# run ATOF factory from COATJAVA to produce volumes
-		system("groovy -cp '/work/clas12/rg-l/sw/coatjava/coatjava/lib/clas/coat-libs-10.1.2-SNAPSHOT.jar' factory.groovy --variation $configuration{variation} --runnumber 11");
+		system("groovy -cp '/work/clas12/rg-l/sw/coatjava/coatjava/lib/clas/coat-libs-11.0.2-SNAPSHOT.jar' factory.groovy --variation $configuration{variation} --runnumber 11");
 
 		# Global pars - these should be read by the load_parameters from file or DB
 		our %parameters = get_parameters(%configuration);

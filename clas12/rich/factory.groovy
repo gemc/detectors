@@ -27,10 +27,10 @@ new File(dirName).mkdir();
 factory.getAllVolumes().forEach{ volume ->
 	if(volume.getType()=="Stl"){
 		if(volume.getName() == "RICH_s4"){
-			System.out.println("Skipping download of mother volume stl file (temporary)");
-			//for (int i = 0; i < nmodules; i++) {
-			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_m"+(i+1).toString()]));
-			//}
+			//System.out.println("Skipping download of mother volume stl file (temporary)");
+			for (int i = 0; i < nmodules; i++) {
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_m"+(i+1).toString()]));
+			}
 		}
 		else{
 			for (int i = 0; i < nmodules; i++) {

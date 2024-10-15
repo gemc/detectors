@@ -85,7 +85,7 @@ while (my ($variation, $sectorarr) = each %conf_module_pos) {
 	
 	define_aerogels($module); #was sector
 	buildMirrorsSurfaces($module); #was sector
-	makeRICHtext($module);
+	makeRICHtext($module,$sector);
 	print("temporary: copying RICH mother volume stl file \n");
 	copy("cadTemp/RICH_mother_corrected.stl","cad_".$variation."/RICH_m".$module.".stl");
 

@@ -50,10 +50,14 @@ sub define_ahdc_bank
 	insert_bank_variable(\%configuration, $bankname, "ADC_mctime",11, "Dd", "mc time - weighted average with Edep");
 	insert_bank_variable(\%configuration, $bankname, "ADC_nsteps",12, "Di", "nsteps");
 	insert_bank_variable(\%configuration, $bankname, "ADC_mcEtot",13, "Dd", "mcEtot");
-#	insert_bank_variable(\%configuration, $bankname, "TDC_order",    4, "Di", "set to 0");
-#	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      5, "Di", "TDC integral from pulse fit");
-#	insert_bank_variable(\%configuration, $bankname, "TDC_ped" ,     6, "Di", "pedestal from pulse analysis - currently set to doca");
-	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");	
+	#insert_bank_variable(\%configuration, $bankname, "TDC_order",    4, "Di", "set to 0");
+	#insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      5, "Di", "TDC integral from pulse fit");
+	#insert_bank_variable(\%configuration, $bankname, "TDC_ped" ,     6, "Di", "pedestal from pulse analysis - currently set to doca");
+	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
+	for my $itr (1..136) {
+		my $entry = "wf136_s$itr";
+		insert_bank_variable(\%configuration, $bankname, $entry,$itr+3, "Di", "Digitized AHDC siganl : sample n° $itr");
+	}
 
 	
 

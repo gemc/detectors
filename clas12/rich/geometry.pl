@@ -90,12 +90,14 @@ sub build_MESH
 		}
 		#rotate mesh for sector 1 180 deg. around z
 		$detector{"rotation"}    = $rotations->{$vname};
-		
+		$detector{"mother"}      = $mothers->{$vname};		
 		if($mesh eq "RICH_s4"){
 		    $detector{"rotation"}  = "0 0 ".$sectorRotation."*deg";
+		    # temporary: ensure that mother of RICH volume is 'root'
+		    # (in case using coatajva < 11.0.2)
+		    $detector{"mother"}      = "root";
 		}
-		$detector{"mother"}      = $mothers->{$vname};
-
+		
 		if($mesh eq "RICH_s4"){
 		    $detector{"color"}       = "444444";
 		    $detector{"style"}       = "wireframe";

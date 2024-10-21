@@ -157,7 +157,7 @@ sub build_mother
 	
 	my %detector = init_det();
 	$detector{"name"}        = "ec_s".$sector;
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Forward Calorimeter - Sector ".$sector;
 	$detector{"pos"}         = ec_sec_pos($sector);
 	$detector{"rotation"}    = ec_sec_rot($sector);

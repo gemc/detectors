@@ -33,7 +33,7 @@ sub build_panel1a_mother
 	
 	my %detector = init_det();
 	$detector{"name"}        = "ftof_p1a_s".$sector;
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Forward TOF - Panel 1a - Sector ".$sector;
 	$detector{"pos"}         = panel_1a_pos($sector);
 	$detector{"rotation"}    = panel_1a_rot($sector);
@@ -54,7 +54,7 @@ sub build_panel1b_mother
 	
 	my %detector = init_det();
 	$detector{"name"}        = "ftof_p1b_s".$sector;
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Forward TOF - Panel 1b - Sector ".$sector;
 	$detector{"pos"}         = panel_1b_pos($sector);
 	$detector{"rotation"}    = panel_1b_rot($sector);
@@ -75,7 +75,7 @@ sub build_panel2_mother
 	
 	my %detector = init_det();
 	$detector{"name"}        = "ftof_p2_s".$sector;
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Forward TOF - Panel 2 - Sector ".$sector;
 	$detector{"pos"}         = panel_2_pos($sector);
 	$detector{"rotation"}    = panel_2_rot($sector);

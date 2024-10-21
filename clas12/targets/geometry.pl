@@ -289,372 +289,6 @@ sub build_targets
 		print_det(\%configuration, \%detector);
 		
 	}
-	#
-	# EG2p Nuclear Targets Assembly
-	#
-	elsif($thisVariation eq "12C")
-	{
-		
-		#Vacuum Target Container
-		my $nplanes = 4;
-
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  ( -145.0,  235.0, 260.0, 370.0);
-
-		my %detector = init_det();
-		$detector{"name"}        = "target";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "Vacuum Container";
-		$detector{"color"}       = "22ff22";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes*counts";
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
-
-		#Upstream Foil
-		my $ZCenter = -25.86;  # center location of target along beam axis
-		my $Rout       = 5;  #
-		my $length     = 0.86; #(1.72 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "1stNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "First 12C foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0011";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_C";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Second Foil
-		$ZCenter = 24.14;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.86; #(1.72 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "2ndNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Second 12C foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_C";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Downstream Foil
-		$ZCenter = 74.14;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.86; #(1.72 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "3rdNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Third 12C foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_C";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-	}
-	elsif($thisVariation eq "27Al")
-	{
-		
-		#Vacuum Target Container
-		my $nplanes = 4;
-
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
-
-		my %detector = init_det();
-		$detector{"name"}        = "target";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "Vacuum Container";
-		$detector{"color"}       = "22ff22";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes*counts";
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
-
-		#Upstream Foil
-		my $ZCenter = -25.29;  # center location of target along beam axis
-		my $Rout       = 5;  #
-		my $length     = 0.29; #(0.58 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "1stNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "First 27Al foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0011";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Second Foil
-		$ZCenter = 24.71;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.29; #(0.58 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "2ndNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Second 27Al foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Downstream Foil
-		$ZCenter = 74.71;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.29; #(0.58 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "3rdNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Third 27Al foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Al";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-	}
-	elsif($thisVariation eq "63Cu")
-	{
-		#Vacuum Target Container
-		my $nplanes = 4;
-
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
-
-		my %detector = init_det();
-		$detector{"name"}        = "target";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "Vacuum Container";
-		$detector{"color"}       = "22ff22";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes*counts";
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
-		
-		#Upstream Foil
-		my $ZCenter = -25.2;  # center location of target along beam axis
-		my $Rout       = 5;  #
-		my $length     = 0.2; #(0.4 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "1stNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "First 63Cu Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0011";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Cu";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Second Foil
-		$ZCenter = 24.8;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.2; #(0.4 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "2ndNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Second 63Cu Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Cu";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Downstream Foil
-		$ZCenter = 74.8;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.2; #(0.4 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "3rdNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Third 63Cu Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Cu";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-	}
-	elsif($thisVariation eq "118Sn")
-	{
-		#Vacuum Target Container
-		my $nplanes = 4;
-
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
-
-		my %detector = init_det();
-		$detector{"name"}        = "target";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "Vacuum Container";
-		$detector{"color"}       = "22ff22";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes*counts";
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
-		
-		#Upstream Foil
-		my $ZCenter = -25.15;  # center location of target along beam axis
-		my $Rout       = 5;  #
-		my $length     = 0.15; #(0.3 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "1stNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "First 118Sn Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0011";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Sn";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Second Foil
-		$ZCenter = 24.85;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.2; #(0.4 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "2ndNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Second 118Sn Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Sn";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Downstream Foil
-		$ZCenter = 74.85;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.2; #(0.4 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "3rdNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Third 118Sn Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Sn";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-	}
-	elsif($thisVariation eq "208Pb")
-	{
-		#Vacuum Target Container
-		my $nplanes = 4;
-
-		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
-		my @z_plane  =  ( -115.0,  265.0, 290.0, 373.0);
-
-		my %detector = init_det();
-		$detector{"name"}        = "target";
-		$detector{"mother"}      = "root";
-		$detector{"description"} = "Vacuum Container";
-		$detector{"color"}       = "22ff22";
-		$detector{"type"}        = "Polycone";
-		my $dimen = "0.0*deg 360*deg $nplanes*counts";
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
-		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
-		$detector{"dimensions"}  = $dimen;
-		$detector{"material"}    = "G4_Galactic";
-		$detector{"style"}       = 0;
-		print_det(\%configuration, \%detector);
-		
-		
-		#Upstream Foil
-		my $ZCenter = -25.07;  # center location of target along beam axis
-		my $Rout       = 5;  #
-		my $length     = 0.07; #(0.14 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "1stNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "First 208Pb Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0011";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Pb";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Second Foil
-		$ZCenter = 24.93;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.07; #(0.14 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "2ndNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Second 208Pb Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Pb";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-		
-		#Downstream Foil
-		$ZCenter = 74.93;  # center location of target along beam axis
-		$Rout       = 5;  #
-		$length     = 0.07; #(0.14 mm thick)
-		%detector = init_det();
-		$detector{"name"}        = "3rdNuclearTargFoil";
-		$detector{"mother"}      = "target";
-		$detector{"description"} = "Third 208Pb Foil for EG2p Nuclear Targets Assembly";
-		$detector{"pos"}         = "0 0 $ZCenter*mm";
-		$detector{"color"}       = "aa0000";
-		$detector{"type"}        = "Tube";
-		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-		$detector{"material"}    = "G4_Pb";
-		$detector{"style"}       = "1";
-		print_det(\%configuration, \%detector);
-
-	}
 
 	if($thisVariation eq "hdIce") {
 		my %detector = init_det();
@@ -1531,6 +1165,381 @@ sub build_targets
         $detector{"mother"}      = "target";
         $detector{"description"} = "Bonus Target Al end cap wall";
         $detector{"color"}       = "C4C4C4";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+    }
+    #
+    # Flag Design: lD2 cell + 2 Solid Foils Assembly
+     #
+        elsif($thisVariation eq "LD2CuSn")
+	{	 
+	 #
+	 # lD2 Cell copied from lD2/lH2 variation
+	 #
+	 	my $nplanes = 4;
+
+		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
+		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );
+
+
+		if ($thisVariation eq "lH2e") {
+			@z_plane  =  (  -115.0,  365.0, 390.0, 925.0 );
+		}		
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		$nplanes = 5;
+		my @oradiusT  =  (   2.5,  10.3,  7.3,  5.0,  2.5);
+		my @z_planeT  =  ( -24.2, -21.2, 22.5, 23.5, 24.5);
+
+		# actual target
+		%detector = init_det();
+		$detector{"name"}        = "lh2";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Target Cell";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Polycone";
+		$dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradiusT[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_planeT[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_lH2";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+				
+		# 63Cu + 120Sn foils
+		
+		# Upstream Foil: 63Cu (Zcenter defined assuming z= 0 cm is the center of CLAS12.
+		my $ZCenter = 75.0;  # center location of target along beam axis
+		my $Rout       = 2;  #
+		my $length     = 0.0465; #(0.093 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "1stNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "First 63Cu Foil in Flag Assembly";
+		# As given by Cyril in May 2019
+		$detector{"pos"}         = "0*mm 0*mm $ZCenter*mm";
+		$detector{"color"}       = "aa0011";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Cu";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+		
+		# Second Foil: 120Sn
+		$ZCenter = 125.0;  # center location of target along beam axis
+		$Rout       = 2;  #
+		$length     = 0.0855; #(0.171 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "2ndNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Second 120Sn Foil in Flag Assembly";
+		#$detector{"pos"}         = "0 0 $ZCenter*mm";
+		# As given by Cyril in May 2019
+		$detector{"pos"}         = "0*mm 0*mm $ZCenter*mm";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Sn";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+		
+		# CxC foils for the 2nd Needles Set
+		
+		# First 12C foil
+		$ZCenter = 75.0;  # center location of target along beam axis
+		$Rout       = 2;  #
+		# New Thickness
+		$length     = 1; #(2 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "3rdNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "First 12C Foil in Flag Assembly";
+		# From Cyril drawing for centers positions
+		$detector{"pos"}         = "27.496*mm -15.875*mm $ZCenter*mm";
+		$detector{"color"}       = "#ff007f";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_C";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+		
+		# Second 12C Foil
+		$ZCenter = 125.0;  # center location of target along beam axis
+		
+		$Rout       = 2;  #
+		# New Thickness
+		$length     = 1; #(2 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "4thNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Second 12C Foil in Flag Assembly";
+		# From Cyril drawing for centers positions
+		$detector{"pos"}         = "27.496*mm -15.875*mm $ZCenter*mm";
+		$detector{"color"}       = "#ff007f";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_C";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
+	 elsif($thisVariation eq "lD2CxC")
+	 {
+	 
+	 #
+	 # lD2 Cell copied from lD2/lH2 variation
+	 #
+	 	my $nplanes = 4;
+
+		my @oradius  =  (    50.2,   50.2,  21.0,  21.0 );
+		my @z_plane  =  (  -115.0,  265.0, 290.0, 300.0 );
+
+
+		if ($thisVariation eq "lH2e") {
+			@z_plane  =  (  -115.0,  365.0, 390.0, 925.0 );
+		}		
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		$nplanes = 5;
+		my @oradiusT  =  (   2.5,  10.3,  7.3,  5.0,  2.5);
+		my @z_planeT  =  ( -24.2, -21.2, 22.5, 23.5, 24.5);
+
+		# actual target
+		%detector = init_det();
+		$detector{"name"}        = "lh2";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Target Cell";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Polycone";
+		$dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradiusT[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_planeT[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_lH2";
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+				
+		# CxC foils		
+		#Upstream Foil: 12C 
+		my $ZCenter = 75.0;  # center location of target along beam axis
+		my $Rout       = 2;  #
+		# New Thickness
+		my $length     = 1; #(2 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "1stNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "First 12C Foil in Flag Assembly";
+		#$detector{"pos"}         = "0 0 $ZCenter*mm";
+		# As given by Cyril in May 2019
+		$detector{"pos"}         = "0*mm 0*mm $ZCenter*mm";
+		$detector{"color"}       = "aa0011";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_C";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+		
+		#Second 12C Foil
+		$ZCenter = 125.0;  # center location of target along beam axis
+		$Rout       = 2;  #
+		# New Thickness
+		$length     = 1; #(2 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "2ndNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Second 12C Foil in Flag Assembly";
+		# As given by Cyril in May 2019 (considering y=0 mm is the bottom edge for 4mm wide foil)
+		$detector{"pos"}         = "0*mm 0*mm $ZCenter*mm";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_C";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+		
+		# 63Cu & 120Sn foils for the 2nd set of needles		
+		# 63Cu Foil
+		$ZCenter = 75.0;  # center location of target along beam axis
+		$Rout       = 2;  #
+		$length     = 0.0465; #(0.093 mm thick) 
+		%detector = init_det();
+		$detector{"name"}        = "3rdNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "63Cu Foil in Flag Assembly";
+		# From Cyril drawing for centers positions
+		$detector{"pos"}         = "27.496*mm -15.875*mm $ZCenter*mm";
+		# As given by Cyril in May 2019 from bottom edge/contact point with needle (-16.876mm)
+		$detector{"color"}       = "#ff007f";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Cu";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+		
+		# 120Sn
+		$ZCenter = 125.0;  # center location of target along beam axis
+		$Rout       = 2;  #
+		$length     = 0.0855; #(0.171 mm thick)
+		%detector = init_det();
+		$detector{"name"}        = "4thNuclearTargFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "120Sn Foil in Flag Assembly";
+		# From Cyril drawing for centers positions
+		$detector{"pos"}         = "27.496*mm -15.875*mm $ZCenter*mm";
+		# As given by Cyril in May 2019 from bottom edge/contact point with needle (-16.876mm)
+		$detector{"color"}       = "#ff007f";
+		$detector{"type"}        = "Tube";
+		$detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Sn";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
+
+    # ALERT target 
+    elsif($thisVariation eq "alert")
+    {
+	# adapted from bonus case
+        # alert tg root volume
+        my $Rout       = 4;
+        my $length     = 155.0;  # mm!
+        my %detector = init_det();
+        $detector{"name"}        = "alertTarget";
+        $detector{"mother"}      = "root";
+        $detector{"description"} = "ALERT gaseous D2 Target";
+        $detector{"color"}       = "eeeegg";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_He";
+        $detector{"style"}       = "1";
+        $detector{"visible"}     = 0;
+        print_det(\%configuration, \%detector);
+        
+        # ALERT target gas volume
+        my $Rin        = 0.0;
+        $Rout       = 3.0;
+        $length     = 150.0;  
+        %detector = init_det();
+        $detector{"name"}        = "gasDeuteriumTarget";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "5 atm deuterium target gas";
+        $detector{"color"}       = "ffff00";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "alertTargetGas";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # ALERT target wall
+        $Rin        = 3.0; 
+        $Rout       = 3.060; 
+        $length     = 150.0;  
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetWall";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target wall";
+        $detector{"color"}       = "0000ff";
+        $detector{"type"}        = "Tube";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_KAPTON";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+
+	# ALERT target upstream aluminum end ring and window
+	$Rin        = 3.061;
+        $Rout       = 3.1561;
+        $length     = 2.0;  # half length
+        my $zPos       = -148.0;  # mm z position
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetUpEndCapRing";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al upstream end cap ring";
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+	
+	$Rin        = 0.0;
+        $Rout       = 3.1561;
+        $length     = 0.015;  # half length
+        $zPos       = -150.015;
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetUpEndCapPlate";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al upstream end cap wall";
+        $detector{"color"}       = "0af131";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+	
+        # ALERT target downstream aluminum end ring
+        $Rin        = 3.061;
+        $Rout       = 3.1561;
+        $length     = 2.0;  # half length
+        my $zPos       = 148;  # mm z position
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetEndCapRing";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al end cap ring";
+        $detector{"color"}       = "ff0000";
+        $detector{"type"}        = "Tube";
+        $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
+        $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
+        $detector{"material"}    = "G4_Al";
+        $detector{"style"}       = "1";
+        print_det(\%configuration, \%detector);
+        
+        # ALERT target downstream aluminum end window
+        $Rin        = 0.0;
+        $Rout       = 3.1561;
+        $length     = 0.015;  # half length
+        $zPos       = 150.015;
+        %detector = init_det();
+        $detector{"name"}        = "alertTargetEndCapPlate";
+        $detector{"mother"}      = "alertTarget";
+        $detector{"description"} = "ALERT Target Al end cap wall";
+        $detector{"color"}       = "0af131";
         $detector{"type"}        = "Tube";
         $detector{"pos"}         = "0*mm 0*mm $zPos*mm";
         $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
@@ -3073,6 +3082,161 @@ sub build_targets
 	print_det(\%configuration, \%detector);
     }
 
+if($thisVariation eq "2cm-lD2")
+	{
+
+		my $nplanes = 4;
+		my @oradius  =  (    52,   52,  45,  21 );
+		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessU  = 0.015/2.;
+		my $zposU       = -70.35;
+		my $radiusU     = 4.95;
+		$detector{"name"}        = "LD2CellWindowU";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell upstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposU*mm";
+		$detector{"dimensions"}  = "0*mm $radiusU*mm $thicknessU*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell downstream window
+		my $thicknessD  = 0.015/2.;
+		my $zposD       = -50.34;
+		my $radiusD     = 4.95;
+		$detector{"name"}        = "LD2CellWindowD";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell downstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposD*mm";
+		$detector{"dimensions"}  = "0*mm $radiusD*mm $thicknessD*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# actual lD2 target
+		$nplanes = 6;
+		my @oradiusT  =  (   2.5, 7.0,  7.8,  6.7, 5.5,  2.5);
+		my @z_planeT  =  ( -70.30, -68.0, -66.2, -52.5, -51.0, -50.40);
+		%detector = init_det();
+		$detector{"name"}        = "lD2";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Target Cell";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Polycone";
+		$dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradiusT[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_planeT[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "LD2"; # defined in gemc database
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+
+		# reference foil
+		my $thickness  = 0.01/2.;
+		my $zpos       = -30.33;
+		my $radius     = 10;
+		$detector{"name"}        = "refFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "aluminum refernence foil";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
+
+if($thisVariation eq "2cm-lD2-empty")
+	{
+		my $nplanes = 4;
+		my @oradius  =  (    52,   52,  45,  21 );
+		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessU  = 0.015/2.;
+		my $zposU       = -70.35;
+		my $radiusU     = 4.95;
+		$detector{"name"}        = "LD2CellWindowU";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell upstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposU*mm";
+		$detector{"dimensions"}  = "0*mm $radiusU*mm $thicknessU*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessD  = 0.015/2.;
+		my $zposD       = -50.34;
+		my $radiusD     = 4.95;
+		$detector{"name"}        = "LD2CellWindowD";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell downstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposD*mm";
+		$detector{"dimensions"}  = "0*mm $radiusD*mm $thicknessD*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# reference foil
+		my $thickness  = 0.01/2.;
+		my $zpos       = -30.33;
+		my $radius     = 10;
+		$detector{"name"}        = "refFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "aluminum refernence foil";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
 
 
 }

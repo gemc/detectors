@@ -7,8 +7,8 @@ sub define_hit
 {
 	# uploading the hit definition
 	my %hit = init_hit();
-	$hit{"name"}            = "alrttof";
-	$hit{"description"}     = "alrttof hit definitions ";
+	$hit{"name"}            = "atof";
+	$hit{"description"}     = "atof hit definitions ";
 	$hit{"identifiers"}     = "sector superlayer layer paddle";
 	$hit{"signalThreshold"} = "0.5*MeV";
 	$hit{"timeWindow"}      = "400*ns";

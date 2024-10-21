@@ -124,8 +124,8 @@ sub build_ncells_0
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
 			$detector{"style"}        = 1;
-			$detector{"sensitivity"}  = "alrtdc";
-			$detector{"hit_type"}     = "alrtdc";
+			$detector{"sensitivity"}  = "ahdc";
+			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
 			$detector{"identifiers"}  = "superlayer manual 0 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
@@ -166,8 +166,8 @@ sub build_ncells_1
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
 			$detector{"style"}        = 1;
-			$detector{"sensitivity"}  = "alrtdc";
-			$detector{"hit_type"}     = "alrtdc";
+			$detector{"sensitivity"}  = "ahdc";
+			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
 			$detector{"identifiers"}  = "superlayer manual 1 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
@@ -208,8 +208,8 @@ sub build_ncells_2
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
 			$detector{"style"}        = 1;
-			$detector{"sensitivity"}  = "alrtdc";
-			$detector{"hit_type"}     = "alrtdc";
+			$detector{"sensitivity"}  = "ahdc";
+			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
 			$detector{"identifiers"}  = "superlayer manual 2 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
@@ -250,8 +250,8 @@ sub build_ncells_3
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
 			$detector{"style"}        = 1;
-			$detector{"sensitivity"}  = "alrtdc";
-			$detector{"hit_type"}     = "alrtdc";
+			$detector{"sensitivity"}  = "ahdc";
+			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
 			$detector{"identifiers"}  = "superlayer manual 3 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);
@@ -292,8 +292,8 @@ sub build_ncells_4
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
 			$detector{"style"}        = 1;
-			$detector{"sensitivity"}  = "alrtdc";
-			$detector{"hit_type"}     = "alrtdc";
+			$detector{"sensitivity"}  = "ahdc";
+			$detector{"hit_type"}     = "ahdc";
 			# set the identifiers
 			$detector{"identifiers"}  = "superlayer manual 4 layer manual $layer ahdccell manual $n side manual 0 ";
 			print_det(\%main::configuration, \%detector);

@@ -46,7 +46,7 @@ foreach my $conf ( @allConfs )
 	$detector{"color"}       = "ff88aa";
 	$detector{"type"}        = "Tube";
 	$detector{"pos"}         =  $pos ;
-	$detector{"material"}    = "G4_W";
+	$detector{"material"}    = "beamline_W";
 
 	my $rmax = 0;
 

@@ -74,7 +74,7 @@ sub torusBeamShield()
 		print_det(\%configuration, \%detector);
 	}
 
-	
-	
+
 	
 }
+	return 1;

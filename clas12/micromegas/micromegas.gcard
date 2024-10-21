@@ -2,13 +2,11 @@
 
 	<option name="geometry" value="1400x1200"/>
 
-	<detector name="micromegas" factory="TEXT" variation="rgf_spring2020"/>
+	<detector name="micromegas" factory="TEXT" variation="michel"/>
 
 	<option name="BEAM_P" value="proton, 1.0*GeV, 90*deg, 90*deg"/>
 	<option name="SPREAD_P" value="0*GeV, 20*deg,180*deg"/>
 	<option name="BEAM_V" value="(0, 0, 0)mm"/>
-
-	<option name="HALL_FIELD"  value="clas12-newSolenoid"/>
 
 	<option name="OUTPUT"                  value="hipo, out.hipo"/>
 	<option name="PHYSICS"                 value="FTFP_BERT + STD"/>

@@ -16,6 +16,7 @@ sub help() {
     print "\n Usage: \n";
     print "   ec.pl <configuration filename>\n";
     print "   Will create the CLAS12 EC geometry, materials, bank and hit definitions\n";
+    print "   Note: if the sqlite file does not exist, create one with:  $GEMC/api/perl/sqlite.py -n clas12.sqlite\n";
     exit;
 }
 
@@ -45,9 +46,6 @@ require "./hit.pl";
 # sensitive geometry
 require "./geometry_java.pl";
 
-# bank definitions
-# these include the pcal now
-define_bank();
 
 # subroutines create_ec with arguments (variation, run number)
 sub create_ec {
@@ -61,7 +59,7 @@ sub create_ec {
     define_hit();
 
     # run EC factory from COATJAVA to produce volumes
-    system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
+   system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
 
     # Global pars - these should be read by the load_parameters from file or DB
     our @volumes = get_volumes(%configuration);
@@ -71,16 +69,20 @@ sub create_ec {
 
 # TEXT Factory
 $configuration{"factory"} = "TEXT";
+define_bank();
+
 my @variations = ("default", "rga_fall2018");
+my $runNumber = 11;
 
 foreach my $variation (@variations) {
-    my $runNumber = 11;
     $configuration{"variation"} = $variation;
-    create_ec($variation, $runNumber);
+   # create_ec($variation, $runNumber);
 }
 
 # SQLITE Factory
 $configuration{"factory"} = "SQLITE";
+define_bank();
+
 my $variation = "default";
 my @runs = (11, 101);
 

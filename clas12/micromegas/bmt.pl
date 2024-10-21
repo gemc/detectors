@@ -94,7 +94,6 @@ for(my $l = 0; $l < $nlayer; $l++)
 	#  (24.7 = 120°*radius-ZA on drawings - MG notebook p. 152)
 }
 
-
 $dtheta[0]               = $Dtheta-$Inactivtheta[0]; # angle covered by one tile (active area) (in degrees)
 $dtheta[1]               = $Dtheta-$Inactivtheta[1];
 $dtheta[2]               = $Dtheta-$Inactivtheta[2];
@@ -157,6 +156,7 @@ my $structure_color    = 'e3e4e5';
 # sub rad { $_[0]*$pi/180.0  }
 # sub atan {atan2($_[0],1)}
 
+
 sub segnumber
 {
 	my $s = shift;
@@ -182,6 +182,13 @@ my $SL_z  = -$bmt_z; # center of superlayer wrt BMT  mother volume
 
 sub define_bmt
 {
+	if( $configuration{"variation"} eq "michel_9mmcopper" || $configuration{"variation"} eq "michel_9mmcopper" ) {
+		$DriftCuElectrode_Width = 0.009;
+	}
+
+ 	print "BMT: DriftCuElectrode_Width = $DriftCuElectrode_Width \n";
+ 	print "BMT: $DriftCuElectrode6C_Width = $DriftCuElectrode6C_Width \n";
+
 	if( $configuration{"variation"} eq "michel" || $configuration{"variation"} eq "slim") {
 		make_bmt();
 		#	make_sl(1);
@@ -292,7 +299,7 @@ sub place_coverlay
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l];
-		my $PRMax     = $radius[$l] + $Coverlay_Width;
+		my $PRMax     = $PRMin + $Coverlay_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -339,7 +346,7 @@ sub place_cuGround
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l] + $Coverlay_Width;
-		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width;
+		my $PRMax     = $PRMin + $CuGround_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -440,7 +447,7 @@ sub place_Strips
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width;
-		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width;
+		my $PRMax     = $PRMin + $CuStrips_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -492,7 +499,7 @@ sub place_Kapton
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width;
-		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width;
+		my $PRMax     = $PRMin + $KaptonStrips_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -538,7 +545,7 @@ sub place_Resist
 		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width;
-		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width;
+		my $PRMax     = $PRMin + $ResistStrips_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -635,7 +642,7 @@ sub place_Mesh
 		my $snumber   = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width;
-		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width;
+		my $PRMax     = $PRMin + $Mesh_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -690,7 +697,7 @@ sub place_Gas2
 		my $snumber     = segnumber($s);
 		my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width;
-		my $PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width;
+		my $PRMax     = $PRMin + $Gas2_Width;
 		my $PDz       = $Dz_halflength[$l];
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
@@ -745,12 +752,11 @@ sub place_driftCuElectrode
 		my $PSPhi     = $dtheta_start[$l];
 		my $PDPhi     = $dtheta[$l];
 		my $PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width;
-		#	  if($l == 0 || $l == 3 || $l == 5){
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width;
-		#		}
-		#	  if($l == 1 || $l == 2 || $l == 4){
-		if($l == 5){
-			$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width;}
+		   $PRMax     = $PRMin + $DriftCuElectrode_Width;
+
+		if($l == 5) {
+			$PRMax     = $PRMin + $DriftCuElectrode6C_Width;
+		}
 		
 		my %detector = init_det();
 		$detector{"name"}        = "$vname$layer_no\_Segment$snumber";
@@ -785,7 +791,7 @@ sub place_driftKapton
 		$descriptio = "DriftKapton C, Layer $layer_no, ";
 		
 		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width;
+		$PRMax     = $PRMin + $DriftKapton_Width;
 	}
 	
 	if($l == 5)
@@ -794,7 +800,7 @@ sub place_driftKapton
 		$descriptio = "DriftKapton C, Layer $layer_no, ";
 		
 		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width + $DriftKapton_Width;
+		$PRMax     = $PRMin + $DriftKapton_Width;
 	}
 	
 	if($l == 1 || $l == 2 || $l == 4)
@@ -803,7 +809,7 @@ sub place_driftKapton
 		$descriptio = "DriftKapton Z, Layer $layer_no, ";
 		
 		$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width;
-		$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width;
+		$PRMax     = $PRMin + $DriftKapton_Width;
 	}
 	
 	#my $z         = $starting_point[$l] + $Dz_halflength[$l] - $bmt_z;
@@ -870,13 +876,13 @@ sub place_driftCuGround
 		if($l == 5)
 		{
 			$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width + $DriftKapton_Width;
-			$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode6C_Width + $DriftKapton_Width + $DriftCuGround_Width;
+			$PRMax     = $PRMin + $DriftCuGround_Width;
 		}
 		
 		if($l == 0 || $l == 3 || $l == 1 || $l == 2 || $l == 4)
 		{
 			$PRMin     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width;
-			$PRMax     = $radius[$l] + $Coverlay_Width + $CuGround_Width + $PCB_Width + $CuStrips_Width + $KaptonStrips_Width + $ResistStrips_Width + $Gas1_Width + $Mesh_Width + $Gas2_Width + $DriftCuElectrode_Width + $DriftKapton_Width + $DriftCuGround_Width;
+			$PRMax     = $PRMin + $DriftCuGround_Width;
 		}
 		
 		my $PDz       = $Dz_halflength[$l];

@@ -637,3 +637,5 @@ sub build_SphericalMirrors
     print_det(\%main::configuration, \%detector);
     
 }
+
+1;

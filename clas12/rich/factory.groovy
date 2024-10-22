@@ -8,9 +8,9 @@ import java.nio.file.Files;
 RICHGeant4Factory factory = new RICHGeant4Factory();
 
 
-//def sector = args[1];
 
 def variation = args[0];
+int nmodules = (args[1]).toInteger();
 
 def name = sprintf("rich__volumes_%s.txt", [variation]);
 System.out.print("making volumes and copying stls, variation: ");
@@ -27,22 +27,14 @@ new File(dirName).mkdir();
 factory.getAllVolumes().forEach{ volume ->
 	if(volume.getType()=="Stl"){
 		if(volume.getName() == "RICH_s4"){
-			System.out.println("Skipping download of mother volume stl file (temporary)");
-			//if(variation == "default" || variation == "rgc_summer2022"){
-			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s1"]));
-			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
-			//}
-			//else if(variation == "rga_fall2018"){
-			//	volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "RICH"+"_s4"]));	             
-			//}
+			//System.out.println("Skipping download of mother volume stl file (temporary)");
+			for (int i = 0; i < nmodules; i++) {
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, "AaRICH"+"_m"+(i+1).toString()]));
+			}
 		}
 		else{
-			if(variation == "default" || variation == "rgc_summer2022"){
-				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s1"]));
-				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s4"]));
-			}
-			else if(variation == "rga_fall2018"){
-				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_s4"]));
+			for (int i = 0; i < nmodules; i++) {
+				volume.getPrimitive().copyToStlFile(sprintf("%s/%s.stl", [dirName, volume.getName()+"_m"+(i+1).toString()]));
 			}
 		}
 	}

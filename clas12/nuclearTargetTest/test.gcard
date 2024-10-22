@@ -25,7 +25,7 @@
 	<detector name="experiments/clas12/ft/ft"                      factory="TEXT" variation="FTOn"/>
 	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
-	
+
 
 	<detector name="airPipe">
 		<existence exist="no" />

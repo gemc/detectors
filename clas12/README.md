@@ -17,6 +17,14 @@ Usage: install_coatjava.sh [-d] [-t tag]
   -g github_url: use a custom github url
   ```
 
+### Coatjava environment:
+
+After installation, set the environment accordingly. For example:
+
+```
+export COATJAVA=/opt/projects/gemc/detectors/clas12/coatjava
+export PATH=$PATH:$COATJAVA/bin
+```
 
 ### Versions:
 

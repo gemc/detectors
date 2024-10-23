@@ -31,6 +31,11 @@ export PATH=$PATH:$COATJAVA/bin
  - Clas12Tags 5.10 -> Coatjava 10.0.2
  - Clas12Tags 5.11 -> Coatjava 10.1.1
 
+
+### SQLite initialization
+
+$GEMC/api/perl/sqlite.py -n clas12.sqlite
+
 		
 
 	

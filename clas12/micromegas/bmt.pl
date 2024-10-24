@@ -182,14 +182,16 @@ my $SL_z  = -$bmt_z; # center of superlayer wrt BMT  mother volume
 
 sub define_bmt
 {
-	if( $configuration{"variation"} eq "michel_9mmcopper" || $configuration{"variation"} eq "michel_9mmcopper" ) {
-		$DriftCuElectrode_Width = 0.009;
+	# sixth layer goes from 5mu to 9mu, layers 1-5 scaler accordingly
+	if( $configuration{"variation"} eq "michel_9mmcopper" ) {
+		$DriftCuElectrode_Width = 0.00012*9/5;
+		$DriftCuElectrode6C_Width = 0.009;
 	}
 
  	print "BMT: DriftCuElectrode_Width = $DriftCuElectrode_Width \n";
- 	print "BMT: $DriftCuElectrode6C_Width = $DriftCuElectrode6C_Width \n";
+ 	print "BMT: DriftCuElectrode6C_Width = $DriftCuElectrode6C_Width \n";
 
-	if( $configuration{"variation"} eq "michel" || $configuration{"variation"} eq "slim") {
+	if( $configuration{"variation"} eq "michel" || $configuration{"variation"} eq "slim" || $configuration{"variation"} eq "michel_9mmcopper") {
 		make_bmt();
 		#	make_sl(1);
 		#	make_sl(2);

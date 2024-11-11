@@ -13,16 +13,15 @@ our %configuration;
 #
 # The second char:
 # i for integers
+# l for longs
 # d for doubles
 
 my $bankId   = 1300;
 my $bankname = "dc";
 
-sub define_bank
-{
+sub define_bank {
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
-
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector (1..6)");
 	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "layer (1..36)");
 	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "wire number (1..112)");

@@ -15,7 +15,6 @@ our $tilt      = 25;
 
 sub make_region3_front_shield
 {
-	
 	my $iregion = 2;
 	my $region = $iregion+1;
 		

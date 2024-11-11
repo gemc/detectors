@@ -16,8 +16,7 @@ This will:
 
 ## Consistency check method 1: compare parameters
 
-To compare the two databases (TEXT and SQLITE) the
-script ` $GEMC/api/perl/db_compare.py` can be used. For example:
+To compare the two databases (TEXT and SQLITE) the script ` $GEMC/api/perl/db_compare.py` can be used:
 
 ````
 $GEMC/api/perl/db_compare.py ec__geometry_default.txt      ../clas12.sqlite ec  11 default

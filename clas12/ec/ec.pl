@@ -16,7 +16,7 @@ sub help() {
     print "\n Usage: \n";
     print "   ec.pl <configuration filename>\n";
     print "   Will create the CLAS12 EC geometry, materials, bank and hit definitions\n";
-    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n clas12.sqlite\n";
+    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n ../clas12.sqlite\n";
     exit;
 }
 
@@ -26,40 +26,26 @@ if (scalar @ARGV != 1) {
     exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 
-# Global pars - these should be read by the load_parameters from file or DB
-# line commented out as parameters mechanism is not used for EC
-#our %parameters = get_parameters(%configuration);
-
-# materials
+# import scripts
 require "./materials.pl";
-
-# banks definitions
 require "./bank.pl";
-
-# hits definitions
-# these include the pcal now
 require "./hit.pl";
-
-# sensitive geometry
 require "./geometry_java.pl";
 
-
-# subroutines create_ec with arguments (variation, run number)
-sub create_ec {
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
     my $variation = shift;
     my $runNumber = shift;
 
     # materials
     materials();
-
-    # hits
     define_hit();
 
     # run EC factory from COATJAVA to produce volumes
-   system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
+    system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
 
     # Global pars - these should be read by the load_parameters from file or DB
     our @volumes = get_volumes(%configuration);
@@ -76,7 +62,7 @@ my $runNumber = 11;
 
 foreach my $variation (@variations) {
     $configuration{"variation"} = $variation;
-    create_ec($variation, $runNumber);
+    create_system($variation, $runNumber);
 }
 
 # SQLITE Factory
@@ -89,7 +75,7 @@ my @runs = (11, 101);
 foreach my $run (@runs) {
     $configuration{"variation"} = $variation;
     $configuration{"run_number"} = $run;
-    create_ec($variation, $run);
+    create_system($variation, $run);
 }
 
 

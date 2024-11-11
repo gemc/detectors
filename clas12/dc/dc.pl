@@ -83,7 +83,6 @@ foreach my $conf ( @allConfs )
 
 	# hits
 	define_hit();
-	
 
 	if($configuration{"variation"} eq "original") {
 		# calculate pars

@@ -7,7 +7,6 @@ program: dc12geom.cc + dc12geom.h
 
 to compile and execute type scons
 
-
  - reads parameters from geometry.parm
  - produces mother-geometry.dat and layer-geometry.dat
 

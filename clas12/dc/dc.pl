@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
+use warnings;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
@@ -9,99 +10,88 @@ use hit;
 use bank;
 use math;
 use materials;
-
 use Math::Trig;
 
 # Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   dc.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 DC geometry, materials, bank and hit definitions\n";
-	exit;
+sub help() {
+    print "\n Usage: \n";
+    print "   dc.pl <configuration filename>\n";
+    print "   Will create the CLAS12 DC geometry, materials, bank and hit definitions\n";
+    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n ../clas12.sqlite\n";
+    exit;
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
+if (scalar @ARGV != 1) {
+    help();
+    exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "default" ;
 
-# Global pars - these should be read by the load_parameters from file or DB
-
-
-# materials
+# import scripts
 require "./materials.pl";
 require "./shield_material.pl";
-
-# banks definitions
 require "./bank.pl";
-
-# hits definitions
 require "./hit.pl";
-
-# run DC factory from COATJAVA to produce volumes
-system("groovy -cp '..:../*' factory.groovy --variation $configuration{variation} --runnumber 11");
-
-# sensitive geometry
 require "./geometry_java.pl";
-
-# sensitive geometry
 require "./geometry.pl";
-
-# dc plates
 require "./basePlates.pl";
 require "./endPlates.pl";
-
-# region3 shielding for ddvcs
 require "./region3_shield.pl";
-
-# calculate the parameters
 require "./utils.pl";
 
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
+    my $variation = shift;
+    my $runNumber = shift;
 
-# all the scripts must be run for every configuration
-# Right now run both configurations, later on just ccdb
-#my @allConfs = ("ccdb", "cosmicR1", "ddvcs", "java");
-my @allConfs = ($configuration{"variation"});
+    # materials
+    materials();
+    shield_material();
+    define_hit();
 
-# bank definitions commong to all variations
-define_bank();
+    if ($variation eq "original") {
+        calculate_dc_parameters();
 
-foreach my $conf ( @allConfs )
-{
-	$configuration{"variation"} = $conf ;
-
-	# materials
-	materials();
-	shield_material();
-
-	# hits
-	define_hit();
-	
-
-	if($configuration{"variation"} eq "original") {
-		# calculate pars
-		calculate_dc_parameters();
-
-		makeDC_perl();
-		# dc plates
-		make_plates();
-	} elsif($configuration{"variation"} eq "ddvcs") {
-	     # region 3 shielding
-		make_region3_front_shield();
-		make_region3_back_shield();
-	} else {
-	     # sensitive geometry
-		# Global pars - these should be read by the load_parameters from file or DB
-		our @volumes = get_volumes(%configuration);
-
-		coatjava::makeDC();
-	}
+        makeDC_perl();
+        make_plates();
+    }
+    elsif ($variation eq "ddvcs") {
+        make_region3_front_shield();
+        make_region3_back_shield();
+    }
+    else {
+        system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
+        our @volumes = get_volumes(%configuration);
+        coatjava::makeDC();
+    }
 }
 
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
+define_bank();
+
+my @variations = ("default");
+#my @variations = ("default",  "ddvcs");
+my $runNumber = 11;
+
+foreach my $variation (@variations) {
+    $configuration{"variation"} = $variation;
+    create_system($variation, $runNumber);
+}
+
+
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+define_bank();
+
+my $variation = "default";
+my @runs = (11);
+
+foreach my $run (@runs) {
+    $configuration{"variation"} = $variation;
+    $configuration{"run_number"} = $run;
+    create_system($variation, $run);
+}

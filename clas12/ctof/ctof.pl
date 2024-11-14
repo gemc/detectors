@@ -74,6 +74,14 @@ foreach my $conf ( @allConfs )
 	
 	# hits
 	define_hit();
+
+	# create an empty ctof__geometry_variation.txt so the banks are correctly loaded
+	my $filename="ctof__geometry_$conf.txt";
+
+	open(my $fh, '>', $filename) or die "Could not create file: $filename";
+	close($fh);
+	print "File '$filename' has been re-created and is now empty.\n";
+
 }
 
 

@@ -21,9 +21,6 @@
 	<detector name="../beamline/cadBeamlineFTOFF/" factory="CAD"/>
 	<detector name="../beamline/beamline"          factory="TEXT" variation="FTOff"/>
 
-	<!-- forward carriage -->
-	<detector name="../fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
-
 	<option name="BEAM_P" value="pi0, 2.0*GeV, 10*deg, 0*deg"/>
 	<option name="SPREAD_V" value="(0.01, 20)cm"/>
 	<option name="BEAM_V" value="(0, 0, -4.5)cm"/>

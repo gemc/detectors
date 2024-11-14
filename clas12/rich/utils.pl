@@ -55,21 +55,4 @@ sub rich_box_rot
 #	return "$phi*deg $the*deg $psi*deg";
 }
 
-#sub panel_1b_pos
-#{
-#	my $sector = shift;
-
-	# projection into the xy plane
-#	my $panel1b_pos_xy = $panel1b_xpos[0] + $panel1b_dz*cos(rad($tilt_p1b));
-#	my $phi = ($sector - 1)*60;
-#	my $x = fstr($panel1b_pos_xy*cos(rad($phi)));
-#	my $y = fstr($panel1b_pos_xy*sin(rad($phi)));
-	
-#	my $panel1b_pos_z = fstr($panel1b_zpos[0] - $panel1b_dz*sin(rad($tilt_p1b)));
-	
-#	return "$x*inches $y*inches $panel1b_pos_z*inches";
-
-#}
-
-
 1;

@@ -3,7 +3,6 @@ use warnings;
 
 our %configuration;
 
-
 # Variable Type is two chars.
 # The first char:
 #  R for raw integrated variables
@@ -14,13 +13,13 @@ our %configuration;
 #
 # The second char:
 # i for integers
+# l for longs
 # d for doubles
 
 my $bankId   = 1600;
 my $bankname = "ecal";
 
-sub define_bank
-{
+sub define_bank {
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector (1-6)");

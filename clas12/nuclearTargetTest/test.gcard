@@ -26,8 +26,6 @@
 	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/beamline"          factory="TEXT" variation="FTOn"/>
 
-	<!-- forward carriage -->
-	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="TorusSymmetric"/>
 
 	<detector name="airPipe">
 		<existence exist="no" />

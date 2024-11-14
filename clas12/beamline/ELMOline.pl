@@ -107,51 +107,19 @@ sub ELMOline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-#	$zpos = 0.;
-#	$firstVacuumIR = 0.;
-#	$firstVacuumOR = 28.52;
-#	$pipeLength = 38.15;
-#	%detector = init_det();
-#	$detector{"name"}        = "vacuumPipe";
-#	$detector{"mother"}      = "fc";
-#	$detector{"description"} = "vacuumPipe beampipe";
-#	$detector{"color"}       = "aaffff";
-#	$detector{"type"}        = "Polycone";
-#	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-#	$detector{"dimensions"}  = "0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0*mm 34.925*mm 34.925*mm 63.5*mm 63.5*mm 2754.17*mm 5016*mm 5064*mm 5732*mm";
-#	$detector{"material"}    = "G4_STAINLESS-STEEL";
-#	$detector{"style"}       = 1;
-#	print_det(\%configuration, \%detector);
-#
-#	$zpos = 0.;
-#	$firstVacuumIR = 0.;
-#	$firstVacuumOR = 28.52;
-#	$pipeLength = 38.15;
-#	%detector = init_det();
-#	$detector{"name"}        = "vacuumInPipe";
-#	$detector{"mother"}      = "vacuumPipe";
-#	$detector{"description"} = "vacuum inside vacuumPipe";
-#	$detector{"color"}       = "000000";
-#	$detector{"type"}        = "Polycone";
-#	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-#	$detector{"dimensions"}  = "0.0*deg 360*deg 4*counts 0.0*mm 0.0*mm 0.0*mm 0.0*mm 33.274*mm 33.274*mm 60.325*mm 60.325*mm 2754.17*mm 5016*mm 5064*mm 5732*mm";
-#	$detector{"material"}    = "G4_Galactic";
-#	$detector{"style"}       = 1;
-#	print_det(\%configuration, \%detector);
-
 
 	my $nplanes = 7;
 
-	# vacuum inside fc. To be extended upstream when FC is removed
+	# vacuum inside torus. To be extended upstream
 	# the end of the line coordinate is eyeballed
 	# b
 	my @iradius_vbeam  =  (  33.274     , 33.274        , 32.2            , 32.2                                ,  59.8         ,  59.8     ,  63.7);
 	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $mediumPipeEnd, $mediumPipeEnd + $connectThickness,  $bigPipeBegins, $pipeEnds, 13900);
 
 	%detector = init_det();
-	$detector{"name"}        = "fc_beam_vacuum";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "vacuum line inside fc";
+	$detector{"name"}        = "beam_vacuum";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "vacuum line inside torus";
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes*counts";

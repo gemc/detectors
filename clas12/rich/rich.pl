@@ -57,37 +57,37 @@ require "./hit.pl";
 #mirror material
 require "./mirrors.pl";
 
-my @allConfs = ("default","rga_fall2018","rgc_summer2022");
-foreach my $variation (@allConfs){
-    print("variation: " );
-    print($variation);
-    print("\n");
-
-    $configuration{"variation"} = $variation;
-    system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/*" factory.groovy', $variation));
+# hash of variations and sector positions of modules
+my %conf_module_pos = (
+    "default" => [4,1],
+    "rga_fall2018" => [4],
+    "rgc_summer2022" => [4,1],
+    );
+#foreach my $variation (@allConfs){
+while (my ($variation, $sectorarr) = each %conf_module_pos) {
+    print("variation: $variation \n");
+    my @sectors = @{$sectorarr}; #$module_pos{$variation};
+    my $nmodules = scalar @sectors;
+    print("sectors: @sectors \n");
+    
+    $configuration{"variation"} = $variation;    
+    system(join(' ', 'groovy -cp "$COATJAVA/lib/clas/*" factory.groovy', $variation, ' ', $nmodules));
     our @volumes = get_volumes(%configuration);    
-
-    coatjava::makeRICHcad($variation);
-
-    my @sectors = ();
-    if ($variation eq "rga_fall2018"){
-        push(@sectors,"4");
-    }
-    if ($variation eq "default"){
-        push(@sectors,("1","4"));
-    }
-    if ($variation eq "rgc_summer2022"){
-        push(@sectors,("1","4"));
-    }
+    
     define_MAPMT();
     define_CFRP();
     define_hit();
-    foreach my $sector (@sectors){
-	define_aerogels($sector);
-	buildMirrorsSurfaces($sector);
-	coatjava::makeRICHtext($sector);
-	print("temporary: copying RICH mother volume stl file \n");
-	copy("cadTemp/RICH_mother_corrected.stl","cad_".$variation."/RICH_s".$sector.".stl");
+    makeRICHcad($variation,\@sectors);
+    
+    for (my $i = 0; $i < @sectors; $i++){
+	my $module = $i + 1;
+	my $sector = $sectors[$i];
+	
+	define_aerogels($module); #was sector
+	buildMirrorsSurfaces($module); #was sector
+	makeRICHtext($module,$sector);
+	#print("temporary: copying RICH mother volume stl file \n");
+	#copy("cadTemp/RICH_mother_corrected.stl","cad_".$variation."/RICH_m".$module.".stl");
 
     }
 }

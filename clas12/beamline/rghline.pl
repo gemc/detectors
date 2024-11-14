@@ -75,38 +75,6 @@ sub rghline()
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
 
-#	$zpos = 225.9;
-#	$firstVacuumIR = 30.;
-#	$firstVacuumOR = 33.275;
-#	$pipeLength = 575.;
-#	%detector = init_det();
-#	$detector{"name"}        = "InnerWcone";
-#	$detector{"mother"}      = "root";
-#	$detector{"description"} = "Tungsten Cone inside beam pipe";
-#	$detector{"color"}       = "999966";
-#	$detector{"type"}        = "Cons";
-#	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-#	$detector{"dimensions"}  = "30.0*mm $firstVacuumOR*mm 25.4*mm $firstVacuumOR*mm $pipeLength*mm 0*deg 360*deg";
-#	$detector{"material"}    = "G4_W";
-#	$detector{"style"}       = 1;
-#	print_det(\%configuration, \%detector);
-
-#	$zpos = 225.9;
-#	$firstVacuumIR = 25.3;
-#	$firstVacuumOR = 29.9;
-#	$pipeLength = 575.;
-#	%detector = init_det();
-#	$detector{"name"}        = "vacuumInPipe1Con2";
-#	$detector{"mother"}      = "root";
-#	$detector{"description"} = "vacuum in Pipe1 cone 2";
-#	$detector{"color"}       = "000000";
-#	$detector{"type"}        = "Cons";
-#	$detector{"pos"}         = "0*mm 0*mm $zpos*mm";
-#	$detector{"dimensions"}  = "0.*mm $firstVacuumOR*mm 0*mm $firstVacuumIR*mm $pipeLength*mm 0*deg 360*deg";
-#	$detector{"material"}    = "G4_Galactic";
-#	$detector{"style"}       = 1;
-#	print_det(\%configuration, \%detector);
-
 	$zpos = 2621.735;
 	$firstVacuumIR = 0.;
 	$firstVacuumOR = 34.925;
@@ -175,16 +143,16 @@ sub rghline()
 
 	my $nplanes = 7;
 
-	# vacuum inside fc. To be extended upstream when FC is removed
+	# vacuum inside torus. To be extended upstream
 	# the end of the line coordinate is eyeballed
 	# b
 	my @iradius_vbeam  =  (  33.274     , 33.274        , 32.2            , 32.2                                ,  59.8         ,  59.8     ,  63.7);
 	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $mediumPipeEnd, $mediumPipeEnd + $connectThickness,  $bigPipeBegins, $pipeEnds, 13900);
 
 	%detector = init_det();
-	$detector{"name"}        = "fc_beam_vacuum";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "vacuum line inside fc";
+	$detector{"name"}        = "beam_vacuum";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "vacuum line inside torus";
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes*counts";
@@ -195,7 +163,6 @@ sub rghline()
 	$detector{"material"}    = "G4_Galactic";
 	$detector{"style"}       = 1;
 	print_det(\%configuration, \%detector);
-
 
 	# $zpos = 796;
 	# $firstVacuumIR = 0;
@@ -267,6 +234,7 @@ sub rghline()
 	print_det(\%configuration, \%detector);
 
 	if( $configuration{"variation"} eq "rghFTOut") {
+
 		$zpos = 1797.755;
 		%detector = init_det();
 		$detector{"name"}        = "Cylinder";

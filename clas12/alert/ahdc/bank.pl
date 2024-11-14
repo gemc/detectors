@@ -43,10 +43,21 @@ sub define_ahdc_bank
 	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "set to 0");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC integral from pulse fit");
 	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Di", "adc time from pulse fit");
-	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis - currently set to doca");
+	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse - currently set to doca");
 #	insert_bank_variable(\%configuration, $bankname, "TDC_order",    4, "Di", "set to 0");
 #	insert_bank_variable(\%configuration, $bankname, "TDC_TDC",      5, "Di", "TDC integral from pulse fit");
 #	insert_bank_variable(\%configuration, $bankname, "TDC_ped" ,     6, "Di", "pedestal from pulse analysis - currently set to doca");
+	insert_bank_variable(\%configuration, $bankname, "WF10_timestamp",    4, "Dl", "Hardware Timestamp");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s1",    5, "Di", "ADC sample #1");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s2",    6, "Di", "ADC sample #2");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s3",    7, "Di", "ADC sample #3");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s4",    8, "Di", "ADC sample #4");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s5",    9, "Di", "ADC sample #5");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s6",   10, "Di", "ADC sample #6");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s7",   11, "Di", "ADC sample #7");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s8",   12, "Di", "ADC sample #8");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s9",   13, "Di", "ADC sample #9");
+	insert_bank_variable(\%configuration, $bankname, "WF10_s10",  14, "Di", "ADC sample #10");
 	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
 
 

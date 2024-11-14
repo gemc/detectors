@@ -15,7 +15,6 @@ our $tilt      = 25;
 
 sub make_region3_front_shield
 {
-	
 	my $iregion = 2;
 	my $region = $iregion+1;
 		
@@ -43,7 +42,7 @@ sub make_region3_front_shield
 		my %detector = init_det();
 			
 		$detector{"name"}        = "front_shielding_region$region"."_s$s";
-		$detector{"mother"}      = "fc";
+		$detector{"mother"}      = "root";
 		$detector{"description"} = "CLAS12 Drift Chamber Sheildings for DDVCS, Sector $s Region $region";
 		$detector{"pos"}         = front_shield_pos($s, $iregion);
 		$detector{"rotation"}    = shield_rot($s, $iregion);
@@ -107,7 +106,7 @@ sub make_region3_back_shield
 		my %detector = init_det();
 			
 		$detector{"name"}        = "back_shielding_region$region"."_s$s";
-		$detector{"mother"}      = "fc";
+		$detector{"mother"}      = "root";
 		$detector{"description"} = "CLAS12 Drift Chamber Sheildings for DDVCS, Sector $s Region $region";
 		$detector{"pos"}         = back_shield_pos($s, $iregion);
 		$detector{"rotation"}    = shield_rot($s, $iregion);

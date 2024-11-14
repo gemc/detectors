@@ -41,7 +41,7 @@ sub make_region
 }
 
 # Layers
-sub make_layers
+sub make_superlayers
 {
 	my $iregion = shift;
 	my $region = $iregion + 1;
@@ -51,37 +51,32 @@ sub make_layers
 	
 	for (my $isup = $superlayer_min; $isup < $superlayer_max+1 ; $isup++)
 	{
-		for (my $ilayer = 1; $ilayer < 7 ; $ilayer++)
-		{
-			my $nSectors = 6;
-			
-			for(my $s=1; $s<=$nSectors; $s++)
-			{
-				# names
-				my $nlayer               = $ilayer;
+                my $nSectors = 6;
 
-				my %detector = init_det();
-				my $vname = "sl$isup"."_layer$nlayer"."_s$s";
+                for(my $s=1; $s<=$nSectors; $s++)
+                {
+                        # names
+                        my %detector = init_det();
+                        my $vname = "sl$isup"."_s$s";
 
-				$detector{"name"}        = $vname;
-				$detector{"mother"}      = $mothers->{$vname};
-				$detector{"description"} = "Region $region, Super Layer $isup, layer $ilayer, Sector $s";
+                        $detector{"name"}        = $vname;
+                        $detector{"mother"}      = $mothers->{$vname};
+                        $detector{"description"} = "Region $region, Super Layer $isup, Sector $s";
 
-				$detector{"pos"} = $positions->{$vname};
-				$detector{"rotation"} = $rotations->{$vname};
-				$detector{"type"} = $types->{$vname};
-				$detector{"dimensions"}  = $dimensions->{$vname};
+                        $detector{"pos"} = $positions->{$vname};
+                        $detector{"rotation"} = $rotations->{$vname};
+                        $detector{"type"} = $types->{$vname};
+                        $detector{"dimensions"}  = $dimensions->{$vname};
 
-				$detector{"color"}       = "99aaff2";
-				$detector{"material"}    = "dcgas";
-				$detector{"style"}       = 1;
-				$detector{"sensitivity"} = "dc";
-				$detector{"hit_type"}    = "dc";
-				$detector{"identifiers"} = "sector manual $s superlayer manual $isup layer manual $nlayer wire manual 1";
+                        $detector{"color"}       = "99aaff2";
+                        $detector{"material"}    = "dcgas";
+                        $detector{"style"}       = 1;
+                        $detector{"sensitivity"} = "dc";
+                        $detector{"hit_type"}    = "dc";
+                        $detector{"identifiers"} = "sector manual $s superlayer manual $isup layer manual 1 wire manual 1";
 
-				print_det(\%main::configuration, \%detector);
-			}
-		}
+                        print_det(\%main::configuration, \%detector);
+                }
 	}
 }
 
@@ -94,9 +89,9 @@ sub makeDC
 	make_region(1);
 	make_region(2);
 		
-	make_layers(0);
-	make_layers(1);
-	make_layers(2);
+	make_superlayers(0);
+	make_superlayers(1);
+	make_superlayers(2);
 }
 
 1;

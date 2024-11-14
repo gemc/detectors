@@ -1517,7 +1517,7 @@ sub build_targets
         $Rin        = 3.061;
         $Rout       = 3.1561;
         $length     = 2.0;  # half length
-        my $zPos       = 148;  # mm z position
+        $zPos       = 148;  # mm z position
         %detector = init_det();
         $detector{"name"}        = "alertTargetEndCapRing";
         $detector{"mother"}      = "alertTarget";

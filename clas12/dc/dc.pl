@@ -73,8 +73,8 @@ sub create_system {
 $configuration{"factory"} = "TEXT";
 define_bank();
 
-my @variations = ("default");
-#my @variations = ("default",  "ddvcs");
+#my @variations = ("default");
+my @variations = ("default",  "ddvcs");
 my $runNumber = 11;
 
 foreach my $variation (@variations) {

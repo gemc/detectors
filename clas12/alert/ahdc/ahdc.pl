@@ -1,8 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
-#use lib ("$ENV{GEMC}/api/perl");
-use lib ("/u/scigroup/cvmfs/geant4/almalinux9-gcc11/clas12Tags/5.10/source/api/perl");
+use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use geometry;
 #use math;

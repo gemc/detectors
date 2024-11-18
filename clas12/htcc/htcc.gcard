@@ -3,9 +3,8 @@
 	<option name="geometry" value="1400x1200"/>
 
 	<detector name="./htcc" factory="TEXT" variation="original"/>
-	<detector name="./cad/" factory="CAD"/>
 
-
+	<detector name="./cad/" factory="CAD" variation="fall18"/>
 
 	<option name="INTEGRATEDRAW" value="htcc"/>
 	
@@ -17,9 +16,7 @@
 	<option name="RUNNO"                   value="11" />
 	<option name="DIGITIZATION_VARIATION"  value="rga_fall2018_mc" />
 
-
 	<detector name="htcc">                 <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>
-
 
 	<!-- uncomment for cad_fall18 variation
 	<detector name="htccEntryWindow">      <position x="0*cm"  y="0*cm"  z="-1.94*cm"  />  </detector>

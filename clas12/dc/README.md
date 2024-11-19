@@ -1,6 +1,6 @@
 # DC Configurations
 
-The first CLAS12 Run was 2366. However we never changed anything in the DC configuration, 
+The first CLAS12 Run was 3029. However we never changed anything in the DC configuration, 
 so we use Run 11 for all runs.
 
 | variation    | SQL / CCDB Run | 

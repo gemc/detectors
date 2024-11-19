@@ -1,12 +1,11 @@
 # Run Configurations
 
-The first CLAS12 Run was 3029. Historically we have been using the 'rga_fall2018' variation that start with Run 4763.
-Here we use Run 3029 to apply rga_fall2018 also to rga_spring2018.
 
-| variation    | SQL / CCDB Run | 
-|--------------|----------------|
-| default      | 11             | 
-| rga_fall2018 | 3029           | 
+| variation      | SQL / CCDB Run | 
+|----------------|----------------|
+| default        | 11             | 
+| rga_spring2018 | 3029           | 
+| rga_fall2018   | 4763           | 
 
 To build the geometry:
 

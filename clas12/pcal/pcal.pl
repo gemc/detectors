@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 
-
 use strict;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
@@ -9,41 +8,31 @@ use geometry;
 use hit;
 use bank;
 use materials;
-use math;
-
 use Math::Trig;
 
 # Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   pcal.pl <configuration filename>\n";
-	print "   Will create the CLAS12 PCAL geometry, materials, bank and hit definitions\n";
-	exit;
+sub help() {
+    print "\n Usage: \n";
+    print "   pcal.pl <configuration filename>\n";
+    print "   Will create the CLAS12 PCAL geometry, materials, bank and hit definitions\n";
+    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n ../clas12.sqlite\n";
+    exit;
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
+if (scalar @ARGV != 1) {
+    help();
+    exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 
-# materials
+# import scripts
 require "./materials.pl";
-
-# sensitive geometry
+require "./hit.pl";
 require "./geometry_java.pl";
 
-# original geometry: deprecated
-# equire "./geometry.pl";
-
-# hits definitions
-# these include the pcal now
-require "./hit.pl";
 
 # all the scripts must be run for every configuration
 my @allConfs = ("default", "rga_fall2018");

@@ -10,7 +10,7 @@ Here we use Run 2366 to apply rga_fall2018 also to rga_spring2018.
 
 To build the geometry:
 
-````./ec.pl config.dat````
+````./pcal.pl config.dat````
 
 This will:
 
@@ -22,8 +22,8 @@ This will:
 To compare the two databases (TEXT and SQLITE) the script ` $GEMC/api/perl/db_compare.py` can be used:
 
 ````
-$GEMC/api/perl/db_compare.py ec__geometry_default.txt      ../clas12.sqlite ec  11   default
-$GEMC/api/perl/db_compare.py ec__geometry_rga_fall2018.txt ../clas12.sqlite ec  2366 default
+$GEMC/api/perl/db_compare.py pcal__geometry_default.txt      ../clas12.sqlite pcal  11   default
+$GEMC/api/perl/db_compare.py pcal__geometry_rga_fall2018.txt ../clas12.sqlite pcal  2366 default
 ````
 
 <br/>
@@ -35,15 +35,15 @@ $GEMC/api/perl/db_compare.py ec__geometry_rga_fall2018.txt ../clas12.sqlite ec  
 Run 11:
 
 ```
-gemc -USE_GUI=0 ec_sqlite.gcard       -N=10 -OUTPUT="hipo, sql_11.hipo" -RANDOM=123 -RUNNO=11  
-gemc -USE_GUI=0 ec_text_default.gcard -N=10 -OUTPUT="hipo, txt_11.hipo" -RANDOM=123 -RUNNO=11  
+gemc -USE_GUI=0 pcal_sqlite.gcard       -N=10 -OUTPUT="hipo, sql_11.hipo" -RANDOM=123 -RUNNO=11  
+gemc -USE_GUI=0 pcal_text_default.gcard -N=10 -OUTPUT="hipo, txt_11.hipo" -RANDOM=123 -RUNNO=11  
 ```
 
 Run 2366:
 
 ```
-gemc -USE_GUI=0 ec_sqlite.gcard            -N=10 -OUTPUT="hipo, sql_2366.hipo" -RANDOM=123 -RUNNO=2366
-gemc -USE_GUI=0 ec_text_rga_fall2018.gcard -N=10 -OUTPUT="hipo, txt_2366.hipo" -RANDOM=123 -RUNNO=2366
+gemc -USE_GUI=0 pcal_sqlite.gcard            -N=10 -OUTPUT="hipo, sql_2366.hipo" -RANDOM=123 -RUNNO=2366
+gemc -USE_GUI=0 pcal_text_rga_fall2018.gcard -N=10 -OUTPUT="hipo, txt_2366.hipo" -RANDOM=123 -RUNNO=2366
 ```
 
 Then compare the two hipo files with hipo-utils (upcoming comparison by Gagik)

@@ -70,7 +70,7 @@ $configuration{"factory"} = "SQLITE";
 define_bank();
 
 my $variation = "default";
-my @runs = (11, 101);
+my @runs = (11, 2366);
 
 foreach my $run (@runs) {
     $configuration{"variation"} = $variation;

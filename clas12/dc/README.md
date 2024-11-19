@@ -42,8 +42,8 @@ gemc -USE_GUI=0 dc_text_default.gcard -N=10 -OUTPUT="hipo, txt_11.hipo" -RANDOM=
 Run 5800 (randomly chosen):
 
 ```
-gemc -USE_GUI=0 dc_sqlite.gcard       -N=10 -OUTPUT="hipo, sql_5800.hipo" -RANDOM=123 -RUNNO=3306  
-gemc -USE_GUI=0 dc_text_default.gcard -N=10 -OUTPUT="hipo, txt_5800.hipo" -RANDOM=123 -RUNNO=3306  
+gemc -USE_GUI=0 dc_sqlite.gcard       -N=10 -OUTPUT="hipo, sql_5800.hipo" -RANDOM=123 -RUNNO=5800  
+gemc -USE_GUI=0 dc_text_default.gcard -N=10 -OUTPUT="hipo, txt_5800.hipo" -RANDOM=123 -RUNNO=5800  
 ```
 
 Then compare the two hipo files with hipo-utils (upcoming comparison by Gagik)

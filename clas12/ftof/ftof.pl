@@ -73,10 +73,10 @@ foreach my $variation (@variations) {
 $configuration{"factory"} = "SQLITE";
 define_bank();
 upload_parameters(\%configuration, "ftof__parameters_default.txt", "ftof", "default", 11);
-upload_parameters(\%configuration, "ftof__parameters_rga_fall2018.txt", "ftof", "default", 101);
+upload_parameters(\%configuration, "ftof__parameters_rga_fall2018.txt", "ftof", "default", 2366);
 
 my $variation = "default";
-my @runs = (11, 101);
+my @runs = (11, 2366);
 
 foreach my $run (@runs) {
     $configuration{"variation"} = $variation;

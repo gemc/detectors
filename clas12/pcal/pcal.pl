@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
+use warnings;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
@@ -34,28 +35,47 @@ require "./hit.pl";
 require "./geometry_java.pl";
 
 
-# all the scripts must be run for every configuration
-my @allConfs = ("default", "rga_fall2018");
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
+    my $variation = shift;
+    my $runNumber = shift;
 
-# hits, bank defined for ecal (ec subdir) apply to this geometry as well
-# define_bank();
+    # materials
+    materials();
+    define_hit();
 
-foreach my $conf ( @allConfs )
-{
-	$configuration{"variation"} = $conf ;
+    # run EC factory from COATJAVA to produce volumes
+    system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
 
-	# materials
-	materials();
+    # Global pars - these should be read by the load_parameters from file or DB
+    our @volumes = get_volumes(%configuration);
 
-	# hits
-	define_hit();
-
-	# run PCAL factory from COATJAVA to produce volumes
-	system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
-
-	# Global pars - these should be read by the load_parameters from file or DB
-	our @volumes = get_volumes(%configuration);
-
-	coatjava::makePCAL();
-
+    coatjava::makePCAL();
 }
+
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
+
+
+my @variations = ("default", "rga_fall2018");
+my $runNumber = 11;
+
+foreach my $variation (@variations) {
+    $configuration{"variation"} = $variation;
+    create_system($variation, $runNumber);
+}
+
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+
+
+my $variation = "default";
+my @runs = (11, 2366);
+
+foreach my $run (@runs) {
+    $configuration{"variation"} = $variation;
+    $configuration{"run_number"} = $run;
+    create_system($variation, $run);
+}
+
+

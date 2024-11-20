@@ -20,6 +20,7 @@ my $bankId   = 1000;
 my $bankname = "ftof";
 
 sub define_bank {
+
 	# uploading the hit definition
 	insert_bank_variable(\%configuration, $bankname, "bankid", $bankId, "Di", "$bankname bank ID");
 	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector (1-6)");

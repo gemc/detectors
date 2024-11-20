@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use lib ("$ENV{GEMC}/api/perl");
+use cad;
 use utils;
 use parameters;
 use geometry;
@@ -29,11 +30,8 @@ if (scalar @ARGV != 1) {
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-
-
-# Global pars - these should be read by the load_parameters from file or DB
-our %parameters    = get_parameters(%configuration);
-
+$configuration{"variation"} = "original";
+our %parameters = get_parameters(%configuration);
 
 # import scripts
 require "./materials.pl";
@@ -41,30 +39,49 @@ require "./bank.pl";
 require "./hit.pl";
 require "./geometry.pl";
 require "./mirrors.pl";
+require "./cad.pl";
 
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
+    my $variation = shift;
+    my $runNumber = shift;
 
-# all the scripts must be run for every configuration
-my @allConfs = ("original", "spring18", "fall18");
+    # materials
+    materials();
+    define_hit();
 
-# bank definitions commong to all variations
-define_bank();
+    # our %parameters = get_parameters(%configuration);
 
-foreach my $conf ( @allConfs )
-{
-	$configuration{"variation"} = $conf ;
-	
-	# materials
-	materials();
-	
-	# hits
-	define_hit();
-	
-	# geometry
-	makeHTCC();
-	
-	# mirrors surfaces
-	buildMirrorsSurfaces();
-	
+    makeHTCC();
+    buildMirrorsSurfaces();
+
+    if ($configuration{"factory"} eq "SQLITE") {
+        define_cads();
+    }
 }
 
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
+define_bank();
+
+my @variations = ("original", "rga_spring18", "rga_fall18");
+my $runNumber = 11;
+
+foreach my $variation (@variations) {
+    $configuration{"variation"} = $variation;
+    create_system($variation, $runNumber);
+}
+
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+define_bank();
+
+my $variation = "default";
+my @runs = (11, 3029, 4763);
+
+foreach my $run (@runs) {
+    $configuration{"variation"} = $variation;
+    $configuration{"run_number"} = $run;
+    create_system($variation, $run);
+}
 

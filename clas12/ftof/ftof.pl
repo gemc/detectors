@@ -51,8 +51,8 @@ sub create_system {
     our %parameters = get_parameters(%configuration);
     our @volumes = get_volumes(%configuration);
 
-   coatjava::makeFTOF();
-   coatjava::make_pb();
+    coatjava::makeFTOF();
+    coatjava::make_pb();
 }
 
 

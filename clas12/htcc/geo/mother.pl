@@ -2,6 +2,8 @@ use strict;
 use warnings;
 use Getopt::Long;
 use Math::Trig;
+use lib ("../");
+use clas12_configuration_string;
 
 our %configuration;
 
@@ -142,11 +144,13 @@ sub make_EntryDishPlusCone {
 sub make_GasVolumeFinal {
     my $pos = "0 0 0";
     my $thisVariation = $configuration{"variation"};
+    my $runno = $configuration{"run_number"};
 
-    if ($thisVariation eq "spring18") {
+    my $configuration_string = clas12_configuration_string(\%configuration);
+    if ($configuration_string eq "rga_spring18") {
         $pos = "0 0 -1.0*cm";
     }
-    elsif ($thisVariation eq "fall18") {
+    elsif ($configuration_string eq "rga_fall18") {
         $pos = "0 0 -1.94*cm";
     }
 

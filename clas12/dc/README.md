@@ -8,6 +8,9 @@ so we use Run 11 for all runs.
 | default      | 11             | 
 
 
+
+
+
 To build the geometry:
 
 ````./dc.pl config.dat````
@@ -16,6 +19,7 @@ This will:
 
 1. create the text based DB geometry files, with variation in the filenames
 2. add detector run entries to the ../clas12.sqlite database
+
 
 ## Consistency check method 1: compare parameters
 
@@ -29,6 +33,9 @@ $GEMC/api/perl/db_compare.py dc__geometry_default.txt      ../clas12.sqlite dc  
 <br/>
 
 ---
+
+
+
 
 ## Consistency check method 2: run gemc with both databases
 

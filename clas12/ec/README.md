@@ -8,6 +8,9 @@ Here we use Run 3029 to apply rga_fall2018 also to rga_spring2018.
 | default      | 11             | 
 | rga_fall2018 | 3029           | 
 
+
+
+
 To build the geometry:
 
 ````./ec.pl config.dat````
@@ -16,6 +19,7 @@ This will:
 
 1. create the text based DB geometry files, with variation in the filenames
 2. add detector run entries to the ../clas12.sqlite database
+
 
 ## Consistency check method 1: compare parameters
 
@@ -29,6 +33,9 @@ $GEMC/api/perl/db_compare.py ec__geometry_rga_fall2018.txt ../clas12.sqlite ec  
 <br/>
 
 ---
+
+
+
 
 ## Consistency check method 2: run gemc with both databases
 

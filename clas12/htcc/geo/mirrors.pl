@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use math;
 use Math::Trig;
 
 our %configuration;

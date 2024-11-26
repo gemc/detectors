@@ -33,7 +33,7 @@ sub buildMirrorsSurfaces
     # htcc gas is 100% CO2 with optical properties
 	my %mat = init_mir();
 	$mat{"name"}         = "htcc_AlMgF2";
-	$mat{"description"}  = "htcc mirror reflectivity";
+	$mat{"description"}  = "htcc mirror AlMgF2";
 	$mat{"type"}         = "dielectric_metal";
 	$mat{"finish"}       = "polished";
 	$mat{"model"}        = "unified";

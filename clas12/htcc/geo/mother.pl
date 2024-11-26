@@ -30,6 +30,14 @@ sub make_ExitWindow {
     my $outer_Radius = 2895.6 / 2.0;
     my $zpos = 1750;
 
+    my $configuration_string = clas12_configuration_string(\%configuration);
+    if ($configuration_string eq "rga_spring18") {
+        $zpos = $zpos - 10;
+    }
+    elsif ($configuration_string eq "rga_fall18") {
+        $zpos = $zpos - 19.4;
+    }
+
     my %detector = init_det();
     $detector{"name"} = "htccExitWindow";
     $detector{"mother"} = "root";
@@ -55,6 +63,14 @@ sub make_EntryWindow {
     my $inner_radius = 33;
     my $outer_Radius = 278;
     my $zpos = 380;
+
+    my $configuration_string = clas12_configuration_string(\%configuration);
+    if ($configuration_string eq "rga_spring18") {
+        $zpos = $zpos - 10;
+    }
+    elsif ($configuration_string eq "rga_fall18") {
+        $zpos = $zpos - 19.4;
+    }
 
     my %detector = init_det();
     $detector{"name"} = "htccEntryWindow";

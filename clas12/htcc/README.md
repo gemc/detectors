@@ -26,7 +26,7 @@ This will:
 To compare the two databases (TEXT and SQLITE) the script ` $GEMC/api/perl/db_compare.py` can be used:
 
 ````
-$GEMC/api/perl/db_compare.py htcc__geometry_original.txt       ../clas12.sqlite htcc  11   original
+$GEMC/api/perl/db_compare.py htcc__geometry_original.txt       ../clas12.sqlite htcc  11   default
 $GEMC/api/perl/db_compare.py htcc__geometry_rga_spring2018.txt ../clas12.sqlite htcc  3029 default
 $GEMC/api/perl/db_compare.py htcc__geometry_rga_fall2018.txt   ../clas12.sqlite htcc  4763 default
 ````

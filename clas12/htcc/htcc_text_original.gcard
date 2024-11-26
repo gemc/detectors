@@ -2,7 +2,9 @@
 
 	<option name="geometry" value="1400x1200"/>
 
+
 	<detector name="./htcc" factory="TEXT" variation="original"/>
+	<!-- CAD Factory. Volumes parameters come from GXML file, with _<variation> in the filename -->
 	<detector name="./cad/" factory="CAD"  variation="original"/>
 
 	<option name="BEAM_P" value="e-, 5.0*GeV, 25*deg, 0*deg"/>
@@ -13,7 +15,8 @@
 
 	<option name="RUNNO" value="11"/>
 	<option name="OUTPUT" value="hipo, out.hipo"/>
-	<option name="PHYSICS" value="STD + FTFP_BERT"/>
+	<option name="PHYSICS" value="STD + FTFP_BERT + Optical"/>
+	<option name="RECORD_OPTICALPHOTONS" value="1"/>
 	<option name="DIGITIZATION_VARIATION" value="default"/>
 	
 </gcard>

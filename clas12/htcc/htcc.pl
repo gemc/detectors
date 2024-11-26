@@ -49,9 +49,7 @@ sub create_system {
     # materials
     materials();
     define_hit();
-
-    # our %parameters = get_parameters(%configuration);
-
+    
     makeHTCC();
     buildMirrorsSurfaces();
 

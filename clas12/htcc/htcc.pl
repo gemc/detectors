@@ -49,7 +49,7 @@ sub create_system {
     # materials
     materials();
     define_hit();
-    
+
     makeHTCC();
     buildMirrorsSurfaces();
 
@@ -62,7 +62,7 @@ sub create_system {
 $configuration{"factory"} = "TEXT";
 define_bank();
 
-my @variations = ("original", "rga_spring18", "rga_fall18");
+my @variations = ("original", "rga_spring2018", "rga_fall2018");
 my $runNumber = 11;
 
 foreach my $variation (@variations) {

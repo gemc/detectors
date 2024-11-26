@@ -14,11 +14,11 @@ sub clas12_configuration_string {
     my $varia = $configuration{"variation"};
     my $runno = $configuration{"run_number"};
 
-    if ($varia eq "rga_spring18" || $runno eq 3029) {
-        return "rga_spring18";
+    if ($varia eq "rga_spring2018" || $runno eq 3029) {
+        return "rga_spring2018";
     }
-    elsif ($varia eq "rga_fall18" || $runno eq 4763) {
-        return "rga_fall18";
+    elsif ($varia eq "rga_fall2018" || $runno eq 4763) {
+        return "rga_fall2018";
     }
     else {
         return "original";

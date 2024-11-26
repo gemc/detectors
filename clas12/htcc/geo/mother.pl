@@ -31,10 +31,10 @@ sub make_ExitWindow {
     my $zpos = 1750;
 
     my $configuration_string = clas12_configuration_string(\%configuration);
-    if ($configuration_string eq "rga_spring18") {
+    if ($configuration_string eq "rga_spring2018") {
         $zpos = $zpos - 10;
     }
-    elsif ($configuration_string eq "rga_fall18") {
+    elsif ($configuration_string eq "rga_fall2018") {
         $zpos = $zpos - 19.4;
     }
 
@@ -65,10 +65,10 @@ sub make_EntryWindow {
     my $zpos = 380;
 
     my $configuration_string = clas12_configuration_string(\%configuration);
-    if ($configuration_string eq "rga_spring18") {
+    if ($configuration_string eq "rga_spring2018") {
         $zpos = $zpos - 10;
     }
-    elsif ($configuration_string eq "rga_fall18") {
+    elsif ($configuration_string eq "rga_fall2018") {
         $zpos = $zpos - 19.4;
     }
 
@@ -163,10 +163,10 @@ sub make_GasVolumeFinal {
     my $runno = $configuration{"run_number"};
 
     my $configuration_string = clas12_configuration_string(\%configuration);
-    if ($configuration_string eq "rga_spring18") {
+    if ($configuration_string eq "rga_spring2018") {
         $pos = "0 0 -1.0*cm";
     }
-    elsif ($configuration_string eq "rga_fall18") {
+    elsif ($configuration_string eq "rga_fall2018") {
         $pos = "0 0 -1.94*cm";
     }
 

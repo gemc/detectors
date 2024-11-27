@@ -4,7 +4,7 @@
 	<option name="DATABASE" value="../clas12.sqlite"/>
 
 	<!-- SQLITE Factory. If run_number is not specified, it uses the value of RUNNO. If variation is not specified, it uses 'main' -->
-	<detector name="ftof" factory="SQLITE" variation="default"/>
+	<detector name="ftof" factory="SQLITE"/>
 
 
 	

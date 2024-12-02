@@ -37,7 +37,7 @@ $GEMC/api/perl/sqlite.py -n clas12.sqlite
 
 ### CLAS12 Run numbers vs Run groups
 
-Source: [calcom run groups](https://clasweb.jlab.org/wiki/index.php/CLAS12_Calibration_and_Commissioning)
+Source: [calcom run groups](https://clasweb.jlab.org/wiki/index.php/CLAS12_Calibration_and_Commissioning/clas12-run-ranges)
 
 |                    |               | 
 |--------------------|---------------|

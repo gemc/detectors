@@ -5,8 +5,8 @@
 | original       | 11             | 
 | rga_spring2018 | 3029           | 
 | rga_fall2018   | 4763           | 
-| rga_fall2018   | 4763           | 
-| rga_spring2019 | 4763           | 
+| rgb_spring2019   | 4763           | 
+| rgb_winter2020 | 4763           | 
 | rga_fall2019   | 4763           | 
 
 To build the geometry:

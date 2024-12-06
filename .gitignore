@@ -1,3 +1,7 @@
-clas12/rtpc/rtpc.pl~
 .DS_Store
-clas12/rich_sector4/
+*__materials*.txt
+*__geometry*.txt
+*__mirrors*.txt
+*__hit*.txt
+*__bank*.txt
+*.hipo

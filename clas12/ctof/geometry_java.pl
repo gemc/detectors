@@ -81,12 +81,21 @@ sub build_upLightGuides
 		my %detector = init_det();
 
 		my $vname                = sprintf("lgu%02d", $ipaddle);
+		my $vvname                = sprintf("lgd%02d", $ipaddle);
+
+
+		# add 1mm gap between paddles and light guides to avoid overlaps
+		my $pos = $positions->{$vvname};
+		my $gap = 0.2;
+
+		my ($x, $y, $z) = $pos =~ /([\d.]+)\*cm/g;
+		$z -= $gap;
+		$pos = "${x}*cm ${y}*cm ${z}*cm";
 
 		$detector{"name"}        = $vname;
-		#$detector{"pos"}         = $positions->{$vname};
-		#$detector{"rotation"}    = $rotations->{$vname};
-		$detector{"pos"}         = "0*cm 0*cm 124.327*cm";
-		$detector{"rotation"}    = "0*deg 180*deg 97.5*deg";
+		$detector{"pos"}         = $pos;
+		$detector{"rotation"}    = $rotations->{$vvname};
+
 
 		$detector{"mother"}    = "";
 
@@ -106,8 +115,17 @@ sub build_downLightGuides
 
 		my $vname                = sprintf("lgd%02d", $ipaddle);
 
+		# add 1mm gap between paddles and light guides to avoid overlaps
+		my $pos = $positions->{$vname};
+		my $gap = 0.1;
+
+		my ($x, $y, $z) = $pos =~ /([\d.]+)\*cm/g;
+		$z += $gap;
+		$pos = "${x}*cm ${y}*cm ${z}*cm";
+
+
 		$detector{"name"}        = $vname;
-		$detector{"pos"}         = $positions->{$vname};
+		$detector{"pos"}         = $pos;
 		$detector{"rotation"}    = $rotations->{$vname};
 
 		$detector{"mother"}    = "";

@@ -81,7 +81,7 @@ sub build_upLightGuides
 		my %detector = init_det();
 
 		my $vname                = sprintf("lgu%02d", $ipaddle);
-		my $vvname                = sprintf("lgd%02d", $ipaddle);
+		my $vvname               = sprintf("lgd%02d", $ipaddle);
 
 
 		# add 1mm gap between paddles and light guides to avoid overlaps

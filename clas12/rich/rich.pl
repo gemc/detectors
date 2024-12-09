@@ -92,3 +92,35 @@ while (my ($variation, $sectorarr) = each %conf_module_pos) {
     }
 }
 
+
+
+use File::Copy;
+use File::Path qw(make_path remove_tree);
+
+# Create directories
+make_path('cad');
+
+# Copy STL files from javacad_default to cad_ctof
+my $javacad_default = 'cad_default';
+my $cad = 'cad';
+
+opendir(my $dh, $javacad_default) or die "Cannot open directory $javacad_default: $!";
+while (my $file = readdir($dh)) {
+    if ($file =~ /\.stl$/) {
+        copy("$javacad_default/$file", "$cad/$file") or die "Copy failed: $!";
+    }
+}
+closedir($dh);
+
+
+# Copy specific GXML files
+copy("$javacad_default/cad.gxml", "$cad/cad_default.gxml") or die "Copy failed: $!";
+copy("cad_rgc_summer2022/cad.gxml", "$cad/cad_rgc_summer2022.gxml") or die "Copy failed: $!";
+copy("cad_rga_fall2018/cad.gxml", "$cad/cad_rga_fall2018.gxml") or die "Copy failed: $!";
+
+
+# Remove javacad directories created with the geometry service
+remove_tree($javacad_default);
+remove_tree('cad_rgc_summer2022');
+remove_tree('cad_rga_fall2018');
+

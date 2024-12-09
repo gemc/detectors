@@ -81,17 +81,6 @@ foreach my $conf (@allConfs) {
     print "File '$filename' has been re-created and is now empty.\n";
 }
 
-# execute the following commands:
-# create cad_ctof and cad_ctof_upstream directories
-# copy all stl files from javacad_default to cad_ctof
-# copy all stl files from javacad_default_upstream to cad_ctof_upstream
-# copy javacad_default/cad.gxml to cad_ctof/cad_default.gxml
-# copy javacad_rga_spring2018/cad.gxml cad_ctof/cad_rga_spring2018.gxml
-# copy javacad_rga_fall2018/cad.gxml cad_ctof/cad_rga_fall2018.gxml
-# copy javacad_default_upstream/cad.gxml to cad_ctof_upstream/cad_default.gxml
-# copy javacad_rga_spring2018_upstream/cad.gxml cad_ctof_upstream/cad_rga_spring2018.gxml
-# copy javacad_rga_fall2018_upstream/cad.gxml cad_ctof_upstream/cad_rga_fall2018.gxml
-
 
 use File::Copy;
 use File::Path qw(make_path remove_tree);

@@ -29,7 +29,7 @@ export PATH=$PATH:$COATJAVA/bin
 ### Versions:
 
 - Clas12Tags 5.10 -> Coatjava 10.0.2
-- Clas12Tags 5.11 -> Coatjava 10.1.1
+- Clas12Tags 5.11 -> Coatjava 11.0.4
 
 ### SQLite initialization
 

@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
-use lib ("$ENV{GEMC}/source/api/perl");
+use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
 use geometry;
@@ -68,7 +68,8 @@ for(my $ii=0; $ii<=$#allConfs; $ii++){
     print "$configuration{variation}\n";
     
     # run DC factory from COATJAVA to produce volumes
-    system("/work/clas12/silvia/cj_recoil/coatjava/coatjava/bin/run-groovy factory.groovy --variation $configuration{variation} --runnumber 11 --number_of_Region $configuration{number_of_Region}");
+    #system("/work/clas12/silvia/cj_recoil/coatjava/coatjava/bin/run-groovy factory.groovy --variation $configuration{variation} --runnumber 11 --number_of_Region $configuration{number_of_Region}");
+    system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11 --number_of_Region $configuration{number_of_Region}");
 
   #  %configuration = $configuration{"variation"};
     

@@ -1,0 +1,9 @@
+              recoil  |              bankid  |                                    recoil bank ID  | 2600   |                  Di  
+              recoil  |              sector  |                                     sector number  |    1   |                  Di  
+              recoil  |               layer  |                                      layer number  |    2   |                  Di  
+              recoil  |           component  |                                      strip number  |    3   |                  Di  
+              recoil  |           ADC_order  |                                          always 0  |    4   |                  Di  
+              recoil  |             ADC_ADC  |                                               ADC  |    5   |                  Di  
+              recoil  |            ADC_time  |                                          always 0  |    6   |                  Dd  
+              recoil  |             ADC_ped  |                                          always 0  |    7   |                  Di  
+              recoil  |                hitn  |                                        hit number  |   99   |                  Di  

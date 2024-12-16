@@ -44,10 +44,10 @@ sub define_bank
 	
 	
 	insert_bank_variable(\%configuration, $bankname, "bankid",   $bankId, "Di", "$bankname bank ID");
-	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector ");
-	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "hipo layer is superlayer*10 + layer");
-	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "paddle number");
-	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "long paddles: 0/1 = Front/Back. Top paddles: set to 0");
+	insert_bank_variable(\%configuration, $bankname, "sector",       1, "Di", "sector");
+	insert_bank_variable(\%configuration, $bankname, "layer",        2, "Di", "layer");
+	insert_bank_variable(\%configuration, $bankname, "component",    3, "Di", "component");
+	insert_bank_variable(\%configuration, $bankname, "ADC_order",    4, "Di", "order");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC integral from pulse fit");
 	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "time from pulse fit");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis");

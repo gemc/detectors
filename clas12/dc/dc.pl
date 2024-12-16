@@ -42,6 +42,9 @@ require "./endPlates.pl";
 require "./region3_shield.pl";
 require "./utils.pl";
 
+use File::Copy;
+
+
 # subroutines create_system with arguments (variation, run number)
 sub create_system {
     my $variation = shift;
@@ -60,6 +63,8 @@ sub create_system {
     }
     elsif ($variation eq "ddvcs") {
         system("groovy -cp '../*:..' factory.groovy --variation default --runnumber $runNumber");
+        copy("dc__volumes_default.txt", "dc__volumes_ddvcs.txt") or die "Copy failed: $!";
+
         our @volumes = get_volumes(%configuration);
         coatjava::makeDC();
         make_region3_front_shield();

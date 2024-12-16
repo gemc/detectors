@@ -184,7 +184,9 @@ sub define_bmt
 {
 	# sixth layer goes from 5mu to 9mu, layers 1-5 scaler accordingly
 	if( $configuration{"variation"} eq "michel_9mmcopper" ) {
+		# update on 2024/12/16: request to test 9microns for all layers
 		$DriftCuElectrode_Width = 0.00012*9/5;
+		$DriftCuElectrode_Width = 0.009;
 		$DriftCuElectrode6C_Width = 0.009;
 	}
 

@@ -30,7 +30,7 @@ if (scalar @ARGV != 1) {
 
 # Loading configuration file and paramters
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "original";
+$configuration{"variation"} = "default";
 our %parameters = get_parameters(%configuration);
 
 # import scripts
@@ -62,7 +62,7 @@ sub create_system {
 $configuration{"factory"} = "TEXT";
 define_bank();
 
-my @variations = ("original", "rga_spring2018", "rga_fall2018");
+my @variations = ("default", "rga_spring2018", "rga_fall2018");
 my $runNumber = 11;
 
 foreach my $variation (@variations) {

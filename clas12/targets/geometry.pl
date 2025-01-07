@@ -1176,7 +1176,7 @@ sub build_targets
     #
     # Flag Design: lD2 cell + 2 Solid Foils Assembly
      #
-        elsif($thisVariation eq "LD2CuSn")
+        elsif($thisVariation eq "lD2CuSn")
 	{	 
 	 #
 	 # lD2 Cell copied from lD2/lH2 variation

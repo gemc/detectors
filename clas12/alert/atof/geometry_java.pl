@@ -60,28 +60,21 @@ sub makeATOF
 # Sectors/superlayers/layers
 sub build_sectors
 {
-	# loop for sectors
-	for(my $s=1; $s<=$nsectors; $s++)
+    # loop for sectors
+    for(my $s=0; $s<$nsectors; $s++)
+    {
+	# loop for superlayers in Z
+	for(my $z=0; $z<$nsuperlayers; $z++)
 	{
-		# loop for superlayers in Z
-		for(my $z=1; $z<=$nsuperlayers; $z++)
-		{
-			if($z == 1)
-			{
-				$nlayers = 1;
-			}
-			if($z == 2)
-			{
-				$nlayers = 10;
-			}
-			# loop for layers in XY
-			for(my $l=1; $l<=$nlayers; $l++)	
-			{	
-				$npaddles = $main::parameters{"atof.sector$s.superlayer$z.layer$l.ncomponents"};				
-				build_paddles($s,$z,$l);
-			}
-		}
+	    $nlayers = 4;	
+	    # loop for layers in XY
+	    for(my $l=0; $l<$nlayers; $l++)	
+	    {  				   
+		#$npaddles = $main::parameters{"atof.sector$s.superlayer$z.layer$l.ncomponents"};				
+		build_paddles($s,$z,$l);
+	    }
 	}
+    }
 }
 
 # Paddles for each sector/superlayer/layer
@@ -91,30 +84,47 @@ sub build_paddles
 	my $superlayer = shift;
 	my $layer = shift;
 	#my $mother = "atof_mother";
-	my $mother = "ahdc_mother";
+	my $mother = "ahdc_mother"; ##???
+
+	my $ncomponents = 10;
+	if($superlayer == 0)
+	{
+	    $ncomponents = 1;
+	}
 	
-	for(my $n=( ($sector-1) *4)+1; $n<=( ($sector-1) *4+$npaddles); $n++)
+	for(my $n=0; $n<$ncomponents; $n++)
 	{
 			my %detector = init_det();
+			
+			my $component=$n;
+			if($superlayer == 0)
+			{
+			    $component = 10;
+			}
 
-			my $vname                 = "sector".$sector."_superlayer".$superlayer."_layer".$layer."_paddle".$n; 
+			#print "Sector: $sector\n";
+			#print "SL: $superlayer\n";
+			#print "Layer: $layer\n";
+			#print "Component: $component\n";
+			
+			my $vname                 = "sector".$sector."_superlayer".$superlayer."_layer".$layer."_paddle".$component; 
 			$detector{"name"}         = $vname;
 			$detector{"mother"}       = $mother;
 			$detector{"pos"}          = $positions->{$vname};
 			$detector{"rotation"}     = $rotations->{$vname};
 			$detector{"type"}         = $types->{$vname};
 			$detector{"dimensions"}   = $dimensions->{$vname};
-			$detector{"description"}  = "ATOFpaddle$n sector$sector superlayer$superlayer layer$layer";
-
-			if($superlayer==1)
+			$detector{"description"}  = "ATOFpaddle$component sector$sector superlayer$superlayer layer$layer";
+			
+			if($superlayer==0)
 			{
 				$detector{"color"}        = "ff11aa";
 			} 
 			else 
 			{
-				if($superlayer==2) {$detector{"color"}        = "00aa00";}
+				if($superlayer==1) {$detector{"color"}        = "00aa00";}
 			}
-
+			
 			$detector{"material"}     = "scintillator";
 			$detector{"mfield"}       = "no";
 			$detector{"visible"}      = 1;
@@ -122,7 +132,7 @@ sub build_paddles
 			$detector{"sensitivity"}  = "atof";
 			$detector{"hit_type"}     = "atof";
 			# set the identifiers
-			$detector{"identifiers"}  = "sector manual $sector superlayer manual $superlayer layer manual $layer paddle manual $n order manual 0";
+			$detector{"identifiers"}  = "sector manual $sector superlayer manual $superlayer layer manual $layer paddle manual $component order manual 0";
 			print_det(\%main::configuration, \%detector);	
 	}
 }

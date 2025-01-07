@@ -14,12 +14,11 @@ import GeoArgParse
 def variation = GeoArgParse.getVariation(args);
 def runNumber = GeoArgParse.getRunNumber(args);
 
-// not really used at the moment
+//Will be used when calibration constants are defined
 DatabaseConstantProvider cp = new DatabaseConstantProvider(runNumber, variation);
 //provider.loadTable("/geometry/cnd/cndgeom");
 //ConstantProvider cp = GeometryFactory.getConstants(DetectorType.FTOF, runNumber, variation);
 
-//MYFactory_ATOF factory = new MYFactory_ATOF();
 AlertTOFFactory factory = new AlertTOFFactory();
 Detector atof = factory.createDetectorCLAS(cp);
 
@@ -33,52 +32,51 @@ def writer2=outFile.newWriter();
 // may want to add mother volume
 int nsectors = atof.getNumSectors();
 
-//println "Nsectors = ${nsectors}"
 
 //double ATOF_Z_length = 279.7; // mm, atof paddles total lenght in z
 
-for(int isec=1; isec<=nsectors; isec++) 
+//15 ATOF sectors
+for(int isec=0; isec<nsectors; isec++) 
 {
+	//Divided into SL=0/bottom/bar and SL=1/top/wedge
 	int nsuperlayers = atof.getSector(isec).getNumSuperlayers();
-	//println "sector = ${isec}, nsuperlayers = ${nsuperlayers}"
-	for(int isl=1; isl<=nsuperlayers; isl++) 
+	for(int isl=0; isl<nsuperlayers; isl++) 
 	{
+		//Divided into 4 layers = quarters of sectors
 		int nlayers = atof.getSector(isec).getSuperlayer(isl).getNumLayers();
-		//println "sector = ${isec}, superlayer = ${isl}, nlayers = ${nlayers}"
-		for(int ilay=1; ilay<=nlayers; ilay++) 
+		for(int ilay=0; ilay<nlayers; ilay++) 
 		{
-			int ncomponents = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getNumComponents();
-			//println "sector = ${isec}, superlayer = ${isl}, layer = ${ilay}, ncomponents = ${ncomponents}"
-			//if(isec==0 && isl==0 && ilay==0) writer1 << "ahdc.layer.ncomponents | " << ncomponents << "\n"; 
+			//Components are z slices
+			int ncomponents = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getNumComponents(); 
 			if(ncomponents!=0) 
 			{
 				writer1 << "atof.sector" << isec << ".superlayer"<< isl << ".layer"<< ilay <<".ncomponents | " << ncomponents << "| na | number of counters in module | sergeyeva | sergeyeva@ipno.in2p3.fr | none | none | 15 June 2020 \n";
-
-				for(int icomp=(isec-1)*4+1; icomp<=(isec-1)*4+ncomponents; icomp++) 
+				if(isl==0)
 				{
-					//println "sector = ${isec}, superlayer = ${isl}, layer = ${ilay}, icomp = ${icomp}"
-					Component comp = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getComponent(icomp);
-					writer2<< gemcString(isec, isl, ilay, comp);
+					//Bottom bar not sliced in z index=10
+					Component comp = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getComponent(10);
+                                        writer2<< gemcString(isec, isl, ilay, comp);
+				}
+				else
+				{
+					for(int icomp=0; icomp<ncomponents; icomp++) 
+					{
+						//Top wedge has 10 z slices
+						Component comp = atof.getSector(isec).getSuperlayer(isl).getLayer(ilay).getComponent(icomp);
+						writer2<< gemcString(isec, isl, ilay, comp);
+					}
 				}
 			}
 		}
 	} 	
 }
-
-
-
 writer1.close();
 writer2.close();
 
 // need to be updated with correct format for trapezoide
 public String gemcString(int sector, int superlayer,int layer, Component comp) {
         StringBuilder str = new StringBuilder();
-	/*
-	for (int ip = 0; ip < comp.getNumVolumePoints(); ip++) {
-	    Point3D p = comp.getVolumePoint(ip);
-            str.append(String.format("%14.6f*cm | %14.6f*cm | %14.6f*cm ||", p.x(), p.y(), p.z())); 
-        }
-	*/
+		
 	// reading top face vertices of ATOF cell and storing their x,y coordinates
 	Point3D p0 = comp.getVolumePoint(0);
 	double top_x_0 = p0.x();
@@ -108,15 +106,12 @@ public String gemcString(int sector, int superlayer,int layer, Component comp) {
 
 		// component name should be added
         	str.append(String.format("sector%d_superlayer%d_layer%d_paddle%d | root", sector, superlayer, layer, (comp.getComponentId())));
-		
-		// Giving the origin point of coordinate system in which the trapezoide vertices are defined
-		//str.append(String.format("| %8.4f*mm %8.4f*mm %8.4f*mm | ", 0.0, 0.0, ((comp.getLine().midpoint().z()-15.0)-150.0+15.0))); // in mm
-		
-		if(superlayer == 1)
+				
+		if(superlayer == 0)
 		{
 			str.append(String.format("| %8.4f*mm %8.4f*mm %8.4f*mm | ", 0.0, 0.0, ((comp.getLine().midpoint().z() - 279.7/2)))); // in mm
 		}
-		if(superlayer == 2)
+		if(superlayer == 1)
 		{
 			str.append(String.format("| %8.4f*mm %8.4f*mm %8.4f*mm | ", 0.0, 0.0, ((comp.getLine().midpoint().z() - 279.7/2)))); // in mm
 		}
@@ -132,27 +127,27 @@ public String gemcString(int sector, int superlayer,int layer, Component comp) {
 		String type = "G4GenericTrap"
         	str.append(String.format("| %8s |", type));
 		// to add the half-length in Z axis, coatjava class dimensions are in mm!
-		if(superlayer == 1)
+		if(superlayer == 0)
 		{
 			str.append(String.format(" %8.4f*mm ", 279.7/2.0));	
 		}
-		if(superlayer == 2)
+		if(superlayer == 1)
 		{
 			str.append(String.format(" %8.4f*mm ", 27.7/2.0));	
 		}
 
 		// need to be corrected according to geant4 volume definition 
 		
-			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_0, top_y_0));
-			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_1, top_y_1));
-			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_2, top_y_2));
-			str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_3, top_y_3));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_0, top_y_0));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_1, top_y_1));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_2, top_y_2));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", top_x_3, top_y_3));
 		
-			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_4, bottom_y_4));
-			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_5, bottom_y_5));
-			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_6, bottom_y_6));
-			str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_7, bottom_y_7));
-	
+		str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_4, bottom_y_4));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_5, bottom_y_5));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_6, bottom_y_6));
+		str.append(String.format("%14.6f*mm %14.6f*mm ", bottom_x_7, bottom_y_7));
+		 
 		// currently only writing the component id but should save all necessary identifiers according to detector definition
         	str.append(" | ");
         	str.append(String.format("%d %d %d %d", sector, superlayer, layer, (comp.getComponentId())));

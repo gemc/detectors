@@ -93,7 +93,7 @@ sub build_mother
 	
 	my %detector = init_det();
 	$detector{"name"}        = "pcal_s${sector}";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Preshower Calorimeter";
 	$detector{"pos"}         = pcal_sec_pos($sector);
 	$detector{"rotation"}    = pcal_sec_rot($sector);

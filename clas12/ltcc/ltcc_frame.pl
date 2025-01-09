@@ -72,7 +72,7 @@ sub build_LtccFrame
 			# temp removing back panel
 			my %detector = init_det();
 			$detector{"name"}        = "frame1_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -84,7 +84,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame2_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -96,7 +96,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame3_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -109,7 +109,7 @@ sub build_LtccFrame
 			# temp removing side panels
 			%detector = init_det();
 			$detector{"name"}        = "frame4_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -121,7 +121,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame5_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -133,7 +133,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame6_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -146,7 +146,7 @@ sub build_LtccFrame
 			# temp removed, giving overlaps
 			%detector = init_det();
 			$detector{"name"}        = "frame7_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -158,7 +158,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame8_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -171,7 +171,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "frame9_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc frame $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $fangle[$s]*deg";
@@ -192,7 +192,7 @@ sub build_LtccFrame
 
 			my %detector = init_det();
 			$detector{"name"}        = "nose1_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc nose piece 1 $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
@@ -204,7 +204,7 @@ sub build_LtccFrame
 			
 			%detector = init_det();
 			$detector{"name"}        = "nose2_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc nose piece 1 $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
@@ -216,7 +216,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "nose3_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc nose piece 1 $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
@@ -229,7 +229,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "nose4_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc nose piece 1 $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
@@ -242,7 +242,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "nose5_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc nose piece 1 $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";
@@ -255,7 +255,7 @@ sub build_LtccFrame
 
 			%detector = init_det();
 			$detector{"name"}        = "nose6_s$s";
-			$detector{"mother"}      = "fc";
+			$detector{"mother"}      = "root";
 			$detector{"description"} = "ltcc nose piece 1 $s";
 			$detector{"pos"}         = "0*cm 0*cm 1273.7*mm";
 			$detector{"rotation"}    = "180*deg 0*deg $nangle*deg";

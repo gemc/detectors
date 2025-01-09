@@ -143,7 +143,7 @@ sub vacuumLine()
 	print_det(\%configuration, \%detector);
 
 
-	# in "fc" the pipe gets bigger after the torus
+	# the pipe gets bigger after the torus
 	# 1.651mm thick
 
 	my $nplanes = 7;
@@ -155,9 +155,9 @@ sub vacuumLine()
 	my @z_plane_vbeam  =  (  $torusStart, $mediumPipeEnd, $mediumPipeEnd, $mediumPipeEnd + $connectThickness,  $bigPipeBegins, $pipeEnds, 13900);
 
 	%detector = init_det();
-	$detector{"name"}        = "fc_beam_vacuum";
-	$detector{"mother"}      = "fc";
-	$detector{"description"} = "vacuum line inside fc";
+	$detector{"name"}        = "beam_vacuum";
+	$detector{"mother"}      = "root";
+	$detector{"description"} = "vacuum line inside torus";
 	$detector{"color"}       = "000000";
 	$detector{"type"}        = "Polycone";
 	my $dimen = "0.0*deg 360*deg $nplanes*counts";
@@ -188,7 +188,7 @@ sub vacuumLine()
 	# airpipes to account for change in volume size from target to "root" within a magnetic field
 	#
 	#
-	my @oradius_airpipe  =  (  20,      55);
+	my @oradius_airpipe  =  (  20,      30);
 	my @z_plane_airpipe  =  (  0, 2*$gapLength );
 
 

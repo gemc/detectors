@@ -1531,7 +1531,7 @@ sub build_targets
         $Rin        = 3.061;
         $Rout       = 3.1561;
         $length     = 2.0;  # half length
-        my $zPos       = 185.67;  # mm z position
+        $zPos       = 185.67;  # mm z position
         %detector = init_det();
         $detector{"name"}        = "alertTargetEndCapRing";
         $detector{"mother"}      = "alertTarget";
@@ -3096,6 +3096,161 @@ sub build_targets
 	print_det(\%configuration, \%detector);
     }
 
+if($thisVariation eq "2cm-lD2")
+	{
+
+		my $nplanes = 4;
+		my @oradius  =  (    52,   52,  45,  21 );
+		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessU  = 0.015/2.;
+		my $zposU       = -70.35;
+		my $radiusU     = 4.95;
+		$detector{"name"}        = "LD2CellWindowU";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell upstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposU*mm";
+		$detector{"dimensions"}  = "0*mm $radiusU*mm $thicknessU*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell downstream window
+		my $thicknessD  = 0.015/2.;
+		my $zposD       = -50.34;
+		my $radiusD     = 4.95;
+		$detector{"name"}        = "LD2CellWindowD";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell downstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposD*mm";
+		$detector{"dimensions"}  = "0*mm $radiusD*mm $thicknessD*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# actual lD2 target
+		$nplanes = 6;
+		my @oradiusT  =  (   2.5, 7.0,  7.8,  6.7, 5.5,  2.5);
+		my @z_planeT  =  ( -70.30, -68.0, -66.2, -52.5, -51.0, -50.40);
+		%detector = init_det();
+		$detector{"name"}        = "lD2";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Target Cell";
+		$detector{"color"}       = "aa0000";
+		$detector{"type"}        = "Polycone";
+		$dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradiusT[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_planeT[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "LD2"; # defined in gemc database
+		$detector{"style"}       = 1;
+		print_det(\%configuration, \%detector);
+
+		# reference foil
+		my $thickness  = 0.01/2.;
+		my $zpos       = -30.33;
+		my $radius     = 10;
+		$detector{"name"}        = "refFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "aluminum refernence foil";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
+
+if($thisVariation eq "2cm-lD2-empty")
+	{
+		my $nplanes = 4;
+		my @oradius  =  (    52,   52,  45,  21 );
+		my @z_plane  =  (  -215.0,  165.0, 180.0, 200.0 );
+
+		# vacuum target container
+		my %detector = init_det();
+		$detector{"name"}        = "target";
+		$detector{"mother"}      = "root";
+		$detector{"description"} = "Target Container";
+		$detector{"color"}       = "22ff22";
+		$detector{"type"}        = "Polycone";
+		my $dimen = "0.0*deg 360*deg $nplanes*counts";
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." 0.0*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $oradius[$i]*mm";}
+		for(my $i = 0; $i <$nplanes; $i++) {$dimen = $dimen ." $z_plane[$i]*mm";}
+		$detector{"dimensions"}  = $dimen;
+		$detector{"material"}    = "G4_Galactic";
+		$detector{"style"}       = 0;
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessU  = 0.015/2.;
+		my $zposU       = -70.35;
+		my $radiusU     = 4.95;
+		$detector{"name"}        = "LD2CellWindowU";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell upstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposU*mm";
+		$detector{"dimensions"}  = "0*mm $radiusU*mm $thicknessU*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# Liquid target cell upstream window
+		my $thicknessD  = 0.015/2.;
+		my $zposD       = -50.34;
+		my $radiusD     = 4.95;
+		$detector{"name"}        = "LD2CellWindowD";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "Liquid target cell downstream window";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zposD*mm";
+		$detector{"dimensions"}  = "0*mm $radiusD*mm $thicknessD*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+
+		# reference foil
+		my $thickness  = 0.01/2.;
+		my $zpos       = -30.33;
+		my $radius     = 10;
+		$detector{"name"}        = "refFoil";
+		$detector{"mother"}      = "target";
+		$detector{"description"} = "aluminum refernence foil";
+		$detector{"color"}       = "848789";
+		$detector{"type"}        = "Tube";
+		$detector{"pos"}         = "0 0 $zpos*mm";
+		$detector{"dimensions"}  = "0*mm $radius*mm $thickness*mm 0*deg 360*deg";
+		$detector{"material"}    = "G4_Al";
+		$detector{"style"}       = "1";
+		print_det(\%configuration, \%detector);
+	}
 
 
 }

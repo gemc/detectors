@@ -177,7 +177,7 @@ sub sumVacuumJacket()
 		
 		my %detector = init_det();
 		$detector{"name"}        = "torusSteelFrame$nindex";
-		$detector{"mother"}      = "fc";
+		$detector{"mother"}      = "root";
 		$detector{"description"} = "Torus SST Frame Component $nindex parallelepiped part + hexagon core";
 		$detector{"color"}       = "dd99663";
 		$detector{"type"}        = "Operation: torusSteelFrame$n + vacuumCase$nindex";
@@ -202,7 +202,7 @@ sub sumVacuumJacket()
 	
 	my %detector = init_det();
 	$detector{"name"}        = "beamHole";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Hole to be subtracted from torusSteelFrame";
 	$detector{"type"}        = "Tube";
 	$detector{"dimensions"}  = "0*mm $WarmBoreIR*mm $dummylength*mm 0*deg 360*deg";
@@ -213,7 +213,7 @@ sub sumVacuumJacket()
 	
 	%detector = init_det();
 	$detector{"name"}        = "torus";
-	$detector{"mother"}      = "fc";
+	$detector{"mother"}      = "root";
 	$detector{"description"} = "Torus is torusSteelFrame - hole for beampipe";
 	$detector{"color"}       = "dd99663";
 	$detector{"type"}        = "Operation: torusSteelFrame - beamHole";

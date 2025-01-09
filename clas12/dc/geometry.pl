@@ -65,7 +65,7 @@ sub make_region
 	{
 		my %detector = init_det();
 		$detector{"name"}        = "region$region"."_s$s";
-		$detector{"mother"}      = "fc";
+		$detector{"mother"}      = "root";
 		$detector{"description"} = "CLAS12 Drift Chambers, Sector $s Region $iregion";
 		
 		if( $configuration{"variation"} eq "ccdb")

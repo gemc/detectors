@@ -30,7 +30,7 @@ if( scalar @ARGV != 1)
 }
 
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 #our %parameters    = get_parameters(%configuration);
 

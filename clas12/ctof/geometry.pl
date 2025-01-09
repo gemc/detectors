@@ -4,7 +4,7 @@ use warnings;
 our %configuration;
 our %parameters;
 
-# Assign paramters to local variables
+# Assign parameters to local variables
 my $NUM_BARS = $parameters{"ctof_number_of_bars"};
 my $dx1    =   $parameters{"bar_top_width"}*$inches/2.0;      # width at top,cm
 my $dx2    =   $parameters{"bar_bottom_width"}*$inches/2.0;   # width at bottom, cm

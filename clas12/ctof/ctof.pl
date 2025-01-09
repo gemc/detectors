@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use strict;
+use warnings;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
@@ -17,6 +18,7 @@ sub help() {
     print "\n Usage: \n";
     print "   ctof.pl <configuration filename>\n";
     print "   Will create the CLAS12 CTOF geometry, materials, bank and hit definitions\n";
+    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n ../clas12.sqlite\n";
     exit;
 }
 
@@ -26,28 +28,35 @@ if (scalar @ARGV != 1) {
     exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 
-# Global pars - these should be read by the load_parameters from file or DB
 our %parameters = get_parameters(%configuration);
 
-#system(join(' ', '~kenjo/.groovy/groovy-2.4.12/bin/groovy -cp "../*" factory.groovy', $javaCadDir));
-
-# materials
+# import scripts
 require "./materials.pl";
-
-# banks definitions
 require "./bank.pl";
-
-# hits definitions
 require "./hit.pl";
-
-# sensitive geometry
 require "./geometry.pl";
-
-# java geometry
 require "./geometry_java.pl";
+
+
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
+    my $variation = shift;
+    my $runNumber = shift;
+
+    # materials
+    materials();
+    define_hit();
+
+    makeHTCC();
+    buildMirrorsSurfaces();
+
+    if ($configuration{"factory"} eq "SQLITE") {
+        define_cads();
+    }
+}
 
 # all the scripts must be run for every configuration
 #my @allConfs = ("original", "cad", "java");
@@ -80,7 +89,6 @@ foreach my $conf (@allConfs) {
     close($fh);
     print "File '$filename' has been re-created and is now empty.\n";
 }
-
 
 use File::Copy;
 use File::Path qw(make_path remove_tree);

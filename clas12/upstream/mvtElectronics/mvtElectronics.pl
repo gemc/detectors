@@ -28,7 +28,7 @@ if( scalar @ARGV != 1)
 	exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 
 

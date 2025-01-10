@@ -45,95 +45,118 @@ require "./geometry_java.pl";
 sub create_system {
     my $variation = shift;
     my $runNumber = shift;
+    my $javaCadDir = "javacad_$variation";
 
     # materials
     materials();
     define_hit();
 
-    makeHTCC();
-    buildMirrorsSurfaces();
+    # if directory does not exist, create it
+    if (!-d "cad" || !-d "cad_upstream") {
+        system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber", $javaCadDir));
+        our @volumes = get_volumes(%configuration);
+        coatjava::makeCTOF($javaCadDir);
+    }
 
-    if ($configuration{"factory"} eq "SQLITE") {
-        define_cads();
+    if ($configuration{"factory"} eq "TEXT") {
+        # create an empty ctof__geometry_variation.txt so the banks are correctly loaded
+        my $filename = "ctof__geometry_$variation.txt";
+
+        open(my $fh, '>', $filename) or die "Could not create file: $filename";
+        close($fh);
+        print "File '$filename' has been re-created and is now empty.\n";
     }
 }
 
-# all the scripts must be run for every configuration
-#my @allConfs = ("original", "cad", "java");
-my @allConfs = ("default", "rga_spring2018", "rga_fall2018");
-
-# bank definitions
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
 define_bank();
 
-foreach my $conf (@allConfs) {
+my @variations = ("default", "rga_spring2018", "rga_fall2018");
+my $runNumber = 11;
 
-    $configuration{"variation"} = $conf;
-
-    my $javaCadDir = "javacad_$conf";
-
-    system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11", $javaCadDir));
-
-    our @volumes = get_volumes(%configuration);
-    coatjava::makeCTOF($javaCadDir);
-
-    # materials
-    materials();
-
-    # hits
-    define_hit();
-
-    # create an empty ctof__geometry_variation.txt so the banks are correctly loaded
-    my $filename = "ctof__geometry_$conf.txt";
-
-    open(my $fh, '>', $filename) or die "Could not create file: $filename";
-    close($fh);
-    print "File '$filename' has been re-created and is now empty.\n";
+foreach my $variation (@variations) {
+    $configuration{"variation"} = $variation;
+    create_system($variation, $runNumber);
 }
+
+
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+define_bank();
+
+my $variation = "default";
+my @runs = (11, 3029, 4763);
+
+foreach my $run (@runs) {
+    $configuration{"variation"} = $variation;
+    $configuration{"run_number"} = $run;
+    create_system($variation, $run);
+}
+
+
+# Handling directory changes
 
 use File::Copy;
 use File::Path qw(make_path remove_tree);
 
-# Create directories
-make_path('cad');
-make_path('cad_upstream');
 
 # Copy STL files from javacad_default to cad_ctof
 my $javacad_default = 'javacad_default';
-my $cad_ctof = 'cad';
-
-opendir(my $dh, $javacad_default) or die "Cannot open directory $javacad_default: $!";
-while (my $file = readdir($dh)) {
-    if ($file =~ /\.stl$/) {
-        copy("$javacad_default/$file", "$cad_ctof/$file") or die "Copy failed: $!";
-    }
-}
-closedir($dh);
-
-# Copy STL files from javacad_default_upstream to cad_ctof_upstream
 my $javacad_default_upstream = 'javacad_default_upstream';
+my $cad_ctof = 'cad';
 my $cad_ctof_upstream = 'cad_upstream';
 
-opendir($dh, $javacad_default_upstream) or die "Cannot open directory $javacad_default_upstream: $!";
-while (my $file = readdir($dh)) {
-    if ($file =~ /\.stl$/) {
-        copy("$javacad_default_upstream/$file", "$cad_ctof_upstream/$file") or die "Copy failed: $!";
+if (!-d "cad" || !-d "cad_upstream") {
+    make_path('cad');
+    make_path('cad_upstream');
+
+    opendir(my $dh, $javacad_default) or die "Cannot open directory $javacad_default: $!";
+    while (my $file = readdir($dh)) {
+        if ($file =~ /\.stl$/) {
+            copy("$javacad_default/$file", "$cad_ctof/$file") or die "Copy failed: $!";
+        }
     }
+    closedir($dh);
+
+    # Copy STL files from javacad_default_upstream to cad_ctof_upstream
+
+
+    opendir($dh, $javacad_default_upstream) or die "Cannot open directory $javacad_default_upstream: $!";
+    while (my $file = readdir($dh)) {
+        if ($file =~ /\.stl$/) {
+            copy("$javacad_default_upstream/$file", "$cad_ctof_upstream/$file") or die "Copy failed: $!";
+        }
+    }
+    closedir($dh);
+    # Copy specific GXML files
+    copy("$javacad_default/cad.gxml", "$cad_ctof/cad_default.gxml") or die "Copy failed: $!";
+    copy("javacad_rga_spring2018/cad.gxml", "$cad_ctof/cad_rga_spring2018.gxml") or die "Copy failed: $!";
+    copy("javacad_rga_fall2018/cad.gxml", "$cad_ctof/cad_rga_fall2018.gxml") or die "Copy failed: $!";
+    copy("$javacad_default_upstream/cad.gxml", "$cad_ctof_upstream/cad_default.gxml") or die "Copy failed: $!";
+    copy("javacad_rga_spring2018_upstream/cad.gxml", "$cad_ctof_upstream/cad_rga_spring2018.gxml") or die "Copy failed: $!";
+    copy("javacad_rga_fall2018_upstream/cad.gxml", "$cad_ctof_upstream/cad_rga_fall2018.gxml") or die "Copy failed: $!";
+
+    # Remove javacad directories created with the geometry service
+    remove_tree($javacad_default);
+    remove_tree($javacad_default_upstream);
+    remove_tree('javacad_rga_spring2018');
+    remove_tree('javacad_rga_fall2018');
+    remove_tree('javacad_rga_spring2018_upstream');
+    remove_tree('javacad_rga_fall2018_upstream');
 }
-closedir($dh);
 
-# Copy specific GXML files
-copy("$javacad_default/cad.gxml", "$cad_ctof/cad_default.gxml") or die "Copy failed: $!";
-copy("javacad_rga_spring2018/cad.gxml", "$cad_ctof/cad_rga_spring2018.gxml") or die "Copy failed: $!";
-copy("javacad_rga_fall2018/cad.gxml", "$cad_ctof/cad_rga_fall2018.gxml") or die "Copy failed: $!";
-copy("$javacad_default_upstream/cad.gxml", "$cad_ctof_upstream/cad_default.gxml") or die "Copy failed: $!";
-copy("javacad_rga_spring2018_upstream/cad.gxml", "$cad_ctof_upstream/cad_rga_spring2018.gxml") or die "Copy failed: $!";
-copy("javacad_rga_fall2018_upstream/cad.gxml", "$cad_ctof_upstream/cad_rga_fall2018.gxml") or die "Copy failed: $!";
+require "../gxml_to_sqlite.pl";
 
+$configuration{"run_number"} = 11;
+process_gxml("$cad_ctof/cad_default.gxml", $cad_ctof);
+process_gxml("$cad_ctof_upstream/cad_default.gxml", $cad_ctof_upstream);
 
-# Remove javacad directories created with the geometry service
-remove_tree($javacad_default);
-remove_tree($javacad_default_upstream);
-remove_tree('javacad_rga_spring2018');
-remove_tree('javacad_rga_fall2018');
-remove_tree('javacad_rga_spring2018_upstream');
-remove_tree('javacad_rga_fall2018_upstream');
+$configuration{"run_number"} = 3029;
+process_gxml("$cad_ctof/cad_rga_spring2018.gxml", $cad_ctof);
+process_gxml("$cad_ctof_upstream/cad_rga_spring2018.gxml", $cad_ctof_upstream);
+
+$configuration{"run_number"} = 4763;
+process_gxml("$cad_ctof/cad_rga_fall2018.gxml", $cad_ctof);
+process_gxml("$cad_ctof_upstream/cad_rga_fall2018.gxml", $cad_ctof_upstream);
+

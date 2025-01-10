@@ -19,3 +19,18 @@ This will:
 1. create the text based DB geometry files, with variation in the filenames
 2. add detector run entries to the ../clas12.sqlite database
 
+
+
+## GEMC Output comparison
+
+Run 11:
+
+```
+gemc -USE_GUI=0 ctof_sqlite.gcard       -N=10 -OUTPUT="hipo, sql_11.hipo" -RANDOM=123 -RUNNO=11  
+gemc -USE_GUI=0 ctof_text_default.gcard -N=10 -OUTPUT="hipo, txt_11.hipo" -RANDOM=123 -RUNNO=11  
+```
+
+
+<br/>
+
+---

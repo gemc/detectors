@@ -44,17 +44,13 @@ sub define_ahdc_bank
 	insert_bank_variable(\%configuration, $bankname, "ADC_ADC",      5, "Di", "ADC integral from pulse fit - currently set to adcMax");
 	insert_bank_variable(\%configuration, $bankname, "ADC_time" ,    6, "Dd", "time of the max ADC over the pulse");
 	insert_bank_variable(\%configuration, $bankname, "ADC_ped" ,     7, "Di", "pedestal from pulse analysis - currently set to noise level");
-	insert_bank_variable(\%configuration, $bankname, "ADC_integral" ,8, "Di", "integral");
-	insert_bank_variable(\%configuration, $bankname, "ADC_timestamp",9, "Di", "timestamp from DREAM - currently set to 0");
-        insert_bank_variable(\%configuration, $bankname, "ADC_timeRiseCFA",  10, "Dd", "moment when the signal reaches a Constant Fraction of its Amplitude uphill");
-	insert_bank_variable(\%configuration, $bankname, "ADC_timeCFD",    11, "Dd", "time extracted using the Constant Fraction Discriminator (CFD) algorithm");
-	insert_bank_variable(\%configuration, $bankname, "ADC_timeOVR",    12, "Dd", "time over threshold - the same threshold used to define timeRiseCFA");
-	insert_bank_variable(\%configuration, $bankname, "WF10_timestamp",    4, "Dl", "Hardware Timestamp");
+
+	insert_bank_variable(\%configuration, $bankname, "WF136_timestamp", 14, "Dl", "Hardware Timestamp");
 	for my $itr (1..136) {
-		my $entry = "wf10_s$itr";
-		insert_bank_variable(\%configuration, $bankname, $entry,$itr+4, "Di", "ADC sample $itr");
+		my $entry = "wf136_s$itr";
+		insert_bank_variable(\%configuration, $bankname, $entry,$itr+14, "Di", "ADC sample $itr");
 	}
-	insert_bank_variable(\%configuration, $bankname, "hitn",        99, "Di", "hit number");
+	insert_bank_variable(\%configuration, $bankname, "hitn", 199, "Di", "hit number");
 
 	
 

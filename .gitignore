@@ -1,6 +1,3 @@
 clas12/rtpc/rtpc.pl~
 .DS_Store
 clas12/rich_sector4/
-clas12/alert/*/*.txt
-clas12/targets/*.txt
-clas12/alert/alert_clas12.yaml

@@ -4,7 +4,6 @@ use warnings;
 our %configuration;
 
 
-
 sub define_hit
 {
 	# uploading the hit definition

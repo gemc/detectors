@@ -5,11 +5,8 @@
 
 	<detector name="cnd"          factory="TEXT" variation="rga_fall2018"/>
 
-
-
-
 	<option name="BEAM_P" value="proton, 1.0*GeV, 90*deg, 10*deg"/>
-	<option name="SPREAD_P"  value="0.0*GeV, 10*deg, 180*deg"/>
+	<option name="SPREAD_P"  value="0.0*GeV, 40*deg, 180*deg"/>
 
 	<option name="SAVE_ALL_MOTHERS" value="1"/>
 	<option name="INTEGRATEDRAW" value="cnd"/>

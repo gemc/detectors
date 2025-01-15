@@ -13,6 +13,10 @@ use materials;
 
 use Math::Trig;
 
+use lib ("../");
+use clas12_configuration_string;
+
+
 # Help Message
 sub help() {
     print "\n Usage: \n";
@@ -52,8 +56,15 @@ sub create_system {
 
     # if directory does not exist, create it
     if (!-d "cad" || !-d "cad_upstream") {
+        if ($configuration{"factory"} eq "SQLITE") {
+            my $variation_string = clas12_configuration_string(\%configuration);
+            $javaCadDir = "javacad_$variation_string";
+        }
+
         system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber", $javaCadDir));
+        #  system(join(' ', "groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber", $javaCadDir));
         our @volumes = get_volumes(%configuration);
+
         coatjava::makeCTOF($javaCadDir);
     }
 
@@ -120,7 +131,6 @@ if (!-d "cad" || !-d "cad_upstream") {
 
     # Copy STL files from javacad_default_upstream to cad_ctof_upstream
 
-
     opendir($dh, $javacad_default_upstream) or die "Cannot open directory $javacad_default_upstream: $!";
     while (my $file = readdir($dh)) {
         if ($file =~ /\.stl$/) {
@@ -143,8 +153,14 @@ if (!-d "cad" || !-d "cad_upstream") {
     remove_tree('javacad_rga_fall2018');
     remove_tree('javacad_rga_spring2018_upstream');
     remove_tree('javacad_rga_fall2018_upstream');
+
+    # remove volumes files, the default one is not correct after using SQLITE because it used a different run number
+    remove_tree("ctof__parameters*");
+
 }
 
+
+# port gxml to sqlite
 require "../gxml_to_sqlite.pl";
 
 $configuration{"run_number"} = 11;

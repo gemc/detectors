@@ -21,7 +21,7 @@ sub clas12_configuration_string {
         return "rga_fall2018";
     }
     else {
-        return "original";
+        return "default";
     }
 }
 

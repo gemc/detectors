@@ -26,7 +26,7 @@ if (scalar @ARGV != 1) {
     exit;
 }
 
-# Loading configuration file and parameters
+# Loading configuration file
 our %configuration = load_configuration($ARGV[0]);
 
 # import scripts
@@ -40,7 +40,7 @@ sub create_system {
     my $variation = shift;
     my $runNumber = shift;
 
-    # materials
+    # materials, hits
     materials();
     define_hit();
 

@@ -1,23 +1,9 @@
-# Configuration file for bst
-
 # Detector name and variation
 detector_name: bst
-variation:     original
+comment: CLAS12 Barrel Silicon Tracker
 
-# Factory can be MYSQL or TEXT
-factory:       TEXT 
-
-# run ranges and variation will apply to geometry, materials and parameters
-rmin:       1
-rmax:       10000
-
-# MYSQL server and databse if MYSQL factory is selected
-dbhost: clasdb.jlab.org
-
-# Comments/Description
-comment:       This is the second implementation of the bst
+# MYSQL server / SQLITE file
+dbhost: ../clas12.sqlite
 
 # Verbosity controls the perl script output
 verbosity: 0
-
-

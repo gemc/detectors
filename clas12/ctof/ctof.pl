@@ -33,6 +33,7 @@ if (scalar @ARGV != 1) {
 }
 
 # Loading configuration file and parameters
+# Notice: parameters are common to all variations so they are read for default variation only
 our %configuration = load_configuration($ARGV[0]);
 our %parameters = get_parameters(%configuration);
 
@@ -50,7 +51,7 @@ sub create_system {
     my $runNumber = shift;
     my $javaCadDir = "javacad_$variation";
 
-    # materials
+    # materials, hits
     materials();
     define_hit();
 

@@ -63,6 +63,7 @@ sub create_system {
 $configuration{"factory"} = "TEXT";
 define_bank();
 
+# keeping one variation only until coatjava implements shifts / rotations in CCDB
 my @variations = ("default");
 my $runNumber = 11;
 

@@ -1432,43 +1432,57 @@ sub build_targets
 	}
 
     # ALERT target 
-    elsif($thisVariation eq "alert")
+    elsif($thisVariation eq "alertD2" || $thisVariation eq "alertH2" || $thisVariation eq "alertHe")
     {
 	# adapted from bonus case
         # alert tg root volume
         my $Rout       = 4;
-        my $length     = 155.0;  # mm!
+        my $length     = 322.27;  # mm!
         my %detector = init_det();
         $detector{"name"}        = "alertTarget";
         $detector{"mother"}      = "root";
-        $detector{"description"} = "ALERT gaseous D2 Target";
+        $detector{"description"} = "ALERT Target";
         $detector{"color"}       = "eeeegg";
         $detector{"type"}        = "Tube";
         $detector{"dimensions"}  = "0*mm $Rout*mm $length*mm 0*deg 360*deg";
-        $detector{"material"}    = "G4_He";
+        $detector{"material"}    = "HECO2";
         $detector{"style"}       = "1";
-        $detector{"visible"}     = 0;
+        $detector{"visible"}     = 1;
         print_det(\%configuration, \%detector);
         
         # ALERT target gas volume
+        # made this the mother volume instead
         my $Rin        = 0.0;
-        $Rout       = 3.0;
-        $length     = 150.0;  
-        %detector = init_det();
-        $detector{"name"}        = "gasDeuteriumTarget";
+        my $Rout       = 3.0;
+        my $length     = 255;  
+        my %detector = init_det();
+        $detector{"name"}        = "gasTargetalert";
         $detector{"mother"}      = "alertTarget";
-        $detector{"description"} = "5 atm deuterium target gas";
+        $detector{"description"} = "target gas";
         $detector{"color"}       = "ffff00";
         $detector{"type"}        = "Tube";
         $detector{"dimensions"}  = "$Rin*mm $Rout*mm $length*mm 0*deg 360*deg";
-        $detector{"material"}    = "alertTargetGas";
         $detector{"style"}       = "1";
-        print_det(\%configuration, \%detector);
+        
+		if($thisVariation eq "alertD2")
+		{
+		$detector{"material"} = "alertTargetGas_D2";
+		}
+		if($thisVariation eq "alertH2")
+		{
+		$detector{"material"} = "alertTargetGas_H2";
+		}
+		if($thisVariation eq "alertHe")
+		{
+		$detector{"material"} = "alertTargetGas_He";
+		}
+
+	print_det(\%configuration, \%detector);
         
         # ALERT target wall
         $Rin        = 3.0; 
         $Rout       = 3.060; 
-        $length     = 150.0;  
+        $length     = 255;  
         %detector = init_det();
         $detector{"name"}        = "alertTargetWall";
         $detector{"mother"}      = "alertTarget";
@@ -1484,7 +1498,7 @@ sub build_targets
 	$Rin        = 3.061;
         $Rout       = 3.1561;
         $length     = 2.0;  # half length
-        my $zPos       = -148.0;  # mm z position
+        my $zPos       = -262.3;  # mm z position
         %detector = init_det();
         $detector{"name"}        = "alertTargetUpEndCapRing";
         $detector{"mother"}      = "alertTarget";
@@ -1500,7 +1514,7 @@ sub build_targets
 	$Rin        = 0.0;
         $Rout       = 3.1561;
         $length     = 0.015;  # half length
-        $zPos       = -150.015;
+        $zPos       = -262.315;
         %detector = init_det();
         $detector{"name"}        = "alertTargetUpEndCapPlate";
         $detector{"mother"}      = "alertTarget";
@@ -1517,7 +1531,7 @@ sub build_targets
         $Rin        = 3.061;
         $Rout       = 3.1561;
         $length     = 2.0;  # half length
-        $zPos       = 148;  # mm z position
+        $zPos       = 185.67;  # mm z position
         %detector = init_det();
         $detector{"name"}        = "alertTargetEndCapRing";
         $detector{"mother"}      = "alertTarget";
@@ -1534,7 +1548,7 @@ sub build_targets
         $Rin        = 0.0;
         $Rout       = 3.1561;
         $length     = 0.015;  # half length
-        $zPos       = 150.015;
+        $zPos       = 187.685;
         %detector = init_det();
         $detector{"name"}        = "alertTargetEndCapPlate";
         $detector{"mother"}      = "alertTarget";

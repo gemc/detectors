@@ -33,13 +33,13 @@ def writer2=outFile.newWriter();
 // may want to add mother volumes
 int nsectors = ahdc.getNumSectors();
 
-for(int isec=0; isec<nsectors; isec++) 
+for(int isec=1; isec<=nsectors; isec++) 
 {
 	int nsuperlayers = ahdc.getSector(isec).getNumSuperlayers();
-	for(int isl=0; isl<nsuperlayers; isl++) 
+	for(int isl=1; isl<=nsuperlayers; isl++) 
 	{
 		int nlayers = ahdc.getSector(isec).getSuperlayer(isl).getNumLayers();
-		for(int ilay=0; ilay<nlayers; ilay++) 
+		for(int ilay=1; ilay<=nlayers; ilay++) 
 		{
 			int ncomponents = ahdc.getSector(isec).getSuperlayer(isl).getLayer(ilay).getNumComponents();
 			//if(isec==0 && isl==0 && ilay==0) writer1 << "ahdc.layer.ncomponents | " << ncomponents << "\n"; 
@@ -47,7 +47,7 @@ for(int isec=0; isec<nsectors; isec++)
 			{
 				writer1 << "ahdc.superlayer"<< isl << ".layer"<< ilay <<".ncomponents | " << ncomponents << "| na | number of counters in panel | sergeyeva | sergeyeva@ipno.in2p3.fr | none | none | 05 June 2020 \n";
 
-				for(int icomp=0; icomp<ncomponents; icomp++) 
+				for(int icomp=1; icomp<=ncomponents; icomp++) 
 				{
 					Component comp = ahdc.getSector(isec).getSuperlayer(isl).getLayer(ilay).getComponent(icomp);
 					writer2<< gemcString(isl, ilay, comp);
@@ -142,7 +142,7 @@ public String gemcString(int superlayer, int layer, Component comp) {
 	for (int isubcell=1; isubcell <= nsubcells; isubcell++)
 	{
 		// component name should be added as attribute of the ALERTDCWire class, mother volume should be checked
-        	str.append(String.format("superlayer%d_layer%d_ahdccell%d_subcell%d | root", superlayer, layer, (comp.getComponentId()+1), isubcell));
+        	str.append(String.format("superlayer%d_layer%d_ahdccell%d_subcell%d | root", superlayer, layer, (comp.getComponentId()), isubcell));
 		
 		/*
 		// Placing each sub-cell by use of the middle point of the AHDC cell signal wire
@@ -199,7 +199,7 @@ public String gemcString(int superlayer, int layer, Component comp) {
 		}
 		// currently only writing the component id but should save all necessary identifiers according to detector definition
         	str.append(" | ");
-        	str.append(String.format(" %d %d %d", superlayer, layer, (comp.getComponentId()+1)));
+        	str.append(String.format(" %d %d %d", superlayer, layer, (comp.getComponentId())));
 
 		str.append("\n");
 	}

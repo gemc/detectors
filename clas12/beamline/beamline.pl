@@ -48,7 +48,7 @@ require "./transverseUpstreamBeampipe.pl";
 
 # require "./torusShielding.pl";
 
-my @allConfs = ("FTOn", "FTOff", "ELMO", "rghFTOut", "rghFTOn", "TransverseUpstreamBeampipe");
+my @allConfs = ("FTOn", "FTALERT" , "FTOff", "ELMO", "rghFTOut", "rghFTOn", "TransverseUpstreamBeampipe");
 
 foreach my $conf ( @allConfs ) {
 
@@ -59,7 +59,7 @@ foreach my $conf ( @allConfs ) {
 
 	# vacuum line throughout the shields, torus and downstream
 	# temp includes the torus back nose
-	if( $configuration{"variation"} eq "FTOff" or $configuration{"variation"} eq "FTOn") {
+	if( $configuration{"variation"} eq "FTOff" or $configuration{"variation"} eq "FTOn" or $configuration{"variation"} eq "FTALERT") {
 		vacuumLine();
 	} elsif( $configuration{"variation"} eq "ELMO") {
 		ELMOline();

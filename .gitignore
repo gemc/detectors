@@ -1,2 +1,7 @@
 .DS_Store
 *.hipo
+*__geometry_*.txt
+*__bank_*.txt
+*__materials_*.txt
+
+

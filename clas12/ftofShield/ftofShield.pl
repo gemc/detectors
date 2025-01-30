@@ -24,7 +24,7 @@ if( scalar @ARGV != 1)
 	exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 
 my @allConfs = ("pb0.1", "pb0.2", "pb0.5", "pb1");

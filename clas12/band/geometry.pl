@@ -3,7 +3,7 @@ use warnings;
 
 our %configuration;
 
-# Assign paramters to local variables
+# Assign parameters to local variables
 my $NUM_LAYERS = 6;
 my $NUM_BARS   = 18;
 my $NUM_SHDS   = 3;

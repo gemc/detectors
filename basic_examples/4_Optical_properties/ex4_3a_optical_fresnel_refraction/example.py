@@ -16,7 +16,7 @@ args = parser.parse_args()
 cfg_file = args.config_filename
 print(cfg_file)
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 configuration = load_configuration(cfg_file)
 
 # materials

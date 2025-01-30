@@ -177,12 +177,16 @@ my @SL_or = ($radius[0] + 5.0, $radius[1] + 5.0, $radius[2] + 5.0, $radius[3] + 
 my $SL_dz = 295.0;
 my $SL_z = -$bmt_z; # center of superlayer wrt BMT  mother volume
 
-sub define_bmt {
-    # sixth layer goes from 5mu to 9mu, layers 1-5 scaler accordingly
-    if ($configuration{"variation"} eq "michel_9mmcopper") {
-        $DriftCuElectrode_Width = 0.00012 * 9 / 5;
-        $DriftCuElectrode6C_Width = 0.009;
-    }
+sub define_bmt
+{
+	# sixth layer goes from 5mu to 9mu, layers 1-5 scaler accordingly
+	if( $configuration{"variation"} eq "michel_9mmcopper" ) {
+		# update on 2024/12/16: request to test 9microns for all layers
+		$DriftCuElectrode_Width = 0.00012*9/5;
+		$DriftCuElectrode_Width = 0.009;
+		$DriftCuElectrode6C_Width = 0.009;
+	}
+
 
     if ($configuration{"variation"} eq "michel_200umcopper") {
         $DriftCuElectrode_Width = 0.02;

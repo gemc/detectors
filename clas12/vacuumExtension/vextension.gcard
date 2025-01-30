@@ -10,7 +10,7 @@
 	<detector name="experiments/clas12/beamline/cadBeamline/" factory="CAD"/>
 	<detector name="experiments/clas12/beamline/vacuumline/" factory="CAD"/>
 
-	<detector name="experiments/clas12/htcc/htcc" factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/htcc/htcc" factory="TEXT" variation="default"/>
 
 	<detector name="experiments/clas12/fc/forwardCarriage" factory="TEXT" variation="original"/>
 

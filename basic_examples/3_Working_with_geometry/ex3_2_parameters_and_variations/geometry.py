@@ -4,7 +4,7 @@ from math import cos, sin, radians
 
 def makeCTOF(configuration, parameters):
 	global R, Rin, Rout, DZ, NUM_BARS, theta0, dx1, dx2, dy, dz
-	# Assign paramters to local variables
+	# Assign parameters to local variables
 	inches = 2.54		# This is in the gemc api math module
 	NUM_BARS = int(parameters["ctof_number_of_bars"])
 	dx1    =   parameters["bar_top_width"]*inches/2.0      # width at top,cm

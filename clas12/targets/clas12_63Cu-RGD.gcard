@@ -5,7 +5,7 @@
 	
 	<!-- RG-D Nuclear-target Assembly; variation can be for the flag assembly: lD2CuSn, lD2CxC -->
 	<detector name="experiments/clas12/targets/target" factory="TEXT" variation="lD2CuSn"/>
-	<detector name="experiments/clas12/targets/flagCad/" factory="CAD"/>
+	<detector name="experiments/clas12/targets/cad_rgd/" factory="CAD"/>
 	
 	<!-- central detectors 	-->
 	
@@ -20,7 +20,7 @@
 	<detector name="experiments/clas12/cnd/cnd"                       factory="TEXT" variation="original"/>
 
 	<!--high threshold cherenkov -->
-	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="original"/>
+	<detector name="experiments/clas12/htcc/htcc"           factory="TEXT" variation="default"/>
 	<detector name="experiments/clas12/htcc/cad_fall18/"    factory="CAD"/>
 	
 	<!-- magnets -->

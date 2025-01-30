@@ -25,7 +25,7 @@ if( scalar @ARGV != 1)
 	exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
 
 # One can change the "variation" here if one is desired different from the config.dat

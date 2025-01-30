@@ -47,8 +47,8 @@ sub build_LtccFrame
 			if($rga_fall2018_sectorsPresence[$s - 1] == 1) {
 				$shouldPrintDetector = 1;
 			}
-		} elsif($configuration{"variation"} eq "rgb_winter2019") {
-			if($rgb_winter2019_sectorsPresence[$s - 1] == 1) {
+		} elsif($configuration{"variation"} eq "rgb_winter2020") {
+			if($rgb_winter2020_sectorsPresence[$s - 1] == 1) {
 				$shouldPrintDetector = 1;
 
 			}
@@ -56,8 +56,8 @@ sub build_LtccFrame
 			if($rgb_spring2019_sectorsPresence[$s - 1] == 1) {
 				$shouldPrintDetector = 1;
 			}
-		} elsif($configuration{"variation"} eq "rgm" ) {
-			if($rgm_sectorsPresence[$s - 1] == 1) {
+		} elsif($configuration{"variation"} eq "rgm_winter2021" ) {
+			if($rgm_winter2021_sectorsPresence[$s - 1] == 1) {
 				$shouldPrintDetector = 1;
 			}
 		}

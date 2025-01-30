@@ -40,7 +40,7 @@ sub create_system {
     my $variation = shift;
     my $runNumber = shift;
 
-    # materials
+    # materials, hits
     materials();
     define_hit();
 
@@ -70,7 +70,7 @@ $configuration{"factory"} = "SQLITE";
 define_bank();
 
 my $variation = "default";
-my @runs = (11, 101);
+my @runs = (11, 3029);
 
 foreach my $run (@runs) {
     $configuration{"variation"} = $variation;

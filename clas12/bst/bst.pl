@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
-
 use strict;
+use warnings;
 use lib ("$ENV{GEMC}/api/perl");
 use utils;
 use parameters;
@@ -14,67 +14,75 @@ use materials;
 use Math::Trig;
 
 # Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   bst.pl <configuration filename>\n";
-	print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
-	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
-	exit;
+sub help() {
+    print "\n Usage: \n";
+    print "   bst.pl <configuration filename>\n";
+    print "   Will create the CLAS12 BST geometry, materials, bank and hit definitions\n";
+    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n ../clas12.sqlite\n";
+    exit;
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
+if (scalar @ARGV != 1) {
+    help();
+    exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file
 our %configuration = load_configuration($ARGV[0]);
-$configuration{"variation"} = "default" ;
 
-# materials
+# import scripts
+# notice makeBST existed in a 'geometry.pl' source before the
+# coatjava geometry service. As of 1/16/2025 that file is retired
 require "./materials.pl";
-
-# banks definitions
 require "./bank.pl";
-
-# hits definitions
 require "./hit.pl";
+require "./geometry_java.pl";
 
 
-# all the scripts must be run for every configuration
-#my @allConfs = ("original", "java");
-my @allConfs = ($configuration{"variation"}); # java variation only, for testing
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
+    my $variation = shift;
+    my $runNumber = shift;
 
-foreach my $conf ( @allConfs )
-{
-	$configuration{"variation"} = $conf;
+    # materials, hits
+    materials();
+    define_hit();
 
-	# materials
-	materials();
-	
-	# hits
-	define_hit();
-	
-	# bank definitions
-	define_bank();
+    # run EC factory from COATJAVA to produce volumes
+    system("groovy -cp '../*:..' factory.groovy --variation $variation --runnumber $runNumber");
 
-	if($configuration{"variation"} eq "original") {
-		# Global pars - these should be read by the load_parameters from file or DB
-		our %parameters = get_parameters(%configuration);
+    # Global pars - these should be read by the load_parameters from file or DB
+    our %parameters = get_parameters(%configuration);
+    our @volumes = get_volumes(%configuration);
 
-		require "./geometry.pl";
-		makeBST();
-	} else {
-		system("groovy -cp '../*:..' factory.groovy --variation $configuration{variation} --runnumber 11");
-
-		# Global pars - these should be read by the load_parameters from file or DB
-		our %parameters = get_parameters(%configuration);
-		our @volumes = get_volumes(%configuration);
-
-		require "./geometry_java.pl";
-		coatjava::makeBST();
-	}
+    coatjava::makeBST();
 }
+
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
+define_bank();
+
+# keeping one variation only until coatjava implements shifts / rotations in CCDB
+my @variations = ("default");
+my $runNumber = 11;
+
+foreach my $variation (@variations) {
+    $configuration{"variation"} = $variation;
+    create_system($variation, $runNumber);
+}
+
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+define_bank();
+upload_parameters(\%configuration, "bst__parameters_default.txt", "bst", "default", 11);
+
+my $variation = "default";
+my @runs = (11);
+
+foreach my $run (@runs) {
+    $configuration{"variation"} = $variation;
+    $configuration{"run_number"} = $run;
+    create_system($variation, $run);
+}
+

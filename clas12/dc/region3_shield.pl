@@ -3,15 +3,15 @@ use utils;
 
 our %configuration;
 
-our @mother_dx1;
-our @mother_dx2;
-our @mother_dy;
-our @mother_dz;
-our @mother_xcent;
-our @mother_ycent;
-our @mother_zcent;
-
 our $tilt      = 25;
+
+our @mother_dx1=(4.9481089,3.9481089, 8.8578648);
+our @mother_dx2=(98.04, 157.27, 229.84);
+our @mother_dy=(91.82, 147.21, 216.109);
+our @mother_dz=(9.09, 16.6, 20.9);
+our @mother_xcent= (0,0,227.2394445);
+our @mother_ycent= (0,0,0);
+our @mother_zcent= (0,0,457.3735853);
 
 sub make_region3_front_shield
 {
@@ -63,13 +63,13 @@ sub front_shield_pos
 	my $sector = shift;
 	my $region = shift;
 	my $iregion = $region-1;
-	my $z_allowance = 2.5;
+	my $z_allowance = 8;
 	
 	my $mxplace = $mother_xcent[$region];
 	my $myplace = $mother_ycent[$region];
 	my $mzplace = $mother_zcent[$region]-($mother_dz[$iregion]+$z_allowance);
 	
-   	my $phi =  -($sector-1)*60 + 90;
+   	my $phi =  -($sector-1)*60 ;
    	my $x = fstr($mxplace*cos(rad($phi))+$myplace*sin(rad($phi)));
 	my $y = fstr(-$mxplace*sin(rad($phi))+$myplace*cos(rad($phi)));
 	my $z = fstr($mzplace);
@@ -127,13 +127,13 @@ sub back_shield_pos
 	my $sector = shift;
 	my $region = shift;
 	my $iregion = $region-1;
-	my $z_allowance = 2.5;
+	my $z_allowance = 8;
 	
 	my $mxplace = $mother_xcent[$region];
 	my $myplace = $mother_ycent[$region];
 	my $mzplace = $mother_zcent[$region]+($mother_dz[$iregion]+$z_allowance);
 	
-   	my $phi =  -($sector-1)*60 + 90;
+   	my $phi =  -($sector-1)*60 ;
    	my $x = fstr($mxplace*cos(rad($phi))+$myplace*sin(rad($phi)));
 	my $y = fstr(-$mxplace*sin(rad($phi))+$myplace*cos(rad($phi)));
 	my $z = fstr($mzplace);

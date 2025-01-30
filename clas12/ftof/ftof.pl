@@ -26,7 +26,7 @@ if (scalar @ARGV != 1) {
     exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file
 our %configuration = load_configuration($ARGV[0]);
 
 # import scripts
@@ -40,7 +40,7 @@ sub create_system {
     my $variation = shift;
     my $runNumber = shift;
 
-    # materials
+    # materials, hits
     materials();
     define_hit();
 
@@ -51,8 +51,8 @@ sub create_system {
     our %parameters = get_parameters(%configuration);
     our @volumes = get_volumes(%configuration);
 
-   coatjava::makeFTOF();
-   coatjava::make_pb();
+    coatjava::makeFTOF();
+    coatjava::make_pb();
 }
 
 
@@ -73,10 +73,10 @@ foreach my $variation (@variations) {
 $configuration{"factory"} = "SQLITE";
 define_bank();
 upload_parameters(\%configuration, "ftof__parameters_default.txt", "ftof", "default", 11);
-upload_parameters(\%configuration, "ftof__parameters_rga_fall2018.txt", "ftof", "default", 101);
+upload_parameters(\%configuration, "ftof__parameters_rga_fall2018.txt", "ftof", "default", 3029);
 
 my $variation = "default";
-my @runs = (11, 101);
+my @runs = (11, 3029);
 
 foreach my $run (@runs) {
     $configuration{"variation"} = $variation;

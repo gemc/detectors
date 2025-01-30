@@ -1,8 +1,9 @@
 #!/usr/bin/perl -w
 
-
 use strict;
+use warnings;
 use lib ("$ENV{GEMC}/api/perl");
+use cad;
 use utils;
 use parameters;
 use geometry;
@@ -10,73 +11,75 @@ use hit;
 use bank;
 use materials;
 use mirrors;
-use math;
-
 use Math::Trig;
 
 # Help Message
-sub help()
-{
-	print "\n Usage: \n";
-	print "   htcc.pl <configuration filename>\n";
- 	print "   Will create the CLAS12 HTCC geometry, mirrors materials, bank and hit definitions\n";
- 	print "   Note: The passport and .visa files must be present if connecting to MYSQL. \n\n";
-	exit;
+sub help() {
+    print "\n Usage: \n";
+    print "   htcc.pl <configuration filename>\n";
+    print "   Will create the CLAS12 HTCC geometry, materials, bank and hit definitions\n";
+    print "   Note: if the sqlite file does not exist, create one with:  \$GEMC/api/perl/sqlite.py -n ../clas12.sqlite\n";
+    exit;
 }
 
 # Make sure the argument list is correct
-if( scalar @ARGV != 1)
-{
-	help();
-	exit;
+if (scalar @ARGV != 1) {
+    help();
+    exit;
 }
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 our %configuration = load_configuration($ARGV[0]);
+$configuration{"variation"} = "default";
+our %parameters = get_parameters(%configuration);
 
-
-# Global pars - these should be read by the load_parameters from file or DB
-our %parameters    = get_parameters(%configuration);
-
-
-# materials
+# import scripts
 require "./materials.pl";
-
-# banks definitions
 require "./bank.pl";
-
-# hits definitions
 require "./hit.pl";
-
-# sensitive geometry
 require "./geometry.pl";
-
-# mirrors properties
 require "./mirrors.pl";
+require "./cad.pl";
 
+# subroutines create_system with arguments (variation, run number)
+sub create_system {
+    my $variation = shift;
+    my $runNumber = shift;
 
-# all the scripts must be run for every configuration
-my @allConfs = ("original");
+    # materials, hits
+    materials();
+    define_hit();
 
-# bank definitions commong to all variations
+    makeHTCC();
+    buildMirrorsSurfaces();
+
+    if ($configuration{"factory"} eq "SQLITE") {
+        define_cads();
+    }
+}
+
+# TEXT Factory
+$configuration{"factory"} = "TEXT";
 define_bank();
 
-foreach my $conf ( @allConfs )
-{
-	$configuration{"variation"} = $conf ;
-	
-	# materials
-	materials();
-	
-	# hits
-	define_hit();
-	
-	# geometry
-	makeHTCC();
-	
-	# mirrors surfaces
-	buildMirrorsSurfaces();
-	
+my @variations = ("default", "rga_spring2018", "rga_fall2018");
+my $runNumber = 11;
+
+foreach my $variation (@variations) {
+    $configuration{"variation"} = $variation;
+    create_system($variation, $runNumber);
 }
 
+# SQLITE Factory
+$configuration{"factory"} = "SQLITE";
+define_bank();
+
+my $variation = "default";
+my @runs = (11, 3029, 4763);
+
+foreach my $run (@runs) {
+    $configuration{"variation"} = $variation;
+    $configuration{"run_number"} = $run;
+    create_system($variation, $run);
+}
 

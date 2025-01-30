@@ -32,7 +32,7 @@ args = parser.parse_args()
 cfg_file = args.config_filename
 print(cfg_file)
 
-# Loading configuration file and paramters
+# Loading configuration file and parameters
 configuration = load_configuration(cfg_file)
 
 # Global parameters - these should be read by the load_parameters from file or DB

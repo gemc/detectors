@@ -1,7 +1,10 @@
 .DS_Store
 *.hipo
 *__geometry_*.txt
-*__bank_*.txt
+*__bank.txt
 *__materials_*.txt
+*__hit_*.txt
+*__mirrors_*.txt
+*__volumes_*.txt
 
 

@@ -1,0 +1,6 @@
+# Detector name and variation
+detector_name: ax_n
+comment: CLAS12 Axial Neutrons Detector
+
+# Verbosity controls the perl script output
+verbosity: 0

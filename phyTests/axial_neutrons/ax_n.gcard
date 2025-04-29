@@ -1,0 +1,18 @@
+<gcard>
+
+	<detector name="ax_n" factory="TEXT"/>
+
+	<option name="INTEGRATEDRAW" value="flux"/>
+	<option name="OUTPUT" value="hipo, test.hipo"/>
+	
+	<option name="RECORD_PASSBY" value="1" />
+
+	<option name="PHYSICS"   value="QGSP_BERT + STD " />
+
+
+	<option name="BEAM_P" value="neutron, 1.12*GeV, 0*deg, 0*deg"/>
+
+	<option name="BEAM_V" value="(0., 0., -10)cm"/>
+	
+
+</gcard>

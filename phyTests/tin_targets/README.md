@@ -38,6 +38,7 @@ be the target thickness in the units of microns. As an example, if you run
 it will run 100000 electrons on the target, and the output hipo file name will be ``./Data/out_180microns.hipo``
 
 ## Filtering events
+
 In this study we need only events when at least one particle hits the cylinder surrounding the target.
 Depending on the thickness of the target, the number of such events will be different, and especially at small thicknesses
 e.g. less than 20μm, those events are very small. 

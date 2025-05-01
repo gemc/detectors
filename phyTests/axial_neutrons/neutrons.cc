@@ -44,10 +44,13 @@ int main(int argc, char** argv) {
 	TH1D h_edep1_c("h_edep1_c", "h_edep1_c", 300, 0, 100);
 	TH1D h_edep2_c("h_edep2_c", "h_edep2_c", 300, 0, 100);
 
-	TH1D h_theta("h_theta", "h_theta", 360, -60, 60);
+	TH1D h_theta("h_theta", "h_theta", 500, -60, 60);
 
 	TH1D h_z("h_z", "h_z", 2600, 0, 2600);
-	TH1D h_beta("h_beta", "h_beta", 500, 0.0, 0.8);
+	TH1D h_beta("h_beta", "h_beta", 500, -0.02, 0.8);
+	TH1D h_beta_c("h_beta_c", "h_beta_c", 500, 0.58, 0.8);
+
+	TH2D h_beta_theta("h_beta_theta", "h_beta_theta", 500, -60, 60, 500, 0.58, 0.8);
 
 
 	const int neutron_ID = 2112;
@@ -92,7 +95,6 @@ int main(int argc, char** argv) {
 
 
 				if (pid == neutron_ID) {
-
 					h_z.Fill(avgZ);
 
 					double E = double(bMCTrue.getFloat("trackE", ip));
@@ -104,7 +106,6 @@ int main(int argc, char** argv) {
 						h_edep1.Fill(Edep_slab1);
 
 						if (Edep_slab1 > ene_cut) {
-
 							h_npos2.Fill(avgX, avgY);
 							h_edep1_c.Fill(Edep_slab1);
 
@@ -115,25 +116,66 @@ int main(int argc, char** argv) {
 							double R        = sqrt(dX * dX + dY * dY + dZ * dZ);
 							double costheta = dZ / R;
 							double theta    = acos(costheta) * r2d;
-							if (theta > 0) {
-								if (dY > 0) h_theta.Fill(theta);
-								else h_theta.Fill(-theta);
-							}
-							// calculate beta of the neutron
-							double ratio = pow(M / E, 2);
-							double beta  = sqrt(1 - ratio);
 
-							h_beta.Fill(beta);
+							if (fabs(theta) > 1) {
+								// calculate beta of the neutron
+								double ratio = pow(M / E, 2);
+								double beta  = sqrt(1 - ratio);
+								h_beta.Fill(beta);
+
+								if (beta > 0.6) {
+									h_beta_c.Fill(beta);
+
+								if (dY > 0) {
+									h_theta.Fill(theta);
+									h_beta_theta.Fill(theta, beta);
+								}
+								else {
+									h_theta.Fill(-theta);
+									h_beta_theta.Fill(-theta, beta);
+								}
+							}
 						}
 					}
 				}
 			}
 		}
 	}
-	catch (const char msg) { cerr << msg << endl; }
+}
 
-	cout << " Ration of Edep_slab1/Edep = " << 100*h_edep1_c.Integral(0, 300) / h_edep1.Integral(0, 300) << endl;
+catch
+(
+const char msg
+)
+ { cerr << msg << endl; }
 
-	gDirectory->Write();
-	return 0;
+cout
+<<
+" Ration of Edep_slab1/Edep = "
+<<
+100
+*
+h_edep1_c
+.
+Integral (
+0
+,
+300
+)
+/
+h_edep1
+.
+Integral (
+0
+,
+300
+)
+<<
+endl;
+
+gDirectory
+->
+Write();
+return
+0;
 }

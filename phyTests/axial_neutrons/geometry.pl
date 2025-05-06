@@ -42,7 +42,6 @@ sub make_test_geo {
     $detector{"hit_type"} = "flux";
     $detector{"identifiers"} = "id manual 10";
     print_det(\%configuration, \%detector);
-    print_det(\%configuration, \%detector);
 
     %detector = init_det();
     $detector{"name"} = "slab2";
@@ -58,7 +57,6 @@ sub make_test_geo {
     $detector{"sensitivity"} = "flux";
     $detector{"hit_type"} = "flux";
     $detector{"identifiers"} = "id manual 20";
-    print_det(\%configuration, \%detector);
     print_det(\%configuration, \%detector);
 
     %detector = init_det();
